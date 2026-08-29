@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f8fb" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
+      } catch (_) {}
+    </script>
     <meta name="description" content="Build your first AI income system in 30 days with practical training, ready-to-use templates, weekly coaching, and hands-on community support." />
     <title>AI Income Lab — Build Your First AI Income System</title>
     <meta property="og:type" content="website" />
@@ -48,7 +56,10 @@
       <nav class="nav shell" aria-label="Main navigation">
         <a class="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
         <div class="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#inside">What you get</a><a href="#plan">30-day plan</a></div>
-        <a class="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onclick="trackSkoolLead()">Log in ↗</a>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><span aria-hidden="true">☼</span><span aria-hidden="true">☾</span></button>
+          <a class="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onclick="trackSkoolLead()">Log in ↗</a>
+        </div>
       </nav>
 
       <section class="hero shell">
@@ -93,6 +104,21 @@
       function trackSkoolLead() {
         if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'AI Income Lab membership' });
       }
+      const themeToggle = document.getElementById('theme-toggle');
+      const setThemeToggleState = () => {
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
+        themeToggle.title = `Switch to ${isDark ? 'light' : 'dark'} mode`;
+      };
+      setThemeToggleState();
+      themeToggle.addEventListener('click', () => {
+        const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
+        try { localStorage.setItem('theme', theme); } catch (_) {}
+        setThemeToggleState();
+      });
       const stickyCta = document.getElementById('mobile-cta');
       const heroCta = document.getElementById('hero-cta');
       const finalCta = document.getElementById('final-cta');
