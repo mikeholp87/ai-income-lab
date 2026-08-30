@@ -8,6 +8,12 @@ export function setTrackingConsent(value) {
   try { localStorage.setItem(consentKey, value); } catch (_) {}
 }
 
+export function trackGoogleEvent(name, parameters = {}) {
+  if (typeof window === 'undefined' || getTrackingConsent() !== 'granted' || typeof window.gtag !== 'function') return false;
+  window.gtag('event', name, parameters);
+  return true;
+}
+
 export function loadMarketingTracking() {
   if (typeof window === 'undefined' || window.__marketingTrackingLoaded) return;
   window.__marketingTrackingLoaded = true;

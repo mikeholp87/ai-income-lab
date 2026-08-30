@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent } from './tracking.js';
+import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent } from './tracking.js';
 
 test('stores consent and loads each marketing tracker once', () => {
   const scripts = [];
@@ -18,4 +18,16 @@ test('stores consent and loads each marketing tracker once', () => {
   assert.deepEqual(scripts.map(script => script.src), ['https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8', 'https://connect.facebook.net/en_US/fbevents.js']);
   assert.equal(window.fbq.queue.some(args => args[0] === 'track' && args[1] === 'PageView'), true);
   assert.equal(window.fbq.queue.some(args => args[0] === 'consent' && args[1] === 'revoke'), true);
+});
+
+test('sends GA4 events only after analytics consent', () => {
+  const events = [];
+  const values = new Map();
+  globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
+  globalThis.window = { gtag: (...args) => events.push(args) };
+
+  assert.equal(trackGoogleEvent('cta_click', { placement: 'hero' }), false);
+  setTrackingConsent('granted');
+  assert.equal(trackGoogleEvent('cta_click', { placement: 'hero' }), true);
+  assert.deepEqual(events, [['event', 'cta_click', { placement: 'hero' }]]);
 });
