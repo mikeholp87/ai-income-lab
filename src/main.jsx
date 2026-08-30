@@ -76,7 +76,7 @@ function ConsentBanner() {
   }
 
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices"><div><strong>Your privacy choices</strong><p>Allow analytics and advertising cookies to help improve this page and measure campaigns.</p><span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></span></div><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
+  return <aside className="consent-banner" aria-label="Privacy choices"><div><strong>Analytics preferences</strong><p>Allow analytics to help improve this page and measure campaigns.</p><span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></span></div><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
 }
 
 const buildPlan = [
