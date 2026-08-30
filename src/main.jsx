@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import './styles.css';
 
 const joinUrl = 'https://www.skool.com/ai-automation-station-7346/plans?src=join';
@@ -56,7 +57,7 @@ function App() {
     <main id="top">
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
-        <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#inside">What you get</a><a href="#plan">30-day plan</a></div>
+        <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#inside">What you get</a><a href="#pricing">Pricing</a><a href="#plan">30-day plan</a></div>
         <a className="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onClick={trackSkoolLead}>Log in ↗</a>
       </nav>
 
@@ -92,6 +93,29 @@ function App() {
         </div>
       </section>
 
+      <section className="pricing shell" id="pricing">
+        <div className="pricing-intro">
+          <p className="eyebrow"><span /> Choose your starting point</p>
+          <h2>Join free.<br /><em>Build faster.</em></h2>
+          <p>Start inside the community, then unlock the systems and support that turn AI curiosity into useful work.</p>
+        </div>
+        <div className="pricing-grid">
+          <article className="price-card">
+            <div className="price-card-head"><span className="price-label">01 / Community</span><strong>Free</strong></div>
+            <p>Get inside AI Income Lab and start learning alongside people building with AI.</p>
+            <ul><li>Private community access</li><li>Practical AI systems conversations</li><li>Updates, ideas, and peer support</li></ul>
+            <a className="button button-secondary" href={joinUrl} target="_blank" rel="noreferrer">Join free <span>↗</span></a>
+          </article>
+          <article className="price-card price-card-featured">
+            <div className="price-card-head"><span className="price-label">02 / Premium</span><strong>$9<small>/ month</small></strong></div>
+            <p>Skip the guesswork with the resources and guidance to build systems you can use or sell.</p>
+            <ul><li>Done-for-you templates</li><li>Full-length courses and tutorials</li><li>Supportive network and practical guidance</li></ul>
+            <a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Get Premium <span>↗</span></a>
+            <span className="price-note">Cancel anytime</span>
+          </article>
+        </div>
+      </section>
+
       <section className="plan shell" id="plan">
         <div className="plan-title"><p className="eyebrow"><span /> Your first 30 days</p><h2>One clear path.<br />One working system.</h2></div>
         <div className="plan-grid">{buildPlan.map(([week, title, copy]) => <article key={week}><span>{week}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
@@ -112,4 +136,4 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<StrictMode><App /></StrictMode>);
+createRoot(document.getElementById('root')).render(<StrictMode><><App /><Analytics /></></StrictMode>);
