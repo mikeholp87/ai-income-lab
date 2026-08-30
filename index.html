@@ -4,14 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f8fb" />
-    <script>
-      try {
-        const savedTheme = localStorage.getItem('theme');
-        const theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
-      } catch (_) {}
-    </script>
     <meta name="description" content="Build your first AI income system in 30 days with practical training, ready-to-use templates, weekly coaching, and hands-on community support." />
     <title>AI Income Lab — Build Your First AI Income System</title>
     <meta property="og:type" content="website" />
@@ -27,8 +19,6 @@
     <meta name="twitter:image" content="https://ai-automation-station.com/og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="src/styles.css" />
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -36,7 +26,6 @@
       gtag('js', new Date());
       gtag('config', 'G-XYRWT4PFN8');
     </script>
-    <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -52,81 +41,7 @@
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2384492104905321&ev=PageView&noscript=1" /></noscript>
-    <main id="top">
-      <nav class="nav shell" aria-label="Main navigation">
-        <a class="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
-        <div class="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#inside">What you get</a><a href="#plan">30-day plan</a></div>
-        <div class="nav-actions">
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode"><span aria-hidden="true">☼</span><span aria-hidden="true">☾</span></button>
-          <a class="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onclick="trackSkoolLead()">Log in ↗</a>
-        </div>
-      </nav>
-
-      <section class="hero shell">
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span> Private Skool community · 3,000+ members</p>
-          <h1>Build your first<br /><em>AI income system</em><br />in 30 days.</h1>
-          <p class="hero-text">Turn leading AI tools into practical systems that solve real business problems and generate income—without needing a technical background.</p>
-          <div class="hero-actions"><a class="button button-primary" id="hero-cta" href="https://www.skool.com/ai-automation-station-7346/plans?src=join" onclick="trackSkoolLead()">Build my first AI system <span>↗</span></a><a class="button button-secondary" href="#inside">See what you get <span>↓</span></a></div>
-          <p class="cta-note">$9/month · Cancel anytime</p>
-          <div class="trust-line"><span><strong>3,000+</strong> members</span><span><strong>600+</strong> curated tools</span><span><strong>Weekly</strong> live coaching</span></div>
-        </div>
-        <div class="hero-board">
-          <div class="build-board" aria-label="A four-week plan to build an AI income system">
-            <div class="board-head"><span>30-DAY BUILD PLAN</span><span class="board-status"><i></i> SYSTEM ONLINE</span></div>
-            <div class="board-track" aria-hidden="true"><span></span></div>
-            <div class="board-steps"><div class="board-step"><span class="step-check">✓</span><div><small>WEEK 01</small><strong>Choose a problem</strong></div></div><div class="board-step"><span class="step-check">✓</span><div><small>WEEK 02</small><strong>Build the system</strong></div></div><div class="board-step"><span class="step-check">✓</span><div><small>WEEK 03</small><strong>Package the result</strong></div></div><div class="board-step"><span class="step-check">↗</span><div><small>WEEK 04</small><strong>Put it to work</strong></div></div></div>
-            <div class="board-output"><span>OUTPUT</span><strong>ONE WORKING AI<br />INCOME SYSTEM</strong><span class="output-tag">READY TO USE / SELL</span></div>
-          </div>
-          <p>Move from learning about AI to building something you can use, customize, and sell.</p>
-        </div>
-      </section>
-
-      <section class="ticker" aria-label="Membership highlights"><div><span>NO CODING REQUIRED</span><i>✦</i><span>READY-TO-USE TEMPLATES</span><i>✦</i><span>WEEKLY LIVE Q&amp;A</span><i>✦</i><span>CANCEL ANYTIME</span><i>✦</i></div></section>
-
-      <section class="outcomes shell" id="outcomes"><div class="section-heading"><p class="eyebrow"><span></span> Choose your goal</p><h2>Learn AI by<br /><em>building with it.</em></h2></div><div class="outcome-grid"><article><span class="outcome-icon">↻</span><h3>Automate your business</h3><p>Build practical systems that solve repetitive problems and give you time back.</p></article><article><span class="outcome-icon">↗</span><h3>Offer AI services</h3><p>Use client-ready workflows to solve business problems and create a service people will pay for.</p></article><article><span class="outcome-icon">+</span><h3>Build a new income stream</h3><p>Turn what you learn into useful systems you can customize, improve, and sell.</p></article></div></section>
-
-      <section class="inside-wrap" id="inside"><div class="inside shell"><div class="inside-intro"><p class="eyebrow"><span></span> What you get inside</p><h2>Practical resources.<br /><em>Hands-on support.</em></h2><p>Start with proven examples and ready-to-use resources, then get the guidance to turn them into systems that work in the real world.</p></div><div class="inclusion-list"><div class="inclusion-group"><p class="group-label">Core membership</p><article><span class="check">✓</span><div><h3>Step-by-step tutorials &amp; courses</h3><p>Follow a clear path from choosing an idea to building a working AI system.</p></div></article><article><span class="check">✓</span><div><h3>Templates you can use, customize &amp; sell</h3><p>Start with ready-to-use resources instead of building every workflow from scratch.</p></div></article><article><span class="check">✓</span><div><h3>600+ curated tools &amp; software deals</h3><p>Find useful tools faster and avoid wasting money on subscriptions you do not need.</p></div></article><article><span class="check">✓</span><div><h3>Advanced training &amp; client-ready workflows</h3><p>Build deeper skills and turn useful systems into offers you can deliver to clients.</p></div></article></div><div class="inclusion-group"><p class="group-label">Live support</p><article><span class="check">✓</span><div><h3>Weekly live Q&amp;A &amp; coaching</h3><p>Bring your questions, troubleshoot your system, and keep moving forward.</p></div></article><article><span class="check">✓</span><div><h3>Support from a growing community</h3><p>Learn alongside builders who are testing ideas and sharing what works.</p></div></article></div><aside class="vip-callout"><p class="group-label">VIP coaching</p><h3>One-on-one guidance for your next system</h3><p>Get focused help with your business, offer, or client-ready workflow.</p><span>Available to VIP members</span></aside></div></div></section>
-
-      <section class="community-proof shell" aria-label="AI Income Lab community facts"><div><p class="eyebrow"><span></span> Community momentum</p><h2>Learn alongside people<br />who are building too.</h2></div><div class="proof-facts"><article><strong>3,000+</strong><span>community members</span></article><article><strong>Weekly</strong><span>live Q&amp;A and coaching</span></article><article><strong>600+</strong><span>curated tools and deals</span></article></div></section>
-
-      <section class="plan shell" id="plan"><div class="plan-title"><p class="eyebrow"><span></span> Your first 30 days</p><h2>From AI learner<br />to system builder.</h2></div><div class="plan-grid"><article><span>WEEK 01</span><h3>Choose a real problem</h3><p>Identify a useful business workflow worth improving with AI.</p></article><article><span>WEEK 02</span><h3>Build from a proven example</h3><p>Follow the training and customize a ready-to-use template.</p></article><article><span>WEEK 03</span><h3>Make it repeatable</h3><p>Turn the workflow into a practical system you can use again.</p></article><article><span>WEEK 04</span><h3>Use it or sell it</h3><p>Put it to work in your business or package it for a client.</p></article></div></section>
-
-      <section class="no-need shell"><p class="eyebrow"><span></span> What you do not need</p><div><span>No technical background required</span><span>No coding skills needed</span><span>No expensive subscription fees</span></div></section>
-
-      <section class="join-card shell" id="join"><div><p class="eyebrow"><span></span> Join AI Income Lab</p><h2>Build something useful.<br /><em>Make it pay.</em></h2></div><div class="join-side"><p>Get the training, templates, and support to build your first AI income system in 30 days.</p><a class="button button-light" id="final-cta" href="https://www.skool.com/ai-automation-station-7346/plans?src=join" onclick="trackSkoolLead()">Build my first AI system <span>↗</span></a><small>$9/month · Cancel anytime</small></div></section>
-
-      <aside class="mobile-cta" id="mobile-cta" aria-label="Join AI Income Lab"><span><strong>Build my first AI system</strong><small>$9/month · Cancel anytime</small></span><a href="https://www.skool.com/ai-automation-station-7346/plans?src=join" onclick="trackSkoolLead()" aria-label="Build my first AI system">↗</a></aside>
-
-      <footer class="footer shell"><a class="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><a href="#top">Back to top ↑</a></footer>
-    </main>
-    <script>
-      function trackSkoolLead() {
-        if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'AI Income Lab membership' });
-      }
-      const themeToggle = document.getElementById('theme-toggle');
-      const setThemeToggleState = () => {
-        const isDark = document.documentElement.dataset.theme === 'dark';
-        themeToggle.setAttribute('aria-pressed', String(isDark));
-        themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} mode`);
-        themeToggle.title = `Switch to ${isDark ? 'light' : 'dark'} mode`;
-      };
-      setThemeToggleState();
-      themeToggle.addEventListener('click', () => {
-        const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
-        try { localStorage.setItem('theme', theme); } catch (_) {}
-        setThemeToggleState();
-      });
-      const stickyCta = document.getElementById('mobile-cta');
-      const heroCta = document.getElementById('hero-cta');
-      const finalCta = document.getElementById('final-cta');
-      let heroVisible = true;
-      let finalVisible = false;
-      const updateStickyCta = () => stickyCta.classList.toggle('is-visible', !heroVisible && !finalVisible);
-      new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; updateStickyCta(); }).observe(heroCta);
-      new IntersectionObserver(([entry]) => { finalVisible = entry.isIntersecting; updateStickyCta(); }).observe(finalCta);
-    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
