@@ -39,8 +39,9 @@ section[id] { scroll-margin-top: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 9px; font: 700 12px 'DM Mono', monospace; letter-spacing: .05em; }
 .brand span { display: grid; place-items: center; width: 30px; height: 30px; background: var(--accent); color: #101624; font-size: 11px; }
 .nav-links { display: flex; gap: 32px; color: var(--muted); font-size: 13px; }
-.nav-links a:hover, .nav-login:hover, .footer > a:last-child:hover { color: var(--accent); }
-.nav-login { font: 500 11px 'DM Mono', monospace; letter-spacing: .04em; }
+.nav-links a:hover, .nav-pricing:hover, .footer > a:last-child:hover { color: var(--accent); }
+.nav-pricing { min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; color: #101624; background: var(--orange); font: 500 11px 'DM Mono', monospace; letter-spacing: .04em; white-space: nowrap; }
+.nav-pricing:hover { color: #101624; }
 .nav-actions { display: flex; align-items: center; gap: 20px; }
 .theme-toggle { display: grid; grid-template-columns: 1fr 1fr; width: 66px; height: 32px; padding: 3px; border: 1px solid var(--line); border-radius: 0; color: var(--muted); background: var(--white); cursor: pointer; }
 .theme-toggle span { display: grid; place-items: center; font: 15px/1 'DM Mono', monospace; }
@@ -300,7 +301,7 @@ h1 em, h2 em { color: var(--orange); font-style: normal; }
 
 @media (max-width: 680px) {
   .shell { width: min(100% - 36px, 560px); }
-  .nav { height: 70px; }.nav-links { display: none; }.nav-actions { gap: 12px; }
+  .nav { height: 70px; gap: 10px; }.nav .brand { min-width: 0; white-space: nowrap; }.nav-links { display: none; }.nav-actions { flex: 0 0 auto; gap: 8px; }.nav .theme-toggle { width: 58px; }.nav-pricing { padding-inline: 10px; font-size: 10px; }
   .hero { padding-block: 56px 64px; }.hero-text { font-size: 16px; }
   .button { width: 100%; }.trust-line { display: grid; grid-template-columns: 1fr 1fr; }
   .build-board { padding: 16px; box-shadow: 8px 8px 0 var(--sky); }.board-head { align-items: flex-start; flex-direction: column; gap: 8px; }.board-head > span:last-child { text-align: left; }.board-step div { align-items: flex-start; flex-direction: column; gap: 4px; }

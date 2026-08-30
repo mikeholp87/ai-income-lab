@@ -12,7 +12,7 @@ const campaignMessages = {
   agency: { eyebrow: 'For AI freelancers and agency builders', headline: <>Build an AI system<br />you can <em>sell to clients.</em></>, text: 'Follow a practical 30-day path from useful workflow to a client-ready offer—with templates and support when you get stuck.' },
   business: { eyebrow: 'For business owners buried in repetitive work', headline: <>Automate one expensive<br /><em>workflow in 30 days.</em></>, text: 'Turn repetitive work into a practical AI system using guided training, ready-to-use templates, and weekly support.' },
   creator: { eyebrow: 'For creators ready to turn AI into output', headline: <>Build an AI system<br />that <em>creates leverage.</em></>, text: 'Use practical workflows to produce more, package what works, and create a system you can use—or sell.' },
-  default: { eyebrow: 'Private Skool community · 3,000+ members', headline: <>Build an AI system<br />you can <em>use—or sell</em><br />in 30 days.</>, text: 'Get the training, ready-to-use templates, and hands-on support to build an AI system for your own business—or sell it to clients.' },
+  default: { eyebrow: 'Private Skool community · 3,000+ members', headline: <>Build an AI system<br />you can <em>use—or sell</em><br />in 30 days.</>, text: 'Get guided training and hands-on support to build an AI system for your own business—or sell it to clients. Upgrade when you want advanced training, software deals, and the full template vault.' },
 };
 
 const googleEventNames = {
@@ -26,7 +26,7 @@ function trackEvent(name, properties = {}) {
 }
 
 function trackCheckout(plan, price, placement) {
-  const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: `Choose ${plan}`, link_url: skoolPlansUrl, value: price, currency: 'USD', plan, placement };
+  const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: 'Continue to Skool plans', link_url: skoolPlansUrl, value: price, currency: 'USD', plan, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'choose_plan' });
   track('InitiateCheckout', properties);
   trackGoogleEvent('begin_checkout', { ...properties, items: [{ item_id: plan.toLowerCase(), item_name: `${plan} membership`, item_category: 'membership', price, quantity: 1 }] });
@@ -110,7 +110,7 @@ const tourSteps = [
 
 const faqs = [
   ['Do I need coding experience?', 'No. The training is designed around practical AI and no-code automation workflows. You can start with guided tutorials and ready-to-use templates.'],
-  ['Which plan should I choose?', 'Choose Standard for the foundations, Premium for advanced training, or VIP when you want the complete software-deal and N8N template vault. Use the plan finder above for a quick recommendation.'],
+  ['Which plan should I choose?', 'Choose Standard for the foundations, Premium for advanced training, or VIP when you want the complete software-deal and N8N template vault. You can upgrade later as your needs grow.'],
   ['How much time should I set aside?', 'The 30-day path is designed for steady progress. A few focused hours each week is enough to choose a problem, build a first version, and put it to work.'],
   ['What happens after I join?', 'Skool gives you immediate access to the community and everything included in your selected plan. Start with the foundational material and introduce yourself so you can get directed to the right resources.'],
   ['Can I upgrade later?', 'Yes. Standard and Premium both include a clear upgrade path, so you can start at the level you need today.'],
@@ -241,7 +241,7 @@ function App() {
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
         <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-        <div className="nav-actions"><ThemeToggle /><a className="nav-login" href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={() => trackSkoolLead('navigation', 'Log in')}>Log in ↗</a></div>
+        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a></div>
       </nav>
 
       <section className="hero shell" id="main-content" tabIndex="-1">
@@ -301,8 +301,8 @@ function App() {
               <div className="price-amount"><span>$</span><strong>{price}</strong><small>USD<br />per month</small></div>
               <p className="price-includes">What you get</p>
               <ul aria-label={`${name} plan includes`}>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={outboundUrl(plansUrl, campaign, { utm_content: name.toLowerCase() })} target="_blank" rel="noreferrer" onClick={() => trackCheckout(name, price, 'pricing_card')}>Choose {name} <span>↗</span></a>
-              <small className="price-checkout">Select {name} on the secure Skool checkout</small>
+              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={outboundUrl(plansUrl, campaign, { utm_content: name.toLowerCase() })} target="_blank" rel="noreferrer" onClick={() => trackCheckout(name, price, 'pricing_card')}>Continue to Skool plans <span>↗</span></a>
+              <small className="price-checkout">Choose and confirm your plan securely on Skool</small>
             </article>
           ))}
         </div>
@@ -328,7 +328,7 @@ function App() {
         <div className="join-side"><p>Join 3,000+ members turning leading AI tools into practical systems for business and clients.</p><a className="button button-light" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $9', link_url: '#pricing', placement: 'final', action: 'view_pricing' })}>See plans from $9 <span>↑</span></a><small>Choose your level above</small></div>
       </section>
 
-      <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><div className="footer-links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button><a href="#top">Back to top ↑</a></div></footer>
+      <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><div className="footer-links"><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Member login', link_url: skoolCommunityUrl, placement: 'footer', action: 'member_login' })}>Member login ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button><a href="#top">Back to top ↑</a></div></footer>
       {mobileCtaVisible && <div className="mobile-cta is-visible"><span><strong>Ready to build?</strong><small>Plans from $9/month</small></span><a href="#pricing" aria-label="See membership plans" onClick={() => trackEvent('CTA Clicked', { button_text: 'See membership plans', link_url: '#pricing', placement: 'mobile_sticky', action: 'view_pricing' })}>↓</a></div>}
     </main>
     <ConsentBanner />
