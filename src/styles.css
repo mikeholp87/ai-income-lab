@@ -133,6 +133,7 @@ h1 em, h2 em { color: var(--orange); font-style: normal; }
 .price-card li::before { content: '✓'; margin-right: 10px; color: var(--accent); }
 .price-card-featured li { color: #d8def0; }
 .price-card .button { width: 100%; margin-top: auto; }
+.price-card-featured .button { width: calc(100% - 5px); }
 
 .community-proof { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: end; padding-block: 104px; border-bottom: 1px solid var(--line); }
 .community-proof h2 { margin: 0; font-size: clamp(40px, 4.5vw, 62px); }
