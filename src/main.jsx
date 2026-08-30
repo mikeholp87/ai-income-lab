@@ -67,7 +67,7 @@ function App() {
           <h1>Build your first<br /><em>AI income system</em><br />in 30 days.</h1>
           <p className="hero-text">Get the training, ready-to-use templates, and hands-on support to build an AI system for your own business—or sell it to clients.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={joinUrl} onClick={trackSkoolLead}>Join for $9/month <span>↗</span></a>
+            <a className="button button-primary" href={joinUrl} onClick={trackSkoolLead}>Join for $19/month <span>↗</span></a>
             <a className="button button-secondary" href="#inside">See what&apos;s inside <span>↓</span></a>
           </div>
           <div className="trust-line"><span><strong>3,000+</strong> members</span><span><strong>600+</strong> curated tools</span><span><strong>Weekly</strong> live coaching</span></div>
@@ -107,9 +107,9 @@ function App() {
             <a className="button button-secondary" href={joinUrl} target="_blank" rel="noreferrer">Join free <span>↗</span></a>
           </article>
           <article className="price-card price-card-featured">
-            <div className="price-card-head"><span className="price-label">02 / Premium</span><strong>$9<small>/ month</small></strong></div>
+            <div className="price-card-head"><span className="price-label">02 / Premium</span><strong>$19<small>/ month</small></strong></div>
             <p>Skip the guesswork with the resources and guidance to build systems you can use or sell.</p>
-            <ul><li>Done-for-you templates</li><li>Full-length courses and tutorials</li><li>Supportive network and practical guidance</li></ul>
+            <ul><li>Done-for-you templates</li><li>Full-length courses</li><li>Step-by-step tutorials</li><li>Supportive network</li></ul>
             <a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Get Premium <span>↗</span></a>
             <span className="price-note">Cancel anytime</span>
           </article>
@@ -128,7 +128,7 @@ function App() {
 
       <section className="join-card shell" id="join">
         <div><p className="eyebrow"><span /> Join AI Income Lab</p><h2>Stop collecting tools.<br /><em>Start building income.</em></h2></div>
-        <div className="join-side"><p>Join 3,000+ members turning leading AI tools into practical systems for business and clients.</p><a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Build my first system <span>↗</span></a><small>$9/month · Cancel anytime</small></div>
+        <div className="join-side"><p>Join 3,000+ members turning leading AI tools into practical systems for business and clients.</p><a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Build my first system <span>↗</span></a><small>$19/month · Cancel anytime</small></div>
       </section>
 
       <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><a href="#top">Back to top ↑</a></footer>
