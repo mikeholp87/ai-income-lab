@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Analytics } from '@vercel/analytics/react';
 import './styles.css';
@@ -9,6 +9,21 @@ function trackSkoolLead() {
   if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
     window.fbq('track', 'Lead', { content_name: 'AI Income Lab membership' });
   }
+}
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
+  const isDark = theme === 'dark';
+
+  function toggleTheme() {
+    const nextTheme = isDark ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    document.querySelector('meta[name="theme-color"]').content = nextTheme === 'dark' ? '#080d19' : '#f7f8fb';
+    try { localStorage.setItem('theme', nextTheme); } catch (_) {}
+    setTheme(nextTheme);
+  }
+
+  return <button className="theme-toggle" type="button" aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`} aria-pressed={isDark} title={`Switch to ${isDark ? 'light' : 'dark'} mode`} onClick={toggleTheme}><span aria-hidden="true">☼</span><span aria-hidden="true">☾</span></button>;
 }
 
 const buildPlan = [
@@ -28,9 +43,9 @@ const inclusions = [
 ];
 
 const pricingPlans = [
-  { name: 'Standard', price: 9, features: ['Community Access', 'Courses & Tutorials', 'Upgrade To Premium'] },
-  { name: 'Premium', price: 49, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Upgrade To VIP'] },
-  { name: 'VIP', price: 89, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Curated Software Deals', '6,400+ N8N Templates'] },
+  { name: 'Standard', price: 9, fit: 'Learn the foundations', description: 'Start with the community, core courses, and practical tutorials.', features: ['Community Access', 'Courses & Tutorials', 'Upgrade To Premium'] },
+  { name: 'Premium', price: 49, fit: 'Build with more depth', description: 'Add advanced training when you are ready to build stronger systems.', recommended: true, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Upgrade To VIP'] },
+  { name: 'VIP', price: 89, fit: 'Open the full vault', description: 'Get the deepest resource library for serious implementation work.', features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Curated Software Deals', '6,400+ N8N Templates'] },
 ];
 
 function BuildBoard() {
@@ -64,7 +79,7 @@ function App() {
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
         <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#inside">What you get</a><a href="#pricing">Pricing</a><a href="#plan">30-day plan</a></div>
-        <a className="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onClick={trackSkoolLead}>Log in ↗</a>
+        <div className="nav-actions"><ThemeToggle /><a className="nav-login" href="https://www.skool.com/ai-automation-station-7346" target="_blank" rel="noreferrer" onClick={trackSkoolLead}>Log in ↗</a></div>
       </nav>
 
       <section className="hero shell">
@@ -101,21 +116,29 @@ function App() {
 
       <section className="pricing shell" id="pricing">
         <div className="pricing-intro">
-          <div><p className="eyebrow"><span /> Select your plan</p><h2>Choose how far<br /><em>you want to build.</em></h2></div>
-          <p>Every plan starts with the community and practical training. Move up when you want advanced resources and a deeper template library.</p>
+          <div><p className="eyebrow"><span /> Select your build level</p><h2>Choose the support<br /><em>your next system needs.</em></h2></div>
+          <p>Start with the essentials, add advanced training when you need it, or unlock the full template and software vault.</p>
         </div>
+        <div className="pricing-assurance" aria-label="Membership details"><span>Monthly membership</span><span>Hosted on Skool</span><span>Three ways to join</span></div>
         <div className="pricing-grid">
-          {pricingPlans.map(({ name, price, features }, index) => (
-            <article className={`price-card${name === 'VIP' ? ' price-card-featured' : ''}`} key={name}>
-              <div className="price-card-head">
-                <span className="price-label">0{index + 1} / {name}</span>
-                <strong>${price}<small>/ month</small></strong>
+          {pricingPlans.map(({ name, price, fit, description, recommended, features }, index) => (
+            <article className={`price-card${recommended ? ' price-card-recommended' : ''}`} key={name}>
+              <div className="price-card-top">
+                <span className="price-level">Level 0{index + 1}</span>
+                {recommended && <span className="price-badge">Recommended</span>}
               </div>
-              <ul>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              <a className={`button ${name === 'VIP' ? 'button-light' : 'button-secondary'}`} href={joinUrl} onClick={trackSkoolLead}>Join {name} <span>↗</span></a>
+              <h3>{name}</h3>
+              <p className="price-fit">{fit}</p>
+              <p className="price-summary">{description}</p>
+              <div className="price-amount"><span>$</span><strong>{price}</strong><small>USD<br />per month</small></div>
+              <p className="price-includes">What you get</p>
+              <ul aria-label={`${name} plan includes`}>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={joinUrl} target="_blank" rel="noreferrer" onClick={trackSkoolLead}>Join {name} <span>↗</span></a>
+              <small className="price-checkout">Choose this plan on Skool</small>
             </article>
           ))}
         </div>
+        <p className="pricing-note">All plans are billed monthly. Pick the level that matches what you want to build now.</p>
       </section>
 
       <section className="plan shell" id="plan">

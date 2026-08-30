@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f8fb" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
+      } catch (_) {}
+    </script>
     <meta name="description" content="Build your first AI income system in 30 days with practical training, ready-to-use templates, weekly coaching, and hands-on community support." />
     <title>AI Income Lab — Build Your First AI Income System</title>
     <meta property="og:type" content="website" />
