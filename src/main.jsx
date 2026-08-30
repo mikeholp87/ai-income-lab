@@ -27,6 +27,12 @@ const inclusions = [
   ['Advanced workflows', 'Client-ready systems and deeper training when you are ready to level up.'],
 ];
 
+const pricingPlans = [
+  { name: 'Standard', price: 9, features: ['Community Access', 'Courses & Tutorials', 'Upgrade To Premium'] },
+  { name: 'Premium', price: 49, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Upgrade To VIP'] },
+  { name: 'VIP', price: 89, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Curated Software Deals', '6,400+ N8N Templates'] },
+];
+
 function BuildBoard() {
   return (
     <div className="build-board" aria-label="A four-week plan to build an AI income system">
@@ -67,7 +73,7 @@ function App() {
           <h1>Build your first<br /><em>AI income system</em><br />in 30 days.</h1>
           <p className="hero-text">Get the training, ready-to-use templates, and hands-on support to build an AI system for your own business—or sell it to clients.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={joinUrl} onClick={trackSkoolLead}>Join for $19/month <span>↗</span></a>
+            <a className="button button-primary" href={joinUrl} onClick={trackSkoolLead}>Join from $9/month <span>↗</span></a>
             <a className="button button-secondary" href="#inside">See what&apos;s inside <span>↓</span></a>
           </div>
           <div className="trust-line"><span><strong>3,000+</strong> members</span><span><strong>600+</strong> curated tools</span><span><strong>Weekly</strong> live coaching</span></div>
@@ -95,24 +101,20 @@ function App() {
 
       <section className="pricing shell" id="pricing">
         <div className="pricing-intro">
-          <p className="eyebrow"><span /> Choose your starting point</p>
-          <h2>Join free.<br /><em>Build faster.</em></h2>
-          <p>Start inside the community, then unlock the systems and support that turn AI curiosity into useful work.</p>
+          <div><p className="eyebrow"><span /> Select your plan</p><h2>Choose how far<br /><em>you want to build.</em></h2></div>
+          <p>Every plan starts with the community and practical training. Move up when you want advanced resources and a deeper template library.</p>
         </div>
         <div className="pricing-grid">
-          <article className="price-card">
-            <div className="price-card-head"><span className="price-label">01 / Community</span><strong>Free</strong></div>
-            <p>Get inside AI Income Lab and start learning alongside people building with AI.</p>
-            <ul><li>Private community access</li><li>Practical AI systems conversations</li><li>Updates, ideas, and peer support</li></ul>
-            <a className="button button-secondary" href={joinUrl} target="_blank" rel="noreferrer">Join free <span>↗</span></a>
-          </article>
-          <article className="price-card price-card-featured">
-            <div className="price-card-head"><span className="price-label">02 / Premium</span><strong>$19<small>/ month</small></strong></div>
-            <p>Skip the guesswork with the resources and guidance to build systems you can use or sell.</p>
-            <ul><li>Done-for-you templates</li><li>Full-length courses</li><li>Step-by-step tutorials</li><li>Supportive network</li></ul>
-            <a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Get Premium <span>↗</span></a>
-            <span className="price-note">Cancel anytime</span>
-          </article>
+          {pricingPlans.map(({ name, price, features }, index) => (
+            <article className={`price-card${name === 'VIP' ? ' price-card-featured' : ''}`} key={name}>
+              <div className="price-card-head">
+                <span className="price-label">0{index + 1} / {name}</span>
+                <strong>${price}<small>/ month</small></strong>
+              </div>
+              <ul>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+              <a className={`button ${name === 'VIP' ? 'button-light' : 'button-secondary'}`} href={joinUrl} onClick={trackSkoolLead}>Join {name} <span>↗</span></a>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -128,7 +130,7 @@ function App() {
 
       <section className="join-card shell" id="join">
         <div><p className="eyebrow"><span /> Join AI Income Lab</p><h2>Stop collecting tools.<br /><em>Start building income.</em></h2></div>
-        <div className="join-side"><p>Join 3,000+ members turning leading AI tools into practical systems for business and clients.</p><a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Build my first system <span>↗</span></a><small>$19/month · Cancel anytime</small></div>
+        <div className="join-side"><p>Join 3,000+ members turning leading AI tools into practical systems for business and clients.</p><a className="button button-light" href={joinUrl} onClick={trackSkoolLead}>Build my first system <span>↗</span></a><small>Plans from $9/month</small></div>
       </section>
 
       <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><a href="#top">Back to top ↑</a></footer>
