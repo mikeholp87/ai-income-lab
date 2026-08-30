@@ -292,7 +292,7 @@ function App() {
             <article id={`plan-${name.toLowerCase()}`} className={`price-card${recommended ? ' price-card-recommended' : ''}`} key={name}>
               <div className="price-card-top">
                 <span className="price-level">Level 0{index + 1}</span>
-                {recommended && <span className="price-badge">Most popular</span>}
+                {recommended && <span className="price-badge">Recommended</span>}
               </div>
               <h3>{name}</h3>
               <p className="price-fit">{fit}</p>
