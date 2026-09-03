@@ -9,10 +9,10 @@ import './styles.css';
 const skoolPlansUrl = 'https://www.skool.com/ai-automation-station-7346/plans?src=join';
 const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
 const campaignMessages = {
-  agency: { eyebrow: 'For AI freelancers and agency builders', headline: <>Build an AI system you can <em>sell to clients.</em></>, text: 'A 30-day path from useful workflow to client-ready offer, with templates and support when you get stuck.' },
-  business: { eyebrow: 'For business owners buried in repetitive work', headline: <>Automate one expensive <em>workflow in 30 days.</em></>, text: 'Turn repetitive work into a working AI system with guided training, ready-to-use templates, and weekly support.' },
-  creator: { eyebrow: 'For creators ready to turn AI into output', headline: <>Build an AI system that <em>creates leverage.</em></>, text: 'Produce more with practical workflows, package what works, and build a system you can use or sell.' },
-  default: { eyebrow: 'Private Skool community · 3,000+ members', headline: <>Build an AI system you can <em>use or sell</em> in 30 days.</>, text: 'Guided training, templates, and weekly live coaching in a private Skool community.' },
+  agency: { eyebrow: 'For AI freelancers and agency builders', headline: <>Build an AI system you can <em>sell to clients.</em></>, text: <>Follow <strong>step-by-step builds</strong>, adapt <strong>client-ready templates</strong>, and bring blockers to <strong>weekly live coaching</strong> until the offer is ready to sell.</> },
+  business: { eyebrow: 'For business owners buried in repetitive work', headline: <>Automate one expensive <em>workflow in 30 days.</em></>, text: <>Follow <strong>step-by-step builds</strong>, adapt <strong>ready-to-use templates</strong>, and bring blockers to <strong>weekly live coaching</strong> until the work runs itself.</> },
+  creator: { eyebrow: 'For creators ready to turn AI into output', headline: <>Build an AI system that <em>creates leverage.</em></>, text: <>Follow <strong>step-by-step builds</strong>, adapt <strong>ready-to-use templates</strong>, and bring blockers to <strong>weekly live coaching</strong> until you can produce on repeat.</> },
+  default: { eyebrow: 'For freelancers, operators, and business owners', headline: <>Build an AI system you can <em>use or sell</em> in 30 days.</>, text: <>Follow <strong>step-by-step builds</strong>, adapt <strong>ready-to-use templates</strong>, and bring blockers to <strong>weekly live coaching</strong>, inside a private Skool community.</> },
 };
 
 const googleEventNames = {
@@ -129,10 +129,6 @@ function HeroVideo() {
 
   return (
     <div className="vsl">
-      <p className="vsl-rail">
-        <span><strong>Watch first</strong> · what you actually build</span>
-        <span className="vsl-runtime">0:14</span>
-      </p>
       <div className="vsl-screen">
         <video
           ref={video}
@@ -149,9 +145,9 @@ function HeroVideo() {
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         {!started && (
-          <button type="button" className="vsl-play" onClick={start}>
+          <button type="button" className="vsl-play" onClick={start} aria-label="Play the intro, 14 seconds, sound on">
             <span className="vsl-play-key" aria-hidden="true">&#9654;</span>
-            <span className="vsl-play-label">Play the intro<small>14 seconds · sound on</small></span>
+            <span className="vsl-runtime" aria-hidden="true">0:14</span>
           </button>
         )}
       </div>
@@ -268,11 +264,15 @@ function App() {
         </div>
         <HeroVideo />
         <div className="hero-actions">
-          <a className="button button-primary" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $9', link_url: '#pricing', placement: 'hero', action: 'view_pricing', angle: campaign.angle })}>See plans from $9 <span>↓</span></a>
+          <a className="button button-primary button-hero" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $9', link_url: '#pricing', placement: 'hero', action: 'view_pricing', angle: campaign.angle })}>See plans from $9 <span>↓</span></a>
           <a className="hero-tour" href="#tour" onClick={() => trackEvent('CTA Clicked', { button_text: 'Take the 60-second tour', link_url: '#tour', placement: 'hero', action: 'view_tour', angle: campaign.angle })}>Or take the 60-second tour <span>→</span></a>
         </div>
-        <p className="cta-note">Monthly plans · Hosted on Skool · Start at your level</p>
-        <div className="trust-line"><span><strong>3,000+</strong> members</span><span><strong>600+</strong> curated tools</span><span><strong>Weekly</strong> live coaching</span></div>
+        <p className="cta-note">Plans from $9 a month · Cancel anytime from your Skool account</p>
+        <ul className="hero-trust">
+          <li><i aria-hidden="true">✓</i><span><strong>3,000+</strong> members building alongside you</span></li>
+          <li><i aria-hidden="true">✓</i><span><strong>600+</strong> curated tools and software deals</span></li>
+          <li><i aria-hidden="true">✓</i><span><strong>Weekly</strong> live Q&amp;A and coaching</span></li>
+        </ul>
       </section>
 
       <section className="proof-strip" aria-label="Membership proof"><div className="shell"><div><strong>3,000+</strong><span>builders in the community</span></div><div><strong>6,400+</strong><span>N8N templates in VIP</span></div><div><strong>Weekly</strong><span>live Q&amp;A and coaching</span></div><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackSkoolLead('proof_strip', 'Verify on Skool')}>Verify on Skool ↗</a></div></section>
