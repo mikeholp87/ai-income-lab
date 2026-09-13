@@ -5,9 +5,10 @@ AI Income Lab is a private Skool community for people building practical AI syst
 ## Key facts
 
 - Plans start at $29 per month.
-- The community has 3,000+ members.
-- Membership includes courses, templates, curated tools, weekly support, and advanced workflows by plan.
-- The guided path helps members build one useful AI system in 30 days.
+- The public Skool listing shows 2,900+ people in the community.
+- Every plan includes community access, courses, and tutorials.
+- Premium adds advanced training. VIP adds weekly coaching, curated software deals, and 6,400+ N8N templates.
+- The 30-day roadmap is a suggested build schedule, not a guarantee of completion, income, or client acquisition.
 
 ## Official pages
 

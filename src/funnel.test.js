@@ -3,11 +3,13 @@ import test from 'node:test';
 import { getCampaign, nextTabIndex, outboundUrl } from './funnel.js';
 
 test('routes campaign messaging and preserves attribution', () => {
-  const campaign = getCampaign('?angle=agency&utm_source=facebook&fbclid=abc', ['default', 'agency']);
-  const outbound = new URL(outboundUrl('https://example.com/plans?src=join', campaign));
+  const campaign = getCampaign('?angle=agency&utm_source=facebook&utm_content=video-a&fbclid=abc', ['default', 'agency']);
+  const outbound = new URL(outboundUrl('https://example.com/plans?src=join', campaign, { selected_plan: 'premium' }));
 
   assert.equal(campaign.angle, 'agency');
   assert.equal(outbound.searchParams.get('utm_source'), 'facebook');
+  assert.equal(outbound.searchParams.get('utm_content'), 'video-a');
+  assert.equal(outbound.searchParams.get('selected_plan'), 'premium');
   assert.equal(outbound.searchParams.get('fbclid'), 'abc');
 });
 
