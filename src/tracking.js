@@ -15,8 +15,18 @@ export function trackGoogleEvent(name, parameters = {}) {
 }
 
 export function loadMarketingTracking() {
-  if (typeof window === 'undefined' || window.__marketingTrackingLoaded) return;
+  if (typeof window === 'undefined') return;
+  if (window.__marketingTrackingActive) return;
+  if (window.__marketingTrackingLoaded) {
+    window.__marketingTrackingActive = true;
+    window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
+    window.gtag('config', 'G-XYRWT4PFN8');
+    window.fbq('consent', 'grant');
+    window.fbq('track', 'PageView');
+    return;
+  }
   window.__marketingTrackingLoaded = true;
+  window.__marketingTrackingActive = true;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
@@ -48,6 +58,7 @@ export function loadMarketingTracking() {
 
 export function disableMarketingTracking() {
   if (typeof window === 'undefined') return;
+  window.__marketingTrackingActive = false;
   if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   if (typeof window.fbq === 'function') window.fbq('consent', 'revoke');
 }

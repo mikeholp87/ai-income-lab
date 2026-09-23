@@ -1,5 +1,5 @@
 import { StrictMode, useEffect, useRef, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, nextTabIndex, outboundUrl } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent } from './tracking.js';
@@ -8,7 +8,7 @@ import './styles.css';
 
 const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
 
-const skoolPlansUrl = 'https://www.skool.com/ai-automation-station-7346/plans?src=join';
+const skoolAboutUrl = 'https://www.skool.com/ai-automation-station-7346/about';
 const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
 const campaignMessages = {
   agency: { eyebrow: 'For AI freelancers and agency builders', headline: <>Build an AI workflow you can <em>demonstrate to clients.</em></>, text: <>Follow <strong>step-by-step training</strong>, build a practical workflow, and use the <strong>private community</strong> as you turn it into a client-ready offer.</> },
@@ -26,9 +26,9 @@ function trackEvent(name, properties = {}) {
   trackGoogleEvent(googleEventNames[name] || name.replace(/([a-z])([A-Z])/g, '$1_$2').replace(/\s+/g, '_').toLowerCase(), properties);
 }
 
-function trackPlanVisit(plan, price, placement) {
-  const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: 'Continue to Skool plans', link_url: skoolPlansUrl, value: price, currency: 'USD', plan, placement };
-  trackEvent('CTA Clicked', { ...properties, action: 'choose_plan' });
+function trackPlanVisit(plan, placement) {
+  const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: 'View community on Skool', link_url: skoolAboutUrl, plan, placement };
+  trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
   if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
     window.fbq('trackCustom', 'SkoolOutboundClicked', properties);
@@ -41,8 +41,10 @@ function trackCommunityVisit(placement, buttonText) {
 }
 
 function ThemeToggle() {
-  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
+  const [theme, setTheme] = useState('light');
   const isDark = theme === 'dark';
+
+  useEffect(() => setTheme(document.documentElement.dataset.theme || 'light'), []);
 
   function toggleTheme() {
     const nextTheme = isDark ? 'light' : 'dark';
@@ -55,19 +57,28 @@ function ThemeToggle() {
   return <button className="theme-toggle" type="button" aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`} aria-pressed={isDark} title={`Switch to ${isDark ? 'light' : 'dark'} mode`} onClick={toggleTheme}><span aria-hidden="true">☼</span><span aria-hidden="true">☾</span></button>;
 }
 
-function ConsentBanner() {
-  const [open, setOpen] = useState(() => getTrackingConsent() === null);
+function ConsentBanner({ campaign, campaignReady }) {
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    setOpen(getTrackingConsent() === null);
     if (getTrackingConsent() === 'granted') loadMarketingTracking();
     const reopen = () => setOpen(true);
     window.addEventListener('open-privacy-choices', reopen);
     return () => window.removeEventListener('open-privacy-choices', reopen);
   }, []);
 
+  useEffect(() => {
+    if (campaignReady && getTrackingConsent() === 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
+  }, [campaign, campaignReady]);
+
   function choose(value) {
+    const previous = getTrackingConsent();
     setTrackingConsent(value);
-    if (value === 'granted') loadMarketingTracking();
+    if (value === 'granted') {
+      loadMarketingTracking();
+      if (previous !== 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
+    }
     else disableMarketingTracking();
     setOpen(false);
   }
@@ -144,6 +155,7 @@ function HeroVideo() {
           onEnded={() => trackEvent('Hero Video Completed', { placement: 'hero' })}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
+          <track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
         </video>
         {!started && (
           <button type="button" className="vsl-play" onClick={start} aria-label="Play the intro, 14 seconds, sound on">
@@ -152,6 +164,7 @@ function HeroVideo() {
           </button>
         )}
       </div>
+      <details className="video-transcript"><summary>Read video transcript</summary><p>Still watching AI tutorials without knowing what to build? AI Income Lab gives you step-by-step training, ready-to-use systems, templates, coaching, and the tools to turn AI skills into real income. No coding required. Join AI Income Lab today.</p><p>Weekly coaching is included with VIP.</p></details>
     </div>
   );
 }
@@ -194,12 +207,19 @@ function ProductTour() {
 }
 
 function App() {
-  const campaign = useRef(getCampaign(window.location.search, Object.keys(campaignMessages))).current;
+  const [campaign, setCampaign] = useState(() => getCampaign('', Object.keys(campaignMessages)));
+  const [campaignReady, setCampaignReady] = useState(false);
   const message = campaignMessages[campaign.angle];
   const [mobileCtaVisible, setMobileCtaVisible] = useState(false);
 
   useEffect(() => {
-    trackEvent('Campaign Landing Viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
+    setCampaign(getCampaign(window.location.search, Object.keys(campaignMessages)));
+    setCampaignReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!campaignReady) return undefined;
+    track('Campaign Landing Viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
     let engaged = false;
     const markEngaged = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -216,9 +236,10 @@ function App() {
     }, 30000);
     window.addEventListener('scroll', markEngaged, { passive: true });
     return () => { window.clearTimeout(timer); window.removeEventListener('scroll', markEngaged); };
-  }, [campaign]);
+  }, [campaign, campaignReady]);
 
   useEffect(() => {
+    if (!campaignReady) return undefined;
     const pricing = document.getElementById('pricing');
     if (!pricing) return undefined;
     let viewed = false;
@@ -231,7 +252,7 @@ function App() {
     }, { threshold: .25 });
     observer.observe(pricing);
     return () => observer.disconnect();
-  }, [campaign]);
+  }, [campaign, campaignReady]);
 
   useEffect(() => {
     const hero = document.querySelector('.hero');
@@ -247,7 +268,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const plansUrl = outboundUrl(skoolPlansUrl, campaign);
+  const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
@@ -255,7 +276,7 @@ function App() {
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
         <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a></div>
+        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a><details className="nav-mobile"><summary>Explore</summary><div><a href="#outcomes">Who it&apos;s for</a><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></details></div>
       </nav>
 
       <section className="hero shell" id="main-content" tabIndex="-1">
@@ -332,8 +353,8 @@ function App() {
               <div className="price-amount"><span>$</span><strong>{price}</strong><small>USD<br />per month</small></div>
               <p className="price-includes">What you get</p>
               <ul aria-label={`${name} plan includes`}>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={outboundUrl(plansUrl, campaign, { selected_plan: name.toLowerCase() })} target="_blank" rel="noreferrer" onClick={() => trackPlanVisit(name, price, 'pricing_card')}>View {name} on Skool <span>↗</span></a>
-              <small className="price-checkout">Skool will show all plans again before account creation</small>
+              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackPlanVisit(name, 'pricing_card')}>View community on Skool <span>↗</span></a>
+              <small className="price-checkout">Review membership details on Skool before joining</small>
             </article>
           ))}
         </div>
@@ -371,9 +392,17 @@ function App() {
       <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><div className="footer-links"><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Member login', link_url: skoolCommunityUrl, placement: 'footer', action: 'member_login' })}>Member login ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button><a href="#top">Back to top ↑</a></div></footer>
       {mobileCtaVisible && <div className="mobile-cta is-visible"><span><strong>Ready to build?</strong><small>Plans from $29/month</small></span><a href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'mobile_sticky', action: 'view_pricing' })}>See plans</a></div>}
     </main>
-    <ConsentBanner />
+    <ConsentBanner campaign={campaign} campaignReady={campaignReady} />
     </>
   );
 }
 
-createRoot(document.getElementById('root')).render(<StrictMode><><App /><Analytics /></></StrictMode>);
+export function Root() {
+  return <StrictMode><App /><Analytics /></StrictMode>;
+}
+
+if (typeof document !== 'undefined') {
+  const root = document.getElementById('root');
+  if (root.hasChildNodes()) hydrateRoot(root, <Root />);
+  else createRoot(root).render(<Root />);
+}

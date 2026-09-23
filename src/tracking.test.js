@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent } from './tracking.js';
 
-test('stores consent and loads each marketing tracker once', () => {
+test('loads trackers once and restores consent after allow → decline → allow', () => {
   const scripts = [];
   const values = new Map();
   globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
@@ -12,12 +12,18 @@ test('stores consent and loads each marketing tracker once', () => {
   setTrackingConsent('granted');
   loadMarketingTracking();
   loadMarketingTracking();
+  setTrackingConsent('denied');
   disableMarketingTracking();
+  setTrackingConsent('granted');
+  loadMarketingTracking();
 
   assert.equal(getTrackingConsent(), 'granted');
   assert.deepEqual(scripts.map(script => script.src), ['https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8', 'https://connect.facebook.net/en_US/fbevents.js']);
-  assert.equal(window.fbq.queue.some(args => args[0] === 'track' && args[1] === 'PageView'), true);
+  assert.equal(window.fbq.queue.filter(args => args[0] === 'track' && args[1] === 'PageView').length, 2);
   assert.equal(window.fbq.queue.some(args => args[0] === 'consent' && args[1] === 'revoke'), true);
+  assert.equal(window.fbq.queue.at(-2)[1], 'grant');
+  assert.equal(Array.from(window.dataLayer.at(-2))[1], 'update');
+  assert.equal(Array.from(window.dataLayer.at(-2))[2].analytics_storage, 'granted');
 });
 
 test('sends GA4 events only after analytics consent', () => {
