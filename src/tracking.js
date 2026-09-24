@@ -14,6 +14,12 @@ export function trackGoogleEvent(name, parameters = {}) {
   return true;
 }
 
+export function trackMetaLead(properties) {
+  if (typeof window === 'undefined' || getTrackingConsent() !== 'granted' || !window.__marketingTrackingActive || typeof window.fbq !== 'function') return false;
+  window.fbq('track', 'Lead', properties);
+  return true;
+}
+
 export function loadMarketingTracking() {
   if (typeof window === 'undefined') return;
   if (window.__marketingTrackingActive) return;

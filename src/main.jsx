@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, nextTabIndex, outboundUrl } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent } from './tracking.js';
+import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaLead } from './tracking.js';
 import './fonts.css';
 import './styles.css';
 
@@ -30,7 +30,7 @@ function trackPlanVisit(plan, placement) {
   const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: 'View community on Skool', link_url: skoolAboutUrl, plan, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
-  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+  if (trackMetaLead(properties)) {
     window.fbq('trackCustom', 'SkoolOutboundClicked', properties);
   }
 }
@@ -38,6 +38,7 @@ function trackPlanVisit(plan, placement) {
 function trackCommunityVisit(placement, buttonText) {
   const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: skoolCommunityUrl, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
+  trackMetaLead(properties);
 }
 
 function ThemeToggle() {
