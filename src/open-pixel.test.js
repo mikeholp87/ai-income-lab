@@ -9,8 +9,10 @@ import {
   airtableConfig,
   extractToken,
   handleOpenPixel,
+  matchPixelRoute,
   pixelResponse,
   recordOpen,
+  resolveAirtableRoute,
   sanitizeToken,
 } from './open-pixel.js';
 
@@ -32,6 +34,59 @@ test('defaults Airtable write-back to Free Members 3 and allows env overrides', 
     opensTableId: 'tblOverrideOpens',
     sendsTableId: 'tblOverrideSends',
   });
+});
+
+test('routes tokens by prefix and falls unknown tokens back to Skool', () => {
+  assert.equal(matchPixelRoute('SKOOL-FT-abc').key, 'SKOOL_FT');
+  assert.equal(matchPixelRoute('AFF-9').key, 'AFF');
+  assert.equal(matchPixelRoute('TA-BL-link').key, 'TA_BL');
+  assert.equal(matchPixelRoute('VS-BL-link').key, 'VS_BL');
+  assert.equal(matchPixelRoute('POD-show').key, 'POD');
+  assert.equal(matchPixelRoute('JOB-42').key, 'JOB');
+  assert.equal(matchPixelRoute('INV-round').key, 'INV');
+  assert.equal(matchPixelRoute('test-token').key, 'SKOOL_FT');
+  assert.equal(matchPixelRoute('').key, 'SKOOL_FT');
+});
+
+test('resolves Skool defaults and non-Skool env routes without inventing IDs', () => {
+  const skool = resolveAirtableRoute('SKOOL-FT-1', {});
+  assert.equal(skool.configured, true);
+  assert.equal(skool.baseId, AIRTABLE_BASE_ID);
+  assert.equal(skool.opensTableId, SKOOL_OPENS_TABLE_ID);
+  assert.equal(skool.sendsTableId, SKOOL_SENDS_TABLE_ID);
+
+  const unknown = resolveAirtableRoute('test-token', {
+    AIRTABLE_BASE_ID: 'appOverrideBase',
+    AIRTABLE_OPENS_TABLE_ID: 'tblOverrideOpens',
+    AIRTABLE_SENDS_TABLE_ID: 'tblOverrideSends',
+  });
+  assert.equal(unknown.key, 'SKOOL_FT');
+  assert.equal(unknown.baseId, 'appOverrideBase');
+
+  const missingAff = resolveAirtableRoute('AFF-1', { AIRTABLE_API_KEY: 'key' });
+  assert.equal(missingAff.key, 'AFF');
+  assert.equal(missingAff.configured, false);
+  assert.equal(missingAff.baseId, '');
+
+  const aff = resolveAirtableRoute('AFF-1', {
+    AIRTABLE_ROUTE_AFF_BASE_ID: 'appAff',
+    AIRTABLE_ROUTE_AFF_OPENS_TABLE_ID: 'tblAffOpens',
+    AIRTABLE_ROUTE_AFF_SENDS_TABLE_ID: 'tblAffSends',
+  });
+  assert.deepEqual({ baseId: aff.baseId, opensTableId: aff.opensTableId, sendsTableId: aff.sendsTableId, configured: aff.configured }, {
+    baseId: 'appAff',
+    opensTableId: 'tblAffOpens',
+    sendsTableId: 'tblAffSends',
+    configured: true,
+  });
+
+  const fromJson = resolveAirtableRoute('TA-BL-1', {
+    AIRTABLE_PIXEL_ROUTES: JSON.stringify({
+      TA_BL: { baseId: 'appTa', opensTableId: 'tblTaOpens', sendsTableId: 'tblTaSends' },
+    }),
+  });
+  assert.equal(fromJson.source, 'json');
+  assert.equal(fromJson.baseId, 'appTa');
 });
 
 test('sanitizes URL-safe tokens and strips .gif', () => {
@@ -162,4 +217,67 @@ test('uses AIRTABLE_* env overrides in Airtable URLs', async () => {
   }
   assert.ok(calls[0].url.includes('/appOverrideBase/tblOverrideOpens'));
   assert.ok(calls[1].url.includes('/appOverrideBase/tblOverrideSends'));
+});
+
+test('writes AFF tokens to the AFF Airtable route when configured', async () => {
+  const calls = [];
+  const previous = globalThis.fetch;
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push({ url: String(url), method: init.method || 'GET', body: init.body ? JSON.parse(init.body) : null });
+    if (String(url).includes('tblAffSends') && (init.method || 'GET') === 'GET') {
+      return new Response(JSON.stringify({
+        records: [{ id: 'recAff1', fields: { 'Send Token': 'AFF-1', Opened: false } }],
+      }), { status: 200 });
+    }
+    return new Response(JSON.stringify({ id: 'recNew' }), { status: 200 });
+  };
+  try {
+    const result = await recordOpen({
+      token: 'AFF-1',
+      openedAt: '2026-10-02T00:00:00.000Z',
+      userAgent: 'UA',
+    }, {
+      AIRTABLE_API_KEY: 'key',
+      AIRTABLE_ROUTE_AFF_BASE_ID: 'appAff',
+      AIRTABLE_ROUTE_AFF_OPENS_TABLE_ID: 'tblAffOpens',
+      AIRTABLE_ROUTE_AFF_SENDS_TABLE_ID: 'tblAffSends',
+    });
+    assert.equal(result.logged, 'airtable');
+    assert.equal(result.route.key, 'AFF');
+  } finally {
+    globalThis.fetch = previous;
+  }
+  assert.ok(calls[0].url.includes('/appAff/tblAffOpens'));
+  assert.equal(calls[0].body.fields['Send Token'], 'AFF-1');
+  assert.equal(calls[0].body.fields.Source, 'pixel');
+  assert.ok(calls[2].url.includes('/appAff/tblAffSends/recAff1'));
+  assert.equal(calls[2].body.fields.Opened, true);
+});
+
+test('skips Airtable for an unconfigured prefix and still returns the GIF', async () => {
+  const calls = [];
+  const previous = globalThis.fetch;
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push({ url: String(url), method: init.method || 'GET' });
+    return new Response(JSON.stringify({ id: 'recNew' }), { status: 200 });
+  };
+  try {
+    const result = await recordOpen({
+      token: 'POD-show-1',
+      openedAt: '2026-10-02T00:00:00.000Z',
+      userAgent: 'UA',
+    }, { AIRTABLE_API_KEY: 'key' });
+    assert.equal(result.logged, 'console');
+    assert.equal(result.route.configured, false);
+
+    const response = await handleOpenPixel(
+      new Request('https://www.ai-automation-station.com/o/POD-show-1.gif'),
+      { AIRTABLE_API_KEY: 'key' },
+    );
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('content-type'), 'image/gif');
+  } finally {
+    globalThis.fetch = previous;
+  }
+  assert.equal(calls.length, 0);
 });

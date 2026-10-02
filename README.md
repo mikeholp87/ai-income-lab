@@ -5,17 +5,74 @@ Skool Landing Page
 
 Public path after deploy: `https://www.ai-automation-station.com/o/{token}.gif`
 
-`GET /o/{token}.gif` always returns a 1×1 transparent GIF (`image/gif`, HTTP 200). On each hit it best-effort logs the token, UTC time, User-Agent, and IP (when present).
+`GET /o/{token}.gif` always returns a 1×1 transparent GIF (`image/gif`, HTTP 200). On each hit it best-effort logs the token, UTC time, User-Agent, IP (when present), and which product prefix matched.
 
-For Airtable write-back, set **one** of these on the Vercel project (do not commit secrets):
+Airtable tenant is chosen by **token prefix**. Shared field names when a route is configured:
+
+- Opens: Open Id, Send Token, Opened At, User Agent, Source `pixel`
+- Sends: Send Token; first open sets Opened + First Opened At
+
+Auth (one of these, do not commit secrets):
 
 - `AIRTABLE_API_KEY`
 - `AIRTABLE_PAT`
 
-Optional overrides (defaults point at **Free Members 3**):
+### Prefix routing
+
+| Prefix | Product | Env key | Airtable IDs |
+| --- | --- | --- | --- |
+| `SKOOL-FT-` | Skool / AI Income Lab free-to-paid | (Skool defaults) | Free Members 3 defaults below |
+| `AFF-` | TubeAnalytics Affiliate | `AFF` | set env (no code defaults) |
+| `TA-BL-` | TubeAnalytics Backlink | `TA_BL` | set env (no code defaults) |
+| `VS-BL-` | VisiScan Backlink | `VS_BL` | set env (no code defaults) |
+| `POD-` | Podcast Outreach | `POD` | set env (no code defaults) |
+| `JOB-` | Job App Agent | `JOB` | set env (no code defaults) |
+| `INV-` | Startup Investor Outreach | `INV` | set env (no code defaults) |
+
+Unknown tokens (for example `test-token`) fall back to the Skool route.
+
+### Skool defaults (also used for unknown tokens)
+
+Override only if you need to move Skool off Free Members 3:
 
 - `AIRTABLE_BASE_ID` — default `appK4Nu5Dy4imXrDp`
-- `AIRTABLE_OPENS_TABLE_ID` — default `tblFS59vmxGSrLCPJ` (Skool Opens)
-- `AIRTABLE_SENDS_TABLE_ID` — default `tblsb6CJxqWZ93w74` (Skool Campaign Sends)
+- `AIRTABLE_OPENS_TABLE_ID` — default `tblFS59vmxGSrLCPJ`
+- `AIRTABLE_SENDS_TABLE_ID` — default `tblsb6CJxqWZ93w74`
 
-When the API key is present, each hit creates a **Skool Opens** row with Open Id, Send Token, Opened At, User Agent, and Source `pixel`. If a **Skool Campaign Sends** row exists for that token and Opened is not yet true, it sets Opened and First Opened At. Missing env vars or Airtable errors never change the GIF response.
+### Per-bot env vars (paste IDs here)
+
+For every non-Skool prefix, set all three or that bot logs to console only (GIF still returns 200):
+
+```
+AIRTABLE_ROUTE_AFF_BASE_ID=
+AIRTABLE_ROUTE_AFF_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_AFF_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_TA_BL_BASE_ID=
+AIRTABLE_ROUTE_TA_BL_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_TA_BL_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_VS_BL_BASE_ID=
+AIRTABLE_ROUTE_VS_BL_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_VS_BL_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_POD_BASE_ID=
+AIRTABLE_ROUTE_POD_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_POD_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_JOB_BASE_ID=
+AIRTABLE_ROUTE_JOB_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_JOB_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_INV_BASE_ID=
+AIRTABLE_ROUTE_INV_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_INV_SENDS_TABLE_ID=
+```
+
+Optional JSON override (keys are the env keys above, or the raw prefix). A complete entry wins over the per-bot vars:
+
+```
+AIRTABLE_PIXEL_ROUTES={"AFF":{"baseId":"appXXX","opensTableId":"tblXXX","sendsTableId":"tblYYY"}}
+```
+
+Missing API key, missing route IDs, or Airtable errors never change the GIF response.
