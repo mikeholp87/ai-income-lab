@@ -1,18 +1,97 @@
 // Public email open pixel: GET /o/{token}.gif
-// Airtable write-back (optional, never required for the GIF):
-//   AIRTABLE_API_KEY or AIRTABLE_PAT
-// Optional overrides: AIRTABLE_BASE_ID, AIRTABLE_OPENS_TABLE_ID, AIRTABLE_SENDS_TABLE_ID
-// Defaults: Free Members 3 appK4Nu5Dy4imXrDp — Opens tblFS59vmxGSrLCPJ, Sends tblsb6CJxqWZ93w74
+// Shared by all outreach bots. Airtable tenant is chosen by token prefix.
+// Auth: AIRTABLE_API_KEY or AIRTABLE_PAT
+// Skool / unknown tokens default to Free Members 3 (overridable):
+//   AIRTABLE_BASE_ID=appK4Nu5Dy4imXrDp
+//   AIRTABLE_OPENS_TABLE_ID=tblFS59vmxGSrLCPJ
+//   AIRTABLE_SENDS_TABLE_ID=tblsb6CJxqWZ93w74
+// Other prefixes: AIRTABLE_ROUTE_<KEY>_BASE_ID / _OPENS_TABLE_ID / _SENDS_TABLE_ID
+// Optional JSON override: AIRTABLE_PIXEL_ROUTES
+// The 1×1 GIF is always returned even when logging is skipped or fails.
 
 export const AIRTABLE_BASE_ID = 'appK4Nu5Dy4imXrDp';
 export const SKOOL_OPENS_TABLE_ID = 'tblFS59vmxGSrLCPJ';
 export const SKOOL_SENDS_TABLE_ID = 'tblsb6CJxqWZ93w74';
+
+export const PIXEL_ROUTES = [
+  { prefix: 'SKOOL-FT-', key: 'SKOOL_FT', product: 'Skool / AI Income Lab free-to-paid', fallback: true },
+  { prefix: 'TA-BL-', key: 'TA_BL', product: 'TubeAnalytics Backlink' },
+  { prefix: 'VS-BL-', key: 'VS_BL', product: 'VisiScan Backlink' },
+  { prefix: 'AFF-', key: 'AFF', product: 'TubeAnalytics Affiliate' },
+  { prefix: 'POD-', key: 'POD', product: 'Podcast Outreach' },
+  { prefix: 'JOB-', key: 'JOB', product: 'Job App Agent' },
+  { prefix: 'INV-', key: 'INV', product: 'Startup Investor Outreach' },
+];
 
 export function airtableConfig(env = process.env) {
   return {
     baseId: env.AIRTABLE_BASE_ID || AIRTABLE_BASE_ID,
     opensTableId: env.AIRTABLE_OPENS_TABLE_ID || SKOOL_OPENS_TABLE_ID,
     sendsTableId: env.AIRTABLE_SENDS_TABLE_ID || SKOOL_SENDS_TABLE_ID,
+  };
+}
+
+export function normalizeRouteKey(value) {
+  return String(value || '')
+    .trim()
+    .toUpperCase()
+    .replace(/-+$/g, '')
+    .replace(/-/g, '_');
+}
+
+export function matchPixelRoute(token) {
+  const upper = String(token || '').toUpperCase();
+  const ranked = [...PIXEL_ROUTES].sort((a, b) => b.prefix.length - a.prefix.length);
+  return ranked.find(route => upper.startsWith(route.prefix))
+    || PIXEL_ROUTES.find(route => route.fallback);
+}
+
+function parsePixelRoutesJson(env = process.env) {
+  const raw = env.AIRTABLE_PIXEL_ROUTES;
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed).flatMap(([key, value]) => {
+      if (!value || typeof value !== 'object') return [];
+      const baseId = value.baseId || value.AIRTABLE_BASE_ID || '';
+      const opensTableId = value.opensTableId || value.AIRTABLE_OPENS_TABLE_ID || '';
+      const sendsTableId = value.sendsTableId || value.AIRTABLE_SENDS_TABLE_ID || '';
+      if (!baseId || !opensTableId || !sendsTableId) return [];
+      return [[normalizeRouteKey(key), { baseId, opensTableId, sendsTableId }]];
+    }));
+  } catch (_) {
+    return {};
+  }
+}
+
+function completeRoute(config) {
+  return Boolean(config?.baseId && config?.opensTableId && config?.sendsTableId);
+}
+
+export function resolveAirtableRoute(token, env = process.env) {
+  const route = matchPixelRoute(token);
+  const fromJson = parsePixelRoutesJson(env)[route.key];
+  if (completeRoute(fromJson)) {
+    return { ...fromJson, key: route.key, prefix: route.prefix, product: route.product, configured: true, source: 'json' };
+  }
+
+  if (route.fallback) {
+    return { ...airtableConfig(env), key: route.key, prefix: route.prefix, product: route.product, configured: true, source: 'skool-default' };
+  }
+
+  const fromEnv = {
+    baseId: env[`AIRTABLE_ROUTE_${route.key}_BASE_ID`] || '',
+    opensTableId: env[`AIRTABLE_ROUTE_${route.key}_OPENS_TABLE_ID`] || '',
+    sendsTableId: env[`AIRTABLE_ROUTE_${route.key}_SENDS_TABLE_ID`] || '',
+  };
+  return {
+    ...fromEnv,
+    key: route.key,
+    prefix: route.prefix,
+    product: route.product,
+    configured: completeRoute(fromEnv),
+    source: completeRoute(fromEnv) ? 'env' : 'unconfigured',
   };
 }
 
@@ -62,10 +141,9 @@ function escapeFormulaValue(value) {
   return String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
-async function airtableFetch(path, { env, method = 'GET', body } = {}) {
+async function airtableFetch(path, { env, baseId, method = 'GET', body } = {}) {
   const key = airtableKey(env);
-  if (!key) return null;
-  const { baseId } = airtableConfig(env);
+  if (!key || !baseId) return null;
   const response = await fetch(`https://api.airtable.com/v0/${baseId}/${path}`, {
     method,
     headers: {
@@ -82,14 +160,22 @@ async function airtableFetch(path, { env, method = 'GET', body } = {}) {
 }
 
 export async function recordOpen({ token, openedAt, userAgent, ip }, env = process.env) {
-  const hit = { token, openedAt, userAgent, ip: ip || undefined };
+  const route = resolveAirtableRoute(token, env);
+  const hit = {
+    token,
+    openedAt,
+    userAgent,
+    ip: ip || undefined,
+    route: route.key,
+    product: route.product,
+  };
   console.info('[open-pixel]', hit);
-  if (!token || !airtableKey(env)) return { logged: 'console', hit };
+  if (!token || !airtableKey(env) || !route.configured) return { logged: 'console', hit, route };
 
-  const { opensTableId, sendsTableId } = airtableConfig(env);
   const openId = `opn_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
-  await airtableFetch(opensTableId, {
+  await airtableFetch(route.opensTableId, {
     env,
+    baseId: route.baseId,
     method: 'POST',
     body: {
       fields: {
@@ -104,13 +190,14 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
 
   const formula = `{Send Token}='${escapeFormulaValue(token)}'`;
   const found = await airtableFetch(
-    `${sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
-    { env },
+    `${route.sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
+    { env, baseId: route.baseId },
   );
   const send = found?.records?.[0];
   if (send && send.fields?.Opened !== true) {
-    await airtableFetch(`${sendsTableId}/${send.id}`, {
+    await airtableFetch(`${route.sendsTableId}/${send.id}`, {
       env,
+      baseId: route.baseId,
       method: 'PATCH',
       body: {
         fields: {
@@ -121,7 +208,7 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
     });
   }
 
-  return { logged: 'airtable', hit, openId, sendId: send?.id };
+  return { logged: 'airtable', hit, openId, sendId: send?.id, route };
 }
 
 export async function handleOpenPixel(request, env = process.env) {
