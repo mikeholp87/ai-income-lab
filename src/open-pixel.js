@@ -1,11 +1,20 @@
 // Public email open pixel: GET /o/{token}.gif
 // Airtable write-back (optional, never required for the GIF):
 //   AIRTABLE_API_KEY or AIRTABLE_PAT
-// Base appAJaBlPYSE511IE — Skool Opens tbldz345j99xyS7UP, Skool Campaign Sends tblAy7RIz59OCVYz0
+// Optional overrides: AIRTABLE_BASE_ID, AIRTABLE_OPENS_TABLE_ID, AIRTABLE_SENDS_TABLE_ID
+// Defaults: Free Members 3 appK4Nu5Dy4imXrDp — Opens tblFS59vmxGSrLCPJ, Sends tblsb6CJxqWZ93w74
 
-export const AIRTABLE_BASE_ID = 'appAJaBlPYSE511IE';
-export const SKOOL_OPENS_TABLE_ID = 'tbldz345j99xyS7UP';
-export const SKOOL_SENDS_TABLE_ID = 'tblAy7RIz59OCVYz0';
+export const AIRTABLE_BASE_ID = 'appK4Nu5Dy4imXrDp';
+export const SKOOL_OPENS_TABLE_ID = 'tblFS59vmxGSrLCPJ';
+export const SKOOL_SENDS_TABLE_ID = 'tblsb6CJxqWZ93w74';
+
+export function airtableConfig(env = process.env) {
+  return {
+    baseId: env.AIRTABLE_BASE_ID || AIRTABLE_BASE_ID,
+    opensTableId: env.AIRTABLE_OPENS_TABLE_ID || SKOOL_OPENS_TABLE_ID,
+    sendsTableId: env.AIRTABLE_SENDS_TABLE_ID || SKOOL_SENDS_TABLE_ID,
+  };
+}
 
 export const TRANSPARENT_GIF = Uint8Array.from(
   atob('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'),
@@ -56,7 +65,8 @@ function escapeFormulaValue(value) {
 async function airtableFetch(path, { env, method = 'GET', body } = {}) {
   const key = airtableKey(env);
   if (!key) return null;
-  const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${path}`, {
+  const { baseId } = airtableConfig(env);
+  const response = await fetch(`https://api.airtable.com/v0/${baseId}/${path}`, {
     method,
     headers: {
       Authorization: `Bearer ${key}`,
@@ -76,8 +86,9 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
   console.info('[open-pixel]', hit);
   if (!token || !airtableKey(env)) return { logged: 'console', hit };
 
+  const { opensTableId, sendsTableId } = airtableConfig(env);
   const openId = `opn_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
-  await airtableFetch(SKOOL_OPENS_TABLE_ID, {
+  await airtableFetch(opensTableId, {
     env,
     method: 'POST',
     body: {
@@ -93,12 +104,12 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
 
   const formula = `{Send Token}='${escapeFormulaValue(token)}'`;
   const found = await airtableFetch(
-    `${SKOOL_SENDS_TABLE_ID}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
+    `${sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
     { env },
   );
   const send = found?.records?.[0];
   if (send && send.fields?.Opened !== true) {
-    await airtableFetch(`${SKOOL_SENDS_TABLE_ID}/${send.id}`, {
+    await airtableFetch(`${sendsTableId}/${send.id}`, {
       env,
       method: 'PATCH',
       body: {

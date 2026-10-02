@@ -1,16 +1,38 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  AIRTABLE_BASE_ID,
   PIXEL_HEADERS,
   SKOOL_OPENS_TABLE_ID,
   SKOOL_SENDS_TABLE_ID,
   TRANSPARENT_GIF,
+  airtableConfig,
   extractToken,
   handleOpenPixel,
   pixelResponse,
   recordOpen,
   sanitizeToken,
 } from './open-pixel.js';
+
+test('defaults Airtable write-back to Free Members 3 and allows env overrides', () => {
+  assert.equal(AIRTABLE_BASE_ID, 'appK4Nu5Dy4imXrDp');
+  assert.equal(SKOOL_OPENS_TABLE_ID, 'tblFS59vmxGSrLCPJ');
+  assert.equal(SKOOL_SENDS_TABLE_ID, 'tblsb6CJxqWZ93w74');
+  assert.deepEqual(airtableConfig({}), {
+    baseId: 'appK4Nu5Dy4imXrDp',
+    opensTableId: 'tblFS59vmxGSrLCPJ',
+    sendsTableId: 'tblsb6CJxqWZ93w74',
+  });
+  assert.deepEqual(airtableConfig({
+    AIRTABLE_BASE_ID: 'appOverrideBase',
+    AIRTABLE_OPENS_TABLE_ID: 'tblOverrideOpens',
+    AIRTABLE_SENDS_TABLE_ID: 'tblOverrideSends',
+  }), {
+    baseId: 'appOverrideBase',
+    opensTableId: 'tblOverrideOpens',
+    sendsTableId: 'tblOverrideSends',
+  });
+});
 
 test('sanitizes URL-safe tokens and strips .gif', () => {
   assert.equal(sanitizeToken('SKOOL-FT-abc123.gif'), 'SKOOL-FT-abc123');
@@ -76,7 +98,7 @@ test('records an Opens row and flips the first send open only', async () => {
   }
 
   assert.equal(calls[0].method, 'POST');
-  assert.ok(calls[0].url.includes(SKOOL_OPENS_TABLE_ID));
+  assert.ok(calls[0].url.includes(`/${AIRTABLE_BASE_ID}/${SKOOL_OPENS_TABLE_ID}`));
   assert.equal(calls[0].body.fields['Send Token'], 'SKOOL-FT-1');
   assert.equal(calls[0].body.fields['Opened At'], '2026-10-02T00:00:00.000Z');
   assert.equal(calls[0].body.fields['User Agent'], 'UA');
@@ -112,4 +134,32 @@ test('does not overwrite First Opened At when Opened is already true', async () 
     globalThis.fetch = previous;
   }
   assert.equal(calls.some(call => call.method === 'PATCH'), false);
+});
+
+test('uses AIRTABLE_* env overrides in Airtable URLs', async () => {
+  const calls = [];
+  const previous = globalThis.fetch;
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push({ url: String(url), method: init.method || 'GET' });
+    if (String(url).includes('tblOverrideSends') && (init.method || 'GET') === 'GET') {
+      return new Response(JSON.stringify({ records: [] }), { status: 200 });
+    }
+    return new Response(JSON.stringify({ id: 'recNew' }), { status: 200 });
+  };
+  try {
+    await recordOpen({
+      token: 'SKOOL-FT-1',
+      openedAt: '2026-10-02T00:00:00.000Z',
+      userAgent: 'UA',
+    }, {
+      AIRTABLE_API_KEY: 'key',
+      AIRTABLE_BASE_ID: 'appOverrideBase',
+      AIRTABLE_OPENS_TABLE_ID: 'tblOverrideOpens',
+      AIRTABLE_SENDS_TABLE_ID: 'tblOverrideSends',
+    });
+  } finally {
+    globalThis.fetch = previous;
+  }
+  assert.ok(calls[0].url.includes('/appOverrideBase/tblOverrideOpens'));
+  assert.ok(calls[1].url.includes('/appOverrideBase/tblOverrideSends'));
 });
