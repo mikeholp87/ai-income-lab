@@ -14,9 +14,9 @@ export function trackGoogleEvent(name, parameters = {}) {
   return true;
 }
 
-export function trackMetaEvent(name, properties) {
+export function trackMetaLead(properties) {
   if (typeof window === 'undefined' || getTrackingConsent() !== 'granted' || !window.__marketingTrackingActive || typeof window.fbq !== 'function') return false;
-  window.fbq('trackCustom', name, properties);
+  window.fbq('track', 'Lead', properties);
   return true;
 }
 

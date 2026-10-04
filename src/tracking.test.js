@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaEvent } from './tracking.js';
+import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaLead } from './tracking.js';
 
 test('loads trackers once and restores consent after allow → decline → allow', () => {
   const scripts = [];
@@ -38,17 +38,17 @@ test('sends GA4 events only after analytics consent', () => {
   assert.deepEqual(events, [['event', 'cta_click', { placement: 'hero' }]]);
 });
 
-test('records outbound interest as a custom event, never a lead, and respects revoked consent', () => {
+test('sends Meta leads only while analytics consent is active', () => {
   const events = [];
   const values = new Map();
   globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
   globalThis.window = { fbq: (...args) => events.push(args), __marketingTrackingActive: true };
-  const outbound = { plan: 'Premium', placement: 'pricing_card' };
+  const lead = { plan: 'Premium', placement: 'pricing_card' };
 
-  assert.equal(trackMetaEvent('SkoolOutboundClicked', outbound), false);
+  assert.equal(trackMetaLead(lead), false);
   setTrackingConsent('granted');
-  assert.equal(trackMetaEvent('SkoolOutboundClicked', outbound), true);
+  assert.equal(trackMetaLead(lead), true);
   window.__marketingTrackingActive = false;
-  assert.equal(trackMetaEvent('SkoolOutboundClicked', outbound), false);
-  assert.deepEqual(events, [['trackCustom', 'SkoolOutboundClicked', outbound]]);
+  assert.equal(trackMetaLead(lead), false);
+  assert.deepEqual(events, [['track', 'Lead', lead]]);
 });

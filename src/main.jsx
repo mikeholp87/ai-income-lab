@@ -1,207 +1,368 @@
 import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
-import { getCampaign, outboundUrl, outboundProperties } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaEvent } from './tracking.js';
-import { buildPlan, campaignMessages, designVersion, faqGroups, pricingPlans, skoolAboutUrl, skoolCommunityUrl } from './content.js';
+import { getCampaign, nextTabIndex, outboundUrl } from './funnel.js';
+import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaLead } from './tracking.js';
 import './fonts.css';
 import './styles.css';
 
+const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
+
+const skoolAboutUrl = 'https://www.skool.com/ai-automation-station-7346/about';
+const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
+const campaignMessages = {
+  agency: { eyebrow: 'For AI freelancers and agency builders', headline: <>Build an AI workflow you can <em>demonstrate to clients.</em></>, text: <>Follow <strong>step-by-step training</strong>, build a practical workflow, and use the <strong>private community</strong> as you turn it into a client-ready offer.</> },
+  business: { eyebrow: 'For business owners buried in repetitive work', headline: <>Turn one repetitive task into a <em>working AI automation.</em></>, text: <>Follow <strong>step-by-step training</strong>, build a practical workflow, and use the <strong>private community</strong> as you put it to work.</> },
+  creator: { eyebrow: 'For creators ready to turn AI into output', headline: <>Build an AI workflow that <em>turns one idea into more output.</em></>, text: <>Follow <strong>step-by-step training</strong>, build a repeatable content workflow, and use the <strong>private community</strong> as you improve it.</> },
+  default: { eyebrow: 'For freelancers, operators, and business owners', headline: <>Build your first useful <em>AI workflow in 30 days.</em></>, text: <>Follow <strong>step-by-step training</strong>, build a practical system you can use or sell, and use the <strong>private community</strong> when you need direction.</> },
+};
+
+const googleEventNames = {
+  'CTA Clicked': 'cta_click',
+};
+
 function trackEvent(name, properties = {}) {
-  const details = { design_version: designVersion, ...properties };
-  track(name, details);
-  trackGoogleEvent(name, details);
+  track(name, properties);
+  trackGoogleEvent(googleEventNames[name] || name.replace(/([a-z])([A-Z])/g, '$1_$2').replace(/\s+/g, '_').toLowerCase(), properties);
 }
 
-function SkoolLink({ campaign, placement, plan, children = 'Continue to Skool', className = 'button button-primary' }) {
-  const href = outboundUrl(skoolAboutUrl, campaign);
-  function visit() {
-    const properties = outboundProperties(campaign, { placement, plan, href, designVersion });
-    trackEvent('skool_outbound', properties);
-    trackMetaEvent('SkoolOutboundClicked', properties);
+function trackPlanVisit(plan, placement) {
+  const properties = { content_name: `${plan} membership`, content_category: 'membership', button_text: 'View community on Skool', link_url: skoolAboutUrl, plan, placement };
+  trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
+  trackEvent('Skool Outbound Clicked', properties);
+  if (trackMetaLead(properties)) {
+    window.fbq('trackCustom', 'SkoolOutboundClicked', properties);
   }
-  return <a className={className} href={href} onClick={visit}>{children}</a>;
+}
+
+function trackCommunityVisit(placement, buttonText) {
+  const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: skoolCommunityUrl, placement };
+  trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
+  trackMetaLead(properties);
 }
 
 function ThemeToggle() {
   const [theme, setTheme] = useState('light');
+  const isDark = theme === 'dark';
+
   useEffect(() => setTheme(document.documentElement.dataset.theme || 'light'), []);
-  function toggle() {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    document.querySelector('meta[name="theme-color"]').content = next === 'dark' ? '#080d19' : '#f7f8fb';
-    try { localStorage.setItem('theme', next); } catch (_) {}
-    setTheme(next);
+
+  function toggleTheme() {
+    const nextTheme = isDark ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    document.querySelector('meta[name="theme-color"]').content = nextTheme === 'dark' ? '#080d19' : '#f7f8fb';
+    try { localStorage.setItem('theme', nextTheme); } catch (_) {}
+    setTheme(nextTheme);
   }
-  return <button className="theme-toggle" type="button" onClick={toggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>{theme === 'dark' ? 'Light appearance' : 'Dark appearance'}</button>;
+
+  return <button className="theme-toggle" type="button" aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`} aria-pressed={isDark} title={`Switch to ${isDark ? 'light' : 'dark'} mode`} onClick={toggleTheme}><span aria-hidden="true">☼</span><span aria-hidden="true">☾</span></button>;
 }
 
-function ConsentBanner({ open, setOpen, campaign, campaignReady }) {
+function ConsentBanner({ campaign, campaignReady }) {
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     setOpen(getTrackingConsent() === null);
     if (getTrackingConsent() === 'granted') loadMarketingTracking();
     const reopen = () => setOpen(true);
     window.addEventListener('open-privacy-choices', reopen);
     return () => window.removeEventListener('open-privacy-choices', reopen);
-  }, [setOpen]);
+  }, []);
+
   useEffect(() => {
-    if (campaignReady) trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', design_version: designVersion });
+    if (campaignReady && getTrackingConsent() === 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
   }, [campaign, campaignReady]);
+
   function choose(value) {
     const previous = getTrackingConsent();
     setTrackingConsent(value);
     if (value === 'granted') {
       loadMarketingTracking();
-      if (previous !== 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', design_version: designVersion });
-    } else disableMarketingTracking();
+      if (previous !== 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
+    }
+    else disableMarketingTracking();
     setOpen(false);
   }
+
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices">
-    <p>Allow optional analytics? <a href="/privacy.html">Privacy details</a></p>
-    <div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" onClick={() => choose('granted')}>Allow analytics</button></div>
-  </aside>;
+  return <aside className="consent-banner" aria-label="Privacy choices"><div><strong>Analytics preferences</strong><p>Allow analytics to help improve this page and measure campaigns.</p><span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></span></div><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
 }
 
-const featuredDemoUrl = 'https://www.youtube.com/watch?v=AJpK3YTTKZ4';
+const buildPlan = [
+  ['Week 01', 'Choose a problem', 'Find a useful workflow worth automating.'],
+  ['Week 02', 'Build the system', 'Follow the tutorials and adapt a template.'],
+  ['Week 03', 'Package the result', 'Turn your system into a repeatable offer.'],
+  ['Week 04', 'Put it to work', 'Use it in your business or sell it to a client.'],
+];
 
-function ClaudeCodeShowcase({ angle, context }) {
-  const [playing, setPlaying] = useState(false);
-  function demoEvent(name) {
-    trackEvent(name, { angle, product: 'claude_code', video_id: 'AJpK3YTTKZ4', link_url: featuredDemoUrl });
-  }
-  return <section className="workflow-showcase" id="tour" aria-labelledby="workflow-title">
-    <div className="product-heading"><strong className="product-name">Claude Code</strong><span>By Anthropic</span></div>
-    <h2 id="workflow-title">From a request to working code.</h2>
-    <p className="workflow-description">Watch Claude Code explore a project, add a feature, and test the changes in Anthropic’s official product demo.</p>
-    <figure className="workflow-figure">
-      <div className="demo-player">
-        {playing ? <iframe src="https://www.youtube-nocookie.com/embed/AJpK3YTTKZ4?autoplay=1&rel=0&cc_load_policy=1" title="Introducing Claude Code — official Anthropic demo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" tabIndex={0} ref={node => { node?.focus(); }} /> : <button className="demo-play" type="button" onClick={() => { setPlaying(true); demoEvent('claude_demo_play_requested'); }} aria-label="Play the official Claude Code demo from Anthropic. Loads YouTube video.">
-          <img src="/workflows/claude-code-demo.jpg" width="1280" height="720" alt="" decoding="async" />
-          <span className="demo-play-label"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l14-8z" fill="currentColor" /></svg>Play Claude Code demo</span>
-        </button>}
-      </div>
-      <figcaption>Official demo by Anthropic. YouTube loads when you press play.</figcaption>
-    </figure>
-    <ol className="workflow-steps"><li><strong>Explore</strong><span>Understand an unfamiliar project.</span></li><li><strong>Build</strong><span>Describe a feature and see the code change.</span></li><li><strong>Test</strong><span>Run checks, fix errors, and review the result.</span></li></ol>
-    <p className="workflow-context">{context}</p>
-    <a className="text-link workflow-link" href={featuredDemoUrl} target="_blank" rel="noopener noreferrer" onClick={() => demoEvent('claude_demo_opened')}>Watch on YouTube <span className="sr-only">(opens in a new tab)</span></a>
-    <details className="workflow-setup"><summary>Try Claude Code yourself</summary><p>You’ll need a project and a supported Claude subscription or API account. Claude Code access is separate from AI Income Lab membership.</p><a className="text-link" href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer">Read the official setup guide <span className="sr-only">(opens in a new tab)</span></a></details>
-  </section>;
-}
+const pricingPlans = [
+  { name: 'Standard', price: 29, fit: 'Learn the foundations', bestFor: 'Best for learning and building your first workflow', description: 'Start with the community, core courses, and practical tutorials.', features: ['Community Access', 'Courses & Tutorials'] },
+  { name: 'Premium', price: 49, fit: 'Build with more depth', bestFor: 'Recommended if you are ready for advanced training', description: 'Everything in Standard, plus advanced training for $20 more per month.', recommended: true, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training'] },
+  { name: 'VIP', price: 89, fit: 'Build with live support', bestFor: 'Best for weekly coaching and the complete resource vault', description: 'Everything in Premium, plus weekly coaching, software deals, and the N8N template vault.', features: ['Community Access', 'Courses & Tutorials', 'Advanced Training', 'Weekly Coaching', 'Curated Software Deals', '6,400+ N8N Templates'] },
+];
 
-function IntroVideo({ angle }) {
+const tourSteps = [
+  { label: 'Learn', title: 'Start with one useful problem', copy: 'Follow a focused course or tutorial instead of guessing which AI tool to learn next.', visual: ['PROBLEM SELECTED', 'Repetitive lead follow-up', 'TARGET: save 5+ hours/week'] },
+  { label: 'Build', title: 'Adapt a working template', copy: 'Use guided workflows and templates as your starting point, then customize the pieces that matter.', visual: ['WORKFLOW ACTIVE', 'Trigger → AI step → action', 'STATUS: ready to test'] },
+  { label: 'Discuss', title: 'Bring questions to the community', copy: 'Discuss blockers with other members so you have a place to return when a small issue stalls the build.', visual: ['COMMUNITY DISCUSSION', 'Question posted', 'NEXT: compare approaches'] },
+  { label: 'Ship', title: 'Put the system to work', copy: 'Use the finished workflow inside your business or package the outcome as a client-ready service.', visual: ['SYSTEM OUTPUT', 'Repeatable AI workflow', 'READY TO USE / SELL'] },
+];
+
+const faqs = [
+  ['Do I need coding experience?', 'No. The training is designed around practical AI and no-code automation workflows. You can start with guided courses and tutorials.'],
+  ['Which plan should I choose?', 'Choose Standard for the foundations, Premium for advanced training, or VIP when you want weekly coaching, software deals, and the complete N8N template vault. You can upgrade later as your needs grow.'],
+  ['Which plan includes weekly coaching?', 'Weekly coaching is included with VIP. Standard and Premium include community access, courses, and tutorials but do not include weekly coaching.'],
+  ['How much time should I set aside?', 'The 30-day path is designed for steady progress. A few focused hours each week is enough to choose a problem, build a first version, and put it to work.'],
+  ['What happens after I join?', 'Skool gives you immediate access to the community and everything included in your selected plan. Start with the foundational material and introduce yourself so you can get directed to the right resources.'],
+  ['Can I upgrade later?', 'Yes. Standard and Premium both include a clear upgrade path, so you can start at the level you need today.'],
+  ['Can I cancel anytime?', 'Yes. Plans are billed monthly, and you can cancel your membership before the next billing period from your Skool account.'],
+  ['What tools will I need?', 'Your tools depend on the workflow you choose. Automation hosting, AI API usage, and other software subscriptions may cost extra and are not included in the membership price. Check the requirements of your first tutorial before buying software.'],
+  ['What could I build first?', 'One starting idea is an enquiry workflow: collect a message, extract its details, and draft a reply for you to approve. Start with one input and one output, test it with sample data, and keep human review before sending replies.'],
+  ['Why join instead of watching free tutorials?', 'Free tutorials can help you learn individual tools. Membership brings courses and a community into one place so you can follow a learning path, discuss your build, and return with questions as you put it into practice.'],
+  ['Is income or a client guaranteed in 30 days?', 'No. The 30-day roadmap is a suggested build schedule, not an income or client guarantee. Your progress depends on the project, your experience, and the time you put in.'],
+];
+
+function HeroVideo() {
   const video = useRef(null);
-  return <details className="intro-video" onToggle={event => { if (!event.currentTarget.open) video.current?.pause(); }}>
-    <summary>Watch the 14-second community introduction</summary>
-    <p>Courses and community are included in every plan. Weekly coaching, software deals, and the complete template vault require VIP.</p>
-    <video ref={video} controls preload="none" playsInline poster="/hero-video-poster.jpg" width="1280" height="720" aria-label="AI Income Lab community introduction" onPlay={() => trackEvent('intro_video_played', { angle })} onEnded={() => trackEvent('intro_video_completed', { angle })}>
-      <source src="/hero-video.mp4" type="video/mp4" /><track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
-    </video>
-    <details className="video-transcript"><summary>Read video transcript</summary><p>Still watching AI tutorials without knowing what to build? AI Income Lab gives you step-by-step training, ready-to-use systems, templates, coaching, and the tools to turn AI skills into real income. No coding required. Join AI Income Lab today.</p></details>
-  </details>;
+  const [started, setStarted] = useState(false);
+
+  function start() {
+    setStarted(true);
+    video.current?.play();
+  }
+
+  return (
+    <div className="vsl">
+      <div className="vsl-screen">
+        <video
+          ref={video}
+          controls={started}
+          preload="metadata"
+          playsInline
+          poster="/hero-video-poster.jpg"
+          width="1280"
+          height="720"
+          aria-label="What you build inside AI Income Lab"
+          onPlay={() => trackEvent('Hero Video Played', { placement: 'hero' })}
+          onEnded={() => trackEvent('Hero Video Completed', { placement: 'hero' })}
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          <track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
+        </video>
+        {!started && (
+          <button type="button" className="vsl-play" onClick={start} aria-label="Play the intro, 14 seconds, sound on">
+            <span className="vsl-play-key" aria-hidden="true">&#9654;</span>
+            <span className="vsl-runtime" aria-hidden="true">0:14</span>
+          </button>
+        )}
+      </div>
+      <details className="video-transcript"><summary>Read video transcript</summary><p>Still watching AI tutorials without knowing what to build? AI Income Lab gives you step-by-step training, ready-to-use systems, templates, coaching, and the tools to turn AI skills into real income. No coding required. Join AI Income Lab today.</p><p>Weekly coaching is included with VIP.</p></details>
+    </div>
+  );
+}
+
+function ProductTour() {
+  const [step, setStep] = useState(0);
+  const tabs = useRef([]);
+  const active = tourSteps[step];
+
+  function selectStep(index) {
+    setStep(index);
+    trackEvent('Tour Step Viewed', { step: index + 1, chapter: tourSteps[index].label });
+  }
+
+  function handleTabKey(event, index) {
+    const next = nextTabIndex(index, event.key, tourSteps.length);
+    if (next === index && !['Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    selectStep(next);
+    tabs.current[next]?.focus();
+  }
+
+  return (
+    <section className="tour-wrap" id="tour">
+      <div className="tour shell">
+        <div className="tour-heading"><div><p className="eyebrow"><span /> Illustrated build roadmap</p><h2>See how an idea<br />becomes a <em>system.</em></h2></div><p>This walkthrough illustrates the learning path. Visit the public Skool page to inspect the live community listing.</p></div>
+        <div className="tour-console">
+          <div className="tour-tabs" role="tablist" aria-label="Product tour chapters">
+            {tourSteps.map((item, index) => <button id={`tour-tab-${index}`} key={item.label} ref={element => { tabs.current[index] = element; }} role="tab" aria-selected={step === index} aria-controls="tour-panel" tabIndex={step === index ? 0 : -1} type="button" onClick={() => selectStep(index)} onKeyDown={event => handleTabKey(event, index)}><span>0{index + 1}</span>{item.label}</button>)}
+          </div>
+          <div className="tour-panel" id="tour-panel" role="tabpanel" aria-labelledby={`tour-tab-${step}`}>
+            <div className="tour-copy"><span className="tour-kicker">CHAPTER 0{step + 1} / 04</span><h3>{active.title}</h3><p>{active.copy}</p><button type="button" className="tour-next" onClick={() => selectStep((step + 1) % tourSteps.length)}>{step === tourSteps.length - 1 ? 'Replay tour' : 'Next chapter'} <span>→</span></button></div>
+            <div className="tour-screen" aria-label={`${active.label} example`}><div className="screen-bar"><i /><i /><i /><span>AI INCOME LAB / {active.label.toUpperCase()}</span></div><div className="screen-content"><small>{active.visual[0]}</small><strong>{active.visual[1]}</strong><span>{active.visual[2]}</span><div className="screen-progress"><i style={{ width: `${(step + 1) * 25}%` }} /></div></div></div>
+          </div>
+          <a className="tour-community-link" href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('roadmap', 'View the community on Skool')}>View the community on Skool ↗</a>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function App() {
   const [campaign, setCampaign] = useState(() => getCampaign('', Object.keys(campaignMessages)));
   const [campaignReady, setCampaignReady] = useState(false);
-  const [privacyOpen, setPrivacyOpen] = useState(false);
-  const [mobileCtaVisible, setMobileCtaVisible] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState('Standard');
   const message = campaignMessages[campaign.angle];
-  const navigation = useRef(null);
-  useEffect(() => { setCampaign(getCampaign(window.location.search, Object.keys(campaignMessages))); setCampaignReady(true); }, []);
+  const [mobileCtaVisible, setMobileCtaVisible] = useState(false);
+
+  useEffect(() => {
+    setCampaign(getCampaign(window.location.search, Object.keys(campaignMessages)));
+    setCampaignReady(true);
+  }, []);
 
   useEffect(() => {
     if (!campaignReady) return undefined;
-    track('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none', design_version: designVersion });
+    track('Campaign Landing Viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
     let engaged = false;
-    function markEngaged(signal) {
-      if (!engaged) { engaged = true; trackEvent('engaged_visit', { signal, angle: campaign.angle }); }
-    }
-    const onScroll = () => {
-      const distance = document.documentElement.scrollHeight - innerHeight;
-      if (distance > 0 && scrollY / distance >= .5) markEngaged('50_percent_scroll');
-    };
-    const timer = setTimeout(() => markEngaged('30_seconds'), 30000);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    const pricingHeading = document.getElementById('pricing-title');
-    const pricingObserver = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        trackEvent('view_pricing', { angle: campaign.angle });
-        trackMetaEvent('PricingViewed', { angle: campaign.angle, design_version: designVersion });
-        pricingObserver.disconnect();
+    const markEngaged = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (!engaged && scrollable > 0 && window.scrollY / scrollable >= .5) {
+        engaged = true;
+        trackEvent('Engaged Visit', { signal: '50_percent_scroll', angle: campaign.angle });
       }
-    }, { threshold: .5 });
-    if (pricingHeading) pricingObserver.observe(pricingHeading);
-    return () => { clearTimeout(timer); window.removeEventListener('scroll', onScroll); pricingObserver.disconnect(); };
+    };
+    const timer = window.setTimeout(() => {
+      if (!engaged) {
+        engaged = true;
+        trackEvent('Engaged Visit', { signal: '30_seconds', angle: campaign.angle });
+      }
+    }, 30000);
+    window.addEventListener('scroll', markEngaged, { passive: true });
+    return () => { window.clearTimeout(timer); window.removeEventListener('scroll', markEngaged); };
   }, [campaign, campaignReady]);
 
   useEffect(() => {
-    const elements = ['hero-actions', 'pricing', 'join'].map(id => document.getElementById(id));
-    const visible = new Map(elements.map(element => [element, false]));
+    if (!campaignReady) return undefined;
+    const pricing = document.getElementById('pricing');
+    if (!pricing) return undefined;
+    let viewed = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !viewed) {
+        viewed = true;
+        trackEvent('View Pricing', { angle: campaign.angle });
+        if (typeof window.fbq === 'function') window.fbq('track', 'ViewContent', { content_name: 'Pricing', content_category: 'membership' });
+      }
+    }, { threshold: .25 });
+    observer.observe(pricing);
+    return () => observer.disconnect();
+  }, [campaign, campaignReady]);
+
+  useEffect(() => {
+    const hero = document.querySelector('.hero');
+    const pricing = document.getElementById('pricing');
+    const join = document.getElementById('join');
+    if (!hero || !pricing || !join) return undefined;
+    const visible = new Map([[hero, true], [pricing, false], [join, false]]);
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
-      const heroPassed = elements[0].getBoundingClientRect().bottom < 0;
-      setMobileCtaVisible(heroPassed && ![...visible.values()].some(Boolean));
-    });
-    elements.forEach(element => observer.observe(element));
+      setMobileCtaVisible(!visible.get(hero) && !visible.get(pricing) && !visible.get(join));
+    }, { threshold: .08 });
+    [hero, pricing, join].forEach(element => observer.observe(element));
     return () => observer.disconnect();
   }, []);
 
-  function viewPricing(placement) { trackEvent('cta_click', { placement, action: 'view_pricing', angle: campaign.angle }); }
-  function closeMenu(event) { if (event.target.closest('a')) navigation.current.open = false; }
-
-  return <>
+  const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
+  return (
+    <>
     <a className="skip-link" href="#main-content">Skip to content</a>
-    <header className="shell nav" id="top">
-      <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> Income Lab</a>
-      <nav className="nav-links" aria-label="Main navigation"><a href="#tour">Claude Code demo</a><a href="#plan">How it works</a><a href="#faq">FAQ</a></nav>
-      <div className="nav-actions"><a className="nav-pricing" href="#pricing" onClick={() => viewPricing('navigation')}>See plans</a><details className="nav-menu" ref={navigation} onKeyDown={event => { if (event.key === 'Escape') { navigation.current.open = false; navigation.current.querySelector('summary').focus(); } }}><summary aria-label="Explore navigation and appearance">Explore</summary><div onClick={closeMenu}><a href="#tour">Claude Code demo</a><a href="#plan">How it works</a><a href="#faq">FAQ</a><ThemeToggle /></div></details></div>
-    </header>
-    <main id="main-content" tabIndex="-1">
-      <section className="hero shell" aria-labelledby="hero-title">
-        <div className="hero-copy" id="outcomes"><p className="audience">{message.audience}</p><h1 id="hero-title">{message.headline}</h1><p className="hero-text">{message.text}</p>
-          <div className="hero-actions" id="hero-actions"><SkoolLink campaign={campaign} placement="hero">Join from $29 a month</SkoolLink><a className="text-link" href="#pricing" onClick={() => viewPricing('hero')}>Compare plans from $29/month</a></div>
-          <p className="cta-note">Created by Mike Holp. Monthly membership. Cancel anytime.</p>
-          <ul className="hero-facts"><li>No coding experience required</li><li>Courses and community in every plan</li><li>Weekly coaching with VIP</li></ul>
+    <main id="top">
+      <nav className="nav shell" aria-label="Main navigation">
+        <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
+        <div className="nav-links"><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a><details className="nav-mobile"><summary>Explore</summary><div><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></details></div>
+      </nav>
+
+      <section className="hero shell" id="main-content" tabIndex="-1">
+        <div className="hero-copy">
+          <p className="eyebrow"><span /> {message.eyebrow}</p>
+          <h1>{message.headline}</h1>
+          <p className="hero-text">{message.text}</p>
         </div>
-        <ClaudeCodeShowcase angle={campaign.angle} context={message.context} />
+        <div className="hero-actions">
+          <a className="button button-primary button-hero" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Join from $29 a month', link_url: skoolAboutUrl, placement: 'hero', action: 'visit_skool', angle: campaign.angle })}>Join from $29 a month <span>↗</span></a>
+          <p className="cta-note">Created by Mike Holp · Cancel anytime</p>
+          <a className="button button-primary button-hero" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $29/month', link_url: '#pricing', placement: 'hero', action: 'view_pricing', angle: campaign.angle })}>See plans from $29/month <span>↓</span></a>
+          <a className="hero-tour" href="#plan" onClick={() => trackEvent('CTA Clicked', { button_text: 'See the 30-day roadmap', link_url: '#plan', placement: 'hero', action: 'view_roadmap', angle: campaign.angle })}>See the 30-day roadmap <span>→</span></a>
+        </div>
+        <HeroVideo />
+        <div className="hero-trust">
+          <span className="hero-avatars" aria-hidden="true">
+            {memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="28" height="28" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}
+          </span>
+          <p><strong>2,900+ members</strong> building AI workflows</p>
+        </div>
       </section>
 
-      <section className="community shell" id="inside" aria-labelledby="community-title">
-        <div><p className="section-label">Your community host</p><h2 id="community-title">Learn with Mike Holp and the community.</h2></div>
-        <div><p>Join 2,900+ members on Skool, where AI Income Lab brings practical training and member discussions together. Explore the public listing and review the current membership details before joining.</p><SkoolLink campaign={campaign} placement="community" className="text-link">Explore the community on Skool</SkoolLink><IntroVideo angle={campaign.angle} /></div>
+      <section className="proof-strip" aria-label="Membership facts"><div className="shell"><div><strong>2,900+</strong><span>members building AI workflows</span></div><div><strong>6,400+</strong><span>N8N templates in VIP</span></div><div><strong>3</strong><span>monthly membership levels</span></div><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('proof_strip', 'View on Skool')}>View on Skool ↗</a></div></section>
+
+      <section className="ticker" aria-label="Membership highlights"><div><span>NO CODING REQUIRED</span><i>✦</i><span>COURSES AND TUTORIALS</span><i>✦</i><span>WEEKLY COACHING WITH VIP</span><i>✦</i><span>CANCEL ANYTIME</span><i>✦</i></div></section>
+
+      <section className="plan shell" id="plan">
+        <div className="plan-title"><p className="eyebrow"><span /> Your first 30 days</p><h2>One clear path.<br />One working system.</h2></div>
+        <div className="plan-grid">{buildPlan.map(([week, title, copy]) => <article key={week}><span>{week}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <p className="plan-note">This is a suggested build schedule. Income, client acquisition, and completion in 30 days are not guaranteed.</p>
       </section>
 
-      <section className="pricing shell" id="pricing" aria-labelledby="pricing-title">
-        <div className="section-heading"><h2 id="pricing-title">Choose your membership.</h2><p>Monthly in USD. Cancel or upgrade on Skool.</p></div>
-        <fieldset className="pricing-grid"><legend className="sr-only">Compare membership plans</legend>
-          {pricingPlans.map(plan => <label className={`price-card${selectedPlan === plan.name ? ' is-selected' : ''}`} key={plan.name}>
-            <input type="radio" name="membership" value={plan.name} checked={selectedPlan === plan.name} onChange={() => { setSelectedPlan(plan.name); trackEvent('plan_selected', { plan: plan.name, angle: campaign.angle }); }} />
-            <div className="price-top"><h3>{plan.name}</h3><div className="price-amount"><strong>${plan.price}</strong><span>/month</span></div></div>
-            <p className="price-fit">{plan.fit}</p>
-            {plan.name === 'Standard' && <span className="price-badge">Start here if you’re new</span>}
-            <ul>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-          </label>)}
-        </fieldset>
-        <div className="pricing-next"><SkoolLink campaign={campaign} placement="pricing" plan={selectedPlan} /><p aria-live="polite">Choose <strong>{selectedPlan}</strong> again on Skool to finish joining.</p></div>
-        <p className="pricing-note">Your selection here helps you compare. Skool handles account creation, plan selection, and payment. Software and API costs are separate.</p>
+      <section className="pricing shell" id="pricing">
+        <div className="pricing-intro">
+          <div><p className="eyebrow"><span /> Select your build level</p><h2>Choose the support<br /><em>your next system needs.</em></h2></div>
+          <p>Start with the essentials, add advanced training when you need it, or unlock the full template and software vault.</p>
+        </div>
+        <div className="pricing-assurance" aria-label="Membership details"><span>Monthly membership</span><span>Cancel anytime</span><span>Hosted on Skool</span><span>Upgrade as you grow</span></div>
+        <div className="pricing-grid">
+          {pricingPlans.map(({ name, price, fit, bestFor, description, recommended, features }, index) => (
+            <article id={`plan-${name.toLowerCase()}`} className={`price-card${recommended ? ' price-card-recommended' : ''}`} key={name}>
+              <div className="price-card-top">
+                <span className="price-level">Level 0{index + 1}</span>
+                {recommended && <span className="price-badge">Recommended</span>}
+              </div>
+              <h3>{name}</h3>
+              <p className="price-fit">{fit}</p>
+              <p className="price-best">{bestFor}</p>
+              <p className="price-summary">{description}</p>
+              <div className="price-amount"><span>$</span><strong>{price}</strong><small>USD<br />per month</small></div>
+              <p className="price-includes">What you get</p>
+              <ul aria-label={`${name} plan includes`}>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackPlanVisit(name, 'pricing_card')}>Continue on Skool to join. <span>↗</span></a>
+              <small className="price-checkout">Review membership details on Skool before joining</small>
+            </article>
+          ))}
+        </div>
+        <p className="pricing-note">All plans are billed monthly and can be canceled anytime. Pick the level that matches what you want to build now.</p>
       </section>
 
-      <section className="plan shell" id="plan" aria-labelledby="plan-title"><div className="section-heading"><h2 id="plan-title">One task. Four weeks to work on it.</h2><p>A suggested path you can adapt to your experience.</p></div><ol className="plan-grid">{buildPlan.map(([week, title, copy]) => <li key={week}><span>{week}</span><h3>{title}</h3><p>{copy}</p></li>)}</ol><p className="plan-note">Start small and adjust the pace. Completion, income, and finding a client in 30 days are not guaranteed.</p></section>
+      <ProductTour />
 
-      <section className="faq shell" id="faq" aria-labelledby="faq-title"><h2 id="faq-title">Before you join.</h2><div className="faq-groups">{faqGroups.map(group => <div key={group.title}><h3>{group.title}</h3>{group.items.map(([question, answer]) => <details key={question} onToggle={event => { if (event.currentTarget.open) trackEvent('faq_opened', { question, angle: campaign.angle }); }}><summary>{question}</summary><p>{answer}</p></details>)}</div>)}</div></section>
+      <section className="creator shell" aria-labelledby="creator-title">
+        <p className="eyebrow"><span /> Your community host</p>
+        <div><h2 id="creator-title">Created by<br /><em>Mike Holp.</em></h2><p>AI Income Lab is hosted by Mike Holp on Skool. Review the public community listing and current plan details before joining.</p><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('creator', 'View Mike and the community on Skool')}>View Mike and the community on Skool ↗</a></div>
+      </section>
 
-      <section className="join-card shell" id="join" aria-labelledby="join-title"><div><h2 id="join-title">Make your next step a useful one.</h2><p>Start with courses and community from $29/month.</p></div><div className="join-side"><SkoolLink campaign={campaign} placement="final" plan={selectedPlan} /><p>Choose your plan and create your account on Skool.</p><a href="#pricing" className="text-link" onClick={() => viewPricing('final_compare')}>Compare memberships</a></div></section>
+      <section className="lead-fallback"><div className="shell"><div><p className="eyebrow"><span /> Ready to start building?</p><h2>Join from just<br /><em>$29 per month.</em></h2><p>Choose the membership level that matches what you want to build now, then continue to Skool to create your account.</p></div><a className="button button-primary" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $29/month', link_url: '#pricing', placement: 'mid_page', action: 'view_pricing' })}>See plans from $29/month <span>↑</span></a></div></section>
+
+      <section className="faq shell" id="faq"><div className="faq-heading"><p className="eyebrow"><span /> Before you join</p><h2>Clear answers.<br /><em>No guesswork.</em></h2></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section>
+
+      <section className="no-need shell">
+        <p className="eyebrow"><span /> Leave these at the door</p>
+        <div><span>No technical background</span><span>No coding skills</span><span>No existing audience</span></div>
+      </section>
+
+      <section className="join-card shell" id="join">
+        <div><p className="eyebrow"><span /> Join AI Income Lab</p><h2>Stop collecting tools.<br /><em>Start building income.</em></h2></div>
+        <div className="join-side"><p>Join a private Skool community focused on turning AI tools into practical systems for business and clients.</p><a className="button button-light" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $29/month', link_url: '#pricing', placement: 'final', action: 'view_pricing' })}>See plans from $29/month <span>↑</span></a><small>Choose your level above</small></div>
+      </section>
+
+      <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> INCOME LAB</a><p>By Mike Holp · Practical AI systems for real-world income.</p><div className="footer-links"><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Member login', link_url: skoolCommunityUrl, placement: 'footer', action: 'member_login' })}>Member login ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button><a href="#top">Back to top ↑</a></div></footer>
+      {mobileCtaVisible && <div className="mobile-cta is-visible"><span><strong>Ready to build?</strong><small>Plans from $29/month</small></span><a href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'mobile_sticky', action: 'view_pricing' })}>See plans</a></div>}
     </main>
-    <footer className="footer shell"><a className="brand" href="#top"><span>AI</span> Income Lab</a><p>Practical learning. A place to build.</p><div className="footer-links"><a href={skoolCommunityUrl}>Member login</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button></div></footer>
-    {mobileCtaVisible && !privacyOpen && <div className="mobile-cta"><span>Plans from <strong>$29/month</strong></span><a href="#pricing" onClick={() => viewPricing('mobile_sticky')}>See plans</a></div>}
-    <ConsentBanner open={privacyOpen} setOpen={setPrivacyOpen} campaign={campaign} campaignReady={campaignReady} />
-  </>;
+    <ConsentBanner campaign={campaign} campaignReady={campaignReady} />
+    </>
+  );
 }
 
-export function Root() { return <StrictMode><App /><Analytics /></StrictMode>; }
+export function Root() {
+  return <StrictMode><App /><Analytics /></StrictMode>;
+}
+
 if (typeof document !== 'undefined') {
   const root = document.getElementById('root');
   if (root.hasChildNodes()) hydrateRoot(root, <Root />);
