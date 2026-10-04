@@ -74,6 +74,7 @@ h1 em, h2 em { color: var(--accent); font-style: normal; }
 .hero h1 { max-width: 100%; margin-bottom: 14px; font-size: clamp(36px, 3.9vw, 52px); line-height: 1.0; }
 .hero .hero-text { max-width: 640px; margin: 0 auto 24px; font-size: 17px; }
 .hero .hero-actions { justify-content: center; align-items: center; gap: 10px 18px; margin-top: 20px; }
+.hero-actions .cta-note { margin: 0; }
 .hero .hero-text strong { color: var(--navy); font-weight: 700; }
 .button-hero { min-height: 62px; padding: 0 30px; gap: 34px; font-size: 15px; }
 .hero-trust { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; margin-top: 15px; }

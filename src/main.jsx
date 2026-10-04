@@ -95,15 +95,6 @@ const buildPlan = [
   ['Week 04', 'Put it to work', 'Use it in your business or sell it to a client.'],
 ];
 
-const inclusions = [
-  ['Community access · all plans', 'Discuss your build with other members and keep your learning in one private Skool community.'],
-  ['Courses and tutorials · all plans', 'Follow practical training instead of guessing which AI tool to learn next.'],
-  ['Advanced training · Premium and VIP', 'Go beyond the core courses when you are ready to build more capable systems.'],
-  ['Curated software deals · VIP', 'Use the VIP software-deal library to compare tools and offers.'],
-  ['6,400+ N8N templates · VIP', 'Open the complete template vault when implementation speed matters most.'],
-  ['Weekly coaching · VIP', 'Bring questions to a weekly coaching session when you want live help with implementation.'],
-];
-
 const pricingPlans = [
   { name: 'Standard', price: 29, fit: 'Learn the foundations', bestFor: 'Best for learning and building your first workflow', description: 'Start with the community, core courses, and practical tutorials.', features: ['Community Access', 'Courses & Tutorials'] },
   { name: 'Premium', price: 49, fit: 'Build with more depth', bestFor: 'Recommended if you are ready for advanced training', description: 'Everything in Standard, plus advanced training for $20 more per month.', recommended: true, features: ['Community Access', 'Courses & Tutorials', 'Advanced Training'] },
@@ -276,8 +267,8 @@ function App() {
     <main id="top">
       <nav className="nav shell" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> INCOME LAB</a>
-        <div className="nav-links"><a href="#outcomes">Who it&apos;s for</a><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a><details className="nav-mobile"><summary>Explore</summary><div><a href="#outcomes">Who it&apos;s for</a><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></details></div>
+        <div className="nav-links"><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+        <div className="nav-actions"><ThemeToggle /><a className="nav-pricing" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans', link_url: '#pricing', placement: 'navigation', action: 'view_pricing' })}>See plans</a><details className="nav-mobile"><summary>Explore</summary><div><a href="#tour">See inside</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></details></div>
       </nav>
 
       <section className="hero shell" id="main-content" tabIndex="-1">
@@ -287,46 +278,23 @@ function App() {
           <p className="hero-text">{message.text}</p>
         </div>
         <div className="hero-actions">
+          <a className="button button-primary button-hero" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Join from $29 a month', link_url: skoolAboutUrl, placement: 'hero', action: 'visit_skool', angle: campaign.angle })}>Join from $29 a month <span>↗</span></a>
+          <p className="cta-note">Created by Mike Holp · Cancel anytime</p>
           <a className="button button-primary button-hero" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $29/month', link_url: '#pricing', placement: 'hero', action: 'view_pricing', angle: campaign.angle })}>See plans from $29/month <span>↓</span></a>
           <a className="hero-tour" href="#plan" onClick={() => trackEvent('CTA Clicked', { button_text: 'See the 30-day roadmap', link_url: '#plan', placement: 'hero', action: 'view_roadmap', angle: campaign.angle })}>See the 30-day roadmap <span>→</span></a>
         </div>
-        <p className="cta-note">Monthly membership · Cancel anytime from your Skool account · Enrollment continues on Skool</p>
         <HeroVideo />
         <div className="hero-trust">
           <span className="hero-avatars" aria-hidden="true">
             {memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="28" height="28" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}
           </span>
-          <p><strong>2,900+ people</strong> listed in the Skool community</p>
+          <p><strong>2,900+ members</strong> building AI workflows</p>
         </div>
       </section>
 
-      <section className="proof-strip" aria-label="Membership facts"><div className="shell"><div><strong>2,900+</strong><span>people listed on Skool</span></div><div><strong>6,400+</strong><span>N8N templates in VIP</span></div><div><strong>3</strong><span>monthly membership levels</span></div><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('proof_strip', 'View on Skool')}>View on Skool ↗</a></div></section>
+      <section className="proof-strip" aria-label="Membership facts"><div className="shell"><div><strong>2,900+</strong><span>members building AI workflows</span></div><div><strong>6,400+</strong><span>N8N templates in VIP</span></div><div><strong>3</strong><span>monthly membership levels</span></div><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('proof_strip', 'View on Skool')}>View on Skool ↗</a></div></section>
 
       <section className="ticker" aria-label="Membership highlights"><div><span>NO CODING REQUIRED</span><i>✦</i><span>COURSES AND TUTORIALS</span><i>✦</i><span>WEEKLY COACHING WITH VIP</span><i>✦</i><span>CANCEL ANYTIME</span><i>✦</i></div></section>
-
-      <section className="outcomes shell" id="outcomes">
-        <div className="section-heading">
-          <div><p className="eyebrow"><span /> Three ways people use this</p><h2>Make AI useful.<br /><em>Then make it pay.</em></h2></div>
-          <p>No coding required. Pick one practical path, start small, and build the first version.</p>
-        </div>
-        <div className="outcome-grid">
-          <article>
-            <h3>Automate your own work</h3>
-            <p>Hand the repetitive parts of your week to something that runs without you watching it.</p>
-            <div className="outcome-build"><span>Start here</span><strong>A workflow that spots a new enquiry, pulls the details out, and drafts a reply for you to approve.</strong></div>
-          </article>
-          <article>
-            <h3>Sell AI services to clients</h3>
-            <p>Take something you have already built for yourself and set it up for a business that needs it.</p>
-            <div className="outcome-build"><span>Start here</span><strong>That same enquiry workflow, rebuilt for one local business and run for them month to month.</strong></div>
-          </article>
-          <article>
-            <h3>Start something of your own</h3>
-            <p>Build a small product you keep improving, then sell the output or access to the system itself.</p>
-            <div className="outcome-build"><span>Start here</span><strong>A content system that turns one recording into a week of posts, captions, and clips.</strong></div>
-          </article>
-        </div>
-      </section>
 
       <section className="plan shell" id="plan">
         <div className="plan-title"><p className="eyebrow"><span /> Your first 30 days</p><h2>One clear path.<br />One working system.</h2></div>
@@ -354,19 +322,12 @@ function App() {
               <div className="price-amount"><span>$</span><strong>{price}</strong><small>USD<br />per month</small></div>
               <p className="price-includes">What you get</p>
               <ul aria-label={`${name} plan includes`}>{features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackPlanVisit(name, 'pricing_card')}>View community on Skool <span>↗</span></a>
+              <a className={`button ${recommended ? 'button-primary' : 'button-secondary'}`} href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackPlanVisit(name, 'pricing_card')}>Continue on Skool to join. <span>↗</span></a>
               <small className="price-checkout">Review membership details on Skool before joining</small>
             </article>
           ))}
         </div>
         <p className="pricing-note">All plans are billed monthly and can be canceled anytime. Pick the level that matches what you want to build now.</p>
-      </section>
-
-      <section className="inside-wrap" id="inside">
-        <div className="inside shell">
-          <div className="inside-intro"><p className="eyebrow"><span /> What each level unlocks</p><h2>Know what you pay for<br />before you <em>join.</em></h2><p>Every plan includes community access, courses, and tutorials. Premium and VIP add the resources shown below.</p></div>
-          <div className="inclusion-list">{inclusions.map(([title, copy]) => <article key={title}><span className="check">✓</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div>
-        </div>
       </section>
 
       <ProductTour />
