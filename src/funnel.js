@@ -15,10 +15,16 @@ export function outboundUrl(base, campaign, extras = {}) {
   return url.toString();
 }
 
-export function nextTabIndex(current, key, count) {
-  if (key === 'Home') return 0;
-  if (key === 'End') return count - 1;
-  if (key === 'ArrowRight') return (current + 1) % count;
-  if (key === 'ArrowLeft') return (current - 1 + count) % count;
-  return current;
+export function outboundProperties(campaign, { placement, plan, href, designVersion }) {
+  return {
+    action: 'visit_skool',
+    placement,
+    plan: plan || 'undecided',
+    angle: campaign.angle,
+    campaign: campaign.params.utm_campaign || 'direct',
+    source: campaign.params.utm_source || 'direct',
+    content: campaign.params.utm_content || 'none',
+    link_url: href,
+    design_version: designVersion,
+  };
 }
