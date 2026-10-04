@@ -4,7 +4,6 @@ import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, outboundUrl, outboundProperties } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaEvent } from './tracking.js';
 import { buildPlan, campaignMessages, designVersion, faqGroups, pricingPlans, skoolAboutUrl, skoolCommunityUrl } from './content.js';
-import { examples, previewDraft } from './workflow.js';
 import './fonts.css';
 import './styles.css';
 
@@ -64,32 +63,26 @@ function ConsentBanner({ open, setOpen, campaign, campaignReady }) {
   </aside>;
 }
 
-function WorkflowPreview({ kind, angle, context }) {
-  const [sampleId, setSampleId] = useState(examples[kind][0].id);
-  const [reviewed, setReviewed] = useState(false);
-  const sample = examples[kind].find(item => item.id === sampleId);
-  const draft = previewDraft(kind, sampleId);
-  function changeSample(event) {
-    setSampleId(event.target.value);
-    setReviewed(false);
-    trackEvent('workflow_sample_changed', { angle, example: kind, sample: event.target.value });
+const featuredWorkflowUrl = 'https://n8n.io/workflows/2271-gmail-ai-auto-responder-create-draft-replies-to-incoming-emails/';
+
+function WorkflowShowcase({ angle, context }) {
+  function viewTemplate(placement) {
+    trackEvent('workflow_template_opened', { angle, placement, product: 'n8n', template_id: '2271', link_url: featuredWorkflowUrl });
   }
-  return <div className="workflow" id="tour" aria-labelledby="workflow-title">
-    <div className="workflow-heading"><span className="sample-label">Interactive example</span><h2 id="workflow-title">{kind === 'content' ? 'One brief. A starting draft.' : 'One enquiry. A useful draft.'}</h2></div>
-    <div className="workflow-input">
-      <label htmlFor="workflow-sample">Try a different sample</label>
-      <select id="workflow-sample" value={sampleId} onChange={changeSample}>{examples[kind].map(item => <option value={item.id} key={item.id}>{item.label}</option>)}</select>
-      <p className="sample-message">{sample.message}</p>
-    </div>
-    <div className="workflow-output" aria-live="polite" aria-atomic="true">
-      <dl className="sample-fields">{draft.fields.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-      <div className="draft-heading"><h3>Draft for review</h3><span className={`review-state${reviewed ? ' is-reviewed' : ''}`}>{reviewed ? 'Marked reviewed' : 'Needs your review'}</span></div>
-      <p className="draft-text">{draft.text}</p>
-    </div>
-    <button className="review-button" type="button" aria-pressed={reviewed} onClick={() => { setReviewed(!reviewed); trackEvent('workflow_review_toggled', { angle, reviewed: !reviewed, example: kind }); }}>{reviewed ? 'Reset review' : 'Mark draft reviewed'}</button>
-    <p className="demo-note">Sample data, formatted locally. No live AI call or message sent.</p>
-    <details className="example-context"><summary>How this example relates to your build</summary><p>{context}</p><p>This illustrates a process, not an included lesson. A production workflow connects your tools and needs testing before use.</p></details>
-  </div>;
+  return <section className="workflow-showcase" id="tour" aria-labelledby="workflow-title">
+    <div className="product-heading"><strong className="product-name">n8n</strong><span>Gmail + OpenAI</span></div>
+    <h2 id="workflow-title">An inbox that helps write the reply.</h2>
+    <p className="workflow-description">Connect your apps in n8n. This public workflow turns incoming Gmail messages into draft replies you can review and edit.</p>
+    <figure className="workflow-figure">
+      <a href={featuredWorkflowUrl} target="_blank" rel="noopener noreferrer" onClick={() => viewTemplate('canvas')} aria-label="Explore the Gmail draft workflow on n8n (opens in a new tab)"><img src="/workflows/n8n-gmail-drafts.png" width="1200" height="420" alt="Actual n8n canvas: Gmail receives an email, OpenAI checks whether a reply is needed, generates a response, and Gmail saves a draft." decoding="async" /></a>
+      <figcaption>Actual template canvas from n8n’s public library.</figcaption>
+    </figure>
+    <ol className="workflow-steps"><li><strong>Receive</strong><span>Watch for new email in Gmail.</span></li><li><strong>Draft</strong><span>Check if a reply is needed, then generate it.</span></li><li><strong>Review</strong><span>Save to Gmail drafts for you to edit and send.</span></li></ol>
+    <p className="workflow-context">{context}</p>
+    <a className="text-link workflow-link" href={featuredWorkflowUrl} target="_blank" rel="noopener noreferrer" onClick={() => viewTemplate('details')}>Explore this workflow on n8n <span className="sr-only">(opens in a new tab)</span></a>
+    <p className="workflow-attribution">Public template by Nicolas Chourrout.</p>
+    <details className="workflow-setup"><summary>What you need to run it</summary><p>An n8n instance, Gmail access, and OpenAI API credentials. Configure your accounts and prompts, then test the workflow. Hosting and AI usage may cost extra.</p><p>This is an independently published template, not a member result or an included lesson. VIP membership includes a separate n8n template vault.</p></details>
+  </section>;
 }
 
 function IntroVideo({ angle }) {
@@ -158,8 +151,8 @@ function App() {
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="shell nav" id="top">
       <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> Income Lab</a>
-      <nav className="nav-links" aria-label="Main navigation"><a href="#tour">Workflow example</a><a href="#plan">How it works</a><a href="#faq">FAQ</a></nav>
-      <div className="nav-actions"><a className="nav-pricing" href="#pricing" onClick={() => viewPricing('navigation')}>See plans</a><details className="nav-menu" ref={navigation} onKeyDown={event => { if (event.key === 'Escape') { navigation.current.open = false; navigation.current.querySelector('summary').focus(); } }}><summary aria-label="Explore navigation and appearance">Explore</summary><div onClick={closeMenu}><a href="#tour">Workflow example</a><a href="#plan">How it works</a><a href="#faq">FAQ</a><ThemeToggle /></div></details></div>
+      <nav className="nav-links" aria-label="Main navigation"><a href="#tour">n8n workflow</a><a href="#plan">How it works</a><a href="#faq">FAQ</a></nav>
+      <div className="nav-actions"><a className="nav-pricing" href="#pricing" onClick={() => viewPricing('navigation')}>See plans</a><details className="nav-menu" ref={navigation} onKeyDown={event => { if (event.key === 'Escape') { navigation.current.open = false; navigation.current.querySelector('summary').focus(); } }}><summary aria-label="Explore navigation and appearance">Explore</summary><div onClick={closeMenu}><a href="#tour">n8n workflow</a><a href="#plan">How it works</a><a href="#faq">FAQ</a><ThemeToggle /></div></details></div>
     </header>
     <main id="main-content" tabIndex="-1">
       <section className="hero shell" aria-labelledby="hero-title">
@@ -168,7 +161,7 @@ function App() {
           <p className="cta-note">Created by Mike Holp. Monthly membership. Cancel anytime.</p>
           <ul className="hero-facts"><li>No coding experience required</li><li>Courses and community in every plan</li><li>Weekly coaching with VIP</li></ul>
         </div>
-        <WorkflowPreview key={message.example} kind={message.example} angle={campaign.angle} context={message.context} />
+        <WorkflowShowcase angle={campaign.angle} context={message.context} />
       </section>
 
       <section className="community shell" id="inside" aria-labelledby="community-title">

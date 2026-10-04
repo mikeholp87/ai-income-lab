@@ -78,27 +78,27 @@ p { max-width: 70ch; }
 .hero-facts { margin: 26px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--muted); }
 .hero-facts li { padding-left: 22px; position: relative; margin-top: 8px; }
 .hero-facts li::before { content: '✓'; color: var(--ink); position: absolute; left: 0; }
-.workflow { min-width: 0; padding: 26px; background: var(--surface); border: 1px solid var(--line); box-shadow: 10px 10px 0 var(--sky); border-radius: 8px; }
-.sample-label { font-size: 14px; color: var(--muted); }
-.workflow-heading h2 { font-size: 25px; margin: 6px 0 22px; line-height: 1.2; }
-.workflow-input label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 600; }
-.workflow select { width: 100%; min-width: 0; min-height: 44px; padding: 8px 12px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); border-radius: 4px; }
-.sample-message { margin: 14px 0 20px; color: var(--muted); font-size: 15px; }
-.sample-fields { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0; padding: 14px 0; border-block: 1px solid var(--line); }
-.sample-fields div { min-width: 0; }
-.sample-fields dt { font: 400 12px/1.5 'DM Mono', monospace; color: var(--muted); }
-.sample-fields dd { margin: 3px 0 0; font-size: 14px; font-weight: 600; }
-.draft-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 18px 0 10px; }
-.draft-heading h3 { font-size: 16px; }
-.review-state { font-size: 12px; color: var(--ink); background: var(--sky); padding: 3px 8px; border-radius: 4px; }
-.review-state.is-reviewed { color: var(--review); background: var(--review-bg); }
-.draft-text { white-space: pre-line; font-size: 15px; line-height: 1.6; }
-.review-button { min-height: 44px; margin-top: 18px; padding: 9px 14px; border: 1px solid var(--ink); border-radius: 4px; background: transparent; font-size: 14px; font-weight: 600; }
-.review-button:hover { background: var(--sky); }
-.demo-note { margin-top: 12px; font-size: 13px; color: var(--muted); }
-.example-context { margin-top: 10px; font-size: 13px; color: var(--muted); }
-.example-context summary { min-height: 44px; padding-block: 10px; }
-.example-context p + p { margin-top: 10px; }
+.workflow-showcase { min-width: 0; padding: 26px; background: var(--surface); border: 1px solid var(--line); box-shadow: 10px 10px 0 var(--sky); border-radius: 8px; }
+.product-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.product-name { font-size: 28px; font-weight: 700; letter-spacing: -.04em; }
+.product-heading > span { font-size: 14px; color: var(--muted); }
+.workflow-showcase h2 { font-size: 29px; max-width: 20ch; }
+.workflow-description { margin-top: 14px; font-size: 16px; color: var(--muted); }
+.workflow-figure { margin: 22px -26px 0; }
+.workflow-figure a { display: block; background: #fff; }
+.workflow-figure a:focus-visible { outline-offset: -4px; }
+.workflow-figure img { display: block; width: 100%; height: auto; }
+.workflow-figure figcaption { padding: 8px 26px 0; font-size: 12px; color: var(--muted); }
+.workflow-steps { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+.workflow-steps li { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 12px; font-size: 14px; }
+.workflow-steps strong { font-weight: 650; }
+.workflow-steps span { color: var(--muted); }
+.workflow-context { margin-top: 20px; font-size: 15px; }
+.workflow-link { margin-top: 12px; font-weight: 600; }
+.workflow-attribution { font-size: 13px; color: var(--muted); }
+.workflow-setup { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.workflow-setup summary { padding-block: 10px; min-height: 44px; }
+.workflow-setup p + p { margin-top: 12px; }
 .community { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 76px; border-block: 1px solid var(--line); padding-block: 34px; }
 .section-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
 .community h2 { font-size: 26px; max-width: 360px; }
@@ -173,7 +173,9 @@ p { max-width: 70ch; }
   .nav-links { gap: 16px; }
   .hero h1 { font-size: 44px; }
   .hero-text { font-size: 17px; }
-  .workflow { padding: 22px; }
+  .workflow-showcase { padding: 22px; }
+  .workflow-figure { margin-inline: -22px; }
+  .workflow-figure figcaption { padding-inline: 22px; }
   .price-top { display: block; }
   .price-top h3 { font-size: 18px; }
   .section-heading { align-items: start; }
@@ -198,8 +200,10 @@ p { max-width: 70ch; }
   .cta-note { font-size: 13px; margin-top: 5px; }
   .hero-facts { display: flex; flex-wrap: wrap; gap: 5px 18px; margin-top: 18px; font-size: 14px; }
   .hero-facts li { margin: 0; }
-  .workflow { box-shadow: 6px 6px 0 var(--sky); padding: 20px; }
-  .workflow-heading h2 { font-size: 24px; }
+  .workflow-showcase { box-shadow: 6px 6px 0 var(--sky); padding: 20px; }
+  .workflow-showcase h2 { font-size: 26px; }
+  .workflow-figure { margin-inline: -20px; }
+  .workflow-figure figcaption { padding-inline: 20px; }
   .community { grid-template-columns: minmax(0,1fr); gap: 14px; padding-block: 28px; }
   .community h2 { font-size: 26px; max-width: 100%; }
   .pricing { padding-block: 40px; }

@@ -1,5 +1,17 @@
 # Design audit implementation
 
+## Follow-up: real n8n workflow showcase
+
+The interactive sample described in the original implementation below has now been replaced by a real product showcase. It features [Nicolas Chourrout’s public Gmail draft-reply workflow on n8n](https://n8n.io/workflows/2271-gmail-ai-auto-responder-create-draft-replies-to-incoming-emails/), with an actual canvas screenshot, readable receive/draft/review steps, setup requirements, author attribution, and links to explore the template. The screenshot at `public/workflows/n8n-gmail-drafts.png` was captured from that public template’s interactive canvas on October 4, 2026; it is not a fabricated workflow or member result.
+
+The workflow saves drafts in Gmail for manual review and sending. The page distinguishes this independent public template from membership lessons and the VIP template vault. The local sample generator, review controls, and unused monospace font were removed. Campaign context and the FAQ were updated, including prerendered FAQ schema.
+
+Template links emit `workflow_template_opened` with their placement, campaign angle, product, and template ID. The design version is now `n8n-showcase-v3`; sample interaction events are retired.
+
+Verification: the three remaining test files and production/prerender build pass; `git diff --check` passes. Browser checks confirmed the image loads, both links point to the real template, setup details open, no JavaScript errors were reported, and layouts fit at 320, 390, and 1440px. No conversion uplift has been measured.
+
+## Original conversion redesign
+
 The landing page now puts a clearly labeled interactive workflow example beside the offer, brings pricing ahead of the roadmap, and uses one explicit Skool continuation after the plan comparison. The changes are prepared for publication through the repository’s normal deployment process.
 
 ## Implemented
