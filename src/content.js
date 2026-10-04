@@ -1,12 +1,12 @@
 export const skoolAboutUrl = 'https://www.skool.com/ai-automation-station-7346/about';
 export const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
-export const designVersion = 'n8n-showcase-v3';
+export const designVersion = 'claude-code-demo-v4';
 
 export const campaignMessages = {
-  default: { audience: 'For people ready to put AI to work', headline: 'Build your first useful AI workflow.', text: 'Practical courses, tutorials, and a private community to help you turn an idea into a system you can use.', context: 'A practical starting point: automate the preparation, keep control of the reply.' },
-  business: { audience: 'For business owners and operators', headline: 'Give repetitive work a better process.', text: 'Learn practical AI automation with courses, tutorials, and a community you can return to when you need direction.', context: 'Start with a task from your own business. Keep human review before anything reaches a customer.' },
-  agency: { audience: 'For freelancers and agency builders', headline: 'Build something you can show a client.', text: 'Learn practical AI workflows, discuss your build, and turn a working example into a service you can explain.', context: 'Explore how this could fit a client’s inbox, then adapt it to their process and requirements.' },
-  creator: { audience: 'For creators with more ideas than time', headline: 'Give your next idea more room to grow.', text: 'Learn repeatable content workflows with practical training and a private community to discuss your process.', context: 'Give enquiries and collaboration emails a starting draft, so you can spend more time creating.' },
+  default: { audience: 'For people ready to put AI to work', headline: 'Build your first useful AI workflow.', text: 'Practical courses, tutorials, and a private community to help you turn an idea into a system you can use.', context: 'Start with one small tool you wish existed. Build a first version, then review and improve it.' },
+  business: { audience: 'For business owners and operators', headline: 'Give repetitive work a better process.', text: 'Learn practical AI automation with courses, tutorials, and a community you can return to when you need direction.', context: 'Think of a repetitive business task you could turn into a small internal tool.' },
+  agency: { audience: 'For freelancers and agency builders', headline: 'Build something you can show a client.', text: 'Learn practical AI workflows, discuss your build, and turn a working example into a service you can explain.', context: 'Prototype a client idea, review the result together, and refine it around their needs.' },
+  creator: { audience: 'For creators with more ideas than time', headline: 'Give your next idea more room to grow.', text: 'Learn repeatable content workflows with practical training and a private community to discuss your process.', context: 'Explore building a small tool for your content process, from organising ideas to preparing a publishing checklist.' },
 };
 
 export const pricingPlans = [
@@ -32,7 +32,7 @@ export const faqGroups = [
     ['Do I need coding experience?', 'No. The training uses practical AI and no-code automation workflows with guided courses and tutorials.'],
     ['How much time and extra software will I need?', 'Set aside a few focused hours each week and adjust the suggested schedule to your project. Automation hosting, AI API usage, and other software subscriptions may cost extra and are not included in membership. Check your tutorial’s requirements before buying tools.'],
     ['What happens after I join?', 'Skool gives you immediate access to the community and the resources included in your selected plan. Start with the foundational material and introduce yourself to get direction on your first build.'],
-    ['Is the featured n8n workflow part of the membership?', 'The featured Gmail workflow is a public template by Nicolas Chourrout on n8n’s website. It is not presented as an included lesson or member result. You can explore it independently. VIP membership includes a separate vault of 6,400+ n8n templates. Running workflows may require additional hosting and AI API costs.'],
+    ['Is Claude Code included in the membership?', 'No. The featured video is a public product demo by Anthropic, not an AI Income Lab lesson or member result. Claude Code access requires a supported subscription or API account, billed separately from membership.'],
     ['Why join instead of watching free tutorials?', 'Free tutorials can help you learn individual tools. Membership brings courses and a community together so you have a place to learn, discuss your build, and return with questions.'],
     ['Is a result guaranteed in 30 days?', 'No. The roadmap is a suggested schedule, not a guarantee of completion, income, or client acquisition. Progress depends on your project, experience, and the time you put in.'],
   ] },

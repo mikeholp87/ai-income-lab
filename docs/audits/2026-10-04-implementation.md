@@ -1,5 +1,15 @@
 # Design audit implementation
 
+## Follow-up: Claude Code demo
+
+The showcase now features [Anthropic’s official “Introducing Claude Code” video](https://www.youtube.com/watch?v=AJpK3YTTKZ4), replacing the n8n template below. Its original YouTube thumbnail is hosted locally at `public/workflows/claude-code-demo.jpg`. A keyboard-accessible play button loads the privacy-enhanced YouTube player only on activation, with captions requested, a descriptive iframe title, and focus transferred to the player. A direct YouTube link remains available. The old n8n screenshot was removed; the verified VIP n8n template benefit remains unchanged.
+
+Navigation, audience-specific context, rendered/prerendered FAQ, and privacy copy match the new demo. Setup links to the [official Claude Code overview](https://code.claude.com/docs/en/overview). Claude Code access is explicitly separate from membership. This is Anthropic’s public product demo, not an included lesson or member result.
+
+The design version is `claude-code-demo-v4`. `claude_demo_play_requested` records player activation, not confirmed playback or completion; `claude_demo_opened` records the external video link. Previous template events are retired.
+
+Verification: production/prerender build and all three existing test files pass. Browser checks confirmed no iframe before activation, a loaded local poster, working embedded playback with captions enabled, and no horizontal overflow at 320px or 1440px. Desktop dark and mobile light appearances were visually reviewed. `git diff --check` passes.
+
 ## Follow-up: real n8n workflow showcase
 
 The interactive sample described in the original implementation below has now been replaced by a real product showcase. It features [Nicolas Chourrout’s public Gmail draft-reply workflow on n8n](https://n8n.io/workflows/2271-gmail-ai-auto-responder-create-draft-replies-to-incoming-emails/), with an actual canvas screenshot, readable receive/draft/review steps, setup requirements, author attribution, and links to explore the template. The screenshot at `public/workflows/n8n-gmail-drafts.png` was captured from that public template’s interactive canvas on October 4, 2026; it is not a fabricated workflow or member result.

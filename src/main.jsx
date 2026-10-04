@@ -63,25 +63,30 @@ function ConsentBanner({ open, setOpen, campaign, campaignReady }) {
   </aside>;
 }
 
-const featuredWorkflowUrl = 'https://n8n.io/workflows/2271-gmail-ai-auto-responder-create-draft-replies-to-incoming-emails/';
+const featuredDemoUrl = 'https://www.youtube.com/watch?v=AJpK3YTTKZ4';
 
-function WorkflowShowcase({ angle, context }) {
-  function viewTemplate(placement) {
-    trackEvent('workflow_template_opened', { angle, placement, product: 'n8n', template_id: '2271', link_url: featuredWorkflowUrl });
+function ClaudeCodeShowcase({ angle, context }) {
+  const [playing, setPlaying] = useState(false);
+  function demoEvent(name) {
+    trackEvent(name, { angle, product: 'claude_code', video_id: 'AJpK3YTTKZ4', link_url: featuredDemoUrl });
   }
   return <section className="workflow-showcase" id="tour" aria-labelledby="workflow-title">
-    <div className="product-heading"><strong className="product-name">n8n</strong><span>Gmail + OpenAI</span></div>
-    <h2 id="workflow-title">An inbox that helps write the reply.</h2>
-    <p className="workflow-description">Connect your apps in n8n. This public workflow turns incoming Gmail messages into draft replies you can review and edit.</p>
+    <div className="product-heading"><strong className="product-name">Claude Code</strong><span>By Anthropic</span></div>
+    <h2 id="workflow-title">From a request to working code.</h2>
+    <p className="workflow-description">Watch Claude Code explore a project, add a feature, and test the changes in Anthropic’s official product demo.</p>
     <figure className="workflow-figure">
-      <a href={featuredWorkflowUrl} target="_blank" rel="noopener noreferrer" onClick={() => viewTemplate('canvas')} aria-label="Explore the Gmail draft workflow on n8n (opens in a new tab)"><img src="/workflows/n8n-gmail-drafts.png" width="1200" height="420" alt="Actual n8n canvas: Gmail receives an email, OpenAI checks whether a reply is needed, generates a response, and Gmail saves a draft." decoding="async" /></a>
-      <figcaption>Actual template canvas from n8n’s public library.</figcaption>
+      <div className="demo-player">
+        {playing ? <iframe src="https://www.youtube-nocookie.com/embed/AJpK3YTTKZ4?autoplay=1&rel=0&cc_load_policy=1" title="Introducing Claude Code — official Anthropic demo" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" tabIndex={0} ref={node => { node?.focus(); }} /> : <button className="demo-play" type="button" onClick={() => { setPlaying(true); demoEvent('claude_demo_play_requested'); }} aria-label="Play the official Claude Code demo from Anthropic. Loads YouTube video.">
+          <img src="/workflows/claude-code-demo.jpg" width="1280" height="720" alt="" decoding="async" />
+          <span className="demo-play-label"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l14-8z" fill="currentColor" /></svg>Play Claude Code demo</span>
+        </button>}
+      </div>
+      <figcaption>Official demo by Anthropic. YouTube loads when you press play.</figcaption>
     </figure>
-    <ol className="workflow-steps"><li><strong>Receive</strong><span>Watch for new email in Gmail.</span></li><li><strong>Draft</strong><span>Check if a reply is needed, then generate it.</span></li><li><strong>Review</strong><span>Save to Gmail drafts for you to edit and send.</span></li></ol>
+    <ol className="workflow-steps"><li><strong>Explore</strong><span>Understand an unfamiliar project.</span></li><li><strong>Build</strong><span>Describe a feature and see the code change.</span></li><li><strong>Test</strong><span>Run checks, fix errors, and review the result.</span></li></ol>
     <p className="workflow-context">{context}</p>
-    <a className="text-link workflow-link" href={featuredWorkflowUrl} target="_blank" rel="noopener noreferrer" onClick={() => viewTemplate('details')}>Explore this workflow on n8n <span className="sr-only">(opens in a new tab)</span></a>
-    <p className="workflow-attribution">Public template by Nicolas Chourrout.</p>
-    <details className="workflow-setup"><summary>What you need to run it</summary><p>An n8n instance, Gmail access, and OpenAI API credentials. Configure your accounts and prompts, then test the workflow. Hosting and AI usage may cost extra.</p><p>This is an independently published template, not a member result or an included lesson. VIP membership includes a separate n8n template vault.</p></details>
+    <a className="text-link workflow-link" href={featuredDemoUrl} target="_blank" rel="noopener noreferrer" onClick={() => demoEvent('claude_demo_opened')}>Watch on YouTube <span className="sr-only">(opens in a new tab)</span></a>
+    <details className="workflow-setup"><summary>Try Claude Code yourself</summary><p>You’ll need a project and a supported Claude subscription or API account. Claude Code access is separate from AI Income Lab membership.</p><a className="text-link" href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer">Read the official setup guide <span className="sr-only">(opens in a new tab)</span></a></details>
   </section>;
 }
 
@@ -151,8 +156,8 @@ function App() {
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="shell nav" id="top">
       <a className="brand" href="#top" aria-label="AI Income Lab home"><span>AI</span> Income Lab</a>
-      <nav className="nav-links" aria-label="Main navigation"><a href="#tour">n8n workflow</a><a href="#plan">How it works</a><a href="#faq">FAQ</a></nav>
-      <div className="nav-actions"><a className="nav-pricing" href="#pricing" onClick={() => viewPricing('navigation')}>See plans</a><details className="nav-menu" ref={navigation} onKeyDown={event => { if (event.key === 'Escape') { navigation.current.open = false; navigation.current.querySelector('summary').focus(); } }}><summary aria-label="Explore navigation and appearance">Explore</summary><div onClick={closeMenu}><a href="#tour">n8n workflow</a><a href="#plan">How it works</a><a href="#faq">FAQ</a><ThemeToggle /></div></details></div>
+      <nav className="nav-links" aria-label="Main navigation"><a href="#tour">Claude Code demo</a><a href="#plan">How it works</a><a href="#faq">FAQ</a></nav>
+      <div className="nav-actions"><a className="nav-pricing" href="#pricing" onClick={() => viewPricing('navigation')}>See plans</a><details className="nav-menu" ref={navigation} onKeyDown={event => { if (event.key === 'Escape') { navigation.current.open = false; navigation.current.querySelector('summary').focus(); } }}><summary aria-label="Explore navigation and appearance">Explore</summary><div onClick={closeMenu}><a href="#tour">Claude Code demo</a><a href="#plan">How it works</a><a href="#faq">FAQ</a><ThemeToggle /></div></details></div>
     </header>
     <main id="main-content" tabIndex="-1">
       <section className="hero shell" aria-labelledby="hero-title">
@@ -161,7 +166,7 @@ function App() {
           <p className="cta-note">Created by Mike Holp. Monthly membership. Cancel anytime.</p>
           <ul className="hero-facts"><li>No coding experience required</li><li>Courses and community in every plan</li><li>Weekly coaching with VIP</li></ul>
         </div>
-        <WorkflowShowcase angle={campaign.angle} context={message.context} />
+        <ClaudeCodeShowcase angle={campaign.angle} context={message.context} />
       </section>
 
       <section className="community shell" id="inside" aria-labelledby="community-title">

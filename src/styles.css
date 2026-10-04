@@ -79,14 +79,19 @@ p { max-width: 70ch; }
 .hero-facts li { padding-left: 22px; position: relative; margin-top: 8px; }
 .hero-facts li::before { content: '✓'; color: var(--ink); position: absolute; left: 0; }
 .workflow-showcase { min-width: 0; padding: 26px; background: var(--surface); border: 1px solid var(--line); box-shadow: 10px 10px 0 var(--sky); border-radius: 8px; }
-.product-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+.product-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
 .product-name { font-size: 28px; font-weight: 700; letter-spacing: -.04em; }
 .product-heading > span { font-size: 14px; color: var(--muted); }
 .workflow-showcase h2 { font-size: 29px; max-width: 20ch; }
 .workflow-description { margin-top: 14px; font-size: 16px; color: var(--muted); }
 .workflow-figure { margin: 22px -26px 0; }
-.workflow-figure a { display: block; background: #fff; }
-.workflow-figure a:focus-visible { outline-offset: -4px; }
+.demo-player { aspect-ratio: 16 / 9; background: #080d19; }
+.demo-player iframe { display: block; width: 100%; height: 100%; border: 0; }
+.demo-play { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
+.demo-play:focus-visible { outline-offset: -4px; z-index: 1; }
+.demo-play-label { position: absolute; inset: auto 12px 12px; display: flex; align-items: center; justify-content: center; gap: 10px; width: fit-content; max-width: calc(100% - 24px); margin-inline: auto; min-height: 44px; padding: 10px 16px; border-radius: 4px; background: var(--orange); color: #13234a; font-size: 14px; font-weight: 700; }
+.demo-play-label svg { flex-shrink: 0; }
+.demo-play:hover .demo-play-label { filter: brightness(1.08); }
 .workflow-figure img { display: block; width: 100%; height: auto; }
 .workflow-figure figcaption { padding: 8px 26px 0; font-size: 12px; color: var(--muted); }
 .workflow-steps { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
@@ -95,7 +100,6 @@ p { max-width: 70ch; }
 .workflow-steps span { color: var(--muted); }
 .workflow-context { margin-top: 20px; font-size: 15px; }
 .workflow-link { margin-top: 12px; font-weight: 600; }
-.workflow-attribution { font-size: 13px; color: var(--muted); }
 .workflow-setup { margin-top: 8px; font-size: 14px; color: var(--muted); }
 .workflow-setup summary { padding-block: 10px; min-height: 44px; }
 .workflow-setup p + p { margin-top: 12px; }
