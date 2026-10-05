@@ -279,17 +279,15 @@ function App() {
         </div>
         <div className="hero-actions">
           <a className="button button-primary button-hero" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackEvent('CTA Clicked', { button_text: 'Join from $29 a month', link_url: skoolAboutUrl, placement: 'hero', action: 'visit_skool', angle: campaign.angle })}>Join from $29 a month <span>↗</span></a>
-          <p className="cta-note">Created by Mike Holp · Cancel anytime</p>
-          <a className="button button-primary button-hero" href="#pricing" onClick={() => trackEvent('CTA Clicked', { button_text: 'See plans from $29/month', link_url: '#pricing', placement: 'hero', action: 'view_pricing', angle: campaign.angle })}>See plans from $29/month <span>↓</span></a>
-          <a className="hero-tour" href="#plan" onClick={() => trackEvent('CTA Clicked', { button_text: 'See the 30-day roadmap', link_url: '#plan', placement: 'hero', action: 'view_roadmap', angle: campaign.angle })}>See the 30-day roadmap <span>→</span></a>
+          <a className="hero-tour" href="#plan" onClick={() => trackEvent('CTA Clicked', { button_text: 'See the 30-day roadmap', link_url: '#plan', placement: 'hero', action: 'view_roadmap', angle: campaign.angle })}>See the 30-day roadmap</a>
         </div>
-        <HeroVideo />
         <div className="hero-trust">
           <span className="hero-avatars" aria-hidden="true">
             {memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="28" height="28" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}
           </span>
-          <p><strong>2,900+ members</strong> building AI workflows</p>
+          <p><strong>2,900+ members</strong> building AI workflows. Created by Mike Holp. Cancel anytime.</p>
         </div>
+        <HeroVideo />
       </section>
 
       <section className="proof-strip" aria-label="Membership facts"><div className="shell"><div><strong>2,900+</strong><span>members building AI workflows</span></div><div><strong>6,400+</strong><span>N8N templates in VIP</span></div><div><strong>3</strong><span>monthly membership levels</span></div><a href={outboundUrl(skoolCommunityUrl, campaign)} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('proof_strip', 'View on Skool')}>View on Skool ↗</a></div></section>
