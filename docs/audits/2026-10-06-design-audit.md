@@ -38,8 +38,12 @@ Audited October 6, 2026, after the page became a personal hub (`bdc0fc6`). Scope
 
 At 390px the `.avatars` flex item shrinks to 129px, but its 8 overlapping 32px images need 200px. The images spill over "2,900+ members building AI workflows on Skool". At 1440px there is room, so it only shows on narrow screens.
 
+**Fixed in `d5a990b`:** the avatars no longer shrink, and the row wraps so the text drops below them when there is no room beside them. Verified at 320, 390 and 1440px.
+
 ```css
+.members { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
 .avatars { display: flex; flex: none; }
+.members p { flex: 1 1 200px; /* ... */ }
 ```
 
 Evidence: [members-390.png](2026-10-06-screenshots/members-390.png).
@@ -48,10 +52,13 @@ Evidence: [members-390.png](2026-10-06-screenshots/members-390.png).
 
 **Priority: high. Effort: a few lines.**
 
-The community video poster has its own painted headline, "STOP JUST LEARNING AI". The centered orange play button sits on top of it and hides "AI". Move the button to a corner for this player only:
+The community video poster has its own painted headline, "STOP JUST LEARNING AI". The centered orange play button sits on top of it and hides "AI".
+
+**Fixed in `d5a990b`:** the button moves to the lower left. A fixed 72px button still covered "LEARNING" at 390px, because the poster's text scales with the frame and the button did not. The button is now sized and placed as a share of the frame, so it starts 67% or more of the way down at 320, 390, 768, 1024 and 1440px. The headline ends about 64% down.
 
 ```css
-.community-video .play-key { top: auto; left: 24px; bottom: 24px; transform: none; }
+.community-video .play-key { top: auto; left: 5%; bottom: 6%; width: min(72px, 15%); height: auto; aspect-ratio: 1; transform: none; }
+.community-video .play-key svg { width: 40%; height: 40%; }
 .community-video .play-overlay:hover .play-key { transform: scale(1.06); }
 ```
 
