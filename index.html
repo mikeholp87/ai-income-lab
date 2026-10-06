@@ -3,31 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f7f8fb" />
-    <script>
-      try {
-        const savedTheme = localStorage.getItem('theme');
-        const theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080d19' : '#f7f8fb';
-      } catch (_) {}
-    </script>
-    <meta name="description" content="Build your first useful AI workflow with practical training and a private Skool community. Monthly plans start at $29; VIP includes weekly coaching." />
+    <meta name="theme-color" content="#070b14" />
+    <meta name="description" content="Mike Holp tests new AI tools on real builds: YouTube tutorials on Claude Code, Codex, OpenCode, and n8n, plus TubeAnalytics, VisiScan, and the AI Income Lab community." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <title>AI Income Lab — Build Your First AI Income System</title>
+    <title>Mike Holp: New AI Tools, Tested on Real Builds</title>
     <link rel="canonical" href="https://www.ai-automation-station.com/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://i.ytimg.com" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.ai-automation-station.com/" />
-    <meta property="og:title" content="AI Income Lab — Build Your First AI Income System" />
-    <meta property="og:description" content="Turn leading AI tools into practical systems you can use in your business or sell to clients." />
+    <meta property="og:title" content="Mike Holp: New AI Tools, Tested on Real Builds" />
+    <meta property="og:description" content="AI tools tested on real builds, plus the products and community Mike Holp runs." />
     <meta property="og:image" content="https://www.ai-automation-station.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="AI Income Lab — build an AI income system in 30 days" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI Income Lab — Build Your First AI Income System" />
-    <meta name="twitter:description" content="Build your first AI income system in 30 days." />
+    <meta name="twitter:title" content="Mike Holp: New AI Tools, Tested on Real Builds" />
+    <meta name="twitter:description" content="AI tools tested on real builds, plus the products and community Mike Holp runs." />
     <meta name="twitter:image" content="https://www.ai-automation-station.com/og-image.jpg" />
     <meta name="twitter:image:alt" content="AI Income Lab — build an AI income system in 30 days" />
     <script type="application/ld+json">
@@ -35,29 +28,29 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Organization",
-            "@id": "https://www.ai-automation-station.com/#organization",
-            "name": "AI Income Lab",
+            "@type": "Person",
+            "@id": "https://www.ai-automation-station.com/#mike",
+            "name": "Mike Holp",
             "url": "https://www.ai-automation-station.com/",
-            "logo": "https://www.ai-automation-station.com/favicon.svg",
-            "founder": { "@type": "Person", "name": "Mike Holp" },
-            "sameAs": ["https://www.skool.com/ai-automation-station-7346/about"]
+            "image": "https://www.ai-automation-station.com/mike-holp.jpg",
+            "jobTitle": "Founder of TubeAnalytics and VisiScan",
+            "homeLocation": { "@type": "Place", "name": "Koh Samui, Thailand" },
+            "sameAs": ["https://www.youtube.com/@ai-automation-station", "https://github.com/mikeholp87", "https://www.linkedin.com/in/mikeholp", "https://x.com/mikeholp", "https://www.skool.com/ai-automation-station-7346/about"]
           },
           {
             "@type": "WebSite",
             "@id": "https://www.ai-automation-station.com/#website",
-            "name": "AI Income Lab",
+            "name": "Mike Holp",
             "url": "https://www.ai-automation-station.com/",
-            "publisher": { "@id": "https://www.ai-automation-station.com/#organization" },
+            "publisher": { "@id": "https://www.ai-automation-station.com/#mike" },
             "inLanguage": "en"
           },
           {
             "@type": "FAQPage",
             "mainEntity": [
-              { "@type": "Question", "name": "Do I need coding experience?", "acceptedAnswer": { "@type": "Answer", "text": "No. The training uses practical AI and no-code automation workflows with guided courses and tutorials." } },
-              { "@type": "Question", "name": "Which plan includes weekly coaching?", "acceptedAnswer": { "@type": "Answer", "text": "Weekly coaching is included with the VIP plan." } },
-              { "@type": "Question", "name": "Can I cancel anytime?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Plans are billed monthly and can be canceled before the next billing period from your Skool account." } },
-              { "@type": "Question", "name": "What happens after I join?", "acceptedAnswer": { "@type": "Answer", "text": "Skool gives you immediate access to the community and the resources included in your selected plan." } }
+              { "@type": "Question", "name": "Do I need to code to follow your videos?", "acceptedAnswer": { "@type": "Answer", "text": "No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and every setup step is shown on screen." } },
+              { "@type": "Question", "name": "What does AI Income Lab cost?", "acceptedAnswer": { "@type": "Answer", "text": "Plans are $29, $49, or $89 a month, billed monthly, and can be canceled before the next billing period from your Skool account." } },
+              { "@type": "Question", "name": "Can I try TubeAnalytics or VisiScan for free?", "acceptedAnswer": { "@type": "Answer", "text": "TubeAnalytics has a 7-day free trial with plans from $19 a month. VisiScan runs a free scan with no signup, and the full report is $49, paid once." } }
             ]
           }
         ]
@@ -65,7 +58,7 @@
     </script>
   </head>
   <body>
-    <noscript><p>Interactive features require JavaScript. <a href="https://www.skool.com/ai-automation-station-7346/about">View AI Income Lab on Skool</a>.</p></noscript>
+    <noscript><p>The latest videos need JavaScript. <a href="https://www.youtube.com/@ai-automation-station">Watch them on YouTube</a>.</p></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

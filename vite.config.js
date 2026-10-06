@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite';
 import { handleOpenPixel } from './src/open-pixel.js';
+import { GET as youtubeFeed } from './api/youtube.js';
 
 function attachOpenPixel(server) {
+  server.middlewares.use('/api/youtube', async (req, res) => {
+    const response = await youtubeFeed();
+    res.statusCode = response.status;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(await response.text());
+  });
   server.middlewares.use(async (req, res, next) => {
     const path = req.url?.split('?')[0] ?? '';
     if (!path.startsWith('/o/') || !path.toLowerCase().endsWith('.gif')) return next();
