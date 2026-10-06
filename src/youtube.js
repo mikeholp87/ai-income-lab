@@ -24,14 +24,28 @@ export function parseFeed(xml) {
     .filter(video => video.id);
 }
 
-// YouTube Data API responses: playlistItems (snippet) joined with videos (statistics).
-export function parseApi(playlist, stats) {
-  const views = Object.fromEntries((stats.items ?? []).map(item => [item.id, Number(item.statistics?.viewCount ?? 0)]));
-  return (playlist.items ?? []).map(({ snippet }) => ({
-    id: snippet.resourceId.videoId,
-    title: snippet.title,
-    published: snippet.publishedAt,
-    views: views[snippet.resourceId.videoId] ?? 0,
-    summary: summarize(snippet.description ?? ''),
-  }));
+// ISO 8601 duration from the Data API ("PT1H2M3S") → "1:02:03". Empty for missing or zero lengths.
+export function formatDuration(iso) {
+  const match = iso?.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
+  if (!match) return '';
+  const [hours, minutes, seconds] = match.slice(1).map(part => Number(part ?? 0));
+  if (!hours && !minutes && !seconds) return '';
+  const pad = number => String(number).padStart(2, '0');
+  return hours ? `${hours}:${pad(minutes)}:${pad(seconds)}` : `${minutes}:${pad(seconds)}`;
+}
+
+// YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails).
+export function parseApi(playlist, details) {
+  const byId = Object.fromEntries((details.items ?? []).map(item => [item.id, item]));
+  return (playlist.items ?? []).map(({ snippet }) => {
+    const item = byId[snippet.resourceId.videoId];
+    return {
+      id: snippet.resourceId.videoId,
+      title: snippet.title,
+      published: snippet.publishedAt,
+      views: Number(item?.statistics?.viewCount ?? 0),
+      duration: formatDuration(item?.contentDetails?.duration),
+      summary: summarize(snippet.description ?? ''),
+    };
+  });
 }
