@@ -14,9 +14,10 @@ export function trackGoogleEvent(name, parameters = {}) {
   return true;
 }
 
-export function trackMetaLead(properties) {
+// A Skool click is interest, not a signup, so it goes to Meta as a custom event rather than the standard Lead.
+export function trackMetaOutbound(properties) {
   if (typeof window === 'undefined' || getTrackingConsent() !== 'granted' || !window.__marketingTrackingActive || typeof window.fbq !== 'function') return false;
-  window.fbq('track', 'Lead', properties);
+  window.fbq('trackCustom', 'SkoolOutboundClicked', properties);
   return true;
 }
 

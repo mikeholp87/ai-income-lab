@@ -12,6 +12,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/o/:token.gif", "destination": "/api/o/:token" }
+    { "source": "/o/:token.gif", "destination": "/api/o/:token" },
+    { "source": "/videos", "destination": "/api/videos" }
   ]
 }

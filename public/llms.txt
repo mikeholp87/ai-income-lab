@@ -1,16 +1,20 @@
-# AI Income Lab
+# Mike Holp: AI Automation Station
 
-AI Income Lab is a private Skool community for people building practical AI systems for their business or clients.
+Mike Holp tests new AI models, agents, and automation tools on real builds and publishes the results on the AI Automation Station YouTube channel. Most videos cover Claude Code, Codex, OpenCode, and n8n, with every setup step shown. He also builds TubeAnalytics and VisiScan and hosts the AI Income Lab community on Skool.
 
 ## Key facts
 
-- Plans start at $29 per month.
-- The public Skool listing shows 2,900+ people in the community.
-- Every plan includes community access, courses, and tutorials.
-- Premium adds advanced training. VIP adds weekly coaching, curated software deals, and 6,400+ N8N templates.
-- The 30-day roadmap is a suggested build schedule, not a guarantee of completion, income, or client acquisition.
+- New long-form videos most days; the full archive is at /videos.
+- TubeAnalytics: YouTube analytics for creators. 7-day free trial, plans from $19 a month.
+- VisiScan: checks whether AI assistants recommend a business. Free scan, full report $49 once.
+- AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, billed monthly. VIP adds weekly coaching, software deals, and 6,400+ n8n templates.
+- Income is not guaranteed; results depend on the project, experience, and time invested.
 
 ## Official pages
 
-- [Landing page](https://www.ai-automation-station.com/)
-- [Community](https://www.skool.com/ai-automation-station-7346/about)
+- [Home](https://www.ai-automation-station.com/)
+- [Every video](https://www.ai-automation-station.com/videos)
+- [YouTube channel](https://www.youtube.com/@ai-automation-station)
+- [TubeAnalytics](https://www.tubeanalytics.net)
+- [VisiScan](https://www.visiscan.app)
+- [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)

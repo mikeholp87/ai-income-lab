@@ -104,6 +104,7 @@ section[id], main [id] { scroll-margin-top: 16px; }
 .button-quiet:hover { border-color: var(--muted); }
 .text-link { display: inline-block; margin-top: 40px; padding: 8px 0; color: var(--muted); font: 400 13px var(--mono); border-bottom: 1px solid var(--line); }
 .text-link:hover { color: var(--text); border-color: var(--muted); }
+.text-link + .text-link { margin-left: 24px; }
 .meta-row { display: flex; gap: 16px; color: var(--muted); font: 400 12px var(--mono); }
 .feed-error { align-self: center; padding: 32px; border: 1px dashed var(--line); color: var(--muted); }
 .feed-error a { color: var(--signal); }

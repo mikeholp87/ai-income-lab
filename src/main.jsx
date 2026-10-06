@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, outboundUrl } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaLead } from './tracking.js';
+import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { channelUrl } from './youtube.js';
 import './fonts.css';
 import './styles.css';
@@ -33,7 +33,7 @@ function trackCommunityVisit(placement, buttonText) {
   const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: skoolAboutUrl, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
-  if (trackMetaLead(properties)) window.fbq('trackCustom', 'SkoolOutboundClicked', properties);
+  trackMetaOutbound(properties);
 }
 
 function ConsentBanner({ campaign, campaignReady }) {
@@ -408,6 +408,7 @@ function App() {
             <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube every hour</p>
           </div>
           <VideoGrid videos={videos} failed={failed} />
+          <a className="text-link" href="/videos" onClick={trackClick('latest_posts', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>{' '}
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>
       </section>
