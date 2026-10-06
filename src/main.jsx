@@ -108,7 +108,7 @@ const repos = [
   { name: 'solar-business-directory', copy: 'Next.js directory of UK solar installers, with lead capture, an installer portal, and Stripe billing.', language: 'TypeScript', year: 2026, live: 'https://solar-business-directory.vercel.app' },
   { name: 'seo-tool', copy: 'SEO Scout: paste a URL, get a scored audit across eight categories with the steps to fix each issue.', language: 'TypeScript', year: 2026 },
   { name: 'trading-app', copy: 'A trading app built on the Alpaca brokerage API.', language: 'JavaScript', year: 2026, live: 'https://trading-app-mu-one.vercel.app' },
-  { name: 'ai-income-lab', copy: 'The source for this page. React and Vite on Vercel, with a YouTube feed that refreshes hourly.', language: 'JavaScript', year: 2026 },
+  { name: 'ai-income-lab', copy: 'The source for this page. React and Vite on Vercel, with a YouTube feed that refreshes daily.', language: 'JavaScript', year: 2026 },
   { name: 'Swiftris', copy: 'Tetris written in Swift, the year the language launched.', language: 'Swift', year: 2014 },
 ];
 
@@ -128,7 +128,7 @@ const timeline = [
 
 const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
-  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest posts on this page refresh every hour.'],
+  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest posts on this page refresh once a day.'],
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Plans are $29, $49, or $89 a month, billed monthly. You can cancel before the next billing period from your Skool account.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
@@ -405,7 +405,7 @@ function App() {
         <div className="shell">
           <div className="videos-head">
             <SectionHead path="videos" title="Latest posts" />
-            <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube every hour</p>
+            <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
           </div>
           <VideoGrid videos={videos} failed={failed} />
           <a className="text-link" href="/videos" onClick={trackClick('latest_posts', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>{' '}

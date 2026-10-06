@@ -1,11 +1,11 @@
 import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed } from '../src/youtube.js';
 
-const hour = 3600000;
+const day = 86400000;
 // Fluid Compute reuses instances, so this survives between requests. Cache-busting query strings
 // skip the CDN but not this, which keeps them from draining the API quota.
 let memo = { at: 0, feed: null };
 
-const cached = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400' } });
+const cached = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400' } });
 
 // Data API when YOUTUBE_API_KEY is set (3 quota units per call), otherwise the public RSS feed.
 // Only the Data API has channel counts; without them the page keeps its built-in numbers.
@@ -36,16 +36,16 @@ async function fetchFeed(statuses) {
   return null;
 }
 
-// GET /api/youtube → latest long-form uploads and channel counts as JSON, refreshed hourly.
+// GET /api/youtube → latest long-form uploads and channel counts as JSON, refreshed once a day to save API quota.
 export async function GET() {
-  if (memo.feed && Date.now() - memo.at < hour) return cached(memo.feed);
+  if (memo.feed && Date.now() - memo.at < day) return cached(memo.feed);
   const statuses = [];
   const feed = await fetchFeed(statuses);
   if (feed) {
     memo = { at: Date.now(), feed };
     return cached(feed);
   }
-  // An hour-old feed beats an error page when both sources are down.
+  // A day-old feed beats an error page when both sources are down.
   if (memo.feed) return cached(memo.feed);
   return Response.json({ error: 'YouTube feed unavailable', statuses }, { status: 502, headers: { 'Cache-Control': 'no-store' } });
 }
