@@ -151,11 +151,11 @@ section[id], main [id] { scroll-margin-top: 16px; }
 
 /* Community */
 .community-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 64px; align-items: start; }
-.members { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
-.avatars { display: flex; }
+.members { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
+.avatars { display: flex; flex: none; }
 .avatars img { width: 32px; height: 32px; margin-left: -8px; border: 2px solid var(--band); border-radius: 50%; position: relative; }
 .avatars img:first-child { margin-left: 0; }
-.members p { color: var(--muted); font-size: 15px; }
+.members p { flex: 1 1 200px; color: var(--muted); font-size: 15px; }
 .members strong { color: var(--text); font-weight: 600; }
 .plan-list { margin-top: 32px; border-top: 1px solid var(--line); }
 .plan-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
@@ -165,6 +165,10 @@ section[id], main [id] { scroll-margin-top: 16px; }
 .plan-price strong { color: var(--text); font: 400 24px var(--display); }
 .fine-print { margin-top: 14px; color: var(--muted); font: 400 12px var(--mono); }
 .community-video { border: 1px solid var(--line); background: var(--panel); }
+/* The poster's headline ends about 64% down; size and place the play button in proportion so it stays below at every width. */
+.community-video .play-key { top: auto; left: 5%; bottom: 6%; width: min(72px, 15%); height: auto; aspect-ratio: 1; transform: none; }
+.community-video .play-key svg { width: 40%; height: 40%; }
+.community-video .play-overlay:hover .play-key { transform: scale(1.06); }
 .community-video figcaption { padding: 16px 20px; color: var(--muted); font: 400 13px var(--mono); }
 
 /* Latest posts */
