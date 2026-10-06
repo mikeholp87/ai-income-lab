@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { formatDuration, parseApi, parseFeed } from './youtube.js';
+import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseFeed } from './youtube.js';
 
 const entry = (id, link, title, description) => `<entry><yt:videoId>${id}</yt:videoId><title>${title}</title><link rel="alternate" href="${link}"/><published>2026-10-05T12:37:47+00:00</published><media:group><media:description>${description}</media:description><media:community><media:statistics views="9191"/></media:community></media:group></entry>`;
 
@@ -26,4 +26,11 @@ test('formats ISO 8601 video lengths', () => {
   assert.equal(formatDuration('P0D'), '');
   assert.equal(formatDuration('PT0S'), '');
   assert.equal(formatDuration(undefined), '');
+});
+
+test('reads channel counts and skips hidden subscribers', () => {
+  assert.equal(longFormPlaylistId, 'UULF8_eYAfJcUgI5BV3hg9U2cw');
+  assert.deepEqual(parseChannel({ items: [{ statistics: { subscriberCount: '5120', viewCount: '498055', videoCount: '336', hiddenSubscriberCount: false } }] }), { subscribers: 5120, views: 498055, videos: 336 });
+  assert.equal(parseChannel({ items: [{ statistics: { subscriberCount: '0', viewCount: '9', videoCount: '1', hiddenSubscriberCount: true } }] }).subscribers, undefined);
+  assert.equal(parseChannel({ items: [] }), null);
 });

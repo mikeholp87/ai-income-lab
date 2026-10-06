@@ -66,6 +66,11 @@ section[id], main [id] { scroll-margin-top: 16px; }
 .hero-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 32px; margin-top: 28px; font: 400 13px var(--mono); color: var(--muted); }
 .hero-links a { padding: 8px 0; border-bottom: 1px solid transparent; }
 .hero-links a:hover { color: var(--text); border-color: var(--muted); }
+/* Short laptop screens (1366×768): keep Subscribe above the consent bar. */
+@media (min-width: 641px) and (max-height: 800px) {
+  .hero { padding-top: 32px; }
+  .hero h1 { margin-top: 28px; }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .hero > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
@@ -216,11 +221,11 @@ a.video-card:hover h3 { color: var(--signal); }
 .footer-base button { padding: 0; border: 0; color: inherit; background: none; font: inherit; cursor: pointer; }
 
 /* Consent */
-.consent-banner { position: fixed; z-index: 50; right: 18px; bottom: 18px; width: min(560px, calc(100% - 36px)); display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding: 24px; border: 1px solid var(--line); background: var(--panel); }
-.consent-banner strong { display: block; margin-bottom: 6px; font-size: 15px; }
-.consent-banner p { margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 1.55; }
-.consent-banner span { color: var(--muted); font: 400 12px var(--mono); }
-.consent-banner span a { text-decoration: underline; text-underline-offset: 3px; }
+/* A slim bottom bar, so the hero's Subscribe button stays clear on first view. */
+.consent-banner { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; gap: 12px 24px; padding: 12px 24px; border-top: 1px solid var(--line); background: var(--panel); }
+.consent-banner p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.consent-banner strong { color: var(--text); font-weight: 600; }
+.consent-banner a { text-decoration: underline; text-underline-offset: 3px; }
 .consent-actions { display: flex; gap: 8px; }
 .consent-actions button { min-height: 44px; padding: 0 14px; border: 1px solid var(--line); color: var(--text); background: transparent; font: 500 12px var(--mono); cursor: pointer; }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
@@ -256,10 +261,12 @@ a.video-card:hover h3 { color: var(--signal); }
   .section { padding: 80px 0; }
   .tool-grid, .video-grid { grid-template-columns: 1fr; }
   .tool-body { padding: 24px; }
+  .tool h3 { font-size: clamp(22px, 7vw, 28px); }
   .videos-head { flex-direction: column; align-items: flex-start; }
   .player-meta { padding: 20px; }
   .plan-list li { flex-direction: column; gap: 6px; }
   .footer-columns { grid-template-columns: 1fr 1fr; }
   .footer-base { flex-direction: column; }
-  .consent-banner { grid-template-columns: 1fr; right: 12px; bottom: 12px; width: calc(100% - 24px); }
+  .consent-banner { flex-direction: column; align-items: stretch; padding: 14px 16px; }
+  .consent-actions button { flex: 1; }
 }

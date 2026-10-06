@@ -1,7 +1,8 @@
 export const channelUrl = 'https://www.youtube.com/@ai-automation-station';
-export const feedUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UC8_eYAfJcUgI5BV3hg9U2cw';
+export const channelId = 'UC8_eYAfJcUgI5BV3hg9U2cw';
+export const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 // YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts).
-export const longFormPlaylistId = 'UULF8_eYAfJcUgI5BV3hg9U2cw';
+export const longFormPlaylistId = `UULF${channelId.slice(2)}`;
 
 const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
 const decode = text => text.replace(/&(#\d+|\w+);/g, (match, code) => code[0] === '#' ? String.fromCodePoint(Number(code.slice(1))) : entities[code] ?? match);
@@ -22,6 +23,18 @@ export function parseFeed(xml) {
       summary: summarize(decode(tag(entry, 'media:description'))),
     }))
     .filter(video => video.id);
+}
+
+// channels.list statistics → counts, leaving out any YouTube hides so the page keeps its built-in numbers.
+export function parseChannel(data) {
+  const statistics = data?.items?.[0]?.statistics;
+  if (!statistics) return null;
+  const count = value => value === undefined ? undefined : Number(value);
+  return {
+    subscribers: statistics.hiddenSubscriberCount ? undefined : count(statistics.subscriberCount),
+    views: count(statistics.viewCount),
+    videos: count(statistics.videoCount),
+  };
 }
 
 // ISO 8601 duration from the Data API ("PT1H2M3S") → "1:02:03". Empty for missing or zero lengths.

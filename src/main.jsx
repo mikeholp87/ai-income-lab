@@ -63,13 +63,14 @@ function ConsentBanner({ campaign, campaignReady }) {
   }
 
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices"><div><strong>Analytics preferences</strong><p>Allow analytics to help improve this page and measure campaigns.</p><span><a href="/privacy.html">Privacy</a> and <a href="/terms.html">Terms</a></span></div><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
+  return <aside className="consent-banner" aria-label="Privacy choices"><p><strong>Analytics preferences.</strong> Allow analytics to help improve this page and measure campaigns. <a href="/privacy.html">Privacy</a> and <a href="/terms.html">Terms</a>.</p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
 }
 
+// Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
 const stats = [
-  ['5.1K', 'YouTube subscribers'],
-  ['498K', 'video views'],
-  ['336', 'videos published'],
+  ['5.1K', 'YouTube subscribers', 'subscribers'],
+  ['498K', 'video views', 'views'],
+  ['336', 'videos published', 'videos'],
   ['2,900+', 'AI Income Lab members'],
 ];
 
@@ -143,12 +144,12 @@ const daysAgo = published => relativeFormat.format(-Math.round((Date.now() - Dat
 const watchUrl = id => `https://www.youtube.com/watch?v=${id}`;
 
 function useYouTubeFeed() {
-  const [feed, setFeed] = useState({ videos: null, failed: false });
+  const [feed, setFeed] = useState({ videos: null, channel: null, failed: false });
   useEffect(() => {
     fetch('/api/youtube')
       .then(response => response.ok ? response.json() : Promise.reject(response.status))
-      .then(({ videos }) => setFeed({ videos, failed: !videos.length }))
-      .catch(() => setFeed({ videos: [], failed: true }));
+      .then(({ videos, channel }) => setFeed({ videos, channel, failed: !videos.length }))
+      .catch(() => setFeed({ videos: [], channel: null, failed: true }));
   }, []);
   return feed;
 }
@@ -246,7 +247,7 @@ function CommunityVideo() {
 function App() {
   const [campaign, setCampaign] = useState(() => getCampaign('', []));
   const [campaignReady, setCampaignReady] = useState(false);
-  const { videos, failed } = useYouTubeFeed();
+  const { videos, channel, failed } = useYouTubeFeed();
   const latest = videos?.[0];
 
   useEffect(() => {
@@ -323,7 +324,7 @@ function App() {
       </section>
 
       <section className="stats" aria-label="Channel and community numbers">
-        <dl className="shell">{stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
       <section className="section latest" id="latest">
