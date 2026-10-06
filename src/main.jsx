@@ -71,7 +71,6 @@ const stats = [
   ['5.1K', 'YouTube subscribers', 'subscribers'],
   ['498K', 'video views', 'views'],
   ['336', 'videos published', 'videos'],
-  ['2,900+', 'AI Income Lab members'],
 ];
 
 const tools = [
@@ -287,7 +286,7 @@ function App() {
   }, [campaign, campaignReady]);
 
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
-  const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#code', 'Code'], ['#community', 'Community'], ['#about', 'About']];
+  const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About']];
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
@@ -335,7 +334,7 @@ function App() {
         </div>
       </section>
 
-      <section className="stats" aria-label="Channel and community numbers">
+      <section className="stats" aria-label="Channel numbers">
         <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
@@ -359,33 +358,13 @@ function App() {
         </div>
       </section>
 
-      <section className="section" id="code">
-        <div className="shell">
-          <SectionHead path="code" title="Open source on GitHub">Side projects and experiments, with the source open. Clone anything that helps.</SectionHead>
-          <ul className="repo-list">
-            {repos.map(repo => {
-              const source = `${githubUrl}/${repo.name}`;
-              return (
-                <li key={repo.name}>
-                  <h3><a href={source} target="_blank" rel="noreferrer" onClick={trackClick('code', repo.name, source, 'visit_github')}>{repo.name}</a></h3>
-                  <p>{repo.copy}</p>
-                  <p className="repo-meta"><span>{repo.language}</span><span>{repo.year}</span></p>
-                  <p className="repo-links"><a href={source} target="_blank" rel="noreferrer" aria-label={`${repo.name} source on GitHub`}>Source ↗</a>{repo.live && <a href={repo.live} target="_blank" rel="noreferrer" aria-label={`${repo.name} live site`}>Live site ↗</a>}</p>
-                </li>
-              );
-            })}
-          </ul>
-          <a className="text-link" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('code', 'All repositories', githubUrl, 'visit_github')}>All repositories on GitHub ↗</a>
-        </div>
-      </section>
-
       <section className="section band" id="community">
         <div className="shell community-grid">
           <div>
             <SectionHead path="community" title="Build it with 2,900+ others">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
             <div className="members">
               <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
-              <p><strong>2,900+ members</strong> building AI workflows on Skool</p>
+              <p>Some of the members building AI workflows on Skool</p>
             </div>
             <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
               {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p>{plan.copy}</p></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
@@ -411,6 +390,24 @@ function App() {
             <ol className="timeline">{timeline.map(([year, event]) => <li key={year}><span>{year}</span>{event}</li>)}</ol>
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>
           </div>
+        </div>
+        <div className="shell built" id="code">
+          <h3>Things I&rsquo;ve built</h3>
+          <p>Side projects and experiments, with the source open on GitHub.</p>
+          <ul className="repo-list">
+            {repos.map(repo => {
+              const source = `${githubUrl}/${repo.name}`;
+              return (
+                <li key={repo.name}>
+                  <h4><a href={source} target="_blank" rel="noreferrer" onClick={trackClick('code', repo.name, source, 'visit_github')}>{repo.name}</a></h4>
+                  <p>{repo.copy}</p>
+                  <p className="repo-meta"><span>{repo.language}</span><span>{repo.year}</span></p>
+                  <p className="repo-links"><a href={source} target="_blank" rel="noreferrer" aria-label={`${repo.name} source on GitHub`}>Source ↗</a>{repo.live && <a href={repo.live} target="_blank" rel="noreferrer" aria-label={`${repo.name} live site`}>Live site ↗</a>}</p>
+                </li>
+              );
+            })}
+          </ul>
+          <a className="text-link" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('code', 'All repositories', githubUrl, 'visit_github')}>All repositories on GitHub ↗</a>
         </div>
       </section>
 

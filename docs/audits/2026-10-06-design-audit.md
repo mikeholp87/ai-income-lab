@@ -98,6 +98,8 @@ If the uppercase and monospace look is intentional, skip this finding and keep f
 - The Code section (923px on desktop) sits between Tools and Community. For a channel audience it works better inside About, as "Things I've built", next to the timeline it supports (Swiftris appears in both).
 - `index.html` FAQ structured data lists 3 of the 7 visible questions, and its cost answer is worded differently from the visible one. Generate it from the same `faqs` array, as the October 4 implementation did.
 
+**Done:** "2,900+" now appears once, in the community heading; the stats strip shows the 3 live channel numbers and the member row reads "Some of the members building AI workflows on Skool". The repo list moved into About as "Things I've built", below the timeline; "Code" left the nav and the `#code` anchor still works. The FAQ structured data was removed instead of generated: Google has limited FAQ rich results to well-known government and health sites since 2023, so keeping it in sync was not worth the code. Verified at 320, 390 and 1440px with no horizontal overflow.
+
 ## Proposed direction: the latest test is the hero
 
 The most characteristic thing in this subject's world is the day's build: a thumbnail with Mike's face, a tool name, and a verdict. The proposal makes that the hero and keeps everything around it quiet, so the thumbnails supply the color.
