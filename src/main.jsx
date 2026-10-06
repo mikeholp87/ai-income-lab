@@ -414,7 +414,7 @@ function App() {
             <p className="path">~/about</p>
             <h2>Hi, I&rsquo;m Mike.</h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
-            <p>Today I make videos on AI Automation Station, build TubeAnalytics and VisiScan, and host AI Income Lab on Skool. I work from Koh Samui, Thailand.</p>
+            <p>Today I make videos on AI Automation Station, build TubeAnalytics and VisiScan, and host AI Income Lab on Skool.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
             <ol className="timeline">{timeline.map(([year, event]) => <li key={year}><span>{year}</span>{event}</li>)}</ol>
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>
