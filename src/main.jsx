@@ -74,13 +74,6 @@ const stats = [
   ['2,900+', 'AI Income Lab members'],
 ];
 
-const channelTopics = [
-  'New AI models tested the week they ship',
-  'Agent builds in Claude Code, Codex, and OpenCode',
-  'n8n and Make.com automations you can copy',
-  'Head-to-head tool comparisons with a clear winner',
-];
-
 const tools = [
   {
     name: 'TubeAnalytics',
@@ -128,7 +121,7 @@ const timeline = [
 
 const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
-  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest posts on this page refresh once a day.'],
+  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Plans are $29, $49, or $89 a month, billed monthly. You can cancel before the next billing period from your Skool account.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
@@ -203,7 +196,8 @@ function FeaturedVideo({ video }) {
 }
 
 function VideoGrid({ videos, failed }) {
-  if (failed) return <p className="feed-error">The video feed didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch the latest uploads on YouTube ↗</a></p>;
+  // The featured slot above already shows the error and a YouTube link.
+  if (failed) return null;
   const items = videos ? videos.slice(1) : Array(6).fill(null);
   return (
     <ul className="video-grid" aria-busy={!videos}>
@@ -323,22 +317,26 @@ function App() {
         <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
       </section>
 
-      <section className="stats" aria-label="Channel and community numbers">
-        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+      <section className="section latest" id="latest">
+        <div className="shell">
+          <div className="latest-grid">
+            <div>
+              <SectionHead path="latest" title="Latest videos">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
+              <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
+              <div className="button-row">
+                <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
+                <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
+              </div>
+            </div>
+            {failed ? <p className="feed-error">The latest videos didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch them on YouTube ↗</a></p> : <FeaturedVideo video={latest} />}
+          </div>
+          <VideoGrid videos={videos} failed={failed} />
+          <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
+        </div>
       </section>
 
-      <section className="section latest" id="latest">
-        <div className="shell latest-grid">
-          <div>
-            <SectionHead path="latest" title="Latest video">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
-            <ul className="topic-list">{channelTopics.map(topic => <li key={topic}>{topic}</li>)}</ul>
-            <div className="button-row">
-              <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
-              <a className="button button-quiet" href="#videos">More recent videos</a>
-            </div>
-          </div>
-          {failed ? <p className="feed-error">The latest video didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch it on YouTube ↗</a></p> : <FeaturedVideo video={latest} />}
-        </div>
+      <section className="stats" aria-label="Channel and community numbers">
+        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
       <section className="section band" id="tools">
@@ -398,18 +396,6 @@ function App() {
             <p className="fine-print">Billed monthly. Cancel anytime from your Skool account.</p>
           </div>
           <CommunityVideo />
-        </div>
-      </section>
-
-      <section className="section" id="videos">
-        <div className="shell">
-          <div className="videos-head">
-            <SectionHead path="videos" title="Latest posts" />
-            <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
-          </div>
-          <VideoGrid videos={videos} failed={failed} />
-          <a className="text-link" href="/videos" onClick={trackClick('latest_posts', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>{' '}
-          <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>
       </section>
 
