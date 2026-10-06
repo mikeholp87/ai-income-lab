@@ -314,7 +314,7 @@ function App() {
           {latest ? <><span className="status-label">New video {daysAgo(latest.published)}:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
         <h1><span>New AI tools,</span> <span className="h1-accent">tested on real builds.</span></h1>
-        <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
+        <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
         <div className="terminal">
           <span className="terminal-prompt" aria-hidden="true">~</span>
           <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
