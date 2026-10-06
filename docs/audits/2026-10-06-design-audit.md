@@ -25,7 +25,7 @@ Audited October 6, 2026, after the page became a personal hub (`bdc0fc6`). Scope
 
 ## What to keep
 
-- The live feed: real thumbnails, durations, view counts and an hourly refresh. This is the page's best material.
+- The live feed: real thumbnails, durations, view counts and a daily refresh. This is the page's best material.
 - Honest copy. "Show you what held up and what broke" and "leave the mistakes in" give the page a specific voice. The FAQ answers about costs and income are plain and accurate.
 - The quality floor: skip link, visible focus, reduced-motion handling, AA contrast, no overflow at 320px, and a user-triggered video embed.
 - The plan list in the community section: three rows with name, inclusions and price. It is compact and readable.
@@ -89,6 +89,8 @@ Every section repeats the same treatment: an orange `~/path` label, an uppercase
 - **↗:** keep it on inline text links, where it signals an external site, and drop it from filled buttons.
 
 If the uppercase and monospace look is intentional, skip this finding and keep findings 1 to 3 and 5.
+
+**Done (owner chose to apply it, keeping the centered hero):** the H1 is one color; section headings, tool names and the footer line are Instrument Sans 600 in sentence case; the `~/path` labels are gone; DM Mono is left on data (channel URL, dates, views, durations, repo names, languages, years, prices). Orange remains on actions, play buttons, the live dot, the brand mark, and hover and focus feedback. Filled buttons lost the ↗. The hero paragraph stays centered to match the centered hero, set in Instrument Sans at 19px (17px on phones). Measured on a local build: DM Mono text elements fell from 121 of 185 to 43 of 169, uppercase text from 12 elements to the 2 lines of the H1, and ↗ links from 19 to 12; no overflow at 320px.
 
 ### 5. Repetition and section order
 

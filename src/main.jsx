@@ -154,10 +154,9 @@ function GitHubIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z" /></svg>;
 }
 
-function SectionHead({ path, title, children }) {
+function SectionHead({ title, children }) {
   return (
     <div className="section-head">
-      <p className="path">~/{path}</p>
       <h2>{title}</h2>
       {children && <p className="lede">{children}</p>}
     </div>
@@ -306,12 +305,12 @@ function App() {
           <span className="live-dot" aria-hidden="true" />
           {latest ? <><span className="status-label">New video {daysAgo(latest.published)}:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
-        <h1><span>New AI tools,</span> <span className="h1-accent">tested on real builds.</span></h1>
+        <h1><span>New AI tools,</span> <span>tested on real builds.</span></h1>
         <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
         <div className="terminal">
           <span className="terminal-prompt" aria-hidden="true">~</span>
           <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
-          <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe ↗</a>
+          <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
         </div>
         <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
       </section>
@@ -320,10 +319,10 @@ function App() {
         <div className="shell">
           <div className="latest-grid">
             <div>
-              <SectionHead path="latest" title="Latest videos">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
+              <SectionHead title="Latest videos">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
-                <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
+                <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
             </div>
@@ -340,7 +339,7 @@ function App() {
 
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead path="tools" title="Two products I built and run">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -350,7 +349,7 @@ function App() {
                   <p className="tool-tagline">{tool.tagline}</p>
                   <p>{tool.copy}</p>
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
-                  <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                  <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta}</a>
                 </div>
               </article>
             ))}
@@ -361,7 +360,7 @@ function App() {
       <section className="section band" id="community">
         <div className="shell community-grid">
           <div>
-            <SectionHead path="community" title="Build it with 2,900+ others">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
+            <SectionHead title="Build it with 2,900+ others">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
             <div className="members">
               <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
               <p>Some of the members building AI workflows on Skool</p>
@@ -370,7 +369,7 @@ function App() {
               {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p>{plan.copy}</p></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
             </ul>
             <div className="button-row">
-              <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'See AI Income Lab on Skool')}>See AI Income Lab on Skool ↗</a>
+              <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'See AI Income Lab on Skool')}>See AI Income Lab on Skool</a>
             </div>
             <p className="fine-print">Billed monthly. Cancel anytime from your Skool account.</p>
           </div>
@@ -382,7 +381,6 @@ function App() {
         <div className="shell about-grid">
           <img className="portrait" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
           <div className="about-copy">
-            <p className="path">~/about</p>
             <h2>Hi, I&rsquo;m Mike.</h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
             <p>Today I make videos on AI Automation Station, build TubeAnalytics and VisiScan, and host AI Income Lab on Skool.</p>
@@ -413,7 +411,7 @@ function App() {
 
       <section className="section" id="faq">
         <div className="shell faq-grid">
-          <SectionHead path="faq" title="Questions people ask" />
+          <SectionHead title="Questions people ask" />
           <div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
@@ -424,8 +422,8 @@ function App() {
         <div className="footer-cta">
           <p>New AI builds, most days.</p>
           <div className="button-row">
-            <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
-            <a className="button button-quiet" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Follow on GitHub', githubUrl, 'visit_github')}>Follow on GitHub ↗</a>
+            <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
+            <a className="button button-quiet" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Follow on GitHub', githubUrl, 'visit_github')}>Follow on GitHub</a>
           </div>
         </div>
         <div className="footer-columns">
