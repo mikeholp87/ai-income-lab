@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import { handleOpenPixel } from './src/open-pixel.js';
 import { GET as youtubeFeed } from './api/youtube.js';
 
@@ -28,10 +28,14 @@ function attachOpenPixel(server) {
   });
 }
 
-export default defineConfig({
-  plugins: [{
-    name: 'skool-open-pixel',
-    configureServer: attachOpenPixel,
-    configurePreviewServer: attachOpenPixel,
-  }],
+export default defineConfig(({ mode }) => {
+  // The /api/youtube middleware reads process.env; Vite doesn't load .env files there by itself.
+  Object.assign(process.env, loadEnv(mode, process.cwd(), 'YOUTUBE_'));
+  return {
+    plugins: [{
+      name: 'skool-open-pixel',
+      configureServer: attachOpenPixel,
+      configurePreviewServer: attachOpenPixel,
+    }],
+  };
 });
