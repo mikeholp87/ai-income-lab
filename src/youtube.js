@@ -4,6 +4,15 @@ export const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ch
 // YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts).
 export const longFormPlaylistId = `UULF${channelId.slice(2)}`;
 
+// Validate the public feed before it becomes rendered content or a persisted build snapshot.
+export function validFeed(feed) {
+  return Array.isArray(feed?.videos) && feed.videos.length > 0 && feed.videos.length <= 7
+    && feed.videos.every(video => video && /^[\w-]{11}$/.test(video.id) && typeof video.title === 'string'
+      && typeof video.summary === 'string' && Number.isFinite(Date.parse(video.published))
+      && Number.isFinite(video.views) && video.views >= 0
+      && (video.duration == null || typeof video.duration === 'string'));
+}
+
 const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
 const decode = text => text.replace(/&(#\d+|\w+);/g, (match, code) => code[0] === '#' ? String.fromCodePoint(Number(code.slice(1))) : entities[code] ?? match);
 const tag = (xml, name) => xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1] ?? '';

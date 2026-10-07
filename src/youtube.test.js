@@ -34,3 +34,15 @@ test('reads channel counts and skips hidden subscribers', () => {
   assert.equal(parseChannel({ items: [{ statistics: { subscriberCount: '0', viewCount: '9', videoCount: '1', hiddenSubscriberCount: true } }] }).subscribers, undefined);
   assert.equal(parseChannel({ items: [] }), null);
 });
+
+
+test('validates rendered feed data before using it as a snapshot', async () => {
+  const { validFeed } = await import('./youtube.js');
+  const feed = { videos: [{ id: 'Ip8KBwDixJs', title: 'A build', summary: 'Steps', published: '2026-10-05T12:37:47Z', views: 140 }] };
+  assert.equal(validFeed(feed), true);
+  assert.equal(validFeed({ videos: [] }), false);
+  assert.equal(validFeed({ videos: [null] }), false);
+  for (const invalid of [{ id: '../bad' }, { published: 'bad date' }, { views: -1 }, { title: null }, { duration: {} }]) {
+    assert.equal(validFeed({ videos: [{ ...feed.videos[0], ...invalid }] }), false);
+  }
+});

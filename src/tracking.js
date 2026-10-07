@@ -22,7 +22,7 @@ export function trackMetaOutbound(properties) {
 }
 
 export function loadMarketingTracking() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || getTrackingConsent() !== 'granted') return;
   if (window.__marketingTrackingActive) return;
   if (window.__marketingTrackingLoaded) {
     window.__marketingTrackingActive = true;

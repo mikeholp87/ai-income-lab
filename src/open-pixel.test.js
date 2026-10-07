@@ -152,15 +152,15 @@ test('records an Opens row and flips the first send open only', async () => {
     globalThis.fetch = previous;
   }
 
-  assert.equal(calls[0].method, 'POST');
-  assert.ok(calls[0].url.includes(`/${AIRTABLE_BASE_ID}/${SKOOL_OPENS_TABLE_ID}`));
-  assert.equal(calls[0].body.fields['Send Token'], 'SKOOL-FT-1');
-  assert.equal(calls[0].body.fields['Opened At'], '2026-10-02T00:00:00.000Z');
-  assert.equal(calls[0].body.fields['User Agent'], 'UA');
-  assert.equal(calls[0].body.fields.Source, 'pixel');
-  assert.match(calls[0].body.fields['Open Id'], /^opn_/);
-  assert.equal(calls[1].method, 'GET');
-  assert.ok(calls[1].url.includes(SKOOL_SENDS_TABLE_ID));
+  assert.equal(calls[1].method, 'POST');
+  assert.ok(calls[1].url.includes(`/${AIRTABLE_BASE_ID}/${SKOOL_OPENS_TABLE_ID}`));
+  assert.equal(calls[1].body.fields['Send Token'], 'SKOOL-FT-1');
+  assert.equal(calls[1].body.fields['Opened At'], '2026-10-02T00:00:00.000Z');
+  assert.equal(calls[1].body.fields['User Agent'], 'UA');
+  assert.equal(calls[1].body.fields.Source, 'pixel');
+  assert.match(calls[1].body.fields['Open Id'], /^opn_/);
+  assert.equal(calls[0].method, 'GET');
+  assert.ok(calls[0].url.includes(SKOOL_SENDS_TABLE_ID));
   assert.equal(calls[2].method, 'PATCH');
   assert.ok(calls[2].url.includes(`${SKOOL_SENDS_TABLE_ID}/recSend1`));
   assert.equal(calls[2].body.fields.Opened, true);
@@ -215,8 +215,8 @@ test('uses AIRTABLE_* env overrides in Airtable URLs', async () => {
   } finally {
     globalThis.fetch = previous;
   }
-  assert.ok(calls[0].url.includes('/appOverrideBase/tblOverrideOpens'));
-  assert.ok(calls[1].url.includes('/appOverrideBase/tblOverrideSends'));
+  assert.equal(calls.length, 1);
+  assert.ok(calls[0].url.includes('/appOverrideBase/tblOverrideSends'));
 });
 
 test('writes AFF tokens to the AFF Airtable route when configured', async () => {
@@ -247,9 +247,9 @@ test('writes AFF tokens to the AFF Airtable route when configured', async () => 
   } finally {
     globalThis.fetch = previous;
   }
-  assert.ok(calls[0].url.includes('/appAff/tblAffOpens'));
-  assert.equal(calls[0].body.fields['Send Token'], 'AFF-1');
-  assert.equal(calls[0].body.fields.Source, 'pixel');
+  assert.ok(calls[1].url.includes('/appAff/tblAffOpens'));
+  assert.equal(calls[1].body.fields['Send Token'], 'AFF-1');
+  assert.equal(calls[1].body.fields.Source, 'pixel');
   assert.ok(calls[2].url.includes('/appAff/tblAffSends/recAff1'));
   assert.equal(calls[2].body.fields.Opened, true);
 });
@@ -280,4 +280,24 @@ test('skips Airtable for an unconfigured prefix and still returns the GIF', asyn
     globalThis.fetch = previous;
   }
   assert.equal(calls.length, 0);
+});
+
+// No production requests: invented, malformed and mismatched tokens must never write.
+test('unknown and mismatched send tokens return a GIF without Airtable writes', async () => {
+  const previous = globalThis.fetch;
+  try {
+    for (const records of [[], [{ id: 'recOther', fields: { 'Send Token': 'different-token' } }]]) {
+      const calls = [];
+      globalThis.fetch = async (url, init = {}) => {
+        calls.push(init.method || 'GET');
+        return Response.json({ records });
+      };
+      const response = await handleOpenPixel(new Request('https://example.com/o/invented-token.gif'), { AIRTABLE_API_KEY: 'mock' });
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), 'image/gif');
+      assert.deepEqual(calls, ['GET']);
+      await recordOpen({ token: "bad'token", openedAt: '2026-10-07T00:00:00Z', userAgent: 'test' }, { AIRTABLE_API_KEY: 'mock' });
+      assert.deepEqual(calls, ['GET']);
+    }
+  } finally { globalThis.fetch = previous; }
 });

@@ -170,7 +170,15 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
     product: route.product,
   };
   console.info('[open-pixel]', hit);
-  if (!token || !airtableKey(env) || !route.configured) return { logged: 'console', hit, route };
+  if (!token || sanitizeToken(token) !== token || !airtableKey(env) || !route.configured) return { logged: 'console', hit, route };
+
+  const formula = `{Send Token}='${escapeFormulaValue(token)}'`;
+  const found = await airtableFetch(
+    `${route.sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
+    { env, baseId: route.baseId },
+  );
+  const send = found?.records?.[0];
+  if (!send?.id || send.fields?.['Send Token'] !== token) return { logged: 'skipped', hit, route };
 
   const openId = `opn_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
   await airtableFetch(route.opensTableId, {
@@ -188,13 +196,7 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
     },
   });
 
-  const formula = `{Send Token}='${escapeFormulaValue(token)}'`;
-  const found = await airtableFetch(
-    `${route.sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
-    { env, baseId: route.baseId },
-  );
-  const send = found?.records?.[0];
-  if (send && send.fields?.Opened !== true) {
+  if (send.fields?.Opened !== true) {
     await airtableFetch(`${route.sendsTableId}/${send.id}`, {
       env,
       baseId: route.baseId,

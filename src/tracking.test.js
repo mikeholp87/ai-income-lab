@@ -9,6 +9,11 @@ test('loads trackers once and restores consent after allow → decline → allow
   globalThis.document = { createElement: () => ({}), head: { appendChild: script => scripts.push(script) } };
   globalThis.window = globalThis;
 
+  loadMarketingTracking();
+  assert.equal(scripts.length, 0);
+  setTrackingConsent('denied');
+  loadMarketingTracking();
+  assert.equal(scripts.length, 0);
   setTrackingConsent('granted');
   loadMarketingTracking();
   loadMarketingTracking();

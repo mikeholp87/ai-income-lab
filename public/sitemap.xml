@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.ai-automation-station.com/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.ai-automation-station.com/videos</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -17,6 +17,23 @@
   </url>
   <url>
     <loc>https://www.ai-automation-station.com/terms.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
+  <url><loc>https://www.ai-automation-station.com/start-here.html</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.ai-automation-station.com/guides/youtube-feed.html</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.ai-automation-station.com/guides/consent-tracking.html</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.ai-automation-station.com/videos/2</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/3</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/4</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/5</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/6</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/7</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/8</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/9</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/10</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/11</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/12</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/13</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/14</loc></url>
+  <url><loc>https://www.ai-automation-station.com/videos/15</loc></url>
 </urlset>

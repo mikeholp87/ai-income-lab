@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.js",
+    "build": "node scripts/refresh-videos.js && vite build && node scripts/prerender.js",
     "test": "node --test src/*.test.js",
     "preview": "vite preview"
   },

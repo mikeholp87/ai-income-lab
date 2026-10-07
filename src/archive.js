@@ -61,6 +61,9 @@ export function renderArchive(videos, page = 1) {
 @font-face { font-family: 'Archivo Black'; font-display: swap; src: url('/fonts/archivo-black.woff2') format('woff2'); }
 @font-face { font-family: 'DM Mono'; font-display: swap; src: url('/fonts/dm-mono.woff2') format('woff2'); }
 * { box-sizing: border-box; }
+:focus-visible { outline: 2px solid #ff6846; outline-offset: 4px; }
+.skip { position: absolute; top: 0; left: 16px; transform: translateY(-150%); background: #111; padding: 12px; }
+.skip:focus { transform: none; }
 body { margin: 0; background: #0a0a0a; color: #f5f5f0; font: 16px/1.6 system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p { margin: 0; }
@@ -90,9 +93,11 @@ footer a:hover, header a.mono:hover { color: #f5f5f0; }
 </style>
 </head>
 <body>
+<a class="skip" href="#content">Skip to videos</a>
 <header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><a class="mono" href="${channelUrl}" target="_blank" rel="noreferrer">YouTube ↗</a></header>
-<main class="shell">
+<main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form builds, newest first. ${pageNote}Each one takes a new AI model, agent, or automation tool, builds something real with it, and shows what held up and what broke.</p></div>
+<p style="margin-top:24px"><a href="/start-here.html" style="color:#ff6846;text-decoration:underline">New here? Choose your first build</a></p>
 ${[...years].map(([year, items]) => `<h2>${year}</h2>\n<ul>\n${items.map(card).join('\n')}\n</ul>`).join('\n')}
 ${pager(page, pages)}
 </main>

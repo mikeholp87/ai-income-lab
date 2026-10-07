@@ -4,7 +4,8 @@ import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
-import { channelUrl } from './youtube.js';
+import { channelUrl, validFeed } from './youtube.js';
+import youtubeSnapshot from './youtube-snapshot.json';
 import './fonts.css';
 import './styles.css';
 
@@ -69,7 +70,7 @@ function ConsentBanner({ campaign, campaignReady }) {
   }
 
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices"><p><strong>Analytics preferences.</strong> Allow analytics to help improve this page and measure campaigns. <a href="/privacy.html">Privacy</a> and <a href="/terms.html">Terms</a>.</p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow analytics</button></div></aside>;
+  return <aside className="consent-banner" aria-label="Privacy choices"><p><strong>Analytics &amp; marketing.</strong> Allow Google Analytics and Meta Pixel? <a href="/privacy.html">Privacy details</a>.</p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
 }
 
 // Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
@@ -89,6 +90,7 @@ const tools = [
     copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
     facts: ['Real CPM and RPM for connected channels', '180+ registered creators', '7-day free trial, plans from $19 a month'],
     cta: 'Start a free trial',
+    note: 'Payment details required. Cancel before the trial ends to avoid a charge.',
   },
   {
     name: 'VisiScan',
@@ -111,8 +113,8 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, copy: 'Community, courses, and tutorials' },
-  { name: 'Premium', price: 49, copy: 'Everything in Standard, plus advanced training' },
+  { name: 'Standard', price: 29, copy: 'Community, courses, and tutorials. Beginner’s Automation Course unlocks at level 2.' },
+  { name: 'Premium', price: 49, copy: 'Everything in Standard, plus Complete AI Avatar Video Course and immediate access to the beginner and VAPI voice-agent courses.' },
   { name: 'VIP', price: 89, copy: 'Everything in Premium, plus weekly coaching, software deals, and 6,400+ n8n templates' },
 ];
 
@@ -128,26 +130,25 @@ const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
-  ['What does AI Income Lab cost?', 'Plans are $29, $49, or $89 a month, billed monthly. You can cancel before the next billing period from your Skool account.'],
+  ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
+  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
   ['Can I try TubeAnalytics or VisiScan for free?', 'Yes. TubeAnalytics has a 7-day free trial (payment details required), with plans from $19 a month. VisiScan runs a free scan with no signup, and the full report is $49, paid once.'],
   ['What tools will I need?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
 ];
 
-const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
+const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const viewFormat = new Intl.NumberFormat('en', { notation: 'compact' });
-const relativeFormat = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
 const formatViews = views => `${viewFormat.format(views)} ${views === 1 ? 'view' : 'views'}`;
-const daysAgo = published => relativeFormat.format(-Math.round((Date.now() - Date.parse(published)) / 86400000), 'day');
 const watchUrl = id => `https://www.youtube.com/watch?v=${id}`;
 
 function useYouTubeFeed() {
-  const [feed, setFeed] = useState({ videos: null, channel: null, failed: false });
+  const [feed, setFeed] = useState({ ...youtubeSnapshot, failed: false });
   useEffect(() => {
     fetch('/api/youtube')
       .then(response => response.ok ? response.json() : Promise.reject(response.status))
-      .then(({ videos, channel }) => setFeed({ videos, channel, failed: !videos.length }))
-      .catch(() => setFeed({ videos: [], channel: null, failed: true }));
+      .then(next => { if (validFeed(next)) setFeed({ ...next, failed: false }); })
+      .catch(() => {}); // Keep the prerendered snapshot when the live feed is unavailable.
   }, []);
   return feed;
 }
@@ -173,22 +174,6 @@ function SectionHead({ eyebrow, title, accent, children }) {
 
 const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
-
-// Tools Mike tests, drifting over the hero like collaborators' cursors. Decorative only.
-const heroCursors = [['Claude Code', 'amber'], ['Codex', 'signal'], ['OpenCode', 'blue'], ['n8n', 'green']];
-
-function HeroCursors() {
-  return (
-    <div className="hero-cursors" aria-hidden="true">
-      {heroCursors.map(([label, color]) => (
-        <span key={label} className={`cursor cursor-${color}`}>
-          <svg viewBox="0 0 16 16"><path d="M1 1l5.5 14 2-6 6-2z" /></svg>
-          <span>{label}</span>
-        </span>
-      ))}
-    </div>
-  );
-}
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
 function useScrollReveal() {
@@ -235,18 +220,18 @@ function FeaturedVideo({ video }) {
       <div className="player-screen">
         {playing
           ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
-          : <button type="button" onClick={play} aria-label={`Play ${video.title}`}>
+          : <button type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
                 src={`https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp`}
                 srcSet={`https://i.ytimg.com/vi_webp/${video.id}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp 1280w`}
-                sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 112px) * 7 / 12 - 2px), 614px"
+                sizes="(max-width: 960px) calc(100vw - 34px), (max-width: 1168px) calc((100vw - 96px) / 2), 534px"
                 onError={event => {
                   const image = event.currentTarget;
                   if (image.src.endsWith('/hqdefault.jpg')) return;
                   image.removeAttribute('srcset');
                   image.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
                 }}
-                alt="" width="1280" height="720" loading="lazy" decoding="async"
+                alt="" width="1280" height="720" fetchPriority="high" decoding="async"
               />
               <span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
               {video.duration && <span className="duration">{video.duration}</span>}
@@ -254,7 +239,7 @@ function FeaturedVideo({ video }) {
       </div>
       <div className="player-meta">
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-        <h3><a href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest', video.title, watchUrl(video.id), 'watch_video')}>{video.title}</a></h3>
+        <h2><a href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest', video.title, watchUrl(video.id), 'watch_video')}>{video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
         <p className="player-note">YouTube loads only after you press play.</p>
       </div>
@@ -283,33 +268,38 @@ function VideoGrid({ videos, failed }) {
 }
 
 // The button is a real cal.com link, so it still works without JavaScript or if the embed is blocked.
-function BookingCalendar() {
+function BookingCalendar({ campaign }) {
   const [open, setOpen] = useState(false);
   const started = useRef(false);
+  const booked = useRef(false);
+  const attributedBookingUrl = outboundUrl(bookingUrl, campaign, { utm_source: campaign.params.utm_source || 'ai-automation-station', utm_medium: campaign.params.utm_medium || 'website', utm_content: 'booking' });
 
   useEffect(() => {
     if (!open || started.current) return;
     started.current = true; // StrictMode runs effects twice in development
     const cal = getCal();
     cal('init', 'booking', { origin: 'https://cal.com' });
-    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink, config: { layout: 'month_view', theme: 'dark' } });
+    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme: 'dark' } });
     cal.ns.booking('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' } }, hideEventTypeDetails: false, layout: 'month_view' });
-    cal.ns.booking('on', { action: 'bookingSuccessfulV2', callback: () => trackEvent('Call Booked', { placement: 'booking' }) });
-  }, [open]);
+    cal.ns.booking('on', { action: 'bookingSuccessfulV2', callback: () => {
+      if (booked.current) return;
+      booked.current = true;
+      trackEvent('Call Requested', { placement: 'booking', device: window.matchMedia('(max-width: 640px)').matches ? 'mobile' : 'desktop', campaign: campaign.params.utm_campaign || 'direct' });
+    } });
+  }, [open, attributedBookingUrl, campaign]);
 
   function openCalendar(event) {
     trackClick('booking', 'Book a free intro call', bookingUrl, 'book_call')();
-    // On phones cal.com stacks every 10-minute slot (about 4,000px), so the link opens cal.com's own page instead.
-    if (window.matchMedia('(max-width: 640px)').matches) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     setOpen(true);
   }
 
-  if (!open) return <div className="button-row"><a className="button button-primary" href={bookingUrl} target="_blank" rel="noreferrer" onClick={openCalendar}>Book a free intro call</a></div>;
+  if (!open) return <div className="button-row"><a className="button button-primary" href={attributedBookingUrl} target="_blank" rel="noreferrer" onClick={openCalendar}>Book a free intro call</a></div>;
   return (
     <>
-      <div className="booking-calendar" id="booking-calendar" />
-      <a className="text-link" href={bookingUrl} target="_blank" rel="noreferrer">Calendar not loading? Book on cal.com ↗</a>
+      <div className="booking-calendar" id="booking-calendar" role="region" aria-label="Book an intro call" tabIndex="0" />
+      <a className="text-link" href={attributedBookingUrl} target="_blank" rel="noreferrer">Calendar not loading? Book on cal.com ↗</a>
     </>
   );
 }
@@ -378,7 +368,7 @@ function App() {
       if (entry.isIntersecting && !viewed) {
         viewed = true;
         trackEvent('View Pricing', { angle: campaign.angle });
-        if (typeof window.fbq === 'function') window.fbq('track', 'ViewContent', { content_name: 'Pricing', content_category: 'membership' });
+        if (getTrackingConsent() === 'granted' && window.__marketingTrackingActive && typeof window.fbq === 'function') window.fbq('track', 'ViewContent', { content_name: 'Pricing', content_category: 'membership' });
       }
     }, { threshold: .25 });
     observer.observe(pricing);
@@ -400,55 +390,61 @@ function App() {
       <div className="nav-actions">
         <a className="icon-link" href={channelUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on YouTube" onClick={trackClick('navigation', 'YouTube', channelUrl, 'visit_youtube')}><YouTubeIcon /></a>
         <a className="icon-link" href={githubUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on GitHub" onClick={trackClick('navigation', 'GitHub', githubUrl, 'visit_github')}><GitHubIcon /></a>
-        <details className="nav-mobile"><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav></details>
+        <details className="nav-mobile" onKeyDown={event => {
+          if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
+        }}><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
       </div>
       </div>
     </header>
 
     <main>
       <section className="hero shell" id="main-content" tabIndex="-1">
-        <HeroCursors />
-        <a className="hero-status" href="#latest">
+        <a className="hero-status" href="#featured-video">
           <span className="live-dot" aria-hidden="true" />
-          {latest ? <><span className="status-label">New video {daysAgo(latest.published)}:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
+          {latest ? <><span className="status-label">Latest video:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
+        <div className="hero-grid">
+        <div className="hero-copy">
         {communityHero ? (
           <>
           <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
-          <p className="hero-text">AI Income Lab is my Skool community: step-by-step courses, templates, and 2,900+ members to ask when a build stalls. Plans start at $29 a month, billed monthly. Cancel anytime.</p>
+          <p className="hero-text">Courses, templates, and a community to help you finish your next AI build. From $29 a month. Cancel anytime.</p>
           <div className="terminal">
             <span className="terminal-prompt" aria-hidden="true">~</span>
             <a className="terminal-url" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Skool URL', plansUrl)}>skool.com/ai-automation-station-7346</a>
             <a className="terminal-go" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab</a>
           </div>
-          <nav className="hero-links" aria-label="Jump to"><a className="hero-link-accent" href="#community">See what&rsquo;s included</a><a href="#latest">Watch the latest video</a><a href="#about">About Mike</a></nav>
+          <nav className="hero-links" aria-label="Jump to"><a className="hero-link-accent" href="#community">See what&rsquo;s included</a><a href="#featured-video">Watch the latest video</a><a href="#about">About Mike</a></nav>
           </>
         ) : (
           <>
           <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
-          <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
+          <p className="hero-text">I&rsquo;m Mike Holp. I test AI tools by building real projects on camera, with the setup, results, and mistakes included.</p>
           <div className="terminal">
             <span className="terminal-prompt" aria-hidden="true">~</span>
             <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
             <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
           </div>
-          <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
+          <nav className="hero-links" aria-label="Jump to"><a href="#featured-video">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
           </>
         )}
+        </div>
+        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} /></div>
+        </div>
       </section>
 
       <section className="section latest" id="latest">
         <div className="shell">
-          <div className="latest-grid">
+          <div className="latest-intro">
             <div>
-              <SectionHead eyebrow="New most days" title="Latest" accent="videos.">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
+              <SectionHead eyebrow="Keep exploring" title="More real" accent="builds.">Watch another build, or choose a starting point for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
+                <a className="button button-quiet" href="/start-here.html">Start your first build</a>
               </div>
             </div>
-            <div className="reveal">{failed ? <p className="feed-error">The latest videos didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch them on YouTube ↗</a></p> : <FeaturedVideo video={latest} />}</div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
@@ -473,6 +469,7 @@ function App() {
                   <p>{tool.copy}</p>
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta}</a>
+                  {tool.note && <p className="fine-print">{tool.note}</p>}
                 </div>
               </article>
             ))}
@@ -494,9 +491,23 @@ function App() {
             <div className="button-row">
               <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'Choose a plan on Skool', plansUrl)}>Choose a plan on Skool</a>
             </div>
-            <p className="fine-print">Billed monthly. Cancel anytime from your Skool account.</p>
+            <p className="fine-print">Monthly prices shown. Annual billing is also available on Skool. Cancel anytime from your Skool account.</p>
+            <p className="community-help"><a href="https://www.skool.com/ai-automation-station-7346/classroom" target="_blank" rel="noreferrer">Open the classroom (member login)</a>. Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
           </div>
-          <div className="reveal"><CommunityVideo /></div>
+          <div className="reveal">
+            <CommunityVideo />
+            <div className="course-preview">
+              <h3>Inside the classroom</h3>
+              <ul>
+                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com. Unlocks at level 2, or immediately with Premium or VIP.</span></li>
+                <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
+                <li><strong>Complete AI Avatar Video Course</strong><span>Included with Premium and VIP. Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
+                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs. Unlocks at level 4, or immediately with Premium or VIP.</span></li>
+                <li><strong>Ultimate N8N Template Library</strong><span>Included with VIP: 6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
+              </ul>
+              <p className="fine-print">Levels refer to your Skool community level. <a href="mailto:automojic@proton.me?subject=Course%20access">Ask about course access</a>.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -507,7 +518,7 @@ function App() {
             <p className="eyebrow">About</p>
             <h2>Hi, I&rsquo;m <span className="accent">Mike.</span></h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
-            <p>Today I make videos on AI Automation Station, build TubeAnalytics and VisiScan, and host AI Income Lab on Skool.</p>
+            <p>AI Automation Station is my channel for practical AI builds. AI Income Lab is the companion community for courses, templates, and help while you build. I also build and run TubeAnalytics and VisiScan.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
             <ol className="timeline">{timeline.map(([year, event]) => <li key={year}><span>{year}</span>{event}</li>)}</ol>
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>
@@ -538,7 +549,8 @@ function App() {
         <div className="shell">
           <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
           <p className="booking-note">Every video follows the same rule: build something real, leave the mistakes in, and say plainly whether the tool is worth your time.</p>
-          <BookingCalendar />
+          <BookingCalendar campaign={campaign} />
+          <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
         </div>
       </section>
 
@@ -562,7 +574,7 @@ function App() {
         <div className="footer-columns">
           <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
           <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
-          <div><h2>Connect</h2><a href={channelUrl} target="_blank" rel="noreferrer">YouTube</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={xUrl} target="_blank" rel="noreferrer">X</a><a href="#work-together">Book a call</a></div>
+          <div><h2>Connect</h2><a href={channelUrl} target="_blank" rel="noreferrer">YouTube</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={xUrl} target="_blank" rel="noreferrer">X</a><a href="#work-together">Sponsor a video / book a call</a><a href="mailto:automojic@proton.me">Email support</a></div>
         </div>
         <div className="footer-base"><p>&copy; 2026 Mike Holp</p><div><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button></div></div>
       </div>

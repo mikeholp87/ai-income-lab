@@ -1,0 +1,420 @@
+{
+  "checked_at": "2026-10-07",
+  "max_concurrency": 5,
+  "launch_spacing_seconds": 1,
+  "page_count": 15,
+  "all_200": true,
+  "all_self_canonical": true,
+  "total_video_cards": 213,
+  "unique_video_ids": 213,
+  "pages": [
+    {
+      "url": "https://www.ai-automation-station.com/videos",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos"
+      ],
+      "title": [
+        "Every video: AI tools tested on real builds | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "Ip8KBwDixJs",
+        "IymTRFLMY_s",
+        "gNcHbc2kdzw",
+        "vauqktcB6ak",
+        "uTcTJd5JaZU",
+        "PS31s8REvlw",
+        "9A2StjrxOms",
+        "NH6t9M2vFrk",
+        "GK7zjPm7G4A",
+        "p7kV1iHSP54",
+        "wakl0ayO_fk",
+        "6jDcOXSOT00",
+        "wRqpZ9F3rmI",
+        "TuVL2x6IfDk",
+        "K2UeJZ_7mS0"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/2",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/2"
+      ],
+      "title": [
+        "Every video, page 2 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "uSx_lW4oppY",
+        "miBtL2fVkpg",
+        "c3AtpUbpXNA",
+        "dQ_gnts0JCE",
+        "t0nQSyryTPg",
+        "UoMuiKjDu4A",
+        "h8KLzYPMjjE",
+        "exXV5ehmsEU",
+        "lbBZ7uLJwbM",
+        "9WPazkEp7VU",
+        "YdvngsXEqo8",
+        "mkm8cz6dp8w",
+        "0jzTOUv_B04",
+        "Fw-RqLjArc8",
+        "1LN7TqmW--w"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/3",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/3"
+      ],
+      "title": [
+        "Every video, page 3 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "L_dAm5Xh-fQ",
+        "wL6bjqaUcd8",
+        "bBGqWXXIw44",
+        "1aG1XbAQj-k",
+        "JJe2G17_eRU",
+        "e73WvglCLW0",
+        "jB9hYQJGAuM",
+        "ghjmULTSj2Q",
+        "ZNuGmX1HpxM",
+        "pwLLS6zFpKs",
+        "LD2ef2uUauo",
+        "3cP3DeBG5Q0",
+        "pYHt2qWvAr8",
+        "NoHkFvhbiuU",
+        "VYx1wZ0Ct38"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/4",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/4"
+      ],
+      "title": [
+        "Every video, page 4 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "tzSGF7gu6EE",
+        "geKngm3sg3w",
+        "2G5klyFz61E",
+        "mmiQaVfA5e0",
+        "X9Bo29B_46k",
+        "avgG3VtN2C4",
+        "oQot9GoNZDA",
+        "0tmhsHn5B30",
+        "woyme-rVDGw",
+        "-L0CVvJMzZI",
+        "pRnJdlMSSqM",
+        "iVI11AZvUdk",
+        "2OB6_oZAe9s",
+        "LqRRXcM8Kxc",
+        "g4BmgmEy_mI"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/5",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/5"
+      ],
+      "title": [
+        "Every video, page 5 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "F5PwcTwtEos",
+        "YNpIRq7O3UE",
+        "9hs6n1enosI",
+        "Zi_PG07mDxo",
+        "EECptdYND6k",
+        "kUbhr1QGYeU",
+        "ByncCPWeGNY",
+        "kxp_dF6NEbg",
+        "vvDdXF2Yuz8",
+        "cfYpzY-o3fQ",
+        "quDDekuPQNI",
+        "qzIaEA0wBCw",
+        "tR7AYN5FiqA",
+        "dVvazfQHhW4",
+        "MABL6XZgy4g"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/6",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/6"
+      ],
+      "title": [
+        "Every video, page 6 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "w_MoA8lpWTg",
+        "HlPdlZh0AHM",
+        "yR-zoMUY27Q",
+        "jtyWB5iGPOs",
+        "DB-9bW85TKY",
+        "b0Izj5Pv0sQ",
+        "OUgxXuWG_wU",
+        "7v_675nO7nM",
+        "5zBHLxXw3tI",
+        "bCsSqZp0yVg",
+        "UnnN2i90ALg",
+        "ffnMlBzcJOQ",
+        "ga22WZgoj9M",
+        "Qb6RG0-8O1k",
+        "rZh4zVT2LKY"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/7",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/7"
+      ],
+      "title": [
+        "Every video, page 7 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "LoNsDme0XQI",
+        "DbYip6KaNHo",
+        "n3NO40juUBo",
+        "3X2VU7EyaEU",
+        "ztEj6zCJh5k",
+        "C5wEcJRo_VA",
+        "FBlN3qWR9kg",
+        "yHaBYtUnzBg",
+        "qC2ipjdszPA",
+        "_8qzOkIWMSk",
+        "AO8NoHPU3e0",
+        "pDrMGahPnwc",
+        "2pD_wqYHKlY",
+        "ZKpr-vmz_iY",
+        "is7JIUfHsng"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/8",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/8"
+      ],
+      "title": [
+        "Every video, page 8 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "c_WK6TImkNQ",
+        "DfyAAwHPJuU",
+        "ncg6F27PYt0",
+        "i2na8YZI7KM",
+        "CfbMWB0G99E",
+        "_ikohuukGE4",
+        "gebtJAsMioo",
+        "KLuU0Yxu9g4",
+        "4hwdzAiaybI",
+        "q4-LkuMDkIE",
+        "4f9WR0T3vKQ",
+        "ud2su6XhtKw",
+        "oP11zRs6628",
+        "vmEac5CJcNQ",
+        "e6JXdMh5Qz0"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/9",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/9"
+      ],
+      "title": [
+        "Every video, page 9 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "IlOJWfmlpGg",
+        "mtpX58dNfCE",
+        "3RPEo7PB7ug",
+        "wmjAyAth1Ug",
+        "vxH102ZvjUg",
+        "KDZ7yefRv54",
+        "mKZHLQLaq2k",
+        "-cLECY10Tzg",
+        "ix3C2JBFII8",
+        "limgGYHy6Jk",
+        "pDbRjYYUjRI",
+        "eui7NABhRV8",
+        "CD2mLFgjiT8",
+        "pMLyxz6Dyt4",
+        "MIwd2pzmUf0"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/10",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/10"
+      ],
+      "title": [
+        "Every video, page 10 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "rPhyYNMuDT4",
+        "M_4KgrWyycI",
+        "bt-zM7QuKkU",
+        "KKw2Q9-Ge_0",
+        "-viL36QDF_8",
+        "xlVDUw_rBXE",
+        "Z03CpV_8OIA",
+        "4x2gxyIFUa8",
+        "_1bZhPHcsm4",
+        "dEQ8OllsJmk",
+        "yUibdYhO1ms",
+        "9YueXsoNg80",
+        "7p3n6-FH9IQ",
+        "GhHYtL5pQXU",
+        "jhmTXc5ZyJk"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/11",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/11"
+      ],
+      "title": [
+        "Every video, page 11 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "4jK9RraWbiU",
+        "nJtbBB0JBYY",
+        "9DQYe6HywT8",
+        "wZ76glbPIPc",
+        "fjTn95391rg",
+        "P7lbzDAb-qk",
+        "wniZpV6LZsE",
+        "m9VrHQHTMTE",
+        "xB0ChiVjWu4",
+        "tzUhKKzwgyE",
+        "lumzbY6QV4Y",
+        "Ax-v4H9xv50",
+        "1klc_1MxBdM",
+        "7UMrV3w1e40",
+        "dVC1Or0Tbo8"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/12",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/12"
+      ],
+      "title": [
+        "Every video, page 12 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "508QvEHI5n0",
+        "MYoA3___zYU",
+        "6iFA7ds2PU4",
+        "UkYoSNiqa6o",
+        "bAgP_0uW0dY",
+        "YCjvrNI1pa4",
+        "SplwScUztfM",
+        "mKsPxDi7uM0",
+        "uTYZC3Kxwjo",
+        "QlL87_URHZ8",
+        "p_qQNolHR-c",
+        "J86tffN9nmg",
+        "DtmxxnAbS00",
+        "gibc7oWLCn4",
+        "qA683UQVDt4"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/13",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/13"
+      ],
+      "title": [
+        "Every video, page 13 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "QMqe2ubsn0g",
+        "AkIz84oXvdk",
+        "lKqe0r0zoGY",
+        "Lifl4PC2_3M",
+        "s6004nmWG9g",
+        "ZlD4Z6UKS8o",
+        "SLAnjvWK1Y4",
+        "4uNxh9FW6Ho",
+        "9kHdIiobKMA",
+        "KEXgl3vsVMI",
+        "G8u1-hKEqig",
+        "G_XWYIwjhKY",
+        "a3TwomrR6pw",
+        "8ieDSa8BVH4",
+        "dILjZszMZ5o"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/14",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/14"
+      ],
+      "title": [
+        "Every video, page 14 of 15 | Mike Holp"
+      ],
+      "video_count": 15,
+      "video_ids": [
+        "TZxNymn9msU",
+        "kKiFzNW9fjw",
+        "zWM4AjUto2A",
+        "QMcaBMjZSMA",
+        "Zza-S7YsLy0",
+        "oDAKXkIyOHE",
+        "R90zVHmoj7A",
+        "1TPm7B5oStw",
+        "dIZ7xNyWu3M",
+        "X0X8kJTK7vA",
+        "OPQacEy41kM",
+        "PDfEWpyyRMI",
+        "4sd4-9rC3As",
+        "3j4YyYFRQKU",
+        "bjTr9p-zQ1M"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/15",
+      "status": 200,
+      "canonical": [
+        "https://www.ai-automation-station.com/videos/15"
+      ],
+      "title": [
+        "Every video, page 15 of 15 | Mike Holp"
+      ],
+      "video_count": 3,
+      "video_ids": [
+        "CGVALaueHeA",
+        "kXw2yntdmo4",
+        "enKnxKJJFZw"
+      ]
+    }
+  ]
+}

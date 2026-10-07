@@ -18,3 +18,10 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [TubeAnalytics](https://www.tubeanalytics.net)
 - [VisiScan](https://www.visiscan.app)
 - [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
+
+## Start building
+
+- [Start here](https://www.ai-automation-station.com/start-here.html)
+- [Build a YouTube feed in React](https://www.ai-automation-station.com/guides/youtube-feed.html)
+- [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
+- Support: automojic@proton.me
