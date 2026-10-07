@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getCampaign, nextTabIndex, outboundUrl } from './funnel.js';
+import { getCampaign, nextTabIndex, outboundUrl, wantsCommunity } from './funnel.js';
 
 test('routes campaign messaging and preserves attribution', () => {
   const campaign = getCampaign('?angle=agency&utm_source=facebook&utm_content=video-a&fbclid=abc', ['default', 'agency']);
@@ -18,4 +18,12 @@ test('moves product tour tabs with arrow and boundary keys', () => {
   assert.equal(nextTabIndex(0, 'ArrowLeft', 4), 3);
   assert.equal(nextTabIndex(2, 'Home', 4), 0);
   assert.equal(nextTabIndex(1, 'End', 4), 3);
+});
+
+test('sends YouTube and ?angle=community visitors to the community hero', () => {
+  const angles = ['community'];
+  assert.equal(wantsCommunity(getCampaign('?utm_source=YouTube&utm_medium=description', angles)), true);
+  assert.equal(wantsCommunity(getCampaign('?angle=community', angles)), true);
+  assert.equal(wantsCommunity(getCampaign('?utm_source=facebook', angles)), false);
+  assert.equal(wantsCommunity(getCampaign('', angles)), false);
 });

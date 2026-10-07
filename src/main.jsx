@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
-import { getCampaign, outboundUrl } from './funnel.js';
+import { getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl } from './youtube.js';
@@ -12,6 +12,8 @@ const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-$
 
 const skoolAboutUrl = 'https://www.skool.com/ai-automation-station-7346/about';
 const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
+// The plan picker works logged out and skips the About page's extra Join click.
+const skoolPlansUrl = 'https://www.skool.com/ai-automation-station-7346/plans';
 const subscribeUrl = `${channelUrl}?sub_confirmation=1`;
 const githubUrl = 'https://github.com/mikeholp87';
 const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
@@ -33,8 +35,8 @@ function trackClick(placement, buttonText, url, action) {
   return () => trackEvent('CTA Clicked', { button_text: buttonText, link_url: url, placement, action });
 }
 
-function trackCommunityVisit(placement, buttonText) {
-  const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: skoolAboutUrl, placement };
+function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl) {
+  const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
   trackMetaOutbound(properties);
@@ -331,13 +333,13 @@ function App() {
   const latest = videos?.[0];
 
   useEffect(() => {
-    setCampaign(getCampaign(window.location.search, []));
+    setCampaign(getCampaign(window.location.search, ['community']));
     setCampaignReady(true);
   }, []);
 
   useEffect(() => {
     if (!campaignReady) return undefined;
-    track('Campaign Landing Viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
+    track('Campaign Landing Viewed', { angle: campaign.angle, source: campaign.params.utm_source || 'direct', campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none', hero: wantsCommunity(campaign) ? 'community' : 'hub' });
     let engaged = false;
     const markEngaged = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -373,6 +375,8 @@ function App() {
   }, [campaign, campaignReady]);
 
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
+  const plansUrl = outboundUrl(skoolPlansUrl, campaign);
+  const communityHero = wantsCommunity(campaign);
   const active = useActiveSection(navIds);
   useScrollReveal();
   return (
@@ -397,14 +401,29 @@ function App() {
           <span className="live-dot" aria-hidden="true" />
           {latest ? <><span className="status-label">New video {daysAgo(latest.published)}:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
-        <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
-        <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
-        <div className="terminal">
-          <span className="terminal-prompt" aria-hidden="true">~</span>
-          <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
-          <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
-        </div>
-        <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
+        {communityHero ? (
+          <>
+          <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
+          <p className="hero-text">AI Income Lab is my Skool community: step-by-step courses, templates, and 2,900+ members to ask when a build stalls. Plans start at $29 a month, billed monthly. Cancel anytime.</p>
+          <div className="terminal">
+            <span className="terminal-prompt" aria-hidden="true">~</span>
+            <a className="terminal-url" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Skool URL', plansUrl)}>skool.com/ai-automation-station-7346</a>
+            <a className="terminal-go" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab</a>
+          </div>
+          <nav className="hero-links" aria-label="Jump to"><a className="hero-link-accent" href="#community">See what&rsquo;s included</a><a href="#latest">Watch the latest video</a><a href="#about">About Mike</a></nav>
+          </>
+        ) : (
+          <>
+          <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
+          <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
+          <div className="terminal">
+            <span className="terminal-prompt" aria-hidden="true">~</span>
+            <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
+            <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
+          </div>
+          <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
+          </>
+        )}
       </section>
 
       <section className="section latest" id="latest">
@@ -462,7 +481,7 @@ function App() {
               {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p>{plan.copy}</p></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
             </ul>
             <div className="button-row">
-              <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'See AI Income Lab on Skool')}>See AI Income Lab on Skool</a>
+              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'Choose a plan on Skool', plansUrl)}>Choose a plan on Skool</a>
             </div>
             <p className="fine-print">Billed monthly. Cancel anytime from your Skool account.</p>
           </div>

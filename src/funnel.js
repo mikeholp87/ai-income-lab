@@ -9,6 +9,10 @@ export function getCampaign(searchString, validAngles) {
   };
 }
 
+// Visitors from YouTube descriptions clicked "join the community", so they get the AI Income Lab hero.
+// ?angle=community forces it for testing or other links.
+export const wantsCommunity = campaign => campaign.angle === 'community' || campaign.params.utm_source?.toLowerCase() === 'youtube';
+
 export function outboundUrl(base, campaign, extras = {}) {
   const url = new URL(base);
   Object.entries({ ...campaign.params, ...extras }).forEach(([key, value]) => url.searchParams.set(key, value));
