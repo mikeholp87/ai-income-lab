@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { pageCount, parseUploads, renderArchive } from './archive.js';
-import { GET } from '../api/videos.js';
+import { GET, HEAD } from '../api/videos.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
@@ -45,4 +45,7 @@ test('routes page numbers before loading any videos', async () => {
   for (const bad of ['/videos/0', '/videos/abc', '/videos/02', '/api/videos?page=-1']) {
     assert.equal((await GET(new Request(`https://www.ai-automation-station.com${bad}`))).status, 404, bad);
   }
+  const head = await HEAD(new Request('https://www.ai-automation-station.com/videos/abc', { method: 'HEAD' }));
+  assert.equal(head.status, 404);
+  assert.equal(await head.text(), '');
 });

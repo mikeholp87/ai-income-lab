@@ -42,3 +42,9 @@ export async function GET(request) {
   if (page > pageCount(memo.videos)) return notFound();
   return html(renderArchive(memo.videos, page), 200, 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400');
 }
+
+// Link checkers and some crawlers send HEAD; answer with GET's status and headers, no body.
+export async function HEAD(request) {
+  const response = await GET(request);
+  return new Response(null, { status: response.status, headers: response.headers });
+}
