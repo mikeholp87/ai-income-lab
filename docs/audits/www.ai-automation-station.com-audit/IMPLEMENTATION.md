@@ -13,7 +13,7 @@ Verified locally before commit; deployment checks remain pending. Existing respo
 | 5 | Banner identifies Google Analytics and Meta Pixel, with Allow both / Decline; loader and events check consent | Unit checks cover no choice, decline, allow, and revocation/regrant; privacy wording updated |
 | 6 | Decorative drifting cursors removed; reduced-motion scrolling preserved | No indefinite hero animation |
 | 7 | Native mobile menu closes on selection and Escape | Browser verified Contact navigation and Escape focus returning to summary |
-| 8 | Added verified named course previews, classroom entry link, and plan help contact | Saved course access settings verified in Chrome with user approval. Plan descriptions, course previews, FAQ, and Start Here now explain tier/level unlocks; annual pricing added. VIP coaching remains described as weekly calls because group vs one-to-one format is not specified |
+| 8 | Added verified named course previews, classroom entry link, and plan help contact | Saved course access settings verified in Chrome with user approval. Plan descriptions, course previews, FAQ, and Start Here now explain tier/level unlocks; annual pricing added. Owner confirmed weekly one-to-one VIP coaching on October 7; plan copy, FAQ, and llms.txt now specify this |
 | 9 | Added automojic@proton.me across support/policy surfaces; trial payment/cancellation note beside CTA | Implemented |
 | 10 | Mobile inline Cal.com calendar preserves UTMs; deduplicated Call Requested event; provider-record reconciliation script | Mobile embed verified. Calendar requires manual approval. Actual confirmed bookings/payments need provider exports; automated Skool receipts are not configured |
 | 11 | Short introduction with video beside it on desktop and below it on mobile | Implemented; no claim of conversion lift without live results |
@@ -41,7 +41,7 @@ Chrome classroom, pricing settings, and course access settings were inspected wi
 - Ultimate N8N Template Library: private, with VIP access enabled; individual manual grants are also possible.
 - Standard/Premium/VIP annual prices: $290/$490/$890. Monthly prices remain $29/$49/$89.
 
-The site describes membership inclusions without claiming that manual exceptions cannot exist. VIP weekly calls are listed in saved plan benefits, but their group vs one-to-one format was not specified in the inspected settings.
+The site describes membership inclusions without claiming that manual exceptions cannot exist. VIP weekly calls are listed in saved plan benefits. The owner confirmed one-to-one coaching on October 7, 2026; website copy now states that format.
 
 The offline reconciliation tool accepts normalized provider exports; it has not imported real customer data. See [conversion measurement](../../conversion-measurement.md). Live conversion comparisons require actual outcome records and traffic after deployment.
 

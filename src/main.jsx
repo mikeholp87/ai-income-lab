@@ -115,7 +115,7 @@ const repos = [
 const plans = [
   { name: 'Standard', price: 29, copy: 'Community, courses, and tutorials. Beginner’s Automation Course unlocks at level 2.' },
   { name: 'Premium', price: 49, copy: 'Everything in Standard, plus Complete AI Avatar Video Course and immediate access to the beginner and VAPI voice-agent courses.' },
-  { name: 'VIP', price: 89, copy: 'Everything in Premium, plus weekly coaching, software deals, and 6,400+ n8n templates' },
+  { name: 'VIP', price: 89, copy: 'Everything in Premium, plus weekly one-to-one coaching, software deals, and 6,400+ n8n templates' },
 ];
 
 const timeline = [
@@ -129,7 +129,7 @@ const timeline = [
 const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
-  ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
+  ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly one-to-one coaching.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],

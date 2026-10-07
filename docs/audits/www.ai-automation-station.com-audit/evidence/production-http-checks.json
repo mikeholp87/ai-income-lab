@@ -1,0 +1,97 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    },
+    "deployed_changes": {
+      "Beginner\u2019s Automation Course unlocks at level 2": true,
+      "Analytics &amp; marketing": false,
+      "Ultimate N8N Template Library": true,
+      "$890": true,
+      "/start-here.html": true
+    },
+    "scripts": [
+      "/assets/index-DBHHJyfr.js"
+    ]
+  },
+  {
+    "path": "/start-here.html",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
+  },
+  {
+    "path": "/guides/youtube-feed.html",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
+  },
+  {
+    "path": "/guides/consent-tracking.html",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
+  },
+  {
+    "path": "/videos",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
+  },
+  {
+    "path": "/audit-missing-page-20261007",
+    "status": 404,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "text/html; charset=utf-8",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    },
+    "branded404": true
+  },
+  {
+    "path": "/api/youtube",
+    "status": 200,
+    "headers": {
+      "Content-Security-Policy-Report-Only": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com",
+      "Content-Type": "application/json",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
+    }
+  }
+]

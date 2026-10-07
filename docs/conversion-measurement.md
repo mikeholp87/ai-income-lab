@@ -29,7 +29,7 @@ node scripts/reconcile-conversions.js /tmp/conversion-records.json 2026-10-01 20
 
 The report groups clicks, confirmed bookings, paid memberships and excluded outcomes by destination and campaign. The start is inclusive; the end is exclusive. Missing attribution stays `unknown`. It does not report a conversion rate from these aggregate events because repeated clicks and cross-device visits are not unique prospective customers.
 
-No production outcome data has been imported during this change. Automated purchase attribution requires a supported Skool/payment integration with trusted receipts; configure that in the provider account before replacing this manual reconciliation process.
+On October 7, 2026, the reconciliation script was validated with one real, successful Skool new-member receipt kept outside the repository. This sample is not a complete export or an automatic provider connection; attribution was unknown. See the production verification report in docs/audits/www.ai-automation-station.com-audit/. Automated purchase attribution requires a supported Skool/payment integration with trusted receipts; configure that in the provider account before replacing this manual reconciliation process.
 
 Cal.com documentation: [UTM tracking](https://cal.com/help/bookings/utm-tracking).
 
