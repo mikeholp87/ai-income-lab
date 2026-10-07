@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseUploads, renderArchive } from './archive.js';
+import { pageCount, parseUploads, renderArchive } from './archive.js';
+import { GET } from '../api/videos.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
@@ -16,4 +17,32 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form builds/);
+  assert.doesNotMatch(html, /class="pager/);
+});
+
+test('splits the archive into pages of 15 linked to each other', () => {
+  const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 31 - index)).toISOString(), summary: '' }));
+  const cards = html => html.match(/<li>/g).length;
+  assert.equal(pageCount(videos), 3);
+  const first = renderArchive(videos, 1);
+  assert.equal(cards(first), 15);
+  assert.match(first, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos">/);
+  assert.match(first, /<a href="\/videos\/2" rel="next">Older →<\/a>/);
+  assert.doesNotMatch(first, /rel="prev"/);
+  const last = renderArchive(videos, 3);
+  assert.equal(cards(last), 1);
+  assert.match(last, /v30/);
+  assert.match(last, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/3">/);
+  assert.match(last, /<a href="\/videos\/2" rel="prev">← Newer<\/a>/);
+  assert.match(last, /<span aria-current="page">3<\/span>/);
+  assert.match(last, /<title>Every video, page 3 of 3 \| Mike Holp<\/title>/);
+});
+
+test('routes page numbers before loading any videos', async () => {
+  const one = await GET(new Request('https://www.ai-automation-station.com/videos/1'));
+  assert.equal(one.status, 308);
+  assert.equal(one.headers.get('location'), 'https://www.ai-automation-station.com/videos');
+  for (const bad of ['/videos/0', '/videos/abc', '/videos/02', '/api/videos?page=-1']) {
+    assert.equal((await GET(new Request(`https://www.ai-automation-station.com${bad}`))).status, 404, bad);
+  }
 });

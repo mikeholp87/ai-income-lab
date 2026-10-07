@@ -13,6 +13,7 @@
   ],
   "rewrites": [
     { "source": "/o/:token.gif", "destination": "/api/o/:token" },
-    { "source": "/videos", "destination": "/api/videos" }
+    { "source": "/videos", "destination": "/api/videos" },
+    { "source": "/videos/:page", "destination": "/api/videos?page=:page" }
   ]
 }
