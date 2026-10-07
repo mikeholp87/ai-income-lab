@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
-import { getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
+import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
@@ -37,7 +37,7 @@ function trackClick(placement, buttonText, url, action) {
 }
 
 function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl) {
-  const properties = { content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
+  const properties = { ...campaignProperties(getCampaign(window.location.search, ['community'])), content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
   trackMetaOutbound(properties);

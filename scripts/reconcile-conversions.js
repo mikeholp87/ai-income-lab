@@ -12,7 +12,7 @@ export function reconcile(records, from, to) {
       || !Number.isFinite(Date.parse(record.updatedAt || record.occurredAt))
       || (record.kind === 'booking' && (record.provider !== 'cal.com' || !['confirmed', 'cancelled'].includes(record.status)))
       || (record.kind === 'purchase' && (record.provider !== 'skool' || !['paid', 'refunded', 'failed'].includes(record.status)))
-      || ['source', 'medium', 'campaign'].some(key => record[key] != null && typeof record[key] !== 'string')) throw new Error('Invalid conversion record. See docs/conversion-measurement.md.');
+      || ['source', 'medium', 'campaign', 'content'].some(key => record[key] != null && typeof record[key] !== 'string')) throw new Error('Invalid conversion record. See docs/conversion-measurement.md.');
     const key = JSON.stringify([record.provider, record.kind, record.id]);
     const prior = latest.get(key);
     if (!prior || Date.parse(record.updatedAt || record.occurredAt) >= Date.parse(prior.updatedAt || prior.occurredAt)) latest.set(key, record);
@@ -21,7 +21,7 @@ export function reconcile(records, from, to) {
   for (const record of latest.values()) {
     const time = Date.parse(record.occurredAt);
     if (time < start || time >= end) continue;
-    const attribution = { provider: record.provider, source: record.source || 'unknown', medium: record.medium || 'unknown', campaign: record.campaign || 'unknown' };
+    const attribution = { provider: record.provider, source: record.source || 'unknown', medium: record.medium || 'unknown', campaign: record.campaign || 'unknown', content: record.content || 'unknown' };
     const key = JSON.stringify(attribution);
     const group = groups.get(key) || { ...attribution, clicks: 0, confirmedBookings: 0, paidMemberships: 0, excludedOutcomes: 0 };
     if (record.kind === 'click') group.clicks++;

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>Test your first AI API request locally | Mike Holp</title><meta name="description" content="Run a free local API example, distinguish keys from subscriptions, and diagnose authentication and model errors before connecting an AI agent."><link rel="canonical" href="https://www.ai-automation-station.com/guides/first-api-request.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><meta property="og:type" content="website"><meta property="og:title" content="Test your first AI API request locally"><meta property="og:description" content="A runnable example for keys, endpoints, model IDs, and common request failures."><meta property="og:url" content="https://www.ai-automation-station.com/guides/first-api-request.html"><meta property="og:image" content="https://www.ai-automation-station.com/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><script type="module" src="/src/reading.js"></script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">Mike Holp</a><a href="/start-here.html">Start here</a><a href="/videos">All videos</a></header><main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Updated <time datetime="2026-10-07">October 7, 2026</time></p>
+<h1>Make your first API request before connecting an agent.</h1>
+<p>You have configured a model or gateway. What do you actually run next? Viewers asked this under my <a href="https://www.youtube.com/watch?v=geKngm3sg3w">9Router setup video</a>, alongside questions about authentication and paid plans. This follow-up starts with a local example you can run and inspect.</p>
+<p class="note">The example uses a local mock server, not a language model. It needs Node.js 22 or later, costs nothing in provider usage, and does not read your API keys. Passing it verifies the example’s request handling, not a connection to 9Router or a paid provider.</p>
+<h2>1. Know which credential you need</h2>
+<ul><li><strong>Chat subscription:</strong> access to a provider’s chat product under its current plan.</li><li><strong>Provider API key:</strong> a credential for the provider’s developer API, with its own billing and limits.</li><li><strong>Gateway key:</strong> access to your router. The router still needs a supported upstream provider connection.</li></ul>
+<p>For example, Anthropic documents Claude subscriptions and Console API access as separate products. Check the <a href="https://support.claude.com/en/articles/9876003-i-have-a-paid-claude-subscription-pro-max-team-or-enterprise-plans-why-do-i-have-to-pay-separately-to-use-the-claude-api-and-console">current Claude billing explanation</a> before assuming a chat plan covers API requests. A free local router does not establish that the model calls behind it are free.</p>
+<h2>2. Run the local example</h2>
+<p>Clone this site’s public repository and run the example. It uses only Node’s built-in modules; no npm install is required for this command.</p>
+<pre><code>git clone https://github.com/mikeholp87/ai-income-lab.git
+cd ai-income-lab
+node public/examples/first-api-request.mjs</code></pre>
+<p>You can also <a href="/examples/first-api-request.mjs" download>download and inspect the example</a>. Its server binds only to <code>127.0.0.1</code> on an available port, checks three requests, and closes afterward.</p>
+<h2>3. Read the result</h2>
+<pre><code>Wrong key: HTTP 401
+Wrong model: HTTP 404
+Valid request: HTTP 200
+PASS: local request checks. No provider API was called.</code></pre>
+<p>These are the expected results from the included executable checks. The first two requests deliberately fail. The third returns a fixed message, <code>connection-ok (local mock)</code>. Nothing here measures model quality, fallback reliability, or token savings.</p>
+<h2>4. Understand the request</h2>
+<p>The client sends JSON to <code>POST /v1/chat/completions</code>. It supplies a bearer key, a model ID, and a message. The server reads those values and chooses a response:</p>
+<pre><code>{
+  "model": "demo-model",
+  "messages": [{ "role": "user", "content": "Reply with connection-ok" }],
+  "stream": false
+}</code></pre>
+<p><code>demo-only</code> and <code>demo-model</code> belong only to this mock. They will not authenticate a real service. The example also stops after five seconds and rejects redirects, so it does not silently forward its authorization header elsewhere.</p>
+<h2>5. Move to your actual gateway</h2>
+<p>Once the local example makes sense, use your gateway’s own request example. The <a href="https://github.com/decolua/9router/blob/master/skills/9router-chat/SKILL.md">9Router project documents</a> a chat-completions endpoint and model discovery. Copy the base URL and exact model or combo ID from the version you installed; do not reuse the mock values.</p>
+<ol><li>Confirm the gateway address belongs to your installation. Keep local practice on loopback; use HTTPS for a remote service.</li><li>Configure a supported provider connection and check that provider’s billing before sending a real request.</li><li>Keep the real key in a server-side environment variable. Never place it in browser JavaScript, a public repository, or a screenshot.</li><li>Send one short, non-sensitive test prompt using the gateway’s documented request format and token limit.</li><li>Check both the response and the provider usage report. A successful response does not prove zero cost.</li><li>Only then configure the same endpoint and model in your editor or agent.</li></ol>
+<h2>When it fails</h2>
+<ul><li><strong>Connection refused:</strong> check that the gateway is running and that the host and port match its UI.</li><li><strong>401 or 403:</strong> check which service issued the credential and whether that connection is authorized. A gateway key and a provider key have different jobs.</li><li><strong>404:</strong> check the endpoint path and exact model ID. This mock uses 404 for an unknown model; real services may report a different status.</li><li><strong>429:</strong> inspect the provider’s quota and rate-limit details. Do not assume retries are free.</li><li><strong>HTTP 200 with the wrong format:</strong> verify that the service supports the API format your client expects. This example expects a non-streaming response.</li></ul>
+<h2>Source and next step</h2><p><a href="https://github.com/mikeholp87/ai-income-lab/blob/main/public/examples/first-api-request.mjs">Read the complete example</a>. For a production example with a saved fallback, continue with <a href="/guides/youtube-feed.html">the React YouTube-feed guide</a>.</p>
+<aside class="note"><h2>Get help with your next build</h2><p>AI Income Lab has courses, templates, and a community for practical AI projects. <a href="https://www.skool.com/ai-automation-station-7346/plans">Compare membership options</a> or <a href="/start-here.html">choose your next project</a>.</p></aside>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

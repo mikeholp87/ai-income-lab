@@ -19,6 +19,26 @@ export function outboundUrl(base, campaign, extras = {}) {
   return url.toString();
 }
 
+export function campaignProperties(campaign) {
+  return {
+    source: campaign.params.utm_source || 'direct',
+    medium: campaign.params.utm_medium || 'none',
+    campaign: campaign.params.utm_campaign || 'none',
+    content: campaign.params.utm_content || 'none',
+  };
+}
+
+// Pass public campaign labels through reading pages without cookies or copying arbitrary query data.
+export function readingLink(href, pageUrl) {
+  const page = new URL(pageUrl);
+  const target = new URL(href, page);
+  if (target.origin !== page.origin && !(target.protocol === 'https:' && target.hostname === 'www.skool.com' && /^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname))) return target.href;
+  for (const key of trackedParams.filter(key => key.startsWith('utm_'))) {
+    if (page.searchParams.get(key) && !target.searchParams.has(key)) target.searchParams.set(key, page.searchParams.get(key));
+  }
+  return target.href;
+}
+
 export function nextTabIndex(current, key, count) {
   if (key === 'Home') return 0;
   if (key === 'End') return count - 1;

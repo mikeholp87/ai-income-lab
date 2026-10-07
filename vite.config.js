@@ -32,6 +32,10 @@ export default defineConfig(({ mode }) => {
   // The /api/youtube middleware reads process.env; Vite doesn't load .env files there by itself.
   Object.assign(process.env, loadEnv(mode, process.cwd(), 'YOUTUBE_'));
   return {
+    build: { rollupOptions: {
+      input: { main: 'index.html', reading: 'src/reading.js' },
+      output: { entryFileNames: chunk => chunk.name === 'reading' ? 'assets/reading.js' : 'assets/[name]-[hash].js' },
+    } },
     plugins: [{
       name: 'skool-open-pixel',
       configureServer: attachOpenPixel,

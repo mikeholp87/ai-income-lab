@@ -17,3 +17,10 @@ test('reconciles receipts without turning clicks into purchases or counting refu
   assert.throws(() => reconcile([{ ...purchase, status: 'clicked' }], '2026-10-01', '2026-11-01'));
   assert.throws(() => reconcile(records, 'bad-date', '2026-11-01'));
 });
+
+test('keeps video-level attribution and missing membership attribution separate', () => {
+  const record = { provider: 'skool', kind: 'purchase', id: 'one', occurredAt: '2026-10-08T00:00:00Z', status: 'paid', source: 'youtube', campaign: 'build-guides' };
+  const result = reconcile([{ ...record, content: 'video-a' }, { ...record, id: 'two', content: 'video-b' }, { ...record, id: 'three' }], '2026-10-07', '2026-11-04');
+  assert.deepEqual(result.groups.map(group => [group.content, group.paidMemberships]), [['video-a', 1], ['video-b', 1], ['unknown', 1]]);
+  assert.throws(() => reconcile([{ ...record, content: {} }], '2026-10-07', '2026-11-04'));
+});
