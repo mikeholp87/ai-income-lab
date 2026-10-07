@@ -236,7 +236,18 @@ function FeaturedVideo({ video }) {
         {playing
           ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
           : <button type="button" onClick={play} aria-label={`Play ${video.title}`}>
-              <img src={`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`} onError={event => { event.currentTarget.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`; }} alt="" width="1280" height="720" />
+              <img
+                src={`https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp`}
+                srcSet={`https://i.ytimg.com/vi_webp/${video.id}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp 1280w`}
+                sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 112px) * 7 / 12 - 2px), 614px"
+                onError={event => {
+                  const image = event.currentTarget;
+                  if (image.src.endsWith('/hqdefault.jpg')) return;
+                  image.removeAttribute('srcset');
+                  image.src = `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+                }}
+                alt="" width="1280" height="720" loading="lazy" decoding="async"
+              />
               <span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
               {video.duration && <span className="duration">{video.duration}</span>}
             </button>}
@@ -260,7 +271,7 @@ function VideoGrid({ videos, failed }) {
       {items.map((video, index) => video
         ? <li key={video.id}><a className="video-card" href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', video.title, watchUrl(video.id), 'watch_video')}>
             <span className="thumb-frame">
-              <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" width="480" height="270" loading="lazy" decoding="async" />
+              <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} srcSet={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg 320w, https://i.ytimg.com/vi/${video.id}/hqdefault.jpg 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt="" width="480" height="270" loading="lazy" decoding="async" />
               {video.duration && <span className="duration">{video.duration}</span>}
             </span>
             <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
@@ -315,7 +326,7 @@ function CommunityVideo() {
   return (
     <figure className="community-video">
       <div className="player-screen">
-        <video ref={video} controls={started} preload="metadata" playsInline poster="/hero-video-poster.jpg" width="1280" height="720" aria-label="A look inside AI Income Lab" onPlay={() => trackEvent('Hero Video Played', { placement: 'community' })} onEnded={() => trackEvent('Hero Video Completed', { placement: 'community' })}>
+        <video ref={video} controls={started} preload="none" loading="lazy" playsInline poster="/hero-video-poster.webp" width="1280" height="720" aria-label="A look inside AI Income Lab" onPlay={() => trackEvent('Hero Video Played', { placement: 'community' })} onEnded={() => trackEvent('Hero Video Completed', { placement: 'community' })}>
           <source src="/hero-video.mp4" type="video/mp4" />
           <track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
         </video>
@@ -474,7 +485,7 @@ function App() {
           <div>
             <SectionHead eyebrow="Community" title="Build it with" accent="2,900+ others.">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
             <div className="members">
-              <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
+              <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
               <p>Some of the members building AI workflows on Skool</p>
             </div>
             <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">

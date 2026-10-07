@@ -105,11 +105,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 @keyframes drift-green { 0%, 100% { transform: translate(16cqw, 50cqh); } 25% { transform: translate(6cqw, 16cqh); } 50% { transform: translate(34cqw, 26cqh); } 75% { transform: translate(70cqw, 60cqh); } }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero > :not(.hero-cursors) { animation: rise .8s var(--ease) both; }
-  .hero h1 { animation: none; }
-  .hero h1 span:first-child { animation: rise .8s .08s var(--ease) both; }
-  .hero h1 span:last-child { animation: rise .8s .16s var(--ease) both; }
-  .hero-text { animation-delay: .24s; }
+  .hero > :not(.hero-cursors, h1, .hero-text) { animation: rise .8s var(--ease) both; }
   .terminal { animation-delay: .3s; }
   .hero-links { animation-delay: .36s; }
   .hero-cursors { animation: fade-in 1.2s .6s both; }
