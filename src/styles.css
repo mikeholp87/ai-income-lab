@@ -199,6 +199,11 @@ a.video-card:hover h3 { color: var(--signal); }
 .about-links a { color: var(--muted); }
 .about-links a:hover { color: var(--text); }
 
+/* Booking */
+.booking-note { max-width: 56ch; margin-top: 16px; color: var(--muted); font-size: 15px; }
+.booking-calendar { min-height: 480px; margin-top: 40px; }
+.booking-calendar:empty::before { content: 'Loading the calendar…'; color: var(--muted); font: 400 13px var(--mono); }
+
 /* FAQ */
 .faq-grid { display: grid; grid-template-columns: 4fr 7fr; gap: 72px; align-items: start; }
 .faq-list { border-top: 1px solid var(--line); }

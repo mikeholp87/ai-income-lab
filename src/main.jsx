@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { getCampaign, outboundUrl } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { getCal } from './cal.js';
 import { channelUrl } from './youtube.js';
 import './fonts.css';
 import './styles.css';
@@ -15,6 +16,9 @@ const subscribeUrl = `${channelUrl}?sub_confirmation=1`;
 const githubUrl = 'https://github.com/mikeholp87';
 const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
 const xUrl = 'https://x.com/mikeholp';
+// cal.com event for sponsorship and collab intro calls.
+const calLink = 'beremote/discovery-call';
+const bookingUrl = `https://cal.com/${calLink}`;
 
 const googleEventNames = {
   'CTA Clicked': 'cta_click',
@@ -210,6 +214,38 @@ function VideoGrid({ videos, failed }) {
           </a></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
     </ul>
+  );
+}
+
+// The button is a real cal.com link, so it still works without JavaScript or if the embed is blocked.
+function BookingCalendar() {
+  const [open, setOpen] = useState(false);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!open || started.current) return;
+    started.current = true; // StrictMode runs effects twice in development
+    const cal = getCal();
+    cal('init', 'booking', { origin: 'https://cal.com' });
+    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink, config: { layout: 'month_view', theme: 'dark' } });
+    cal.ns.booking('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' } }, hideEventTypeDetails: false, layout: 'month_view' });
+    cal.ns.booking('on', { action: 'bookingSuccessfulV2', callback: () => trackEvent('Call Booked', { placement: 'booking' }) });
+  }, [open]);
+
+  function openCalendar(event) {
+    trackClick('booking', 'Book a free intro call', bookingUrl, 'book_call')();
+    // On phones cal.com stacks every 10-minute slot (about 4,000px), so the link opens cal.com's own page instead.
+    if (window.matchMedia('(max-width: 640px)').matches) return;
+    event.preventDefault();
+    setOpen(true);
+  }
+
+  if (!open) return <div className="button-row"><a className="button button-primary" href={bookingUrl} target="_blank" rel="noreferrer" onClick={openCalendar}>Book a free intro call</a></div>;
+  return (
+    <>
+      <div className="booking-calendar" id="booking-calendar" />
+      <a className="text-link" href={bookingUrl} target="_blank" rel="noreferrer">Calendar not loading? Book on cal.com ↗</a>
+    </>
   );
 }
 
@@ -409,6 +445,14 @@ function App() {
         </div>
       </section>
 
+      <section className="section" id="work-together">
+        <div className="shell">
+          <SectionHead title="Sponsor a video or work together">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
+          <p className="booking-note">Every video follows the same rule: build something real, leave the mistakes in, and say plainly whether the tool is worth your time.</p>
+          <BookingCalendar />
+        </div>
+      </section>
+
       <section className="section" id="faq">
         <div className="shell faq-grid">
           <SectionHead title="Questions people ask" />
@@ -429,7 +473,7 @@ function App() {
         <div className="footer-columns">
           <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
           <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
-          <div><h2>Connect</h2><a href={channelUrl} target="_blank" rel="noreferrer">YouTube</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={xUrl} target="_blank" rel="noreferrer">X</a></div>
+          <div><h2>Connect</h2><a href={channelUrl} target="_blank" rel="noreferrer">YouTube</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a><a href={xUrl} target="_blank" rel="noreferrer">X</a><a href="#work-together">Book a call</a></div>
         </div>
         <div className="footer-base"><p>&copy; 2026 Mike Holp</p><div><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button></div></div>
       </div>
