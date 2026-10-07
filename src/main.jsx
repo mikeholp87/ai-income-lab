@@ -321,7 +321,7 @@ function App() {
   }, [campaign, campaignReady]);
 
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
-  const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About']];
+  const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About'], ['#work-together', 'Contact']];
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
