@@ -39,7 +39,7 @@ export function renderArchive(videos) {
 <meta property="og:url" content="${site}/videos">
 <meta property="og:title" content="Every video: AI tools tested on real builds">
 <meta property="og:description" content="${escape(description)}">
-<meta property="og:image" content="${site}/og-card.jpg">
+<meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <style>
 @font-face { font-family: 'Archivo Black'; font-display: swap; src: url('/fonts/archivo-black.woff2') format('woff2'); }
