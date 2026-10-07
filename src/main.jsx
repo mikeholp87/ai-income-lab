@@ -158,13 +158,65 @@ function GitHubIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z" /></svg>;
 }
 
-function SectionHead({ title, children }) {
+// eyebrow names the section; accent is the headline's closing clause, set in the signal color.
+function SectionHead({ eyebrow, title, accent, children }) {
   return (
-    <div className="section-head">
-      <h2>{title}</h2>
+    <div className="section-head reveal">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2>{title} <span className="accent">{accent}</span></h2>
       {children && <p className="lede">{children}</p>}
     </div>
   );
+}
+
+const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About'], ['#work-together', 'Contact']];
+const navIds = navLinks.map(([href]) => href.slice(1));
+
+// Tools Mike tests, drifting over the hero like collaborators' cursors. Decorative only.
+const heroCursors = [['Claude Code', 'amber'], ['Codex', 'signal'], ['OpenCode', 'blue'], ['n8n', 'green']];
+
+function HeroCursors() {
+  return (
+    <div className="hero-cursors" aria-hidden="true">
+      {heroCursors.map(([label, color]) => (
+        <span key={label} className={`cursor cursor-${color}`}>
+          <svg viewBox="0 0 16 16"><path d="M1 1l5.5 14 2-6 6-2z" /></svg>
+          <span>{label}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+// Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
+function useScrollReveal() {
+  useEffect(() => {
+    window.__revealReady = true;
+    const targets = document.querySelectorAll('.reveal, .reveal-group');
+    const show = target => target.classList.add('is-visible');
+    if (!('IntersectionObserver' in window)) return targets.forEach(show);
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      show(entry.target);
+      observer.unobserve(entry.target);
+    }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    targets.forEach(target => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+}
+
+// The nav link for the section currently under the header.
+function useActiveSection(ids) {
+  const [active, setActive] = useState('');
+  useEffect(() => {
+    const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, [ids]);
+  return active;
 }
 
 function FeaturedVideo({ video }) {
@@ -202,7 +254,7 @@ function VideoGrid({ videos, failed }) {
   if (failed) return null;
   const items = videos ? videos.slice(1) : Array(6).fill(null);
   return (
-    <ul className="video-grid" aria-busy={!videos}>
+    <ul className="video-grid reveal-group" aria-busy={!videos}>
       {items.map((video, index) => video
         ? <li key={video.id}><a className="video-card" href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', video.title, watchUrl(video.id), 'watch_video')}>
             <span className="thumb-frame">
@@ -321,48 +373,52 @@ function App() {
   }, [campaign, campaignReady]);
 
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
-  const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About'], ['#work-together', 'Contact']];
+  const active = useActiveSection(navIds);
+  useScrollReveal();
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
-    <header className="nav shell" id="top">
+    <header className="site-header" id="top">
+      <div className="nav shell">
       <a className="brand" href="#top" aria-label="Mike Holp, home"><span aria-hidden="true" />Mike Holp</a>
-      <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
+      <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
         <a className="icon-link" href={channelUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on YouTube" onClick={trackClick('navigation', 'YouTube', channelUrl, 'visit_youtube')}><YouTubeIcon /></a>
         <a className="icon-link" href={githubUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on GitHub" onClick={trackClick('navigation', 'GitHub', githubUrl, 'visit_github')}><GitHubIcon /></a>
         <details className="nav-mobile"><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav></details>
       </div>
+      </div>
     </header>
 
     <main>
       <section className="hero shell" id="main-content" tabIndex="-1">
+        <HeroCursors />
         <a className="hero-status" href="#latest">
           <span className="live-dot" aria-hidden="true" />
           {latest ? <><span className="status-label">New video {daysAgo(latest.published)}:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
-        <h1><span>New AI tools,</span> <span>tested on real builds.</span></h1>
+        <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
         <p className="hero-text">I&rsquo;m Mike Holp. Most days I take a new AI model, agent, or automation tool, build something real with it on camera for my YouTube channel, and show you what held up and what broke. Claude Code, Codex, OpenCode, and n8n, with every setup step included.</p>
         <div className="terminal">
           <span className="terminal-prompt" aria-hidden="true">~</span>
           <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
           <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
         </div>
-        <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
+        <nav className="hero-links" aria-label="Jump to"><a href="#latest">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
       </section>
 
       <section className="section latest" id="latest">
         <div className="shell">
           <div className="latest-grid">
             <div>
-              <SectionHead title="Latest videos">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
+              <SectionHead eyebrow="New most days" title="Latest" accent="videos.">A new upload lands most days. Each one is a real build, so you see the setup, the result, and the fix when something breaks.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
             </div>
-            {failed ? <p className="feed-error">The latest videos didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch them on YouTube ↗</a></p> : <FeaturedVideo video={latest} />}
+            <div className="reveal">{failed ? <p className="feed-error">The latest videos didn&rsquo;t load. <a href={channelUrl} target="_blank" rel="noreferrer">Watch them on YouTube ↗</a></p> : <FeaturedVideo video={latest} />}</div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
@@ -370,13 +426,14 @@ function App() {
       </section>
 
       <section className="stats" aria-label="Channel numbers">
-        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+        <dl className="shell reveal-group">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
+      <div className="divider reveal" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
-          <div className="tool-grid">
+          <SectionHead eyebrow="Products" title="Two products" accent="I built and run.">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
+          <div className="tool-grid reveal-group">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
                 <img src={tool.image} alt={`${tool.name} product screen`} width={tool.size[0]} height={tool.size[1]} loading="lazy" decoding="async" />
@@ -396,7 +453,7 @@ function App() {
       <section className="section band" id="community">
         <div className="shell community-grid">
           <div>
-            <SectionHead title="Build it with 2,900+ others">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
+            <SectionHead eyebrow="Community" title="Build it with" accent="2,900+ others.">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
             <div className="members">
               <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
               <p>Some of the members building AI workflows on Skool</p>
@@ -409,15 +466,16 @@ function App() {
             </div>
             <p className="fine-print">Billed monthly. Cancel anytime from your Skool account.</p>
           </div>
-          <CommunityVideo />
+          <div className="reveal"><CommunityVideo /></div>
         </div>
       </section>
 
       <section className="section band" id="about">
         <div className="shell about-grid">
-          <img className="portrait" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
-          <div className="about-copy">
-            <h2>Hi, I&rsquo;m Mike.</h2>
+          <img className="portrait reveal" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
+          <div className="about-copy reveal">
+            <p className="eyebrow">About</p>
+            <h2>Hi, I&rsquo;m <span className="accent">Mike.</span></h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
             <p>Today I make videos on AI Automation Station, build TubeAnalytics and VisiScan, and host AI Income Lab on Skool.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
@@ -428,7 +486,7 @@ function App() {
         <div className="shell built" id="code">
           <h3>Things I&rsquo;ve built</h3>
           <p>Side projects and experiments, with the source open on GitHub.</p>
-          <ul className="repo-list">
+          <ul className="repo-list reveal-group">
             {repos.map(repo => {
               const source = `${githubUrl}/${repo.name}`;
               return (
@@ -445,9 +503,10 @@ function App() {
         </div>
       </section>
 
+      <div className="divider reveal" aria-hidden="true" />
       <section className="section" id="work-together">
         <div className="shell">
-          <SectionHead title="Sponsor a video or work together">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
+          <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
           <p className="booking-note">Every video follows the same rule: build something real, leave the mistakes in, and say plainly whether the tool is worth your time.</p>
           <BookingCalendar />
         </div>
@@ -455,16 +514,16 @@ function App() {
 
       <section className="section" id="faq">
         <div className="shell faq-grid">
-          <SectionHead title="Questions people ask" />
-          <div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
+          <div className="faq-list reveal-group">{faqs.map(([question, answer], index) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary><span className="faq-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
     </main>
 
     <footer className="footer">
       <div className="shell">
-        <div className="footer-cta">
-          <p>New AI builds, most days.</p>
+        <div className="footer-cta reveal">
+          <p>New AI builds, <span className="accent">most days.</span></p>
           <div className="button-row">
             <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
             <a className="button button-quiet" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Follow on GitHub', githubUrl, 'visit_github')}>Follow on GitHub</a>
