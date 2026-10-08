@@ -8,6 +8,13 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const buttons = [button('denied'), button('granted')];
   const link = { href: 'https://www.skool.com/ai-automation-station-7346/plans', dataset: path.startsWith('/watch/') ? { placement: 'watch_video', videoId: 'Ip8KBwDixJs' } : {}, textContent: 'Compare plans', addEventListener(type, fn) { this[type] = fn; } };
   const youtube = { ...link, href: 'https://www.youtube.com/watch?v=Ip8KBwDixJs', textContent: 'Watch on YouTube' };
+  const images = [false, true, false].map((complete, index) => ({
+    complete, naturalWidth: index === 2 ? 320 : 0, retries: 0, removed: 0,
+    get src() { return 'https://i.ytimg.com/vi/test/mqdefault.jpg'; },
+    set src(value) { this.retries++; },
+    addEventListener(type, fn) { this[type] = fn; },
+  }));
+  for (const image of images) image.previousElementSibling = { remove() { image.removed++; image.previousElementSibling = null; } };
   globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
   globalThis.window = {
     location: new URL(`https://www.ai-automation-station.com${path}?utm_source=youtube&utm_content=video-a`),
@@ -17,12 +24,18 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   globalThis.document = {
     head: { appendChild: script => scripts.push(script) },
     body: { append: element => elements.push(element) },
-    querySelectorAll: () => [link, youtube],
+    querySelectorAll: selector => selector === 'a[href]' ? [link, youtube] : images,
     querySelector: () => ({ append: element => elements.push(element) }),
     createElement: tag => tag === 'aside' ? { setAttribute() {}, querySelectorAll: () => buttons, querySelector: () => buttons[0], contains: () => false } : button(),
   };
   try {
     await import(`./reading.js?test=${eventName}`);
+    assert.equal(images[1].retries, 1, 'already failed WebP retries JPEG');
+    assert.equal(images[2].removed, 0, 'loaded images keep their WebP source');
+    images[0].error();
+    images[0].error();
+    assert.equal(images[0].removed, 1);
+    assert.equal(images[0].retries, 1, 'a failed JPEG cannot start a retry loop');
     const banner = elements[0];
     assert.equal(banner.hidden, false);
     link.click();

@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
+import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
+import { uploads } from './uploads-snapshot.js';
+import { watchNotes } from './watch-notes.js';
+import { videoNotes } from './video-notes.js';
+import { durationSeconds } from './youtube.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
 
@@ -157,6 +161,57 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /href="\/consent.css"/);
   assert.doesNotMatch(html, /class="pager/);
+  assert.equal((html.match(/loading="eager"/g) || []).length, 1);
+  assert.equal((html.match(/loading="lazy"/g) || []).length, 1);
+  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp"><img src="https:\/\/i.ytimg.com\/vi\/a1\/mqdefault.jpg"/);
+});
+
+test('saved chapter lists produce only valid Clips within video duration', () => {
+  for (const video of uploads) {
+    const schema = JSON.parse(renderWatch(video).match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+    for (const clip of schema.hasPart || []) {
+      assert.ok(clip.startOffset >= 0 && clip.endOffset - clip.startOffset >= 10, video.id);
+      assert.ok(clip.endOffset <= durationSeconds(video.duration), video.id);
+    }
+  }
+  const broken = uploads.find(video => video.id === 'oDAKXkIyOHE');
+  assert.ok(broken);
+  assert.doesNotMatch(renderWatch(broken), /"hasPart"|id="chapters"/);
+});
+
+test('priority titles and historical offers stay consistent without renaming recordings', () => {
+  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk', 'vauqktcB6ak', 'Ip8KBwDixJs', 'enKnxKJJFZw', 'dILjZszMZ5o', '1aG1XbAQj-k']) {
+    const video = uploads.find(video => video.id === id);
+    const notes = watchNotes[id] || videoNotes[id];
+    const html = renderWatch({ ...video, summary: 'An obsolete free community promise' });
+    const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+    assert.equal(schema.name, video.title);
+    assert.equal(schema.description, notes.summary);
+    assert.doesNotMatch(html, /An obsolete free community promise/);
+    assert.ok(renderArchive([video]).includes(notes.summary));
+    assert.ok(renderVideoSitemap([video]).includes(notes.summary));
+    if (notes.searchTitle) assert.ok(html.match(/<title>(.*?)<\/title>/)[1].length <= 60);
+    if (notes.notice) {
+      assert.ok(html.includes(notes.notice));
+      assert.match(html, /October 8, 2026|2026-10-08/);
+      assert.match(html, /\$29/);
+    }
+  }
+});
+
+test('all upload requests share one cancellation deadline', async t => {
+  const controller = new AbortController();
+  let calls = 0;
+  t.mock.method(globalThis, 'fetch', async (input, { signal }) => {
+    assert.equal(signal, controller.signal);
+    calls++;
+    if (calls === 1) return Response.json({ items: [item('aaaaaaaaaaa', 'Build', '2026-10-08T00:00:00Z')], nextPageToken: 'next' });
+    if (calls === 2) return Response.json({ items: [] });
+    controller.abort();
+    signal.throwIfAborted();
+  });
+  await assert.rejects(fetchUploads('test-only', controller.signal), { name: 'AbortError' });
+  assert.equal(calls, 3);
 });
 
 test('splits the archive into pages of 15 linked to each other', () => {

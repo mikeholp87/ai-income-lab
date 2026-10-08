@@ -10,6 +10,16 @@ Completes the remaining site work from the production audit after `1c21ecd` supp
 - Small homepage thumbnails prefer WebP with a JPEG fallback. Reading pages load consent CSS directly rather than through a blocking CSS import. The watch-page player remains present in the initial HTML.
 - Watch-page YouTube outbound clicks emit `youtube_outbound_clicked` and `cta_click` only after consent, alongside the existing Skool events. Neither event represents a subscription or purchase.
 
+## Remaining audit fixes implemented
+
+- Both historical free-community recordings now have dated access notices and corrected summaries shared by watch pages, archives, and the video sitemap. The original recording titles stay intact. Selected five companion pages use concise task titles; the site's Claude/Clade summary typo is corrected without changing YouTube metadata.
+- Start Here now contains four task paths: API gateways, creator websites, business automation, and avatar/voice projects. Free runnable guides appear before classroom links; each path explains prerequisites and a first checkpoint. The navigation has 44 px minimum tap targets.
+- Archive cards prefer WebP with a JPEG fallback for unsupported formats and failed loads, including failures that happen before the script loads. Only the first thumbnail on each archive page loads eagerly.
+- Chapter validation also runs on persisted inventory, rejecting out-of-order timestamps, short chapters, blank labels, and chapters beyond the video duration. Across all 213 saved recordings, 188 pages retain valid chapters and emit 1,855 valid Clips. Invalid lists are omitted rather than assigned invented timestamps.
+- One eight-second deadline now bounds the whole uploads refresh. Concurrent requests share the refresh, failures preserve the saved inventory, and subsequent visitors use a five-minute retry cooldown. New cold instances retain the actual snapshot fetch time.
+- Vercel permanently redirects `/index.html` to `/`; existing trailing-slash handling and `.html` canonicals are preserved.
+- Backlink investigation: the owner confirmed no backlink service purchases. Search Console showed no manual actions and no link data. No vendor cancellation or automatic disavow is justified by the sampled directory network.
+
 ## Follow-up measurement
 
 Baseline captured October 8 in Search Console for July 6–October 5: 36 Web impressions, zero clicks, three generative-AI impressions, all AI impressions on the homepage. Page indexing last updated October 4 (one page), video indexing October 5 (zero videos). Both predate the watch-page release. Field Core Web Vitals data is insufficient.
@@ -26,8 +36,8 @@ Previously approved YouTube description and pinned-comment edits remain pending 
 
 ## Verification and rollout
 
-- `npm test`: all nine test files pass, including snapshot refresh/failure, chapter validation, consent-gated clicks, corrected descriptions, and sitemap growth.
+- `npm test`: all nine test files pass, including independent cold-instance refreshes, shared concurrent refreshes, failure cooldown, shared cancellation, all saved Clip boundaries, thumbnail error fallback, consent-gated clicks, corrected descriptions, and sitemap growth.
 - `npm run build` and `git diff --check` pass. The local build exercises the saved-inventory fallback because its refresh process has no YouTube API key.
-- Chrome: watch-page notes and guide navigation checked at 390 px with no page overflow; homepage WebP candidates load. The desktop reading layout was also checked.
+- Chrome: watch-page notes and guide navigation checked at 390 px with no page overflow; homepage and archive WebP candidates load. All four Start Here anchors resolve. The historical offer notice is visible and the player remains embedded. The desktop reading layout was also checked.
 - Search Console now reports **Success**, last read October 8, with **213 discovered pages and 213 discovered videos** for `/video-sitemap.xml`. No repeat video-sitemap submission was needed. This confirms sitemap processing, not individual video indexing.
-- Production verification follows the release. Google determines whether and when URLs are indexed; a successful submission is not indexing confirmation.
+- The latest remaining fixes passed local verification before commit; the Vercel redirect is configuration-checked, not tested on production. Production verification follows deployment. Google determines whether and when URLs are indexed; a successful submission is not indexing confirmation.

@@ -2,6 +2,8 @@
 // Keyed by YouTube video ID. `rows` start with their row label; `gaps` and `verdict` are optional.
 export const videoNotes = {
   vauqktcB6ak: {
+    searchTitle: 'Compare Dots and GrokBot',
+    summary: 'Compare Dots and GrokBot on a job-search workflow: finding roles, drafting outreach, tracking results, and the limits seen in the recording.',
     tested: 'The same job in OpenAI Dots (inside ChatGPT) and GrokBot: an agent that finds remote AI automation jobs, tailors my resume to each one, finds the contact email, and drafts the outreach.',
     columns: ['', 'Dots', 'GrokBot'],
     rows: [
@@ -16,6 +18,8 @@ export const videoNotes = {
     note: 'Prices and features as tested for the video published October 1, 2026. Both tools change often, so check current plans.',
   },
   Ip8KBwDixJs: {
+    searchTitle: 'GrokBot as a chief of staff',
+    summary: 'See GrokBot review an end-of-day workload across two products, including failed reminders, outreach approvals, and tasks still needing human input.',
     tested: 'GrokBot as an end-of-day chief of staff, by voice, across my two products, TubeAnalytics and VisiScan: what ran today, what failed, and what still needs me.',
     columns: ['Task', 'What GrokBot did'],
     rows: [

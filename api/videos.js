@@ -6,6 +6,8 @@ const day = 86400000;
 // Same idea as /api/youtube: the instance keeps the video list for a day, so cache-busting URLs cost no quota.
 // A cold instance starts from the build's snapshot, so a YouTube outage serves the last build's list instead of a 503.
 let memo = { at: uploadsUpdatedAt, videos: uploads.length ? uploads : null };
+let refresh;
+let retryAt = 0;
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
 const message = (title, text) => `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title><p style="font:16px system-ui;padding:24px">${text}</p>`;
@@ -24,10 +26,17 @@ export async function GET(request) {
   const page = Number(requested ?? 1);
   if (requested !== null && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
 
-  if (!memo.videos || Date.now() - memo.at > day) {
+  if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) {
     const key = process.env.YOUTUBE_API_KEY;
-    const videos = key ? await fetchUploads(key).catch(error => { console.error('[videos]', error.message); return null; }) : null;
-    if (videos?.length) memo = { at: Date.now(), videos };
+    // Share a bounded refresh; retry failed upstream requests after five minutes.
+    refresh ??= (key ? fetchUploads(key) : Promise.resolve(null))
+      .then(videos => {
+        if (videos?.length) memo = { at: Date.now(), videos };
+        else retryAt = Date.now() + 300000;
+      })
+      .catch(error => { console.error('[videos]', error.message); retryAt = Date.now() + 300000; })
+      .finally(() => { refresh = null; });
+    await refresh;
   }
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
   const cache = 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400';

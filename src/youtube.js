@@ -69,8 +69,16 @@ export function parseChapters(description) {
     .map(line => line.trim().match(/^\(?((?:\d{1,2}:)?\d{1,2}:\d{2})\)?\s*[-–—:|]?\s+(\S.*)$/))
     .filter(Boolean)
     .map(([, time, label]) => ({ seconds: time.split(':').reduce((total, part) => total * 60 + Number(part), 0), label: label.trim() }));
-  return chapters.length >= 3 && chapters[0].seconds === 0
-    && chapters.every((chapter, index) => index === 0 || chapter.seconds - chapters[index - 1].seconds >= 10) ? chapters : [];
+  return validChapters(chapters);
+}
+
+// Saved snapshots need the same checks as newly parsed descriptions.
+export function validChapters(chapters, seconds = 0) {
+  return Array.isArray(chapters) && chapters.length >= 3 && chapters[0]?.seconds === 0
+    && chapters.every((chapter, index) => Number.isInteger(chapter?.seconds) && chapter.seconds >= 0
+      && typeof chapter.label === 'string' && chapter.label.trim()
+      && (index === 0 || chapter.seconds - chapters[index - 1].seconds >= 10)
+      && (!seconds || seconds - chapter.seconds >= 10)) ? chapters : [];
 }
 
 // YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails, status).

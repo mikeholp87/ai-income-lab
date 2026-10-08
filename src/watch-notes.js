@@ -1,6 +1,17 @@
 // Editorial notes checked against the creator's captions and the linked primary sources on 2026-10-08.
 export const watchNotes = {
+  enKnxKJJFZw: {
+    searchTitle: 'Skool community launch (2025)',
+    summary: 'A look back at the community’s free launch in 2025. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
+    notice: 'This recording and its original chapter names describe the free launch in 2025. Access has changed: as of October 8, 2026, AI Income Lab membership starts at $29/month.',
+  },
+  dILjZszMZ5o: {
+    summary: 'Business automation and the community’s earlier free offer. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
+    notice: 'This 2025 recording mentions free community access. As of October 8, 2026, AI Income Lab membership starts at $29/month. The recorded offer is historical.',
+  },
+  '1aG1XbAQj-k': { summary: 'Claude Opus 5 is here and it’s my new go-to model.' },
   geKngm3sg3w: {
+    searchTitle: '9Router setup and request checks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify your first routed request</h2>
@@ -23,6 +34,7 @@ export const watchNotes = {
 </section>`,
   },
   lbBZ7uLJwbM: {
+    searchTitle: 'ChatGPT and Codex on Linux',
     summary: 'Follow the ChatGPT and Codex Linux setup demonstrated on Debian, including the dependency issue, first project audit, and current compatibility checks.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: ChatGPT and Codex on Linux</h2>
@@ -44,6 +56,7 @@ export const watchNotes = {
 </section>`,
   },
   TuVL2x6IfDk: {
+    searchTitle: 'Codex internal-link audit',
     summary: 'Use Codex to audit internal links, plan relevant changes, and verify the result. Notes separate the demonstrated workflow from unverified ranking claims.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: turn an internal-link audit into checked changes</h2>

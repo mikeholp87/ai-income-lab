@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseChapters, parseFeed } from './youtube.js';
+import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseChapters, parseFeed, validChapters } from './youtube.js';
 
 const entry = (id, link, title, description) => `<entry><yt:videoId>${id}</yt:videoId><title>${title}</title><link rel="alternate" href="${link}"/><published>2026-10-05T12:37:47+00:00</published><media:group><media:description>${description}</media:description><media:community><media:statistics views="9191"/></media:community></media:group></entry>`;
 
@@ -35,6 +35,16 @@ test('formats ISO 8601 video lengths', () => {
   assert.equal(formatDuration('P0D'), '');
   assert.equal(formatDuration('PT0S'), '');
   assert.equal(formatDuration(undefined), '');
+});
+
+test('validates saved chapters against the recording length', () => {
+  const chapters = [{ seconds: 0, label: 'Intro' }, { seconds: 10, label: 'Setup' }, { seconds: 20, label: 'Check' }];
+  assert.equal(validChapters(chapters, 30), chapters);
+  for (const invalid of [null, [], [null, ...chapters], [...chapters, { seconds: 25, label: 'Short' }], [...chapters, { seconds: 10, label: 'Duplicate' }], [...chapters, { seconds: 30, label: '' }], [...chapters, { seconds: -1, label: 'Negative' }]]) {
+    assert.deepEqual(validChapters(invalid, 30), []);
+  }
+  assert.deepEqual(validChapters(chapters, 29), [], 'last chapter must have ten seconds left');
+  assert.deepEqual(validChapters(chapters, 15), [], 'chapters cannot extend beyond the recording');
 });
 
 test('reads channel counts and skips hidden subscribers', () => {

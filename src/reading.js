@@ -3,6 +3,16 @@ import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, se
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
+for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
+  const fallback = () => {
+    const source = image.previousElementSibling;
+    if (!source) return;
+    source.remove();
+    image.src = image.src;
+  };
+  image.addEventListener('error', fallback, { once: true });
+  if (image.complete && !image.naturalWidth) fallback();
+}
 const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
   : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view' : 'guide_view';
 let viewed = false;

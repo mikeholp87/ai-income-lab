@@ -1,4 +1,4 @@
-import { channelUrl, clock, durationSeconds, longFormPlaylistId, parseChapters, summarize } from './youtube.js';
+import { channelUrl, clock, durationSeconds, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { watchNotes } from './watch-notes.js';
@@ -24,12 +24,12 @@ export function parseUploads(pages) {
 
 // Every long-form upload: one playlistItems call (1 quota unit) per 50 videos, then one videos call per 50
 // (1 unit whatever parts are requested) for privacy, embedding, length (ISO 8601, e.g. PT13M3S) and views.
-export async function fetchUploads(key) {
+export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
   const api = 'https://www.googleapis.com/youtube/v3';
   const pages = [];
   let pageToken = '';
   do {
-    const response = await fetch(`${api}/playlistItems?part=snippet,status,contentDetails&maxResults=50&playlistId=${longFormPlaylistId}&key=${key}${pageToken && `&pageToken=${pageToken}`}`, { signal: AbortSignal.timeout(8000) });
+    const response = await fetch(`${api}/playlistItems?part=snippet,status,contentDetails&maxResults=50&playlistId=${longFormPlaylistId}&key=${key}${pageToken && `&pageToken=${pageToken}`}`, { signal });
     if (!response.ok) throw new Error(`playlistItems ${response.status}`);
     const page = await response.json();
     pages.push(page);
@@ -39,7 +39,7 @@ export async function fetchUploads(key) {
   // Confirm embedding is permitted before linking a watch page or listing it in the sitemap.
   for (let index = 0; index < videos.length; index += 50) {
     const batch = videos.slice(index, index + 50);
-    const response = await fetch(`${api}/videos?part=status,contentDetails,statistics&id=${batch.map(video => video.id).join(',')}&key=${key}`, { signal: AbortSignal.timeout(8000) });
+    const response = await fetch(`${api}/videos?part=status,contentDetails,statistics&id=${batch.map(video => video.id).join(',')}&key=${key}`, { signal });
     if (!response.ok) throw new Error(`video status ${response.status}`);
     const details = new Map(((await response.json()).items ?? []).map(item => [item.id, item]));
     for (const video of batch) {
@@ -68,10 +68,10 @@ function pager(page, pages) {
 const videoHref = video => video.embeddable ? `/watch/${video.id}` : `https://www.youtube.com/watch?v=${video.id}`;
 const jsonLd = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-const card = video => `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
-<img src="https://i.ytimg.com/vi/${escape(video.id)}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+const card = (video, eager) => `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
+<picture data-thumbnail><source type="image/webp" srcset="https://i.ytimg.com/vi_webp/${escape(video.id)}/mqdefault.webp"><img src="https://i.ytimg.com/vi/${escape(video.id)}/mqdefault.jpg" alt="" width="320" height="180" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>
 <time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>
-<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] ? `\n<p>${escape(videoDescription(video))}</p>` : ''}</a></li>`;
+<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p>${escape(videoDescription(video))}</p>` : ''}</a></li>`;
 
 // One page of the archive, 15 videos per page. Callers check the page is within pageCount(videos).
 export function renderArchive(videos, page = 1) {
@@ -148,7 +148,7 @@ footer a:hover, header a.mono:hover { color: #f5f5f0; }
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form builds, newest first. ${pageNote}Each one takes a new AI model, agent, or automation tool, builds something real with it, and shows what held up and what broke.</p></div>
 <p style="margin-top:24px"><a href="/start-here.html" style="color:#ff6846;text-decoration:underline">New here? Choose your first build</a></p>
-${[...years].map(([year, items]) => `<h2>${year}</h2>\n<ul>\n${items.map(card).join('\n')}\n</ul>`).join('\n')}
+${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 ${pager(page, pages)}
 </main>
 <footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
@@ -160,7 +160,7 @@ ${pager(page, pages)}
 const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
-const videoDescription = video => watchNotes[video.id]?.summary || video.summary || `Watch ${video.title} by AI Automation Station.`;
+const videoDescription = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || video.summary || `Watch ${video.title} by AI Automation Station.`;
 const number = new Intl.NumberFormat('en');
 
 // Keep snippets concise; search engines choose the final displayed text and length.
@@ -192,7 +192,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const description = videoDescription(video);
   const offer = videoOffer(video.title);
   const seconds = durationSeconds(video.duration);
-  const chapters = (video.chapters ?? []).filter(chapter => !seconds || chapter.seconds < seconds);
+  const chapters = validChapters(video.chapters, seconds);
   const related = relatedVideos(video, videos);
   const guide = guides.find(([pattern]) => pattern.test(video.title));
   const notes = videoNotes[video.id];
@@ -216,7 +216,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(video.title)} | AI Automation Station</title>
+<title>${escape(watchNotes[video.id]?.searchTitle || notes?.searchTitle || video.title)} | AI Automation Station</title>
 <meta name="description" content="${escape(snippet(description))}">
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -241,6 +241,7 @@ ${jsonLd(breadcrumbs)}
 <h1>${escape(video.title)}</h1>
 <iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <p class="meta">By <a href="/#about" rel="author">Mike Holp</a> · ${meta}</p>
+${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
 <p class="description">${escape(description)}</p>${notes ? `
 <section aria-labelledby="notes">
 <h2 id="notes">What I tested</h2>

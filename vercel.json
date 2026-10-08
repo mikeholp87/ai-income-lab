@@ -17,6 +17,9 @@
     }
   ],
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/watch/:id", "destination": "/api/videos?video=:id" },
     { "source": "/video-sitemap.xml", "destination": "/api/videos?sitemap=videos" },
