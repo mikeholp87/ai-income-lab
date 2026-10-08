@@ -10,7 +10,7 @@ export function reconcile(records, from, to) {
     if (!['cal.com', 'skool'].includes(record.provider) || typeof record.id !== 'string' || !record.id
       || !['click', 'booking', 'purchase'].includes(record.kind) || !Number.isFinite(Date.parse(record.occurredAt))
       || !Number.isFinite(Date.parse(record.updatedAt || record.occurredAt))
-      || (record.kind === 'booking' && (record.provider !== 'cal.com' || !['confirmed', 'cancelled'].includes(record.status)))
+      || (record.kind === 'booking' && (record.provider !== 'cal.com' || !['confirmed', 'cancelled', 'pending', 'rejected'].includes(record.status)))
       || (record.kind === 'purchase' && (record.provider !== 'skool' || !['paid', 'refunded', 'failed'].includes(record.status)))
       || ['source', 'medium', 'campaign', 'content'].some(key => record[key] != null && typeof record[key] !== 'string')) throw new Error('Invalid conversion record. See docs/conversion-measurement.md.');
     const key = JSON.stringify([record.provider, record.kind, record.id]);
