@@ -1,37 +1,11 @@
-import { pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap } from '../src/archive.js';
-import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
+import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap } from '../src/archive.js';
+import { uploads } from '../src/uploads-snapshot.js';
+import { channelUrl } from '../src/youtube.js';
 
 const day = 86400000;
 // Same idea as /api/youtube: the instance keeps the video list for a day, so cache-busting URLs cost no quota.
-let memo = { at: 0, videos: null };
-
-// Every long-form upload: one playlistItems call (1 quota unit) per 50 videos.
-async function fetchUploads(key) {
-  const pages = [];
-  let pageToken = '';
-  do {
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status,contentDetails&maxResults=50&playlistId=${longFormPlaylistId}&key=${key}${pageToken && `&pageToken=${pageToken}`}`, { signal: AbortSignal.timeout(8000) });
-    if (!response.ok) throw new Error(`playlistItems ${response.status}`);
-    const page = await response.json();
-    pages.push(page);
-    pageToken = page.nextPageToken ?? '';
-  } while (pageToken && pages.length < 20);
-  const videos = parseUploads(pages).filter(video => /^[\w-]{11}$/.test(video.id) && Number.isFinite(Date.parse(video.published)));
-  // Confirm embedding is permitted before linking a watch page or listing it in the sitemap.
-  for (let index = 0; index < videos.length; index += 50) {
-    const batch = videos.slice(index, index + 50);
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=status&id=${batch.map(video => video.id).join(',')}&key=${key}`, { signal: AbortSignal.timeout(8000) });
-    if (!response.ok) throw new Error(`video status ${response.status}`);
-    const data = await response.json();
-    const publicIds = new Set((data.items ?? []).filter(item => item.status?.privacyStatus === 'public').map(item => item.id));
-    const embeddable = new Set((data.items ?? []).filter(item => publicIds.has(item.id) && item.status?.embeddable).map(item => item.id));
-    for (const video of batch) {
-      video.public = publicIds.has(video.id);
-      video.embeddable = embeddable.has(video.id);
-    }
-  }
-  return videos.filter(video => video.public);
-}
+// A cold instance starts from the build's snapshot, so a YouTube outage serves the last build's list instead of a 503.
+let memo = { at: 0, videos: uploads.length ? uploads : null };
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
 const message = (title, text) => `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title><p style="font:16px system-ui;padding:24px">${text}</p>`;
@@ -60,7 +34,9 @@ export async function GET(request) {
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });
   if (videoId !== null) {
     const video = memo.videos.find(video => video.id === videoId && video.embeddable);
-    return video ? html(renderWatch(video), 200, cache) : notFound();
+    // ?t=98 comes from a chapter link or a Key Moments result; cue the player there.
+    const start = /^\d{1,5}$/.test(url.searchParams.get('t') ?? '') ? Number(url.searchParams.get('t')) : 0;
+    return video ? html(renderWatch(video, { videos: memo.videos, start }), 200, cache) : notFound();
   }
   if (page > pageCount(memo.videos)) return notFound();
   return html(renderArchive(memo.videos, page), 200, cache);

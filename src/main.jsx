@@ -141,7 +141,9 @@ const faqs = [
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const viewFormat = new Intl.NumberFormat('en', { notation: 'compact' });
 const formatViews = views => `${viewFormat.format(views)} ${views === 1 ? 'view' : 'views'}`;
-const watchUrl = id => `https://www.youtube.com/watch?v=${id}`;
+// Each video's page on this site; YouTube only when it blocks embedding (the watch page would 404).
+const watchUrl = video => video.embeddable === false ? `https://www.youtube.com/watch?v=${video.id}` : `/watch/${video.id}`;
+const newTab = video => video.embeddable === false ? { target: '_blank', rel: 'noreferrer' } : {};
 
 function useYouTubeFeed() {
   const [feed, setFeed] = useState({ ...youtubeSnapshot, failed: false });
@@ -251,7 +253,7 @@ function FeaturedVideo({ video, campaign }) {
       </div>
       <div className="player-meta">
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-        <h2><a href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest', video.title, watchUrl(video.id), 'watch_video')}>{video.title}</a></h2>
+        <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
         <p className="player-note">YouTube loads only after you press play.</p>
         <VideoNextStep video={video} campaign={campaign} />
@@ -267,7 +269,7 @@ function VideoGrid({ videos, failed, campaign }) {
   return (
     <ul className="video-grid reveal-group" aria-busy={!videos}>
       {items.map((video, index) => video
-        ? <li key={video.id}><a className="video-card" href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', video.title, watchUrl(video.id), 'watch_video')}>
+        ? <li key={video.id}><a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest_posts', video.title, watchUrl(video), 'watch_video')}>
             <span className="thumb-frame">
               <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} srcSet={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg 320w, https://i.ytimg.com/vi/${video.id}/hqdefault.jpg 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt="" width="480" height="270" loading="lazy" decoding="async" />
               {video.duration && <span className="duration">{video.duration}</span>}

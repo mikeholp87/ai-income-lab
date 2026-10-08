@@ -46,17 +46,33 @@ export function parseChannel(data) {
   };
 }
 
-// ISO 8601 duration from the Data API ("PT1H2M3S") → "1:02:03". Empty for missing or zero lengths.
-export function formatDuration(iso) {
+// ISO 8601 duration from the Data API ("PT1H2M3S") → 3723 seconds. 0 for missing or unparseable lengths.
+export function durationSeconds(iso) {
   const match = iso?.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
-  if (!match) return '';
-  const [hours, minutes, seconds] = match.slice(1).map(part => Number(part ?? 0));
-  if (!hours && !minutes && !seconds) return '';
+  return match ? match.slice(1).reduce((total, part, index) => total + Number(part ?? 0) * [3600, 60, 1][index], 0) : 0;
+}
+
+// 3723 → "1:02:03", 98 → "1:38".
+export function clock(total) {
   const pad = number => String(number).padStart(2, '0');
+  const hours = Math.floor(total / 3600), minutes = Math.floor(total / 60) % 60, seconds = total % 60;
   return hours ? `${hours}:${pad(minutes)}:${pad(seconds)}` : `${minutes}:${pad(seconds)}`;
 }
 
-// YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails).
+// "PT1H2M3S" → "1:02:03". Empty for missing or zero lengths.
+export const formatDuration = iso => durationSeconds(iso) ? clock(durationSeconds(iso)) : '';
+
+// Description lines like "01:38 - Speaker Pitch Emails" → [{ seconds: 98, label }]. Same rule YouTube
+// uses to show chapters: at least three, starting at 0:00; anything else is just a time in the text.
+export function parseChapters(description) {
+  const chapters = description.split('\n')
+    .map(line => line.trim().match(/^\(?((?:\d{1,2}:)?\d{1,2}:\d{2})\)?\s*[-–—:|]?\s+(\S.*)$/))
+    .filter(Boolean)
+    .map(([, time, label]) => ({ seconds: time.split(':').reduce((total, part) => total * 60 + Number(part), 0), label: label.trim() }));
+  return chapters.length >= 3 && chapters[0].seconds === 0 ? chapters : [];
+}
+
+// YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails, status).
 export function parseApi(playlist, details) {
   const byId = Object.fromEntries((details.items ?? []).map(item => [item.id, item]));
   return (playlist.items ?? []).map(({ snippet }) => {
@@ -68,6 +84,8 @@ export function parseApi(playlist, details) {
       views: Number(item?.statistics?.viewCount ?? 0),
       duration: formatDuration(item?.contentDetails?.duration),
       summary: summarize(snippet.description ?? ''),
+      // Undefined when the details call failed; the page then still links the on-site watch page.
+      embeddable: item?.status?.embeddable,
     };
   });
 }

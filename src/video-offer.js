@@ -20,7 +20,8 @@ export function videoOffer(title) {
     detail: 'Start with the Beginner’s Automation Course in Make.com and get community help.',
     access: 'Unlocks at level 2 on Standard; immediate access with Premium and VIP.',
   };
-  if (/\b(codex|claude code)\b/i.test(title)) return {
+  // Any Claude, Codex, OpenCode or coding-harness video: the classroom's Claude Code and Codex courses cover them.
+  if (/\b(codex|claude|opencode|coding)\b/i.test(title)) return {
     title: 'Keep building with Claude Code and Codex',
     detail: 'Explore the coding tutorials and ask the community for help with your own project.',
     access: 'Explore course access and membership options on Skool.',

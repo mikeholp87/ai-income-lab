@@ -11,7 +11,7 @@ try {
   const marker = '<div id="root"></div>';
   if (!html.includes(marker)) throw new Error('Cannot find root in built HTML');
   const content = renderToString(createElement(Root));
-  if (!content.includes('<h1') || !content.includes('id="latest"') || !content.includes('id="pricing"') || !content.includes('id="faq"') || !content.includes('skool.com/ai-automation-station-7346/about') || !content.includes('youtube.com/watch?v=')) throw new Error('Pre-rendered page is incomplete');
+  if (!content.includes('<h1') || !content.includes('id="latest"') || !content.includes('id="pricing"') || !content.includes('id="faq"') || !content.includes('skool.com/ai-automation-station-7346/about') || !content.includes('href="/watch/')) throw new Error('Pre-rendered page is incomplete');
   await writeFile(path, html.replace(marker, `<div id="root">${content}</div>`));
 } finally {
   await rm(new URL('../dist/.ssr', import.meta.url), { recursive: true, force: true });

@@ -32,7 +32,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .accent { color: var(--signal); }
 
 .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 10px 14px; color: var(--on-signal); background: var(--signal); font: 600 13px var(--mono); transform: translateY(calc(-100% - 20px)); transition: transform .15s ease; }
+.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; color: var(--on-signal); background: var(--signal); font: 600 13px var(--mono); transform: translateY(calc(-100% - 20px)); transition: transform .15s ease; }
 .skip-link:focus { transform: none; }
 
 /* Labels: small tracked caps naming what follows */
@@ -252,16 +252,16 @@ a.video-card:hover h3 { color: var(--signal); }
 .footer-cta > p { font: 400 clamp(32px, 4.4vw, 56px)/1 var(--display); text-transform: uppercase; letter-spacing: -.015em; text-wrap: balance; }
 .footer-cta .button-row { justify-content: center; }
 .footer-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px; }
-.footer-columns div { display: grid; gap: 14px; align-content: start; }
+.footer-columns div { display: grid; align-content: start; }
 .footer-columns h2 { margin-bottom: 6px; color: var(--muted); font-size: 11px; font-weight: 500; }
-.footer-columns a { justify-self: start; font-size: 14px; }
+.footer-columns a { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
 .footer-columns a:hover, .footer-base a:hover, .footer-base button:hover { color: var(--signal); }
 .footer-base { display: flex; justify-content: space-between; gap: 24px; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .footer-base div { display: flex; flex-wrap: wrap; gap: 24px; }
 .footer-base button { padding: 0; border: 0; color: inherit; background: none; font: inherit; cursor: pointer; }
 
-/* Consent: a slim bottom bar, so the hero choices stays clear on first view */
-.consent-banner { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; gap: 12px 24px; padding: 10px 24px; border-top: 1px solid var(--line); background: var(--panel); }
+/* Consent: a slim bar pinned to the bottom while scrolling; sticky (not fixed) so it ends below the footer instead of covering it */
+.consent-banner { position: sticky; z-index: 50; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 12px 24px; padding: 10px 24px; border-top: 1px solid var(--line); background: var(--panel); }
 .consent-banner p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .consent-banner strong { color: var(--text); font-weight: 500; }
 .consent-banner a { text-decoration: underline; text-underline-offset: 3px; }
@@ -285,7 +285,6 @@ a.video-card:hover h3 { color: var(--signal); }
 
 @media (max-width: 640px) {
   .shell { width: calc(100% - 32px); }
-  .icon-link { width: 40px; height: 40px; }
   .hero { padding: 24px 0 40px; }
   .hero-grid { gap: 28px; }
   .hero h1 { margin-top: 24px; }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseFeed } from './youtube.js';
+import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseChapters, parseFeed } from './youtube.js';
 
 const entry = (id, link, title, description) => `<entry><yt:videoId>${id}</yt:videoId><title>${title}</title><link rel="alternate" href="${link}"/><published>2026-10-05T12:37:47+00:00</published><media:group><media:description>${description}</media:description><media:community><media:statistics views="9191"/></media:community></media:group></entry>`;
 
@@ -13,10 +13,17 @@ test('returns an empty list for an empty feed', () => {
   assert.deepEqual(parseFeed('<feed></feed>'), []);
 });
 
-test('joins Data API playlist items with view counts and lengths', () => {
+test('joins Data API playlist items with view counts, lengths and embedding', () => {
   const playlist = { items: [{ snippet: { resourceId: { videoId: 'abc' }, title: 'Claude & Codex', publishedAt: '2026-10-05T12:37:47Z', description: 'Join\nhttps://example.com\n\nBuild an agent.' } }] };
-  const details = { items: [{ id: 'abc', statistics: { viewCount: '9191' }, contentDetails: { duration: 'PT12M4S' } }] };
-  assert.deepEqual(parseApi(playlist, details), [{ id: 'abc', title: 'Claude & Codex', published: '2026-10-05T12:37:47Z', views: 9191, duration: '12:04', summary: 'Build an agent.' }]);
+  const details = { items: [{ id: 'abc', statistics: { viewCount: '9191' }, contentDetails: { duration: 'PT12M4S' }, status: { embeddable: false } }] };
+  assert.deepEqual(parseApi(playlist, details), [{ id: 'abc', title: 'Claude & Codex', published: '2026-10-05T12:37:47Z', views: 9191, duration: '12:04', summary: 'Build an agent.', embeddable: false }]);
+});
+
+test('reads description chapters only when YouTube would show them', () => {
+  const description = 'Intro text.\n\n⌚ Timestamps:\n00:00 - Task Rundown\n01:38 – Speaker Pitch Emails\n1:02:25 Page Speed\n\n#grokbot';
+  assert.deepEqual(parseChapters(description), [{ seconds: 0, label: 'Task Rundown' }, { seconds: 98, label: 'Speaker Pitch Emails' }, { seconds: 3745, label: 'Page Speed' }]);
+  assert.deepEqual(parseChapters('00:00 Intro\n01:00 Setup'), [], 'fewer than three');
+  assert.deepEqual(parseChapters('00:10 Intro\n01:00 Setup\n02:00 Test'), [], 'first chapter not at 0:00');
 });
 
 test('formats ISO 8601 video lengths', () => {

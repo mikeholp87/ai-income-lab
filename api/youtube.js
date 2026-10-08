@@ -21,7 +21,7 @@ async function fetchFeed(statuses) {
       const playlist = await response.json();
       const ids = playlist.items.map(item => item.snippet.resourceId.videoId).join(',');
       // videos.list costs 1 unit whatever parts are requested.
-      const details = await fetch(`${api}/videos?part=statistics,contentDetails&id=${ids}&key=${key}`).then(response => response.ok ? response.json() : {}).catch(() => ({}));
+      const details = await fetch(`${api}/videos?part=statistics,contentDetails,status&id=${ids}&key=${key}`).then(response => response.ok ? response.json() : {}).catch(() => ({}));
       return { videos: parseApi(playlist, details), channel };
     }
     statuses.push(`api ${response.status}`);

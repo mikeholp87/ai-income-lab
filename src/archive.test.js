@@ -13,6 +13,7 @@ test('video next steps name relevant resources without hiding membership access 
     ['Build with n8n', /Template Library/, /included with VIP/],
     ['Make.com automation tutorial', /Beginner’s Automation Course/, /level 2 on Standard; immediate access/],
     ['Codex on Linux', /coding tutorials/, /course access/],
+    ['Claude Opus 5.5 Is Better And 40% Cheaper!', /coding tutorials/, /course access/],
     ['New model review', /AI Income Lab/, /starts at \$29/],
   ];
   for (const [title, resource, access] of examples) {
@@ -29,6 +30,36 @@ test('keeps public uploads, newest first, across pages', () => {
   const pages = [{ items: [item('old', 'Old', '2025-12-31T10:00:00Z'), item('gone', 'Private video', '2026-03-01T10:00:00Z', 'private')] }, { items: [item('new', 'New', '2026-10-05T12:37:47Z')] }];
   assert.deepEqual(parseUploads(pages).map(video => video.id), ['new', 'old']);
   assert.equal(parseUploads(pages)[0].summary, 'Build an agent.');
+  assert.deepEqual(parseUploads(pages)[0].chapters, []);
+});
+
+test('watch pages add chapters, length, views, related builds and breadcrumbs', () => {
+  const video = { id: 'geKngm3sg3w', title: 'How to Use 9Router: Setup & Fallbacks', published: '2026-07-08T00:00:00Z', embeddable: true, duration: 'PT11M15S', views: 23638,
+    summary: 'Learn how to install 9Router, connect AI providers, and configure fallback routing to manage model access and costs. Follow the setup, then check token usage in the dashboard.',
+    chapters: [{ seconds: 0, label: 'Intro' }, { seconds: 98, label: 'Providers' }, { seconds: 400, label: 'Fallbacks' }] };
+  const others = [
+    { id: 'tzSGF7gu6EE', title: '9Router Cost Tracking', published: '2026-07-09T00:00:00Z', embeddable: true },
+    { id: 'Ip8KBwDixJs', title: 'GrokBot Chief Of Staff', published: '2026-10-05T00:00:00Z', embeddable: true },
+    { id: 'lbBZ7uLJwbM', title: '9Router blocked embed', published: '2026-10-06T00:00:00Z', embeddable: false },
+  ];
+  const html = renderWatch(video, { videos: [video, ...others], start: 98 });
+  const [schema, breadcrumbs] = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
+  assert.equal(schema.duration, 'PT11M15S');
+  assert.equal(schema.interactionStatistic.userInteractionCount, 23638);
+  assert.deepEqual(schema.hasPart.map(clip => [clip.startOffset, clip.endOffset]), [[0, 98], [98, 400], [400, 675]]);
+  assert.equal(schema.hasPart[1].url, 'https://www.ai-automation-station.com/watch/geKngm3sg3w?t=98');
+  assert.equal(schema.author['@id'], 'https://www.ai-automation-station.com/#mike');
+  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
+  assert.match(html, /embed\/geKngm3sg3w\?start=98"/);
+  assert.match(html, /<a href="\/watch\/geKngm3sg3w\?t=98">1:38<\/a> Providers/);
+  assert.match(html, /11:15 · 23,638 views/);
+  assert.match(html, /href="\/guides\/first-api-request.html"/);
+  // The shared "9router" ranks first; a video that blocks embedding is never linked.
+  assert.match(html, /More builds<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE">/);
+  assert.doesNotMatch(html, /lbBZ7uLJwbM/);
+  const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
+  assert.ok(description.length <= 160 && description.endsWith('costs.'), description);
+  assert.match(renderVideoSitemap([video]), /<video:player_loc>[^<]+<\/video:player_loc>\n<video:duration>675<\/video:duration>\n<video:publication_date>/);
 });
 
 test('watch pages and video sitemap safely describe the same visible video', () => {
@@ -109,6 +140,9 @@ test('splits the archive into pages of 15 linked to each other', () => {
   assert.match(last, /<a href="\/videos\/2" rel="prev">← Newer<\/a>/);
   assert.match(last, /<span aria-current="page">3<\/span>/);
   assert.match(last, /<title>Every video, page 3 of 3 \| Mike Holp<\/title>/);
+  const list = JSON.parse(last.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  assert.equal(list['@type'], 'CollectionPage');
+  assert.deepEqual(list.mainEntity.itemListElement.map(item => item.position), [31]);
 });
 
 test('routes page numbers before loading any videos', async () => {
