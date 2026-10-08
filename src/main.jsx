@@ -220,7 +220,7 @@ function useJpegThumbnail(event, id) {
   image.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 
-function FeaturedVideo({ video, campaign }) {
+function FeaturedVideo({ video, campaign, playButtonRef }) {
   const [playing, setPlaying] = useState(false);
   if (!video) return <div className="player"><div className="player-screen is-loading" /><div className="player-meta"><span className="skeleton-line" /><span className="skeleton-line short" /></div></div>;
 
@@ -234,7 +234,7 @@ function FeaturedVideo({ video, campaign }) {
       <div className="player-screen">
         {playing
           ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
-          : <button type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
+          : <button ref={playButtonRef} type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
                 {...featuredThumbnail(video.id)}
                 sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
@@ -339,6 +339,7 @@ function CommunityVideo() {
 function App() {
   const [campaign, setCampaign] = useState(() => getCampaign('', []));
   const [campaignReady, setCampaignReady] = useState(false);
+  const videoPlayButton = useRef(null);
   const { videos, channel, failed } = useYouTubeFeed();
   const latest = videos?.[0];
 
@@ -425,11 +426,14 @@ function App() {
         <p className="hero-text"><strong>AI Income Lab, the AI Automation Station community.</strong> Step-by-step courses, reusable templates, and a community of 2,900+ members, hosted by Mike Holp.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-          <a className="button button-quiet" href="#featured-video" onClick={trackClick('hero', 'Watch a free build', '#featured-video', 'explore_video')}>Watch a free build</a>
+          <a className="button button-quiet" href="#featured-video" onClick={() => {
+            trackClick('hero', 'Watch a free build', '#featured-video', 'explore_video')();
+            videoPlayButton.current?.click();
+          }}>Watch a free build</a>
         </nav>
         <p className="fine-print hero-reassurance">From $29/month. Cancel anytime. Course access varies by plan.</p>
         </div>
-        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} /></div>
+        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
         </div>
       </section>
 
