@@ -49,7 +49,13 @@ export default defineConfig(({ mode }) => {
     } },
     plugins: [{
       name: 'skool-open-pixel',
-      configureServer: attachOpenPixel,
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === '/assets/reading.js') req.url = '/src/reading.js';
+          next();
+        });
+        attachOpenPixel(server);
+      },
       configurePreviewServer: attachOpenPixel,
     }],
   };

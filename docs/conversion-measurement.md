@@ -63,3 +63,11 @@ Links preserve public UTM labels through same-origin pages and this community's 
 Use campaign `build-guides-2026-10`, source `youtube`, medium `description` or `pinned_comment`, and content equal to the source video ID. In GA4 compare guide views and community clicks by campaign/content; these consented events undercount readers who decline. In Skool use actual successful payment records for new memberships. If Skool does not retain the UTM values, record attribution as unknown; this site cannot reconstruct it reliably.
 
 Review a complete 28-day interval after the YouTube links go live, using the same reporting timezone for comparisons. Record the actual activation date in `docs/growth/2026-10-07-rollout.md`; do not count the pre-publication interval as exposed traffic. Review indexing after about a week. No automatic scheduled job or reminder is created by these code changes.
+
+## Meta Pixel verification — October 8, 2026
+
+The shared loader initializes pixel `2384492104905321`. It emits `PageView` after consent, `SkoolOutboundClicked` for a community CTA, and the homepage emits `ViewContent` when pricing enters view while consent is active. These events do not represent a completed purchase or confirmed call. No Conversions API connection is configured by this site.
+
+Fixed missing tracking on `/videos`, archive pagination and `/watch/:id` by loading the same consent-controlled module used by written guides. Video pages now have Privacy choices and share the existing consent styling. GA4 distinguishes `video_archive_view`, `video_page_view` and `guide_view`; Meta uses `PageView` on each. Optional trackers remain off until consent is granted.
+
+Tests cover missing/denied consent, repeated initialization, consent withdrawal/restoration, archive/watch integration and outbound event guards. The production build passed. In Chrome, the live homepage had no Google/Meta script tags before consent, then added both provider loaders after Allow both with no captured console warnings or errors. This establishes loader behavior, not event receipt. Meta Events Manager verification is pending account sign-in; login automation was blocked by approval review because the intended account was unspecified. Dataset ownership, diagnostics, received events and the custom conversion still require that account-side check.

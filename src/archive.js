@@ -57,6 +57,8 @@ export function renderArchive(videos, page = 1) {
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/consent.css">
+<script type="module" src="/assets/reading.js"></script>
 <style>
 @font-face { font-family: 'Archivo Black'; font-display: swap; src: url('/fonts/archivo-black.woff2') format('woff2'); }
 @font-face { font-family: 'DM Mono'; font-display: swap; src: url('/fonts/dm-mono.woff2') format('woff2'); }
@@ -128,6 +130,7 @@ export function renderWatch(video) {
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/reading.css">
+<script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:url" content="${watchUrl(video)}">
 <meta property="og:title" content="${escape(video.title)}">

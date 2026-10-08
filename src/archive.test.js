@@ -23,6 +23,7 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
   assert.equal((html.match(/<iframe /g) ?? []).length, 1);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
+  assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
   const sitemap = renderVideoSitemap([video, { ...video, id: 'lbBZ7uLJwbM', embeddable: false }]);
   assert.match(sitemap, /<video:title>Keys &amp; &lt;API&gt;<\/video:title>/);
@@ -67,6 +68,8 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form builds/);
+  assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
+  assert.match(html, /href="\/consent.css"/);
   assert.doesNotMatch(html, /class="pager/);
 });
 

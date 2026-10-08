@@ -3,12 +3,14 @@ import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, se
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
+const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
+  : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view' : 'guide_view';
 let viewed = false;
 
 function recordView() {
   if (getTrackingConsent() !== 'granted') return;
   loadMarketingTracking();
-  if (!viewed) viewed = trackGoogleEvent('guide_view', properties);
+  if (!viewed) viewed = trackGoogleEvent(viewEvent, properties);
 }
 
 for (const link of document.querySelectorAll('a[href]')) {
