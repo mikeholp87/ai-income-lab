@@ -398,7 +398,7 @@ function App() {
       <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
       <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
-        <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
+        <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', aboutUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
         }}><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
@@ -425,7 +425,7 @@ function App() {
         )}
         <p className="hero-text"><strong>AI Income Lab, the AI Automation Station community.</strong> Step-by-step courses, reusable templates, and a community of 2,900+ members, hosted by Mike Holp.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
-          <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
+          <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', aboutUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {
             trackClick('hero', 'Watch a free build', '#featured-video', 'explore_video')();
             videoPlayButton.current?.click();
@@ -573,7 +573,7 @@ function App() {
         <div className="footer-cta reveal">
           <p>Build your next automation <span className="accent">with AI Income Lab.</span></p>
           <div className="button-row">
-            <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
+            <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', aboutUrl)}>Join AI Income Lab ↗</a>
             <a className="button button-quiet" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
           </div>
         </div>
