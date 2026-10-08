@@ -1,8 +1,19 @@
 import { defineConfig, loadEnv } from 'vite';
 import { handleOpenPixel } from './src/open-pixel.js';
 import { GET as youtubeFeed } from './api/youtube.js';
+import { GET as videosPage, HEAD as videosHead } from './api/videos.js';
 
 function attachOpenPixel(server) {
+  server.middlewares.use(async (req, res, next) => {
+    const path = req.url?.split('?')[0] ?? '';
+    if (!/^\/(?:videos(?:\/[^/]+)?|watch\/[^/]+|video-sitemap\.xml)\/?$/.test(path)) return next();
+    try {
+      const response = await (req.method === 'HEAD' ? videosHead : videosPage)(new Request(`http://127.0.0.1${req.url}`));
+      res.statusCode = response.status;
+      response.headers.forEach((value, key) => res.setHeader(key, value));
+      res.end(await response.text());
+    } catch (error) { next(error); }
+  });
   server.middlewares.use('/api/youtube', async (req, res) => {
     const response = await youtubeFeed();
     res.statusCode = response.status;

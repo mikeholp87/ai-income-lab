@@ -13,6 +13,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/watch/:id", "destination": "/api/videos?video=:id" },
+    { "source": "/video-sitemap.xml", "destination": "/api/videos?sitemap=videos" },
     { "source": "/o/:token.gif", "destination": "/api/o/:token" },
     { "source": "/videos", "destination": "/api/videos" },
     { "source": "/videos/:page", "destination": "/api/videos?page=:page" }

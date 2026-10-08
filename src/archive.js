@@ -30,7 +30,7 @@ function pager(page, pages) {
   return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, '← Newer', 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, 'Older →', 'next') : ''}</nav>`;
 }
 
-const card = video => `<li><a href="https://www.youtube.com/watch?v=${escape(video.id)}" target="_blank" rel="noreferrer">
+const card = video => `<li><a href="${video.embeddable ? `/watch/${escape(video.id)}` : `https://www.youtube.com/watch?v=${escape(video.id)}`}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
 <img src="https://i.ytimg.com/vi/${escape(video.id)}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
 <time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>
 <h3>${escape(video.title)}</h3>${video.summary ? `\n<p>${escape(video.summary)}</p>` : ''}</a></li>`;
@@ -105,4 +105,60 @@ ${pager(page, pages)}
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>`;
+}
+
+const watchUrl = video => `${site}/watch/${video.id}`;
+const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
+const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+const videoDescription = video => video.summary || `Watch ${video.title} by AI Automation Station.`;
+
+export function renderWatch(video) {
+  const description = videoDescription(video);
+  const schema = {
+    '@context': 'https://schema.org', '@type': 'VideoObject',
+    name: video.title, description, thumbnailUrl: thumbnailUrl(video),
+    uploadDate: video.published, embedUrl: playerUrl(video), url: watchUrl(video),
+    author: { '@type': 'Person', name: 'Mike Holp', url: site },
+  };
+  return `<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escape(video.title)} | AI Automation Station</title>
+<meta name="description" content="${escape(description)}">
+<link rel="canonical" href="${watchUrl(video)}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<meta property="og:type" content="video.other">
+<meta property="og:url" content="${watchUrl(video)}">
+<meta property="og:title" content="${escape(video.title)}">
+<meta property="og:description" content="${escape(description)}">
+<meta property="og:image" content="${thumbnailUrl(video)}">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>
+<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}</style>
+</head><body>
+<a class="skip" href="#content">Skip to video</a>
+<header><a href="/">AI Automation Station</a><a href="/videos">All videos</a></header>
+<main id="content">
+<h1>${escape(video.title)}</h1>
+<iframe class="player" src="${playerUrl(video)}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p class="meta">By Mike Holp · <time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time></p>
+<p class="description">${escape(description)}</p>
+<p><a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
+</main>
+<footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>
+</body></html>`;
+}
+
+export function renderVideoSitemap(videos) {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(video)}</loc><video:video>
+<video:thumbnail_loc>${thumbnailUrl(video)}</video:thumbnail_loc>
+<video:title>${escape(video.title.slice(0, 100))}</video:title>
+<video:description>${escape(videoDescription(video).slice(0, 2048))}</video:description>
+<video:player_loc>${playerUrl(video)}</video:player_loc>
+<video:publication_date>${escape(video.published)}</video:publication_date>
+</video:video></url>`).join('\n')}
+</urlset>`;
 }
