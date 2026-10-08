@@ -24,6 +24,8 @@ test('reads description chapters only when YouTube would show them', () => {
   assert.deepEqual(parseChapters(description), [{ seconds: 0, label: 'Task Rundown' }, { seconds: 98, label: 'Speaker Pitch Emails' }, { seconds: 3745, label: 'Page Speed' }]);
   assert.deepEqual(parseChapters('00:00 Intro\n01:00 Setup'), [], 'fewer than three');
   assert.deepEqual(parseChapters('00:10 Intro\n01:00 Setup\n02:00 Test'), [], 'first chapter not at 0:00');
+  assert.deepEqual(parseChapters('00:00 Intro\n02:00 Setup\n01:00 Test'), [], 'out-of-order chapters cannot create negative-length clips');
+  assert.deepEqual(parseChapters('00:00 Intro\n00:05 Setup\n01:00 Test'), [], 'chapters need at least ten seconds');
 });
 
 test('formats ISO 8601 video lengths', () => {

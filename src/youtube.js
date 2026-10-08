@@ -69,7 +69,8 @@ export function parseChapters(description) {
     .map(line => line.trim().match(/^\(?((?:\d{1,2}:)?\d{1,2}:\d{2})\)?\s*[-–—:|]?\s+(\S.*)$/))
     .filter(Boolean)
     .map(([, time, label]) => ({ seconds: time.split(':').reduce((total, part) => total * 60 + Number(part), 0), label: label.trim() }));
-  return chapters.length >= 3 && chapters[0].seconds === 0 ? chapters : [];
+  return chapters.length >= 3 && chapters[0].seconds === 0
+    && chapters.every((chapter, index) => index === 0 || chapter.seconds - chapters[index - 1].seconds >= 10) ? chapters : [];
 }
 
 // YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails, status).

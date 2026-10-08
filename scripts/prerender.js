@@ -2,6 +2,8 @@ import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { build } from 'vite';
+import { uploads } from '../src/uploads-snapshot.js';
+import { renderPageSitemap } from '../src/archive.js';
 
 await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: false, rollupOptions: { input: 'src/main.jsx', output: { entryFileNames: '[name].js' } } } });
 try {
@@ -23,3 +25,5 @@ for (const file of ['start-here.html', ...(await readdir('dist/guides')).filter(
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   await writeFile(path, html.replace('src="/src/reading.js"', 'src="/assets/reading.js"'));
 }
+
+await writeFile('dist/sitemap.xml', renderPageSitemap(await readFile('public/sitemap.xml', 'utf8'), uploads));

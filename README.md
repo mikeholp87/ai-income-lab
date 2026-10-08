@@ -1,5 +1,13 @@
 # ai-income-lab
-Skool Landing Page
+AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Income Lab community.
+
+- [Choose your first build](https://www.ai-automation-station.com/start-here.html)
+- [9Router setup notes](https://www.ai-automation-station.com/watch/geKngm3sg3w)
+- [Codex on Linux: setup and troubleshooting](https://www.ai-automation-station.com/watch/lbBZ7uLJwbM)
+- [Codex internal-linking workflow](https://www.ai-automation-station.com/watch/TuVL2x6IfDk)
+- [Build a React YouTube feed](https://www.ai-automation-station.com/guides/youtube-feed.html)
+- [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
+- [Run your first local API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 
 ## Email open pixel
 

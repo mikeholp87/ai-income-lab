@@ -7,6 +7,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const button = value => ({ dataset: { consent: value }, addEventListener(type, fn) { this[type] = fn; }, focus() {} });
   const buttons = [button('denied'), button('granted')];
   const link = { href: 'https://www.skool.com/ai-automation-station-7346/plans', dataset: path.startsWith('/watch/') ? { placement: 'watch_video', videoId: 'Ip8KBwDixJs' } : {}, textContent: 'Compare plans', addEventListener(type, fn) { this[type] = fn; } };
+  const youtube = { ...link, href: 'https://www.youtube.com/watch?v=Ip8KBwDixJs', textContent: 'Watch on YouTube' };
   globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
   globalThis.window = {
     location: new URL(`https://www.ai-automation-station.com${path}?utm_source=youtube&utm_content=video-a`),
@@ -16,7 +17,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   globalThis.document = {
     head: { appendChild: script => scripts.push(script) },
     body: { append: element => elements.push(element) },
-    querySelectorAll: () => [link],
+    querySelectorAll: () => [link, youtube],
     querySelector: () => ({ append: element => elements.push(element) }),
     createElement: tag => tag === 'aside' ? { setAttribute() {}, querySelectorAll: () => buttons, querySelector: () => buttons[0], contains: () => false } : button(),
   };
@@ -25,14 +26,19 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     const banner = elements[0];
     assert.equal(banner.hidden, false);
     link.click();
+    youtube.click();
     assert.equal(scripts.length, 0);
     assert.equal(events.length, 0);
     buttons[1].click();
     assert.equal(banner.hidden, true);
     assert.equal(scripts.length, 1); // Existing Meta stub; only the Google loader is inserted.
     link.click();
+    youtube.click();
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
     assert.equal(clicks.length, 1);
+    const youtubeClicks = events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked');
+    assert.equal(youtubeClicks.length, 1);
+    assert.equal(youtubeClicks[0][2].video_id, 'Ip8KBwDixJs');
     assert.equal(clicks[0][2].content, 'video-a');
     assert.equal(clicks[0][2].placement, path.startsWith('/watch/') ? 'watch_video' : 'written_guide');
     if (path.startsWith('/watch/')) assert.equal(clicks[0][2].video_id, 'Ip8KBwDixJs');
@@ -40,6 +46,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     buttons[0].click();
     const afterDecline = events.length;
     link.click();
+    youtube.click();
     assert.equal(events.length, afterDecline);
     buttons[1].click();
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === eventName).length, 1);

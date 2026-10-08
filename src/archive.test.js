@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap } from './archive.js';
+import { pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
 
@@ -34,7 +34,7 @@ test('keeps public uploads, newest first, across pages', () => {
 });
 
 test('watch pages add chapters, length, views, related builds and breadcrumbs', () => {
-  const video = { id: 'geKngm3sg3w', title: 'How to Use 9Router: Setup & Fallbacks', published: '2026-07-08T00:00:00Z', embeddable: true, duration: 'PT11M15S', views: 23638,
+  const video = { id: 'aaaaaaaaaaa', title: 'How to Use 9Router: Setup & Fallbacks', published: '2026-07-08T00:00:00Z', embeddable: true, duration: 'PT11M15S', views: 23638,
     summary: 'Learn how to install 9Router, connect AI providers, and configure fallback routing to manage model access and costs. Follow the setup, then check token usage in the dashboard.',
     chapters: [{ seconds: 0, label: 'Intro' }, { seconds: 98, label: 'Providers' }, { seconds: 400, label: 'Fallbacks' }] };
   const others = [
@@ -47,11 +47,11 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.equal(schema.duration, 'PT11M15S');
   assert.equal(schema.interactionStatistic.userInteractionCount, 23638);
   assert.deepEqual(schema.hasPart.map(clip => [clip.startOffset, clip.endOffset]), [[0, 98], [98, 400], [400, 675]]);
-  assert.equal(schema.hasPart[1].url, 'https://www.ai-automation-station.com/watch/geKngm3sg3w?t=98');
+  assert.equal(schema.hasPart[1].url, 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa?t=98');
   assert.equal(schema.author['@id'], 'https://www.ai-automation-station.com/#mike');
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
-  assert.match(html, /embed\/geKngm3sg3w\?start=98"/);
-  assert.match(html, /<a href="\/watch\/geKngm3sg3w\?t=98">1:38<\/a> Providers/);
+  assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
+  assert.match(html, /<a href="\/watch\/aaaaaaaaaaa\?t=98">1:38<\/a> Providers/);
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/first-api-request.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
@@ -63,14 +63,14 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
 });
 
 test('watch pages and video sitemap safely describe the same visible video', () => {
-  const video = { id: 'geKngm3sg3w', title: 'Keys & <API>', summary: '</script><script>alert(1)</script>', published: '2026-09-01T00:00:00Z', embeddable: true };
+  const video = { id: 'aaaaaaaaaaa', title: 'Keys & <API>', summary: '</script><script>alert(1)</script>', published: '2026-09-01T00:00:00Z', embeddable: true };
   const html = renderWatch(video);
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
   assert.match(html, new RegExp(`src="${schema.embedUrl}"`));
-  assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/geKngm3sg3w">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
   assert.equal((html.match(/<iframe /g) ?? []).length, 1);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
@@ -84,6 +84,8 @@ test('watch pages and video sitemap safely describe the same visible video', () 
 });
 
 test('archive, watch routes and sitemap share verified public upload metadata', async t => {
+  const tomorrow = Date.now() + 86400001;
+  t.mock.method(Date, 'now', () => tomorrow);
   const originalKey = process.env.YOUTUBE_API_KEY;
   process.env.YOUTUBE_API_KEY = 'test-only';
   t.after(() => { if (originalKey === undefined) delete process.env.YOUTUBE_API_KEY; else process.env.YOUTUBE_API_KEY = originalKey; });
@@ -111,6 +113,39 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   assert.equal(head.status, 200);
   assert.equal(await head.text(), '');
   assert.equal(requests, 2, 'cached metadata avoids repeat YouTube requests');
+});
+
+test('page sitemap follows inventory growth and preserves core dates', () => {
+  const xml = '<urlset><url><loc>https://www.ai-automation-station.com/</loc><lastmod>2026-10-08</lastmod></url><url><loc>https://www.ai-automation-station.com/videos/15</loc></url></urlset>';
+  const sitemap = renderPageSitemap(xml, Array(31).fill({}));
+  assert.match(sitemap, /<lastmod>2026-10-08<\/lastmod>/);
+  assert.match(sitemap, /\/videos<\/loc>/);
+  assert.match(sitemap, /\/videos\/3<\/loc>/);
+  assert.doesNotMatch(sitemap, /\/videos\/15|\/videos\/1</);
+  assert.equal((sitemap.match(/<url>/g) || []).length, 4);
+});
+
+test('priority build notes keep corrected summaries consistent across discovery surfaces', () => {
+  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk']) {
+    const video = { id, title: 'A recorded build', summary: 'Outdated promotional summary', published: '2026-07-08T00:00:00Z', embeddable: true };
+    const html = renderWatch(video);
+    const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+    assert.ok(html.indexOf('id="build-notes"') > html.indexOf('</iframe>'));
+    assert.match(html, /href="\/guides\//);
+    assert.ok(renderArchive([video]).includes(schema.description));
+    assert.ok(renderVideoSitemap([video]).includes(schema.description));
+    assert.doesNotMatch(html, /Outdated promotional summary/);
+  }
+});
+
+test('watch pages show a written companion only where one exists', () => {
+  const video = { id: 'vauqktcB6ak', title: 'I Tested Dots vs GrokBot', published: '2026-10-01T00:00:00Z', embeddable: true, summary: 'Which agent is better?' };
+  const html = renderWatch(video);
+  assert.match(html, /<h2 id="notes">What I tested<\/h2>/);
+  assert.match(html, /<th scope="col">Dots<\/th><th scope="col">GrokBot<\/th>/);
+  assert.match(html, /<h3>Verdict<\/h3>/);
+  assert.ok(html.indexOf('id="notes"') < html.indexOf('id="video-next-step"'));
+  assert.doesNotMatch(renderWatch({ ...video, id: 'geKngm3sg3w' }), /id="notes"/);
 });
 
 test('renders year groups and escapes titles', () => {

@@ -1,11 +1,11 @@
 import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap } from '../src/archive.js';
-import { uploads } from '../src/uploads-snapshot.js';
+import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl } from '../src/youtube.js';
 
 const day = 86400000;
 // Same idea as /api/youtube: the instance keeps the video list for a day, so cache-busting URLs cost no quota.
 // A cold instance starts from the build's snapshot, so a YouTube outage serves the last build's list instead of a 503.
-let memo = { at: 0, videos: uploads.length ? uploads : null };
+let memo = { at: uploadsUpdatedAt, videos: uploads.length ? uploads : null };
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
 const message = (title, text) => `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title><p style="font:16px system-ui;padding:24px">${text}</p>`;

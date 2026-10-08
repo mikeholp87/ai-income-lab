@@ -1,5 +1,7 @@
 import { channelUrl, clock, durationSeconds, longFormPlaylistId, parseChapters, summarize } from './youtube.js';
+import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
+import { watchNotes } from './watch-notes.js';
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -69,7 +71,7 @@ const jsonLd = data => `<script type="application/ld+json">${JSON.stringify(data
 const card = video => `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
 <img src="https://i.ytimg.com/vi/${escape(video.id)}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
 <time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>
-<h3>${escape(video.title)}</h3>${video.summary ? `\n<p>${escape(video.summary)}</p>` : ''}</a></li>`;
+<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] ? `\n<p>${escape(videoDescription(video))}</p>` : ''}</a></li>`;
 
 // One page of the archive, 15 videos per page. Callers check the page is within pageCount(videos).
 export function renderArchive(videos, page = 1) {
@@ -158,10 +160,10 @@ ${pager(page, pages)}
 const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
-const videoDescription = video => video.summary || `Watch ${video.title} by AI Automation Station.`;
+const videoDescription = video => watchNotes[video.id]?.summary || video.summary || `Watch ${video.title} by AI Automation Station.`;
 const number = new Intl.NumberFormat('en');
 
-// Search results cut descriptions near 160 characters: end on a sentence, or a word, before that.
+// Keep snippets concise; search engines choose the final displayed text and length.
 export function snippet(text, max = 160) {
   if (text.length <= max) return text;
   const cut = text.slice(0, max);
@@ -193,6 +195,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const chapters = (video.chapters ?? []).filter(chapter => !seconds || chapter.seconds < seconds);
   const related = relatedVideos(video, videos);
   const guide = guides.find(([pattern]) => pattern.test(video.title));
+  const notes = videoNotes[video.id];
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
@@ -218,6 +221,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">
@@ -228,19 +232,32 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}
-<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}</style>
+<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
 <header><a href="/">AI Automation Station</a><a href="/videos">All videos</a></header>
 <main id="content">
+<nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
 <iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<p class="meta">By Mike Holp · ${meta}</p>
-<p class="description">${escape(description)}</p>${chapters.length ? `
+<p class="meta">By <a href="/#about" rel="author">Mike Holp</a> · ${meta}</p>
+<p class="description">${escape(description)}</p>${notes ? `
+<section aria-labelledby="notes">
+<h2 id="notes">What I tested</h2>
+<p>${escape(notes.tested)}</p>
+<div class="table"><table><thead><tr>${notes.columns.map(column => `<th scope="col">${escape(column)}</th>`).join('')}</tr></thead>
+<tbody>${notes.rows.map(([label, ...cells]) => `<tr><th scope="row">${escape(label)}</th>${cells.map(cell => `<td>${escape(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>${notes.gaps ? `
+<h3>What still needed me</h3>
+<ul>${notes.gaps.map(gap => `<li>${escape(gap)}</li>`).join('')}</ul>` : ''}${notes.verdict ? `
+<h3>Verdict</h3>
+<p>${escape(notes.verdict)}</p>` : ''}
+<p class="meta">${escape(notes.note)}</p>
+</section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="/watch/${video.id}?t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="/watch/${video.id}?t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id] ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
 <p><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
+${watchNotes[video.id]?.html ?? ''}
 <aside class="note" aria-labelledby="video-next-step">
 <h2 id="video-next-step">${escape(offer.title)}</h2>
 <p>${escape(offer.detail)}</p><p class="meta">${escape(offer.access)}</p>
@@ -266,4 +283,11 @@ ${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(vi
 <video:publication_date>${escape(video.published)}</video:publication_date>
 </video:video></url>`).join('\n')}
 </urlset>`;
+}
+
+// Preserve the hand-maintained page dates; derive archive pagination from the build inventory.
+export function renderPageSitemap(xml, videos) {
+  const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/\d+)?<\/loc>[\s\S]*?<\/url>/g, '');
+  const archive = Array.from({ length: pageCount(videos) }, (_, index) => `  <url><loc>${site}${pagePath(index + 1)}</loc></url>`).join('\n');
+  return core.replace('</urlset>', `${archive}\n</urlset>`);
 }

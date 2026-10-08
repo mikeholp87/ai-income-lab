@@ -16,6 +16,13 @@ function recordView() {
 for (const link of document.querySelectorAll('a[href]')) {
   link.href = readingLink(link.href, window.location.href);
   const target = new URL(link.href);
+  if (target.origin === 'https://www.youtube.com') {
+    link.addEventListener('click', () => {
+      const event = { ...properties, placement: viewEvent === 'video_page_view' ? 'watch_video' : 'written_guide', action: 'watch_on_youtube', video_id: target.searchParams.get('v') || '', link_url: link.href, button_text: link.textContent.trim() };
+      trackGoogleEvent('cta_click', event);
+      trackGoogleEvent('youtube_outbound_clicked', event);
+    });
+  }
   if (target.origin !== 'https://www.skool.com' || !/^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname)) continue;
   link.addEventListener('click', () => {
     const event = { ...properties, placement: link.dataset.placement || 'written_guide', ...(link.dataset.videoId ? { video_id: link.dataset.videoId } : {}), action: 'visit_skool', link_url: link.href, button_text: link.textContent.trim() };
