@@ -59,15 +59,19 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .nav-mobile nav a { padding: 12px; font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 
 /* The first build sits beside the introduction; the CTA precedes media on phones. */
-.hero { padding: 40px 0 64px; }
+.hero { padding: 32px 0 64px; }
 .hero-status { display: inline-flex; align-items: center; gap: 10px; max-width: 100%; padding: 9px 16px; border: 1px solid var(--line-strong); background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.4; }
 .status-label { flex: none; }
 .hero-status strong { overflow: hidden; color: var(--text); font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
 .hero-status:hover { border-color: var(--muted); }
 .live-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgb(255 104 70 / .16); }
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 48px; margin-top: 32px; }
+/* Copy centers against the video card so neither column leaves a dead gap on desktop. */
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; }
 .hero-copy, .hero-preview { min-width: 0; }
-.hero h1 { font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
+.hero-copy { container-type: inline-size; }
+.hero h1 { margin-top: 28px; font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
+/* Sized to the copy column so the longest line ("Build what you") never breaks early; browsers without cqi keep the vw size above. */
+.hero h1 { font-size: clamp(30px, 10.4cqi, 64px); }
 .hero h1 span { display: block; }
 .hero-text { max-width: 48ch; margin-top: 24px; color: var(--body); font: 400 18px/1.6 var(--sans); }
 
@@ -131,12 +135,17 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .player-meta h2 a:hover { color: var(--signal); }
 .player-summary { color: var(--body); font-size: 14px; }
 .player-note { color: var(--muted); font-size: 12px; }
-.hero-actions .button { justify-content: center; padding: 12px 20px; letter-spacing: .06em; text-align: center; }
+.hero-actions .button { flex: 1 1 auto; justify-content: center; padding: 12px 20px; letter-spacing: .06em; text-align: center; }
 .video-next-step { display: grid; gap: 8px; margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line-strong); color: var(--body); font-size: 14px; }
 .video-next-step .next-step-title { color: var(--text); font-weight: 600; }
 .video-next-step .next-step-access { color: var(--muted); font-size: 12px; }
 .video-next-step a { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--signal); text-decoration: underline; text-underline-offset: 4px; }
 .video-next-step.is-compact { gap: 4px; font-size: 13px; }
+/* Hero card: tighter rhythm, and the plan note shares a row with its link when there is room, so the card fits a 768px-tall laptop screen. */
+.hero-preview .player-meta { gap: 8px; padding: 20px 24px 22px; }
+.hero-preview .video-next-step { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; margin-top: 8px; padding-top: 14px; }
+.hero-preview .video-next-step > :not(.next-step-access, a) { flex-basis: 100%; }
+.hero-preview .next-step-access { flex: 1 1 240px; }
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 24px; margin-top: 64px; }
 .video-card { display: grid; gap: 14px; }
 .video-card img, .video-card .thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); border-top: 2px solid var(--signal); background: var(--panel); }
@@ -278,8 +287,8 @@ a.video-card:hover h3 { color: var(--signal); }
   .shell { width: calc(100% - 32px); }
   .icon-link { width: 40px; height: 40px; }
   .hero { padding: 24px 0 40px; }
-  .hero-grid { gap: 28px; margin-top: 24px; }
-  .hero h1 { font-size: 36px; }
+  .hero-grid { gap: 28px; }
+  .hero h1 { margin-top: 24px; }
   .hero-text { margin-top: 18px; font-size: 17px; }
   .section { padding: 88px 0; }
   .tool-grid { grid-template-columns: 1fr; }

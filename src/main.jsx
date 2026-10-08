@@ -412,12 +412,12 @@ function App() {
 
     <main>
       <section className="hero shell" id="main-content" tabIndex="-1">
+        <div className="hero-grid">
+        <div className="hero-copy">
         <a className="hero-status" href="#featured-video">
           <span className="live-dot" aria-hidden="true" />
           {latest ? <><span className="status-label">Latest video:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
         </a>
-        <div className="hero-grid">
-        <div className="hero-copy">
         {communityHero ? (
           <>
           <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
