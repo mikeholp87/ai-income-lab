@@ -44,9 +44,9 @@ node scripts/reconcile-conversions.js /tmp/cal-bookings-october.json 2026-10-01 
 
 The importer reads all pages for the site's event ID `1022289`. It selects the booking creation interval, including current cancellations and pending/rejected requests; only accepted bookings count as confirmed. It retains IDs, timestamps and statuses, discarding attendee details, notes and meeting links. API response attribution is left unknown. An event match alone does not prove the website caused a booking.
 
-Each run creates a private file and refuses to overwrite an existing file. Use a new filename when refreshing the same cohort to capture later cancellations. Failure on any page aborts the export. No scheduled job or public endpoint is installed. The API importer is tested with controlled responses; live account access is pending a credential.
+Each run creates a private file and refuses to overwrite an existing file. Use a new filename when refreshing the same cohort to capture later cancellations. Failure on any page aborts the export. No scheduled job or public endpoint is installed. The API importer is tested with controlled responses. On October 8, 2026, a live authenticated import succeeded for event 1022289 over September 7 (inclusive) to October 8 (exclusive), UTC, returning zero bookings created in that interval. The private export is outside the repository; no customer data or credentials were committed.
 
-This uses the [Cal.com booking API](https://cal.com/docs/api-reference/v2/bookings/get-all-bookings), separately from the paid Insights dashboard. Account API access still needs a live check. Keep the key local; it must never use a `VITE_` prefix or be included in a commit.
+This uses the [Cal.com booking API](https://cal.com/docs/api-reference/v2/bookings/get-all-bookings), separately from the paid Insights dashboard. Live account API access was verified on October 8, 2026. Keep the key local; it must never use a `VITE_` prefix or be included in a commit.
 
 ## Skool integration requirement
 
