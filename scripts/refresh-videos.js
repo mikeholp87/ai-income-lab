@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fetchUploads } from '../src/archive.js';
 import { validFeed } from '../src/youtube.js';
+import { refreshThumbnail } from './thumbnail.js';
 
 const path = new URL('../src/youtube-snapshot.json', import.meta.url);
 try {
@@ -25,4 +26,11 @@ try {
   console.log(`Updated the uploads snapshot (${uploads.length} videos).`);
 } catch (error) {
   console.warn(`Using the saved uploads snapshot: ${error.message}`);
+}
+
+try {
+  await refreshThumbnail(JSON.parse(await readFile(path, 'utf8')).videos[0]);
+  console.log('Updated the responsive hero thumbnail.');
+} catch (error) {
+  console.warn(`Using the saved hero thumbnail or YouTube fallback: ${error.message}`);
 }

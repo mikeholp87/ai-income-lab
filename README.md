@@ -9,6 +9,12 @@ AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Inc
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
 - [Run your first local API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 
+## Build and preview
+
+Run `npm ci`, `npm test`, and `npm run build`. Use `npm run preview` to inspect the production build locally.
+
+The build refreshes the saved video feed and generates 480, 768, and 1280 pixel WebP candidates for the featured video using the build-only Sharp dependency. Hashed files in `public/assets/thumbnails/` and `src/thumbnail-snapshot.json` provide an offline fallback. Keep them together when committing a refreshed snapshot. A failed download retains the previous set; a different video arriving through the live feed uses its own YouTube image until the next build. The browser still falls back to YouTube JPEG if an image fails to load.
+
 ## Email open pixel
 
 Public path after deploy: `https://www.ai-automation-station.com/o/{token}.gif`

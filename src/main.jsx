@@ -6,6 +6,7 @@ import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, se
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
 import { videoOffer } from './video-offer.js';
+import { featuredThumbnail } from './thumbnail.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import './fonts.css';
 import './styles.css';
@@ -243,9 +244,8 @@ function FeaturedVideo({ video, campaign }) {
           ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
           : <button type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
-                src={`https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp`}
-                srcSet={`https://i.ytimg.com/vi_webp/${video.id}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${video.id}/maxresdefault.webp 1280w`}
-                sizes="(max-width: 960px) calc(100vw - 34px), (max-width: 1168px) calc((100vw - 96px) / 2), 534px"
+                {...featuredThumbnail(video.id)}
+                sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
                 onError={event => useJpegThumbnail(event, video.id)}
                 alt="" width="1280" height="720" fetchPriority="high" decoding="async"
               />
