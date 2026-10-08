@@ -49,9 +49,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .nav-links a:hover, .nav-mobile a:hover { color: var(--text); }
 .nav-links a[aria-current] { border-color: var(--signal); color: var(--signal); }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
-.icon-link { display: grid; place-items: center; width: 44px; height: 44px; border: 1.5px solid var(--line-strong); border-radius: 50%; color: var(--text); transition: border-color .2s ease; }
-.icon-link:hover { border-color: var(--muted); }
-.icon-link svg { width: 18px; height: 18px; fill: currentColor; }
+.nav-actions .nav-join { gap: 5px; padding: 10px 14px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
 .nav-mobile { display: none; position: relative; }
 .nav-mobile summary { min-height: 44px; display: flex; align-items: center; padding: 0 16px; border: 1.5px solid var(--line-strong); border-radius: 22px; font: 500 11px var(--mono); letter-spacing: .18em; text-transform: uppercase; cursor: pointer; list-style: none; }
 .nav-mobile summary::-webkit-details-marker { display: none; }
@@ -74,6 +72,8 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .hero h1 { font-size: clamp(30px, 10.4cqi, 64px); }
 .hero h1 span { display: block; }
 .hero-text { max-width: 48ch; margin-top: 24px; color: var(--body); font: 400 18px/1.6 var(--sans); }
+.hero-text strong { color: var(--text); font-weight: 600; }
+.hero-reassurance { max-width: 48ch; }
 
 /* Scroll reveal: index.html sets .reveal-on only while the app will reveal these */
 @media (prefers-reduced-motion: no-preference) {
@@ -140,7 +140,6 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .video-next-step .next-step-title { color: var(--text); font-weight: 600; }
 .video-next-step .next-step-access { color: var(--muted); font-size: 12px; }
 .video-next-step a { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--signal); text-decoration: underline; text-underline-offset: 4px; }
-.video-next-step.is-compact { gap: 4px; font-size: 13px; }
 /* Hero card: tighter rhythm, and the plan note shares a row with its link when there is room, so the card fits a 768px-tall laptop screen. */
 .hero-preview .player-meta { gap: 8px; padding: 20px 24px 22px; }
 .hero-preview .video-next-step { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; margin-top: 8px; padding-top: 14px; }
@@ -198,6 +197,8 @@ a.video-card:hover h3 { color: var(--signal); }
 .plan-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .plan-list h3 { font: 600 17px var(--sans); }
 .plan-list li p { color: var(--body); font-size: 13px; }
+.plan-list .plan-fit { margin: 8px 0; color: var(--text); }
+.plan-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--signal); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
 .plan-price { flex: none; color: var(--muted); font-size: 12px; }
 .plan-price strong { color: var(--text); font: 400 24px var(--display); }
 .fine-print { margin-top: 14px; color: var(--muted); font-size: 12px; }
@@ -308,6 +309,12 @@ a.video-card:hover h3 { color: var(--signal); }
   .faq-list details p { padding: 0 14px 20px 46px; }
   .footer-columns { grid-template-columns: 1fr 1fr; }
   .footer-base { flex-direction: column; }
-  .consent-banner { flex-direction: column; align-items: stretch; padding: 10px 16px; }
+  .nav { gap: 12px; }
+  .brand { font-size: 13px; gap: 6px; }
+  .brand span { width: 8px; height: 8px; }
+  .nav-join-name { display: none; }
+  .nav-actions { gap: 6px; }
+  .nav-mobile summary { padding-inline: 12px; letter-spacing: .08em; }
+  .consent-banner { flex-direction: column; align-items: stretch; gap: 6px; padding: 8px 16px; }
   .consent-actions button { flex: 1; }
 }

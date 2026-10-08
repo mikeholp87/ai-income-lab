@@ -72,7 +72,7 @@ function ConsentBanner({ campaign, campaignReady }) {
   }
 
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices"><p><strong>Analytics &amp; marketing.</strong> Allow Google Analytics and Meta Pixel? <a href="/privacy.html">Privacy details</a>.</p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
+  return <aside className="consent-banner" aria-label="Privacy choices"><p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
 }
 
 // Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
@@ -115,9 +115,9 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, copy: 'Community, courses, and tutorials. Beginner’s Automation Course unlocks at level 2.' },
-  { name: 'Premium', price: 49, copy: 'Everything in Standard, plus Complete AI Avatar Video Course and immediate access to the beginner and VAPI voice-agent courses.' },
-  { name: 'VIP', price: 89, copy: 'Everything in Premium, plus weekly one-to-one coaching, software deals, and 6,400+ n8n templates' },
+  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', copy: 'Community, courses, and tutorials. Beginner’s Automation Course unlocks at level 2.' },
+  { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', copy: 'Everything in Standard, plus Complete AI Avatar Video Course and immediate access to the beginner and VAPI voice-agent courses.' },
+  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', copy: 'Everything in Premium, plus weekly coaching, software deals, and 6,400+ n8n templates' },
 ];
 
 const timeline = [
@@ -131,7 +131,7 @@ const timeline = [
 const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
-  ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly one-to-one coaching.'],
+  ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
@@ -157,14 +157,6 @@ function useYouTubeFeed() {
   return feed;
 }
 
-function YouTubeIcon() {
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.7 15V9l5.8 3-5.8 3Z" /></svg>;
-}
-
-function GitHubIcon() {
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z" /></svg>;
-}
-
 // eyebrow names the section; accent is the headline's closing clause, set in the signal color.
 function SectionHead({ eyebrow, title, accent, children }) {
   return (
@@ -176,7 +168,7 @@ function SectionHead({ eyebrow, title, accent, children }) {
   );
 }
 
-const navLinks = [['#latest', 'Latest'], ['#tools', 'Tools'], ['#community', 'Community'], ['#about', 'About'], ['#work-together', 'Contact']];
+const navLinks = [['#community', 'Community'], ['#latest', 'Videos'], ['#tools', 'Tools'], ['#about', 'About'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
@@ -210,14 +202,14 @@ function useActiveSection(ids) {
   return active;
 }
 
-function VideoNextStep({ video, campaign, compact = false }) {
+function VideoNextStep({ video, campaign }) {
   const offer = videoOffer(video.title);
   const url = outboundUrl(skoolPlansUrl, campaign);
-  return <aside className={`video-next-step${compact ? ' is-compact' : ''}`} aria-label="Build with the Skool community">
+  return <aside className="video-next-step" aria-label="Build with the Skool community">
     <p className="next-step-title">{offer.title}</p>
-    {!compact && <p>{offer.detail}</p>}
+    <p>{offer.detail}</p>
     <p className="next-step-access">{offer.access}</p>
-    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit(compact ? 'video_card' : 'featured_video', 'Explore plans on Skool', url, video.id)}>Explore plans on Skool ↗</a>
+    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Explore plans on Skool', url, video.id)}>Explore plans on Skool ↗</a>
   </aside>;
 }
 
@@ -264,7 +256,7 @@ function FeaturedVideo({ video, campaign }) {
   );
 }
 
-function VideoGrid({ videos, failed, campaign }) {
+function VideoGrid({ videos, failed }) {
   // The featured slot above already shows the error and a YouTube link.
   if (failed) return null;
   const items = videos ? videos.slice(1) : Array(6).fill(null);
@@ -278,7 +270,7 @@ function VideoGrid({ videos, failed, campaign }) {
             </span>
             <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
             <h3>{video.title}</h3>
-          </a><VideoNextStep video={video} campaign={campaign} compact /></li>
+          </a></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
     </ul>
   );
@@ -357,7 +349,7 @@ function App() {
 
   useEffect(() => {
     if (!campaignReady) return undefined;
-    track('Campaign Landing Viewed', { angle: campaign.angle, source: campaign.params.utm_source || 'direct', campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none', hero: wantsCommunity(campaign) ? 'community' : 'hub' });
+    track('Campaign Landing Viewed', { angle: campaign.angle, source: campaign.params.utm_source || 'direct', campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none', hero: wantsCommunity(campaign) ? 'community_youtube' : 'community' });
     let engaged = false;
     const markEngaged = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -402,11 +394,10 @@ function App() {
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="site-header" id="top">
       <div className="nav shell">
-      <a className="brand" href="#top" aria-label="Mike Holp, home"><span aria-hidden="true" />Mike Holp</a>
+      <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
       <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
-        <a className="icon-link" href={channelUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on YouTube" onClick={trackClick('navigation', 'YouTube', channelUrl, 'visit_youtube')}><YouTubeIcon /></a>
-        <a className="icon-link" href={githubUrl} target="_blank" rel="noreferrer" aria-label="Mike Holp on GitHub" onClick={trackClick('navigation', 'GitHub', githubUrl, 'visit_github')}><GitHubIcon /></a>
+        <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
         }}><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
@@ -425,20 +416,55 @@ function App() {
         {communityHero ? (
           <>
           <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
-          <p className="hero-text">Courses, templates, and a community to help you finish your next AI build. From $29 a month. Cancel anytime.</p>
           </>
         ) : (
           <>
-          <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
-          <p className="hero-text">I&rsquo;m Mike Holp. I test AI tools by building real projects on camera, with the setup, results, and mistakes included.</p>
+          <h1><span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
+        <p className="hero-text"><strong>AI Income Lab, the AI Automation Station community.</strong> Step-by-step courses, reusable templates, and a community of 2,900+ members, hosted by Mike Holp.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
-          <a className="button button-primary" href="#featured-video" onClick={trackClick('hero', 'Watch a free AI build', '#featured-video', 'explore_video')}>Watch a free AI build</a>
-          <a className="button button-quiet" href="#community" onClick={trackClick('hero', 'Explore the Skool community', '#community', 'explore_community')}>Explore the Skool community</a>
+          <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
+          <a className="button button-quiet" href="#featured-video" onClick={trackClick('hero', 'Watch a free build', '#featured-video', 'explore_video')}>Watch a free build</a>
         </nav>
+        <p className="fine-print hero-reassurance">From $29/month. Cancel anytime. Course access varies by plan.</p>
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} /></div>
+        </div>
+      </section>
+
+      <section className="section band" id="community">
+        <div className="shell community-grid">
+          <div>
+            <SectionHead eyebrow="AI Income Lab" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+            <div className="members">
+              <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
+              <p>Some of the members building AI workflows on Skool</p>
+            </div>
+            <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
+              {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p><p>{plan.copy}</p><a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name} — $${plan.price}/month`, plansUrl)}>Choose {plan.name} — ${plan.price}/month ↗</a></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
+            </ul>
+            <div className="button-row">
+              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'View plans from $29/month', plansUrl)}>View plans from $29/month</a>
+            </div>
+            <p className="fine-print">Monthly prices shown. Choose your plan and billing period on Skool. Annual billing is available. Cancel anytime from your Skool account.</p>
+            <p className="community-help">Want to try a build first? <a href="/start-here.html" onClick={trackClick('community', 'Start a free build', '/start-here.html', 'start_free_build')}>Start a free build — no signup needed</a>.</p>
+            <p className="community-help"><a href="https://www.skool.com/ai-automation-station-7346/classroom" target="_blank" rel="noreferrer">Open the classroom (member login)</a>. Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
+          </div>
+          <div className="reveal">
+            <CommunityVideo />
+            <div className="course-preview">
+              <h3>Inside the classroom</h3>
+              <ul>
+                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com. Unlocks at level 2, or immediately with Premium or VIP.</span></li>
+                <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
+                <li><strong>Complete AI Avatar Video Course</strong><span>Included with Premium and VIP. Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
+                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs. Unlocks at level 4, or immediately with Premium or VIP.</span></li>
+                <li><strong>Ultimate N8N Template Library</strong><span>Included with VIP: 6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
+              </ul>
+              <p className="fine-print">Levels refer to your Skool community level. <a href="mailto:automojic@proton.me?subject=Course%20access">Ask about course access</a>.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -455,7 +481,8 @@ function App() {
               </div>
             </div>
           </div>
-          <VideoGrid videos={videos} failed={failed} campaign={campaign} />
+          <VideoGrid videos={videos} failed={failed} />
+          <div className="button-row"><a className="button button-quiet" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('video_grid', 'Build with AI Income Lab', plansUrl)}>Build with AI Income Lab ↗</a></div>
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>
       </section>
@@ -482,40 +509,6 @@ function App() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section band" id="community">
-        <div className="shell community-grid">
-          <div>
-            <SectionHead eyebrow="Community" title="Build it with" accent="2,900+ others.">The videos stay free. AI Income Lab is my Skool community for people who want step-by-step courses, templates, and a place to ask when a build stalls.</SectionHead>
-            <div className="members">
-              <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
-              <p>Some of the members building AI workflows on Skool</p>
-            </div>
-            <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
-              {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p>{plan.copy}</p></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
-            </ul>
-            <div className="button-row">
-              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'Choose a plan on Skool', plansUrl)}>Choose a plan on Skool</a>
-            </div>
-            <p className="fine-print">Monthly prices shown. Annual billing is also available on Skool. Cancel anytime from your Skool account.</p>
-            <p className="community-help"><a href="https://www.skool.com/ai-automation-station-7346/classroom" target="_blank" rel="noreferrer">Open the classroom (member login)</a>. Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
-          </div>
-          <div className="reveal">
-            <CommunityVideo />
-            <div className="course-preview">
-              <h3>Inside the classroom</h3>
-              <ul>
-                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com. Unlocks at level 2, or immediately with Premium or VIP.</span></li>
-                <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
-                <li><strong>Complete AI Avatar Video Course</strong><span>Included with Premium and VIP. Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
-                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs. Unlocks at level 4, or immediately with Premium or VIP.</span></li>
-                <li><strong>Ultimate N8N Template Library</strong><span>Included with VIP: 6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
-              </ul>
-              <p className="fine-print">Levels refer to your Skool community level. <a href="mailto:automojic@proton.me?subject=Course%20access">Ask about course access</a>.</p>
-            </div>
           </div>
         </div>
       </section>
@@ -574,10 +567,10 @@ function App() {
     <footer className="footer">
       <div className="shell">
         <div className="footer-cta reveal">
-          <p>New AI builds, <span className="accent">most days.</span></p>
+          <p>Build your next automation <span className="accent">with AI Income Lab.</span></p>
           <div className="button-row">
-            <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
-            <a className="button button-quiet" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Follow on GitHub', githubUrl, 'visit_github')}>Follow on GitHub</a>
+            <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
+            <a className="button button-quiet" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
           </div>
         </div>
         <div className="footer-columns">
