@@ -36,7 +36,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .skip-link:focus { transform: none; }
 
 /* Labels: small tracked caps naming what follows */
-.eyebrow, .nav-links, .hero-links, .text-link, .button, .terminal-go, .footer-columns h2, .stats dt { font-family: var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+.eyebrow, .nav-links, .text-link, .button, .footer-columns h2, .stats dt { font-family: var(--mono); letter-spacing: .18em; text-transform: uppercase; }
 .eyebrow { color: var(--muted); font-size: 11px; font-weight: 500; }
 
 /* Header */
@@ -70,16 +70,6 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .hero h1 { font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
 .hero h1 span { display: block; }
 .hero-text { max-width: 48ch; margin-top: 24px; color: var(--body); font: 400 18px/1.6 var(--sans); }
-.terminal { display: flex; align-items: stretch; margin-top: 28px; border: 1px solid var(--line-strong); background: var(--panel); }
-.terminal-prompt { display: none; }
-.terminal-url { flex: 1; min-width: 0; display: flex; align-items: center; padding: 0 12px; overflow: hidden; color: var(--signal); font-size: 11px; white-space: nowrap; }
-.terminal-url:hover { text-decoration: underline; text-underline-offset: 4px; }
-.terminal-go { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 18px; color: var(--on-signal); background: var(--signal); font-size: 12px; font-weight: 500; white-space: nowrap; }
-.terminal-go:hover { background: var(--signal-hover); }
-.hero-links { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 20px; color: var(--muted); font-size: 11px; font-weight: 500; }
-.hero-links a { padding: 8px 0; border-bottom: 1px solid transparent; }
-.hero-links a:hover { color: var(--text); border-color: var(--muted); }
-.hero-links .hero-link-accent { color: var(--signal); }
 
 /* Scroll reveal: index.html sets .reveal-on only while the app will reveal these */
 @media (prefers-reduced-motion: no-preference) {
@@ -141,6 +131,12 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .player-meta h2 a:hover { color: var(--signal); }
 .player-summary { color: var(--body); font-size: 14px; }
 .player-note { color: var(--muted); font-size: 12px; }
+.hero-actions .button { justify-content: center; padding: 12px 20px; letter-spacing: .06em; text-align: center; }
+.video-next-step { display: grid; gap: 8px; margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line-strong); color: var(--body); font-size: 14px; }
+.video-next-step .next-step-title { color: var(--text); font-weight: 600; }
+.video-next-step .next-step-access { color: var(--muted); font-size: 12px; }
+.video-next-step a { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--signal); text-decoration: underline; text-underline-offset: 4px; }
+.video-next-step.is-compact { gap: 4px; font-size: 13px; }
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 24px; margin-top: 64px; }
 .video-card { display: grid; gap: 14px; }
 .video-card img, .video-card .thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); border-top: 2px solid var(--signal); background: var(--panel); }
@@ -255,7 +251,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .footer-base div { display: flex; flex-wrap: wrap; gap: 24px; }
 .footer-base button { padding: 0; border: 0; color: inherit; background: none; font: inherit; cursor: pointer; }
 
-/* Consent: a slim bottom bar, so the hero's Subscribe button stays clear on first view */
+/* Consent: a slim bottom bar, so the hero choices stays clear on first view */
 .consent-banner { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; gap: 12px 24px; padding: 10px 24px; border-top: 1px solid var(--line); background: var(--panel); }
 .consent-banner p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .consent-banner strong { color: var(--text); font-weight: 500; }
@@ -285,10 +281,6 @@ a.video-card:hover h3 { color: var(--signal); }
   .hero-grid { gap: 28px; margin-top: 24px; }
   .hero h1 { font-size: 36px; }
   .hero-text { margin-top: 18px; font-size: 17px; }
-  .terminal { flex-wrap: wrap; }
-  .terminal-url { display: none; }
-  .terminal-go { flex: 1 0 100%; justify-content: center; margin: 0; }
-  .hero-links { gap: 4px 22px; }
   .section { padding: 88px 0; }
   .tool-grid { grid-template-columns: 1fr; }
   /* Phones: the six recent videos become a compact list, thumbnail left, title and date right. */

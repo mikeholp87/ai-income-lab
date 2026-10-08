@@ -2,8 +2,28 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap } from './archive.js';
 import { GET, HEAD } from '../api/videos.js';
+import { videoOffer } from './video-offer.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
+
+test('video next steps name relevant resources without hiding membership access limits', () => {
+  const examples = [
+    ['Automate AI avatar videos with n8n', /Avatar Video Course/, /Premium and VIP/],
+    ['Build a VAPI voice agent', /VAPI/, /level 4 on Standard; immediate access/],
+    ['Build with n8n', /Template Library/, /included with VIP/],
+    ['Make.com automation tutorial', /Beginner’s Automation Course/, /level 2 on Standard; immediate access/],
+    ['Codex on Linux', /coding tutorials/, /course access/],
+    ['New model review', /AI Income Lab/, /starts at \$29/],
+  ];
+  for (const [title, resource, access] of examples) {
+    const offer = videoOffer(title);
+    assert.match(offer.detail, resource);
+    assert.match(offer.access, access);
+    const html = renderWatch({ id: 'geKngm3sg3w', title, published: '2026-07-08T00:00:00Z', summary: '' });
+    assert.match(html, /href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" data-placement="watch_video" data-video-id="geKngm3sg3w"/);
+    assert.ok(html.indexOf('id="video-next-step"') > html.indexOf('</iframe>'));
+  }
+});
 
 test('keeps public uploads, newest first, across pages', () => {
   const pages = [{ items: [item('old', 'Old', '2025-12-31T10:00:00Z'), item('gone', 'Private video', '2026-03-01T10:00:00Z', 'private')] }, { items: [item('new', 'New', '2026-10-05T12:37:47Z')] }];

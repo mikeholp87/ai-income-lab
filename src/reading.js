@@ -18,7 +18,7 @@ for (const link of document.querySelectorAll('a[href]')) {
   const target = new URL(link.href);
   if (target.origin !== 'https://www.skool.com' || !/^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname)) continue;
   link.addEventListener('click', () => {
-    const event = { ...properties, placement: 'written_guide', action: 'visit_skool', link_url: link.href, button_text: link.textContent.trim() };
+    const event = { ...properties, placement: link.dataset.placement || 'written_guide', ...(link.dataset.videoId ? { video_id: link.dataset.videoId } : {}), action: 'visit_skool', link_url: link.href, button_text: link.textContent.trim() };
     trackGoogleEvent('cta_click', event);
     trackGoogleEvent('skool_outbound_clicked', event);
     trackMetaOutbound(event);

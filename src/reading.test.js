@@ -6,7 +6,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const values = new Map(), scripts = [], events = [], elements = [];
   const button = value => ({ dataset: { consent: value }, addEventListener(type, fn) { this[type] = fn; }, focus() {} });
   const buttons = [button('denied'), button('granted')];
-  const link = { href: 'https://www.skool.com/ai-automation-station-7346/plans', textContent: 'Compare plans', addEventListener(type, fn) { this[type] = fn; } };
+  const link = { href: 'https://www.skool.com/ai-automation-station-7346/plans', dataset: path.startsWith('/watch/') ? { placement: 'watch_video', videoId: 'Ip8KBwDixJs' } : {}, textContent: 'Compare plans', addEventListener(type, fn) { this[type] = fn; } };
   globalThis.localStorage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
   globalThis.window = {
     location: new URL(`https://www.ai-automation-station.com${path}?utm_source=youtube&utm_content=video-a`),
@@ -34,6 +34,8 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
     assert.equal(clicks.length, 1);
     assert.equal(clicks[0][2].content, 'video-a');
+    assert.equal(clicks[0][2].placement, path.startsWith('/watch/') ? 'watch_video' : 'written_guide');
+    if (path.startsWith('/watch/')) assert.equal(clicks[0][2].video_id, 'Ip8KBwDixJs');
     assert.equal(new URL(link.href).searchParams.get('utm_content'), 'video-a');
     buttons[0].click();
     const afterDecline = events.length;

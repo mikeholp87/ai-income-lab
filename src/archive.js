@@ -1,4 +1,5 @@
 import { channelUrl, summarize } from './youtube.js';
+import { videoOffer } from './video-offer.js';
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -116,6 +117,7 @@ const videoDescription = video => video.summary || `Watch ${video.title} by AI A
 
 export function renderWatch(video) {
   const description = videoDescription(video);
+  const offer = videoOffer(video.title);
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject',
     name: video.title, description, thumbnailUrl: thumbnailUrl(video),
@@ -148,6 +150,11 @@ export function renderWatch(video) {
 <p class="meta">By Mike Holp · <time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time></p>
 <p class="description">${escape(description)}</p>
 <p><a href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
+<aside class="note" aria-labelledby="video-next-step">
+<h2 id="video-next-step">${escape(offer.title)}</h2>
+<p>${escape(offer.detail)}</p><p class="meta">${escape(offer.access)}</p>
+<p><a href="https://www.skool.com/ai-automation-station-7346/plans" data-placement="watch_video" data-video-id="${video.id}" target="_blank" rel="noreferrer">Explore plans on Skool ↗</a></p>
+</aside>
 </main>
 <footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>
 </body></html>`;

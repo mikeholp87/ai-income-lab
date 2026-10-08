@@ -5,6 +5,7 @@ import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
+import { videoOffer } from './video-offer.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import './fonts.css';
 import './styles.css';
@@ -36,8 +37,8 @@ function trackClick(placement, buttonText, url, action) {
   return () => trackEvent('CTA Clicked', { button_text: buttonText, link_url: url, placement, action });
 }
 
-function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl) {
-  const properties = { ...campaignProperties(getCampaign(window.location.search, ['community'])), content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
+function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl, videoId) {
+  const properties = { ...campaignProperties(getCampaign(window.location.search, ['community'])), ...(videoId ? { video_id: videoId } : {}), content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
   trackMetaOutbound(properties);
@@ -206,7 +207,18 @@ function useActiveSection(ids) {
   return active;
 }
 
-function FeaturedVideo({ video }) {
+function VideoNextStep({ video, campaign, compact = false }) {
+  const offer = videoOffer(video.title);
+  const url = outboundUrl(skoolPlansUrl, campaign);
+  return <aside className={`video-next-step${compact ? ' is-compact' : ''}`} aria-label="Build with the Skool community">
+    <p className="next-step-title">{offer.title}</p>
+    {!compact && <p>{offer.detail}</p>}
+    <p className="next-step-access">{offer.access}</p>
+    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit(compact ? 'video_card' : 'featured_video', 'Explore plans on Skool', url, video.id)}>Explore plans on Skool ↗</a>
+  </aside>;
+}
+
+function FeaturedVideo({ video, campaign }) {
   const [playing, setPlaying] = useState(false);
   if (!video) return <div className="player"><div className="player-screen is-loading" /><div className="player-meta"><span className="skeleton-line" /><span className="skeleton-line short" /></div></div>;
 
@@ -242,12 +254,13 @@ function FeaturedVideo({ video }) {
         <h2><a href={watchUrl(video.id)} target="_blank" rel="noreferrer" onClick={trackClick('latest', video.title, watchUrl(video.id), 'watch_video')}>{video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
         <p className="player-note">YouTube loads only after you press play.</p>
+        <VideoNextStep video={video} campaign={campaign} />
       </div>
     </article>
   );
 }
 
-function VideoGrid({ videos, failed }) {
+function VideoGrid({ videos, failed, campaign }) {
   // The featured slot above already shows the error and a YouTube link.
   if (failed) return null;
   const items = videos ? videos.slice(1) : Array(6).fill(null);
@@ -261,7 +274,7 @@ function VideoGrid({ videos, failed }) {
             </span>
             <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
             <h3>{video.title}</h3>
-          </a></li>
+          </a><VideoNextStep video={video} campaign={campaign} compact /></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
     </ul>
   );
@@ -409,27 +422,19 @@ function App() {
           <>
           <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
           <p className="hero-text">Courses, templates, and a community to help you finish your next AI build. From $29 a month. Cancel anytime.</p>
-          <div className="terminal">
-            <span className="terminal-prompt" aria-hidden="true">~</span>
-            <a className="terminal-url" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Skool URL', plansUrl)}>skool.com/ai-automation-station-7346</a>
-            <a className="terminal-go" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero_community', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab</a>
-          </div>
-          <nav className="hero-links" aria-label="Jump to"><a className="hero-link-accent" href="#community">See what&rsquo;s included</a><a href="#featured-video">Watch the latest video</a><a href="#about">About Mike</a></nav>
           </>
         ) : (
           <>
           <h1><span>New AI tools,</span> <span className="accent">tested on real builds.</span></h1>
           <p className="hero-text">I&rsquo;m Mike Holp. I test AI tools by building real projects on camera, with the setup, results, and mistakes included.</p>
-          <div className="terminal">
-            <span className="terminal-prompt" aria-hidden="true">~</span>
-            <a className="terminal-url" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Channel URL', channelUrl, 'visit_youtube')}>youtube.com/@ai-automation-station</a>
-            <a className="terminal-go" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('hero', 'Subscribe', subscribeUrl, 'subscribe_youtube')}>Subscribe</a>
-          </div>
-          <nav className="hero-links" aria-label="Jump to"><a href="#featured-video">Watch the latest video</a><a className="hero-link-accent" href="#tools">See the tools I built</a><a href="#about">About Mike</a></nav>
           </>
         )}
+        <nav className="button-row hero-actions" aria-label="Choose your next step">
+          <a className="button button-primary" href="#featured-video" onClick={trackClick('hero', 'Watch a free AI build', '#featured-video', 'explore_video')}>Watch a free AI build</a>
+          <a className="button button-quiet" href="#community" onClick={trackClick('hero', 'Explore the Skool community', '#community', 'explore_community')}>Explore the Skool community</a>
+        </nav>
         </div>
-        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} /></div>
+        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} /></div>
         </div>
       </section>
 
@@ -446,7 +451,7 @@ function App() {
               </div>
             </div>
           </div>
-          <VideoGrid videos={videos} failed={failed} />
+          <VideoGrid videos={videos} failed={failed} campaign={campaign} />
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>
       </section>
