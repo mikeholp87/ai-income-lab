@@ -20,7 +20,7 @@ const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const latestAt = args.indexOf('--latest');
 const latest = latestAt === -1 ? 0 : Number(args[latestAt + 1]);
-const givenIds = args.filter((arg, index) => !arg.startsWith('--') && index !== latestAt + 1);
+const givenIds = args.filter((arg, index) => !arg.startsWith('--') && !(latestAt !== -1 && index === latestAt + 1));
 if (!latest && !givenIds.length) {
   console.log('Usage: node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]');
   process.exit(1);
