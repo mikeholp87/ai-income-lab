@@ -486,6 +486,18 @@ function App() {
             </div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
+          <aside className="build-guides" aria-labelledby="build-guides-title">
+            <h3 id="build-guides-title">Build something you can check.</h3>
+            <p>Free written walkthroughs with sample inputs, troubleshooting, and a clear finish line.</p>
+            <ul>
+              <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
+              <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
+              <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
+              <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
+              <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
+            </ul>
+            <p>Prefer a recording? <a href="/watch/7v_675nO7nM">Build an OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">set up 9Router</a>, or <a href="/watch/G8u1-hKEqig">follow the HeyGen avatar workflow</a>.</p>
+          </aside>
           <div className="button-row"><a className="button button-quiet" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('video_grid', 'Build with AI Income Lab', plansUrl)}>Build with AI Income Lab ↗</a></div>
           <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>

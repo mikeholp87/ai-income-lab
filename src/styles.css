@@ -27,6 +27,12 @@ img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4, p, dl, dd, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.build-guides { margin: 32px 0; padding: 24px; border: 1px solid var(--line-strong); background: var(--panel); font-family: var(--sans); }
+.build-guides h3 { margin-top: 0; color: var(--text); }
+.build-guides ul { padding-left: 20px; }
+.build-guides li { margin: 8px 0; }
+.build-guides a { color: var(--signal-hover); text-decoration: underline; text-underline-offset: 4px; }
+.build-guides li a { display: inline-flex; align-items: center; min-height: 44px; }
 button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 section[id], main [id] { scroll-margin-top: 88px; }
 .accent { color: var(--signal); }

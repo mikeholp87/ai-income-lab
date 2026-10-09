@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>Codex tutorial: make and verify a small code change | Mike Holp</title><meta name="description" content="Practice a Codex workflow on a local API example: inspect the code, add a failure check, review the diff, and verify the result without paid API calls."><link rel="canonical" href="https://www.ai-automation-station.com/guides/codex-workflow.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css"><meta property="og:type" content="article"><meta property="og:title" content="Codex tutorial: make and verify a small code change"><meta property="og:description" content="Practice a Codex workflow on a local API example: inspect the code, add a failure check, review the diff, and verify the result without paid API calls."><meta property="og:url" content="https://www.ai-automation-station.com/guides/codex-workflow.html"><meta property="og:image" content="https://www.ai-automation-station.com/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><script type="module" src="/src/reading.js"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Codex tutorial: make and verify a small code change","description":"Practice a Codex workflow on a local API example: inspect the code, add a failure check, review the diff, and verify the result without paid API calls.","url":"https://www.ai-automation-station.com/guides/codex-workflow.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/codex-workflow.html","datePublished":"2026-10-09","dateModified":"2026-10-09","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"}}</script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">Mike Holp</a><a href="/start-here.html">Start here</a><a href="/videos">All videos</a></header><main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-09">October 9, 2026</time></p>
+<h1>Use Codex to make a change you can verify.</h1>
+<p>This Codex tutorial takes one small task from a brief to a checked diff: add a malformed-JSON check to this site’s local API example. You will finish with a script that verifies a failure case as well as the existing successful request.</p>
+<p class="note">Bring Git, Node.js 22 or later, and a configured coding assistant. The exercise makes only local requests and needs no provider key. Your coding assistant may have its own usage charges. No Skool membership is needed to read or run it.</p>
+<h2>1. Start from a working example</h2>
+<pre><code>git clone https://github.com/mikeholp87/ai-income-lab.git
+cd ai-income-lab
+git switch -c practice/api-json-check
+node public/examples/first-api-request.mjs</code></pre>
+<p>No npm install is needed for this example. It uses Node’s built-in modules, starts a server on loopback, checks three requests, and closes it. Read the <a href="/guides/first-api-request.html">API request guide</a> if keys, models, and status codes are new to you.</p>
+<p>The baseline prints HTTP 401 for the wrong key, HTTP 404 for an unknown model, HTTP 200 for a valid request, and a PASS line. Save this output before changing anything. If it fails already, resolve that failure first.</p>
+<h2>2. Give Codex a concrete brief</h2>
+<p>Open the cloned folder in your coding client. Ask it to inspect <code>public/examples/first-api-request.mjs</code>, then use this brief:</p>
+<pre><code>Add one executable check for malformed JSON to this local example.
+Send an incomplete JSON body with the valid demo key.
+Assert HTTP 400 and the existing "Invalid JSON" error.
+Keep the three existing checks, timeout, redirect handling, and cleanup.
+Use only built-in Node modules. Do not connect a real provider.
+Run the example and show the diff and output. Do not commit or push.</code></pre>
+<p>This is an author-written practice task using the public repository, separate from the recorded <a href="/watch/TuVL2x6IfDk">Codex internal-link audit</a>. Both use the same useful sequence: inspect, change, check, and review. The exact client buttons and model names are not part of the exercise.</p>
+<h2>3. Check the proposed change</h2>
+<p>The server already catches invalid JSON and replies with status 400. The missing piece is a request that exercises that branch. A minimal addition inside the existing <code>try</code> block, after the request loop and before the PASS message, can look like this:</p>
+<pre><code>const malformed = await fetch(endpoint, {
+  method: 'POST',
+  redirect: 'error',
+  signal: AbortSignal.timeout(5000),
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer demo-only',
+  },
+  body: '{',
+});
+assert.equal(malformed.status, 400);
+assert.deepEqual(await malformed.json(), { error: 'Invalid JSON' });
+console.log('Malformed JSON: HTTP 400');</code></pre>
+<p>Use the valid demo key so the request reaches JSON parsing. A wrong key would test authentication again. Keep the request inside the <code>try</code> block so the existing <code>finally</code> still closes the server on failure.</p>
+<h2>4. Run it and inspect the diff</h2>
+<pre><code>node public/examples/first-api-request.mjs
+git diff --check
+git diff -- public/examples/first-api-request.mjs
+git status --short</code></pre>
+<p>Expect the original three status lines, then <code>Malformed JSON: HTTP 400</code>, then PASS. Check that only your intended file changed. A passing script is evidence for these four checks; it does not establish a real provider connection or a comprehensive security review.</p>
+<h2>When the result is wrong</h2>
+<ul><li><strong>401 instead of 400:</strong> verify the test sends the valid demo key.</li><li><strong>404 instead of 400:</strong> verify the request method and endpoint path.</li><li><strong>No new output:</strong> confirm you saved and ran the changed file.</li><li><strong>The process stays open:</strong> check that server cleanup remains in <code>finally</code> and the new request has a timeout.</li><li><strong>The assistant changes unrelated files:</strong> inspect those changes before keeping them; restate the one-file task and preserve any work you already had.</li></ul>
+<h2>Continue with a real project</h2>
+<p>Read the <a href="https://github.com/mikeholp87/ai-income-lab/blob/main/public/examples/first-api-request.mjs">source example</a>, then try the <a href="/guides/youtube-feed.html">React YouTube-feed build</a>. The <a href="/watch/7v_675nO7nM">OpenCode desktop build</a> shows why launching an app and checking saved data matter even after compilation passes.</p>
+<aside class="note"><h2>Get help with your next change</h2><p>AI Income Lab includes coding tutorials and a community for practical builds. Find <strong>Codex Tutorials &amp; Courses</strong> and <strong>Claude Code &amp; Skills</strong> in the <a href="https://www.skool.com/ai-automation-station-7346/classroom">classroom</a>; <a href="https://www.skool.com/ai-automation-station-7346/plans">check current membership and course access</a>.</p></aside>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

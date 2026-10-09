@@ -79,7 +79,7 @@ export function renderArchive(videos, page = 1) {
   const items = videos.slice((page - 1) * perPage, page * perPage);
   const years = Map.groupBy(items, video => video.published.slice(0, 4));
   const pageNote = page > 1 ? `Page ${page} of ${pages}. ` : '';
-  const description = `${pageNote}All ${videos.length} long-form videos from AI Automation Station: new AI models, agents, and tools like Claude Code, Codex, OpenCode, and n8n, tested on real builds.`;
+  const description = `${pageNote}Browse ${videos.length} AI Automation Station tutorials: coding agents, AI tools, and automation workflows tested on real builds.`;
   const url = `${site}${pagePath(page)}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, url,
@@ -185,7 +185,11 @@ export function relatedVideos(video, videos, count = 4) {
 }
 
 // Written guides that cover the same tool as a video.
-const guides = [[/9router/i, '/guides/first-api-request.html', 'Make your first API request']];
+const guides = [
+  [/9router/i, '/guides/first-api-request.html', 'Make your first API request'],
+  [/codex|open\s?code|claude code/i, '/guides/codex-workflow.html', 'Make and verify a small code change with Codex'],
+  [/make\.com/i, '/guides/make-first-automation.html', 'Build your first Make.com automation'],
+];
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
@@ -216,9 +220,10 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(watchNotes[video.id]?.searchTitle || notes?.searchTitle || video.title)} | AI Automation Station</title>
+<title>${escape(watchNotes[video.id]?.searchTitle || notes?.searchTitle || video.title)}</title>
 <meta name="description" content="${escape(snippet(description))}">
 <link rel="canonical" href="${watchUrl(video)}">
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/reading.css">
 <link rel="stylesheet" href="/consent.css">
@@ -255,7 +260,7 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <p class="meta">${escape(notes.note)}</p>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="/watch/${video.id}?t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id] ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="/watch/${video.id}?t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
 <p><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
 ${watchNotes[video.id]?.html ?? ''}

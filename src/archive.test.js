@@ -130,7 +130,7 @@ test('page sitemap follows inventory growth and preserves core dates', () => {
 });
 
 test('priority build notes keep corrected summaries consistent across discovery surfaces', () => {
-  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk']) {
+  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk', '_8qzOkIWMSk', 'G8u1-hKEqig', '5zBHLxXw3tI', '7v_675nO7nM', 'g4BmgmEy_mI']) {
     const video = { id, title: 'A recorded build', summary: 'Outdated promotional summary', published: '2026-07-08T00:00:00Z', embeddable: true };
     const html = renderWatch(video);
     const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
@@ -150,6 +150,18 @@ test('watch pages show a written companion only where one exists', () => {
   assert.match(html, /<h3>Verdict<\/h3>/);
   assert.ok(html.indexOf('id="notes"') < html.indexOf('id="video-next-step"'));
   assert.doesNotMatch(renderWatch({ ...video, id: 'geKngm3sg3w' }), /id="notes"/);
+});
+
+test('guide discovery includes title-only notes and avoids repeated companion links', () => {
+  const render = (id, title) => renderWatch({ id, title, published: '2026-10-08T00:00:00Z' });
+  assert.match(render('1aG1XbAQj-k', 'Codex workflow'), /href="\/guides\/codex-workflow.html"/);
+  assert.match(render('unannotated', 'Make.com tutorial'), /href="\/guides\/make-first-automation.html"/);
+  const companion = render('7v_675nO7nM', 'OpenCode desktop');
+  assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
+  assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
+  assert.match(companion, /<link rel="preconnect" href="https:\/\/www.youtube-nocookie.com">/);
+  assert.match(companion, /<iframe [^>]*src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.doesNotMatch(companion, /loading="lazy"/);
 });
 
 test('renders year groups and escapes titles', () => {

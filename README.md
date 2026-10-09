@@ -8,6 +8,8 @@ AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Inc
 - [Build a React YouTube feed](https://www.ai-automation-station.com/guides/youtube-feed.html)
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
 - [Run your first local API request](https://www.ai-automation-station.com/guides/first-api-request.html)
+- [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
+- [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html)
 
 ## Build and preview
 
