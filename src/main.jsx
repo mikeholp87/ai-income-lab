@@ -213,7 +213,7 @@ function VideoNextStep({ video, campaign }) {
   </aside>;
 }
 
-function useJpegThumbnail(event, id) {
+function swapToJpegThumbnail(event, id) {
   const image = event.currentTarget;
   if (image.src.endsWith('/hqdefault.jpg')) return;
   image.removeAttribute('srcset');
@@ -238,7 +238,7 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
               <img
                 {...featuredThumbnail(video.id)}
                 sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
-                onError={event => useJpegThumbnail(event, video.id)}
+                onError={event => swapToJpegThumbnail(event, video.id)}
                 alt="" width="1280" height="720" fetchPriority="high" decoding="async"
               />
               <span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
@@ -265,7 +265,7 @@ function VideoGrid({ videos, failed }) {
       {items.map((video, index) => video
         ? <li key={video.id}><a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest_posts', video.title, watchUrl(video), 'watch_video')}>
             <span className="thumb-frame">
-              <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => useJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
+              <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
               {video.duration && <span className="duration">{video.duration}</span>}
             </span>
             <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>

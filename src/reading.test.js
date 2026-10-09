@@ -11,7 +11,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const images = [false, true, false].map((complete, index) => ({
     complete, naturalWidth: index === 2 ? 320 : 0, retries: 0, removed: 0,
     get src() { return 'https://i.ytimg.com/vi/test/mqdefault.jpg'; },
-    set src(value) { this.retries++; },
+    set src(value) { void value; this.retries++; },
     addEventListener(type, fn) { this[type] = fn; },
   }));
   for (const image of images) image.previousElementSibling = { remove() { image.removed++; image.previousElementSibling = null; } };

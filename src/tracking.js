@@ -5,7 +5,7 @@ export function getTrackingConsent() {
 }
 
 export function setTrackingConsent(value) {
-  try { localStorage.setItem(consentKey, value); } catch (_) {}
+  try { localStorage.setItem(consentKey, value); } catch (_) { /* Storage may be unavailable. */ }
 }
 
 export function trackGoogleEvent(name, parameters = {}) {

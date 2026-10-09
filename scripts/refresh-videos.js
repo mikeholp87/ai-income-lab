@@ -1,7 +1,13 @@
+import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fetchUploads } from '../src/archive.js';
 import { validFeed } from '../src/youtube.js';
 import { refreshThumbnail } from './thumbnail.js';
+
+for (const file of ['.env.local', '.env']) {
+  const path = `${import.meta.dirname}/../${file}`;
+  if (existsSync(path)) process.loadEnvFile(path);
+}
 
 const path = new URL('../src/youtube-snapshot.json', import.meta.url);
 try {
