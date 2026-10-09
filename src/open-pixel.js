@@ -114,7 +114,7 @@ export function pixelResponse() {
 export function sanitizeToken(raw) {
   if (raw == null) return '';
   let token = String(raw);
-  try { token = decodeURIComponent(token); } catch (_) {}
+  try { token = decodeURIComponent(token); } catch (_) { /* Keep the raw token if decoding fails. */ }
   token = token.replace(/\.gif$/i, '').trim();
   return /^[A-Za-z0-9._-]{1,200}$/.test(token) ? token : '';
 }

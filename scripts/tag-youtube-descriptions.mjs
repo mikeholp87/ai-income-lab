@@ -30,7 +30,7 @@ const dir = `${homedir()}/.config/yt-oauth`;
 const { installed } = JSON.parse(readFileSync(`${dir}/client_secret.json`, 'utf8'));
 const tokenFile = `${dir}/token.json`;
 const api = 'https://www.googleapis.com/youtube/v3';
-const bare = /https:\/\/www\.ai-automation-station\.com(?![\/?#\w.-])/;
+const bare = /https:\/\/www\.ai-automation-station\.com(?![/?#\w.-])/;
 const tagged = id => `https://www.ai-automation-station.com/?utm_source=youtube&utm_content=${id}`;
 
 // Installed-app loopback flow with PKCE; the access token is cached (owner-only) until it expires.

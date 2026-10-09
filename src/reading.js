@@ -8,6 +8,7 @@ for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
     const source = image.previousElementSibling;
     if (!source) return;
     source.remove();
+    // eslint-disable-next-line no-self-assign -- Reassign src to retry after removing the picture source.
     image.src = image.src;
   };
   image.addEventListener('error', fallback, { once: true });
