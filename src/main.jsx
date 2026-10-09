@@ -86,8 +86,8 @@ const tools = [
   {
     name: 'TubeAnalytics',
     url: 'https://www.tubeanalytics.net',
-    image: '/tools/tubeanalytics.jpg',
-    size: [1102, 620],
+    image: '/tools/tubeanalytics.webp',
+    size: [1600, 1000],
     tagline: 'YouTube analytics for creators.',
     copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
     facts: ['Real CPM and RPM for connected channels', '180+ registered creators', '7-day free trial, plans from $19 a month'],
@@ -97,8 +97,8 @@ const tools = [
   {
     name: 'VisiScan',
     url: 'https://www.visiscan.app',
-    image: '/tools/visiscan.jpg',
-    size: [1164, 850],
+    image: '/tools/visiscan.webp',
+    size: [1734, 1278],
     tagline: 'See whether AI recommends your business.',
     copy: 'VisiScan asks AI engines like ChatGPT, Claude, and Perplexity the questions your buyers ask, then shows who gets named, who gets recommended instead, and what to fix.',
     facts: ['Free scan, no signup', 'Full report for $49, paid once', 'Weekly monitoring from $29 a month'],
