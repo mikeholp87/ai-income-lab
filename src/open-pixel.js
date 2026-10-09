@@ -153,19 +153,17 @@ async function airtableFetch(path, { env, baseId, method = 'GET', body } = {}) {
     body: body ? JSON.stringify(body) : undefined,
   });
   if (!response.ok) {
-    const detail = await response.text().catch(() => '');
-    throw new Error(`Airtable ${method} ${path} ${response.status} ${detail}`.trim());
+    throw new Error(`Airtable ${method} ${path.split('?')[0]} ${response.status}`);
   }
   return response.json();
 }
 
-export async function recordOpen({ token, openedAt, userAgent, ip }, env = process.env) {
+export async function recordOpen({ token, openedAt, userAgent }, env = process.env) {
   const route = resolveAirtableRoute(token, env);
   const hit = {
     token,
     openedAt,
-    userAgent,
-    ip: ip || undefined,
+    userAgent: userAgent.slice(0, 300),
     route: route.key,
     product: route.product,
   };
@@ -190,7 +188,7 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
         'Open Id': openId,
         'Send Token': token,
         'Opened At': openedAt,
-        'User Agent': userAgent.slice(0, 100000),
+        'User Agent': userAgent.slice(0, 1000),
         Source: 'pixel',
       },
     },
@@ -214,17 +212,23 @@ export async function recordOpen({ token, openedAt, userAgent, ip }, env = proce
 }
 
 export async function handleOpenPixel(request, env = process.env) {
+  if (request.method !== 'GET' && request.method !== 'HEAD') return pixelResponse();
   const token = extractToken(request.url);
   const openedAt = new Date().toISOString();
   const userAgent = request.headers.get('user-agent') || '';
-  const ip = clientIp(request.headers);
+  let timer;
   try {
     await Promise.race([
-      recordOpen({ token, openedAt, userAgent, ip }, env),
-      new Promise((_, reject) => setTimeout(() => reject(new Error('open-pixel log timeout')), 3000)),
+      recordOpen({ token, openedAt, userAgent }, env),
+      new Promise((_, reject) => {
+        // Stop waiting after 3 s; Airtable work can still finish in the background.
+        timer = setTimeout(() => reject(new Error('open-pixel log timeout')), 3000);
+      }),
     ]);
   } catch (error) {
     console.error('[open-pixel] log failed', error);
+  } finally {
+    clearTimeout(timer);
   }
   return pixelResponse();
 }

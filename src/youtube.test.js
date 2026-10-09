@@ -65,3 +65,21 @@ test('validates rendered feed data before using it as a snapshot', async () => {
     assert.equal(validFeed({ videos: [{ ...feed.videos[0], ...invalid }] }), false);
   }
 });
+
+test('feed failures log upstream details and return a generic 502', async t => {
+  const { GET } = await import('../api/youtube.js');
+  const error = t.mock.method(console, 'error', () => {});
+  let attempt = 0;
+  t.mock.method(globalThis, 'fetch', async () => {
+    if (++attempt % 2) throw new Error('upstream failure detail');
+    return new Response('upstream body', { status: 503 });
+  });
+  const response = await GET();
+  assert.equal(response.status, 502);
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await response.json(), { error: 'YouTube feed unavailable' });
+  assert.equal(error.mock.callCount(), 1);
+  const details = error.mock.calls[0].arguments[1];
+  assert.ok(details.includes(503));
+  assert.ok(details.some(status => String(status).includes('upstream failure detail')));
+});
