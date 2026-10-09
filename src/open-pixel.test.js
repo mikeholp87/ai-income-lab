@@ -16,6 +16,12 @@ import {
   sanitizeToken,
 } from './open-pixel.js';
 
+async function assertPixel(response) {
+  assert.equal(response.status, 200);
+  for (const [key, value] of Object.entries(PIXEL_HEADERS)) assert.equal(response.headers.get(key), value);
+  assert.deepEqual(new Uint8Array(await response.arrayBuffer()), TRANSPARENT_GIF);
+}
+
 test('defaults Airtable write-back to Free Members 3 and allows env overrides', () => {
   assert.equal(AIRTABLE_BASE_ID, 'appK4Nu5Dy4imXrDp');
   assert.equal(SKOOL_OPENS_TABLE_ID, 'tblFS59vmxGSrLCPJ');
@@ -146,7 +152,6 @@ test('records an Opens row and flips the first send open only', async () => {
       token: 'SKOOL-FT-1',
       openedAt: '2026-10-02T00:00:00.000Z',
       userAgent: 'UA',
-      ip: '203.0.113.9',
     }, { AIRTABLE_API_KEY: 'key' });
   } finally {
     globalThis.fetch = previous;
@@ -300,4 +305,111 @@ test('unknown and mismatched send tokens return a GIF without Airtable writes', 
       assert.deepEqual(calls, ['GET']);
     }
   } finally { globalThis.fetch = previous; }
+});
+
+test('non-GET/HEAD methods return the same GIF without recording', async t => {
+  const fetch = t.mock.method(globalThis, 'fetch', async () => Response.json({ records: [] }));
+  const info = t.mock.method(console, 'info', () => {});
+  for (const method of ['POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'TRACE', 'CONNECT']) {
+    await assertPixel(await handleOpenPixel({
+      method,
+      url: 'https://example.com/o/test-token.gif',
+      headers: new Headers(),
+    }, { AIRTABLE_API_KEY: 'mock' }));
+  }
+  assert.equal(fetch.mock.callCount(), 0);
+  assert.equal(info.mock.callCount(), 0);
+});
+
+test('HEAD still records and clears the deadline timer when recording finishes', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const clearTimeout = t.mock.method(globalThis, 'clearTimeout');
+  t.mock.method(console, 'info', () => {});
+  const calls = [];
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    calls.push(init);
+    return Response.json(init.method === 'GET'
+      ? { records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: false } }] }
+      : { id: 'recNew' });
+  });
+  await assertPixel(await handleOpenPixel(new Request('https://example.com/o/test-token.gif', {
+    method: 'HEAD',
+  }), { AIRTABLE_API_KEY: 'mock' }));
+  assert.deepEqual(calls.map(call => call.method), ['GET', 'POST', 'PATCH']);
+  assert.ok(calls.every(call => !Object.hasOwn(call, 'signal')));
+  assert.equal(clearTimeout.mock.callCount(), 1);
+  assert.notEqual(clearTimeout.mock.calls[0].arguments[0], undefined);
+});
+
+test('the 3 s deadline returns the GIF while Airtable work continues', async t => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const clearTimeout = t.mock.method(globalThis, 'clearTimeout');
+  t.mock.method(console, 'info', () => {});
+  const error = t.mock.method(console, 'error', () => {});
+  const calls = [];
+  let finishLookup;
+  let finishRecording;
+  const recordingFinished = new Promise(resolve => { finishRecording = resolve; });
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    calls.push(init);
+    if (init.method === 'GET') return new Promise(resolve => { finishLookup = resolve; });
+    if (init.method === 'PATCH') finishRecording();
+    return Response.json({ id: 'recNew' });
+  });
+  const response = handleOpenPixel(new Request('https://example.com/o/test-token.gif'), { AIRTABLE_API_KEY: 'mock' });
+  let returned = false;
+  response.then(() => { returned = true; });
+  t.mock.timers.tick(2999);
+  await Promise.resolve();
+  assert.equal(returned, false);
+  t.mock.timers.tick(1);
+  await assertPixel(await response);
+  assert.deepEqual(calls.map(call => call.method), ['GET']);
+  assert.equal(error.mock.callCount(), 1);
+  assert.equal(error.mock.calls[0].arguments[1].message, 'open-pixel log timeout');
+  assert.equal(clearTimeout.mock.callCount(), 1);
+  finishLookup(Response.json({
+    records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: false } }],
+  }));
+  await recordingFinished;
+  assert.deepEqual(calls.map(call => call.method), ['GET', 'POST', 'PATCH']);
+  assert.ok(calls.every(call => !Object.hasOwn(call, 'signal')));
+});
+
+test('logs no client IP, caps logged user agent at 300 and Airtable user agent at 1000', async t => {
+  const info = t.mock.method(console, 'info', () => {});
+  const bodies = [];
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    if (init.body) bodies.push(JSON.parse(init.body));
+    return Response.json(init.method === 'GET'
+      ? { records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: true } }] }
+      : { id: 'recNew' });
+  });
+  const userAgent = 'a'.repeat(1200);
+  await assertPixel(await handleOpenPixel(new Request('https://example.com/o/test-token.gif', {
+    headers: { 'user-agent': userAgent, 'x-forwarded-for': '203.0.113.9, 10.0.0.1' },
+  }), { AIRTABLE_API_KEY: 'mock' }));
+  const args = info.mock.calls[0].arguments;
+  assert.equal(args[0], '[open-pixel]');
+  assert.equal(Object.hasOwn(args[1], 'ip'), false);
+  assert.equal(JSON.stringify(args).includes('203.0.113.9'), false);
+  assert.equal(args[1].userAgent, userAgent.slice(0, 300));
+  assert.equal(bodies[0].fields['User Agent'], userAgent.slice(0, 1000));
+});
+
+test('Airtable errors contain only method, table/record path and status', async t => {
+  t.mock.method(console, 'info', () => {});
+  for (const [method, path] of [
+    ['GET', SKOOL_SENDS_TABLE_ID],
+    ['POST', SKOOL_OPENS_TABLE_ID],
+    ['PATCH', `${SKOOL_SENDS_TABLE_ID}/recSend1`],
+  ]) {
+    t.mock.method(globalThis, 'fetch', async (url, init) => {
+      if (init.method === method) return new Response('private upstream body', { status: 503 });
+      return Response.json({ records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: false } }] });
+    });
+    await assert.rejects(recordOpen({
+      token: 'test-token', openedAt: '2026-10-09T00:00:00Z', userAgent: 'test',
+    }, { AIRTABLE_API_KEY: 'mock' }), { message: `Airtable ${method} ${path} 503` });
+  }
 });

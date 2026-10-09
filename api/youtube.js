@@ -47,5 +47,6 @@ export async function GET() {
   }
   // A day-old feed beats an error page when both sources are down.
   if (memo.feed) return cached(memo.feed);
-  return Response.json({ error: 'YouTube feed unavailable', statuses }, { status: 502, headers: { 'Cache-Control': 'no-store' } });
+  console.error('[youtube] feed unavailable', statuses);
+  return Response.json({ error: 'YouTube feed unavailable' }, { status: 502, headers: { 'Cache-Control': 'no-store' } });
 }
