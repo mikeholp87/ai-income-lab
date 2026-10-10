@@ -128,13 +128,17 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   assert.match(await watch.text(), /youtube-nocookie.com\/embed\/geKngm3sg3w/);
   assert.equal((await request('/api/videos?video=geKngm3sg3w')).status, 200);
   assert.equal((await request('/watch/nope')).status, 404);
-  // Unknown, private or non-embeddable ids go to YouTube (temporary, uncached) instead of a 404.
-  for (const id of ['xxxxxxxxxxx', 'lbBZ7uLJwbM', 'TuVL2x6IfDk']) {
+  // The list was just refreshed: unknown and private ids are not this channel's public videos, so 404 (briefly cached).
+  for (const id of ['xxxxxxxxxxx', 'TuVL2x6IfDk']) {
     const response = await request(`/watch/${id}`);
-    assert.equal(response.status, 302, id);
-    assert.equal(response.headers.get('location'), `https://www.youtube.com/watch?v=${id}`);
-    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.equal(response.status, 404, id);
+    assert.equal(response.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
   }
+  // A public video with embedding off goes to YouTube (temporary, briefly cached).
+  const blocked = await request('/watch/lbBZ7uLJwbM');
+  assert.equal(blocked.status, 302);
+  assert.equal(blocked.headers.get('location'), 'https://www.youtube.com/watch?v=lbBZ7uLJwbM');
+  assert.equal(blocked.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
   const archive = await (await request('/videos')).text();
   assert.match(archive, /href="\/watch\/geKngm3sg3w"/);
   assert.match(archive, /href="https:\/\/www.youtube.com\/watch\?v=lbBZ7uLJwbM"/);
@@ -148,34 +152,75 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   assert.equal(requests, 2, 'cached metadata avoids repeat YouTube requests');
 });
 
-test('an upload newer than the inventory gets its watch page after one early refresh', async t => {
-  // Runs after the test above, so the inventory is fresh; 11 minutes later the early-refresh window is open.
-  const later = Date.now() + 86400001 + 660000;
-  let now = later;
+// Each scenario gets a clock two days past the previous one (the first is past the test above, which runs a day ahead),
+// so the route's module state (inventory age, refresh gate, retry cooldown) left by earlier tests never matters:
+// its first request refreshes the stale inventory at that time.
+const day = 86400000;
+let epoch = Date.now() + day;
+async function earlyRefreshHarness(t, ids) {
+  let now = (epoch += 2 * day);
   t.mock.method(Date, 'now', () => now);
   const originalKey = process.env.YOUTUBE_API_KEY;
   process.env.YOUTUBE_API_KEY = 'test-only';
   t.after(() => { if (originalKey === undefined) delete process.env.YOUTUBE_API_KEY; else process.env.YOUTUBE_API_KEY = originalKey; });
-  const ids = ['newupload01', 'geKngm3sg3w'];
-  let requests = 0;
-  t.mock.method(globalThis, 'fetch', async input => {
-    requests++;
+  t.mock.method(console, 'error', () => {});
+  const state = { failing: false };
+  const upstream = t.mock.method(globalThis, 'fetch', async input => {
+    if (state.failing) return new Response('', { status: 500 });
     if (new URL(input).pathname.endsWith('/playlistItems')) return Response.json({ items: ids.map(id => item(id, `Video ${id}`, '2026-10-09T00:00:00Z')) });
     return Response.json({ items: ids.map(id => ({ id, status: { privacyStatus: 'public', embeddable: true } })) });
   });
   const request = path => GET(new Request(`https://www.ai-automation-station.com${path}`));
+  assert.equal((await request('/videos')).status, 200);
+  assert.equal(upstream.mock.callCount(), 2, 'stale inventory refreshes once');
+  return { state, request, calls: () => upstream.mock.callCount(), advance: ms => { now += ms; } };
+}
+
+test('an upload newer than the inventory gets its watch page after one early refresh', async t => {
+  const ids = ['geKngm3sg3w'];
+  const { request, calls, advance } = await earlyRefreshHarness(t, ids);
+  ids.push('newupload01');
+  advance(660000);
   const watch = await request('/watch/newupload01');
   assert.equal(watch.status, 200);
   assert.match(await watch.text(), /youtube-nocookie.com\/embed\/newupload01/);
-  assert.equal(requests, 2, 'one early refresh');
-  // Within the next 10 minutes another unknown id does not refetch; it goes to YouTube, keeping ?t=.
-  now += 60000;
+  assert.equal(calls(), 4, 'one early refresh');
+});
+
+test('an unknown id after a successful refresh is a briefly cached 404, and repeats do not refetch', async t => {
+  const { request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  advance(660000);
+  const unknown = await request('/watch/zzzzzzzzzzz?t=98');
+  assert.equal(unknown.status, 404);
+  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
+  assert.equal(calls(), 4, 'one early refresh');
+  advance(60000);
+  assert.equal((await request('/watch/yyyyyyyyyyy')).status, 404);
+  assert.equal((await request('/watch/zzzzzzzzzzz')).status, 404);
+  const head = await HEAD(new Request('https://www.ai-automation-station.com/watch/zzzzzzzzzzz', { method: 'HEAD' }));
+  assert.equal(head.status, 404);
+  assert.equal(calls(), 4, 'no further refresh within 10 minutes');
+  advance(600000);
+  assert.equal((await request('/watch/xxxxxxxxxxx')).status, 404);
+  assert.equal(calls(), 6, 'the gate reopens after 10 minutes');
+});
+
+test('an unknown id goes to YouTube, briefly cached, when no refresh is possible', async t => {
+  const { state, request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  advance(660000);
+  state.failing = true;
   const unknown = await request('/watch/zzzzzzzzzzz?t=98');
   assert.equal(unknown.status, 302);
   assert.equal(unknown.headers.get('location'), 'https://www.youtube.com/watch?v=zzzzzzzzzzz&t=98s');
-  assert.equal(requests, 2, 'early refresh is rate limited');
+  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
+  assert.equal(calls(), 3, 'the failed early refresh stops at the first request');
+  advance(60000);
+  const again = await request('/watch/yyyyyyyyyyy?t=abc');
+  assert.equal(again.status, 302);
+  assert.equal(again.headers.get('location'), 'https://www.youtube.com/watch?v=yyyyyyyyyyy');
   const head = await HEAD(new Request('https://www.ai-automation-station.com/watch/zzzzzzzzzzz', { method: 'HEAD' }));
   assert.equal(head.status, 302);
+  assert.equal(calls(), 3, 'backing off: no further refresh');
 });
 
 test('page sitemap follows inventory growth and preserves core dates', () => {

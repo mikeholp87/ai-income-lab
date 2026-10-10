@@ -8,10 +8,13 @@ const day = 86400000;
 let memo = { at: uploadsUpdatedAt, videos: uploads.length ? uploads : null };
 let refresh;
 let retryAt = 0;
-let attemptedAt = 0;
 // A brand-new upload can reach the homepage feed (/api/youtube) before this inventory knows it.
-// An unknown watch id triggers at most one early refresh per 10 minutes per instance.
+// An unknown watch id triggers at most one early refresh per 10 minutes per instance, counted from instance start
+// so a flood of junk ids cannot make every cold instance spend ~10 quota units straight away.
 const earlyRefreshGap = 600000;
+let attemptedAt = Date.now();
+// Unknown-id answers (404 or the YouTube redirect) are cached briefly at the CDN so repeats never reach the function.
+const unknownCache = 'public, max-age=0, s-maxage=600';
 
 function refreshUploads() {
   attemptedAt = Date.now();
@@ -29,7 +32,7 @@ function refreshUploads() {
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
 const message = (title, text) => `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title><p style="font:16px system-ui;padding:24px">${text}</p>`;
-const notFound = () => html(message('Page not found', 'That page of videos doesn’t exist. <a href="/videos">See the newest videos</a>.'), 404, 'no-store');
+const notFound = (cache = 'no-store') => html(message('Page not found', 'That page of videos doesn’t exist. <a href="/videos">See the newest videos</a>.'), 404, cache);
 
 // Archive, watch pages and video sitemap share the same daily upload cache.
 // Keeps the last good list on API errors.
@@ -58,9 +61,12 @@ export async function GET(request) {
     // ?t=98 comes from a chapter link or a Key Moments result; cue the player there.
     const start = /^\d{1,5}$/.test(url.searchParams.get('t') ?? '') ? Number(url.searchParams.get('t')) : 0;
     if (video?.embeddable) return html(renderWatch(video, { videos: memo.videos, start }), 200, cache);
-    // Not in the inventory yet (or embedding is off): send the visitor to YouTube instead of a 404.
-    // Temporary and uncached, so the watch page takes over once the inventory knows the video.
-    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': 'no-store' } });
+    // The inventory only lists this channel's public videos. If it was refreshed in the last 10 minutes and still lacks
+    // the id, the video is deleted, private or someone else's: 404, never a redirect to an arbitrary YouTube video.
+    if (!video && Date.now() - memo.at < earlyRefreshGap) return notFound(unknownCache);
+    // No refresh was possible (rate limited, backing off, no key or failed) or embedding is off: send the visitor to
+    // YouTube instead of a 404. Temporary, so the watch page takes over once the inventory knows the video.
+    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': unknownCache } });
   }
   if (page > pageCount(memo.videos)) return notFound();
   return html(renderArchive(memo.videos, page), 200, cache);
