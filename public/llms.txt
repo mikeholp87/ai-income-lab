@@ -24,6 +24,7 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [Start here](https://www.ai-automation-station.com/start-here.html)
 - [Build a YouTube feed in React](https://www.ai-automation-station.com/guides/youtube-feed.html)
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
+- [Claude Code vs Codex: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html)
 - [Make your first API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 - [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
 - [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html)

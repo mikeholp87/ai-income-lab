@@ -20,7 +20,7 @@ Assert HTTP 400 and the existing "Invalid JSON" error.
 Keep the three existing checks, timeout, redirect handling, and cleanup.
 Use only built-in Node modules. Do not connect a real provider.
 Run the example and show the diff and output. Do not commit or push.</code></pre>
-<p>This is an author-written practice task using the public repository, separate from the recorded <a href="/watch/TuVL2x6IfDk">Codex internal-link audit</a>. Both use the same useful sequence: inspect, change, check, and review. The exact client buttons and model names are not part of the exercise.</p>
+<p>This is an author-written practice task using the public repository, separate from the recorded <a href="/watch/TuVL2x6IfDk">Codex internal-link audit</a>. Both use the same useful sequence: inspect, change, check, and review. The exact client buttons and model names are not part of the exercise. To see how I split work between Codex and Claude Code, read <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex</a>.</p>
 <h2>3. Check the proposed change</h2>
 <p>The server already catches invalid JSON and replies with status 400. The missing piece is a request that exercises that branch. A minimal addition inside the existing <code>try</code> block, after the request loop and before the PASS message, can look like this:</p>
 <pre><code>const malformed = await fetch(endpoint, {

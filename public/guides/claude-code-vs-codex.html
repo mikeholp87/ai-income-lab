@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>Claude Code vs Codex: how I use both and route tasks | Mike Holp</title><meta name="description" content="Claude Code vs Codex in a real setup: which terminal coding agent handles which task, how I keep both safe, and what happens when a usage limit hits."><link rel="canonical" href="https://www.ai-automation-station.com/guides/claude-code-vs-codex.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css"><meta property="og:type" content="article"><meta property="og:title" content="Claude Code vs Codex: how I use both and route tasks"><meta property="og:description" content="Claude Code vs Codex in a real setup: which terminal coding agent handles which task, how I keep both safe, and what happens when a usage limit hits."><meta property="og:url" content="https://www.ai-automation-station.com/guides/claude-code-vs-codex.html"><meta property="og:image" content="https://www.ai-automation-station.com/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><script type="module" src="/src/reading.js"></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Claude Code vs Codex: how I use both and route tasks","description":"Claude Code vs Codex in a real setup: which terminal coding agent handles which task, how I keep both safe, and what happens when a usage limit hits.","url":"https://www.ai-automation-station.com/guides/claude-code-vs-codex.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/claude-code-vs-codex.html","image":"https://www.ai-automation-station.com/og-card.jpg?v=2","datePublished":"2026-10-10","dateModified":"2026-10-10","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"}}</script></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">Mike Holp</a><a href="/start-here.html">Start here</a><a href="/videos">All videos</a></header><main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-10">October 10, 2026</time></p>
+<h1>Claude Code vs Codex: I use both and route by task.</h1>
+<p>Claude Code and Codex are both coding agents you run from a terminal. In my setup I do not pick one: I use both and send each task to whichever tool suits its type.</p>
+<p>This guide shows that setup as it runs today: what each tool gets, how I keep them safe, what happens when one hits a usage limit, and why the tool that did not write a change reviews it. It is one person’s working arrangement, not a benchmark.</p>
+<p class="note">You need a terminal and an account for each tool you want to try. Claude Code runs on my Claude Pro plan. Codex signs in with a ChatGPT account or an OpenAI API key. Both may have their own usage limits and charges. The guide is free to read.</p>
+<h2>The short comparison</h2>
+<p>Everything in this table comes from my own routing rules and the <a href="/watch/ys5tJuTFCEo">GrokBot integration video</a>.</p>
+<table><thead><tr><th scope="col">Compare</th><th scope="col">Claude Code</th><th scope="col">Codex</th></tr></thead><tbody>
+<tr><th scope="row">Signed in with</th><td>A Claude Pro plan (my setup)</td><td>A ChatGPT account or an OpenAI API key (I use my ChatGPT login)</td></tr>
+<tr><th scope="row">Kept safe by</th><td>Permission modes: manual (default) mode, a tool allowlist, and git push and commit disallowed</td><td>Sandbox modes: workspace-write for edits, read-only for reviews</td></tr>
+<tr><th scope="row">Routed to</th><td>SEO audits, research, English content, locale content (German, Portuguese, French, Spanish)</td><td>Bug fixes, features, scripts, small edits, data work</td></tr>
+<tr><th scope="row">Reviews</th><td>Work that Codex wrote</td><td>Work that Claude Code wrote</td></tr>
+<tr><th scope="row">Where it sits</th><td colspan="2">Cursor cloud agents stay the default. These two are the fallback when those are out of credits, or when I ask for a local run.</td></tr>
+</tbody></table>
+<p>The reasons behind the routing are practical and come from my own runs. Claude Code was strong at long web research and gave me audits with sources. Codex was strong at scoped edits in a repository. Codex was weaker on German and Portuguese phrasing in the runs I did, so locale content goes to Claude Code.</p>
+<h2>How I route tasks</h2>
+<p>I let a small helper script classify each task by type. It takes the first rule that matches, from top to bottom:</p>
+<ol><li>Reviewing someone else’s diff, PR, or output.</li><li>Text in German, Portuguese, French or Spanish, or any translation or localization.</li><li>A site, SEO or technical audit of live URLs.</li><li>Research that ends in a report.</li><li>English prose such as articles, briefs and landing copy.</li><li>Something broken or failing.</li><li>A mechanical edit such as a rename or small refactor.</li><li>A new capability, multi-file change, or design decision.</li><li>A standalone script, cron job or glue code.</li><li>CSV, JSON or spreadsheet transforms.</li></ol>
+<p>If a task mixes types, I split it, or use the type with the higher risk. Then the type picks the tool and model:</p>
+<ul>
+<li><strong>SEO audits:</strong> Claude Code with Claude Opus 5.5 at medium effort. Research uses Opus 5.5 at high effort.</li>
+<li><strong>English content:</strong> Claude Code with Claude Sonnet 5.5 at high effort. Locale content uses Opus 5.5 at medium effort.</li>
+<li><strong>Bug fixes and features:</strong> Codex with GPT-6.1-Sol at high effort.</li>
+<li><strong>Scripts:</strong> Codex with GPT-6.1-Sol at medium effort.</li>
+<li><strong>Small edits and data work:</strong> Codex with GPT-6 Luna at medium effort. Heavier data analysis moves up to GPT-6.1-Sol.</li>
+</ul>
+<p>Every row also has a fallback on the other tool, so a task has somewhere to go if its main tool is unavailable. Picking the model by task is the main way I save credits on my subscription plans: the lightest jobs do not use the biggest models.</p>
+<h2>Run them safely</h2>
+<p>An agent that can edit files and run commands should not sit next to anything you cannot undo. In the video, GrokBot points out that Claude Code is in auto mode inside a shared workspace folder, which means it can edit files and run commands on its own, including scripts that send email. My current setup is stricter:</p>
+<ul>
+<li><strong>A separate project folder.</strong> Coding work happens in a folder away from any script that sends email or writes to an outside service.</li>
+<li><strong>Manual permission mode with an allowlist.</strong> Claude Code runs in default (manual) mode. I never use auto, accept-edits, don’t-ask or bypass modes. In headless mode, any tool outside the allowlist is denied. Git push, commit and merge, deploy tools and file deletion are explicitly disallowed.</li>
+<li><strong>A sandbox for Codex.</strong> Codex runs with workspace-write, or read-only for reviews. I never use full access or the flag that skips approvals and the sandbox.</li>
+<li><strong>A human for the last step.</strong> Nothing is pushed, merged, deployed or sent without my approval. The agents hand back diffs and notes.</li>
+</ul>
+<p>Two generic examples of the kind of invocation this produces. A read-only Claude Code audit:</p>
+<pre><code>claude -p "Audit these pages and list concrete issues. Do not edit." \
+  --model claude-opus-5-5 \
+  --permission-mode default \
+  --allowedTools Read Grep &lt;/dev/null</code></pre>
+<p>A read-only Codex review:</p>
+<pre><code>codex exec --sandbox read-only \
+  -m gpt-6.1-sol -c model_reasoning_effort=high \
+  "Review the diff in this folder. List concrete issues. Do not edit." &lt;/dev/null</code></pre>
+<p>I pass models and effort as command-line flags for each run instead of editing either tool’s settings file. Flags and mode names change between versions, so check <code>--help</code> for your installed version.</p>
+<h2>When one runs out</h2>
+<p>Both tools are tied to plans, and plans have limits. When a task fails with a usage-limit message, the helper switches tools instead of stopping. Ordinary failures such as a failing test or a build error do not trigger a switch. The chain is fixed when the run starts:</p>
+<ol><li>The routed tool and model.</li><li>The other tool, with the model mapped for that task type.</li><li>That other tool, one model cheaper.</li><li>The routed tool, one model cheaper.</li></ol>
+<p>It never makes more than four attempts. If a limit is account-wide, the cheaper-model step is skipped, because a smaller model does not help. If both tools are limited, the helper stops, leaves the partial work in place and records when each limit resets. It also never moves to paid usage credits on its own. That needs my approval.</p>
+<p>This is not hypothetical. On October 10, 2026, I hit a Claude Code session limit that reset the same afternoon, and a Codex account usage limit that lasts until October 15. For part of that day both were limited at once, which is exactly the case the fallback chain is built for.</p>
+<h2>Have the other tool review it</h2>
+<p>For substantial work, the tool that did not write the change reviews it. If Codex wrote it, Claude Code reviews it (Opus 5.5, high effort). If Claude Code wrote it, Codex reviews it in a read-only sandbox (GPT-6.1-Sol, high effort).</p>
+<p>The idea is that a different model family tends to catch different mistakes. I treat a change as substantial if it is an audit, research, a feature or bug fix, a script that sends or writes externally, anything client-facing or in another language, anything over about 100 changed lines, or anything that will be merged, published or sent. The reviewer reports findings and does not edit. Fixes go back to the author tool.</p>
+<h2>Watch it come together</h2>
+<p>The <a href="/watch/ys5tJuTFCEo">full 7:50 video</a> builds this setup step by step. Its chapters:</p>
+<ul>
+<li><strong>01:05:</strong> installing both tools on a virtual desktop.</li>
+<li><strong>01:40:</strong> signing in to Codex.</li>
+<li><strong>02:27:</strong> signing in to Claude Code.</li>
+<li><strong>03:00:</strong> configuring Claude Code’s auto mode. My current setup uses manual mode in a separate folder instead.</li>
+<li><strong>03:31:</strong> running an SEO audit with Claude Code.</li>
+<li><strong>04:28:</strong> moving content writing to Codex as a fallback.</li>
+<li><strong>05:33:</strong> routing tasks automatically.</li>
+<li><strong>06:14:</strong> choosing models by task.</li>
+</ul>
+<p>New to both? Start with the <a href="/watch/mKZHLQLaq2k">beginner Claude Code walkthrough</a> and the <a href="/watch/lbBZ7uLJwbM">Codex install on Linux</a>. To practice the habit that makes either tool trustworthy, follow the <a href="/guides/codex-workflow.html">Codex workflow guide</a>: brief a small change, inspect the diff, and run a check. The <a href="/start-here.html">Start here</a> page has the rest of the paths.</p>
+<h2>What this is not</h2>
+<p>This is one person’s setup, not a benchmark. I have not measured speed or accuracy, and I am not saying one tool beats the other. The routing reflects my tasks, my plans and my own runs. Plans, models, limits and flags change, so check current pricing and docs before copying any of it.</p>
+<aside class="note"><h2>Get help with your own setup</h2><p>AI Income Lab includes coding tutorials and a community for practical builds. Find <strong>Codex Tutorials &amp; Courses</strong> and <strong>Claude Code &amp; Skills</strong> in the <a href="https://www.skool.com/ai-automation-station-7346/classroom">classroom</a>; <a href="https://www.skool.com/ai-automation-station-7346/plans">check current membership and course access</a>.</p></aside>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
