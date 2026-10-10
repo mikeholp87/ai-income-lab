@@ -192,7 +192,7 @@ const guides = [
 ];
 
 // Chapter links are #t=<sec> fragments so they add no crawlable URLs; this re-cues the player on click or on load.
-const chapterScript = `(()=>{const player=document.querySelector('.player');const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');player.src=url.href;return true;};seek(location.hash,false);document.querySelector('.chapters').addEventListener('click',event=>{const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});})()`;
+const chapterScript = `(()=>{const player=document.querySelector('.player');const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');player.src=url.href;return true;};seek(location.hash,false);document.querySelector('.chapters').addEventListener('click',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {

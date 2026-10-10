@@ -56,6 +56,11 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
   assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
   assert.match(html, /<a href="#t=98">1:38<\/a> Providers/);
+  const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('.chapters'));
+  assert.match(script, /event\.ctrlKey\|\|event\.metaKey\|\|event\.shiftKey\|\|event\.altKey\|\|event\.button!==0\)return/);
+  assert.match(script, /addEventListener\('hashchange',\(\)=>seek\(location\.hash,true\)\)/);
+  assert.match(script, /history\.replaceState/);
+  assert.doesNotThrow(() => new Function(script));
   assert.match(html, /<header><a href="\/">AI Automation Station<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/header>/);
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/first-api-request.html"/);
