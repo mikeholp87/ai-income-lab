@@ -19,7 +19,7 @@ try {
   await rm(new URL('../dist/.ssr', import.meta.url), { recursive: true, force: true });
 }
 
-for (const file of ['start-here.html', ...(await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)]) {
+for (const file of ['start-here.html', 'guides.html', ...(await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)]) {
   const path = `dist/${file}`;
   const html = await readFile(path, 'utf8');
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
