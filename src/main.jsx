@@ -497,6 +497,7 @@ function App() {
               <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
               <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
             </ul>
+            <p><a href="/guides.html">All guides</a></p>
             <p>Prefer a recording? <a href="/watch/7v_675nO7nM">Build an OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">set up 9Router</a>, or <a href="/watch/G8u1-hKEqig">follow the HeyGen avatar workflow</a>.</p>
           </aside>
           <div className="button-row"><a className="button button-quiet" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('video_grid', 'Build with AI Income Lab', plansUrl)}>Build with AI Income Lab ↗</a></div>

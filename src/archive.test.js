@@ -55,7 +55,8 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.equal(schema.author['@id'], 'https://www.ai-automation-station.com/#mike');
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
   assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
-  assert.match(html, /<a href="\/watch\/aaaaaaaaaaa\?t=98">1:38<\/a> Providers/);
+  assert.match(html, /<a href="#t=98">1:38<\/a> Providers/);
+  assert.match(html, /<header><a href="\/">AI Automation Station<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/header>/);
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/first-api-request.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
@@ -64,6 +65,22 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
   assert.ok(description.length <= 160 && description.endsWith('costs.'), description);
   assert.match(renderVideoSitemap([video]), /<video:player_loc>[^<]+<\/video:player_loc>\n<video:duration>675<\/video:duration>\n<video:publication_date>/);
+});
+
+test('chapter links are fragments, while key-moment clips keep their ?t= URLs', () => {
+  const video = { id: 'aaaaaaaaaaa', title: 'Chapters', published: '2026-07-08T00:00:00Z', duration: 'PT11M15S',
+    chapters: [{ seconds: 0, label: 'Intro' }, { seconds: 98, label: 'Providers' }, { seconds: 400, label: 'Fallbacks' }] };
+  for (const start of [0, 98]) {
+    const html = renderWatch(video, { start });
+    const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+    assert.deepEqual(schema.hasPart.map(clip => clip.url), [0, 98, 400].map(seconds => `https://www.ai-automation-station.com/watch/aaaaaaaaaaa?t=${seconds}`));
+    assert.doesNotMatch(html, /href="[^"]*\/watch\/[^"]*\?t=/);
+    assert.deepEqual([...html.matchAll(/<ol class="chapters">(.*?)<\/ol>/gs)].flatMap(([, list]) => [...list.matchAll(/href="([^"]*)"/g)].map(match => match[1])), ['#t=0', '#t=98', '#t=400']);
+    // The inline handler re-cues the nocookie player; it must parse and not close its own script tag early.
+    const script = html.match(/<script>(.*?)<\/script>/s)[1];
+    assert.doesNotThrow(() => new Function(script));
+    assert.match(script, /searchParams\.set\('start'/);
+  }
 });
 
 test('watch pages and video sitemap safely describe the same visible video', () => {

@@ -147,7 +147,7 @@ footer a:hover, header a.mono:hover { color: #f5f5f0; }
 <header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><a class="mono" href="${channelUrl}" target="_blank" rel="noreferrer">YouTube ↗</a></header>
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form builds, newest first. ${pageNote}Each one takes a new AI model, agent, or automation tool, builds something real with it, and shows what held up and what broke.</p></div>
-<p style="margin-top:24px"><a href="/start-here.html" style="color:#ff6846;text-decoration:underline">New here? Choose your first build</a></p>
+<p style="margin-top:24px"><a href="/start-here.html" style="color:#ff6846;text-decoration:underline">New here? Choose your first build</a> or <a href="/guides.html" style="color:#ff6846;text-decoration:underline">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 ${pager(page, pages)}
 </main>
@@ -190,6 +190,9 @@ const guides = [
   [/codex|open\s?code|claude code/i, '/guides/codex-workflow.html', 'Make and verify a small code change with Codex'],
   [/make\.com/i, '/guides/make-first-automation.html', 'Build your first Make.com automation'],
 ];
+
+// Chapter links are #t=<sec> fragments so they add no crawlable URLs; this re-cues the player on click or on load.
+const chapterScript = `(()=>{const player=document.querySelector('.player');const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');player.src=url.href;return true;};seek(location.hash,false);document.querySelector('.chapters').addEventListener('click',event=>{const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});})()`;
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
@@ -240,7 +243,7 @@ ${jsonLd(breadcrumbs)}
 <style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
-<header><a href="/">AI Automation Station</a><a href="/videos">All videos</a></header>
+<header><a href="/">AI Automation Station</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></header>
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
@@ -260,7 +263,8 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <p class="meta">${escape(notes.note)}</p>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="/watch/${video.id}?t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>
+<script>${chapterScript}</script>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
 <p><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
 ${watchNotes[video.id]?.html ?? ''}
