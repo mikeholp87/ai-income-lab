@@ -8,6 +8,24 @@ const day = 86400000;
 let memo = { at: uploadsUpdatedAt, videos: uploads.length ? uploads : null };
 let refresh;
 let retryAt = 0;
+let attemptedAt = 0;
+// A brand-new upload can reach the homepage feed (/api/youtube) before this inventory knows it.
+// An unknown watch id triggers at most one early refresh per 10 minutes per instance.
+const earlyRefreshGap = 600000;
+
+function refreshUploads() {
+  attemptedAt = Date.now();
+  const key = process.env.YOUTUBE_API_KEY;
+  // Share a bounded refresh; retry failed upstream requests after five minutes.
+  refresh ??= (key ? fetchUploads(key) : Promise.resolve(null))
+    .then(videos => {
+      if (videos?.length) memo = { at: Date.now(), videos };
+      else retryAt = Date.now() + 300000;
+    })
+    .catch(error => { console.error('[videos]', error.message); retryAt = Date.now() + 300000; })
+    .finally(() => { refresh = null; });
+  return refresh;
+}
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
 const message = (title, text) => `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${title}</title><p style="font:16px system-ui;padding:24px">${text}</p>`;
@@ -26,26 +44,23 @@ export async function GET(request) {
   const page = Number(requested ?? 1);
   if (requested !== null && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
 
-  if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) {
-    const key = process.env.YOUTUBE_API_KEY;
-    // Share a bounded refresh; retry failed upstream requests after five minutes.
-    refresh ??= (key ? fetchUploads(key) : Promise.resolve(null))
-      .then(videos => {
-        if (videos?.length) memo = { at: Date.now(), videos };
-        else retryAt = Date.now() + 300000;
-      })
-      .catch(error => { console.error('[videos]', error.message); retryAt = Date.now() + 300000; })
-      .finally(() => { refresh = null; });
-    await refresh;
-  }
+  if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
   const cache = 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400';
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });
   if (videoId !== null) {
-    const video = memo.videos.find(video => video.id === videoId && video.embeddable);
+    const find = () => memo.videos.find(video => video.id === videoId);
+    let video = find();
+    if (!video && Date.now() - attemptedAt >= earlyRefreshGap && Date.now() >= retryAt) {
+      await refreshUploads();
+      video = find();
+    }
     // ?t=98 comes from a chapter link or a Key Moments result; cue the player there.
     const start = /^\d{1,5}$/.test(url.searchParams.get('t') ?? '') ? Number(url.searchParams.get('t')) : 0;
-    return video ? html(renderWatch(video, { videos: memo.videos, start }), 200, cache) : notFound();
+    if (video?.embeddable) return html(renderWatch(video, { videos: memo.videos, start }), 200, cache);
+    // Not in the inventory yet (or embedding is off): send the visitor to YouTube instead of a 404.
+    // Temporary and uncached, so the watch page takes over once the inventory knows the video.
+    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': 'no-store' } });
   }
   if (page > pageCount(memo.videos)) return notFound();
   return html(renderArchive(memo.videos, page), 200, cache);
