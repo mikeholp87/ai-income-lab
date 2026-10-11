@@ -1,6 +1,6 @@
 # Mike Holp: AI Automation Station
 
-Mike Holp tests new AI models, agents, and automation tools on real builds and publishes the results on the AI Automation Station YouTube channel. Most videos cover Claude Code, Codex, OpenCode, and n8n, with every setup step shown. He also builds TubeAnalytics and VisiScan and hosts the AI Income Lab community on Skool.
+Mike Holp tests new AI models, agents, and automation tools on real builds and publishes the results on the AI Automation Station YouTube channel. Most videos cover Claude Code, Codex, OpenCode, and n8n, with every setup step shown. He also builds TubeAnalytics and VisiScan and hosts AI Income Lab, the paid learning community on Skool.
 
 ## Key facts
 
@@ -21,6 +21,7 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 
 ## Start building
 
+- [Free build guides](https://www.ai-automation-station.com/guides.html)
 - [Start here](https://www.ai-automation-station.com/start-here.html)
 - [Build a YouTube feed in React](https://www.ai-automation-station.com/guides/youtube-feed.html)
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)

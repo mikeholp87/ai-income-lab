@@ -1,0 +1,7 @@
+/dist/
+/docs/
+/jev-seo-reports/
+/.agents/
+/.codex/
+/.aws/
+/.env*

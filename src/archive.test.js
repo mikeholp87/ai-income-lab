@@ -234,7 +234,7 @@ test('page sitemap follows inventory growth and preserves core dates', () => {
 });
 
 test('priority build notes keep corrected summaries consistent across discovery surfaces', () => {
-  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk', '_8qzOkIWMSk', 'G8u1-hKEqig', '5zBHLxXw3tI', '7v_675nO7nM', 'g4BmgmEy_mI']) {
+  for (const id of ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk', '_8qzOkIWMSk', 'G8u1-hKEqig', '5zBHLxXw3tI', '7v_675nO7nM', 'g4BmgmEy_mI', 'Lifl4PC2_3M', '9kHdIiobKMA', 'Ax-v4H9xv50', 'MYoA3___zYU', 'ys5tJuTFCEo']) {
     const video = { id, title: 'A recorded build', summary: 'Outdated promotional summary', published: '2026-07-08T00:00:00Z', embeddable: true };
     const html = renderWatch(video);
     const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);

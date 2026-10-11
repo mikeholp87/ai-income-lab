@@ -1,5 +1,91 @@
 // Search titles preserve recorded topics; companion sections state their caption-review date.
 export const watchNotes = {
+  Lifl4PC2_3M: {
+    searchTitle: 'Make.com tutorial: Google Sheets, Gmail and AI mapping',
+    summary: 'Build a Make.com workflow from Google Sheets to Gmail, add an AI-generated draft, and correct the content mapping. Includes recorded failures and test limits.',
+    notice: 'This recording mentions an earlier free community offer and historical Make pricing. Check the current plans before purchasing.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: inspect the bundle before sending</h2>
+<p>The course builds a Google Sheets-to-Gmail workflow, adds an OpenAI-generated email, and corrects a mapping mistake. It also tours existing scenarios and templates. Those tours do not demonstrate that every workflow completes successfully.</p>
+<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Module names, model choices, prices, and access belong to the recorded session.</p>
+<h3>The recorded first workflow</h3>
+<ol><li>Connect Google Sheets and select the spreadsheet, tab, headers, and starting position. The first run returns ten bundles with names and email addresses.</li><li>Add an array aggregator and iterator, then map the recipient into Gmail. Mike reduces the test to one row before sending a basic email.</li><li>Disconnect the send module while adding OpenAI. Run the generation step and inspect its output before reconnecting Gmail.</li><li>Correct the content mapping. The first connected run still uses the old email content; Mike maps OpenAI’s generated result into the Gmail body and repeats the run.</li><li>Open execution history to inspect the operations and outputs. A green module is a starting point: check the intended recipient and body too.</li></ol>
+<h3>What did not complete</h3>
+<p>The HeyGen scenario is not run because its API video-length issue remains unresolved. A template example initially fails parsing; a later run completes with no useful spreadsheet fields mapped. These are not evidence of a completed video-publishing pipeline or a populated email archive.</p>
+<h3>A smaller practice run</h3>
+<p>Start with the <a href="/guides/make-first-automation.html">Make Google Sheets exercise</a>, using fictional records and spreadsheet output. Make’s <a href="https://help.make.com/step-5-set-up-the-trigger">trigger guide</a> explains starting positions, and its <a href="https://help.make.com/mapping">mapping guide</a> explains how module outputs reach the next step. Re-running from the beginning can repeat actions; inspect the test output before enabling a schedule.</p>
+<p>If you later add Gmail, test with an address you control and review the generated text. Continue to the <a href="/watch/G8u1-hKEqig">HeyGen automation notes</a> for the actual avatar/API failures.</p>
+</section>`,
+  },
+  '9kHdIiobKMA': {
+    searchTitle: 'VAPI voice agent: setup, test call and webhook checks',
+    summary: 'Configure a VAPI assistant, connect Make and a Twilio number, and receive a test call. Notes distinguish webhook delivery from booking and spreadsheet updates.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: verify one call before automating a list</h2>
+<p>Mike creates a VAPI assistant, connects it to Make.com and a Twilio number, and receives a call on his own phone. A second call reaches the end-of-call webhook. Calendar booking and a correctly matched spreadsheet update are not demonstrated.</p>
+<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Provider choices and costs may have changed.</p>
+<h3>The setup shown</h3>
+<ol><li>Create a blank assistant, choose a model, and write its identity, greeting, questions, and conversation boundaries. The recording changes from a built-in voice to Mike’s existing ElevenLabs voice clone.</li><li>Publish the assistant and inspect the dashboard test controls. For an outbound telephone call, import a Twilio number and select that number and the assistant in Make.</li><li>Use one test phone number you control. The first run reaches Mike’s phone and begins the scripted conversation.</li><li>Configure a Make webhook for the assistant’s end-of-call report. The later test reaches that webhook; inspect the delivered analysis and call data.</li></ol>
+<h3>Separate a call from a completed business task</h3>
+<p>The calendar integration is described as a stretch goal. The final Google Sheets module is configured with a fixed row number and hard-coded “yes” values; the captions do not establish a successful, correctly correlated update. A connected call is not proof of a booked appointment.</p>
+<p>Before updating real records, carry a stable record ID through the request and match it to the returned call ID. Verify the call result instead of marking every call successful. Avoid copying the fixed-row example into a multi-contact workflow.</p>
+<h3>Current references and a first check</h3>
+<p>Use the <a href="https://docs.vapi.ai/assistants/quickstart">VAPI quickstart</a>, <a href="https://docs.vapi.ai/quickstart/phone">phone-call guide</a>, and <a href="https://docs.vapi.ai/server-url/events">server-event reference</a> for current setup and payloads. Free account creation does not mean free ongoing calling: check telephony, model, and voice usage charges.</p>
+<p>Keep private API keys in the platform’s connection settings. Practice record mapping with the <a href="/guides/make-first-automation.html">Make Google Sheets guide</a>, then explore the <a href="/start-here.html#avatar-voice">voice-agent learning path</a>.</p>
+</section>`,
+  },
+  'Ax-v4H9xv50': {
+    searchTitle: 'Google AI Studio: build and check a chat app prototype',
+    summary: 'Build a chat interface in Google AI Studio and request an OpenAI integration. The recording shows replies and ZIP export, but stops before deployment.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: a preview reply is only the first check</h2>
+<p>The walkthrough generates a chat-style app in Google AI Studio, downloads its source as a ZIP, and asks for an OpenAI integration. The preview answers simple prompts. Public deployment is not completed because billing setup remains unfinished.</p>
+<p class="meta">Notes checked October 11, 2026 against the recording’s captions. The recorded interface differs from current Build mode.</p>
+<h3>What the recording establishes</h3>
+<ol><li>Explore a supplied video-generation example, then start a separate chat app from a written brief.</li><li>Inspect the generated preview, switch its display theme, and export the source. These checks establish that a frontend was generated.</li><li>Request the OpenAI integration. An initial missing-key error appears, followed by a key-entry screen and simple text/code replies.</li><li>Open the deployment flow. Mike stops at the Google Cloud billing step; the video does not show a deployed URL.</li></ol>
+<h3>Check the provider and protect the key</h3>
+<p>A model saying it was built by OpenAI does not verify which provider handled a request. Inspect the server integration and the provider’s usage logs before concluding that the intended API is connected.</p>
+<p>The recording suggests hard-coding a key and enters it into the preview. Do not place a private provider key in browser code or a public repository. Current <a href="https://ai.google.dev/gemini-api/docs/aistudio-build-mode">Google AI Studio Build documentation</a> describes server-side secrets; use the server boundary for external providers too. Follow <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety">OpenAI’s key-safety guidance</a>.</p>
+<h3>Before sharing the app</h3>
+<p>Check a valid request, a provider failure, the actual API usage, and where secrets are stored. Confirm hosting and model costs separately; the recorded “free” introduction does not establish zero deployment or API costs.</p>
+<p>The <a href="/guides/first-api-request.html">local API exercise</a> teaches request checks without a provider key. Use the <a href="/guides/codex-workflow.html">small-change workflow</a> to inspect and verify generated code.</p>
+</section>`,
+  },
+  MYoA3___zYU: {
+    searchTitle: 'Emergent tutorial: build an agency landing page',
+    summary: 'Generate an agency landing page with Emergent, add a calendar popup, and fix a broken contact button. Notes separate the frontend result from untested backend features.',
+    notice: 'This recording mentions an earlier $39/month community offer. Check the current membership plans.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: test the contact flow after changing it</h2>
+<p>Mike uses Emergent to generate an AI agency landing page and refine its design. A calendar popup is added, the contact button breaks, and a follow-up prompt restores the contact page. The result is a frontend prototype, not a demonstrated subscription SaaS.</p>
+<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Generated designs and product access may have changed.</p>
+<h3>The recorded build</h3>
+<ol><li>Supply a landing-page brief and answer the agent’s questions about visual direction and scheduling. Photos and analytics setup are deferred.</li><li>Inspect the frontend preview. The agent reports mock data and forms using local storage; no working production backend is verified.</li><li>Request a shorter headline, visual revisions, and an embedded calendar popup. Mike checks the booking button in the preview.</li><li>After the popup change, test the contact button too. It produces an error; Mike reports that specific failure and repeats the check after the fix.</li></ol>
+<h3>What remains to verify</h3>
+<p>The video does not demonstrate production form delivery, authentication, payments, durable customer storage, or a completed CMS. A page that looks like a business site does not establish those capabilities.</p>
+<p>Generated testimonial placeholders are not customer evidence. Replace them with approved real material or remove them before publication. Check the contact destination, calendar flow, mobile layout, keyboard navigation, and error behavior using sample data.</p>
+<h3>Continue with a checkable task</h3>
+<p>Use the <a href="/guides/codex-workflow.html">small-change workflow guide</a> to write a narrow brief and verify a fix. Pair this recording with the <a href="/guides/youtube-feed.html">React feed guide</a> for an example whose fallback behavior can be tested in source. The <a href="https://emergent.sh/learn">Emergent learning resources</a> provide current product guidance.</p>
+</section>`,
+  },
+  ys5tJuTFCEo: {
+    searchTitle: 'GrokBot with Codex and Claude Code: routing walkthrough',
+    summary: 'Install and authenticate Codex and Claude Code inside GrokBot’s virtual computer, then define task routing. Notes distinguish the recorded setup from the updated workflow.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: authenticate the tool, then inspect its task</h2>
+<p>The recording installs Codex and Claude Code inside GrokBot’s virtual computer, authenticates both, and asks for task-based routing. It shows a routing rule and reports work starting. It does not measure a completed deployment, search-traffic improvement, or a reproducible credit saving.</p>
+<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Models and limits describe the recorded session.</p>
+<h3>The sequence shown</h3>
+<ol><li>Install the two clients. Codex still needs a ChatGPT or API-key sign-in before a model request can run.</li><li>Complete each tool’s authentication separately. Installation alone is not a successful connection.</li><li>Inspect the workspace and permission mode. The recording flags Claude Code’s auto mode beside email-send scripts and moves coding work to a separate project folder.</li><li>Ask for fallback behavior when Cursor credits run out, then ask for task and model selection. A new rule file and helper are reported; the rule keeps Cursor as the default while available.</li></ol>
+<h3>Use the later written setup</h3>
+<p>The <a href="/guides/claude-code-vs-codex.html">Claude Code versus Codex guide</a> documents the updated manual-permission setup, task routing, fallback limits, and review process. Its current safety choices differ from the auto mode shown in the recording.</p>
+<p>Start with a small repository task and a visible result. The <a href="/guides/codex-workflow.html">Codex exercise</a> verifies a local failure case. Check the actual diff and command output before accepting an orchestrator’s completion message.</p>
+</section>`,
+  },
+  qC2ipjdszPA: { searchTitle: 'Codex usage limits: the recorded quota walkthrough' },
+  uSx_lW4oppY: { searchTitle: 'ChatGPT subscription pause: the recorded explanation' },
+  EECptdYND6k: { searchTitle: 'Odysseus AI: a first-look walkthrough' },
+  'Qb6RG0-8O1k': { searchTitle: 'Claude Code access: the recorded setup and limits' },
   e73WvglCLW0: { searchTitle: 'Check your website’s visibility in AI answer engines' },
   NoHkFvhbiuU: { searchTitle: 'Building an AI tool to find website clients' },
   '2G5klyFz61E': { searchTitle: 'Building an AI search visibility tracker' },

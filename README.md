@@ -1,6 +1,8 @@
 # ai-income-lab
 AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Income Lab community.
 
+- [Browse the free build guides](https://www.ai-automation-station.com/guides.html)
+- [Claude Code vs Codex: task routing and a checkable exercise](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html)
 - [Choose your first build](https://www.ai-automation-station.com/start-here.html)
 - [9Router setup notes](https://www.ai-automation-station.com/watch/geKngm3sg3w)
 - [Codex on Linux: setup and troubleshooting](https://www.ai-automation-station.com/watch/lbBZ7uLJwbM)
@@ -9,7 +11,7 @@ AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Inc
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
 - [Run your first local API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 - [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
-- [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html)
+- [Filter approved requests with Make and Google Sheets](https://www.ai-automation-station.com/guides/make-first-automation.html)
 
 ## Build and preview
 
