@@ -437,7 +437,7 @@ function App() {
 
       <section className="course-promo shell" aria-labelledby="runable-course-title">
         <div className="course-promo-card">
-          <img className="course-promo-image" src="/runable-course.webp" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
+          <img className="course-promo-image" src="/runable-course.webp" srcSet="/runable-course-640.webp 640w, /runable-course.webp 1200w" sizes="(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116px), (max-width: 1168px) calc(100vw - 52px), 1116px" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
           <div className="course-promo-content">
             <p className="eyebrow course-access">VIP members only</p>
             <h2 id="runable-course-title">Build an AI website in Runable.</h2>
