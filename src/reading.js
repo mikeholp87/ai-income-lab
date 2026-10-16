@@ -46,7 +46,7 @@ for (const link of document.querySelectorAll('a[href]')) {
 const banner = document.createElement('aside');
 banner.className = 'reading-consent';
 banner.setAttribute('aria-label', 'Privacy choices');
-banner.innerHTML = '<p><strong>Analytics &amp; marketing.</strong> Allow Google Analytics and Meta Pixel? <a href="/privacy.html">Privacy details</a>.</p><div><button type="button" data-consent="denied">Decline</button><button type="button" data-consent="granted">Allow both</button></div>';
+banner.innerHTML = '<p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div><button type="button" data-consent="denied">Decline</button><button type="button" data-consent="granted">Allow both</button></div>';
 banner.hidden = getTrackingConsent() !== null;
 document.body.append(banner);
 const choices = document.createElement('button');

@@ -192,6 +192,22 @@ a.video-card:hover h3 { color: var(--signal); }
 .repo-links a { color: var(--text); }
 .repo-links a:hover { color: var(--signal); }
 
+/* VIP course, directly below the hero */
+.course-promo { padding-bottom: 64px; }
+.course-promo-card { position: relative; isolation: isolate; overflow: hidden; padding: 40px; border: 1px solid var(--line-strong); border-left: 3px solid var(--signal); border-radius: 14px; background: var(--panel); }
+.course-promo-card::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #111 0%, #111 48%, rgb(17 17 17 / .9) 58%, rgb(17 17 17 / .28) 74%, transparent); content: ''; }
+.course-promo-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+.course-promo-content { position: relative; z-index: 1; max-width: 520px; }
+.course-access { color: var(--signal); }
+.course-promo h2 { margin-top: 16px; font: 400 clamp(28px, 3.5vw, 42px)/1.1 var(--display); text-transform: uppercase; letter-spacing: -.015em; text-wrap: balance; }
+.course-promo-copy { max-width: 52ch; margin-top: 16px; color: var(--body); font: 400 17px/1.6 var(--sans); }
+.course-outcomes { display: grid; gap: 8px; margin-top: 20px; color: var(--text); font: 400 15px/1.5 var(--sans); }
+.course-outcomes li { position: relative; padding-left: 18px; }
+.course-outcomes li::before { content: ''; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--signal); }
+.course-promo-action { max-width: 340px; margin-top: 24px; }
+.course-promo-action .button { justify-content: center; width: 100%; padding: 14px 20px; letter-spacing: .06em; text-align: center; }
+.course-promo-action .fine-print { max-width: 40ch; }
+
 /* Community */
 .community-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 64px; align-items: start; }
 .members { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
@@ -277,6 +293,10 @@ a.video-card:hover h3 { color: var(--signal); }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
 
 @media (max-width: 960px) {
+  .course-promo-card { display: grid; grid-template-columns: 1fr; gap: 28px; padding: 32px; }
+  .course-promo-card::before { content: none; }
+  .course-promo-image { position: static; z-index: auto; width: 100%; height: auto; border-radius: 10px; object-fit: initial; }
+  .course-promo-content { grid-column: auto; grid-row: auto; max-width: none; }
   .nav-links { display: none; }
   .nav-mobile { display: block; }
   .hero-grid, .community-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -291,6 +311,9 @@ a.video-card:hover h3 { color: var(--signal); }
 }
 
 @media (max-width: 640px) {
+  .course-promo { padding-bottom: 40px; }
+  .course-promo-card { padding: 16px; }
+  .course-promo-content { padding: 8px; }
   .shell { width: calc(100% - 32px); }
   .hero { padding: 24px 0 40px; }
   .hero-grid { gap: 28px; }
@@ -321,6 +344,8 @@ a.video-card:hover h3 { color: var(--signal); }
   .nav-join-name { display: none; }
   .nav-actions { gap: 6px; }
   .nav-mobile summary { padding-inline: 12px; letter-spacing: .08em; }
-  .consent-banner { flex-direction: column; align-items: stretch; gap: 6px; padding: 8px 16px; }
-  .consent-actions button { flex: 1; }
+  .consent-banner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 8px 12px; }
+  .consent-banner p { font-size: 12px; line-height: 1.4; }
+  .consent-actions { gap: 6px; }
+  .consent-actions button { padding-inline: 10px; white-space: nowrap; }
 }
