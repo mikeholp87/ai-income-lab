@@ -115,9 +115,9 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', copy: 'Community, courses, and tutorials. Beginner’s Automation Course unlocks at level 2.' },
-  { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', copy: 'Everything in Standard, plus Complete AI Avatar Video Course and immediate access to the beginner and VAPI voice-agent courses.' },
-  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', copy: 'Everything in Premium, plus the exclusive Runable course, weekly coaching, software deals, and 6,400+ n8n templates.' },
+  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Beginner’s Automation Course — unlocks at level 2', 'VAPI AI Voice Agent Course — unlocks at level 4'] },
+  { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
+  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Exclusive Runable course', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
 
 const timeline = [
@@ -129,14 +129,14 @@ const timeline = [
 ];
 
 const faqs = [
-  ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
-  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available exclusively to VIP members. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
+  ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
+  ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
+  ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
   ['Can I try TubeAnalytics or VisiScan for free?', 'Yes. TubeAnalytics has a 7-day free trial (payment details required), with plans from $19 a month. VisiScan runs a free scan with no signup, and the full report is $49, paid once.'],
-  ['What tools will I need?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
 ];
 
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -206,8 +206,6 @@ function VideoNextStep({ video, campaign }) {
   const offer = videoOffer(video.title);
   const url = outboundUrl(skoolPlansUrl, campaign);
   return <aside className="video-next-step" aria-label="Build with the Skool community">
-    <p className="next-step-title">{offer.title}</p>
-    <p>{offer.detail}</p>
     <p className="next-step-access">{offer.access}</p>
     <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Explore plans on Skool', url, video.id)}>Explore plans on Skool ↗</a>
   </aside>;
@@ -248,7 +246,6 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
       <div className="player-meta">
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
         <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
-        {video.summary && <p className="player-summary">{video.summary}</p>}
         <p className="player-note">YouTube loads only after you press play.</p>
         <VideoNextStep video={video} campaign={campaign} />
       </div>
@@ -467,7 +464,17 @@ function App() {
               <p>Some of the members building AI workflows on Skool</p>
             </div>
             <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
-              {plans.map(plan => <li key={plan.name}><div><h3>{plan.name}</h3><p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p><p>{plan.copy}</p><a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name} — $${plan.price}/month`, plansUrl)}>Choose {plan.name} — ${plan.price}/month ↗</a></div><p className="plan-price"><strong>${plan.price}</strong> a month</p></li>)}
+              {plans.map(plan => (
+                <li key={plan.name}>
+                  <div>
+                    <h3>{plan.name}</h3>
+                    <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
+                    <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name} — $${plan.price}/month`, plansUrl)}>Choose {plan.name} — ${plan.price}/month ↗</a>
+                  </div>
+                  <p className="plan-price"><strong>${plan.price}</strong> a month</p>
+                </li>
+              ))}
             </ul>
             <div className="button-row">
               <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'View plans from $29/month', plansUrl)}>View plans from $29/month</a>
@@ -491,6 +498,13 @@ function App() {
               <p className="fine-print">Levels refer to your Skool community level. <a href="mailto:automojic@proton.me?subject=Course%20access">Ask about course access</a>.</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="section" id="faq">
+        <div className="shell faq-grid">
+          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
+          <div className="faq-list reveal-group">{faqs.map(([question, answer], index) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary><span className="faq-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
 
@@ -596,12 +610,6 @@ function App() {
         </div>
       </section>
 
-      <section className="section" id="faq">
-        <div className="shell faq-grid">
-          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
-          <div className="faq-list reveal-group">{faqs.map(([question, answer], index) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary><span className="faq-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
-        </div>
-      </section>
     </main>
 
     <footer className="footer">
