@@ -115,9 +115,9 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Beginner’s Automation Course — unlocks at level 2', 'VAPI AI Voice Agent Course — unlocks at level 4'] },
+  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course — unlocks at level 2', 'VAPI AI Voice Agent Course — unlocks at level 4'] },
   { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
-  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Exclusive Runable course', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
+  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
 
 const timeline = [
@@ -131,7 +131,7 @@ const timeline = [
 const faqs = [
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
-  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available exclusively to VIP members. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
+  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
@@ -439,9 +439,9 @@ function App() {
         <div className="course-promo-card">
           <img className="course-promo-image" src="/runable-course.webp" srcSet="/runable-course-640.webp 640w, /runable-course.webp 1200w" sizes="(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116px), (max-width: 1168px) calc(100vw - 52px), 1116px" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
           <div className="course-promo-content">
-            <p className="eyebrow course-access">VIP members only</p>
+            <p className="eyebrow course-access">Included for all members</p>
             <h2 id="runable-course-title">Build an AI website in Runable.</h2>
-            <p className="course-promo-copy">Create and launch an AI-powered business website, from idea to live site. Take the course inside AI Income Lab, exclusively for VIP members.</p>
+            <p className="course-promo-copy">Create and launch an AI-powered business website, from idea to live site. Take the course inside AI Income Lab, included for all members.</p>
             <ul className="course-outcomes" aria-label="What you’ll build">
               <li>Build a business website in Runable.</li>
               <li>Add AI features to your website.</li>
@@ -449,7 +449,7 @@ function App() {
             </ul>
             <div className="course-promo-action">
               <a className="button button-primary" href={communityUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Explore the course on Skool', communityUrl)}>Explore the course on Skool ↗</a>
-              <p className="fine-print">Choose VIP in the Skool community to get access.</p>
+              <p className="fine-print">Included with every AI Income Lab plan, from $29/month.</p>
             </div>
           </div>
         </div>
@@ -488,7 +488,7 @@ function App() {
             <div className="course-preview">
               <h3>Inside the classroom</h3>
               <ul>
-                <li><strong>Runable Course</strong><span>Available exclusively to VIP members inside the Skool community.</span></li>
+                <li><strong>Runable Course</strong><span>Available to all members inside the Skool community.</span></li>
                 <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com. Unlocks at level 2, or immediately with Premium or VIP.</span></li>
                 <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
                 <li><strong>Complete AI Avatar Video Course</strong><span>Included with Premium and VIP. Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
