@@ -49,3 +49,24 @@ Plan: `docs/superpowers/plans/2026-10-21-videos-page-fixes.md`.
 - Follow-up (owner request): watch pages now use the guides pages' header ("Mike Holp", Start here, Guides, All videos) and the Skool button reads "Join AI Income Lab ↗" (placement `watch_video` unchanged); the phone cookie bar uses the page's 16px side gutter. Screenshots: `followup-watch-*.png`.
 
 Screenshots: `docs/audits/2026-10-21-videos-screenshots/`.
+
+## Topic pages (finding 14)
+
+Plan: `docs/superpowers/plans/2026-10-21-video-topic-pages.md`. Topics live in `src/topics.js` and match video titles.
+
+| Topic | URL | Videos at build |
+|---|---|---|
+| Claude Code | `/videos/claude-code` | 21 |
+| Codex and OpenCode | `/videos/codex-opencode` | 13 |
+| n8n | `/videos/n8n` | 14 |
+| Make.com | `/videos/make-com` | 9 |
+| AI agents | `/videos/ai-agents` | 38 |
+| AI SEO | `/videos/ai-seo` | 19 |
+| AI video and YouTube | `/videos/ai-video` | 33 |
+| New AI models | `/videos/new-models` | 31 |
+
+Misfiles: "Private AI Made Simple: A Beginner's Guide to Ollama" sits under New AI models because `llama` matches inside "Ollama". Borderline: "OpenAI Just Released Dots! Here's What You Need To Know" (Dots is an assistant, not a model) under New AI models, and "The Best Claude Design Alternative You Can Run On Your PC" under Claude Code. Patterns unchanged.
+
+- Follow-up during implementation: on phones the topic row starts scrolled to the current topic (inline script sets the row's scrollLeft; the page does not move).
+
+Screenshots: `docs/audits/2026-10-21-topic-screenshots/`.
