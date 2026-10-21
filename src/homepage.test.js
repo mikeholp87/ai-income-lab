@@ -74,3 +74,13 @@ test('the hero relates the two brands and skips the repeated title on desktop', 
   assert.match(jsx, /AI Income Lab is the paid community from the AI Automation Station YouTube channel\./);
   assert.match(css, /@media \(min-width: 961px\) \{ \.hero-status \{ display: none; \} \}/);
 });
+
+test('Skool buttons share one label and new-tab buttons end with ↗', () => {
+  assert.doesNotMatch(jsx, /Explore plans on Skool|Explore the course on Skool/);
+  assert.equal(count(jsx, '>Subscribe on YouTube ↗</a>'), 2);
+  assert.match(jsx, />\{tool\.cta\} ↗<\/a>/);
+  for (const [link] of jsx.matchAll(/<a className="button.*?<\/a>/g)) {
+    // The booking button opens an inline calendar; its new-tab target is only the no-JS fallback.
+    if (link.includes('target="_blank"') && !link.includes('onClick={openCalendar}')) assert.match(link, /↗<\/a>$/, link);
+  }
+});

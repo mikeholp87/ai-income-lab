@@ -204,7 +204,7 @@ function VideoNextStep({ video, campaign }) {
   const url = outboundUrl(skoolPlansUrl, campaign);
   return <aside className="video-next-step" aria-label="Build with the Skool community">
     <p className="next-step-access">{offer.access}</p>
-    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Explore plans on Skool', url, video.id)}>Explore plans on Skool ↗</a>
+    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Join AI Income Lab', url, video.id)}>Join AI Income Lab ↗</a>
   </aside>;
 }
 
@@ -444,7 +444,7 @@ function App() {
               <li>Launch your finished site online.</li>
             </ul>
             <div className="course-promo-action">
-              <a className="button button-primary" href={communityUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Explore the course on Skool', communityUrl)}>Explore the course on Skool ↗</a>
+              <a className="button button-primary" href={communityUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Join AI Income Lab', communityUrl)}>Join AI Income Lab ↗</a>
               <p className="fine-print">Included with every AI Income Lab plan, from $29/month.</p>
             </div>
           </div>
@@ -506,7 +506,7 @@ function App() {
               <SectionHead eyebrow="Keep exploring" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
-                <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
+                <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
             </div>
@@ -551,7 +551,7 @@ function App() {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta}</a>
+                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>
@@ -610,7 +610,7 @@ function App() {
           <p>Build your next automation <span className="accent">with AI Income Lab.</span></p>
           <div className="button-row">
             <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', aboutUrl)}>Join AI Income Lab ↗</a>
-            <a className="button button-quiet" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
+            <a className="button button-quiet" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
           </div>
         </div>
         <div className="footer-columns">
