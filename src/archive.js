@@ -2,6 +2,7 @@ import { channelUrl, clock, durationSeconds, formatDuration, longFormPlaylistId,
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { watchNotes } from './watch-notes.js';
+import { topics } from './topics.js';
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -73,6 +74,9 @@ function pager(page, pages) {
   return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, '← Newer', 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, 'Older →', 'next') : ''}</nav>`;
 }
 
+// Topic links under the intro; the page being shown is marked.
+const topicNav = current => `<nav class="topics mono" aria-label="Video topics"><a href="/videos"${current ? '' : ' aria-current="page"'}>All videos</a>${topics.map(topic => `<a href="/videos/${topic.slug}"${topic === current ? ' aria-current="page"' : ''}>${escape(topic.name)}</a>`).join('')}</nav>`;
+
 const videoHref = video => video.embeddable ? `/watch/${video.id}` : `https://www.youtube.com/watch?v=${video.id}`;
 const jsonLd = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
@@ -89,17 +93,22 @@ const card = (video, eager) => {
 <h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
 };
 
-// One page of the archive, 15 videos per page. Callers check the page is within pageCount(videos).
-export function renderArchive(videos, page = 1) {
-  const pages = pageCount(videos);
-  const items = videos.slice((page - 1) * perPage, page * perPage);
+// One page of the archive, 15 videos per page (callers check the page is within pageCount(videos)),
+// or with `topic`, every matching video on a single page at /videos/<slug>.
+export function renderArchive(videos, page = 1, topic = null) {
+  const list = topic ? videos.filter(video => topic.pattern.test(video.title)) : videos;
+  // ponytail: topic pages are unpaginated (largest is 38 videos); add paging if one passes ~60.
+  const pages = topic ? 1 : pageCount(list);
+  const items = topic ? list : list.slice((page - 1) * perPage, page * perPage);
   const years = Map.groupBy(items, video => video.published.slice(0, 4));
   const pageNote = page > 1 ? `Page ${page} of ${pages}. ` : '';
-  const description = `${pageNote}Browse ${videos.length} AI Automation Station tutorials: coding agents, AI tools, and automation workflows tested on real builds.`;
-  const url = `${site}${pagePath(page)}`;
+  const count = `${list.length} ${list.length === 1 ? 'video' : 'videos'}`;
+  const description = topic ? `${topic.intro} ${count}, newest first.` : `${pageNote}Browse ${list.length} AI Automation Station tutorials: coding agents, AI tools, and automation workflows tested on real builds.`;
+  const url = `${site}${topic ? `/videos/${topic.slug}` : pagePath(page)}`;
+  const title = topic ? `${topic.name} videos | Mike Holp` : page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp';
   const schema = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, url,
-    name: page > 1 ? `Every video, page ${page} of ${pages}` : 'Every video', description,
+    name: topic ? `${topic.name} videos` : page > 1 ? `Every video, page ${page} of ${pages}` : 'Every video', description,
     isPartOf: { '@id': `${site}/#website` },
     mainEntity: { '@type': 'ItemList', itemListElement: items.map((video, index) => ({ '@type': 'ListItem', position: (page - 1) * perPage + index + 1, url: new URL(videoHref(video), site).href })) },
   };
@@ -108,14 +117,14 @@ export function renderArchive(videos, page = 1) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp'}</title>
+<title>${escape(title)}</title>
 <meta name="description" content="${escape(description)}">
 <link rel="canonical" href="${url}">${page > 1 ? `\n<link rel="prev" href="${site}${pagePath(page - 1)}">` : ''}${page < pages ? `\n<link rel="next" href="${site}${pagePath(page + 1)}">` : ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Automation Station">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="Every video: AI tools tested on real builds">
+<meta property="og:title" content="${escape(topic ? `${topic.name} videos` : 'Every video: AI tools tested on real builds')}">
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
@@ -155,6 +164,12 @@ li a:hover h3 { color: #ff6846; }
 li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size: 14px; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .start { margin-top: 24px; }
 .start a { color: #ff6846; text-decoration: underline; text-underline-offset: 3px; }
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.topics a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1px solid #232323; border-radius: 999px; white-space: nowrap; }
+.topics a:hover { border-color: #8c8c86; color: #f5f5f0; }
+.topics [aria-current] { border-color: #ff6846; color: #f5f5f0; }
+/* Phones: one swipeable row instead of four wrapped rows; it bleeds to the screen edges. */
+@media (max-width: 640px) { .topics { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; } }
 .pager { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 64px; }
 .pager a, .pager span { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; padding: 0 12px; border: 1px solid #232323; }
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }
@@ -177,9 +192,10 @@ header nav { display: flex; gap: 24px; margin-left: auto; }
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
-<header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos" aria-current="page">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
+<header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
-<div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.</p></div>
+<div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.name : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p></div>
+${topicNav(topic)}
 <p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 <aside class="cta" aria-label="AI Income Lab"><p>Build along with AI Income Lab: step-by-step courses, templates and a community of 2,900+ members, from $29/month.</p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a></aside>

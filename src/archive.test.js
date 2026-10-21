@@ -9,6 +9,7 @@ import { videoNotes } from './video-notes.js';
 import { durationSeconds } from './youtube.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
+import { topicBySlug, topics } from './topics.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
@@ -421,4 +422,33 @@ test('reading-page cookie bar sits on one centred row and Privacy choices matche
   // Phones: same 16px side gutter as the page content.
   assert.match(css, /@media\(max-width:640px\)\{\.reading-consent\{[^}]*padding:8px 16px;/);
   assert.match(renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]), /footer button \{ min-height: 44px; color: inherit; text-decoration: none; \}/);
+});
+
+test('topic pages list only matching videos on one page with their own canonical', () => {
+  const videos = [
+    { id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true },
+    { id: 'bbbbbbbbbbb', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: '', embeddable: true },
+  ];
+  const html = renderArchive(videos, 1, topicBySlug('claude-code'));
+  assert.match(html, /<title>Claude Code videos \| Mike Holp<\/title>/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/claude-code">/);
+  assert.match(html, /<meta property="og:title" content="Claude Code videos">/);
+  assert.match(html, /<h1>Claude Code<\/h1><p>1 videos?, newest first\. Builds, skills and workflows/);
+  assert.match(html, /aaaaaaaaaaa/);
+  assert.doesNotMatch(html, /bbbbbbbbbbb/);
+  assert.doesNotMatch(html, /class="pager/);
+  assert.match(html, /<a href="\/videos\/claude-code" aria-current="page">Claude Code<\/a>/);
+  // The header's All videos link is not the current page on a topic page.
+  assert.match(html, /<a href="\/videos">All videos<\/a><\/nav><a class="join"/);
+  const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  assert.equal(schema.name, 'Claude Code videos');
+  assert.equal(schema.mainEntity.itemListElement.length, 1);
+});
+
+test('the archive shows a topic row with every topic', () => {
+  const html = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }]);
+  const row = html.match(/<nav class="topics mono" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
+  assert.match(row, /^<a href="\/videos" aria-current="page">All videos<\/a>/);
+  assert.equal((row.match(/<a /g) || []).length, topics.length + 1);
+  for (const topic of topics) assert.ok(row.includes(`href="/videos/${topic.slug}"`), topic.slug);
 });
