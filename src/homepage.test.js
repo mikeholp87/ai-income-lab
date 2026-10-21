@@ -64,3 +64,8 @@ test('the videos section keeps two buttons, the grid and one guides list', () =>
   for (const id of ['7v_675nO7nM', 'geKngm3sg3w', 'G8u1-hKEqig']) assert.match(jsx, new RegExp(`href="/watch/${id}"`));
   assert.match(media('(max-width: 640px)'), /\.build-guides ul \{ grid-template-columns: 1fr; \}/);
 });
+
+test('the build list shows three projects', () => {
+  const start = jsx.indexOf('const repos = [');
+  assert.equal(count(jsx.slice(start, jsx.indexOf('];', start)), "{ name: '"), 3);
+});

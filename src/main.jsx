@@ -109,9 +109,7 @@ const tools = [
 const repos = [
   { name: 'solar-business-directory', copy: 'Next.js directory of UK solar installers, with lead capture, an installer portal, and Stripe billing.', language: 'TypeScript', year: 2026, live: 'https://solar-business-directory.vercel.app' },
   { name: 'seo-tool', copy: 'SEO Scout: paste a URL, get a scored audit across eight categories with the steps to fix each issue.', language: 'TypeScript', year: 2026 },
-  { name: 'trading-app', copy: 'A trading app built on the Alpaca brokerage API.', language: 'JavaScript', year: 2026, live: 'https://trading-app-mu-one.vercel.app' },
   { name: 'ai-income-lab', copy: 'The source for this page. React and Vite on Vercel, with a YouTube feed that refreshes daily.', language: 'JavaScript', year: 2026 },
-  { name: 'Swiftris', copy: 'Tetris written in Swift, the year the language launched.', language: 'Swift', year: 2014 },
 ];
 
 const plans = [
