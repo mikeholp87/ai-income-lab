@@ -57,11 +57,19 @@ export const perPage = 15;
 export const pageCount = videos => Math.max(1, Math.ceil(videos.length / perPage));
 const pagePath = page => page === 1 ? '/videos' : `/videos/${page}`;
 
-// ponytail: every page number is listed; switch to a windowed list if the archive passes ~40 pages.
+// First, last and the current page's neighbours; a one-page gap shows that page, longer gaps an ellipsis.
 function pager(page, pages) {
   if (pages === 1) return '';
   const link = (to, label, rel) => `<a href="${pagePath(to)}"${rel ? ` rel="${rel}"` : ''}>${label}</a>`;
-  const numbers = Array.from({ length: pages }, (_, index) => index + 1).map(n => n === page ? `<span aria-current="page">${n}</span>` : link(n, n));
+  const shown = Array.from({ length: pages }, (_, index) => index + 1).filter(n => n === 1 || n === pages || Math.abs(n - page) <= 1);
+  const numbers = [];
+  let previous = 0;
+  for (const n of shown) {
+    if (n - previous === 2) numbers.push(link(n - 1, n - 1));
+    else if (n - previous > 2) numbers.push('<span class="gap" aria-hidden="true">…</span>');
+    numbers.push(n === page ? `<span aria-current="page">${n}</span>` : link(n, n));
+    previous = n;
+  }
   return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, '← Newer', 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, 'Older →', 'next') : ''}</nav>`;
 }
 
@@ -151,6 +159,7 @@ li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size:
 .pager a, .pager span { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; padding: 0 12px; border: 1px solid #232323; }
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }
 .pager [aria-current] { border-color: #ff6846; color: #f5f5f0; }
+.pager .gap { min-width: 0; padding: 0 4px; border: 0; }
 footer.shell { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 80px; padding: 32px 0; border-top: 1px solid #232323; }
 header a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
 footer a:hover, header a.mono:hover { color: #f5f5f0; }

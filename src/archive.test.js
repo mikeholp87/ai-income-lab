@@ -387,3 +387,13 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.doesNotMatch(html, / style="/);
   assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
 });
+
+test('long archives show first, last and nearby pages only', () => {
+  const videos = Array.from({ length: 225 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 1) - index * 86400000).toISOString(), summary: '' }));
+  const pages = page => renderArchive(videos, page).match(/<nav class="pager[^>]*>(.*?)<\/nav>/)[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  assert.equal(pages(1), '1 2 … 15 Older →');
+  assert.equal(pages(3), '← Newer 1 2 3 4 … 15 Older →');
+  assert.equal(pages(4), '← Newer 1 2 3 4 5 … 15 Older →');
+  assert.equal(pages(8), '← Newer 1 … 7 8 9 … 15 Older →');
+  assert.equal(pages(15), '← Newer 1 … 14 15');
+});
