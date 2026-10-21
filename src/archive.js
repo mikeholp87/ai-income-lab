@@ -160,6 +160,7 @@ li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size:
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }
 .pager [aria-current] { border-color: #ff6846; color: #f5f5f0; }
 .pager .gap { min-width: 0; padding: 0 4px; border: 0; }
+@media (max-width: 640px) { .pager a[rel] { display: none; } }
 footer.shell { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 80px; padding: 32px 0; border-top: 1px solid #232323; }
 header a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
 footer a:hover, header a.mono:hover { color: #f5f5f0; }

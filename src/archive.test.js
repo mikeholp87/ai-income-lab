@@ -396,4 +396,6 @@ test('long archives show first, last and nearby pages only', () => {
   assert.equal(pages(4), '← Newer 1 2 3 4 5 … 15 Older →');
   assert.equal(pages(8), '← Newer 1 … 7 8 9 … 15 Older →');
   assert.equal(pages(15), '← Newer 1 … 14 15');
+  // Phones: the arrows don't fit beside 44px targets, and the neighbouring pages are always listed.
+  assert.match(renderArchive(videos, 8), /@media \(max-width: 640px\) \{ \.pager a\[rel\] \{ display: none; \} \}/);
 });
