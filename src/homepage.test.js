@@ -90,3 +90,10 @@ test('the nav names the plans and section labels say what follows', () => {
   assert.match(jsx, /eyebrow="Plans" title="Your next build,"/);
   assert.match(jsx, /eyebrow="Latest videos"/);
 });
+
+test('channel and member numbers sit just before the plans', () => {
+  assert.ok(jsx.indexOf('<section className="stats"') < jsx.indexOf('id="community"'));
+  assert.match(jsx, /\['2,900\+', 'community members'\]/);
+  assert.match(css, /\.stats dl \{ display: grid; grid-template-columns: repeat\(4, minmax\(0, 1fr\)\); \}/);
+  assert.match(media('(max-width: 640px)'), /\.stats dl \{ grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
+});

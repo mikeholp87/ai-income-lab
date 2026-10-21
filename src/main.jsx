@@ -76,7 +76,9 @@ function ConsentBanner({ campaign, campaignReady }) {
 }
 
 // Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
+// The member count comes from Skool, so it has no key and stays static.
 const stats = [
+  ['2,900+', 'community members'],
   ['5.1K', 'YouTube subscribers', 'subscribers'],
   ['498K', 'video views', 'views'],
   ['336', 'videos published', 'videos'],
@@ -451,6 +453,10 @@ function App() {
         </div>
       </section>
 
+      <section className="stats" aria-label="Community and channel numbers">
+        <dl className="shell reveal-group">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+      </section>
+
       <section className="section band" id="community">
         <div className="shell community-grid">
           <div>
@@ -530,10 +536,6 @@ function App() {
             <a className="text-link" href="/guides.html">All guides</a>
           </aside>
         </div>
-      </section>
-
-      <section className="stats" aria-label="Channel numbers">
-        <dl className="shell reveal-group">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
       <div className="divider reveal" aria-hidden="true" />
