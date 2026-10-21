@@ -139,7 +139,6 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .player-meta { display: grid; gap: 10px; padding: 24px 28px 28px; }
 .player-meta h2 { font: 600 22px/1.25 var(--sans); }
 .player-meta h2 a:hover { color: var(--signal); }
-.player-note { color: var(--muted); font-size: 12px; }
 .hero-actions .button { flex: 1 1 auto; justify-content: center; padding: 12px 20px; letter-spacing: .06em; text-align: center; }
 .video-next-step { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line-strong); color: var(--body); font-size: 14px; }
 .video-next-step .next-step-access { color: var(--muted); font-size: 12px; }
@@ -250,7 +249,6 @@ a.video-card:hover h3 { color: var(--signal); }
 .about-links a:hover { color: var(--text); }
 
 /* Booking */
-.booking-note { max-width: 58ch; margin-top: 16px; color: var(--muted); font-size: 13px; }
 .booking-calendar { min-height: 480px; max-height: 80svh; overflow: auto; overscroll-behavior: contain; margin-top: 40px; }
 .support-note, .community-help { margin-top: 20px; color: var(--body); font-size: 14px; }
 .support-note a, .community-help a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }

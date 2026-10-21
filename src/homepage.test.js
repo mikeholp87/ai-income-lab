@@ -32,3 +32,13 @@ test('product card buttons align at the bottom of each card', () => {
 test('the portrait stays beside the About copy on desktop', () => {
   assert.match(css, /\.portrait \{[^}]*position: sticky; top: 96px;/);
 });
+
+const count = (text, needle) => text.split(needle).length - 1;
+
+test('each claim and note appears once at most', () => {
+  assert.equal(count(jsx, 'leave the mistakes in'), 1);
+  assert.equal(count(jsx, 'Course access varies by plan'), 0);
+  assert.doesNotMatch(jsx, /press play\./);
+  assert.doesNotMatch(jsx, /Can I try TubeAnalytics or VisiScan for free\?/);
+  assert.doesNotMatch(css, /\.booking-note|\.player-note/);
+});

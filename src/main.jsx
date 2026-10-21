@@ -136,7 +136,6 @@ const faqs = [
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
-  ['Can I try TubeAnalytics or VisiScan for free?', 'Yes. TubeAnalytics has a 7-day free trial (payment details required), with plans from $19 a month. VisiScan runs a free scan with no signup, and the full report is $49, paid once.'],
 ];
 
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -246,7 +245,6 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
       <div className="player-meta">
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
         <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
-        <p className="player-note">YouTube loads only after you press play.</p>
         <VideoNextStep video={video} campaign={campaign} />
       </div>
     </article>
@@ -429,7 +427,7 @@ function App() {
             videoPlayButton.current?.click();
           }}>Watch a free build</a>
         </nav>
-        <p className="fine-print hero-reassurance">From $29/month. Cancel anytime. Course access varies by plan.</p>
+        <p className="fine-print hero-reassurance">From $29/month. Cancel anytime.</p>
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
         </div>
@@ -606,7 +604,6 @@ function App() {
       <section className="section" id="work-together">
         <div className="shell">
           <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
-          <p className="booking-note">Every video follows the same rule: build something real, leave the mistakes in, and say plainly whether the tool is worth your time.</p>
           <BookingCalendar campaign={campaign} />
           <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
         </div>
