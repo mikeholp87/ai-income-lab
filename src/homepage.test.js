@@ -31,6 +31,8 @@ test('product card buttons align at the bottom of each card', () => {
 
 test('the portrait stays beside the About copy on desktop', () => {
   assert.match(css, /\.portrait \{[^}]*position: sticky; top: 96px;/);
+  // One column: sticky would pin the photo over the bio, since it sticks within the whole grid.
+  assert.match(media('(max-width: 960px)'), /\.portrait \{[^}]*position: static;/);
 });
 
 const count = (text, needle) => text.split(needle).length - 1;

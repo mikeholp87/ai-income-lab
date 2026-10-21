@@ -57,6 +57,7 @@ Plan: `docs/superpowers/plans/2026-10-21-landing-page-audit-fixes.md`. Source ch
 - Finding 19–20 (prose typeface): done.
 - Finding 4 (Join destination): switched to plan picker (owner decision).
 - Tracking changes: removed placements `community` (View plans) and `video_grid`; removed `latest_posts` YouTube link; `button_text` now "Join AI Income Lab" for `featured_video` and `runable_course`; `start_free_build` now fires from `latest`.
+- Found in final review: the sticky portrait (finding 3) pinned the photo over the bio on one-column layouts, because sticky is bounded by the whole About grid, not the photo's row. Fixed with `position: static` at `max-width: 960px` (pinned by `src/homepage.test.js`); `final-mobile-9600.png` shows the bug before the fix.
 - Kept on purpose: the featured video's default access line ('Course access varies by plan.') comes from `src/video-offer.js`, shared with watch pages.
 
 Screenshots: `docs/audits/2026-10-21-implementation-screenshots/`.

@@ -303,7 +303,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .nav-links { display: none; }
   .nav-mobile { display: block; }
   .hero-grid, .community-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
-  .portrait { max-width: 280px; }
+  .portrait { position: static; max-width: 280px; }
   .repo-list li { grid-template-columns: 1fr auto; gap: 8px 24px; }
   .repo-list li > p:not(.repo-meta, .repo-links) { grid-column: 1 / -1; grid-row: 2; }
   .repo-list .repo-meta { grid-row: 1; grid-column: 2; }
