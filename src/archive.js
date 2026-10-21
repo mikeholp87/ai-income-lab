@@ -74,6 +74,8 @@ function pager(page, pages) {
   return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, '← Newer', 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, 'Older →', 'next') : ''}</nav>`;
 }
 
+// Phones show the topic row as one swipeable line; start it at the current pill. Only the row scrolls, never the page.
+const currentPillScript = `(()=>{const pill=document.querySelector('.topics [aria-current]');if(pill)pill.parentElement.scrollLeft=pill.offsetLeft-pill.parentElement.offsetLeft-16})()`;
 // Topic links under the intro; the page being shown is marked.
 const topicNav = current => `<nav class="topics mono" aria-label="Video topics"><a href="/videos"${current ? '' : ' aria-current="page"'}>All videos</a>${topics.map(topic => `<a href="/videos/${topic.slug}"${topic === current ? ' aria-current="page"' : ''}>${escape(topic.name)}</a>`).join('')}</nav>`;
 
@@ -195,7 +197,7 @@ header nav { display: flex; gap: 24px; margin-left: auto; }
 <header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.name : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p></div>
-${topicNav(topic)}
+${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
 <p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 <aside class="cta" aria-label="AI Income Lab"><p>Build along with AI Income Lab: step-by-step courses, templates and a community of 2,900+ members, from $29/month.</p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a></aside>

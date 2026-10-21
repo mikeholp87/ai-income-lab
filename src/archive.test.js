@@ -443,6 +443,12 @@ test('topic pages list only matching videos on one page with their own canonical
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, 'Claude Code videos');
   assert.equal(schema.mainEntity.itemListElement.length, 1);
+  // Phones show the pills as one swipeable row; bring the current pill into view without moving the page.
+  const script = html.match(/<\/nav>\n<script>(.*?)<\/script>/)[1];
+  assert.match(script, /\.topics \[aria-current\]/);
+  assert.match(script, /scrollLeft/);
+  assert.doesNotMatch(script, /scrollIntoView/);
+  assert.doesNotThrow(() => new Function(script));
 });
 
 test('the archive shows a topic row with every topic', () => {
