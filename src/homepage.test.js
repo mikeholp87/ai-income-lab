@@ -102,3 +102,10 @@ test('prose uses Instrument Sans while labels keep DM Mono', () => {
   assert.match(css, /\.lede,[^{]*\.fine-print,[^{]*\.faq-list details p,[^{]*\{ font-family: var\(--sans\); \}/);
   assert.match(css, /\.eyebrow, \.nav-links, \.text-link, \.button, \.footer-columns h2, \.stats dt \{ font-family: var\(--mono\);/);
 });
+
+test('the main Join buttons open the Skool plan picker', () => {
+  for (const placement of ['navigation', 'hero', 'footer']) {
+    assert.match(jsx, new RegExp(`href=\\{plansUrl\\}[^\\n]*trackCommunityVisit\\('${placement}', 'Join AI Income Lab', plansUrl\\)`), placement);
+  }
+  assert.match(jsx, /trackCommunityVisit\('footer', 'AI Income Lab'\)/);
+});
