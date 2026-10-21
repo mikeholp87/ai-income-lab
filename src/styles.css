@@ -27,12 +27,13 @@ img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4, p, dl, dd, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
-.build-guides { margin: 32px 0; padding: 24px; border: 1px solid var(--line-strong); background: var(--panel); font-family: var(--sans); }
-.build-guides h3 { margin-top: 0; color: var(--text); }
-.build-guides ul { padding-left: 20px; }
-.build-guides li { margin: 8px 0; }
-.build-guides a { color: var(--signal-hover); text-decoration: underline; text-underline-offset: 4px; }
-.build-guides li a { display: inline-flex; align-items: center; min-height: 44px; }
+/* Guides under the latest videos: ruled two-column list, same rhythm as the repo list */
+.build-guides { margin-top: 96px; }
+.build-guides h3 { font: 600 22px/1.25 var(--sans); }
+.build-guides > p { margin-top: 8px; color: var(--body); }
+.build-guides ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin-top: 32px; border-top: 1px solid var(--line); }
+.build-guides li a { display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); font-size: 14px; transition: color .2s ease; }
+.build-guides li a:hover { color: var(--signal); }
 button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 section[id], main [id] { scroll-margin-top: 88px; }
 .accent { color: var(--signal); }
@@ -324,6 +325,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .video-card h3 { grid-row: 1; grid-column: 2; font-size: 15px; }
   .video-card .meta-row { grid-row: 2; grid-column: 2; flex-wrap: wrap; gap: 2px 12px; font-size: 11px; }
   .video-card .duration { right: 4px; bottom: 4px; padding: 1px 4px; font-size: 11px; }
+  .build-guides ul { grid-template-columns: 1fr; }
   .tool-body { padding: 24px; }
   .stats dt { font-size: 10px; letter-spacing: .12em; text-align: center; }
   .tool h3 { font-size: 22px; }

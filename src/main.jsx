@@ -505,32 +505,32 @@ function App() {
         <div className="shell">
           <div className="latest-intro">
             <div>
-              <SectionHead eyebrow="Keep exploring" title="More real" accent="builds.">Watch another build, or choose a starting point for your own project.</SectionHead>
+              <SectionHead eyebrow="Keep exploring" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
-                <a className="button button-quiet" href="/start-here.html">Start your first build</a>
               </div>
             </div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
           <aside className="build-guides" aria-labelledby="build-guides-title">
-            <h3 id="build-guides-title">Build something you can check.</h3>
-            <p>Free written walkthroughs with sample inputs, troubleshooting, and a clear finish line.</p>
+            <h3 id="build-guides-title">Guides and walkthroughs</h3>
+            <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
             <ul>
+              <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
               <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
               <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
               <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
+              <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
+              <li><a href="/watch/geKngm3sg3w">Video: set up 9Router</a></li>
+              <li><a href="/watch/G8u1-hKEqig">Video: follow the HeyGen avatar workflow</a></li>
             </ul>
-            <p><a href="/guides.html">All guides</a></p>
-            <p>Prefer a recording? <a href="/watch/7v_675nO7nM">Build an OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">set up 9Router</a>, or <a href="/watch/G8u1-hKEqig">follow the HeyGen avatar workflow</a>.</p>
+            <a className="text-link" href="/guides.html">All guides</a>
           </aside>
-          <div className="button-row"><a className="button button-quiet" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('video_grid', 'Build with AI Income Lab', plansUrl)}>Build with AI Income Lab ↗</a></div>
-          <a className="text-link" href={channelUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest_posts', 'Every video on YouTube', channelUrl, 'visit_youtube')}>Every video on YouTube ↗</a>
         </div>
       </section>
 

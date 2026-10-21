@@ -56,3 +56,11 @@ test('the classroom list names courses without repeating plan access', () => {
   assert.ok(start >= 0);
   assert.doesNotMatch(classroom, /level|Premium|VIP|Included with/i);
 });
+
+test('the videos section keeps two buttons, the grid and one guides list', () => {
+  assert.equal(count(jsx, 'href="/start-here.html"'), 1);
+  assert.doesNotMatch(jsx, /Start your first build|Prefer a recording\?|'video_grid'|Every video on YouTube/);
+  // Fixed /watch/ links keep evergreen video pages linked from the homepage for indexing.
+  for (const id of ['7v_675nO7nM', 'geKngm3sg3w', 'G8u1-hKEqig']) assert.match(jsx, new RegExp(`href="/watch/${id}"`));
+  assert.match(media('(max-width: 640px)'), /\.build-guides ul \{ grid-template-columns: 1fr; \}/);
+});
