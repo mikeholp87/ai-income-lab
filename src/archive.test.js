@@ -63,7 +63,10 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(script, /addEventListener\('hashchange',\(\)=>seek\(location\.hash,true\)\)/);
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
-  assert.match(html, /<header><a href="\/">AI Automation Station<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/header>/);
+  // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
+  assert.match(html, /<header><a href="\/">Mike Holp<\/a><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/header>/);
+  // Same Skool label as the homepage and the archive.
+  assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/first-api-request.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
@@ -415,5 +418,7 @@ test('reading-page cookie bar sits on one centred row and Privacy choices matche
   assert.match(css, /\.reading-consent\{position:sticky;bottom:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 24px;padding:10px 24px;/);
   assert.match(css, /\.reading-consent p\{margin:0\}/);
   assert.match(css, /\.reading-consent>div\{display:flex;gap:8px\}/);
+  // Phones: same 16px side gutter as the page content.
+  assert.match(css, /@media\(max-width:640px\)\{\.reading-consent\{[^}]*padding:8px 16px;/);
   assert.match(renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]), /footer button \{ min-height: 44px; color: inherit; text-decoration: none; \}/);
 });

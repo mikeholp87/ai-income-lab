@@ -46,5 +46,6 @@ Plan: `docs/superpowers/plans/2026-10-21-videos-page-fixes.md`.
 - The cookie-bar change in `public/consent.css` also applies to watch, guides and start-here pages.
 - Follow-up fixes during implementation: `summarize()` also skips hashtag blocks (the Runable upload has no prose paragraph, so its summary is empty and pages use their default text); Newer/Older pager links hide below 640px so the list fits one row on phones.
 - Task 7 (homepage count label) skipped by owner decision.
+- Follow-up (owner request): watch pages now use the guides pages' header ("Mike Holp", Start here, Guides, All videos) and the Skool button reads "Join AI Income Lab ↗" (placement `watch_video` unchanged); the phone cookie bar uses the page's 16px side gutter. Screenshots: `followup-watch-*.png`.
 
 Screenshots: `docs/audits/2026-10-21-videos-screenshots/`.

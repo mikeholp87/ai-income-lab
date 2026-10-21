@@ -277,7 +277,7 @@ ${jsonLd(breadcrumbs)}
 <style>header,main,footer{width:min(960px,calc(100% - 32px))}header a:first-child{font-family:system-ui,sans-serif;font-weight:700}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
-<header><a href="/">AI Automation Station</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></header>
+<header><a href="/">Mike Holp</a><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></header>
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
@@ -305,7 +305,7 @@ ${watchNotes[video.id]?.html ?? ''}
 <aside class="note" aria-labelledby="video-next-step">
 <h2 id="video-next-step">${escape(offer.title)}</h2>
 <p>${escape(offer.detail)}</p><p class="meta">${escape(offer.access)}</p>
-<p><a class="action" href="https://www.skool.com/ai-automation-station-7346/plans" data-placement="watch_video" data-video-id="${video.id}" target="_blank" rel="noreferrer">Explore plans on Skool ↗</a></p>
+<p><a class="action" href="https://www.skool.com/ai-automation-station-7346/plans" data-placement="watch_video" data-video-id="${video.id}" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p>
 </aside>${related.length ? `
 <h2>More builds</h2>
 <ul class="related">${related.map(other => `<li><a href="/watch/${other.id}">${escape(other.title)}</a></li>`).join('')}</ul>` : ''}
