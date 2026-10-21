@@ -170,9 +170,11 @@ a.video-card:hover h3 { color: var(--signal); }
 .tool h3 { font: 600 26px/1.15 var(--sans); letter-spacing: -.01em; }
 .tool-tagline { color: var(--signal); font-size: 13px; }
 .tool-body > p:not(.tool-tagline) { color: var(--body); font-size: 14px; }
-.tool ul { width: 100%; margin: 4px 0 auto; border-top: 1px solid var(--line); }
+.tool ul { width: 100%; margin: 4px 0 0; border-top: 1px solid var(--line); }
 .tool li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-.tool .button { margin-top: 20px; }
+/* The action block takes the free space, so both cards' buttons land on the same line. */
+.tool-action { margin-top: auto; padding-top: 24px; }
+.tool-action .fine-print { margin: 0 0 14px; }
 
 /* Things I've built (inside About) */
 .built { margin-top: 112px; }
@@ -237,7 +239,7 @@ a.video-card:hover h3 { color: var(--signal); }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: 4fr 7fr; gap: 72px; align-items: start; }
-.portrait { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line-strong); border-radius: 14px; }
+.portrait { position: sticky; top: 96px; width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line-strong); border-radius: 14px; }
 .about-copy > p:not(.about-links, .eyebrow) { max-width: 62ch; margin-top: 20px; color: var(--body); line-height: 1.8; }
 .about-copy h2 { margin-bottom: 16px; }
 .timeline { margin-top: 40px; border-top: 1px solid var(--line); }
@@ -329,7 +331,12 @@ a.video-card:hover h3 { color: var(--signal); }
   .stats dt { font-size: 10px; letter-spacing: .12em; text-align: center; }
   .tool h3 { font-size: 22px; }
   .player-meta { padding: 20px; }
-  .plan-list > li { flex-direction: column; gap: 6px; }
+  /* Phones: plan name and price share the first row; the rest of the plan spans below. */
+  .plan-list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 16px; }
+  .plan-list > li > div { display: contents; }
+  .plan-list > li > div > :not(h3) { grid-column: 1 / -1; }
+  .plan-list .plan-price { grid-row: 1; grid-column: 2; }
+  .plan-list .plan-link { justify-self: start; }
   .faq-list summary { grid-template-columns: 22px minmax(0, 1fr) 28px; gap: 10px; padding: 14px; }
   .faq-icon { width: 28px; height: 28px; }
   .faq-list details p { padding: 0 14px 20px 46px; }

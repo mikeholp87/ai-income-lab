@@ -558,8 +558,10 @@ function App() {
                   <p className="tool-tagline">{tool.tagline}</p>
                   <p>{tool.copy}</p>
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
-                  <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta}</a>
-                  {tool.note && <p className="fine-print">{tool.note}</p>}
+                  <div className="tool-action">
+                    {tool.note && <p className="fine-print">{tool.note}</p>}
+                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta}</a>
+                  </div>
                 </div>
               </article>
             ))}
