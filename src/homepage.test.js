@@ -97,3 +97,8 @@ test('channel and member numbers sit just before the plans', () => {
   assert.match(css, /\.stats dl \{ display: grid; grid-template-columns: repeat\(4, minmax\(0, 1fr\)\); \}/);
   assert.match(media('(max-width: 640px)'), /\.stats dl \{ grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
 });
+
+test('prose uses Instrument Sans while labels keep DM Mono', () => {
+  assert.match(css, /\.lede,[^{]*\.fine-print,[^{]*\.faq-list details p,[^{]*\{ font-family: var\(--sans\); \}/);
+  assert.match(css, /\.eyebrow, \.nav-links, \.text-link, \.button, \.footer-columns h2, \.stats dt \{ font-family: var\(--mono\);/);
+});

@@ -226,6 +226,9 @@ a.video-card:hover h3 { color: var(--signal); }
 .plan-price { flex: none; color: var(--muted); font-size: 12px; }
 .plan-price strong { color: var(--text); font: 400 24px var(--display); }
 .fine-print { margin-top: 14px; color: var(--muted); font-size: 12px; }
+/* Prose reads in Instrument Sans; DM Mono stays on labels, meta, prices, buttons, timeline and FAQ questions. */
+.lede, .about-copy > p:not(.about-links, .eyebrow), .tool-body > p:not(.tool-tagline), .plan-fit, .plan-features, .fine-print, .community-help, .support-note, .faq-list details p, .members p, .built > p, .repo-list li > p:not(.repo-meta, .repo-links), .build-guides > p, .next-step-access { font-family: var(--sans); }
+.lede { font-size: 17px; line-height: 1.6; }
 .community-video { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
 /* The poster's headline ends about 64% down; size and place the play button in proportion so it stays below at every width. */
 .community-video .play-key { top: auto; left: 5%; bottom: 6%; width: min(72px, 15%); height: auto; aspect-ratio: 1; transform: none; }
