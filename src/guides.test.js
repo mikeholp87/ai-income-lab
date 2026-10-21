@@ -64,3 +64,22 @@ test('reading pages share the homepage type, link colour and header styles', asy
   assert.match(css, /\.join\{[^}]*background:#ff6846;/);
   assert.match(css, /@media\(max-width:640px\)\{header nav\{order:3;width:100%;margin-left:0\}\}/);
 });
+
+test('guides end with the standard next steps and every plans link says Join', async () => {
+  const order = ['claude-code-vs-codex', 'codex-workflow', 'make-first-automation', 'first-api-request', 'youtube-feed', 'consent-tracking'];
+  for (const [index, slug] of order.entries()) {
+    const html = await read(`public/guides/${slug}.html`);
+    const next = order[(index + 1) % order.length];
+    assert.match(html, new RegExp(`<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/${next}.html">`), slug);
+    assert.equal((html.match(/class="note next-steps"/g) || []).length, 1, slug);
+  }
+  for (const path of ['public/start-here.html', ...guides.map(file => `public/guides/${file}`)]) {
+    const html = await read(path);
+    for (const [link] of html.matchAll(/<a [^>]*href="https:\/\/www\.skool\.com\/ai-automation-station-7346\/plans"[^>]*>[^<]*<\/a>/g)) {
+      assert.match(link, /target="_blank" rel="noreferrer"[^>]*>Join AI Income Lab ↗<\/a>$/, `${path}: ${link}`);
+    }
+    for (const [link] of html.matchAll(/<a [^>]*href="https:\/\/www\.skool\.com\/ai-automation-station-7346\/classroom"[^>]*>[^<]*<\/a>/g)) {
+      assert.match(link, />members’ classroom<\/a>$/, `${path}: ${link}`);
+    }
+  }
+});
