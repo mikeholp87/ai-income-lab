@@ -9,7 +9,7 @@ export const topics = [
   { slug: 'ai-agents', name: 'AI agents', intro: 'Personal assistants, research agents and agent tools tested on real tasks.', pattern: /\bagents?\b|grok ?bot|hermes|openclaw|second brain|chief of staff|personal ai assistant/i },
   { slug: 'ai-seo', name: 'AI SEO', intro: 'Tools and tests for getting a site found in Google and in AI answers.', pattern: /\bseo\b|\baeo\b|\bgeo\b|ai (search|visibility|answer engines?)|invisible to ai|search (visibility|ranking)/i },
   { slug: 'ai-video', name: 'AI video and YouTube', intro: 'AI video editing, Shorts, thumbnails and avatar workflows for creators.', pattern: /\bvideos?\b|shorts|thumbnails?|youtube|opusclip|vidiq|tube ?analytics|heygen|avatar/i },
-  { slug: 'new-models', name: 'New AI models', intro: 'Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.', pattern: /claude (opus|sonnet|haiku|fable|mythos)|\bgpt[- ]?\d|chatgpt (\d|images)|gemini \d|grok \d|deepseek|\bglm\b|qwen|kimi|llama|meta muse|mistral|openai just released/i },
+  { slug: 'new-models', name: 'New AI models', intro: 'Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.', pattern: /claude (opus|sonnet|haiku|fable|mythos)|\bgpt[- ]?\d|chatgpt (\d|images)|gemini \d|grok \d|deepseek|\bglm\b|qwen|kimi|\bllama\b|meta muse|mistral|openai just released/i },
 ];
 
 export const topicBySlug = slug => topics.find(topic => topic.slug === slug);

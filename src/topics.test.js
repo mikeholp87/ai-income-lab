@@ -25,6 +25,9 @@ test('topic patterns sort familiar titles', () => {
   assert.deepEqual(slugs('Claude Opus 5.5 Is Better And 40% Cheaper!'), ['new-models']);
   assert.deepEqual(slugs('Make.com AI Automations Without Code'), ['make-com']);
   assert.deepEqual(slugs('Here\'s Why I Decided To Escape The Rat Race'), []);
+  // "llama" is a whole word, so Ollama (a local model runner) is not a model release.
+  assert.deepEqual(slugs('Private AI Made Simple: A Beginner\'s Guide to Ollama'), []);
+  assert.deepEqual(slugs('Llama 5 Is Here'), ['new-models']);
 });
 
 test('topic pages are served at /videos/<slug> next to the numbered pages', async () => {

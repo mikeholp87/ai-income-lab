@@ -41,7 +41,7 @@ Plan: `docs/superpowers/plans/2026-10-21-videos-page-fixes.md`.
 
 - Findings 1–12 and 15: done.
 - Finding 13 (video counts): left as is (owner decision: no Shorts label).
-- Finding 14 (topic pages): not started; needs its own plan.
+- Finding 14 (topic pages): done; see Topic pages below.
 - New Skool placements: `video_archive_header`, `video_archive`.
 - The cookie-bar change in `public/consent.css` also applies to watch, guides and start-here pages.
 - Follow-up fixes during implementation: `summarize()` also skips hashtag blocks (the Runable upload has no prose paragraph, so its summary is empty and pages use their default text); Newer/Older pager links hide below 640px so the list fits one row on phones.
@@ -63,9 +63,9 @@ Plan: `docs/superpowers/plans/2026-10-21-video-topic-pages.md`. Topics live in `
 | AI agents | `/videos/ai-agents` | 38 |
 | AI SEO | `/videos/ai-seo` | 19 |
 | AI video and YouTube | `/videos/ai-video` | 33 |
-| New AI models | `/videos/new-models` | 31 |
+| New AI models | `/videos/new-models` | 30 |
 
-Misfiles: "Private AI Made Simple: A Beginner's Guide to Ollama" sits under New AI models because `llama` matches inside "Ollama". Borderline: "OpenAI Just Released Dots! Here's What You Need To Know" (Dots is an assistant, not a model) under New AI models, and "The Best Claude Design Alternative You Can Run On Your PC" under Claude Code. Patterns unchanged.
+Misfile fixed: "Private AI Made Simple: A Beginner's Guide to Ollama" sat under New AI models because `llama` matched inside "Ollama"; the pattern now uses `\bllama\b` (31 → 30). Borderline, left for the owner: "OpenAI Just Released Dots! Here's What You Need To Know" (Dots is an assistant, not a model) under New AI models, and "The Best Claude Design Alternative You Can Run On Your PC" under Claude Code.
 
 - Follow-up during implementation: on phones the topic row starts scrolled to the current topic (inline script sets the row's scrollLeft; the page does not move).
 
