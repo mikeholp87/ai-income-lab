@@ -18,7 +18,9 @@ const decode = text => text.replace(/&(#\d+|\w+);/g, (match, code) => code[0] ==
 const tag = (xml, name) => xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`))?.[1] ?? '';
 
 // First paragraph without links skips the "join the community" and affiliate blocks.
-export const summarize = description => description.split(/\n\s*\n/).map(part => part.trim()).find(part => part && !/https?:\/\//.test(part)) ?? '';
+// A chapter list ("⌚ Timestamps:", "00:00 Intro" lines) is navigation, not a summary.
+const chapterList = part => /^\W*(?:time ?stamps|chapters)\b/i.test(part) || (part.match(/\b\d{1,2}:\d{2}\b/g) ?? []).length >= 2;
+export const summarize = description => description.split(/\n\s*\n/).map(part => part.trim()).find(part => part && !/https?:\/\//.test(part) && !chapterList(part)) ?? '';
 
 // Atom feed of the channel's latest 15 uploads. Shorts only differ by their /shorts/ link.
 export function parseFeed(xml) {

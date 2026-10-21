@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseChapters, parseFeed, validChapters } from './youtube.js';
+import { formatDuration, longFormPlaylistId, parseApi, parseChannel, parseChapters, parseFeed, summarize, validChapters } from './youtube.js';
 
 const entry = (id, link, title, description) => `<entry><yt:videoId>${id}</yt:videoId><title>${title}</title><link rel="alternate" href="${link}"/><published>2026-10-05T12:37:47+00:00</published><media:group><media:description>${description}</media:description><media:community><media:statistics views="9191"/></media:community></media:group></entry>`;
 
@@ -82,4 +82,13 @@ test('feed failures log upstream details and return a generic 502', async t => {
   const details = error.mock.calls[0].arguments[1];
   assert.ok(details.includes(503));
   assert.ok(details.some(status => String(status).includes('upstream failure detail')));
+});
+
+test('summaries skip chapter lists at the top of a description', () => {
+  assert.equal(summarize('⌚ Timestamps:\n00:00 - Intro to Runable AI\n00:48 - AI Business Website Project\n\nBuild an AI website in Runable.'), 'Build an AI website in Runable.');
+  assert.equal(summarize('Chapters\n\n00:00 Intro\n01:10 Setup\n\nSet up Codex on Linux.'), 'Set up Codex on Linux.');
+  // One time in a sentence is ordinary text, not a chapter list.
+  assert.equal(summarize('Watch the 10:30 demo of Claude Code.'), 'Watch the 10:30 demo of Claude Code.');
+  assert.equal(summarize('Join\nhttps://example.com\n\nBuild an agent.'), 'Build an agent.');
+  assert.equal(summarize('00:00 Intro\n01:00 End'), '');
 });
