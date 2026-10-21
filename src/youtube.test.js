@@ -91,4 +91,7 @@ test('summaries skip chapter lists at the top of a description', () => {
   assert.equal(summarize('Watch the 10:30 demo of Claude Code.'), 'Watch the 10:30 demo of Claude Code.');
   assert.equal(summarize('Join\nhttps://example.com\n\nBuild an agent.'), 'Build an agent.');
   assert.equal(summarize('00:00 Intro\n01:00 End'), '');
+  // The Runable upload's layout: link blocks, chapters, then hashtags, with no prose paragraph at all.
+  assert.equal(summarize('Get the course\nhttps://example.com\n\n⌚ Timestamps:\n00:00 - Intro\n00:48 - Project\n\n🔎 Hashtags (SEO Optimized):\n#runable #ai #tutorial'), '');
+  assert.equal(summarize('#n8n #automation\n\nBuild an n8n agent.'), 'Build an n8n agent.');
 });
