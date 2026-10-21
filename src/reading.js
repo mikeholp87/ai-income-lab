@@ -1,5 +1,6 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { addCopyButtons } from './copy-code.js';
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
@@ -66,3 +67,5 @@ for (const button of banner.querySelectorAll('button')) button.addEventListener(
   if (restoreFocus) choices.focus();
 });
 recordView();
+// The Clipboard API needs a secure page; without it the commands stay selectable as before.
+if (navigator.clipboard) addCopyButtons(document, navigator.clipboard);
