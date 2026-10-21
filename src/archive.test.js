@@ -468,3 +468,10 @@ test('the page sitemap lists topic pages that have videos and drops stale ones',
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos\/claude-code<\/loc>/);
   assert.doesNotMatch(sitemap, /\/videos\/n8n<|old-topic/);
 });
+
+test('topic pages link the written guides on the same subject', () => {
+  const videos = [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true }];
+  const html = renderArchive(videos, 1, topicBySlug('claude-code'));
+  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-vs-codex.html">Claude Code vs Codex: how I use both and route tasks<\/a> and <a href="\/guides\/codex-workflow.html">Make and verify a code change with Codex<\/a><\/p>/);
+  assert.doesNotMatch(renderArchive(videos, 1, topicBySlug('ai-agents')), /Written guide/);
+});

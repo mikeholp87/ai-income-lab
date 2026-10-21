@@ -98,3 +98,15 @@ test('the Claude Code vs Codex guide has its own image and a contents list', asy
   const { size } = await import('node:fs/promises').then(fs => fs.stat(new URL('../public/assets/guides/claude-code-vs-codex.webp', import.meta.url)));
   assert.ok(size > 5000 && size < 60000, `image is ${size} bytes`);
 });
+
+test('hub entries show an image, what the guide covers and the matching video', async () => {
+  const hub = await read('public/guides.html');
+  const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
+  assert.equal(entries.length, guides.length);
+  for (const entry of entries) {
+    assert.match(entry, /<img src="\/assets\/guides\/[a-z-]+\.webp" alt="" width="1200" height="630" loading="lazy">/);
+    assert.match(entry, /<h3><a href="\/guides\/[a-z-]+\.html">[^<]+<\/a><\/h3>/);
+  }
+  assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
+  assert.match(hub, /<a href="\/videos\/make-com">Make.com videos<\/a>/);
+});

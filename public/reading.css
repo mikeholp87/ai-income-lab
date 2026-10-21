@@ -9,3 +9,5 @@ header{align-items:center}header nav{display:flex;flex-wrap:wrap;gap:0 24px;marg
 .next-steps ul{margin:0 0 16px;padding-left:20px}.next-steps li{margin:8px 0}
 .toc{margin:32px 0;padding:18px 22px;border:1px solid #333}.toc h2{margin:0 0 8px;font-size:18px}.toc ul{margin:0;padding-left:20px}.toc li{margin:6px 0}
 h2[id]{scroll-margin-top:24px}
+.guide-list{padding:0;list-style:none}.guide{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start;margin:0;padding:20px 0;border-top:1px solid #333}.guide img{border:1px solid #333}.guide h3{margin:0 0 8px;font-size:21px}.guide p{margin:0 0 8px}
+@media(max-width:640px){.guide{grid-template-columns:1fr;gap:12px}}
