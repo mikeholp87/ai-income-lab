@@ -452,3 +452,10 @@ test('the archive shows a topic row with every topic', () => {
   assert.equal((row.match(/<a /g) || []).length, topics.length + 1);
   for (const topic of topics) assert.ok(row.includes(`href="/videos/${topic.slug}"`), topic.slug);
 });
+
+test('the page sitemap lists topic pages that have videos and drops stale ones', () => {
+  const xml = '<urlset><url><loc>https://www.ai-automation-station.com/</loc></url><url><loc>https://www.ai-automation-station.com/videos/old-topic</loc></url></urlset>';
+  const sitemap = renderPageSitemap(xml, [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z' }]);
+  assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos\/claude-code<\/loc>/);
+  assert.doesNotMatch(sitemap, /\/videos\/n8n<|old-topic/);
+});

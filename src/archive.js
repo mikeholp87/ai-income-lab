@@ -347,7 +347,9 @@ ${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(vi
 
 // Preserve the hand-maintained page dates; derive archive pagination from the build inventory.
 export function renderPageSitemap(xml, videos) {
-  const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/\d+)?<\/loc>[\s\S]*?<\/url>/g, '');
-  const archive = Array.from({ length: pageCount(videos) }, (_, index) => `  <url><loc>${site}${pagePath(index + 1)}</loc></url>`).join('\n');
-  return core.replace('</urlset>', `${archive}\n</urlset>`);
+  // Drop every /videos URL (numbered and topic) from the base file, then list the current ones.
+  const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/[\w-]+)?<\/loc>[\s\S]*?<\/url>/g, '');
+  const archive = Array.from({ length: pageCount(videos) }, (_, index) => `  <url><loc>${site}${pagePath(index + 1)}</loc></url>`);
+  const topicPages = topics.filter(topic => videos.some(video => topic.pattern.test(video.title))).map(topic => `  <url><loc>${site}/videos/${topic.slug}</loc></url>`);
+  return core.replace('</urlset>', `${[...archive, ...topicPages].join('\n')}\n</urlset>`);
 }

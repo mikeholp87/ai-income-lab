@@ -1,6 +1,7 @@
 import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl } from '../src/youtube.js';
+import { topicBySlug } from '../src/topics.js';
 
 const day = 86400000;
 // Same idea as /api/youtube: the instance keeps the video list for a day, so cache-busting URLs cost no quota.
@@ -43,9 +44,11 @@ export async function GET(request) {
   if (videoId !== null && !/^[\w-]{11}$/.test(videoId)) return notFound();
   // The page arrives in the original path or, after the rewrite, as ?page=.
   const requested = url.pathname.match(/^\/videos\/([^/]+)\/?$/)?.[1] ?? url.searchParams.get('page');
-  if (requested !== null && !/^[1-9]\d{0,3}$/.test(requested)) return notFound();
-  const page = Number(requested ?? 1);
-  if (requested !== null && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
+  // /videos/<slug> is a topic page; anything else after /videos/ must be a page number.
+  const topic = requested === null ? null : topicBySlug(requested) ?? null;
+  if (requested !== null && !topic && !/^[1-9]\d{0,3}$/.test(requested)) return notFound();
+  const page = topic ? 1 : Number(requested ?? 1);
+  if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
 
   if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
@@ -68,8 +71,10 @@ export async function GET(request) {
     // YouTube instead of a 404. Temporary, so the watch page takes over once the inventory knows the video.
     return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': unknownCache } });
   }
+  // An empty topic would be a thin page; 404 it until a matching video exists.
+  if (topic && !memo.videos.some(video => topic.pattern.test(video.title))) return notFound();
   if (page > pageCount(memo.videos)) return notFound();
-  return html(renderArchive(memo.videos, page), 200, cache);
+  return html(renderArchive(memo.videos, page, topic), 200, cache);
 }
 
 // Link checkers and some crawlers send HEAD; answer with GET's status and headers, no body.

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { topicBySlug, topics } from './topics.js';
 import { uploads } from './uploads-snapshot.js';
+import { GET } from '../api/videos.js';
 
 test('every topic has a readable slug, an intro and enough videos to stand alone', () => {
   assert.equal(topics.length, 8);
@@ -24,4 +25,15 @@ test('topic patterns sort familiar titles', () => {
   assert.deepEqual(slugs('Claude Opus 5.5 Is Better And 40% Cheaper!'), ['new-models']);
   assert.deepEqual(slugs('Make.com AI Automations Without Code'), ['make-com']);
   assert.deepEqual(slugs('Here\'s Why I Decided To Escape The Rat Race'), []);
+});
+
+test('topic pages are served at /videos/<slug> next to the numbered pages', async () => {
+  const get = path => GET(new Request(`https://www.ai-automation-station.com${path}`));
+  const topic = await get('/videos/claude-code');
+  assert.equal(topic.status, 200);
+  assert.match(await topic.text(), /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/claude-code">/);
+  assert.equal((await get('/api/videos?page=n8n')).status, 200);
+  assert.equal((await get('/videos/not-a-topic')).status, 404);
+  assert.equal((await get('/videos/2')).status, 200);
+  assert.equal((await get('/videos/1')).status, 308);
 });
