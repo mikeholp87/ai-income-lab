@@ -417,7 +417,7 @@ function App() {
           <h1><span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
-        <p className="hero-text"><strong>AI Income Lab, the AI Automation Station community.</strong> Step-by-step courses, reusable templates, and a community of 2,900+ members, hosted by Mike Holp.</p>
+        <p className="hero-text"><strong>AI Income Lab is the paid community from the AI Automation Station YouTube channel.</strong> Step-by-step courses, reusable templates, and 2,900+ members, hosted by Mike Holp.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', aboutUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {

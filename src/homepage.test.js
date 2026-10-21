@@ -69,3 +69,8 @@ test('the build list shows three projects', () => {
   const start = jsx.indexOf('const repos = [');
   assert.equal(count(jsx.slice(start, jsx.indexOf('];', start)), "{ name: '"), 3);
 });
+
+test('the hero relates the two brands and skips the repeated title on desktop', () => {
+  assert.match(jsx, /AI Income Lab is the paid community from the AI Automation Station YouTube channel\./);
+  assert.match(css, /@media \(min-width: 961px\) \{ \.hero-status \{ display: none; \} \}/);
+});

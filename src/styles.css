@@ -69,6 +69,8 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .status-label { flex: none; }
 .hero-status strong { overflow: hidden; color: var(--text); font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
 .hero-status:hover { border-color: var(--muted); }
+/* Desktop shows the featured video beside the copy, so the pill would repeat its title. */
+@media (min-width: 961px) { .hero-status { display: none; } }
 .live-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgb(255 104 70 / .16); }
 /* Copy centers against the video card so neither column leaves a dead gap on desktop. */
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; }
