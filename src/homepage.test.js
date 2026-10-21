@@ -72,9 +72,16 @@ test('the build list shows three projects', () => {
   assert.equal(count(jsx.slice(start, jsx.indexOf('];', start)), "{ name: '"), 3);
 });
 
-test('the hero relates the two brands and skips the repeated title on desktop', () => {
+test('the hero relates the two brands without an announcement pill', () => {
   assert.match(jsx, /AI Income Lab is the paid community from the AI Automation Station YouTube channel\./);
-  assert.match(css, /@media \(min-width: 961px\) \{ \.hero-status \{ display: none; \} \}/);
+  assert.doesNotMatch(jsx, /hero-status/);
+});
+
+test('FAQ questions are not numbered and plan copy skips em dashes', () => {
+  assert.doesNotMatch(jsx, /faq-num/);
+  const start = jsx.indexOf('const plans = [');
+  assert.doesNotMatch(jsx.slice(start, jsx.indexOf('];', start)), /—/);
+  assert.doesNotMatch(jsx, /Choose \{plan\.name\} —/);
 });
 
 test('Skool buttons share one label and new-tab buttons end with ↗', () => {

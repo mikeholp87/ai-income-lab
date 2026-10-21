@@ -65,12 +65,6 @@ section[id], main [id] { scroll-margin-top: 88px; }
 
 /* The first build sits beside the introduction; the CTA precedes media on phones. */
 .hero { padding: 32px 0 64px; }
-.hero-status { display: inline-flex; align-items: center; gap: 10px; max-width: 100%; padding: 9px 16px; border: 1px solid var(--line-strong); background: var(--panel); color: var(--muted); font-size: 12px; line-height: 1.4; }
-.status-label { flex: none; }
-.hero-status strong { overflow: hidden; color: var(--text); font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
-.hero-status:hover { border-color: var(--muted); }
-/* Desktop shows the featured video beside the copy, so the pill would repeat its title. */
-@media (min-width: 961px) { .hero-status { display: none; } }
 .live-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px rgb(255 104 70 / .16); }
 /* Copy centers against the video card so neither column leaves a dead gap on desktop. */
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; }
@@ -265,12 +259,11 @@ a.video-card:hover h3 { color: var(--signal); }
 .faq-list { display: grid; gap: 8px; }
 .faq-list details { border: 1px solid var(--line-strong); background: var(--panel); transition: border-color .2s ease; }
 .faq-list details[open] { border-color: #4a4a4a; }
-.faq-list summary { min-height: 68px; display: grid; grid-template-columns: 28px minmax(0, 1fr) 32px; align-items: center; gap: 14px; padding: 16px 18px; font-size: 14px; font-weight: 500; cursor: pointer; list-style: none; }
+.faq-list summary { min-height: 68px; display: grid; grid-template-columns: minmax(0, 1fr) 32px; align-items: center; gap: 14px; padding: 16px 18px; font-size: 14px; font-weight: 500; cursor: pointer; list-style: none; }
 .faq-list summary::-webkit-details-marker { display: none; }
-.faq-num { color: var(--muted); font-size: 11px; }
 .faq-icon { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line-strong); color: var(--muted); font: 400 18px/1 var(--mono); transition: transform .2s ease, color .2s ease; }
 .faq-list details[open] .faq-icon { color: var(--signal); transform: rotate(45deg); }
-.faq-list details p { max-width: 62ch; padding: 0 18px 24px 60px; color: var(--body); font-size: 14px; }
+.faq-list details p { max-width: 62ch; padding: 0 18px 24px; color: var(--body); font-size: 14px; }
 
 /* Footer */
 .footer { padding: 120px 0 40px; border-top: 1px solid var(--line); }
@@ -346,9 +339,9 @@ a.video-card:hover h3 { color: var(--signal); }
   .plan-list > li > div > :not(h3) { grid-column: 1 / -1; }
   .plan-list .plan-price { grid-row: 1; grid-column: 2; }
   .plan-list .plan-link { justify-self: start; }
-  .faq-list summary { grid-template-columns: 22px minmax(0, 1fr) 28px; gap: 10px; padding: 14px; }
+  .faq-list summary { grid-template-columns: minmax(0, 1fr) 28px; gap: 10px; padding: 14px; }
   .faq-icon { width: 28px; height: 28px; }
-  .faq-list details p { padding: 0 14px 20px 46px; }
+  .faq-list details p { padding: 0 14px 20px; }
   .footer-columns { grid-template-columns: 1fr 1fr; }
   .footer-base { flex-direction: column; }
   .nav { gap: 12px; }

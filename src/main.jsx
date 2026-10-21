@@ -122,7 +122,7 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course — unlocks at level 2', 'VAPI AI Voice Agent Course — unlocks at level 4'] },
+  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
   { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
   { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
@@ -413,10 +413,6 @@ function App() {
       <section className="hero shell" id="main-content" tabIndex="-1">
         <div className="hero-grid">
         <div className="hero-copy">
-        <a className="hero-status" href="#featured-video">
-          <span className="live-dot" aria-hidden="true" />
-          {latest ? <><span className="status-label">Latest video:</span> <strong>{latest.title}</strong></> : <>New videos most days on YouTube</>}
-        </a>
         {communityHero ? (
           <>
           <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
@@ -479,7 +475,7 @@ function App() {
                     <h3>{plan.name}</h3>
                     <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
                     <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name} — $${plan.price}/month`, plansUrl)}>Choose {plan.name} — ${plan.price}/month ↗</a>
+                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name}, $${plan.price}/month`, plansUrl)}>Choose {plan.name}, ${plan.price}/month ↗</a>
                   </div>
                   <p className="plan-price"><strong>${plan.price}</strong> a month</p>
                 </li>
@@ -508,7 +504,7 @@ function App() {
       <section className="section" id="faq">
         <div className="shell faq-grid">
           <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
-          <div className="faq-list reveal-group">{faqs.map(([question, answer], index) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary><span className="faq-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+          <div className="faq-list reveal-group">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
 
