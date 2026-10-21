@@ -165,7 +165,7 @@ function SectionHead({ eyebrow, title, accent, children }) {
   );
 }
 
-const navLinks = [['#community', 'Community'], ['#latest', 'Videos'], ['#tools', 'Tools'], ['#about', 'About'], ['#work-together', 'Contact']];
+const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#tools', 'Tools'], ['#about', 'About'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
@@ -454,7 +454,7 @@ function App() {
       <section className="section band" id="community">
         <div className="shell community-grid">
           <div>
-            <SectionHead eyebrow="AI Income Lab" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+            <SectionHead eyebrow="Plans" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
             <div className="members">
               <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
               <p>Some of the members building AI workflows on Skool</p>
@@ -503,7 +503,7 @@ function App() {
         <div className="shell">
           <div className="latest-intro">
             <div>
-              <SectionHead eyebrow="Keep exploring" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
+              <SectionHead eyebrow="Latest videos" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>

@@ -84,3 +84,9 @@ test('Skool buttons share one label and new-tab buttons end with ↗', () => {
     if (link.includes('target="_blank"') && !link.includes('onClick={openCalendar}')) assert.match(link, /↗<\/a>$/, link);
   }
 });
+
+test('the nav names the plans and section labels say what follows', () => {
+  assert.match(jsx, /\['#community', 'Plans'\]/);
+  assert.match(jsx, /eyebrow="Plans" title="Your next build,"/);
+  assert.match(jsx, /eyebrow="Latest videos"/);
+});
