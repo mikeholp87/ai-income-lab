@@ -274,7 +274,7 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /<h2>2026<\/h2>[\s\S]*<h2>2025<\/h2>/);
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
-  assert.match(html, /2 long-form builds/);
+  assert.match(html, /2 long-form videos/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /href="\/consent.css"/);
   assert.doesNotMatch(html, /class="pager/);
@@ -398,4 +398,13 @@ test('long archives show first, last and nearby pages only', () => {
   assert.equal(pages(15), '← Newer 1 … 14 15');
   // Phones: the arrows don't fit beside 44px targets, and the neighbouring pages are always listed.
   assert.match(renderArchive(videos, 8), /@media \(max-width: 640px\) \{ \.pager a\[rel\] \{ display: none; \} \}/);
+});
+
+test('the archive links the reading pages and offers the community', () => {
+  const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
+  assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><\/nav>/);
+  assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
+  assert.match(html, /<aside class="cta" aria-label="AI Income Lab"><p>[^<]*from \$29\/month\.<\/p><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><\/aside>/);
+  assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('</ul>'));
+  assert.doesNotMatch(html, /builds something real with it/);
 });

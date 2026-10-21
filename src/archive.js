@@ -163,16 +163,24 @@ li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size:
 @media (max-width: 640px) { .pager a[rel] { display: none; } }
 footer.shell { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 80px; padding: 32px 0; border-top: 1px solid #232323; }
 header a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
-footer a:hover, header a.mono:hover { color: #f5f5f0; }
+footer a:hover, header nav a:hover, header nav [aria-current] { color: #f5f5f0; }
+header { flex-wrap: wrap; }
+header nav { display: flex; gap: 24px; margin-left: auto; }
+.join { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: #ff6846; color: #1a0a04; font: 500 12px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.join:hover { background: #ff7f62; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: 64px; padding: 28px 32px; border: 1px solid #333; border-left: 3px solid #ff6846; border-radius: 14px; background: #111; }
+.cta p { max-width: 52ch; color: #b3b3ab; }
+@media (max-width: 640px) { header nav { order: 3; width: 100%; margin-left: 0; } .cta { padding: 24px 20px; } }
 </style>
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
-<header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><a class="mono" href="${channelUrl}" target="_blank" rel="noreferrer">YouTube ↗</a></header>
+<header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos" aria-current="page">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
-<div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form builds, newest first. ${pageNote}Each one takes a new AI model, agent, or automation tool, builds something real with it, and shows what held up and what broke.</p></div>
+<div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.</p></div>
 <p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
+<aside class="cta" aria-label="AI Income Lab"><p>Build along with AI Income Lab: step-by-step courses, templates and a community of 2,900+ members, from $29/month.</p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a></aside>
 ${pager(page, pages)}
 </main>
 <footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
