@@ -67,6 +67,8 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
   assert.match(html, /<header><a href="\/">Mike Holp<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><\/header>/);
   assert.doesNotMatch(html, /header a:first-child/);
+  // Video titles use the reading pages' Instrument Sans, not the system font.
+  assert.match(html, /h1\{font:700 clamp\(24px,4vw,36px\)\/1\.2 'Instrument Sans',system-ui,sans-serif;/);
   // Same Skool label as the homepage and the archive.
   assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);
