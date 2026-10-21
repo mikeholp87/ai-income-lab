@@ -65,7 +65,8 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
   // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
-  assert.match(html, /<header><a href="\/">Mike Holp<\/a><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/header>/);
+  assert.match(html, /<header><a href="\/">Mike Holp<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><\/header>/);
+  assert.doesNotMatch(html, /header a:first-child/);
   // Same Skool label as the homepage and the archive.
   assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);

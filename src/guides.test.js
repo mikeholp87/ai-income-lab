@@ -22,7 +22,7 @@ test('the guides hub links, lists and describes every guide', async () => {
 
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/guides.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
-    assert.match(await read(path), /<header><a href="\/">Mike Holp<\/a><a href="\/start-here.html">Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><\/header>/, path);
+    assert.match(await read(path), /<header><a href="\/">Mike Holp<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
   }
 });
 
@@ -50,4 +50,17 @@ test('guide figures are described once, by their caption', async () => {
 
 test('the hub byline names one brand', async () => {
   assert.match(await read('public/guides.html'), /<p class="meta">By <a href="\/#about" rel="author">Mike Holp<\/a> · Updated/);
+});
+
+test('reading pages share the homepage type, link colour and header styles', async () => {
+  const css = await read('public/reading.css');
+  assert.match(css, /font-family:'Instrument Sans';font-weight:400 700;src:url\('\/fonts\/instrument-sans.woff2'\)/);
+  assert.match(css, /font-family:'DM Mono';src:url\('\/fonts\/dm-mono.woff2'\)/);
+  assert.match(css, /body\{[^}]*font:18px\/1\.7 'Instrument Sans',system-ui,sans-serif\}/);
+  assert.match(css, /a\{color:#ff6846;/);
+  // The brand is the header's own first link; nav links have their own style.
+  assert.match(css, /header>a:first-child\{font-family:Archivo/);
+  assert.doesNotMatch(css, /header a:first-child/);
+  assert.match(css, /\.join\{[^}]*background:#ff6846;/);
+  assert.match(css, /@media\(max-width:640px\)\{header nav\{order:3;width:100%;margin-left:0\}\}/);
 });
