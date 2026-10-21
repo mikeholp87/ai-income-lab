@@ -32,7 +32,7 @@ test('product card buttons align at the bottom of each card', () => {
 test('the portrait stays beside the About copy on desktop', () => {
   assert.match(css, /\.portrait \{[^}]*position: sticky; top: 96px;/);
   // One column: sticky would pin the photo over the bio, since it sticks within the whole grid.
-  assert.match(media('(max-width: 960px)'), /\.portrait \{[^}]*position: static;/);
+  assert.match(media('(max-width: 960px)'), /\.portrait \{[^}]*position: static;[^}]*justify-self: center;/);
 });
 
 const count = (text, needle) => text.split(needle).length - 1;
@@ -97,7 +97,8 @@ test('channel and member numbers sit just before the plans', () => {
   assert.ok(jsx.indexOf('<section className="stats"') < jsx.indexOf('id="community"'));
   assert.match(jsx, /\['2,900\+', 'community members'\]/);
   assert.match(css, /\.stats dl \{ display: grid; grid-template-columns: repeat\(4, minmax\(0, 1fr\)\); \}/);
-  assert.match(media('(max-width: 640px)'), /\.stats dl \{ grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
+  // Full-bleed on phones so the rule between the two rows meets the band's edge-to-edge borders.
+  assert.match(media('(max-width: 640px)'), /\.stats dl \{ width: 100%; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
 });
 
 test('prose uses Instrument Sans while labels keep DM Mono', () => {
@@ -110,4 +111,10 @@ test('the main Join buttons open the Skool plan picker', () => {
     assert.match(jsx, new RegExp(`href=\\{plansUrl\\}[^\\n]*trackCommunityVisit\\('${placement}', 'Join AI Income Lab', plansUrl\\)`), placement);
   }
   assert.match(jsx, /trackCommunityVisit\('footer', 'AI Income Lab'\)/);
+});
+
+test('footer social links show an icon beside each name', () => {
+  assert.match(jsx, /socialLinks\.map\(\(\[name, url, icon\]\) => <a key=\{name\} href=\{url\} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d=\{icon\} \/><\/svg>\{name\}<\/a>\)/);
+  for (const name of ['YouTube', 'GitHub', 'LinkedIn', 'X']) assert.match(jsx, new RegExp(`\\['${name}', \\w+Url, 'M`), name);
+  assert.match(css, /\.social-icon \{ flex: none; width: 16px; height: 16px; fill: currentColor; \}/);
 });

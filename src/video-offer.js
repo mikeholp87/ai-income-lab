@@ -29,6 +29,6 @@ export function videoOffer(title) {
   return {
     title: 'Put what you watched into practice',
     detail: 'Bring your AI project to AI Income Lab for courses and community help when a build stalls.',
-    access: 'Membership starts at $29 a month. Course access varies by plan.',
+    access: 'Membership starts at $29 a month.',
   };
 }
