@@ -1,4 +1,4 @@
-import { channelUrl, clock, durationSeconds, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
+import { channelUrl, clock, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { watchNotes } from './watch-notes.js';
@@ -68,10 +68,18 @@ function pager(page, pages) {
 const videoHref = video => video.embeddable ? `/watch/${video.id}` : `https://www.youtube.com/watch?v=${video.id}`;
 const jsonLd = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-const card = (video, eager) => `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
-<picture data-thumbnail><source type="image/webp" srcset="https://i.ytimg.com/vi_webp/${escape(video.id)}/mqdefault.webp"><img src="https://i.ytimg.com/vi/${escape(video.id)}/mqdefault.jpg" alt="" width="320" height="180" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>
-<time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>
-<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p>${escape(videoDescription(video))}</p>` : ''}</a></li>`;
+// One column below ~655px, otherwise columns of about 300-360px (see the grid rule in renderArchive).
+const thumbSizes = '(max-width: 655px) calc(100vw - 32px), 360px';
+const thumbSet = (id, folder, ext) => `https://i.ytimg.com/${folder}/${id}/mqdefault.${ext} 320w, https://i.ytimg.com/${folder}/${id}/hqdefault.${ext} 480w`;
+const viewCount = video => Number.isFinite(video.views) ? `<span>${number.format(video.views)} ${video.views === 1 ? 'view' : 'views'}</span>` : '';
+const card = (video, eager) => {
+  const id = escape(video.id);
+  const duration = formatDuration(video.duration);
+  return `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
+<span class="thumb"><picture data-thumbnail><source type="image/webp" srcset="${thumbSet(id, 'vi_webp', 'webp')}" sizes="${thumbSizes}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" srcset="${thumbSet(id, 'vi', 'jpg')}" sizes="${thumbSizes}" alt="" width="320" height="180" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>${duration ? `<span class="duration">${duration}</span>` : ''}</span>
+<p class="meta"><time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>${viewCount(video)}</p>
+<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
+};
 
 // One page of the archive, 15 videos per page. Callers check the page is within pageCount(videos).
 export function renderArchive(videos, page = 1) {
@@ -129,10 +137,12 @@ h2 { margin: 56px 0 24px; font: 400 28px 'Archivo Black', sans-serif; }
 ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
 li a { display: grid; gap: 10px; }
 li img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #232323; background: #111111; }
-time { color: #8c8c86; font: 400 12px 'DM Mono', monospace; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 16px; color: #8c8c86; font: 400 12px 'DM Mono', monospace; }
+.thumb { position: relative; display: block; }
+.duration { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; color: #fff; background: rgb(0 0 0 / .8); font: 500 12px/1.4 'DM Mono', monospace; }
 h3 { font-size: 17px; line-height: 1.3; text-wrap: pretty; }
 li a:hover h3 { color: #ff6846; }
-li p { color: #8c8c86; font-size: 14px; }
+li .summary { color: #8c8c86; font-size: 14px; }
 .pager { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 64px; }
 .pager a, .pager span { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; padding: 0 12px; border: 1px solid #232323; }
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }

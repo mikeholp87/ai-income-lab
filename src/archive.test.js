@@ -279,7 +279,7 @@ test('renders year groups and escapes titles', () => {
   assert.doesNotMatch(html, /class="pager/);
   assert.equal((html.match(/loading="eager"/g) || []).length, 1);
   assert.equal((html.match(/loading="lazy"/g) || []).length, 1);
-  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp"><img src="https:\/\/i.ytimg.com\/vi\/a1\/mqdefault.jpg"/);
+  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp 320w, [^"]+"[^>]*><img src="https:\/\/i.ytimg.com\/vi\/a1\/mqdefault.jpg"/);
 });
 
 test('saved chapter lists produce only valid Clips within video duration', () => {
@@ -361,4 +361,16 @@ test('routes page numbers before loading any videos', async () => {
   const head = await HEAD(new Request('https://www.ai-automation-station.com/videos/abc', { method: 'HEAD' }));
   assert.equal(head.status, 404);
   assert.equal(await head.text(), '');
+});
+
+test('archive cards show sharp thumbnails, duration and views', () => {
+  const video = { id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.', duration: 'PT18M3S', views: 1234, embeddable: true };
+  const html = renderArchive([video]);
+  assert.match(html, /srcset="https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/mqdefault.webp 320w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/hqdefault.webp 480w" sizes="/);
+  assert.match(html, /<img src="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg" srcset="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg 320w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/hqdefault.jpg 480w" sizes="/);
+  assert.match(html, /<span class="duration">18:03<\/span>/);
+  assert.match(html, /<p class="meta"><time datetime="2026-10-20T00:00:00Z">Oct 20, 2026<\/time><span>1,234 views<\/span><\/p>/);
+  assert.match(html, /<p class="summary">Build an agent.<\/p>/);
+  const bare = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
+  assert.doesNotMatch(bare, /class="duration"|views<\/span>/);
 });
