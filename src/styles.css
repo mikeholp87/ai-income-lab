@@ -234,7 +234,6 @@ a.video-card:hover h3 { color: var(--signal); }
 .course-preview li { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .course-preview strong { font: 600 15px/1.4 var(--sans); }
 .course-preview span { color: var(--body); font: 400 14px/1.6 var(--sans); }
-.course-preview a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: 4fr 7fr; gap: 72px; align-items: start; }

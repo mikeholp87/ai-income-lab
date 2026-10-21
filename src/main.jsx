@@ -474,26 +474,21 @@ function App() {
                 </li>
               ))}
             </ul>
-            <div className="button-row">
-              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('community', 'View plans from $29/month', plansUrl)}>View plans from $29/month</a>
-            </div>
-            <p className="fine-print">Monthly prices shown. Choose your plan and billing period on Skool. Annual billing is available. Cancel anytime from your Skool account.</p>
-            <p className="community-help">Want to try a build first? <a href="/start-here.html" onClick={trackClick('community', 'Start a free build', '/start-here.html', 'start_free_build')}>Start a free build — no signup needed</a>.</p>
-            <p className="community-help"><a href="https://www.skool.com/ai-automation-station-7346/classroom" target="_blank" rel="noreferrer">Open the classroom (member login)</a>. Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
+            <p className="fine-print">Monthly prices shown; annual billing is available. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
+            <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
           </div>
           <div className="reveal">
             <CommunityVideo />
             <div className="course-preview">
               <h3>Inside the classroom</h3>
               <ul>
-                <li><strong>Runable Course</strong><span>Available to all members inside the Skool community.</span></li>
-                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com. Unlocks at level 2, or immediately with Premium or VIP.</span></li>
+                <li><strong>Runable Course</strong><span>Build and launch an AI-powered business website.</span></li>
+                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com.</span></li>
                 <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
-                <li><strong>Complete AI Avatar Video Course</strong><span>Included with Premium and VIP. Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
-                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs. Unlocks at level 4, or immediately with Premium or VIP.</span></li>
-                <li><strong>Ultimate N8N Template Library</strong><span>Included with VIP: 6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
+                <li><strong>Complete AI Avatar Video Course</strong><span>Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
+                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs.</span></li>
+                <li><strong>Ultimate N8N Template Library</strong><span>6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
               </ul>
-              <p className="fine-print">Levels refer to your Skool community level. <a href="mailto:automojic@proton.me?subject=Course%20access">Ask about course access</a>.</p>
             </div>
           </div>
         </div>

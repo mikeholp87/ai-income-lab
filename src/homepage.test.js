@@ -42,3 +42,17 @@ test('each claim and note appears once at most', () => {
   assert.doesNotMatch(jsx, /Can I try TubeAnalytics or VisiScan for free\?/);
   assert.doesNotMatch(css, /\.booking-note|\.player-note/);
 });
+
+test('pricing ends with one billing note and one help line', () => {
+  assert.doesNotMatch(jsx, /View plans from \$29\/month/);
+  assert.doesNotMatch(jsx, /Open the classroom \(member login\)/);
+  assert.doesNotMatch(jsx, /Start a free build/);
+  assert.match(jsx, /Levels are your Skool community level\./);
+});
+
+test('the classroom list names courses without repeating plan access', () => {
+  const start = jsx.indexOf('<h3>Inside the classroom</h3>');
+  const classroom = jsx.slice(start, jsx.indexOf('</ul>', start));
+  assert.ok(start >= 0);
+  assert.doesNotMatch(classroom, /level|Premium|VIP|Included with/i);
+});
