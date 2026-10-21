@@ -43,6 +43,7 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/blog", "destination": "/guides.html", "permanent": true },
     { "source": "/:page(start-here|guides|privacy|terms)", "destination": "/:page.html", "permanent": true },
     { "source": "/guides/:slug([a-z0-9-]+)", "destination": "/guides/:slug.html", "permanent": true }
   ],

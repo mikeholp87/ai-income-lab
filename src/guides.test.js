@@ -33,3 +33,21 @@ test('/guides redirects once to the hub without catching guide pages', async () 
   assert.ok(pattern.test('/guides'));
   for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html']) assert.ok(!pattern.test(path), path);
 });
+
+test('/blog sends readers to the guides hub', async () => {
+  const { redirects } = JSON.parse(await read('vercel.json'));
+  assert.ok(redirects.some(rule => rule.source === '/blog' && rule.destination === '/guides.html' && rule.permanent === true));
+});
+
+test('guide figures are described once, by their caption', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, alt, caption] of html.matchAll(/<figure><img [^>]*alt="([^"]*)"[^>]*><figcaption>(.*?)<\/figcaption><\/figure>/g)) {
+      assert.notEqual(alt, caption, file);
+    }
+  }
+});
+
+test('the hub byline names one brand', async () => {
+  assert.match(await read('public/guides.html'), /<p class="meta">By <a href="\/#about" rel="author">Mike Holp<\/a> · Updated/);
+});
