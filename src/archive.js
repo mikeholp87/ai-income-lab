@@ -117,11 +117,12 @@ ${jsonLd(schema)}
 <style>
 @font-face { font-family: 'Archivo Black'; font-display: swap; src: url('/fonts/archivo-black.woff2') format('woff2'); }
 @font-face { font-family: 'DM Mono'; font-display: swap; src: url('/fonts/dm-mono.woff2') format('woff2'); }
+@font-face { font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url('/fonts/instrument-sans.woff2') format('woff2'); }
 * { box-sizing: border-box; }
 :focus-visible { outline: 2px solid #ff6846; outline-offset: 4px; }
 .skip { position: absolute; top: 0; left: 16px; transform: translateY(-150%); background: #111; padding: 12px; }
 .skip:focus { transform: none; }
-body { margin: 0; background: #0a0a0a; color: #f5f5f0; font: 16px/1.6 system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: #0a0a0a; color: #f5f5f0; font: 16px/1.6 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p { margin: 0; }
 .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
@@ -134,15 +135,18 @@ header { display: flex; align-items: center; justify-content: space-between; gap
 h1 { margin-top: 12px; font: 400 clamp(36px, 7vw, 72px)/.95 'Archivo Black', sans-serif; text-transform: uppercase; }
 .intro p:last-child { max-width: 62ch; margin-top: 20px; color: #8c8c86; }
 h2 { margin: 56px 0 24px; font: 400 28px 'Archivo Black', sans-serif; }
-ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
+ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
 li a { display: grid; gap: 10px; }
 li img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #232323; background: #111111; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; color: #8c8c86; font: 400 12px 'DM Mono', monospace; }
 .thumb { position: relative; display: block; }
 .duration { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; color: #fff; background: rgb(0 0 0 / .8); font: 500 12px/1.4 'DM Mono', monospace; }
-h3 { font-size: 17px; line-height: 1.3; text-wrap: pretty; }
+h3 { font-size: 17px; font-weight: 600; line-height: 1.3; text-wrap: pretty; }
 li a:hover h3 { color: #ff6846; }
-li .summary { color: #8c8c86; font-size: 14px; }
+/* Three lines keep cards in a row the same height; the full summary is on the watch page. */
+li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size: 14px; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
+.start { margin-top: 24px; }
+.start a { color: #ff6846; text-decoration: underline; text-underline-offset: 3px; }
 .pager { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 64px; }
 .pager a, .pager span { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; padding: 0 12px; border: 1px solid #232323; }
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }
@@ -157,7 +161,7 @@ footer a:hover, header a.mono:hover { color: #f5f5f0; }
 <header class="shell"><a class="brand" href="/"><span></span>Mike Holp</a><a class="mono" href="${channelUrl}" target="_blank" rel="noreferrer">YouTube ↗</a></header>
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos</p><h1>Every video</h1><p>${videos.length} long-form builds, newest first. ${pageNote}Each one takes a new AI model, agent, or automation tool, builds something real with it, and shows what held up and what broke.</p></div>
-<p style="margin-top:24px"><a href="/start-here.html" style="color:#ff6846;text-decoration:underline">New here? Choose your first build</a> or <a href="/guides.html" style="color:#ff6846;text-decoration:underline">read the free guides</a></p>
+<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 ${pager(page, pages)}
 </main>

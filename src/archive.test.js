@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { existsSync } from 'node:fs';
 import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
 import { uploads } from './uploads-snapshot.js';
 import { watchNotes } from './watch-notes.js';
@@ -373,4 +374,16 @@ test('archive cards show sharp thumbnails, duration and views', () => {
   assert.match(html, /<p class="summary">Build an agent.<\/p>/);
   const bare = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
   assert.doesNotMatch(bare, /class="duration"|views<\/span>/);
+});
+
+test('archive type and grid match the homepage and keep cards even', () => {
+  const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.' }]);
+  assert.ok(existsSync(new URL('../public/fonts/instrument-sans.woff2', import.meta.url)));
+  assert.match(html, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
+  assert.match(html, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
+  // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
+  assert.match(html, /grid-template-columns: repeat\(auto-fill, minmax\(300px, 1fr\)\)/);
+  assert.match(html, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
+  assert.doesNotMatch(html, / style="/);
+  assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
 });
