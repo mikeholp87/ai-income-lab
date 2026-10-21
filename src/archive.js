@@ -163,6 +163,8 @@ li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size:
 @media (max-width: 640px) { .pager a[rel] { display: none; } }
 footer.shell { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 80px; padding: 32px 0; border-top: 1px solid #232323; }
 header a, footer a { display: inline-flex; align-items: center; min-height: 44px; }
+footer button { min-height: 44px; color: inherit; text-decoration: none; }
+footer button:hover { color: #f5f5f0; }
 footer a:hover, header nav a:hover, header nav [aria-current] { color: #f5f5f0; }
 header { flex-wrap: wrap; }
 header nav { display: flex; gap: 24px; margin-left: auto; }

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
 import { uploads } from './uploads-snapshot.js';
 import { watchNotes } from './watch-notes.js';
@@ -407,4 +408,12 @@ test('the archive links the reading pages and offers the community', () => {
   assert.match(html, /<aside class="cta" aria-label="AI Income Lab"><p>[^<]*from \$29\/month\.<\/p><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><\/aside>/);
   assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('</ul>'));
   assert.doesNotMatch(html, /builds something real with it/);
+});
+
+test('reading-page cookie bar sits on one centred row and Privacy choices matches the footer', async () => {
+  const css = await readFile(new URL('../public/consent.css', import.meta.url), 'utf8');
+  assert.match(css, /\.reading-consent\{position:sticky;bottom:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 24px;padding:10px 24px;/);
+  assert.match(css, /\.reading-consent p\{margin:0\}/);
+  assert.match(css, /\.reading-consent>div\{display:flex;gap:8px\}/);
+  assert.match(renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]), /footer button \{ min-height: 44px; color: inherit; text-decoration: none; \}/);
 });
