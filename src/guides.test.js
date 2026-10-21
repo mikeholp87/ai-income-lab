@@ -83,3 +83,18 @@ test('guides end with the standard next steps and every plans link says Join', a
     }
   }
 });
+
+test('the Claude Code vs Codex guide has its own image and a contents list', async () => {
+  const html = await read('public/guides/claude-code-vs-codex.html');
+  const image = 'https://www.ai-automation-station.com/assets/guides/claude-code-vs-codex.webp';
+  assert.match(html, new RegExp(`<meta property="og:image" content="${image}">`));
+  assert.match(html, new RegExp(`"image":"${image}"`));
+  assert.doesNotMatch(html, /og-card\.jpg/);
+  assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" alt="" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
+  const toc = html.match(/<nav class="toc" aria-label="On this page">([\s\S]*?)<\/nav>/)[1];
+  const targets = [...toc.matchAll(/href="#([a-z-]+)"/g)].map(match => match[1]);
+  assert.equal(targets.length, 8);
+  for (const id of targets) assert.match(html, new RegExp(`<h2 id="${id}">`), id);
+  const { size } = await import('node:fs/promises').then(fs => fs.stat(new URL('../public/assets/guides/claude-code-vs-codex.webp', import.meta.url)));
+  assert.ok(size > 5000 && size < 60000, `image is ${size} bytes`);
+});
