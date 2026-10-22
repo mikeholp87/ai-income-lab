@@ -1,5 +1,19 @@
 // Search titles preserve recorded topics; companion sections state their caption-review date.
 export const watchNotes = {
+  'qQVAnp4-EpI': {
+    searchTitle: 'Runable tutorial: build an AI Growth Audit website',
+    summary: 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: research the offer, then inspect the prototype</h2>
+<p>The walkthrough turns an AI Growth Audit business brief into a website preview in Runable. Mike reviews market research, generates the first site, and simplifies its homepage. The recording ends before payments and consultation email delivery are connected.</p>
+<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Timing, credits and interface details describe the recorded session.</p>
+<h3>The sequence shown</h3>
+<ol><li>Create a master brief covering the audience, problem, offer, promise, conversion goal and design direction. Exclude invented testimonials and statistics.</li><li>Run market research, then inspect the competitor database, pricing comparisons and SEO opportunity documents. Treat the generated research as input to review.</li><li>Combine the research and master brief to generate the AI Growth Audit website and customer portal. Review the preview and launch checklist.</li><li>Refine the hero, prioritize the audit call to action, remove repeated copy, and simplify the page’s decorative elements.</li></ol>
+<h3>What remains unfinished</h3>
+<p>Stripe is not connected, and the consultation form still needs email delivery. A complete paid audit flow and public deployment are not demonstrated. Verify those outcomes before treating the preview as a working business.</p>
+<p>For more search-visibility workflows, explore the <a href="/videos/ai-seo">AI SEO videos</a>. For another website-building walkthrough, browse the <a href="/videos/codex-opencode">Codex and OpenCode builds</a>.</p>
+</section>`,
+  },
   Lifl4PC2_3M: {
     searchTitle: 'Make.com tutorial: Google Sheets, Gmail and AI mapping',
     summary: 'Build a Make.com workflow from Google Sheets to Gmail, add an AI-generated draft, and correct the content mapping. Includes recorded failures and test limits.',

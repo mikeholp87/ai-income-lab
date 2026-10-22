@@ -30,7 +30,12 @@ for (const link of document.querySelectorAll('a[href]')) {
   const target = new URL(link.href);
   if (target.origin === 'https://www.youtube.com') {
     link.addEventListener('click', () => {
-      const event = { ...properties, placement: viewEvent === 'video_page_view' ? 'watch_video' : 'written_guide', action: 'watch_on_youtube', video_id: target.searchParams.get('v') || '', link_url: link.href, button_text: link.textContent.trim() };
+      const videoId = target.pathname === '/watch' ? target.searchParams.get('v') || '' : '';
+      const action = videoId ? 'watch_on_youtube'
+        : target.searchParams.get('sub_confirmation') === '1' ? 'subscribe_on_youtube' : 'visit_youtube_channel';
+      const placement = link.dataset.placement || (viewEvent === 'video_page_view' ? 'watch_video'
+        : viewEvent === 'video_archive_view' ? 'video_archive' : 'written_guide');
+      const event = { ...properties, placement, action, video_id: videoId, link_url: link.href, button_text: link.textContent.trim() };
       trackGoogleEvent('cta_click', event);
       trackGoogleEvent('youtube_outbound_clicked', event);
     });

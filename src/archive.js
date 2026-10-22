@@ -292,7 +292,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}
-<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 'Instrument Sans',system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
+<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 'Instrument Sans',system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
 <header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a></header>
@@ -300,6 +300,7 @@ ${jsonLd(breadcrumbs)}
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
 <iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/#about" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
 <p class="description">${escape(description)}</p>${notes ? `
@@ -318,7 +319,6 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>
 <script>${chapterScript}</script>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
-<p><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer">Watch on YouTube ↗</a></p>
 ${watchNotes[video.id]?.html ?? ''}
 <aside class="note" aria-labelledby="video-next-step">
 <h2 id="video-next-step">${escape(offer.title)}</h2>

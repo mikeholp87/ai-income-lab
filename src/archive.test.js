@@ -97,6 +97,31 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
   }
 });
 
+test('watch and subscribe actions follow the player before metadata and chapters', () => {
+  for (const chapters of [[], [{ seconds: 0, label: 'Intro' }, { seconds: 30, label: 'Build' }, { seconds: 60, label: 'Check' }]]) {
+    const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-20T00:00:00Z', duration: 'PT2M', chapters });
+    const playerEnd = html.indexOf('</iframe>');
+    const action = html.indexOf('data-placement="watch_player"');
+    assert.ok(action > playerEnd && action < html.indexOf('<p class="meta">By'), 'the YouTube action immediately follows the player');
+    assert.equal((html.match(/>Watch on YouTube ↗<\/a>/g) ?? []).length, 1);
+    assert.match(html, /href="https:\/\/www.youtube.com\/watch\?v=aaaaaaaaaaa"[^>]*data-placement="watch_player"/);
+    assert.match(html, /href="https:\/\/www.youtube.com\/@ai-automation-station\?sub_confirmation=1"[^>]*data-placement="watch_subscribe"/);
+  }
+});
+
+test('Runable has a reviewed summary across the watch page, card, schema and sitemap', () => {
+  const video = { id: 'qQVAnp4-EpI', title: 'Build An AI-Powered Website Using Runable!', published: '2026-10-20T15:43:31Z', embeddable: true, summary: '' };
+  const summary = 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.';
+  const html = renderWatch(video);
+  const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  assert.equal(schema.description, summary);
+  assert.ok(html.includes(`<p class="description">${summary}</p>`));
+  assert.ok(renderArchive([video]).includes(`<p class="summary">${summary}</p>`));
+  assert.ok(renderVideoSitemap([video]).includes(`<video:description>${summary}</video:description>`));
+  assert.match(html, /<title>Runable tutorial: build an AI Growth Audit website<\/title>/);
+  assert.match(html, /Stripe.*email delivery remain unfinished/);
+});
+
 test('watch pages and video sitemap safely describe the same visible video', () => {
   const video = { id: 'aaaaaaaaaaa', title: 'Keys & <API>', summary: '</script><script>alert(1)</script>', published: '2026-09-01T00:00:00Z', embeddable: true };
   const html = renderWatch(video);
