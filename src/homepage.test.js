@@ -125,3 +125,10 @@ test('footer social links show an icon beside each name', () => {
   for (const name of ['YouTube', 'GitHub', 'LinkedIn', 'X']) assert.match(jsx, new RegExp(`\\['${name}', \\w+Url, 'M`), name);
   assert.match(css, /\.social-icon \{ flex: none; width: 16px; height: 16px; fill: currentColor; \}/);
 });
+
+test('the homepage links every written guide so new guides are found and crawled', async () => {
+  const { readdir } = await import('node:fs/promises');
+  const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
+  assert.ok(guides.length >= 9);
+  for (const file of guides) assert.match(jsx, new RegExp(`<a href="/guides/${file.replace('.', '\\.')}">`), file);
+});
