@@ -535,6 +535,10 @@ function App() {
               <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
               <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
               <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
+              <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
+              <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
+              <li><a href="/guides/ai-automation-services-small-business.html">Scope AI automation services for small business</a></li>
+              <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
               <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
               <li><a href="/watch/geKngm3sg3w">Video: set up 9Router</a></li>
               <li><a href="/watch/G8u1-hKEqig">Video: follow the HeyGen avatar workflow</a></li>
