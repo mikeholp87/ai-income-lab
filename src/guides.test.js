@@ -134,3 +134,20 @@ test('topic guides for n8n, AI SEO and AI agents are complete and discoverable',
   assert.match(hub, /<h2 id="ai-agents">AI agents<\/h2>[\s\S]*<h2 id="ai-seo">AI SEO<\/h2>/);
   assert.match(hub, /Updated <time datetime="2026-10-22">October 22, 2026<\/time>/);
 });
+
+test('guide titles and sections match what people search for', async () => {
+  const ccvc = await read('public/guides/claude-code-vs-codex.html');
+  assert.match(ccvc, /<title>Codex vs Claude Code: /);
+  assert.match(ccvc, /<h1>Codex vs Claude Code: /);
+  assert.match(ccvc, /<h2 id="short-answer">The short answer \(October 2026\)<\/h2>/);
+  assert.match(ccvc, /"dateModified":"2026-10-22"/);
+  assert.match(ccvc, /Updated <time datetime="2026-10-22">October 22, 2026<\/time>/);
+  const hermes = await read('public/guides/hermes-desktop.html');
+  assert.match(hermes, /<title>Hermes Desktop: /);
+  assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
+  const n8n = await read('public/guides/self-host-n8n.html');
+  assert.match(n8n, /<h3 id="docker">Or run it in Docker<\/h3>/);
+  // n8n's own docker run command, copied from its docs.
+  assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
+  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-22</);
+});
