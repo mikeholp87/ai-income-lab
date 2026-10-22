@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>Install Hermes Agent with the Hermes One desktop app | Mike Holp</title>
+<meta name="description" content="Install Hermes Agent through the Hermes One desktop app, connect one model provider, and check it with tasks you can verify before adding schedules.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/hermes-desktop.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Hermes Agent with the Hermes One desktop app">
+<meta property="og:description" content="Install Hermes Agent through the Hermes One desktop app, connect one model provider, and check it with tasks you can verify before adding schedules.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/hermes-desktop.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/hermes-desktop.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="module" src="/src/reading.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Install Hermes Agent with the Hermes One desktop app","description":"Install Hermes Agent through the Hermes One desktop app, connect one model provider, and check it with tasks you can verify before adding schedules.","url":"https://www.ai-automation-station.com/guides/hermes-desktop.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/hermes-desktop.html","datePublished":"2026-10-22","dateModified":"2026-10-22","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"},"image":"https://www.ai-automation-station.com/assets/guides/hermes-desktop.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header>
+<main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-22">October 22, 2026</time></p>
+<h1>Install Hermes Agent with a desktop app.</h1>
+<p><a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a> from Nous Research is an open-source AI assistant that can use tools, remember things and run on a schedule. Its command line is powerful but hard to start with. Hermes One, a community desktop app, installs it for you and puts the settings in one window. This guide gets one agent answering and checks it with tasks you can verify. It pairs with my <a href="/watch/5zBHLxXw3tI">Hermes desktop video</a>.</p>
+<p class="note">Hermes One is maintained by the community, not by Nous Research, and its README says it is in active development. You need Windows, macOS or Linux and either an API key for a model provider or a Nous Portal account. Hermes itself is free; model usage may cost money depending on the provider and plan.</p>
+<figure><img src="/assets/guides/hermes-desktop.webp" alt="" width="1200" height="630" loading="lazy"><figcaption>Install the Hermes One package, connect one model provider, and check the agent with small tasks before adding more.</figcaption></figure>
+<h2 id="install">1. Install the desktop app</h2>
+<p>Download the package for your system from the <a href="https://github.com/fathah/hermes-desktop/releases">Hermes One releases page</a> (version 0.7.7 on October 22, 2026). I use Debian in the video:</p>
+<pre><code>sudo apt install ./hermes-desktop_0.7.7_amd64.deb</code></pre>
+<p>Use the <code>.dmg</code> on macOS, <code>setup.exe</code> on Windows, and the <code>.rpm</code> or <code>.AppImage</code> on other Linux systems. The Windows installer isn’t code-signed, so SmartScreen warns on first launch; the <a href="https://github.com/fathah/hermes-desktop">project README</a> explains what to click.</p>
+<h2 id="setup">2. Let it install Hermes Agent</h2>
+<p>On first launch the app asks whether to run Hermes <strong>locally</strong> or connect to a remote Hermes server. Choose local. If Hermes isn’t already in <code>~/.hermes</code>, the app runs the official Hermes installer, which also sets up its dependencies (Git, uv and Python 3.11 or newer). If you’ve used the Hermes command line before, the app picks up your existing setup and past sessions instead.</p>
+<h2 id="provider">3. Connect one model provider</h2>
+<p>The app then asks for a model provider. Pick one you already have a key for, such as OpenRouter, Anthropic, OpenAI or Google, or a local endpoint like Ollama or LM Studio. Hermes saves the key in its own config files under <code>~/.hermes</code>.</p>
+<p>Without a key, Nous Portal is the shortcut: in the video it offers a free plan and a paid plan, and signing in with <code>hermes model</code> in a terminal gave me a free model. Plans and free models change, so check what Portal offers when you sign up.</p>
+<p>Connect one provider now. More providers, skills and tools are easier to debug once a single agent works.</p>
+<h2 id="check">4. Check it with tasks you can verify</h2>
+<p>In the app’s chat, try three things in order:</p>
+<ol>
+<li><code>/version</code>: the app should report its Hermes version. That proves the chat reaches your local Hermes.</li>
+<li><code>/tools</code>: you should see the toolsets that are switched on. Note which ones say they need a key.</li>
+<li>A task with an answer you can check, for example: <em>“Summarise this paragraph in exactly two sentences,”</em> followed by a paragraph you choose. Count the sentences and compare the content.</li>
+</ol>
+<p>Then open a terminal and run Hermes’s own health check:</p>
+<pre><code>hermes doctor</code></pre>
+<p>In my run it found four issues, all missing API keys for optional tools. That’s normal: it means those tools won’t work until you add keys, not that Hermes is broken. <code>hermes setup</code> walks through adding them.</p>
+<h2 id="extras">5. Add the extras one at a time</h2>
+<p>The app also covers profiles (separate agents), memory, the persona file, schedules (cron jobs), messaging gateways like WhatsApp and Telegram, and an optional 3D “office” that shows agents at work. Add each one separately and test it:</p>
+<ul>
+<li><strong>Schedules:</strong> start with a harmless daily reminder delivered locally, and confirm it actually fires the next day before scheduling real work.</li>
+<li><strong>Gateways:</strong> connect a messaging app only after local chat works, because each gateway needs its own tokens.</li>
+<li><strong>Office view:</strong> it’s a visual layer. An agent walking around doesn’t prove a task finished, so check results in chat.</li>
+</ul>
+<p>In the video I ask an agent to read my email and it loads an email skill, but I don’t show a finished inbox summary. Treat anything touching your inbox or accounts as a separate project with its own checks.</p>
+<h2 id="trouble">When it fails</h2>
+<ul>
+<li><strong>Internal server error in chat or the office:</strong> no working model connection. Run <code>hermes model</code> in a terminal, sign in or add a key, then restart the app.</li>
+<li><strong>Installer stalls on Windows Subsystem for Linux:</strong> it’s waiting for a sudo password with nowhere to type it; the README has the fix.</li>
+<li><strong>A tool says it needs a key:</strong> run <code>hermes doctor</code> to see which, then <code>hermes setup</code>.</li>
+<li><strong>Things look out of date:</strong> <code>hermes update</code> updates Hermes Agent itself; the desktop app updates separately.</li>
+</ul>
+<p class="meta">Checked October 22, 2026 against Hermes One 0.7.7, the Hermes One and Hermes Agent READMEs, and Hermes Agent v0.22.4. The video was recorded in May 2026 on an earlier version; menus and plans may differ.</p>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/first-api-request.html">Make your first API request</a></li><li>Watch: <a href="/watch/5zBHLxXw3tI">Hermes Agent Desktop App Is A Game Changer!</a></li></ul><p>AI Income Lab adds courses, templates and a community for builds like this one, from $29/month.</p><p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p></aside>
+</main>
+<footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer>
+</body>
+</html>

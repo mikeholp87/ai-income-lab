@@ -107,9 +107,30 @@ test('hub entries show an image, what the guide covers and the matching video', 
   const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
   assert.equal(entries.length, guides.length);
   for (const entry of entries) {
-    assert.match(entry, /<img src="\/assets\/guides\/[a-z-]+\.webp" alt="" width="1200" height="630" loading="lazy">/);
-    assert.match(entry, /<h3><a href="\/guides\/[a-z-]+\.html">[^<]+<\/a><\/h3>/);
+    assert.match(entry, /<img src="\/assets\/guides\/[a-z0-9-]+\.webp" alt="" width="1200" height="630" loading="lazy">/);
+    assert.match(entry, /<h3><a href="\/guides\/[a-z0-9-]+\.html">[^<]+<\/a><\/h3>/);
   }
   assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
   assert.match(hub, /<a href="\/videos\/make-com">Make.com videos<\/a>/);
+});
+
+test('topic guides for n8n, AI SEO and AI agents are complete and discoverable', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  for (const slug of ['self-host-n8n', 'dataforseo-mcp-claude', 'hermes-desktop']) {
+    const html = await read(`public/guides/${slug}.html`);
+    assert.match(sitemap, new RegExp(`<loc>https://www.ai-automation-station.com/guides/${slug}.html</loc>`), slug);
+    assert.match(llms, new RegExp(`/guides/${slug}\\.html\\)`), slug);
+    assert.match(html, /"datePublished":"2026-10-22"/, slug);
+    assert.match(html, new RegExp(`<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`), slug);
+    assert.match(html, /<aside class="note next-steps" aria-labelledby="keep-going">/, slug);
+    assert.ok(html.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158, slug);
+    // Every new guide says what it was checked against, and when.
+    assert.match(html, /<p class="meta">[^<]*checked October 22, 2026/i, slug);
+  }
+  assert.match(await read('public/guides/dataforseo-mcp-claude.html'), /DataForSEO sponsored that video/);
+  assert.match(hub, /<a href="#ai-agents">AI agents<\/a><a href="#ai-seo">AI SEO<\/a>/);
+  assert.match(hub, /<h2 id="ai-agents">AI agents<\/h2>[\s\S]*<h2 id="ai-seo">AI SEO<\/h2>/);
+  assert.match(hub, /Updated <time datetime="2026-10-22">October 22, 2026<\/time>/);
 });

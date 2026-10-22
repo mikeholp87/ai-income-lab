@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>Connect DataForSEO to Claude Code for real SEO data | Mike Holp</title>
+<meta name="description" content="Give Claude Code live SEO data with the DataForSEO MCP server: connect it, confirm the tools load, and run one small, checkable query on your own site.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Connect DataForSEO to Claude Code for real SEO data">
+<meta property="og:description" content="Give Claude Code live SEO data with the DataForSEO MCP server: connect it, confirm the tools load, and run one small, checkable query on your own site.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/dataforseo-mcp-claude.webp">
+<meta name="twitter:card" content="summary_large_image">
+<script type="module" src="/src/reading.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Connect DataForSEO to Claude Code for real SEO data","description":"Give Claude Code live SEO data with the DataForSEO MCP server: connect it, confirm the tools load, and run one small, checkable query on your own site.","url":"https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html","datePublished":"2026-10-22","dateModified":"2026-10-22","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"},"image":"https://www.ai-automation-station.com/assets/guides/dataforseo-mcp-claude.webp"}</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header>
+<main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-22">October 22, 2026</time></p>
+<h1>Give Claude Code real SEO data with DataForSEO.</h1>
+<p>Ask an AI model which keywords your site should target and you get ideas, not data. The DataForSEO MCP server lets Claude Code call DataForSEO’s APIs for search results, keyword metrics and site analysis, so its answers rest on numbers you can check. This guide connects it and runs one small query you can verify. It pairs with my <a href="/watch/wRqpZ9F3rmI">DataForSEO and Claude video</a>.</p>
+<p class="note">DataForSEO sponsored that video. This guide uses only their public docs and plain links, with no referral codes. You need Claude Code and a DataForSEO account. DataForSEO charges per API request rather than a monthly plan, so each query costs money once any trial credit is used; check their current pricing before you start.</p>
+<figure><img src="/assets/guides/dataforseo-mcp-claude.webp" alt="" width="1200" height="630" loading="lazy"><figcaption>Connect the MCP server, confirm Claude Code lists its tools, and run one small query on a site you own.</figcaption></figure>
+<h2 id="credentials">1. Get your API credentials</h2>
+<p>Create a DataForSEO account, then open <a href="https://app.dataforseo.com/api-access">API Access</a> in the dashboard. It shows an API login and an API password. These are not your website login: they are what the MCP server uses to make paid requests, so treat the password like a card number.</p>
+<h2 id="connect">2. Connect the MCP server to Claude Code</h2>
+<p>The <a href="https://github.com/dataforseo/mcp-server-typescript">official DataForSEO MCP server</a> runs locally through npm and needs Node.js 22 or newer (<code>node -v</code> to check). Add it with your credentials as environment variables, replacing the two placeholders:</p>
+<pre><code>claude mcp add dataforseo \
+  -e DATAFORSEO_LOGIN=your_api_login \
+  -e DATAFORSEO_PASSWORD=your_api_password \
+  -- npx -y dataforseo-mcp-server</code></pre>
+<p>Claude Code stores these values in its own configuration on your computer, so don’t run this on a shared machine or paste the command anywhere public. DataForSEO also documents a hosted server at <code>https://mcp.dataforseo.com/v3/mcp</code> that signs in with OAuth instead of a stored password. Their <a href="https://dataforseo.com/help-center/3-ways-to-install-dataforseo-mcp-with-claude-code">Claude Code help page</a> lists the options.</p>
+<h2 id="verify">3. Confirm the tools load</h2>
+<p>From a terminal:</p>
+<pre><code>claude mcp list</code></pre>
+<p><code>dataforseo</code> should appear as connected. Then start Claude Code and type <code>/mcp</code>: the DataForSEO entry should list its tools, such as <code>docs_index</code> for browsing the API documentation. If it shows as failed, check <code>node -v</code> and the credentials before anything else.</p>
+<h2 id="query">4. Run one small, checkable query</h2>
+<p>Start small so you can see what each call costs and returns. Use a site you own, and ask Claude to name the tools before it calls them:</p>
+<pre><code>Use DataForSEO to find the ten keywords example.com ranks for in the United States,
+with position and search volume. Tell me which DataForSEO endpoint you will call
+before calling it, and keep it to one request.</code></pre>
+<p>Replace <code>example.com</code> with your domain. Claude Code will ask permission before the first DataForSEO tool call; read which endpoint it chose before you approve. Then check the result two ways:</p>
+<ul>
+<li>Pick two keywords from the table and search them yourself. Your page should be roughly where the data says, allowing for location and personalisation.</li>
+<li>Open the DataForSEO dashboard and find the request in your API usage statistics, with its cost.</li>
+</ul>
+<p>If those match, the connection is real and you know what a query costs. That is the point to stop and decide whether it’s worth more.</p>
+<h2 id="next-prompts">5. Grow it into a workflow</h2>
+<p>In the video I ran three kinds of prompt against my own site, TubeAnalytics. Each one is useful once the small query works:</p>
+<ul>
+<li><strong>Audit:</strong> run an SEO audit of the domain and list the five most important issues or opportunities, with the evidence for each.</li>
+<li><strong>Competitors:</strong> identify search competitors, overlapping long-tail keywords and keyword gaps, summarised in a table.</li>
+<li><strong>AI search visibility:</strong> look for signals of how visible the brand is in AI-driven search results, and what to investigate next.</li>
+</ul>
+<p>Larger prompts can trigger many API calls. Ask Claude to estimate how many requests a prompt needs before it runs, and keep prompts that work in a file so you can repeat them on a schedule instead of exploring from scratch each time.</p>
+<h2 id="trouble">When it fails</h2>
+<ul>
+<li><strong>Server shows as failed in <code>/mcp</code>:</strong> Node.js is older than 22, or the login and password are swapped or mistyped.</li>
+<li><strong>Authentication errors from the API:</strong> you used your dashboard login instead of the API credentials from API Access.</li>
+<li><strong>Answers without tool calls:</strong> Claude answered from its own knowledge. Ask it explicitly to use DataForSEO and to show the endpoint it called.</li>
+<li><strong>Empty results:</strong> a new or very small site may have little ranking data. Try a well-known competitor to confirm the connection works.</li>
+</ul>
+<p class="meta">Setup checked October 22, 2026 against dataforseo-mcp-server 3.1.3, the server’s README, DataForSEO’s Claude Code help page (updated October 16, 2026) and Claude Code 2.1.307. Prices, trial credits and endpoints can change; check DataForSEO before relying on them.</p>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both and route tasks</a></li><li>Watch: <a href="/watch/wRqpZ9F3rmI">Build Your Own AI SEO Agent (DataForSEO + Claude)</a></li></ul><p>Members get the <strong>Claude Code &amp; Skills</strong> lessons. AI Income Lab adds courses, templates and a community for builds like this one, from $29/month.</p><p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p></aside>
+</main>
+<footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer>
+</body>
+</html>
