@@ -32,4 +32,5 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [Run n8n on your own Ubuntu machine](https://www.ai-automation-station.com/guides/self-host-n8n.html)
 - [Install Hermes Agent with a desktop app](https://www.ai-automation-station.com/guides/hermes-desktop.html)
 - [Give Claude Code real SEO data with DataForSEO](https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html)
+- [ChatGPT Pro 20x: why the $200/month plan was paused](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html)
 - Support: automojic@proton.me

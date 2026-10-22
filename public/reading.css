@@ -15,3 +15,4 @@ header{align-items:center}header nav{display:flex;flex-wrap:wrap;gap:0 24px;marg
 .kit{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;margin:0 0 24px}.kit dt{color:#8c8c86;font:400 13px 'DM Mono',monospace}.kit dd{margin:4px 0 0;font-size:16px;line-height:1.55}.first{font-size:20px;color:#f5f5f0}.choices .first{margin-bottom:16px}
 [id]{scroll-margin-top:24px}
 @media(max-width:640px){.paths,.kit{grid-template-columns:1fr}.paths{margin-bottom:40px}}
+.video iframe{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0}
