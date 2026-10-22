@@ -62,7 +62,10 @@ test('reading pages share the homepage type, link colour and header styles', asy
   assert.match(css, /header>a:first-child\{font-family:Archivo/);
   assert.doesNotMatch(css, /header a:first-child/);
   assert.match(css, /\.join\{[^}]*background:#ff6846;/);
-  assert.match(css, /@media\(max-width:640px\)\{header nav\{order:3;width:100%;margin-left:0\}\}/);
+  // Phones: brand left and Join right on the first row, the nav close beneath them.
+  assert.match(css, /@media\(max-width:640px\)\{header\{row-gap:4px\}header nav\{order:3;width:100%;margin-left:0\}\.join\{margin-left:auto\}\}/);
+  // Instrument Sans has narrow spaces; widen them in bylines so "Name · Date" separators stay readable.
+  assert.match(css, /small,\.meta\{font-size:14px;color:#a5a59e;word-spacing:\.15em\}/);
 });
 
 test('guides end with the standard next steps and every plans link says Join', async () => {
