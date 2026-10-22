@@ -238,7 +238,7 @@ export function relatedVideos(video, videos, count = 4) {
 
 // Written guides that cover the same tool as a video.
 const guides = [
-  [/chatgpt \$200|pro 20x|credit limit on codex/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x: why the $200/month plan was paused'],
+  [/chatgpt \$200|pro 20x|credit limit on codex/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)'],
   [/9router/i, '/guides/first-api-request.html', 'Make your first API request'],
   [/codex|open\s?code|claude code/i, '/guides/codex-workflow.html', 'Make and verify a small code change with Codex'],
   [/make\.com/i, '/guides/make-first-automation.html', 'Build your first Make.com automation'],
