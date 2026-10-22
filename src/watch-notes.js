@@ -96,8 +96,34 @@ export const watchNotes = {
 <p>Start with a small repository task and a visible result. The <a href="/guides/codex-workflow.html">Codex exercise</a> verifies a local failure case. Check the actual diff and command output before accepting an orchestrator’s completion message.</p>
 </section>`,
   },
-  qC2ipjdszPA: { searchTitle: 'Codex usage limits: the recorded quota walkthrough' },
-  uSx_lW4oppY: { searchTitle: 'ChatGPT subscription pause: the recorded explanation' },
+  qC2ipjdszPA: {
+    searchTitle: 'Codex usage limits: the recorded quota walkthrough',
+    summary: 'Upgrade to ChatGPT Business to raise Codex usage limits, then fix the CLI still showing the old plan by signing out and back in. A recorded walkthrough.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Build notes: upgrade the plan, then check that Codex sees it</h2>
+<p>Mike hits his weekly Codex limit, starts a ChatGPT Business trial, and then spends most of the video getting Codex to use the new plan. The fix that works in the recording is signing out of Codex and signing back in with the Business account.</p>
+<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Plan names, prices, trials and limits describe the recorded session in April 2026. Check OpenAI’s current plans before upgrading.</p>
+<h3>The sequence shown</h3>
+<ol><li>Check the remaining usage with the status command. Mike has about 19% left for the week.</li><li>Start the Business plan. The recording describes a one-month free trial and a price of around $15 per month, and Mike estimates about a 20x higher limit than his previous plan. These are his recorded figures, not a measured comparison. The video title says 10X.</li><li>Open Codex again. The CLI and the VS Code extension still report the old plan and 0% credits.</li><li>Run a task in Codex cloud as a workaround. It installs dependencies, hits some errors, and updates a build script. Mike notes he can commit and push from there through the connected GitHub repository. Mike finds it slower than working locally.</li><li>Sign out of Codex and sign back in with the Business account. Status then shows 100% credits with a 5-hour reset, and the CLI picks up the same plan.</li></ol>
+<h3>What the recording does not establish</h3>
+<p>It does not show how long the higher limit lasts over a working week, and the trial and pricing may have changed. Confirm the plan in Codex with a status check before starting a long task.</p>
+<p>For a small task to run once your limits are sorted, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a>.</p>
+</section>`,
+  },
+  uSx_lW4oppY: {
+    searchTitle: 'ChatGPT subscription pause: the recorded explanation',
+    summary: 'Why the $200/month ChatGPT Pro 20x plan was paused for new subscribers in September 2026, what existing users keep, and the reasoning setting Mike uses.',
+    html: `<section aria-labelledby="build-notes">
+<h2 id="build-notes">Notes: what the video reports, and where it comes from</h2>
+<p>Mike explains that OpenAI paused new sign-ups for the $200 per month Pro 20x plan after demand for GPT-6 Astra. The $100 per month 5x plan was still available to him, and the video says existing 20x subscribers keep access.</p>
+<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Plan availability, prices and limits describe the session recorded in September 2026. Check OpenAI’s current plans before buying.</p>
+<h3>Sources shown in the video</h3>
+<ul><li>Posts on X from an OpenAI staff member about unprecedented demand, no impact on existing users, and adding capacity.</li><li>A Facebook post by Jeff Hunter with a seven-day timeline from the Astra preview on September 3 to the pause on September 10, plus 5-hour message ranges per plan.</li></ul>
+<p>The timeline and message ranges are third-party summaries read out in the video. They are not figures Mike measured, and this page has not checked them against OpenAI.</p>
+<h3>Mike’s own observations</h3>
+<p>He reports using up his Pro allowance in about five hours with Astra, and his Plus credits in minutes. For routine work he sets reasoning effort to medium in Codex and keeps high for hard debugging. Treat this as one user’s experience, not a benchmark.</p>
+</section>`,
+  },
   EECptdYND6k: { searchTitle: 'Odysseus AI: a first-look walkthrough' },
   'Qb6RG0-8O1k': { searchTitle: 'Claude Code access: the recorded setup and limits' },
   e73WvglCLW0: { searchTitle: 'Check your website’s visibility in AI answer engines' },
