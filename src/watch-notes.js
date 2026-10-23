@@ -128,6 +128,7 @@ export const watchNotes = {
 <p>It does not show how long the higher limit lasts over a working week, and the trial and pricing may have changed. Confirm the plan in Codex with a status check before starting a long task.</p>
 <p>For how plan limits and Codex credits compare across Plus, Pro 5x and Pro 20x, see <a href="/guides/chatgpt-pro-20x.html#codex-credits">Codex limits and credits</a>.</p>
 <p>For a small task to run once your limits are sorted, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a>.</p>
+<p>For current allowance checks, reset windows and continuation options, read the <a href="/guides/codex-usage-limits.html">Codex usage limits guide</a>.</p>
 </section>`,
   },
   uSx_lW4oppY: {
@@ -142,6 +143,7 @@ export const watchNotes = {
 <p>The timeline and message ranges are third-party summaries read out in the video. They are not figures Mike measured, and this page has not checked them against OpenAI.</p>
 <h3>Mike’s own observations</h3>
 <p>He reports using up his Pro allowance in about five hours with Astra, and his Plus credits in minutes. For routine work he sets reasoning effort to medium in Codex and keeps high for hard debugging. Treat this as one user’s experience, not a benchmark.</p>
+<p>For current allowance checks, reset windows and continuation options, read the <a href="/guides/codex-usage-limits.html">Codex usage limits guide</a>.</p>
 </section>`,
   },
   EECptdYND6k: { searchTitle: 'Odysseus AI: a first-look walkthrough' },

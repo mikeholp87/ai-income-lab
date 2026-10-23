@@ -533,6 +533,7 @@ function App() {
               <li><a href="/guides/claude-code-for-beginners.html">Claude Code for beginners: your first 10 minutes</a></li>
               <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
+              <li><a href="/guides/codex-usage-limits.html">Codex usage limits: plans, resets and remaining usage</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
               <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
