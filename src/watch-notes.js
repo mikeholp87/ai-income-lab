@@ -1,5 +1,11 @@
 // Search titles preserve recorded topics; companion sections state their caption-review date.
 export const watchNotes = {
+  dQ_gnts0JCE: {
+    html: `<section aria-labelledby="openseo-guide">
+<h2 id="openseo-guide">OpenSEO written review</h2>
+<p>Read the <a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a> for current primary-source documentation alongside this live demo.</p>
+</section>`,
+  },
   'qQVAnp4-EpI': {
     searchTitle: 'Runable tutorial: build an AI Growth Audit website',
     summary: 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.',
