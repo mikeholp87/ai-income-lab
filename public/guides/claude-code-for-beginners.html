@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>Claude Code for beginners: your first 10 minutes | Mike Holp</title>
+<meta name="description" content="Claude Code for beginners: choose a plan, install, sign in, understand permissions and CLAUDE.md, then make one small project change you can check.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/claude-code-for-beginners.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code for beginners: your first 10 minutes">
+<meta property="og:description" content="Claude Code for beginners: choose a plan, install, sign in, understand permissions and CLAUDE.md, then make one small project change you can check.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/claude-code-for-beginners.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/claude-code-for-beginners.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Code for beginners: your first 10 minutes">
+<meta name="twitter:description" content="Claude Code for beginners: choose a plan, install, sign in, understand permissions and CLAUDE.md, then make one small project change you can check.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/claude-code-for-beginners.webp">
+<script type="module" src="/src/reading.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Claude Code for beginners: your first 10 minutes","description":"Claude Code for beginners: choose a plan, install, sign in, understand permissions and CLAUDE.md, then make one small project change you can check.","url":"https://www.ai-automation-station.com/guides/claude-code-for-beginners.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/claude-code-for-beginners.html","datePublished":"2026-10-23","dateModified":"2026-10-23","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"},"image":"https://www.ai-automation-station.com/assets/guides/claude-code-for-beginners.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"Claude Code for beginners: your first 10 minutes","item":"https://www.ai-automation-station.com/guides/claude-code-for-beginners.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which plan should a beginner use?","acceptedAnswer":{"@type":"Answer","text":"If you already have Pro, start there before buying more capacity; Pro and Max both include Claude Code. Check the current pricing page before subscribing."}},{"@type":"Question","name":"Do I need an API key with Pro or Max?","acceptedAnswer":{"@type":"Answer","text":"No. Sign in with the Claude account that holds your subscription. API credentials are a separate billing path, so check which account you are using."}},{"@type":"Question","name":"Does Claude Code ask before every action?","acceptedAnswer":{"@type":"Answer","text":"No. In Manual mode, ordinary project file reads do not need approval, while edits and many commands do. Existing rules and settings can change which prompts appear."}},{"@type":"Question","name":"What belongs in CLAUDE.md?","acceptedAnswer":{"@type":"Answer","text":"Put project instructions such as the relevant files, verified check commands, and boundaries for changes in CLAUDE.md. Treat these as guidance, not enforced permissions."}},{"@type":"Question","name":"What is a good first task?","acceptedAnswer":{"@type":"Answer","text":"Ask for a project explanation, then fix one README typo or clarify one sentence. Compare the result with the original and stop if unrelated files change."}}]}</script>
+</head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header><main id="content">
+<p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-23">October 23, 2026</time> · Updated <time datetime="2026-10-23">October 23, 2026</time></p>
+<h1>Claude Code for beginners: your first 10 minutes</h1>
+<p><strong>Quick answer:</strong> this Claude Code for beginners walkthrough starts with an account and installation, then takes you through one project explanation and one small change you can inspect.</p>
+<p>Claude Code is a coding agent that can read project files, edit code and run commands, according to Anthropic’s <a href="https://code.claude.com/docs/en/overview">official overview</a>. This guide uses the terminal: the text window where you enter commands. The aim is a useful first session, not a finished application.</p>
+<p>Watch Mike’s <a href="/watch/mKZHLQLaq2k">Get Started with Claude Code in 10 Minutes</a> alongside this written checklist. The steps below use current official documentation; they do not assume that every screen still matches the recording. Treat ten minutes as a suggested practice session, with extra time for installation or login trouble.</p>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#start">Before you start</a></li><li><a href="#plans">Plans and billing</a></li><li><a href="#install">Install</a></li><li><a href="#session">Sign in and explore</a></li><li><a href="#permissions">Permission prompts</a></li><li><a href="#memory">CLAUDE.md</a></li><li><a href="#task">Your first change</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+<h2 id="start">Claude Code for beginners: prepare one small project</h2>
+<p>Choose a project you own and can restore from a backup. A simple website or a folder with a README is enough for this exercise. Avoid starting with a client’s production application. Write down one question about the project and one tiny improvement before opening the tool.</p>
+<p>A useful finish line is: “I can explain what this folder contains, identify the file I changed, and show that the change matches my request.” Keep that note beside the terminal. If the conversation turns into a redesign, return to the original task.</p>
+<h2 id="plans">Minutes 0–2: choose the account and billing path</h2>
+<p>Anthropic’s <a href="https://claude.com/pricing">pricing page</a> says Claude Code is included in paid plans, including Pro, Max, Team and Enterprise. For an individual, Pro is listed at $20 billed monthly, or $200 billed annually; Max starts at $100 per month. Review the checkout total before buying. An existing Pro subscription is a reasonable place to begin this exercise.</p>
+<p>The <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Pro and Max help article</a> confirms that Claude chat and Claude Code share usage limits. More terminal work can leave less capacity for chat. There is no promised number of projects you can finish with a subscription.</p>
+<p>That help article also distinguishes subscription access from separately billed API usage. Use the account holding your subscription. If your machine already has an <code>ANTHROPIC_API_KEY</code> configured, investigate it before continuing: API authentication can result in API charges. If you reach a limit, waiting for a reset is an option; do not accept additional paid usage without understanding it. <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">See billing guidance</a>.</p>
+<h2 id="install">Minutes 2–4: install and check the command</h2>
+<p>Use Anthropic’s native installer. Its <a href="https://code.claude.com/docs/en/setup">setup requirements</a> list macOS 13 or later, Windows 10 version 1809 or later, and supported Linux distributions including Ubuntu 20.04 or later and Debian 10 or later. Check that page for your exact system, dependencies and network requirements.</p>
+<p>For macOS, Linux or WSL, the <a href="https://code.claude.com/docs/en/overview">official installation command</a> is:</p>
+<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+<p>For Windows PowerShell, use the <a href="https://code.claude.com/docs/en/overview">PowerShell installer</a>:</p>
+<pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+<p>Copy only the command for your terminal. These commands download and execute Anthropic’s installer, so confirm the domain before running them. In WSL, install from the Linux terminal, as the <a href="https://code.claude.com/docs/en/setup">Windows setup instructions</a> explain.</p>
+<p>Then run the <a href="https://code.claude.com/docs/en/setup">documented installation check</a>:</p>
+<pre><code>claude --version</code></pre>
+<p>You should see a version number. If the command is not found, follow the setup page’s troubleshooting link before trying another installer. Get this single check working before moving on.</p>
+<h2 id="session">Minutes 4–6: sign in and understand the folder</h2>
+<p>Open the terminal in your project folder. The <a href="https://code.claude.com/docs/en/quickstart">official quickstart</a> starts a session like this; replace the example path with your own:</p>
+<pre><code>cd /path/to/your/project
+claude</code></pre>
+<p>On first use, follow the browser authentication prompts. For subscription access, choose your Claude account. To change accounts later, enter <code>/login</code> inside the session. These steps are documented in the <a href="https://code.claude.com/docs/en/quickstart">quickstart’s sign-in section</a>.</p>
+<p>Before requesting changes, check the displayed working directory. Start with this brief:</p>
+<pre><code>Explain what this project does and identify its main files.
+Read and summarize only; do not edit or run project scripts.
+Point out anything you cannot determine from the files.</code></pre>
+<p>Read the answer against the files yourself. Can you find the entry point it names? Does the README agree with its description? If an explanation seems vague, ask for a filename and the relevant passage. A convincing summary is a starting point for review.</p>
+<h2 id="permissions">Understand permission prompts before approving them</h2>
+<p>Use <code>Shift+Tab</code> to switch permission modes, as described in the <a href="https://code.claude.com/docs/en/quickstart">quickstart</a>, and select Manual for this exercise. The <a href="https://code.claude.com/docs/en/permissions">permissions reference</a> calls this mode <code>default</code>; the name does not mean every new session starts there.</p>
+<p>In Manual mode, ordinary project reads need no approval, while file edits and many shell commands ask. Existing permission rules and sandbox settings affect prompts. Auto mode uses a classifier for actions instead of routine human approvals. <a href="https://code.claude.com/docs/en/permissions">Check the documented permission behavior</a>.</p>
+<p>At a prompt, read the proposed action and its target. For this exercise, approve only work you can connect to the tiny task. If a command is unfamiliar, decline it and ask what it would do. Avoid granting broad ongoing approval just to clear the dialog.</p>
+<h2 id="memory">Minutes 6–8: add a short CLAUDE.md</h2>
+<p><code>CLAUDE.md</code> holds persistent project instructions. Anthropic documents placing it at the project root and using <code>/init</code> to draft a starting file. Review generated instructions before keeping them. Crucially, these instructions are context, not enforced permissions. <a href="https://code.claude.com/docs/en/memory">Read the memory documentation</a>.</p>
+<p>For this practice project, a short handwritten file might say:</p>
+<pre><code># Practice project
+Explain the proposed change before editing.
+Keep this exercise limited to README.md.
+Do not install dependencies, publish, or deploy.
+Report the changed text and how it was checked.</code></pre>
+<p>Adapt those instructions to the folder you chose. Add a check command only after confirming it actually exists in the project. Do not fill the file with guessed commands or unrelated preferences. Keep permission settings aligned with your intended scope too.</p>
+<h2 id="task">Minutes 8–10: make one change and inspect it</h2>
+<p>Pick a typo you can already see in the README. Specify the exact sentence and replacement, then ask:</p>
+<pre><code>Correct only this README typo: [original] → [replacement].
+Leave other wording and files alone.
+Show the difference and report what you checked.
+Do not commit, push, or deploy.</code></pre>
+<p>Inspect the proposed edit before approval. Afterwards, open the file and compare it with the original. If the project uses version control, review the diff in your editor. The success condition is deliberately small: one intended correction, no unrelated edits, and a clear explanation of what changed.</p>
+<p>A second safe exercise is to ask for an explanation of one function or a list of unclear README instructions, without requesting edits. Save dependency updates, authentication changes and deployment for a task whose behavior you can test. For a fuller practice loop, use the <a href="/guides/codex-workflow.html">small-change workflow guide</a>.</p>
+<h2 id="mistakes">Common mistakes that make the first session harder</h2>
+<ul><li><strong>Starting in the wrong folder.</strong> Check the path before giving the first prompt; do not use a broad personal folder as your practice project.</li><li><strong>Asking to “fix everything.”</strong> Name one file, one change and a finish condition.</li><li><strong>Approving unfamiliar commands.</strong> Pause and request an explanation in terms you understand.</li><li><strong>Accepting a completion message as proof.</strong> Open the output and compare it with the request.</li><li><strong>Expanding the task mid-session.</strong> Record new ideas separately and finish the original correction first.</li></ul>
+<p>You have completed this exercise when you can explain the change without relying on the assistant’s summary. For choosing between tools afterwards, read <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex</a>.</p>
+<h2 id="faq">FAQ</h2>
+<h3>Which plan should a beginner use?</h3>
+<p><a href="https://claude.com/pricing">If you already have Pro, start there before buying more capacity; Pro and Max both include Claude Code.</a> Check the current pricing page before subscribing.</p>
+<h3>Do I need an API key with Pro or Max?</h3>
+<p><a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">No.</a> Sign in with the Claude account that holds your subscription. API credentials are a separate billing path, so check which account you are using.</p>
+<h3>Does Claude Code ask before every action?</h3>
+<p><a href="https://code.claude.com/docs/en/permissions">No.</a> In Manual mode, ordinary project file reads do not need approval, while edits and many commands do. Existing rules and settings can change which prompts appear.</p>
+<h3>What belongs in CLAUDE.md?</h3>
+<p><a href="https://code.claude.com/docs/en/memory">Put project instructions such as the relevant files, verified check commands, and boundaries for changes in CLAUDE.md.</a> Treat these as guidance, not enforced permissions.</p>
+<h3>What is a good first task?</h3>
+<p>Ask for a project explanation, then fix one README typo or clarify one sentence. Compare the result with the original and stop if unrelated files change.</p>
+<h2 id="sources">Sources</h2>
+<p class="meta">Product details checked against the official sources below, as of October 23, 2026. Plans, interfaces and requirements can change.</p>
+<ul><li><a href="https://code.claude.com/docs/en/overview">Overview</a></li><li><a href="https://code.claude.com/docs/en/setup">Setup and system requirements</a></li><li><a href="https://code.claude.com/docs/en/quickstart">Quickstart</a></li><li><a href="https://code.claude.com/docs/en/permissions">Permissions</a></li><li><a href="https://code.claude.com/docs/en/memory">Project memory and CLAUDE.md</a></li><li><a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Pro and Max access and billing</a></li><li><a href="https://claude.com/pricing">Claude pricing</a></li></ul>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both and route tasks</a></li><li>Practice: <a href="/guides/codex-workflow.html">Make and verify a code change with Codex</a></li><li>Watch: <a href="/watch/mKZHLQLaq2k">Get Started with Claude Code in 10 Minutes</a></li><li>More: <a href="/videos/claude-code">Claude Code videos</a></li></ul><p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p></aside>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

@@ -27,6 +27,7 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
 - [OpenCode vs Claude Code: models, setup, pricing and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html)
 - [Codex Linux setup: CLI and Codex desktop Linux guide](https://www.ai-automation-station.com/guides/codex-on-linux.html)
+- [Claude Code for beginners: your first 10 minutes](https://www.ai-automation-station.com/guides/claude-code-for-beginners.html)
 - [Claude Code vs Codex: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html)
 - [Make your first API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 - [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
