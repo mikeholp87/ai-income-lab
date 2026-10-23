@@ -49,6 +49,7 @@ export const watchNotes = {
 <h3>Separate a call from a completed business task</h3>
 <p>The calendar integration is described as a stretch goal. The final Google Sheets module is configured with a fixed row number and hard-coded “yes” values; the captions do not establish a successful, correctly correlated update. A connected call is not proof of a booked appointment.</p>
 <p>Before updating real records, carry a stable record ID through the request and match it to the returned call ID. Verify the call result instead of marking every call successful. Avoid copying the fixed-row example into a multi-contact workflow.</p>
+<p>Read the <a href="/guides/vapi-voice-agent-tutorial.html">Vapi voice agent tutorial</a> for assistant setup, dashboard testing, phone numbers, webhook checks and current cost sources.</p>
 <h3>Current references and a first check</h3>
 <p>Use the <a href="https://docs.vapi.ai/assistants/quickstart">VAPI quickstart</a>, <a href="https://docs.vapi.ai/quickstart/phone">phone-call guide</a>, and <a href="https://docs.vapi.ai/server-url/events">server-event reference</a> for current setup and payloads. Free account creation does not mean free ongoing calling: check telephony, model, and voice usage charges.</p>
 <p>Keep private API keys in the platform’s connection settings. Practice record mapping with the <a href="/guides/make-first-automation.html">Make Google Sheets guide</a>, then explore the <a href="/start-here.html#avatar-voice">voice-agent learning path</a>.</p>

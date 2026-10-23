@@ -526,6 +526,7 @@ function App() {
             <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
             <ul>
               <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
+              <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi voice agent tutorial: setup, test calls and webhooks</a></li>
               <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: pricing, setup and limits</a></li>
               <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
               <li><a href="/guides/codex-on-linux.html">Codex Linux setup: CLI and desktop guide</a></li>
