@@ -33,8 +33,20 @@ export const watchNotes = {
 <h3>What did not complete</h3>
 <p>The HeyGen scenario is not run because its API video-length issue remains unresolved. A template example initially fails parsing; a later run completes with no useful spreadsheet fields mapped. These are not evidence of a completed video-publishing pipeline or a populated email archive.</p>
 <h3>A smaller practice run</h3>
-<p>Start with the <a href="/guides/make-first-automation.html">Make Google Sheets exercise</a>, using fictional records and spreadsheet output. Make’s <a href="https://help.make.com/step-5-set-up-the-trigger">trigger guide</a> explains starting positions, and its <a href="https://help.make.com/mapping">mapping guide</a> explains how module outputs reach the next step. Re-running from the beginning can repeat actions; inspect the test output before enabling a schedule.</p>
+<p>Start with the <a href="/guides/make-first-automation.html">Make Google Sheets exercise</a>, using fictional records and spreadsheet output. Make’s <a href="https://help.make.com/step-5-set-up-the-trigger">trigger guide</a> explains starting positions, and its <a href="https://help.make.com/mapping">mapping guide</a> explains how module outputs reach the next step. Re-running from the beginning can repeat actions; inspect the test output before enabling a schedule. For the concepts behind this course, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>.</p>
 <p>If you later add Gmail, test with an address you control and review the generated text. Continue to the <a href="/watch/G8u1-hKEqig">HeyGen automation notes</a> for the actual avatar/API failures.</p>
+</section>`,
+  },
+  oDAKXkIyOHE: {
+    html: `<section aria-labelledby="ai-automation-guide">
+<h2 id="ai-automation-guide">AI automation written guide</h2>
+<p>For how AI steps fit into workflows like this one, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>. It compares tool types and walks through a small first build with a checked result.</p>
+</section>`,
+  },
+  G_XWYIwjhKY: {
+    html: `<section aria-labelledby="ai-automation-guide">
+<h2 id="ai-automation-guide">AI automation written guide</h2>
+<p>For the difference between AI automation and AI agents, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>. It compares tool types and walks through a small first build with a checked result.</p>
 </section>`,
   },
   '9kHdIiobKMA': {
