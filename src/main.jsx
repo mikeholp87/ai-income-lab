@@ -534,6 +534,7 @@ function App() {
               <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
               <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
               <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
+              <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
               <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
               <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
               <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>

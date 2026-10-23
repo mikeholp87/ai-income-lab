@@ -37,4 +37,5 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [AI automation services for small business](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html)
 - [How to make money with ChatGPT](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html)
 - [ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html)
+- [OpenSEO review: setup, data costs and practical limits](https://www.ai-automation-station.com/guides/openseo-review.html)
 - Support: automojic@proton.me
