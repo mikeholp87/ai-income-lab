@@ -21,6 +21,7 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 
 ## Start building
 
+- [Codex usage limits: plans, resets and remaining usage](https://www.ai-automation-station.com/guides/codex-usage-limits.html)
 - [Vapi voice agent tutorial: setup, test calls and webhooks](https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html)
 - [Free build guides](https://www.ai-automation-station.com/guides.html)
 - [Start here](https://www.ai-automation-station.com/start-here.html)
