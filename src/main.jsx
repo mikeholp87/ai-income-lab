@@ -531,6 +531,7 @@ function App() {
               <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
               <li><a href="/guides/codex-on-linux.html">Codex Linux setup: CLI and desktop guide</a></li>
               <li><a href="/guides/claude-code-for-beginners.html">Claude Code for beginners: your first 10 minutes</a></li>
+              <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
