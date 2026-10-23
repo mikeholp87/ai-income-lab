@@ -534,6 +534,7 @@ function App() {
               <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
+              <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
               <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
               <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>

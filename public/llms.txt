@@ -33,6 +33,7 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [Claude Code vs Codex: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html)
 - [Make your first API request](https://www.ai-automation-station.com/guides/first-api-request.html)
 - [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
+- [What Is AI Automation? Examples, Tools and a First Build](https://www.ai-automation-station.com/guides/ai-automation.html)
 - [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html)
 - [Run n8n on your own Ubuntu machine](https://www.ai-automation-station.com/guides/self-host-n8n.html)
 - [Install Hermes Agent with a desktop app](https://www.ai-automation-station.com/guides/hermes-desktop.html)
