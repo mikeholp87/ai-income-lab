@@ -526,6 +526,7 @@ function App() {
             <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
             <ul>
               <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
+              <li><a href="/guides/codex-on-linux.html">Codex on Linux: CLI and official desktop setup</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
