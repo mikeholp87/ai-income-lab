@@ -161,7 +161,7 @@ export const watchNotes = {
   PDfEWpyyRMI: { searchTitle: 'Syllaby AI review: building a faceless channel' },
   CGVALaueHeA: { searchTitle: 'Building an AI tool to find YouTube video topics' },
   _8qzOkIWMSk: {
-    searchTitle: 'OpenCode vs Claude Code: setup and model limits',
+    searchTitle: 'Why OpenCode is better than Claude Code: setup and limits',
     summary: 'Explore OpenCode as a Claude Code alternative: model selection, OpenRouter setup, skills, and the rate-limit failure shown in the walkthrough.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: choose a model that actually responds</h2>
@@ -253,7 +253,7 @@ export const watchNotes = {
   },
   '1aG1XbAQj-k': { summary: 'Claude Opus 5 is here and it’s my new go-to model.' },
   geKngm3sg3w: {
-    searchTitle: '9Router setup and request checks',
+    searchTitle: 'How to use 9Router: setup, providers and request checks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify your first routed request</h2>
