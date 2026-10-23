@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>OpenCode vs Claude Code: models, setup, pricing and limits | Mike Holp</title>
+<meta name="description" content="OpenCode vs Claude Code: compare open source licensing, providers, installation, subscription versus API billing, and usage limits before choosing a coding agent.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCode vs Claude Code: models, setup, pricing and limits">
+<meta property="og:description" content="OpenCode vs Claude Code: compare open source licensing, providers, installation, subscription versus API billing, and usage limits before choosing a coding agent.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/opencode-vs-claude-code.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenCode vs Claude Code: models, setup, pricing and limits">
+<meta name="twitter:description" content="OpenCode vs Claude Code: compare open source licensing, providers, installation, subscription versus API billing, and usage limits before choosing a coding agent.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/opencode-vs-claude-code.webp">
+<script type="module" src="/src/reading.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"OpenCode vs Claude Code: models, setup, pricing and limits","description":"OpenCode vs Claude Code: compare open source licensing, providers, installation, subscription versus API billing, and usage limits before choosing a coding agent.","url":"https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html","datePublished":"2026-10-23","dateModified":"2026-10-23","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"},"image":"https://www.ai-automation-station.com/assets/guides/opencode-vs-claude-code.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"OpenCode vs Claude Code: models, setup, pricing and limits","item":"https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is OpenCode free to use?","acceptedAnswer":{"@type":"Answer","text":"The OpenCode client is MIT-licensed open source. That does not make connected model usage free; check the provider or optional OpenCode service you choose."}},{"@type":"Question","name":"Does Claude Pro include Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pro and Max include Claude Code when you sign in with your Claude account, and usage is shared with Claude."}},{"@type":"Question","name":"Can OpenCode use Claude models?","acceptedAnswer":{"@type":"Answer","text":"OpenCode documents an Anthropic provider connection. Check the authentication method and billing for that connection before making a request."}},{"@type":"Question","name":"Does OpenCode remove usage limits?","acceptedAnswer":{"@type":"Answer","text":"No. Changing the client is not a promise of unlimited model access. Check the selected service’s allowance and billing; Mike’s walkthrough includes a rate-limit failure."}},{"@type":"Question","name":"Which should a beginner try first?","acceptedAnswer":{"@type":"Answer","text":"Start with one small, checkable task. Choose Claude Code if you want to use your existing Claude plan; try OpenCode if comparing providers is the purpose of your test."}}]}</script>
+</head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header><main id="content">
+<p class="meta">Comparison · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-23">October 23, 2026</time> · Updated <time datetime="2026-10-23">October 23, 2026</time></p>
+<h1>OpenCode vs Claude Code: models, setup, pricing and limits</h1>
+<p><strong>Quick answer:</strong> OpenCode vs Claude Code comes down to whether you want <a href="https://opencode.ai/v2/docs/providers/">OpenCode’s provider choice</a> or <a href="https://code.claude.com/docs/en/authentication">Claude Code with a Claude subscription or API billing</a>.</p>
+<p>The useful OpenCode vs Claude Code comparison starts with three questions: which model do you want, which account pays for it, and how will you check the result? A tool’s name alone does not answer those questions. This guide compares the documented setup and billing options, then gives you a small test for deciding which fits your work.</p>
+<p>In my video, <a href="/watch/_8qzOkIWMSk">Why OpenCode Is Better Than Claude Code</a>, I explore OpenCode after hitting a Claude usage limit. The site’s watch page calls it “OpenCode vs Claude Code: setup and model limits.” That recording shows a personal workflow comparison, including a failed request, rather than a controlled benchmark.</p>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#comparison">Side-by-side comparison</a></li><li><a href="#models">Licensing and models</a></li><li><a href="#install">Installation</a></li><li><a href="#pricing">Pricing and limits</a></li><li><a href="#choose">Which to choose</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+<h2 id="comparison">OpenCode vs Claude Code at a glance</h2>
+<table><thead><tr><th scope="col">Compare</th><th scope="col">OpenCode</th><th scope="col">Claude Code</th></tr></thead><tbody>
+<tr><th scope="row">What it is</th><td>An open source coding agent with a terminal interface, desktop app and web app (<a href="https://opencode.ai/v2/docs/">docs</a>).</td><td>Anthropic’s coding tool for Claude models in a terminal or supported IDE (<a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">help center</a>).</td></tr>
+<tr><th scope="row">License</th><td>MIT (<a href="https://github.com/anomalyco/opencode">repository</a>).</td><td>All rights reserved; use subject to Anthropic’s commercial terms (<a href="https://github.com/anthropics/claude-code/blob/main/LICENSE.md">license</a>).</td></tr>
+<tr><th scope="row">Model choice</th><td>Provider catalog and custom provider configuration (<a href="https://opencode.ai/v2/docs/providers/">providers</a>).</td><td>Claude model configuration, including cloud deployment identifiers (<a href="https://code.claude.com/docs/en/model-config">models</a>).</td></tr>
+<tr><th scope="row">Payment route</th><td>Bring provider credentials; optional OpenCode Console usage is billed separately (<a href="https://opencode.ai/v2/docs/console/models/">Console</a>).</td><td>Claude account subscription or Console/API access (<a href="https://code.claude.com/docs/en/authentication">authentication</a>).</td></tr>
+<tr><th scope="row">Operating systems</th><td>V2 CLI binaries for macOS, Windows and Linux (<a href="https://opencode.ai/v2/docs/">downloads</a>).</td><td>macOS, Windows and supported Linux distributions (<a href="https://code.claude.com/docs/en/setup">requirements</a>).</td></tr>
+</tbody></table>
+<h2 id="models">Licensing, models and providers are different choices</h2>
+<p>OpenCode’s old <a href="https://github.com/sst/opencode">sst/opencode repository</a> redirects to <a href="https://github.com/anomalyco/opencode">anomalyco/opencode</a>, which lists an MIT license. Claude Code’s <a href="https://github.com/anthropics/claude-code/blob/main/LICENSE.md">license file</a> reserves rights and points to commercial terms. A public GitHub page is not, by itself, evidence that a product has an open source license.</p>
+<p>For provider choice, OpenCode’s <a href="https://opencode.ai/docs/providers/">directory</a> documents Anthropic, OpenAI, OpenRouter and local options such as Ollama. Its <a href="https://opencode.ai/docs/models/">model documentation</a> also describes local models. In V2, <a href="https://opencode.ai/v2/docs/providers/">provider configuration</a> covers the catalog and custom endpoints. Decide which service you trust and want to pay before choosing a model inside it.</p>
+<p>Claude Code’s <a href="https://code.claude.com/docs/en/authentication">authentication docs</a> cover Claude accounts, Console access and cloud providers including Amazon Bedrock, Google Cloud’s Agent Platform and Microsoft Foundry. Those are deployment and billing routes. The <a href="https://code.claude.com/docs/en/model-config">model configuration page</a> explains the model aliases and identifiers available through them. Do not assume a cloud-provider option means an unrestricted catalog of unrelated models.</p>
+<p>In the <a href="/watch/_8qzOkIWMSk">recording</a>, I add an OpenRouter API key, try a Gemma request, encounter a rate-limit error, and switch back to Kimi. The practical lesson is to test one request before building a workflow around a model picker. Seeing a model name is not the same as completing the task.</p>
+<h2 id="install">Install the version you actually intend to use</h2>
+<p>OpenCode’s <a href="https://opencode.ai/docs/">V1 introduction</a> warns that V1 and V2 both use the command <code>opencode</code> and cannot sit side by side under that default name. Check an existing installation before replacing it. The <a href="https://opencode.ai/v2/docs/">V2 installation page</a> lists this npm command:</p>
+<pre><code>npm install -g @opencode/cli</code></pre>
+<p>For Windows, the same V2 page says Windows package managers are unsupported and provides standalone CLI downloads. Use the download matching your platform rather than assuming an older installation tutorial applies. Once installed, run <code>opencode</code> inside your project, as shown in the <a href="https://opencode.ai/v2/docs/cli/">CLI introduction</a>.</p>
+<p>Inside the terminal interface, use <code>/connect</code> and then <code>/models</code>. The <a href="https://opencode.ai/v2/docs/cli/providers/">provider sign-in guide</a> documents API keys and other authentication methods; the choices depend on the integration. Complete that connection before asking for a code change.</p>
+<p>For Claude Code on macOS, Linux or WSL, Anthropic’s <a href="https://code.claude.com/docs/en/setup">setup guide</a> recommends:</p>
+<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+<p>That page has separate Windows instructions and system requirements. Run <code>claude</code> after installation and follow the <a href="https://code.claude.com/docs/en/authentication">login flow</a>. Choose the intended account deliberately: installing a client does not establish which account will pay for requests.</p>
+<h2 id="pricing">Compare the billing route before comparing limits</h2>
+<p>Anthropic’s <a href="https://claude.com/pricing">pricing page</a> lists Pro at $20 when billed monthly and Max starting at $100 per month, before applicable tax. It lists Claude Code in Pro and Max. These are subscription prices, not promises about how many repository tasks you can finish. Check checkout and your account before purchasing.</p>
+<p>With subscription access, <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Anthropic’s help center</a> says Claude and Claude Code share usage. Pro and Max have five-hour session and weekly limits. The same page warns that an <code>ANTHROPIC_API_KEY</code> environment variable can cause API billing instead of consuming subscription usage. Check that setting when an unexpected charge or sign-in behavior appears.</p>
+<p>For OpenCode, bring-your-own provider means checking the selected connection’s billing. OpenCode also offers an optional <a href="https://opencode.ai/v2/docs/console/models/">Console service</a>: add credits, obtain an API key and pay for requests. Its documentation points to Go as a separate subscription with included usage. Therefore, “OpenCode is open source” and “this request costs nothing” are different claims.</p>
+<p>Do not calculate a winner from the monthly subscription price alone. Record the model, the account charged, the completed task and the corrections you had to make. An unfinished answer is not equivalent to a checked change. This guide makes no fixed messages-per-day promise and gives no universal cost per task.</p>
+<h2 id="choose">When to pick each, and how to make the decision</h2>
+<p><strong>Try Claude Code first</strong> if you already use a Claude plan and want to evaluate its coding workflow through that account. <strong>Try OpenCode first</strong> if your main reason for testing is provider choice or inspecting an open source client. Those recommendations follow the <a href="https://code.claude.com/docs/en/authentication">Claude access routes</a> and <a href="https://github.com/anomalyco/opencode">OpenCode repository</a>; they are not a speed or quality ranking.</p>
+<p>Use the same small brief for both: identify a broken link, explain the intended correction, change only the relevant file, and show how to verify it. Start each trial from the same files. Keep a note of setup time, failed requests, manual corrections and the final diff. Review the output before accepting it.</p>
+<p>If a request fails, preserve the error and establish whether the problem is authentication, billing, model access or the code itself. Changing tools immediately can hide the cause. The failed request in my <a href="/watch/_8qzOkIWMSk">OpenCode walkthrough</a> is a useful reminder to verify access before judging the coding result.</p>
+<p>For a different comparison, continue to <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex</a>. For this decision, choose the setup that completes your actual work with an understandable bill and a result you can inspect.</p>
+<h2 id="faq">FAQ</h2>
+<h3>Is OpenCode free to use?</h3>
+<p><a href="https://github.com/anomalyco/opencode">The OpenCode client is MIT-licensed open source. That does not make connected model usage free; check the provider or optional OpenCode service you choose.</a></p>
+<h3>Does Claude Pro include Claude Code?</h3>
+<p><a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Yes. Pro and Max include Claude Code when you sign in with your Claude account, and usage is shared with Claude.</a></p>
+<h3>Can OpenCode use Claude models?</h3>
+<p><a href="https://opencode.ai/docs/providers/">OpenCode documents an Anthropic provider connection. Check the authentication method and billing for that connection before making a request.</a></p>
+<h3>Does OpenCode remove usage limits?</h3>
+<p><a href="/watch/_8qzOkIWMSk">No. Changing the client is not a promise of unlimited model access. Check the selected service’s allowance and billing; Mike’s walkthrough includes a rate-limit failure.</a></p>
+<h3>Which should a beginner try first?</h3>
+<p><a href="https://code.claude.com/docs/en/authentication">Start with one small, checkable task. Choose Claude Code if you want to use your existing Claude plan; try OpenCode if comparing providers is the purpose of your test.</a></p>
+<h2 id="sources">Sources</h2>
+<p class="meta">Product documentation checked as of October 23, 2026. Installation, account access and billing can change; use the linked primary sources for your version.</p>
+<ul>
+<li><a href="https://github.com/sst/opencode">Original OpenCode repository redirect</a></li>
+<li><a href="https://github.com/anomalyco/opencode">OpenCode repository and MIT license</a></li>
+<li><a href="https://github.com/anthropics/claude-code/blob/main/LICENSE.md">Claude Code license</a></li>
+<li><a href="https://opencode.ai/docs/">OpenCode V1 documentation and version warning</a></li>
+<li><a href="https://opencode.ai/v2/docs/">OpenCode V2 installation</a></li>
+<li><a href="https://opencode.ai/v2/docs/cli/">OpenCode V2 CLI</a></li>
+<li><a href="https://opencode.ai/v2/docs/providers/">OpenCode V2 providers</a></li>
+<li><a href="https://opencode.ai/v2/docs/cli/providers/">OpenCode V2 provider sign-in</a></li>
+<li><a href="https://opencode.ai/docs/providers/">OpenCode provider directory</a></li>
+<li><a href="https://opencode.ai/docs/models/">OpenCode models</a></li>
+<li><a href="https://opencode.ai/v2/docs/console/models/">OpenCode Console models and billing</a></li>
+<li><a href="https://code.claude.com/docs/en/setup">Claude Code setup</a></li>
+<li><a href="https://code.claude.com/docs/en/authentication">Claude Code authentication</a></li>
+<li><a href="https://code.claude.com/docs/en/model-config">Claude Code model configuration</a></li>
+<li><a href="https://claude.com/pricing">Claude pricing</a></li>
+<li><a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Claude Code with Pro or Max</a></li>
+</ul>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both and route tasks</a></li><li>Watch: <a href="/watch/_8qzOkIWMSk">OpenCode vs Claude Code: setup and model limits</a></li></ul><p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p></aside>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
