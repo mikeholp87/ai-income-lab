@@ -526,6 +526,9 @@ function App() {
             <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
             <ul>
               <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
+              <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: models, setup and costs</a></li>
+              <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
+              <li><a href="/guides/codex-on-linux.html">Codex on Linux: CLI and official desktop setup</a></li>
               <li><a href="/guides/claude-code-for-beginners.html">Claude Code for beginners: your first 10 minutes</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
@@ -535,6 +538,7 @@ function App() {
               <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
               <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
               <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
+              <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
               <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
               <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
               <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>

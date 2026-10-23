@@ -72,7 +72,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   // Same Skool label as the homepage and the archive.
   assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);
-  assert.match(html, /href="\/guides\/first-api-request.html"/);
+  assert.match(html, /href="\/guides\/9router-setup.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
   assert.match(html, /More builds<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE">/);
   assert.doesNotMatch(html, /lbBZ7uLJwbM/);

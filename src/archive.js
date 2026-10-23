@@ -240,7 +240,7 @@ export function relatedVideos(video, videos, count = 4) {
 const guides = [
   [/^Get Started with Claude Code in 10 Minutes$/i, '/guides/claude-code-for-beginners.html', 'Claude Code for beginners: your first 10 minutes'],
   [/chatgpt \$200|pro 20x|credit limit on codex/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)'],
-  [/9router/i, '/guides/first-api-request.html', 'Make your first API request'],
+  [/9router/i, '/guides/9router-setup.html', '9Router setup: providers, model combos and request checks'],
   [/codex|open\s?code|claude code/i, '/guides/codex-workflow.html', 'Make and verify a small code change with Codex'],
   [/make\.com/i, '/guides/make-first-automation.html', 'Build your first Make.com automation'],
 ];

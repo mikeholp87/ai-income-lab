@@ -1,5 +1,11 @@
 // Search titles preserve recorded topics; companion sections state their caption-review date.
 export const watchNotes = {
+  dQ_gnts0JCE: {
+    html: `<section aria-labelledby="openseo-guide">
+<h2 id="openseo-guide">OpenSEO written review</h2>
+<p>Read the <a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a> for current primary-source documentation alongside this live demo.</p>
+</section>`,
+  },
   'qQVAnp4-EpI': {
     searchTitle: 'Runable tutorial: build an AI Growth Audit website',
     summary: 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.',
@@ -166,6 +172,7 @@ export const watchNotes = {
 <h3>Separate the client from model access</h3>
 <p>An open-source coding client does not make every connected model free. Check the selected provider’s current access, billing, and rate limits before copying this setup. A model appearing in the picker is not proof that your account can successfully call it.</p>
 <p>Keep API keys out of recordings and repositories. If a request fails, inspect the provider error before switching models; changing a model does not repair an invalid credential or an exhausted quota.</p>
+<p>Read the <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code guide</a> for current sources on licensing, provider connections, installation, pricing and limits.</p>
 <h3>A useful next test</h3>
 <p>Give the client one small repository task with a reproducible check, then inspect the diff and run that check. The <a href="/guides/codex-workflow.html">coding-assistant workflow guide</a> uses this website’s public example and works as a practice brief for other coding clients too. For a complete recorded build with visible debugging, continue to the <a href="/watch/7v_675nO7nM">OpenCode habit-tracker walkthrough</a>.</p>
 </section>`,
@@ -232,6 +239,7 @@ export const watchNotes = {
 <p>The desktop app launches and starts a project audit. The microphone control is visible, but dictation is not confirmed working in this recording. The session also does not establish feature parity with the official clients or independently validate the audit findings.</p>
 <p>Do not delete a package-manager lock merely to reproduce the install sequence. Check whether another package operation is active and let it finish. For a fresh setup, start with <a href="/watch/lbBZ7uLJwbM">the later official Linux walkthrough and compatibility notes</a>, which links to the vendor’s installation instructions.</p>
 <p>Once your client opens a project, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a> to make a small, reviewable change and verify it with the project’s own checks.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
 </section>`,
   },
   enKnxKJJFZw: {
@@ -287,6 +295,7 @@ export const watchNotes = {
 <h3>What worked, and what to recheck</h3>
 <p>The narration confirms that the app opens, the project and skills are available, and the audit returns a list of fixes. It also describes a slow first launch and a buggy desktop pet. These are observations from this setup, not a benchmark of all Linux installations.</p>
 <p>Available models and features may differ from the recording. Check the current documentation instead of copying the video’s model names or assuming parity with Windows and macOS. For the next workflow, watch <a href="/watch/TuVL2x6IfDk">the Codex internal-linking audit</a>.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
 </section>`,
   },
   TuVL2x6IfDk: {
