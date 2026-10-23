@@ -116,7 +116,7 @@ export const watchNotes = {
 </section>`,
   },
   qC2ipjdszPA: {
-    searchTitle: 'Codex usage limits: the recorded quota walkthrough',
+    searchTitle: 'Codex limit hit: Business trial and sign-in fix (April 2026)',
     summary: 'Upgrade to ChatGPT Business to raise Codex usage limits, then fix the CLI still showing the old plan by signing out and back in. A recorded walkthrough.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: upgrade the plan, then check that Codex sees it</h2>
