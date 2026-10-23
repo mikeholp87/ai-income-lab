@@ -166,6 +166,7 @@ export const watchNotes = {
 <h3>Separate the client from model access</h3>
 <p>An open-source coding client does not make every connected model free. Check the selected provider’s current access, billing, and rate limits before copying this setup. A model appearing in the picker is not proof that your account can successfully call it.</p>
 <p>Keep API keys out of recordings and repositories. If a request fails, inspect the provider error before switching models; changing a model does not repair an invalid credential or an exhausted quota.</p>
+<p>Read the <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code guide</a> for current sources on licensing, provider connections, installation, pricing and limits.</p>
 <h3>A useful next test</h3>
 <p>Give the client one small repository task with a reproducible check, then inspect the diff and run that check. The <a href="/guides/codex-workflow.html">coding-assistant workflow guide</a> uses this website’s public example and works as a practice brief for other coding clients too. For a complete recorded build with visible debugging, continue to the <a href="/watch/7v_675nO7nM">OpenCode habit-tracker walkthrough</a>.</p>
 </section>`,
