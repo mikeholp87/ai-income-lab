@@ -37,5 +37,6 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 - [Best AI side hustles for beginners: 7 ideas to test](https://www.ai-automation-station.com/guides/ai-side-hustles.html)
 - [AI automation services for small business](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html)
 - [How to make money with ChatGPT](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html)
+- [9Router setup: providers, model combos and request checks](https://www.ai-automation-station.com/guides/9router-setup.html)
 - [ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html)
 - Support: automojic@proton.me
