@@ -34,6 +34,7 @@ test('the fast AI income guide is discoverable and has its own image', async () 
   assert.ok((await read('public/llms.txt')).includes(`](https://www.ai-automation-station.com${link})`));
   const html = await read(`public${link}`);
   assert.ok(html.includes(`<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`));
+  assert.ok(html.includes(`<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`));
   const image = await readFile(new URL(`../public/assets/guides/${slug}.webp`, import.meta.url));
   assert.ok(image.length > 5000 && image.length < 60000, `image is ${image.length} bytes`);
   assert.ok((await read('public/guides/make-money-with-ai-no-experience.html')).includes(`<a href="${link}">`));
