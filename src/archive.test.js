@@ -286,6 +286,8 @@ test('watch pages show a written companion only where one exists', () => {
   assert.match(html, /<h2 id="notes">What I tested<\/h2>/);
   assert.match(html, /<th scope="col">Dots<\/th><th scope="col">GrokBot<\/th>/);
   assert.match(html, /<h3>Verdict<\/h3>/);
+  assert.match(html, /<title>Dots vs Grok Bot: [^<]+<\/title>/);
+  assert.match(html, /<section aria-labelledby="dots-vs-grok-bot-faq">/);
   assert.ok(html.indexOf('id="notes"') < html.indexOf('id="video-next-step"'));
   assert.doesNotMatch(renderWatch({ ...video, id: 'geKngm3sg3w' }), /id="notes"/);
 });
