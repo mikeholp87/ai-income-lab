@@ -545,6 +545,7 @@ function App() {
               <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
               <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
               <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
+              <li><a href="/guides/make-money-with-ai-fast.html">Make money with AI fast</a></li>
               <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
               <li><a href="/guides/ai-automation-services-small-business.html">Scope AI automation services for small business</a></li>
               <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
