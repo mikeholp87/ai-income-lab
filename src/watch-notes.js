@@ -101,6 +101,31 @@ export const watchNotes = {
 <p>Use the <a href="/guides/codex-workflow.html">small-change workflow guide</a> to write a narrow brief and verify a fix. Pair this recording with the <a href="/guides/youtube-feed.html">React feed guide</a> for an example whose fallback behavior can be tested in source. The <a href="https://emergent.sh/learn">Emergent learning resources</a> provide current product guidance.</p>
 </section>`,
   },
+  vauqktcB6ak: {
+    searchTitle: 'Dots vs Grok Bot: job-search agent test and pricing',
+    summary: 'Dots vs Grok Bot on one job-search agent: jobs found, resume tailoring, contact emails, Airtable tracking and recorded costs, as shown October 1, 2026.',
+    html: `<section aria-labelledby="dots-vs-grok-bot-faq">
+<h2 id="dots-vs-grok-bot-faq">Dots vs Grok Bot: questions answered</h2>
+<p>The same job-search agent is built in OpenAI Dots and in GrokBot (also searched as “Grok Bot”). The answers below use only the comparison table above, the video’s chapter titles and the related launch video.</p>
+<p class="meta">Notes checked October 25, 2026 against the video’s description, chapters and the recorded comparison table. Prices and features are as recorded October 1, 2026 and may have changed. A transcript was not available for this page.</p>
+<h3>What is OpenAI Dots?</h3>
+<p>In this video, OpenAI Dots is the tool Mike uses inside ChatGPT to build the job-search agent; the chapter at <a href="#t=42">0:42</a> covers setting it up and customizing it. For the announcement, see the <a href="/watch/uTcTJd5JaZU">OpenAI Dots launch video</a>, whose description says Dots was announced at Dev Day 2026. Its chapters include “What Are OpenAI Dots?”, “Always-On AI Agents”, “Dots Cloud Computer Explained” and “Connecting 4,000+ Apps”. This page does not restate what those chapters say.</p>
+<h3>Is Dots or Grok Bot faster for a job search?</h3>
+<p>In the recording, Grok Bot. Dots took about 45 minutes for a basic version. GrokBot’s orchestrator agent was live in 15–20 seconds, with first results in a couple of minutes. The chapter at <a href="#t=75">1:15</a>, “OpenAI Dots Limitations: Slow Speed &amp; Missing Emails”, covers the Dots side. These are times from one recorded session, not a benchmark.</p>
+<h3>How many jobs did Dots and Grok Bot find?</h3>
+<p>Dots found 3 jobs. GrokBot pulled about 45, with 3 strong matches and a few possibles in the test run. On applications, Dots wrote a cover letter and appeared to tailor the resume. GrokBot asked for Mike’s master resume, parsed it, and drafted an outreach email per job. The job-search setup, including resume, salary and remote filters, starts at <a href="#t=240">4:00</a>.</p>
+<h3>Can Dots find contact emails for jobs?</h3>
+<p>Not in this test. Dots couldn’t verify an email for either role, so nothing could be sent. GrokBot found contacts through the Treg plugin (Lead Magic), and the emails were drafted and ready to send. That step is covered at <a href="#t=287">4:47</a>. This describes one run of one workflow, not everything Dots can do.</p>
+<h3>Does Grok Bot track jobs in Airtable?</h3>
+<p>Yes, in the recording. GrokBot produced an Airtable base with title, company, links, date found, location, remote, full-time and salary. The video sets up the integration at <a href="#t=185">3:05</a> and covers job tracking and salary sorting at <a href="#t=356">5:56</a>. Dots linked the job pages in the chat instead.</p>
+<h3>How much do Dots and Grok Bot cost?</h3>
+<p>As stated in the recording on October 1, 2026: Dots needed a plan of at least $100 a month. GrokBot was free to start, with Pro at $20 a month; Mike uses Pro Plus at $60 a month. The job search used about 10 cents of Treg credits. The pricing chapter, “Pricing Breakdown: Is GrokBot Better Than OpenAI Dots?”, is at <a href="#t=413">6:53</a>. These prices have not been re-verified, so check each provider’s current plans. The launch video has its own “OpenAI Dots Pricing &amp; Availability” chapter.</p>
+<h3>Which should I pick: Dots or Grok Bot?</h3>
+<p>For this job-search workflow, the video’s verdict favors GrokBot: it finished in a couple of minutes what Dots couldn’t finish in 45. Mike felt Dots was rushed out and doesn’t think it is worth $100 a month when GrokBot starts free. That is one test of one workflow, so run your own small version of the task before paying for either.</p>
+<h3>Related</h3>
+<p>See more GrokBot recordings: <a href="/watch/ys5tJuTFCEo">GrokBot with Codex and Claude Code: routing walkthrough</a> and <a href="/watch/Ip8KBwDixJs">GrokBot as a chief of staff</a>. For how agents differ from fixed automations, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>.</p>
+</section>`,
+  },
   ys5tJuTFCEo: {
     searchTitle: 'GrokBot with Codex and Claude Code: routing walkthrough',
     summary: 'Install and authenticate Codex and Claude Code inside GrokBot’s virtual computer, then define task routing. Notes distinguish the recorded setup from the updated workflow.',

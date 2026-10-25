@@ -2,8 +2,7 @@
 // Keyed by YouTube video ID. `rows` start with their row label; `gaps` and `verdict` are optional.
 export const videoNotes = {
   vauqktcB6ak: {
-    searchTitle: 'Compare Dots and GrokBot',
-    summary: 'Compare Dots and GrokBot on a job-search workflow: finding roles, drafting outreach, tracking results, and the limits seen in the recording.',
+    // searchTitle and summary live in watch-notes.js, which takes precedence for this video.
     tested: 'The same job in OpenAI Dots (inside ChatGPT) and GrokBot: an agent that finds remote AI automation jobs, tailors my resume to each one, finds the contact email, and drafts the outreach.',
     columns: ['', 'Dots', 'GrokBot'],
     rows: [
@@ -15,7 +14,7 @@ export const videoNotes = {
       ['Cost', 'A plan of at least $100 a month', 'Free to start, Pro $20 a month; I use Pro Plus at $60. The job search used about 10 cents of Treg credits.'],
     ],
     verdict: 'GrokBot finished in a couple of minutes what Dots couldn’t finish in 45. Dots felt rushed out, and I don’t think it’s worth $100 a month when GrokBot starts free.',
-    note: 'Prices and features as tested for the video published October 1, 2026. Both tools change often, so check current plans.',
+    note: 'Everything above is as shown in the video published October 1, 2026. Prices are as stated in the recording and have not been re-verified. Both tools change often, so check current plans.',
   },
   Ip8KBwDixJs: {
     searchTitle: 'GrokBot as a chief of staff',
