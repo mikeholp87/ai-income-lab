@@ -146,7 +146,8 @@ test('topic guides for n8n, AI SEO and AI agents are complete and discoverable',
   assert.match(await read('public/guides/dataforseo-mcp-claude.html'), /DataForSEO sponsored that video/);
   assert.match(hub, /<a href="#ai-agents">AI agents<\/a><a href="#ai-seo">AI SEO<\/a>/);
   assert.match(hub, /<h2 id="ai-agents">AI agents<\/h2>[\s\S]*<h2 id="ai-seo">AI SEO<\/h2>/);
-  assert.match(hub, /Updated <time datetime="2026-10-22">October 22, 2026<\/time>/);
+  const collection = JSON.parse(hub.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+  assert.ok(hub.includes(`Updated <time datetime="${collection.dateModified}">`));
 });
 
 test('guide titles and sections match what people search for', async () => {

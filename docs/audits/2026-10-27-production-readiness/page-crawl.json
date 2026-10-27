@@ -1,0 +1,103 @@
+{
+  "pages": 272,
+  "issues": [],
+  "expected_exclusions": [
+    [
+      "/videos",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/2",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/3",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/4",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/5",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/6",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/7",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/8",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/9",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/10",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/11",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/12",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/13",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/14",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/15",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/claude-code",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/codex-opencode",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/n8n",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/make-com",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/ai-agents",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/ai-seo",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/ai-video",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/videos/new-models",
+      "Vercel-served analytics script; production HTTP 200"
+    ],
+    [
+      "/google4ba0434c1bd6dcff.html",
+      "search-engine verification file"
+    ]
+  ],
+  "valid_schema_blocks": 522
+}

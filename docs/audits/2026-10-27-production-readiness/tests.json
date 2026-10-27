@@ -1,0 +1,92 @@
+[
+  {
+    "file": "src/archive.test.js",
+    "passed": true,
+    "tests": 30
+  },
+  {
+    "file": "src/cal-import.test.js",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "file": "src/conversions.test.js",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "file": "src/copy-code.test.js",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "file": "src/deployment.test.js",
+    "passed": true,
+    "tests": 1
+  },
+  {
+    "file": "src/funnel.test.js",
+    "passed": true,
+    "tests": 4
+  },
+  {
+    "file": "src/guide-seo.test.js",
+    "passed": true,
+    "tests": 4
+  },
+  {
+    "file": "src/guides.test.js",
+    "passed": true,
+    "tests": 12
+  },
+  {
+    "file": "src/homepage.test.js",
+    "passed": true,
+    "tests": 17
+  },
+  {
+    "file": "src/open-pixel.test.js",
+    "passed": true,
+    "tests": 17
+  },
+  {
+    "file": "src/reading.test.js",
+    "passed": true,
+    "tests": 6
+  },
+  {
+    "file": "src/resend-webhook.test.js",
+    "passed": true,
+    "tests": 19
+  },
+  {
+    "file": "src/thumbnail.test.js",
+    "passed": true,
+    "tests": 4
+  },
+  {
+    "file": "src/topics.test.js",
+    "passed": true,
+    "tests": 3
+  },
+  {
+    "file": "src/tracking.test.js",
+    "passed": true,
+    "tests": 4
+  },
+  {
+    "file": "src/videos-fallback.test.js",
+    "passed": true,
+    "tests": 2
+  },
+  {
+    "file": "src/youtube-api.test.js",
+    "passed": true,
+    "tests": 9
+  },
+  {
+    "file": "src/youtube.test.js",
+    "passed": true,
+    "tests": 10
+  }
+]

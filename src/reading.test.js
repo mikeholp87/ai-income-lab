@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { channelUrl } from './youtube.js';
 
-for (const [path, eventName] of [['/guides/youtube-feed.html', 'guide_view'], ['/watch/Ip8KBwDixJs', 'video_page_view'], ['/videos/2', 'video_archive_view'], ['/videos/ai-agents', 'video_archive_view']]) {
+for (const [path, eventName] of [['/guides/youtube-feed.html', 'guide_view'], ['/watch/Ip8KBwDixJs', 'video_page_view'], ['/videos/2', 'video_archive_view'], ['/videos/ai-agents', 'video_archive_view'], ['/privacy.html', 'legal_page_view'], ['/terms.html', 'legal_page_view']]) {
 test(`${path} gates tracking across allow, decline and allow`, async () => {
   const values = new Map(), scripts = [], events = [], elements = [];
   const button = value => ({ dataset: { consent: value }, addEventListener(type, fn) { this[type] = fn; }, focus() {} });

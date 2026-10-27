@@ -36,8 +36,8 @@ afterEach(() => {
   console.warn = savedConsoleWarn;
 });
 
-function signedRequest(payload, { id = 'msg_test1', secret = SECRET, ts = Math.floor(Date.now() / 1000) } = {}) {
-  const body = JSON.stringify(payload);
+function signedRequest(payload, { id = 'msg_test1', secret = SECRET, ts = Math.floor(Date.now() / 1000), raw } = {}) {
+  const body = raw ?? JSON.stringify(payload);
   const key = Buffer.from(secret.slice(6), 'base64');
   const sig = crypto.createHmac('sha256', key).update(`${id}.${ts}.${body}`).digest('base64');
   return new Request('https://www.ai-automation-station.com/api/resend-webhook', {
@@ -213,6 +213,38 @@ test('bad or stale signature returns 401 with no fetch calls', async () => {
   assert.equal(stale.status, 401);
 
   assert.equal(calls.length, 0);
+});
+
+test('malformed signature bytes, versions and timestamps return 401 without throwing', async () => {
+  const calls = mockAirtable();
+  for (const signature of [`v1,${'é'.repeat(44)}`, `v1,${'!'.repeat(44)}`, 'v1,', 'v2,']) {
+    const request = signedRequest(bounce());
+    request.headers.set('svix-signature', signature);
+    assert.equal((await POST(request)).status, 401);
+  }
+  const wrongVersion = signedRequest(bounce());
+  wrongVersion.headers.set('svix-signature', wrongVersion.headers.get('svix-signature').replace('v1,', 'v2,'));
+  assert.equal((await POST(wrongVersion)).status, 401);
+  for (const ts of ['NaN', 'Infinity', '1e20', 'not-a-time']) {
+    assert.equal((await POST(signedRequest(bounce(), { ts }))).status, 401);
+  }
+  assert.equal(calls.length, 0);
+});
+
+test('signed malformed JSON and invalid event shapes return 400 without storage', async () => {
+  const calls = mockAirtable();
+  for (const raw of ['{', 'null', '[]', '"event"', '{}', '{"type":"email.bounced","data":[]}']) {
+    assert.equal((await POST(signedRequest(null, { raw }))).status, 400, raw);
+  }
+  assert.equal(calls.length, 0);
+});
+
+test('Airtable requests have a timeout and aborts return 500 for webhook retry', async () => {
+  globalThis.fetch = async (_url, init) => {
+    assert.ok(init.signal instanceof AbortSignal);
+    throw new DOMException('Timed out', 'TimeoutError');
+  };
+  assert.equal((await POST(signedRequest(bounce()))).status, 500);
 });
 
 test('other event types are acknowledged without storage', async () => {

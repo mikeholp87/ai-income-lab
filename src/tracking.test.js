@@ -2,6 +2,15 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 
+test('invalid or unavailable stored consent is treated as undecided', () => {
+  for (const value of [null, '', 'true', 'allow', 'undefined']) {
+    globalThis.localStorage = { getItem: () => value };
+    assert.equal(getTrackingConsent(), null);
+  }
+  globalThis.localStorage = { getItem() { throw new Error('Storage disabled'); } };
+  assert.equal(getTrackingConsent(), null);
+});
+
 test('loads trackers once and restores consent after allow → decline → allow', () => {
   const scripts = [];
   const values = new Map();

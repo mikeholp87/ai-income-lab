@@ -5,50 +5,60 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0a0a0a">
 <meta name="robots" content="index,follow">
-<title>Self-host n8n on Ubuntu with Node.js 24 | Mike Holp</title>
-<meta name="description" content="Run n8n on your own Ubuntu machine: install Node.js 24, start n8n on localhost, and check a two-node test workflow before adding credentials.">
+<title>Self-host n8n on Ubuntu: Docker and Node.js setup</title>
+<meta name="description" content="Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.">
 <link rel="canonical" href="https://www.ai-automation-station.com/guides/self-host-n8n.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/reading.css">
 <link rel="stylesheet" href="/consent.css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Self-host n8n on Ubuntu with Node.js 24">
-<meta property="og:description" content="Run n8n on your own Ubuntu machine: install Node.js 24, start n8n on localhost, and check a two-node test workflow before adding credentials.">
+<meta property="og:title" content="Self-host n8n on Ubuntu: Docker and Node.js setup">
+<meta property="og:description" content="Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.">
 <meta property="og:url" content="https://www.ai-automation-station.com/guides/self-host-n8n.html">
 <meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp">
 <meta name="twitter:card" content="summary_large_image">
 <script type="module" src="/src/reading.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Self-host n8n on Ubuntu with Node.js 24","description":"Run n8n on your own Ubuntu machine: install Node.js 24, start n8n on localhost, and check a two-node test workflow before adding credentials.","url":"https://www.ai-automation-station.com/guides/self-host-n8n.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/self-host-n8n.html","datePublished":"2026-10-22","dateModified":"2026-10-24","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/"},"publisher":{"@id":"https://www.ai-automation-station.com/#org"},"isPartOf":{"@id":"https://www.ai-automation-station.com/#website"},"image":"https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp"}</script>
+
+<meta property="og:site_name" content="AI Automation Station">
+<meta property="article:published_time" content="2026-10-22">
+<meta property="article:modified_time" content="2026-10-24">
+<meta name="twitter:title" content="Self-host n8n on Ubuntu: Docker and Node.js setup">
+<meta name="twitter:description" content="Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Self-host n8n on Ubuntu with Docker or Node.js","description":"Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.","url":"https://www.ai-automation-station.com/guides/self-host-n8n.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/self-host-n8n.html","datePublished":"2026-10-22","dateModified":"2026-10-24","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/#about"},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"image":"https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"Self-host n8n on Ubuntu with Docker or Node.js","item":"https://www.ai-automation-station.com/guides/self-host-n8n.html"}]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
 <header><a href="/">Mike Holp</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header>
 <main id="content">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides.html">Guides</a></li><li><span aria-current="page">Self-host n8n on Ubuntu with Docker or Node.js</span></li></ol></nav>
 <p class="meta">Build guide · By <a href="/#about" rel="author">Mike Holp</a> · Published <time datetime="2026-10-22">October 22, 2026</time> · Updated <time datetime="2026-10-24">October 24, 2026</time></p>
-<h1>Run n8n on your own Ubuntu machine.</h1>
-<p>n8n is a workflow automation tool you can run yourself instead of paying for the hosted plan. This guide gets it running on your own computer and checks it with a two-node workflow that needs no accounts or API keys. It pairs with my <a href="/watch/7UMrV3w1e40">Ubuntu self-hosting video</a>, with one correction: current n8n needs a newer Node.js than Ubuntu installs by default.</p>
+<h1>Self-host n8n on Ubuntu with Docker or Node.js</h1>
+<p>n8n is a workflow automation tool you can run yourself instead of paying for the hosted plan. This guide gets it running on your own computer and checks it with a three-node workflow that needs no accounts or API keys. It pairs with my <a href="/watch/7UMrV3w1e40">Ubuntu self-hosting video</a>, with one correction: current n8n needs a newer Node.js than Ubuntu installs by default.</p>
 <p class="note">You need an Ubuntu (or other Linux) machine and a terminal. n8n runs on <code>localhost</code>, so only that computer can reach it; nothing here puts it on the internet. The guide is free, and so is self-hosting n8n. AI or app nodes you add later may need paid accounts.</p>
 <figure><img src="/assets/guides/self-host-n8n.webp" alt="" width="1200" height="630" loading="lazy"><figcaption>Install Node.js 24, start n8n on localhost:5678, and run a test workflow before connecting any accounts.</figcaption></figure>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#node">1. Install Node.js 24</a></li><li><a href="#start">2. Start n8n</a></li><li><a href="#account">3. Create the owner account</a></li><li><a href="#workflow">4. Build a workflow you can check</a></li><li><a href="#templates">5. Add templates and credentials carefully</a></li><li><a href="#limits">Know the limits of this setup</a></li><li><a href="#trouble">When it fails</a></li></ul></nav>
 <h2 id="node">1. Install Node.js 24</h2>
 <p>Check what you have first:</p>
-<pre><code>node -v</code></pre>
+<pre tabindex="0"><code>node -v</code></pre>
 <p>The current n8n release (2.44.5 on October 22, 2026) requires Node.js 24 or newer, and <a href="https://docs.n8n.io/hosting/installation/npm/">n8n’s npm install docs</a> support versions up to 24.x. So aim for a <strong>v24</strong> number. Ubuntu’s own <code>nodejs</code> package is older than that, which is why <code>sudo apt install nodejs</code> alone no longer works for n8n.</p>
 <p>If you don’t have v24, install it with nvm, the version manager that <a href="https://nodejs.org/en/download">nodejs.org</a> suggests for Linux:</p>
-<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+<pre tabindex="0"><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 # open a new terminal so nvm loads, then:
 nvm install 24
 node -v</code></pre>
 <p>Expect <code>v24.</code> followed by a minor version (24.22.1 is the current long-term release). nvm installs Node in your home folder, so the n8n install below needs no <code>sudo</code>.</p>
 <h2 id="start">2. Start n8n</h2>
 <p>To try it without installing anything permanently:</p>
-<pre><code>npx n8n</code></pre>
+<pre tabindex="0"><code>npx n8n</code></pre>
 <p>To keep it installed, which is what I do in the video:</p>
-<pre><code>npm install n8n -g
+<pre tabindex="0"><code>npm install n8n -g
 n8n</code></pre>
 <p>The first start downloads and prepares n8n, so give it a minute. When the terminal says the editor is ready, open <strong>http://localhost:5678</strong> in a browser on the same machine. Leave the terminal open: closing it, or pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>, stops n8n.</p>
 <h3 id="docker">Or run it in Docker</h3>
 <p>If Docker is already installed, you can skip Node.js and run n8n’s official image instead. These commands come from <a href="https://docs.n8n.io/hosting/installation/docker/">n8n’s Docker docs</a>; replace both timezone placeholders with yours, for example <code>Asia/Bangkok</code>:</p>
-<pre><code>docker volume create n8n_data
+<pre tabindex="0"><code>docker volume create n8n_data
 docker run -it --rm \
  --name n8n \
  -p 5678:5678 \

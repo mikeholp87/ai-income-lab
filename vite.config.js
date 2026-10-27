@@ -28,7 +28,7 @@ function attachOpenPixel(server) {
       for (const [key, value] of Object.entries(req.headers)) {
         if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
       }
-      const response = await handleOpenPixel(new Request(`http://127.0.0.1${req.url}`, { headers }));
+      const response = await handleOpenPixel(new Request(`http://127.0.0.1${req.url}`, { method: req.method, headers }));
       res.statusCode = response.status;
       response.headers.forEach((value, key) => res.setHeader(key, value));
       res.end(Buffer.from(await response.arrayBuffer()));

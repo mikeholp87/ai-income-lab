@@ -16,3 +16,7 @@ header{align-items:center}header nav{display:flex;flex-wrap:wrap;gap:0 24px;marg
 [id]{scroll-margin-top:24px}
 @media(max-width:640px){.paths,.kit{grid-template-columns:1fr}.paths{margin-bottom:40px}}
 .video iframe{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0}
+.breadcrumbs{font-size:14px;color:#a5a59e}.breadcrumbs ol{display:flex;flex-wrap:wrap;gap:0 10px;list-style:none;margin:0 0 20px;padding:0}.breadcrumbs li{display:flex;align-items:center;gap:10px;margin:0;min-width:0;overflow-wrap:anywhere}.breadcrumbs li+li::before{content:'›'}.breadcrumbs a{display:inline-flex;align-items:center;min-height:44px}
+/* Wide comparisons scroll within the table; prose and navigation stay within the viewport. */
+table{display:block;overflow-x:auto;overflow-wrap:normal}main{overflow-wrap:anywhere}
+pre:focus-visible,table:focus-visible{outline:2px solid #ff6846;outline-offset:4px}

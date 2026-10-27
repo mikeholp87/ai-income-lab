@@ -54,14 +54,20 @@ function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl, videoId
 
 function ConsentBanner({ campaign, campaignReady }) {
   const [open, setOpen] = useState(false);
+  const banner = useRef(null);
+  const returnFocus = useRef(null);
 
   useEffect(() => {
     setOpen(getTrackingConsent() === null);
     if (getTrackingConsent() === 'granted') loadMarketingTracking();
-    const reopen = () => setOpen(true);
+    const reopen = () => { returnFocus.current = document.activeElement; setOpen(true); };
     window.addEventListener('open-privacy-choices', reopen);
     return () => window.removeEventListener('open-privacy-choices', reopen);
   }, []);
+
+  useEffect(() => {
+    if (open && returnFocus.current) banner.current?.querySelector('button').focus();
+  }, [open]);
 
   useEffect(() => {
     if (campaignReady && getTrackingConsent() === 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
@@ -75,11 +81,14 @@ function ConsentBanner({ campaign, campaignReady }) {
       if (previous !== 'granted') trackGoogleEvent('campaign_landing_viewed', { angle: campaign.angle, campaign: campaign.params.utm_campaign || 'direct', content: campaign.params.utm_content || 'none' });
     }
     else disableMarketingTracking();
+    if (banner.current?.contains(document.activeElement)) {
+      (returnFocus.current || document.getElementById('main-content'))?.focus({ preventScroll: true });
+    }
     setOpen(false);
   }
 
   if (!open) return null;
-  return <aside className="consent-banner" aria-label="Privacy choices"><p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
+  return <aside ref={banner} className="consent-banner" aria-label="Privacy choices"><p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
 }
 
 // Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
@@ -155,10 +164,12 @@ const newTab = video => video.embeddable === false ? { target: '_blank', rel: 'n
 function useYouTubeFeed() {
   const [feed, setFeed] = useState({ ...youtubeSnapshot, failed: false });
   useEffect(() => {
-    fetch('/api/youtube')
+    const controller = new AbortController();
+    fetch('/api/youtube', { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response.status))
       .then(next => { if (validFeed(next)) setFeed({ ...next, failed: false }); })
       .catch(() => {}); // Keep the prerendered snapshot when the live feed is unavailable.
+    return () => controller.abort();
   }, []);
   return feed;
 }
@@ -301,7 +312,7 @@ function BookingCalendar({ campaign }) {
 
   function openCalendar(event) {
     trackClick('booking', 'Book a free intro call', bookingUrl, 'book_call')();
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || window.matchMedia('(max-width: 640px)').matches) return;
     event.preventDefault();
     setOpen(true);
   }
@@ -321,7 +332,7 @@ function CommunityVideo() {
 
   function start() {
     setStarted(true);
-    video.current?.play();
+    video.current?.play()?.catch(() => {}); // Native controls remain available if playback is blocked.
   }
 
   return (

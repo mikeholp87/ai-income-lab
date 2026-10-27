@@ -1,7 +1,10 @@
 const consentKey = 'marketing-consent';
 
 export function getTrackingConsent() {
-  try { return localStorage.getItem(consentKey); } catch (_) { return null; }
+  try {
+    const value = localStorage.getItem(consentKey);
+    return value === 'granted' || value === 'denied' ? value : null;
+  } catch (_) { return null; }
 }
 
 export function setTrackingConsent(value) {

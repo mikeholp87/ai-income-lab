@@ -15,7 +15,7 @@ AI Automation Station: Mike Holp’s AI build videos, written guides, and AI Inc
 
 ## Build and preview
 
-Run `npm ci`, `npm test`, and `npm run build`. Use `npm run preview` to inspect the production build locally.
+Use Node.js 22.12 or later. Run `npm ci`, `npm run lint`, `npm test`, and `npm run build`. Use `npm run preview` to inspect the production build locally. Copy `.env.example` to `.env.local` for optional integrations; keep credentials server-side.
 
 The build refreshes the saved video feed and generates 480, 768, and 1280 pixel WebP candidates for the featured video using the build-only Sharp dependency. Hashed files in `public/assets/thumbnails/` and `src/thumbnail-snapshot.json` provide an offline fallback. Keep them together when committing a refreshed snapshot. A failed download retains the previous set; a different video arriving through the live feed uses its own YouTube image until the next build. The browser still falls back to YouTube JPEG if an image fails to load.
 

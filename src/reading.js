@@ -16,7 +16,8 @@ for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
   if (image.complete && !image.naturalWidth) fallback();
 }
 const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
-  : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view' : 'guide_view';
+  : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view'
+  : /^\/(?:privacy|terms)\.html$/.test(window.location.pathname) ? 'legal_page_view' : 'guide_view';
 let viewed = false;
 
 function recordView() {

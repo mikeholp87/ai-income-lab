@@ -321,24 +321,17 @@ test('non-GET/HEAD methods return the same GIF without recording', async t => {
   assert.equal(info.mock.callCount(), 0);
 });
 
-test('HEAD still records and clears the deadline timer when recording finishes', async t => {
-  t.mock.timers.enable({ apis: ['setTimeout'] });
-  const clearTimeout = t.mock.method(globalThis, 'clearTimeout');
-  t.mock.method(console, 'info', () => {});
-  const calls = [];
-  t.mock.method(globalThis, 'fetch', async (url, init) => {
-    calls.push(init);
-    return Response.json(init.method === 'GET'
-      ? { records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: false } }] }
-      : { id: 'recNew' });
-  });
-  await assertPixel(await handleOpenPixel(new Request('https://example.com/o/test-token.gif', {
+test('HEAD returns GIF headers without a body or a false email open', async t => {
+  const fetch = t.mock.method(globalThis, 'fetch');
+  const info = t.mock.method(console, 'info', () => {});
+  const response = await handleOpenPixel(new Request('https://example.com/o/test-token.gif', {
     method: 'HEAD',
-  }), { AIRTABLE_API_KEY: 'mock' }));
-  assert.deepEqual(calls.map(call => call.method), ['GET', 'POST', 'PATCH']);
-  assert.ok(calls.every(call => !Object.hasOwn(call, 'signal')));
-  assert.equal(clearTimeout.mock.callCount(), 1);
-  assert.notEqual(clearTimeout.mock.calls[0].arguments[0], undefined);
+  }), { AIRTABLE_API_KEY: 'mock' });
+  assert.equal(response.status, 200);
+  for (const [key, value] of Object.entries(PIXEL_HEADERS)) assert.equal(response.headers.get(key), value);
+  assert.equal((await response.arrayBuffer()).byteLength, 0);
+  assert.equal(fetch.mock.callCount(), 0);
+  assert.equal(info.mock.callCount(), 0);
 });
 
 test('the 3 s deadline returns the GIF while Airtable work continues', async t => {

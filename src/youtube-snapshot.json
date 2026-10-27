@@ -1,10 +1,19 @@
 {
   "videos": [
     {
+      "id": "VE66JDHoS6Y",
+      "title": "Herdr Lets You Run Claude Code And Codex In One Place",
+      "published": "2026-10-26T10:58:24Z",
+      "views": 105,
+      "duration": "7:52",
+      "summary": "",
+      "embeddable": true
+    },
+    {
       "id": "qQVAnp4-EpI",
       "title": "Build An AI-Powered Website Using Runable!",
       "published": "2026-10-20T15:43:31Z",
-      "views": 78,
+      "views": 179,
       "duration": "18:03",
       "summary": "",
       "embeddable": true
@@ -13,7 +22,7 @@
       "id": "UAPaM6KrC-M",
       "title": "Building My Own Video Editor Using REA (It's Insane!)",
       "published": "2026-10-14T08:36:41Z",
-      "views": 399,
+      "views": 466,
       "duration": "6:33",
       "summary": "Learn how to use software reverse engineering to recreate a powerful video editor using the powerful REA tool and Claude Code. Very impressive!",
       "embeddable": true
@@ -22,7 +31,7 @@
       "id": "mPHM81X1oqc",
       "title": "I Tested Meta Muse Wonder - Here's What Happened",
       "published": "2026-10-13T10:07:08Z",
-      "views": 669,
+      "views": 692,
       "duration": "8:16",
       "summary": "Meta Muse Wonder is now one of the most powerful AI models released by Meta in years.",
       "embeddable": true
@@ -31,7 +40,7 @@
       "id": "ys5tJuTFCEo",
       "title": "How To Connect Claude Code & Codex To GrokBot",
       "published": "2026-10-09T08:13:12Z",
-      "views": 1175,
+      "views": 1862,
       "duration": "7:50",
       "summary": "Learn how to integrate your Codex and Claude Code subscriptions directly into GrokBot to keep your AI workflows running smoothly when Cursor Cloud credits run out.",
       "embeddable": true
@@ -40,7 +49,7 @@
       "id": "taqTVHPlJ8w",
       "title": "Claude Haiku 5.5: Everything You Need To Know",
       "published": "2026-10-08T12:27:22Z",
-      "views": 176,
+      "views": 192,
       "duration": "7:05",
       "summary": "Anthropic just dropped Claude Haiku 5.5, which is now 75% cheaper than Claude Haiku 4.5. Here is how it performs versus the rest of the models from OpenAI.",
       "embeddable": true
@@ -49,24 +58,15 @@
       "id": "Ip8KBwDixJs",
       "title": "GrokBot Is The Ultimate AI Chief Of Staff",
       "published": "2026-10-05T12:37:47Z",
-      "views": 315,
+      "views": 322,
       "duration": "13:03",
       "summary": "How to use GrokBot as a Chief of Staff AI agent to manage your AI automation tasks.",
-      "embeddable": true
-    },
-    {
-      "id": "IymTRFLMY_s",
-      "title": "Why GrokBot Is The Best Personal AI Assistant",
-      "published": "2026-10-03T14:33:34Z",
-      "views": 246,
-      "duration": "18:37",
-      "summary": "Here's why GrokBot is my favorite personal AI assistant to automate your business.",
       "embeddable": true
     }
   ],
   "channel": {
-    "subscribers": 5210,
-    "views": 522548,
-    "videos": 345
+    "subscribers": 5230,
+    "views": 531891,
+    "videos": 346
   }
 }

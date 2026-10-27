@@ -417,7 +417,7 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.match(html, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
   assert.match(html, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
   // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
-  assert.match(html, /grid-template-columns: repeat\(auto-fill, minmax\(300px, 1fr\)\)/);
+  assert.match(html, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
   assert.match(html, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
   assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);

@@ -212,7 +212,8 @@ export async function recordOpen({ token, openedAt, userAgent }, env = process.e
 }
 
 export async function handleOpenPixel(request, env = process.env) {
-  if (request.method !== 'GET' && request.method !== 'HEAD') return pixelResponse();
+  if (request.method === 'HEAD') return new Response(null, { status: 200, headers: PIXEL_HEADERS });
+  if (request.method !== 'GET') return pixelResponse();
   const token = extractToken(request.url);
   const openedAt = new Date().toISOString();
   const userAgent = request.headers.get('user-agent') || '';

@@ -36,13 +36,14 @@ function verify(raw, headers) {
   const sigHeader = headers.get("svix-signature");
   const secret = process.env.RESEND_WEBHOOK_SECRET || "";
   if (!id || !ts || !sigHeader || !secret.startsWith("whsec_")) return false;
-  if (Math.abs(Date.now() / 1000 - Number(ts)) > TOLERANCE_SEC) return false; // replay guard
+  if (!/^\d+$/.test(ts) || !Number.isSafeInteger(Number(ts)) || Math.abs(Date.now() / 1000 - Number(ts)) > TOLERANCE_SEC) return false;
   const key = Buffer.from(secret.slice(6), "base64");
-  const expected = crypto.createHmac("sha256", key).update(`${id}.${ts}.${raw}`).digest("base64");
+  const expected = crypto.createHmac("sha256", key).update(`${id}.${ts}.${raw}`).digest();
   return sigHeader.split(" ").some((part) => {
-    const sig = part.split(",")[1] || "";
-    return sig.length === expected.length &&
-      crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+    const [version, sig] = part.split(",");
+    if (version !== "v1" || !/^[A-Za-z0-9+/]{43}=$/.test(sig || "")) return false;
+    const actual = Buffer.from(sig, "base64");
+    return actual.length === expected.length && crypto.timingSafeEqual(actual, expected);
   });
 }
 
@@ -64,6 +65,7 @@ async function airtableUpsert(table, rows) {
   for (let i = 0; i < rows.length; i += UPSERT_BATCH) {
     const res = await fetch(url, {
       method: "PATCH",
+      signal: AbortSignal.timeout(8000),
       headers: { ...auth, "Content-Type": "application/json" },
       body: JSON.stringify({
         performUpsert: { fieldsToMergeOn: ["Webhook ID", "Email"] },
@@ -71,7 +73,7 @@ async function airtableUpsert(table, rows) {
         typecast: true,
       }),
     });
-    if (!res.ok) throw new Error(`Airtable ${res.status}: ${await res.text()}`);
+    if (!res.ok) throw new Error(`Airtable ${res.status}`);
   }
 }
 
@@ -80,7 +82,13 @@ export async function POST(req) {
   if (!verify(raw, req.headers)) return new Response("invalid signature", { status: 401 });
   const webhookId = req.headers.get("svix-id");
 
-  const evt = JSON.parse(raw);
+  let evt;
+  try { evt = JSON.parse(raw); }
+  catch { return new Response("invalid payload", { status: 400 }); }
+  if (!evt || typeof evt !== "object" || Array.isArray(evt) || typeof evt.type !== "string"
+    || (evt.data != null && (typeof evt.data !== "object" || Array.isArray(evt.data)))) {
+    return new Response("invalid payload", { status: 400 });
+  }
   const d = evt.data || {};
   const from = String(d.from || "");
   if (!isAllowedSender(from)) {

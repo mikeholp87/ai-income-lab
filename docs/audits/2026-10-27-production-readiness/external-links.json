@@ -1,0 +1,788 @@
+[
+  {
+    "url": "https://9router.com/",
+    "status": "200",
+    "destination": "https://9router.com/",
+    "error": ""
+  },
+  {
+    "url": "https://ai.google.dev/gemini-api/docs/aistudio-build-mode",
+    "status": "200",
+    "destination": "https://ai.google.dev/gemini-api/docs/aistudio-build-mode",
+    "error": ""
+  },
+  {
+    "url": "https://app.dataforseo.com/api-access",
+    "status": "200",
+    "destination": "https://app.dataforseo.com/api-access",
+    "error": ""
+  },
+  {
+    "url": "https://apps.make.com/google-sheets-modules",
+    "status": "200",
+    "destination": "https://apps.make.com/google-sheets-modules",
+    "error": ""
+  },
+  {
+    "url": "https://cal.com/beremote/discovery-call?utm_source=ai-automation-station&utm_medium=website&utm_content=booking",
+    "status": "200",
+    "destination": "https://cal.com/beremote/discovery-call?utm_source=ai-automation-station&utm_medium=website&utm_content=booking",
+    "error": ""
+  },
+  {
+    "url": "https://chatgpt.com/codex/pricing/",
+    "status": "403",
+    "destination": "https://chatgpt.com/codex/pricing/",
+    "error": ""
+  },
+  {
+    "url": "https://claude.com/pricing",
+    "status": "200",
+    "destination": "https://claude.com/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://claude.com/product/claude-code",
+    "status": "200",
+    "destination": "https://claude.com/product/claude-code",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/authentication",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/authentication",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/cli-reference",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/cli-reference",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/llm-gateway",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/llm-gateway",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/llm-gateway-connect",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/llm-gateway-connect",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/memory",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/memory",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/model-config",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/model-config",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/overview",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/overview",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/permissions",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/permissions",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/quickstart",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/quickstart",
+    "error": ""
+  },
+  {
+    "url": "https://code.claude.com/docs/en/setup",
+    "status": "200",
+    "destination": "https://code.claude.com/docs/en/setup",
+    "error": ""
+  },
+  {
+    "url": "https://dataforseo.com/Pricing",
+    "status": "200",
+    "destination": "https://dataforseo.com/Pricing",
+    "error": ""
+  },
+  {
+    "url": "https://dataforseo.com/help-center/3-ways-to-install-dataforseo-mcp-with-claude-code",
+    "status": "200",
+    "destination": "https://dataforseo.com/help-center/3-ways-to-install-dataforseo-mcp-with-claude-code",
+    "error": ""
+  },
+  {
+    "url": "https://dataforseo.com/update/pricing-update-in-dataforseo-apis",
+    "status": "200",
+    "destination": "https://dataforseo.com/update/pricing-update-in-dataforseo-apis",
+    "error": ""
+  },
+  {
+    "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+    "status": "200",
+    "destination": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+    "error": ""
+  },
+  {
+    "url": "https://developers.heygen.com/docs/quick-start",
+    "status": "200",
+    "destination": "https://developers.heygen.com/docs/quick-start",
+    "error": ""
+  },
+  {
+    "url": "https://developers.heygen.com/generate-avatar-video",
+    "status": "200",
+    "destination": "https://developers.heygen.com/generate-avatar-video",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/api/docs/pricing",
+    "status": "200",
+    "destination": "https://developers.openai.com/api/docs/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/app",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/app",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/auth",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/auth",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/auth/",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/auth",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/cli",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/codex/cli",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/cli/",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/codex/cli",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/cli/reference",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/developer-commands?surface=cli",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/ide",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/codex/ide",
+    "error": ""
+  },
+  {
+    "url": "https://developers.openai.com/codex/pricing",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://docs.n8n.io/advanced-ai/",
+    "status": "200",
+    "destination": "https://docs.n8n.io/build/integrate-ai",
+    "error": ""
+  },
+  {
+    "url": "https://docs.n8n.io/hosting/",
+    "status": "200",
+    "destination": "https://docs.n8n.io/deploy/host-n8n",
+    "error": ""
+  },
+  {
+    "url": "https://docs.n8n.io/hosting/installation/docker/",
+    "status": "200",
+    "destination": "https://docs.n8n.io/deploy/host-n8n/install-options/install-with-docker",
+    "error": ""
+  },
+  {
+    "url": "https://docs.n8n.io/hosting/installation/npm/",
+    "status": "200",
+    "destination": "https://docs.n8n.io/deploy/host-n8n/install-options/install-with-npm",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/assistants/model-intelligence/presets",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/assistants/model-intelligence/presets",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/assistants/model-intelligence/understanding-cost",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/assistants/model-intelligence/understanding-cost",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/assistants/quickstart",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/assistants/quickstart",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/billing/pricing-and-success-packages",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/billing/pricing-and-success-packages",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/debugging",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/debugging",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/free-telephony",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/free-telephony",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/observability/logs/webhook-logs",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/observability/logs/webhook-logs",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/quickstart",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/quickstart",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/quickstart/phone",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/quickstart/phone",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/server-url/events",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/server-url/events",
+    "error": ""
+  },
+  {
+    "url": "https://docs.vapi.ai/server-url/setting-server-urls",
+    "status": "200",
+    "destination": "https://docs.vapi.ai/server-url/setting-server-urls",
+    "error": ""
+  },
+  {
+    "url": "https://emergent.sh/learn",
+    "status": "200",
+    "destination": "https://emergent.sh/learn",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/NousResearch/hermes-agent",
+    "status": "200",
+    "destination": "https://github.com/NousResearch/hermes-agent",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/anomalyco/opencode",
+    "status": "200",
+    "destination": "https://github.com/anomalyco/opencode",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/anthropics/claude-code/blob/main/LICENSE.md",
+    "status": "200",
+    "destination": "https://github.com/anthropics/claude-code/blob/main/LICENSE.md",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/dataforseo/mcp-server-typescript",
+    "status": "200",
+    "destination": "https://github.com/dataforseo/mcp-server-typescript",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/decolua/9router#-quick-start",
+    "status": "200",
+    "destination": "https://github.com/decolua/9router#-quick-start",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/decolua/9router/blob/master/README.md",
+    "status": "200",
+    "destination": "https://github.com/decolua/9router/blob/master/README.md",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/decolua/9router/blob/master/cli/README.md",
+    "status": "200",
+    "destination": "https://github.com/decolua/9router/blob/master/cli/README.md",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/decolua/9router/blob/master/skills/9router-chat/SKILL.md",
+    "status": "200",
+    "destination": "https://github.com/decolua/9router/blob/master/skills/9router-chat/SKILL.md",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/every-app/open-seo",
+    "status": "200",
+    "destination": "https://github.com/every-app/open-seo",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/fathah/hermes-desktop",
+    "status": "200",
+    "destination": "https://github.com/fathah/hermes-desktop",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/fathah/hermes-desktop/releases",
+    "status": "200",
+    "destination": "https://github.com/fathah/hermes-desktop/releases",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/mikeholp87",
+    "status": "200",
+    "destination": "https://github.com/mikeholp87",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/mikeholp87/ai-income-lab",
+    "status": "200",
+    "destination": "https://github.com/mikeholp87/ai-income-lab",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/mikeholp87/ai-income-lab/blob/main/public/examples/first-api-request.mjs",
+    "status": "200",
+    "destination": "https://github.com/mikeholp87/ai-income-lab/blob/main/public/examples/first-api-request.mjs",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/mikeholp87/seo-tool",
+    "status": "200",
+    "destination": "https://github.com/mikeholp87/seo-tool",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/mikeholp87/solar-business-directory",
+    "status": "200",
+    "destination": "https://github.com/mikeholp87/solar-business-directory",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/openai/codex/blob/main/README.md",
+    "status": "200",
+    "destination": "https://github.com/openai/codex/blob/main/README.md",
+    "error": ""
+  },
+  {
+    "url": "https://github.com/sst/opencode",
+    "status": "200",
+    "destination": "https://github.com/anomalyco/opencode",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/10060327-heygen-api-pricing-explained",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/10060327-heygen-api-pricing-explained",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/11049655-overview-our-new-ai-studio",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/11049655-overview-our-new-ai-studio",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/11202248-using-voices-in-the-ai-studio",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/11202248-using-voices-in-the-ai-studio",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/12089286-create-your-first-digital-twin-video-avatar-with-avatar-iv",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/12089286-create-your-first-digital-twin-video-avatar-with-avatar-iv",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/12092609-recording-your-consent-video",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/12092609-recording-your-consent-video",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/15126059-how-to-use-credits-on-heygen",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/15126059-how-to-use-credits-on-heygen",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/15544929-avatar-voice-faq-troubleshooting-best-practices-and-credits",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/15544929-avatar-voice-faq-troubleshooting-best-practices-and-credits",
+    "error": ""
+  },
+  {
+    "url": "https://help.heygen.com/en/articles/9824740-digital-twin-creation-error-codes",
+    "status": "200",
+    "destination": "https://help.heygen.com/en/articles/9824740-digital-twin-creation-error-codes",
+    "error": ""
+  },
+  {
+    "url": "https://help.make.com/credits",
+    "status": "200",
+    "destination": "https://help.make.com/credits",
+    "error": ""
+  },
+  {
+    "url": "https://help.make.com/filtering",
+    "status": "200",
+    "destination": "https://help.make.com/filtering",
+    "error": ""
+  },
+  {
+    "url": "https://help.make.com/mapping",
+    "status": "200",
+    "destination": "https://help.make.com/mapping",
+    "error": ""
+  },
+  {
+    "url": "https://help.make.com/router",
+    "status": "200",
+    "destination": "https://help.make.com/router",
+    "error": ""
+  },
+  {
+    "url": "https://help.make.com/step-5-set-up-the-trigger",
+    "status": "200",
+    "destination": "https://help.make.com/step-5-set-up-the-trigger",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/",
+    "status": "403",
+    "destination": "https://help.openai.com/en/",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+    "status": "403",
+    "destination": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/articles/20001498-how-resets-work-in-codex",
+    "status": "403",
+    "destination": "https://help.openai.com/en/articles/20001498-how-resets-work-in-codex",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex",
+    "status": "403",
+    "destination": "https://help.openai.com/en/articles/20001516-managing-usage-with-gpt-6-astra-in-work-and-codex",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety",
+    "status": "403",
+    "destination": "https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety",
+    "error": ""
+  },
+  {
+    "url": "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers",
+    "status": "403",
+    "destination": "https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers",
+    "error": ""
+  },
+  {
+    "url": "https://help.zapier.com/hc/en-us/articles/46425475442829-AI-by-Zapier-model-tier-pricing",
+    "status": "200",
+    "destination": "https://help.zapier.com/hc/en-us/articles/46425475442829-AI-by-Zapier-model-tier-pricing",
+    "error": ""
+  },
+  {
+    "url": "https://hermes-agent.nousresearch.com/",
+    "status": "200",
+    "destination": "https://hermes-agent.nousresearch.com/",
+    "error": ""
+  },
+  {
+    "url": "https://jeffjhunter.com/openai-paused-the-200-pro-plan",
+    "status": "200",
+    "destination": "https://jeffjhunter.com/openai-paused-the-200-pro-plan",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/changelog",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/changelog",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/config-file/config-advanced",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/config-file/config-advanced",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/config-file/config-reference",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/config-file/config-reference",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/enterprise/connect-to-a-gateway",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/enterprise/connect-to-a-gateway",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/linux/linux-app",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/linux/linux-app",
+    "error": ""
+  },
+  {
+    "url": "https://learn.chatgpt.com/docs/pricing",
+    "status": "200",
+    "destination": "https://learn.chatgpt.com/docs/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://n8n.io/pricing/",
+    "status": "200",
+    "destination": "https://n8n.io/pricing/",
+    "error": ""
+  },
+  {
+    "url": "https://n8n.io/workflows/",
+    "status": "200",
+    "destination": "https://n8n.io/workflows/",
+    "error": ""
+  },
+  {
+    "url": "https://nodejs.org/en/download",
+    "status": "200",
+    "destination": "https://nodejs.org/en/download",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/docs/",
+    "status": "200",
+    "destination": "https://opencode.ai/docs/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/docs/models/",
+    "status": "200",
+    "destination": "https://opencode.ai/docs/models/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/docs/providers/",
+    "status": "200",
+    "destination": "https://opencode.ai/docs/providers/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/v2/docs/",
+    "status": "200",
+    "destination": "https://opencode.ai/v2/docs/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/v2/docs/cli/",
+    "status": "200",
+    "destination": "https://opencode.ai/v2/docs/cli/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/v2/docs/cli/providers/",
+    "status": "200",
+    "destination": "https://opencode.ai/v2/docs/cli/providers/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/v2/docs/console/models/",
+    "status": "200",
+    "destination": "https://opencode.ai/v2/docs/console/models/",
+    "error": ""
+  },
+  {
+    "url": "https://opencode.ai/v2/docs/providers/",
+    "status": "200",
+    "destination": "https://opencode.ai/v2/docs/providers/",
+    "error": ""
+  },
+  {
+    "url": "https://openseo.so/features/domain-overview",
+    "status": "200",
+    "destination": "https://openseo.so/features/domain-overview",
+    "error": ""
+  },
+  {
+    "url": "https://openseo.so/features/keyword-research",
+    "status": "200",
+    "destination": "https://openseo.so/features/keyword-research",
+    "error": ""
+  },
+  {
+    "url": "https://openseo.so/features/site-audit",
+    "status": "200",
+    "destination": "https://openseo.so/features/site-audit",
+    "error": ""
+  },
+  {
+    "url": "https://openseo.so/google-search-console-mcp",
+    "status": "200",
+    "destination": "https://openseo.so/google-search-console-mcp",
+    "error": ""
+  },
+  {
+    "url": "https://openseo.so/pricing",
+    "status": "200",
+    "destination": "https://openseo.so/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://solar-business-directory.vercel.app",
+    "status": "200",
+    "destination": "https://solar-business-directory.vercel.app/",
+    "error": ""
+  },
+  {
+    "url": "https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan",
+    "status": "200",
+    "destination": "https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan",
+    "error": ""
+  },
+  {
+    "url": "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-claude-api-usage",
+    "status": "200",
+    "destination": "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-claude-api-usage",
+    "error": ""
+  },
+  {
+    "url": "https://support.claude.com/en/articles/9876003-i-have-a-paid-claude-subscription-pro-max-team-or-enterprise-plans-why-is-claude-api-usage-billed-separately-from-my-paid-claude-plan",
+    "status": "200",
+    "destination": "https://support.claude.com/en/articles/9876003-i-have-a-paid-claude-subscription-pro-max-team-or-enterprise-plans-why-is-claude-api-usage-billed-separately-from-my-paid-claude-plan",
+    "error": ""
+  },
+  {
+    "url": "https://vapi.ai/pricing",
+    "status": "200",
+    "destination": "https://vapi.ai/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+    "status": "403",
+    "destination": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+    "error": ""
+  },
+  {
+    "url": "https://www.heygen.com/pricing",
+    "status": "200",
+    "destination": "https://www.heygen.com/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://www.linkedin.com/in/mikeholp",
+    "status": "999",
+    "destination": "https://www.linkedin.com/in/mikeholp",
+    "error": ""
+  },
+  {
+    "url": "https://www.make.com/en/pricing",
+    "status": "403",
+    "destination": "https://www.make.com/en/pricing",
+    "error": ""
+  },
+  {
+    "url": "https://www.openseo.so/docs/mcp",
+    "status": "200",
+    "destination": "https://www.openseo.so/docs/mcp",
+    "error": ""
+  },
+  {
+    "url": "https://www.openseo.so/docs/self-hosting",
+    "status": "200",
+    "destination": "https://www.openseo.so/docs/self-hosting",
+    "error": ""
+  },
+  {
+    "url": "https://www.openseo.so/docs/self-hosting/docker",
+    "status": "200",
+    "destination": "https://www.openseo.so/docs/self-hosting/docker",
+    "error": ""
+  },
+  {
+    "url": "https://www.skool.com/ai-automation-station-7346",
+    "status": "403",
+    "destination": "https://www.skool.com/ai-automation-station-7346",
+    "error": ""
+  },
+  {
+    "url": "https://www.skool.com/ai-automation-station-7346/about",
+    "status": "403",
+    "destination": "https://www.skool.com/ai-automation-station-7346/about",
+    "error": ""
+  },
+  {
+    "url": "https://www.skool.com/ai-automation-station-7346/classroom",
+    "status": "403",
+    "destination": "https://www.skool.com/ai-automation-station-7346/classroom",
+    "error": ""
+  },
+  {
+    "url": "https://www.skool.com/ai-automation-station-7346/plans",
+    "status": "403",
+    "destination": "https://www.skool.com/ai-automation-station-7346/plans",
+    "error": ""
+  },
+  {
+    "url": "https://www.tubeanalytics.net",
+    "status": "200",
+    "destination": "https://www.tubeanalytics.net/",
+    "error": ""
+  },
+  {
+    "url": "https://www.visiscan.app",
+    "status": "200",
+    "destination": "https://www.visiscan.app/",
+    "error": ""
+  },
+  {
+    "url": "https://x.com/mikeholp",
+    "status": "200",
+    "destination": "https://x.com/mikeholp",
+    "error": ""
+  },
+  {
+    "url": "https://zapier.com/pricing",
+    "status": "200",
+    "destination": "https://zapier.com/pricing",
+    "error": ""
+  }
+]

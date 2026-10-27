@@ -1,0 +1,126 @@
+{
+  "mobile": {
+    "url": "http://127.0.0.1:4173/",
+    "lighthouseVersion": "13.5.0",
+    "scores": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 0.96,
+      "seo": 1,
+      "agentic-browsing": 0.75
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "displayValue": "1.4\u00a0s",
+        "numericValue": 1353.8666
+      },
+      "largest-contentful-paint": {
+        "displayValue": "2.3\u00a0s",
+        "numericValue": 2267.3666000000003
+      },
+      "total-blocking-time": {
+        "displayValue": "10\u00a0ms",
+        "numericValue": 7
+      },
+      "cumulative-layout-shift": {
+        "displayValue": "0",
+        "numericValue": 0
+      },
+      "speed-index": {
+        "displayValue": "1.4\u00a0s",
+        "numericValue": 1353.8666
+      }
+    },
+    "warnings": [],
+    "consoleErrors": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "sourceLocation",
+          "valueType": "source-location",
+          "label": "Source"
+        },
+        {
+          "key": "description",
+          "valueType": "code",
+          "label": "Description"
+        }
+      ],
+      "items": [
+        {
+          "source": "network",
+          "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "sourceLocation": {
+            "type": "source-location",
+            "url": "http://127.0.0.1:4173/_vercel/insights/script.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 0
+          }
+        }
+      ]
+    }
+  },
+  "desktop": {
+    "url": "http://127.0.0.1:4173/",
+    "lighthouseVersion": "13.5.0",
+    "scores": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 0.96,
+      "seo": 1,
+      "agentic-browsing": 0.75
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "displayValue": "0.4\u00a0s",
+        "numericValue": 403.059
+      },
+      "largest-contentful-paint": {
+        "displayValue": "0.6\u00a0s",
+        "numericValue": 586.5885000000001
+      },
+      "total-blocking-time": {
+        "displayValue": "0\u00a0ms",
+        "numericValue": 0
+      },
+      "cumulative-layout-shift": {
+        "displayValue": "0",
+        "numericValue": 0
+      },
+      "speed-index": {
+        "displayValue": "0.4\u00a0s",
+        "numericValue": 403.059
+      }
+    },
+    "warnings": [],
+    "consoleErrors": {
+      "type": "table",
+      "headings": [
+        {
+          "key": "sourceLocation",
+          "valueType": "source-location",
+          "label": "Source"
+        },
+        {
+          "key": "description",
+          "valueType": "code",
+          "label": "Description"
+        }
+      ],
+      "items": [
+        {
+          "source": "network",
+          "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "sourceLocation": {
+            "type": "source-location",
+            "url": "http://127.0.0.1:4173/_vercel/insights/script.js",
+            "urlProvider": "network",
+            "line": 0,
+            "column": 0
+          }
+        }
+      ]
+    }
+  }
+}

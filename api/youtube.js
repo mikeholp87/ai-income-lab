@@ -1,4 +1,4 @@
-import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed } from '../src/youtube.js';
+import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
 
 const day = 86400000;
 // Fluid Compute reuses instances, so this survives between requests. Cache-busting query strings
@@ -21,20 +21,30 @@ async function fetchFeed(statuses) {
       fetch(`${api}/channels?part=statistics&id=${channelId}&key=${key}`, { signal: AbortSignal.timeout(8000) }).then(response => response.ok ? response.json() : null).then(parseChannel).catch(() => null),
     ]);
     if (response.ok) {
-      const playlist = await response.json();
-      const ids = playlist.items.map(item => item.snippet.resourceId.videoId).join(',');
-      // videos.list costs 1 unit whatever parts are requested.
-      const details = await fetch(`${api}/videos?part=statistics,contentDetails,status&id=${ids}&key=${key}`, { signal: AbortSignal.timeout(8000) }).then(response => response.ok ? response.json() : {}).catch(() => ({}));
-      return { videos: parseApi(playlist, details), channel };
+      try {
+        const playlist = await response.json();
+        const ids = playlist.items.map(item => item.snippet.resourceId.videoId).join(',');
+        // videos.list costs 1 unit whatever parts are requested.
+        const details = await fetch(`${api}/videos?part=statistics,contentDetails,status&id=${ids}&key=${key}`, { signal: AbortSignal.timeout(8000) }).then(response => response.ok ? response.json() : {}).catch(() => ({}));
+        const feed = { videos: parseApi(playlist, details), channel };
+        if (validFeed(feed)) return feed;
+        statuses.push('invalid API feed');
+      } catch { statuses.push('malformed API feed'); }
+    } else {
+      statuses.push(`api ${response.status}`);
     }
-    statuses.push(`api ${response.status}`);
   }
 
   // The RSS endpoint randomly answers 404/500 (~1 in 4 requests) and can refuse cloud IPs; retry a few times.
   for (let attempt = 0; attempt < 4; attempt++) {
     const response = await fetch(feedUrl, { signal: AbortSignal.timeout(5000) }).catch(error => ({ ok: false, status: error.message }));
-    if (response.ok) return { videos: parseFeed(await response.text()).slice(0, 7), channel: null };
-    statuses.push(response.status);
+    if (response.ok) {
+      try {
+        const feed = { videos: parseFeed(await response.text()).slice(0, 7), channel: null };
+        if (validFeed(feed)) return feed;
+      } catch { /* Retry malformed upstream data just like a failed request. */ }
+      statuses.push('invalid RSS feed');
+    } else statuses.push(response.status);
   }
   return null;
 }

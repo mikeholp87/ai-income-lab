@@ -173,6 +173,27 @@ test('RSS retries have separate five-second timeouts and preserve the RSS succes
   assert.equal(new Set(signals).size, 4, 'each RSS attempt has its own timeout');
 });
 
+test('empty or malformed successful API responses fall back to validated RSS', async t => {
+  for (const body of ['{}', '{', '{"items":[]}', '{"items":[{}]}']) {
+    const { GET } = await import(`../api/youtube.js?invalid=${encodeURIComponent(body)}`);
+    await setup(t);
+    t.mock.method(globalThis, 'fetch', async input => {
+      const url = new URL(input);
+      if (url.hostname === 'www.youtube.com') return new Response(rss);
+      return url.pathname.endsWith('/playlistItems') ? new Response(body) : upstream(input);
+    });
+    assert.deepEqual(await (await GET()).json(), rssFeed, body);
+  }
+});
+
+test('empty and invalid RSS responses are retried rather than cached for a day', async t => {
+  const { GET } = await setup(t, null);
+  let attempts = 0;
+  t.mock.method(globalThis, 'fetch', async () => new Response(++attempts < 3 ? '<feed/>' : rss));
+  assert.deepEqual(await (await GET()).json(), rssFeed);
+  assert.equal(attempts, 3);
+});
+
 test('an aborted YouTube refresh settles and enters the failure cooldown', async t => {
   const { GET } = await setup(t);
   t.mock.method(AbortSignal, 'timeout', () => {

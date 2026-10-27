@@ -1,0 +1,91 @@
+[
+  {
+    "path": "/",
+    "passes": 44,
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/start-here.html",
+    "passes": 34,
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/guides.html",
+    "passes": 35,
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "path": "/guides/ai-automation.html",
+    "passes": 42,
+    "violations": [],
+    "incomplete": [
+      "color-contrast",
+      "frame-tested"
+    ]
+  },
+  {
+    "path": "/guides/claude-code-vs-codex.html",
+    "passes": 43,
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/videos",
+    "passes": 36,
+    "violations": [],
+    "incomplete": [
+      "color-contrast",
+      "link-in-text-block"
+    ]
+  },
+  {
+    "path": "/videos/ai-agents",
+    "passes": 36,
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/watch/Ip8KBwDixJs",
+    "passes": 40,
+    "violations": [],
+    "incomplete": [
+      "color-contrast",
+      "frame-tested"
+    ]
+  },
+  {
+    "path": "/privacy.html",
+    "passes": 30,
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "path": "/terms.html",
+    "passes": 30,
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "path": "/404.html",
+    "passes": 28,
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "path": "/videos/abc",
+    "passes": 24,
+    "violations": [],
+    "incomplete": []
+  }
+]
