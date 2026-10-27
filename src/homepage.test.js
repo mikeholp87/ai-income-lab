@@ -124,6 +124,8 @@ test('footer social links show an icon beside each name', () => {
   assert.match(jsx, /socialLinks\.map\(\(\[name, url, icon\]\) => <a key=\{name\} href=\{url\} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d=\{icon\} \/><\/svg>\{name\}<\/a>\)/);
   for (const name of ['YouTube', 'GitHub', 'LinkedIn', 'X']) assert.match(jsx, new RegExp(`\\['${name}', \\w+Url, 'M`), name);
   assert.match(css, /\.social-icon \{ flex: none; width: 16px; height: 16px; fill: currentColor; \}/);
+  assert.match(jsx, /<a href="mailto:automojic@proton\.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d=\{emailIcon\} \/><\/svg>Email<\/a>/);
+  assert.doesNotMatch(jsx, /Sponsor a video \/ book a call/);
 });
 
 test('the homepage links every written guide so new guides are found and crawled', async () => {
