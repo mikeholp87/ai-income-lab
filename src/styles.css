@@ -28,9 +28,6 @@ h1, h2, h3, h4, p, dl, dd, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 /* Guides under the latest videos: ruled two-column list, same rhythm as the repo list */
-.build-guides { margin-top: 96px; }
-.build-guides h3 { font: 600 22px/1.25 var(--sans); }
-.build-guides > p { margin-top: 8px; color: var(--body); }
 .build-guides ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; margin-top: 32px; border-top: 1px solid var(--line); }
 .build-guides li a { display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); font-size: 14px; transition: color .2s ease; }
 .build-guides li a:hover { color: var(--signal); }
@@ -221,7 +218,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .plan-price strong { color: var(--text); font: 400 24px var(--display); }
 .fine-print { margin-top: 14px; color: var(--muted); font-size: 12px; }
 /* Prose reads in Instrument Sans; DM Mono stays on labels, meta, prices, buttons, timeline and FAQ questions. */
-.lede, .about-copy > p:not(.about-links, .eyebrow), .tool-body > p:not(.tool-tagline), .plan-fit, .plan-features, .fine-print, .community-help, .support-note, .faq-list details p, .members p, .built > p, .repo-list li > p:not(.repo-meta, .repo-links), .build-guides > p, .next-step-access { font-family: var(--sans); }
+.lede, .about-copy > p:not(.about-links, .eyebrow), .tool-body > p:not(.tool-tagline), .plan-fit, .plan-features, .fine-print, .community-help, .support-note, .faq-list details p, .members p, .built > p, .repo-list li > p:not(.repo-meta, .repo-links), .next-step-access { font-family: var(--sans); }
 .lede { font-size: 17px; line-height: 1.6; }
 .community-video { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
 /* The poster's headline ends about 64% down; size and place the play button in proportion so it stays below at every width. */

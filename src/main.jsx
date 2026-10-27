@@ -186,7 +186,7 @@ function SectionHead({ eyebrow, title, accent, children }) {
   );
 }
 
-const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#tools', 'Tools'], ['#about', 'About'], ['#work-together', 'Contact']];
+const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#tools', 'Tools'], ['#about', 'About'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
@@ -533,41 +533,44 @@ function App() {
             </div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
-          <aside className="build-guides" aria-labelledby="build-guides-title">
-            <h3 id="build-guides-title">Guides and walkthroughs</h3>
-            <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
-            <ul>
-              <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
-              <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi AI tutorial: build a voice agent, test calls, webhooks</a></li>
-              <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: pricing, setup and limits</a></li>
-              <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
-              <li><a href="/guides/codex-on-linux.html">Codex on Linux: install Codex CLI and the desktop app</a></li>
-              <li><a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it</a></li>
-              <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
-              <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
-              <li><a href="/guides/codex-usage-limits.html">Codex usage limits: check usage, plans and reset times</a></li>
-              <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
-              <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
-              <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
-              <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
-              <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
-              <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
-              <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
-              <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
-              <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
-              <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
-              <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
-              <li><a href="/guides/make-money-with-ai-fast.html">Make money with AI fast</a></li>
-              <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
-              <li><a href="/guides/ai-automation-services-small-business.html">Scope AI automation services for small business</a></li>
-              <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
-              <li><a href="/guides/chatgpt-pro-20x.html">ChatGPT Pro 20x: Pause, Return &amp; Codex Limits (2026)</a></li>
-              <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
-              <li><a href="/watch/geKngm3sg3w">Video: set up 9Router</a></li>
-              <li><a href="/watch/G8u1-hKEqig">Video: follow the HeyGen avatar workflow</a></li>
-            </ul>
-            <a className="text-link" href="/guides.html">All guides</a>
-          </aside>
+        </div>
+      </section>
+
+      <div className="divider reveal" aria-hidden="true" />
+      <section className="section build-guides" id="guides">
+        <div className="shell">
+          <SectionHead eyebrow="Guides" title="Written guides," accent="step by step.">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
+          <ul>
+            <li><a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
+            <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi AI tutorial: build a voice agent, test calls, webhooks</a></li>
+            <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: pricing, setup and limits</a></li>
+            <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
+            <li><a href="/guides/codex-on-linux.html">Codex on Linux: install Codex CLI and the desktop app</a></li>
+            <li><a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it</a></li>
+            <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
+            <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
+            <li><a href="/guides/codex-usage-limits.html">Codex usage limits: check usage, plans and reset times</a></li>
+            <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
+            <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
+            <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
+            <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
+            <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
+            <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
+            <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
+            <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
+            <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
+            <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
+            <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
+            <li><a href="/guides/make-money-with-ai-fast.html">Make money with AI fast</a></li>
+            <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
+            <li><a href="/guides/ai-automation-services-small-business.html">Scope AI automation services for small business</a></li>
+            <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
+            <li><a href="/guides/chatgpt-pro-20x.html">ChatGPT Pro 20x: Pause, Return &amp; Codex Limits (2026)</a></li>
+            <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
+            <li><a href="/watch/geKngm3sg3w">Video: set up 9Router</a></li>
+            <li><a href="/watch/G8u1-hKEqig">Video: follow the HeyGen avatar workflow</a></li>
+          </ul>
+          <a className="text-link" href="/guides.html">All guides</a>
         </div>
       </section>
 
