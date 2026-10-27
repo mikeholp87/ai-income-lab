@@ -642,16 +642,20 @@ function App() {
     <footer className="footer">
       <div className="shell">
         <div className="footer-cta reveal">
-          <p>Build your next automation <span className="accent">with AI Income Lab.</span></p>
+          <p>Build your next automation.</p>
           <div className="button-row">
             <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-            <a className="button button-quiet" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
+            <a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
           </div>
         </div>
-        <div className="footer-columns">
-          <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
-          <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
-          <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>
+        <div className="footer-directory">
+          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp.</p></div>
+          <nav className="footer-columns" aria-label="Footer">
+            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a></div>
+            <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
+            <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
+            <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>
+          </nav>
         </div>
         <div className="footer-base"><p>&copy; 2026 Mike Holp</p><div><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('open-privacy-choices'))}>Privacy choices</button></div></div>
       </div>

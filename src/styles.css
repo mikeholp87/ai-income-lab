@@ -266,18 +266,25 @@ a.video-card:hover h3 { color: var(--signal); }
 .faq-list details p { max-width: 62ch; padding: 0 18px 24px; color: var(--body); font-size: 14px; }
 
 /* Footer */
-.footer { padding: 120px 0 40px; border-top: 1px solid var(--line); }
+.footer { padding: 80px 0 32px; border-top: 1px solid var(--line); }
 .footer-cta { display: grid; justify-items: center; text-align: center; }
-.footer-cta > p { font: 400 clamp(32px, 4.4vw, 56px)/1 var(--display); text-transform: uppercase; letter-spacing: -.015em; text-wrap: balance; }
+.footer-cta > p { font: 400 clamp(32px, 4.4vw, 56px)/1.1 var(--display); text-transform: uppercase; letter-spacing: -.015em; text-wrap: balance; }
 .footer-cta .button-row { justify-content: center; }
-.footer-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px; }
+.footer-subscribe { display: inline-flex; align-items: center; min-height: 44px; color: var(--body); font: 400 14px var(--sans); text-decoration: underline; text-underline-offset: 4px; }
+.footer-subscribe:hover { color: var(--signal); }
+.footer-directory { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 48px; margin-top: 72px; }
+.footer-brand .brand { min-height: 44px; font-size: 14px; line-height: 1.5; }
+.footer-brand .brand span { flex: none; }
+.footer-brand p { max-width: 24ch; margin-top: 8px; color: var(--body); font: 400 14px/1.6 var(--sans); }
+.footer-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
 .footer-columns div { display: grid; align-content: start; }
-.footer-columns h2 { margin-bottom: 6px; color: var(--muted); font-size: 11px; font-weight: 500; }
+.footer-columns h2 { margin-bottom: 8px; color: var(--body); font-size: 11px; font-weight: 500; }
 .footer-columns a { justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; }
 .social-icon { flex: none; width: 16px; height: 16px; fill: currentColor; }
 .footer-columns a:hover, .footer-base a:hover, .footer-base button:hover { color: var(--signal); }
-.footer-base { display: flex; justify-content: space-between; gap: 24px; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
-.footer-base div { display: flex; flex-wrap: wrap; gap: 24px; }
+.footer-base { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.footer-base div { display: flex; flex-wrap: wrap; gap: 0 24px; }
+.footer-base a, .footer-base button { display: inline-flex; align-items: center; min-height: 44px; }
 .footer-base button { padding: 0; border: 0; color: inherit; background: none; font: inherit; cursor: pointer; }
 
 /* Consent: a slim bar pinned to the bottom while scrolling; sticky (not fixed) so it ends below the footer instead of covering it */
@@ -290,6 +297,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
 
 @media (max-width: 960px) {
+  .footer-directory { grid-template-columns: 1fr; gap: 32px; }
   .course-promo-card { display: grid; grid-template-columns: 1fr; gap: 28px; padding: 32px; }
   .course-promo-card::before { content: none; }
   .course-promo-image { position: static; z-index: auto; width: 100%; height: auto; border-radius: 10px; object-fit: initial; }
@@ -342,8 +350,10 @@ a.video-card:hover h3 { color: var(--signal); }
   .faq-list summary { grid-template-columns: minmax(0, 1fr) 28px; gap: 10px; padding: 14px; }
   .faq-icon { width: 28px; height: 28px; }
   .faq-list details p { padding: 0 14px 20px; }
-  .footer-columns { grid-template-columns: 1fr 1fr; }
-  .footer-base { flex-direction: column; }
+  .footer { padding-top: 64px; }
+  .footer-directory { margin-top: 48px; }
+  .footer-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+  .footer-base { flex-direction: column; align-items: flex-start; gap: 8px; }
   .nav { gap: 12px; }
   .brand { font-size: 13px; gap: 6px; }
   .brand span { width: 8px; height: 8px; }

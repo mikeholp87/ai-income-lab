@@ -60,7 +60,9 @@ test('the classroom list names courses without repeating plan access', () => {
 });
 
 test('the videos section keeps two buttons, the grid and one guides list', () => {
-  assert.equal(count(jsx, 'href="/start-here.html"'), 1);
+  const start = jsx.indexOf('id="latest"');
+  const latest = jsx.slice(start, jsx.indexOf('</section>', start));
+  assert.equal(count(latest, 'href="/start-here.html"'), 1);
   assert.doesNotMatch(jsx, /Start your first build|Prefer a recording\?|'video_grid'|Every video on YouTube/);
   // Fixed /watch/ links keep evergreen video pages linked from the homepage for indexing.
   for (const id of ['7v_675nO7nM', 'geKngm3sg3w', 'G8u1-hKEqig']) assert.match(jsx, new RegExp(`href="/watch/${id}"`));
