@@ -538,14 +538,14 @@ function App() {
             <p>Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</p>
             <ul>
               <li><a href="/start-here.html" onClick={trackClick('latest', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
-              <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi voice agent tutorial: setup, test calls and webhooks</a></li>
+              <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi AI tutorial: build a voice agent, test calls, webhooks</a></li>
               <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: pricing, setup and limits</a></li>
               <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
-              <li><a href="/guides/codex-on-linux.html">Codex Linux setup: CLI and desktop guide</a></li>
-              <li><a href="/guides/claude-code-for-beginners.html">Claude Code for beginners: your first 10 minutes</a></li>
+              <li><a href="/guides/codex-on-linux.html">Codex on Linux: install Codex CLI and the desktop app</a></li>
+              <li><a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it</a></li>
               <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
               <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
-              <li><a href="/guides/codex-usage-limits.html">Codex usage limits: plans, resets and remaining usage</a></li>
+              <li><a href="/guides/codex-usage-limits.html">Codex usage limits: check usage, plans and reset times</a></li>
               <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
               <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
               <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>

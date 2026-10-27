@@ -165,4 +165,17 @@ test('guide titles and sections match what people search for', async () => {
   // n8n's own docker run command, copied from its docs.
   assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
   assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-22</);
+  // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
+  for (const [file, lead] of [
+    ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
+    ['codex-on-linux', 'Codex on Linux: install Codex CLI'],
+    ['codex-usage-limits', 'Codex usage limits: check usage'],
+    ['vapi-voice-agent-tutorial', 'Vapi AI tutorial: '],
+  ]) {
+    const html = await read(`public/guides/${file}.html`);
+    assert.ok(html.includes(`<title>${lead}`), file);
+    assert.ok(html.includes(`<h1>${lead}`), file);
+    assert.ok(html.match(/<title>([^<]*)<\/title>/)[1].length <= 60, file);
+    assert.ok(html.match(/<meta name="description" content="([^"]*)"/)[1].length <= 160, file);
+  }
 });
