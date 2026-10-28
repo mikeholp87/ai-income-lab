@@ -42,10 +42,15 @@ export function loadMarketingTracking() {
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
   window.gtag('config', 'G-XYRWT4PFN8');
-  const googleTag = document.createElement('script');
-  googleTag.async = true;
-  googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8';
-  document.head.appendChild(googleTag);
+  // The stubs above queue calls at once; the tag scripts themselves wait for idle time so they don't compete with input.
+  const whenIdle = typeof window.requestIdleCallback === 'function' ? task => window.requestIdleCallback(task, { timeout: 3000 }) : task => task();
+  const addScript = src => whenIdle(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = src;
+    document.head.appendChild(script);
+  });
+  addScript('https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8');
 
   if (!window.fbq) {
     const fbq = window.fbq = function fbq() {
@@ -56,10 +61,7 @@ export function loadMarketingTracking() {
     fbq.loaded = true;
     fbq.version = '2.0';
     fbq.queue = [];
-    const pixel = document.createElement('script');
-    pixel.async = true;
-    pixel.src = 'https://connect.facebook.net/en_US/fbevents.js';
-    document.head.appendChild(pixel);
+    addScript('https://connect.facebook.net/en_US/fbevents.js');
   }
   window.fbq('init', '2384492104905321');
   window.fbq('consent', 'grant');

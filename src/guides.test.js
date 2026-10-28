@@ -63,7 +63,7 @@ test('guide figures are described once, by their caption', async () => {
 });
 
 test('the hub byline names one brand', async () => {
-  assert.match(await read('public/guides.html'), /<p class="meta">By <a href="\/#about" rel="author">Mike Holp<\/a> · Updated/);
+  assert.match(await read('public/guides.html'), /<p class="meta">By <a href="\/about\.html" rel="author">Mike Holp<\/a> · Updated/);
 });
 
 test('reading pages share the homepage type, link colour and header styles', async () => {
@@ -111,7 +111,7 @@ test('the Claude Code vs Codex guide has its own image and a contents list', asy
   assert.match(html, new RegExp(`<meta property="og:image" content="${image}">`));
   assert.match(html, new RegExp(`"image":"${image}"`));
   assert.doesNotMatch(html, /og-card\.jpg/);
-  assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" alt="" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
+  assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" alt="Diagram: [^"]+" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
   const toc = html.match(/<nav class="toc" aria-label="On this page">([\s\S]*?)<\/nav>/)[1];
   const targets = [...toc.matchAll(/href="#([a-z-]+)"/g)].map(match => match[1]);
   assert.equal(targets.length, 8);

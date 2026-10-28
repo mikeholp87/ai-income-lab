@@ -1,6 +1,7 @@
 import { StrictMode, useEffect, useRef, useState } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
@@ -573,7 +574,7 @@ function CommunityVideo() {
   return (
     <figure className="community-video">
       <div className="player-screen">
-        <video ref={video} controls={started} preload="none" loading="lazy" playsInline poster="/hero-video-poster.webp" width="1280" height="720" aria-label="A look inside AI Income Lab" onPlay={() => trackEvent('Hero Video Played', { placement: 'community' })} onEnded={() => trackEvent('Hero Video Completed', { placement: 'community' })}>
+        <video ref={video} controls={started} preload="none" playsInline poster="/hero-video-poster.webp" width="1280" height="720" aria-label="A look inside AI Income Lab" onPlay={() => trackEvent('Hero Video Played', { placement: 'community' })} onEnded={() => trackEvent('Hero Video Completed', { placement: 'community' })}>
           <source src="/hero-video.mp4" type="video/mp4" />
           <track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
         </video>
@@ -922,7 +923,7 @@ function App() {
 }
 
 export function Root() {
-  return <StrictMode><App /><Analytics /></StrictMode>;
+  return <StrictMode><App /><Analytics /><SpeedInsights /></StrictMode>;
 }
 
 if (typeof document !== 'undefined') {

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { captionText, transcriptParagraphs } from './transcript.js';
+import { captionText, fixTerms, transcriptParagraphs } from './transcript.js';
 import { renderWatch } from './archive.js';
 import transcripts from './transcripts.json' with { type: 'json' };
 
@@ -14,6 +14,12 @@ test('paragraphs break near sentence ends and keep every word', () => {
   const paragraphs = transcriptParagraphs(text);
   assert.ok(paragraphs[0].endsWith('end.'));
   assert.equal(paragraphs.join(' '), text);
+});
+
+test('misheard product names are corrected without touching real words', () => {
+  assert.equal(fixTerms('I opened codeex and cloud code, deployed on Versal, then joined the school community.'), 'I opened Codex and Claude Code, deployed on Vercel, then joined the Skool community.');
+  assert.equal(fixTerms('Export with the H.264 codec from open code'), 'Export with the H.264 codec from OpenCode');
+  assert.equal(transcriptParagraphs('chat GPT on superbase')[0], 'ChatGPT on Supabase');
 });
 
 test('watch pages show a transcript only when one is saved', () => {

@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
+import { fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
+import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
@@ -470,10 +471,10 @@ test('topic pages list only matching videos on one page with their own canonical
     { id: 'bbbbbbbbbbb', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: '', embeddable: true },
   ];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<title>Claude Code videos \| Mike Holp<\/title>/);
+  assert.match(html, /<title>Claude Code tutorials: builds, skills and workflows \| Mike Holp<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/claude-code">/);
-  assert.match(html, /<meta property="og:title" content="Claude Code videos">/);
-  assert.match(html, /<h1>Claude Code<\/h1><p>1 videos?, newest first\. Builds, skills and workflows/);
+  assert.match(html, /<meta property="og:title" content="Claude Code tutorials and builds">/);
+  assert.match(html, /<h1>Claude Code tutorials and builds<\/h1><p>1 videos?, newest first\. Builds, skills and workflows[^<]*<\/p><p>Each video here uses Claude Code/);
   assert.match(html, /aaaaaaaaaaa/);
   assert.doesNotMatch(html, /bbbbbbbbbbb/);
   assert.doesNotMatch(html, /class="pager/);
@@ -481,7 +482,7 @@ test('topic pages list only matching videos on one page with their own canonical
   // The header's All videos link is not the current page on a topic page.
   assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join"/);
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
-  assert.equal(schema.name, 'Claude Code videos');
+  assert.equal(schema.name, 'Claude Code tutorials and builds');
   assert.equal(schema.mainEntity.itemListElement.length, 1);
   // Phones show the pills as one swipeable row; bring the current pill into view without moving the page.
   const script = html.match(/<\/nav>\n<script>(.*?)<\/script>/)[1];
@@ -509,10 +510,11 @@ test('the page sitemap lists topic pages that have videos and drops stale ones',
 test('topic pages link the written guides on the same subject', () => {
   const videos = [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true }];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-vs-codex.html">Claude Code vs Codex: how I use both and route tasks<\/a> and <a href="\/guides\/codex-workflow.html">Make and verify a code change with Codex<\/a><\/p>/);
-  assert.doesNotMatch(renderArchive(videos, 1, topicBySlug('ai-video')), /Written guide/);
+  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it<\/a> and <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a><\/p>/);
+  assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, and <a /);
+  assert.doesNotMatch(renderArchive(videos, 1, topicBySlug('new-models')), /Written guide/);
   for (const [slug, guide] of [['n8n', 'self-host-n8n'], ['ai-seo', 'dataforseo-mcp-claude'], ['ai-agents', 'hermes-desktop']]) {
-    assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guide: <a href="/guides/${guide}.html">`), slug);
+    assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guides?: <a href="/guides/${guide}.html">`), slug);
   }
 });
 
@@ -522,4 +524,66 @@ test('only videos with the paid promotion box ticked reach the sponsored section
     { id: 'bbbbbbbbbbb', title: 'Unpaid', published: '2026-10-19T00:00:00Z', views: 9, duration: 'PT1M', embeddable: true, sponsored: false },
   ];
   assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+});
+
+test('watch page titles never reuse a written guide title or its lead phrase', async () => {
+  const dir = new URL('../public/guides/', import.meta.url);
+  const guideTitles = await Promise.all((await readdir(dir)).filter(file => file.endsWith('.html')).map(async file => (await readFile(new URL(file, dir), 'utf8')).match(/<title>(.*?)<\/title>/)[1].replace(/ \| Mike Holp$/, '').replace(/&amp;/g, '&')));
+  const lead = title => title.split(':')[0].trim().toLowerCase();
+  const guideLeads = new Set(guideTitles.map(lead));
+  for (const [id, notes] of [...Object.entries(watchNotes), ...Object.entries(videoNotes)]) {
+    if (!notes.searchTitle) continue;
+    assert.ok(!guideTitles.some(title => title.toLowerCase() === notes.searchTitle.toLowerCase()), `${id} copies a guide title`);
+    assert.ok(!guideLeads.has(lead(notes.searchTitle)), `${id} shares a guide's lead phrase: ${notes.searchTitle}`);
+  }
+});
+
+test('watch pages sit under their topic hub in the breadcrumb and link to it', () => {
+  const video = { id: 'aaaaaaaaaaa', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: 'Build an n8n agent.', embeddable: true };
+  const html = renderWatch(video);
+  const breadcrumbs = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(item => item['@type'] === 'BreadcrumbList');
+  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.item), ['https://www.ai-automation-station.com/', 'https://www.ai-automation-station.com/videos', 'https://www.ai-automation-station.com/videos/n8n', 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa']);
+  assert.match(html, /<a href="\/videos">Videos<\/a> \/ <a href="\/videos\/n8n">n8n<\/a> \/ <span aria-current="page">/);
+  assert.match(html, /More on this topic: <a href="\/videos\/n8n">/);
+  assert.match(html, /Follow the written guide: <a href="\/guides\/self-host-n8n.html">/);
+  assert.match(html, /<form class="notes" data-subscribe data-placement="watch_end">/);
+});
+
+test('guide routing keeps specific tools ahead of broad coding-agent matches', () => {
+  const route = title => guides.find(([pattern]) => pattern.test(title))?.[1];
+  assert.equal(route('This Claude Code Hack Saves Token Usage'), '/guides/claude-code-for-beginners.html');
+  assert.equal(route('Codex vs Claude Code: Which Should You Use?'), '/guides/claude-code-vs-codex.html');
+  assert.equal(route('Why OpenCode Is Better Than Claude Code'), '/guides/opencode-vs-claude-code.html');
+  assert.equal(route('Codex on Linux: Official Desktop App Setup'), '/guides/codex-on-linux.html');
+  assert.equal(route('How I Built an AI Phone Agent That Actually Works (VAPI)'), '/guides/vapi-voice-agent-tutorial.html');
+  const claudeCode = uploads.filter(video => /claude code/i.test(video.title) && !/codex|open\s?code/i.test(video.title));
+  assert.ok(claudeCode.length && claudeCode.every(video => route(video.title) !== '/guides/codex-workflow.html'));
+});
+
+test('transcripts open with visible paragraphs and fold the rest away', () => {
+  const video = uploads.find(item => item.id === 'TuVL2x6IfDk');
+  const html = renderWatch(video);
+  const section = html.match(/<section aria-labelledby="transcript">([\s\S]*?)<\/section>/)[1];
+  assert.match(section, /<h2 id="transcript">Transcript<\/h2>\n<p>[^<]+<\/p><p>[^<]+<\/p>\n<details class="transcript"><summary>Read the rest of the transcript<\/summary><p>/);
+});
+
+test('archive pages carry breadcrumbs and named list items, and the sitemap dates them', () => {
+  const videos = [
+    { id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true },
+    { id: 'bbbbbbbbbbb', title: 'n8n agent build', published: '2026-09-01T00:00:00Z', summary: '', embeddable: true },
+  ];
+  const html = renderArchive(videos, 1, topicBySlug('claude-code'));
+  const [collection, breadcrumbs] = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
+  assert.equal(collection.mainEntity.itemListElement[0].name, 'Claude Code hooks tutorial');
+  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', 'Claude Code tutorials and builds']);
+  assert.match(html, /loading="eager" fetchpriority="high"/);
+  for (const topic of topics) {
+    assert.ok(topic.title.length >= 50 && topic.title.length <= 70, `${topic.slug}: ${topic.title.length}`);
+    assert.ok(topic.about.split(/\s+/).length >= 60, topic.slug);
+  }
+  const xml = '<urlset>\n  <url><loc>https://www.ai-automation-station.com/</loc><lastmod>2026-09-15</lastmod></url>\n</urlset>';
+  const sitemap = renderPageSitemap(xml, videos);
+  assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/<\/loc><lastmod>2026-10-02<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos<\/loc><lastmod>2026-10-02<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos\/n8n<\/loc><lastmod>2026-09-01<\/lastmod>/);
 });

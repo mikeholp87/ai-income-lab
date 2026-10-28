@@ -2,6 +2,8 @@
 
 Mike Holp tests new AI models, agents, and automation tools on real builds and publishes the results on the AI Automation Station YouTube channel. Most videos cover Claude Code, Codex, OpenCode, and n8n, with every setup step shown. He also builds TubeAnalytics and VisiScan and hosts AI Income Lab, the paid learning community on Skool.
 
+AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-station-7346). It is not affiliated with other Skool groups or courses that use a similar name.
+
 ## Key facts
 
 - New long-form videos most days; the full archive is at /videos.
@@ -13,38 +15,52 @@ Mike Holp tests new AI models, agents, and automation tools on real builds and p
 ## Official pages
 
 - [Home](https://www.ai-automation-station.com/)
+- [About Mike Holp](https://www.ai-automation-station.com/about.html): who runs the channel, how the guides and videos are made, and how to get in touch.
 - [Every video](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
 - [TubeAnalytics](https://www.tubeanalytics.net)
 - [VisiScan](https://www.visiscan.app)
 - [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
 
+## Video topics
+
+- [Claude Code tutorials and builds](https://www.ai-automation-station.com/videos/claude-code): Builds, skills and workflows with Anthropic’s Claude Code in the terminal.
+- [Codex and OpenCode tutorials](https://www.ai-automation-station.com/videos/codex-opencode): Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.
+- [n8n tutorials: AI workflows and agents](https://www.ai-automation-station.com/videos/n8n): Workflows and AI automations in n8n, from a first build to self-hosted agents.
+- [Make.com tutorials: no-code AI automations](https://www.ai-automation-station.com/videos/make-com): No-code AI automations built step by step in Make.com.
+- [AI agent tutorials and tests](https://www.ai-automation-station.com/videos/ai-agents): Personal assistants, research agents and agent tools tested on real tasks.
+- [AI SEO: get found in Google and AI answers](https://www.ai-automation-station.com/videos/ai-seo): Tools and tests for getting a site found in Google and in AI answers.
+- [Make money with AI: client work, leads and services](https://www.ai-automation-station.com/videos/make-money): Client services, lead generation and monetization with AI, tested without income promises.
+- [AI website and app builder tutorials](https://www.ai-automation-station.com/videos/ai-website-builders): Websites, landing pages and web apps built with AI builders, start to finish.
+- [AI video and YouTube tutorials](https://www.ai-automation-station.com/videos/ai-video): AI video editing, Shorts, thumbnails and avatar workflows for creators.
+- [New AI model launches, tested](https://www.ai-automation-station.com/videos/new-models): Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.
+
 ## Start building
 
-- [Codex usage limits: check usage, plans and reset times](https://www.ai-automation-station.com/guides/codex-usage-limits.html)
-- [Vapi AI tutorial: build a voice agent, test calls, webhooks](https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html)
-- [Free build guides](https://www.ai-automation-station.com/guides.html)
-- [Start here](https://www.ai-automation-station.com/start-here.html)
-- [Build a YouTube feed in React](https://www.ai-automation-station.com/guides/youtube-feed.html)
-- [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html)
-- [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html)
-- [Codex on Linux: install Codex CLI and the desktop app](https://www.ai-automation-station.com/guides/codex-on-linux.html)
-- [Claude Code tutorial for beginners: install and use it](https://www.ai-automation-station.com/guides/claude-code-for-beginners.html)
-- [HeyGen AI avatar tutorial: create your first video](https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html)
-- [Claude Code vs Codex: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html)
-- [Make your first API request](https://www.ai-automation-station.com/guides/first-api-request.html)
-- [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html)
-- [What Is AI Automation? Examples, Tools and a First Build](https://www.ai-automation-station.com/guides/ai-automation.html)
-- [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html)
-- [Run n8n on your own Ubuntu machine](https://www.ai-automation-station.com/guides/self-host-n8n.html)
-- [Install Hermes Agent with a desktop app](https://www.ai-automation-station.com/guides/hermes-desktop.html)
-- [Give Claude Code real SEO data with DataForSEO](https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html)
-- [How to make money with AI with no experience](https://www.ai-automation-station.com/guides/make-money-with-ai-no-experience.html)
-- [How to make money with AI fast: the honest path](https://www.ai-automation-station.com/guides/make-money-with-ai-fast.html)
-- [Best AI side hustles for beginners: 7 ideas to test](https://www.ai-automation-station.com/guides/ai-side-hustles.html)
-- [AI automation services for small business](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html)
-- [How to make money with ChatGPT](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html)
-- [9Router setup: providers, model combos and request checks](https://www.ai-automation-station.com/guides/9router-setup.html)
-- [ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html)
-- [OpenSEO review: setup, data costs and practical limits](https://www.ai-automation-station.com/guides/openseo-review.html)
+- [Codex usage limits: check usage, plans and reset times](https://www.ai-automation-station.com/guides/codex-usage-limits.html): Check your Codex usage and remaining limits, see how Codex usage limits work on each ChatGPT plan, find your reset time, and choose what to do when you run out.
+- [Vapi AI tutorial: build a voice agent, test calls, webhooks](https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html): Vapi AI voice agent tutorial: create an assistant, pick a model, voice and transcriber, test a call, connect a phone number, then check webhooks and costs.
+- [Free build guides](https://www.ai-automation-station.com/guides.html): Free AI automation guides and articles: learn Claude Code, Codex, Make.com, n8n, AI agents and SEO, with practical builds, sources and checks you can run.
+- [Start here](https://www.ai-automation-station.com/start-here.html): Choose a free first build: AI API gateways, creator websites, business automation, or avatar and voice agents. Find prerequisites and practical next steps.
+- [Build a YouTube feed in React](https://www.ai-automation-station.com/guides/youtube-feed.html): Build a YouTube feed in React with server-side API access, cached video data, accessible cards and failure checks. Keep the feed usable when a request fails.
+- [Track clicks after consent](https://www.ai-automation-station.com/guides/consent-tracking.html): Add consent tracking to a React site for Google Analytics and Meta: store the choice, guard optional events, and test opt-in, opt-out and preference changes.
+- [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
+- [Codex on Linux: install Codex CLI and the desktop app](https://www.ai-automation-station.com/guides/codex-on-linux.html): Install Codex CLI on Linux with the official commands, sign in with ChatGPT, check the Codex desktop app Linux preview status, and fix common install errors.
+- [Claude Code tutorial for beginners: install and use it](https://www.ai-automation-station.com/guides/claude-code-for-beginners.html): Claude Code tutorial for beginners: install it on Mac, Windows or Linux, sign in, learn permissions and CLAUDE.md, then make one small change you can check.
+- [HeyGen AI avatar tutorial: create your first video](https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html): HeyGen AI avatar tutorial: choose stock or custom avatars, record consent, refine your script and voice, check plan limits, and plan API automation.
+- [Claude Code vs Codex: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html): Codex vs Claude Code in a real setup: which terminal coding agent handles which task, how I keep both safe, and what happens when a usage limit hits.
+- [Make your first API request](https://www.ai-automation-station.com/guides/first-api-request.html): Run a free local API example, distinguish keys from subscriptions, and diagnose authentication and model errors before connecting an AI agent.
+- [Make and verify a code change with Codex](https://www.ai-automation-station.com/guides/codex-workflow.html): Practice a Codex workflow on a local API example: inspect the code, add a failure check, review the diff, and verify the result without paid API calls.
+- [What Is AI Automation? Examples, Tools and a First Build](https://www.ai-automation-station.com/guides/ai-automation.html): AI automation explained in plain English: how it works, real examples, Zapier vs Make vs n8n vs coding agents, and a first AI workflow you can build.
+- [Build your first Make.com automation](https://www.ai-automation-station.com/guides/make-first-automation.html): Build a small Make.com scenario with Google Sheets: filter sample requests, map approved rows, and check the output before enabling a schedule.
+- [Run n8n on your own Ubuntu machine](https://www.ai-automation-station.com/guides/self-host-n8n.html): Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.
+- [Install Hermes Agent with a desktop app](https://www.ai-automation-station.com/guides/hermes-desktop.html): Install Hermes Agent with Hermes Desktop on Mac or Windows, or Hermes One on Linux, then connect a model provider and check it with tasks you can verify.
+- [Give Claude Code real SEO data with DataForSEO](https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html): Connect the DataForSEO MCP server to Claude Code, load its SEO tools, and run a small keyword or site query with credentials, costs and results you can check.
+- [How to make money with AI with no experience](https://www.ai-automation-station.com/guides/make-money-with-ai-no-experience.html): How to make money with AI with no experience: pick one task, build a small automation on free tiers, and offer it to one person. No lazy shortcuts.
+- [How to make money with AI fast: the honest path](https://www.ai-automation-station.com/guides/make-money-with-ai-fast.html): How to make money with AI fast: there is no dependable lazy way, but there is an honest fast path. Time and risk costs, scam red flags.
+- [Best AI side hustles for beginners: 7 ideas to test](https://www.ai-automation-station.com/guides/ai-side-hustles.html): AI side hustles: 7 ideas judged by skill, cost and time to first client, each with a first test you can run this week. No hype, no income promises.
+- [How to sell AI automation services to small businesses](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html): How to sell AI automation services to small businesses: what to offer, a discovery checklist, fixed scope, pricing and handover. Start with one task.
+- [How to make money with ChatGPT](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html): How to make money with ChatGPT through client work: editing, research, FAQ drafts and assistant setups, with quality checks. See what to offer first.
+- [9Router setup: providers, model combos and request checks](https://www.ai-automation-station.com/guides/9router-setup.html): 9Router setup guide: install the gateway, add providers, configure model combos and auto-fallback, check connection limits and costs, and connect coding tools.
+- [ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html): ChatGPT Pro 20x ($200/month) was paused in September 2026 and is back with a lower allowance. What changed, Plus vs 5x vs 20x limits, and Codex credits.
+- [OpenSEO review: setup, data costs and practical limits](https://www.ai-automation-station.com/guides/openseo-review.html): OpenSEO review grounded in Mike’s live demo: what it does, hosted and self-hosted setup, DataForSEO costs, and what to check before replacing a paid SEO suite.
 - Support: automojic@proton.me

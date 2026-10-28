@@ -1,6 +1,12 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
+import { inject as injectAnalytics } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+// Cookieless page views and Core Web Vitals from real visitors, the same as the homepage sends.
+injectAnalytics();
+injectSpeedInsights();
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
@@ -89,5 +95,5 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) form.addEv
   if (!ok) return void (status.textContent = 'That didn’t go through. Try again in a minute.');
   form.reset();
   status.textContent = 'Welcome to the build notes! Check your inbox for a welcome email.';
-  trackGoogleEvent('newsletter_signup', { ...properties, placement: 'guide_end' });
+  trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement || 'guide_end' });
 });

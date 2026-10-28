@@ -50,7 +50,7 @@ export const watchNotes = {
 </section>`,
   },
   '9kHdIiobKMA': {
-    searchTitle: 'VAPI voice agent: setup, test call and webhook checks',
+    searchTitle: 'Building an AI phone agent with VAPI: the recording',
     summary: 'Configure a VAPI assistant, connect Make and a Twilio number, and receive a test call. Notes distinguish webhook delivery from booking and spreadsheet updates.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify one call before automating a list</h2>
@@ -185,9 +185,9 @@ export const watchNotes = {
   ncg6F27PYt0: { searchTitle: 'Build web apps with KiloCode: a Cursor alternative' },
   KDZ7yefRv54: { searchTitle: 'Make infographics from YouTube content with NotebookLM' },
   eui7NABhRV8: { searchTitle: 'Make faceless AI videos with Syllaby' },
-  pMLyxz6Dyt4: { searchTitle: 'HeyGen AI avatar tutorial: create your first video' },
+  pMLyxz6Dyt4: { searchTitle: 'HeyGen avatar video walkthrough: no filming needed' },
   'KKw2Q9-Ge_0': { searchTitle: 'Building classic games with Gemini 3' },
-  lumzbY6QV4Y: { searchTitle: 'Testing OpenAI Agent Builder' },
+  lumzbY6QV4Y: { searchTitle: 'Testing OpenAI Agent Builder: a hands-on first look' },
   SplwScUztfM: { searchTitle: 'Facebook monetization requirements: the 2025 walkthrough' },
   QlL87_URHZ8: { searchTitle: 'Create images with Nano Banana in Google Gemini' },
   J86tffN9nmg: { searchTitle: 'Building a ChatGPT clone with Rocket AI' },
@@ -201,7 +201,7 @@ export const watchNotes = {
   PDfEWpyyRMI: { searchTitle: 'Syllaby AI review: building a faceless channel' },
   CGVALaueHeA: { searchTitle: 'Building an AI tool to find YouTube video topics' },
   _8qzOkIWMSk: {
-    searchTitle: 'Why OpenCode is better than Claude Code: setup and limits',
+    searchTitle: 'Why I switched to OpenCode: the video walkthrough',
     summary: 'Explore OpenCode as a Claude Code alternative: model selection, OpenRouter setup, skills, and the rate-limit failure shown in the walkthrough.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: choose a model that actually responds</h2>
@@ -283,7 +283,7 @@ export const watchNotes = {
 </section>`,
   },
   enKnxKJJFZw: {
-    searchTitle: 'Skool community launch (2025)',
+    searchTitle: 'Why I started a free AI community on Skool (2025)',
     summary: 'A look back at the community’s free launch in 2025. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
     notice: 'This recording and its original chapter names describe the free launch in 2025. Access has changed: as of October 8, 2026, AI Income Lab membership starts at $29/month.',
   },
@@ -293,7 +293,7 @@ export const watchNotes = {
   },
   '1aG1XbAQj-k': { summary: 'Claude Opus 5 is here and it’s my new go-to model.' },
   geKngm3sg3w: {
-    searchTitle: 'How to use 9Router: setup, providers and request checks',
+    searchTitle: '9Router video walkthrough: providers and fallbacks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify your first routed request</h2>
@@ -316,7 +316,7 @@ export const watchNotes = {
 </section>`,
   },
   lbBZ7uLJwbM: {
-    searchTitle: 'ChatGPT and Codex on Linux',
+    searchTitle: 'ChatGPT and Codex on Linux: desktop app setup recording',
     summary: 'Follow the ChatGPT and Codex Linux setup demonstrated on Debian, including the dependency issue, first project audit, and current compatibility checks.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: ChatGPT and Codex on Linux</h2>
@@ -339,7 +339,7 @@ export const watchNotes = {
 </section>`,
   },
   TuVL2x6IfDk: {
-    searchTitle: 'Codex internal-link audit',
+    searchTitle: 'Codex internal-link audit: fixing a site’s SEO links',
     summary: 'Use Codex to audit internal links, plan relevant changes, and verify the result. Notes separate the demonstrated workflow from unverified ranking claims.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: turn an internal-link audit into checked changes</h2>

@@ -66,3 +66,24 @@ test('sends Skool clicks to Meta only while analytics consent is active', () => 
   assert.equal(trackMetaOutbound(lead), false);
   assert.deepEqual(events, [['trackCustom', 'SkoolOutboundClicked', lead]]);
 });
+
+test('tag scripts wait for idle time when the browser offers it, while queued calls start at once', () => {
+  const scripts = [];
+  const idle = [];
+  for (const key of ['__marketingTrackingLoaded', '__marketingTrackingActive', 'fbq', '_fbq', 'gtag', 'dataLayer']) delete globalThis[key];
+  globalThis.localStorage = { getItem: () => 'granted', setItem() {} };
+  globalThis.document = { createElement: () => ({}), head: { appendChild: script => scripts.push(script) } };
+  globalThis.window = globalThis;
+  globalThis.requestIdleCallback = (task, options) => idle.push([task, options]);
+  try {
+    loadMarketingTracking();
+    assert.equal(scripts.length, 0);
+    assert.ok(window.dataLayer.length > 0);
+    assert.ok(window.fbq.queue.some(args => args[0] === 'track' && args[1] === 'PageView'));
+    assert.ok(idle.every(([, options]) => options.timeout === 3000));
+    for (const [task] of idle) task();
+    assert.deepEqual(scripts.map(script => script.src), ['https://www.googletagmanager.com/gtag/js?id=G-XYRWT4PFN8', 'https://connect.facebook.net/en_US/fbevents.js']);
+  } finally {
+    delete globalThis.requestIdleCallback;
+  }
+});

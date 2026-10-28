@@ -29,7 +29,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     fbq: (...args) => events.push(['meta', ...args]),
   };
   globalThis.document = {
-    head: { appendChild: script => scripts.push(script) },
+    head: { appendChild: script => scripts.push(script), querySelector: () => null },
     body: { append: element => elements.push(element) },
     querySelectorAll: selector => selector === 'a[href]' ? links : images,
     querySelector: () => ({ append: element => elements.push(element) }),
@@ -45,12 +45,15 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     assert.equal(images[0].retries, 1, 'a failed JPEG cannot start a retry loop');
     const banner = elements[0];
     assert.equal(banner.hidden, false);
+    const vercel = scripts.filter(script => String(script.src).includes('/_vercel/'));
+    const gated = () => scripts.filter(script => !vercel.includes(script));
+    assert.deepEqual(vercel.map(script => script.src).sort(), ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js'], 'cookieless Vercel analytics load without consent');
     clickLinks();
-    assert.equal(scripts.length, 0);
+    assert.equal(gated().length, 0);
     assert.equal(events.length, 0);
     buttons[1].click();
     assert.equal(banner.hidden, true);
-    assert.equal(scripts.length, 1); // Existing Meta stub; only the Google loader is inserted.
+    assert.equal(gated().length, 1); // Existing Meta stub; only the Google loader is inserted.
     clickLinks();
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
     assert.equal(clicks.length, 1);

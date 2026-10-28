@@ -5,12 +5,14 @@ import { watchNotes } from './watch-notes.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
-import { topics } from './topics.js';
+import { topicFor, topics } from './topics.js';
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const escape = text => String(text).replace(/[&<>"']/g, char => entities[char]);
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const listFormat = new Intl.ListFormat('en');
+export const fontPreloads = ['instrument-sans', 'archivo-black'].map(font => `<link rel="preload" href="/fonts/${font}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
 
 // playlistItems pages (snippet, status, contentDetails) → public long-form uploads, newest first.
 export function parseUploads(pages) {
@@ -101,7 +103,7 @@ const card = (video, eager) => {
   const id = escape(video.id);
   const duration = formatDuration(video.duration);
   return `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
-<span class="thumb"><picture data-thumbnail><source type="image/webp" srcset="${thumbSet(id, 'vi_webp', 'webp')}" sizes="${thumbSizes}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" srcset="${thumbSet(id, 'vi', 'jpg')}" sizes="${thumbSizes}" alt="" width="320" height="180" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>${duration ? `<span class="duration">${duration}</span>` : ''}</span>
+<span class="thumb"><picture data-thumbnail><source type="image/webp" srcset="${thumbSet(id, 'vi_webp', 'webp')}" sizes="${thumbSizes}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" srcset="${thumbSet(id, 'vi', 'jpg')}" sizes="${thumbSizes}" alt="" width="320" height="180" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>${duration ? `<span class="duration">${duration}</span>` : ''}</span>
 <p class="meta"><time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>${viewCount(video)}</p>
 <h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
 };
@@ -118,13 +120,16 @@ export function renderArchive(videos, page = 1, topic = null) {
   const count = `${list.length} ${list.length === 1 ? 'video' : 'videos'}`;
   const description = topic ? `${topic.intro} ${count}, newest first.` : `${pageNote}Browse ${list.length} AI Automation Station tutorials: coding agents, AI tools, and automation workflows tested on real builds.`;
   const url = `${site}${topic ? `/videos/${topic.slug}` : pagePath(page)}`;
-  const title = topic ? `${topic.name} videos | Mike Holp` : page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp';
+  const title = topic ? topic.title : page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp';
+  const name = topic ? topic.heading : page > 1 ? `Every video, page ${page} of ${pages}` : 'Every video';
   const schema = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, url,
-    name: topic ? `${topic.name} videos` : page > 1 ? `Every video, page ${page} of ${pages}` : 'Every video', description,
+    name, description,
     isPartOf: { '@id': `${site}/#website` },
-    mainEntity: { '@type': 'ItemList', itemListElement: items.map((video, index) => ({ '@type': 'ListItem', position: (page - 1) * perPage + index + 1, url: new URL(videoHref(video), site).href })) },
+    mainEntity: { '@type': 'ItemList', itemListElement: items.map((video, index) => ({ '@type': 'ListItem', position: (page - 1) * perPage + index + 1, name: video.title, url: new URL(videoHref(video), site).href })) },
   };
+  const trail = [['Home', `${site}/`], ['Videos', `${site}/videos`], ...(topic || page > 1 ? [[name, url]] : [])];
+  const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: trail.map(([label, item], index) => ({ '@type': 'ListItem', position: index + 1, name: label, item })) };
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -137,28 +142,29 @@ export function renderArchive(videos, page = 1, topic = null) {
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Automation Station">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${escape(topic ? `${topic.name} videos` : 'Every video: AI tools tested on real builds')}">
+<meta property="og:title" content="${escape(topic ? topic.heading : 'Every video: AI tools tested on real builds')}">
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://i.ytimg.com">
 <link rel="stylesheet" href="${consentCss}">
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}
+${jsonLd(breadcrumbs)}
 <link rel="stylesheet" href="${archiveCss}">
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
 <header class="shell"><a class="brand" href="/"><span></span>AI Income Lab</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
-<div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.name : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p></div>
+<div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.heading : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
-${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`).join(' and ')}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
+${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 <aside class="cta" aria-label="AI Income Lab"><p>Build along with AI Income Lab: step-by-step courses, templates and a community of 2,900+ members, from $29/month.</p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a></aside>
 ${pager(page, pages)}
 </main>
 <footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>`;
 }
@@ -190,16 +196,24 @@ export function relatedVideos(video, videos, count = 4) {
     .slice(0, count).map(({ other }) => other);
 }
 
-// Written guides that cover the same tool as a video.
-const guides = [
+// Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
+export const guides = [
   [/^6 N8N Automations Every Entrepreneur Needs Right Now$/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
   [/heygen/i, '/guides/heygen-ai-avatar-tutorial.html', 'HeyGen AI avatar tutorial: create your first video'],
   [/^Get Started with Claude Code in 10 Minutes$/i, '/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'],
   [/chatgpt \$200|pro 20x|credit limit on codex/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)'],
   [/9router/i, '/guides/9router-setup.html', '9Router setup: providers, model combos and request checks'],
-  [/opencode (is )?better than|opencode vs claude code/i, '/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'],
-  [/codex|open\s?code|claude code/i, '/guides/codex-workflow.html', 'Make and verify a small code change with Codex'],
-  [/make\.com/i, '/guides/make-first-automation.html', 'Build your first Make.com automation'],
+  [/\bvapi\b/i, '/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'],
+  [/hermes/i, '/guides/hermes-desktop.html', 'Hermes Desktop: install on Mac, Windows or Linux'],
+  [/openseo/i, '/guides/openseo-review.html', 'OpenSEO review: setup, data costs and practical limits'],
+  [/\bn8n\b/i, '/guides/self-host-n8n.html', 'Self-host n8n on Ubuntu: Docker and Node.js setup'],
+  [/open\s?code/i, '/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'],
+  [/(?=.*\bcodex\b)(?=.*claude code)/i, '/guides/claude-code-vs-codex.html', 'Codex vs Claude Code: how I use both and route tasks'],
+  [/claude code/i, '/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'],
+  [/codex.*linux|linux.*codex/i, '/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'],
+  [/\bcodex\b/i, '/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'],
+  [/make\.com/i, '/guides/make-first-automation.html', 'Make.com Google Sheets tutorial: filter approved requests'],
+  [/\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b/i, '/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'],
 ];
 
 // Chapter links are #t=<sec> fragments so they add no crawlable URLs; this re-cues the player on click or on load.
@@ -213,7 +227,11 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const chapters = validChapters(video.chapters, seconds);
   const related = relatedVideos(video, videos);
   const guide = guides.find(([pattern]) => pattern.test(video.title));
+  const topic = topicFor(video.title);
   const notes = videoNotes[video.id];
+  const transcript = transcripts[video.id] ? transcriptParagraphs(transcripts[video.id]) : [];
+  // The opening stays visible so the page carries the video's own words; the rest folds away.
+  const openParagraphs = 2;
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
@@ -223,12 +241,13 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
     ...(video.views > 0 && { interactionStatistic: { '@type': 'InteractionCounter', interactionType: { '@type': 'WatchAction' }, userInteractionCount: video.views } }),
     // Key moments: a clip ends where the next starts, so this needs the video's length.
     ...(seconds && chapters.length && { hasPart: chapters.map((chapter, index) => ({ '@type': 'Clip', name: chapter.label, startOffset: chapter.seconds, endOffset: chapters[index + 1]?.seconds ?? seconds, url: chapterUrl(chapter) })) }),
-    author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/` },
-    publisher: { '@type': 'Organization', '@id': `${site}/#org`, name: 'AI Automation Station', url: `${site}/` },
+    author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` },
+    publisher: { '@type': 'Organization', '@id': `${site}/#org`, name: 'AI Automation Station', url: `${site}/`, logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 } },
   };
+  const trail = [['Home', `${site}/`], ['Videos', `${site}/videos`], ...(topic ? [[topic.name, `${site}/videos/${topic.slug}`]] : []), [video.title, watchUrl(video)]];
   const breadcrumbs = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-    itemListElement: [['Home', `${site}/`], ['Videos', `${site}/videos`], [video.title, watchUrl(video)]].map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
+    itemListElement: trail.map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
   };
   const meta = [`<time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>`, seconds && clock(seconds), video.views > 0 && `${number.format(video.views)} views`].filter(Boolean).join(' · ');
   return `<!doctype html>
@@ -238,6 +257,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <meta name="description" content="${escape(snippet(description))}">
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
+${fontPreloads}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${readingCss}">
 <link rel="stylesheet" href="${consentCss}">
@@ -256,11 +276,11 @@ ${jsonLd(breadcrumbs)}
 <a class="skip" href="#content">Skip to video</a>
 <header><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a></header>
 <main id="content">
-<nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
+<nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
 <iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
-<p class="meta">By <a href="/#about" rel="author">Mike Holp</a> · ${meta}</p>
+<p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
 <p class="description">${escape(description)}</p>${notes ? `
 <section aria-labelledby="notes">
@@ -277,17 +297,20 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <h2>In this video</h2>
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>
 <script>${chapterScript}</script>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
-<p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
-${watchNotes[video.id]?.html ?? ''}${transcripts[video.id] ? `
+<p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}${topic ? `
+<p>More on this topic: <a href="/videos/${topic.slug}">${escape(topic.heading)}</a>.</p>` : ''}
+${watchNotes[video.id]?.html ?? ''}${transcript.length ? `
 <section aria-labelledby="transcript">
 <h2 id="transcript">Transcript</h2>
-<details class="transcript"><summary>Read the full transcript</summary>${transcriptParagraphs(transcripts[video.id]).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</details>
+${transcript.slice(0, openParagraphs).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${transcript.length > openParagraphs ? `
+<details class="transcript"><summary>Read the rest of the transcript</summary>${transcript.slice(openParagraphs).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</details>` : ''}
 </section>` : ''}
 <aside class="note" aria-labelledby="video-next-step">
 <h2 id="video-next-step">${escape(offer.title)}</h2>
 <p>${escape(offer.detail)}</p><p class="meta">${escape(offer.access)}</p>
 <p><a class="action" href="https://www.skool.com/ai-automation-station-7346/plans" data-placement="watch_video" data-video-id="${video.id}" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p>
-</aside>${related.length ? `
+</aside>
+<form class="notes" data-subscribe data-placement="watch_end"><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>${related.length ? `
 <h2>More builds</h2>
 <ul class="related">${related.map(other => `<li><a href="/watch/${other.id}">${escape(other.title)}</a></li>`).join('')}</ul>` : ''}
 </main>
@@ -314,7 +337,12 @@ ${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(vi
 export function renderPageSitemap(xml, videos) {
   // Drop every /videos URL (numbered and topic) from the base file, then list the current ones.
   const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/[\w-]+)?<\/loc>[\s\S]*?<\/url>/g, '');
-  const archive = Array.from({ length: pageCount(videos) }, (_, index) => `  <url><loc>${site}${pagePath(index + 1)}</loc></url>`);
-  const topicPages = topics.filter(topic => videos.some(video => topic.pattern.test(video.title))).map(topic => `  <url><loc>${site}/videos/${topic.slug}</loc></url>`);
-  return core.replace('</urlset>', `${[...archive, ...topicPages].join('\n')}\n</urlset>`);
+  // A listing page changes when the newest video on it does.
+  const lastmod = list => list.map(video => video.published).sort().at(-1)?.slice(0, 10);
+  const entry = (path, list) => `  <url><loc>${site}${path}</loc>${lastmod(list) ? `<lastmod>${lastmod(list)}</lastmod>` : ''}</url>`;
+  const archive = Array.from({ length: pageCount(videos) }, (_, index) => entry(pagePath(index + 1), videos.slice(index * perPage, (index + 1) * perPage)));
+  const topicPages = topics.map(topic => [topic, videos.filter(video => topic.pattern.test(video.title))]).filter(([, list]) => list.length).map(([topic, list]) => entry(`/videos/${topic.slug}`, list));
+  // The homepage lists the latest uploads, so it is at least as fresh as the newest one.
+  const home = core.replace(new RegExp(`(<loc>${site}/</loc><lastmod>)([\\d-]+)(</lastmod>)`), (match, open, date, close) => `${open}${[date, lastmod(videos)].filter(Boolean).sort().at(-1)}${close}`);
+  return home.replace('</urlset>', `${[...archive, ...topicPages].join('\n')}\n</urlset>`);
 }

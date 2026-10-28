@@ -8,9 +8,13 @@ export function captionText(srt) {
   return lines.filter((line, index) => line !== lines[index - 1]).join(' ').replace(/\s+/g, ' ').trim();
 }
 
+// Auto captions mishear product names; "codec" is left alone because video guides use the real word.
+const terms = [[/\bcodeex\b/gi, 'Codex'], [/\bcloud code\b/gi, 'Claude Code'], [/\bopen code\b/gi, 'OpenCode'], [/\bversal\b/gi, 'Vercel'], [/\bchat GPT\b/gi, 'ChatGPT'], [/\bsuperbase\b/gi, 'Supabase'], [/\bgrock\b/gi, 'Grok'], [/\bschool community\b/gi, 'Skool community']];
+export const fixTerms = text => terms.reduce((fixed, [pattern, term]) => fixed.replace(pattern, term), text);
+
 // ponytail: fixed ~90-word paragraphs; auto captions have no paragraph breaks to follow.
 export function transcriptParagraphs(text, size = 90) {
-  const words = text.split(' ');
+  const words = fixTerms(text).split(' ');
   const paragraphs = [];
   for (let start = 0; start < words.length;) {
     let end = Math.min(start + size, words.length);

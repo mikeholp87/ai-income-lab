@@ -39,6 +39,14 @@ test('every article has unique metadata, a canonical URL and a real social image
   }
 });
 
+test('every guide hero image describes its diagram in alt text', () => {
+  for (const { file, html } of pages) {
+    for (const [, alt] of html.matchAll(/<figure><img src="\/assets\/guides\/[^"]+" alt="([^"]*)"/g)) {
+      assert.ok(alt.length >= 20, `${file}: hero alt text is missing or too short`);
+    }
+  }
+});
+
 test('article and breadcrumb schema agree with visible headings, author and dates', async () => {
   const sitemap = await read('sitemap.xml');
   for (const { file, html } of pages) {
@@ -54,7 +62,7 @@ test('article and breadcrumb schema agree with visible headings, author and date
     assert.equal(article.mainEntityOfPage, article.url, file);
     assert.equal(article.image, meta(html, 'og:image'), file);
     assert.equal(article.author.name, 'Mike Holp', file);
-    assert.equal(article.author.url, `${site}/#about`, file);
+    assert.equal(article.author.url, `${site}/about.html`, file);
     assert.equal(article.publisher['@type'], 'Organization', file);
     assert.equal(article.publisher.name, 'AI Automation Station', file);
     assert.equal(article.publisher.url, `${site}/`, file);

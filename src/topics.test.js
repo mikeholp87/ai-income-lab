@@ -5,7 +5,7 @@ import { uploads } from './uploads-snapshot.js';
 import { GET } from '../api/videos.js';
 
 test('every topic has a readable slug, an intro and enough videos to stand alone', () => {
-  assert.equal(topics.length, 8);
+  assert.equal(topics.length, 10);
   assert.equal(new Set(topics.map(topic => topic.slug)).size, topics.length);
   for (const topic of topics) {
     // Starts with a letter, so it can never be mistaken for an archive page number.
@@ -24,7 +24,9 @@ test('topic patterns sort familiar titles', () => {
   assert.deepEqual(slugs('This Claude Code Hack Saves Token Usage'), ['claude-code']);
   assert.deepEqual(slugs('Claude Opus 5.5 Is Better And 40% Cheaper!'), ['new-models']);
   assert.deepEqual(slugs('Make.com AI Automations Without Code'), ['make-com']);
-  assert.deepEqual(slugs('Here\'s Why I Decided To Escape The Rat Race'), []);
+  assert.deepEqual(slugs('Here\'s Why I Decided To Escape The Rat Race'), ['make-money']);
+  assert.deepEqual(slugs('I Built an AI Tool to Find Website Clients (It Actually Works!)'), ['make-money', 'ai-website-builders']);
+  assert.deepEqual(slugs('Ghostty: The Only Linux Terminal You Need!'), []);
   // "llama" is a whole word, so Ollama (a local model runner) is not a model release.
   assert.deepEqual(slugs('Private AI Made Simple: A Beginner\'s Guide to Ollama'), []);
   assert.deepEqual(slugs('Llama 5 Is Here'), ['new-models']);

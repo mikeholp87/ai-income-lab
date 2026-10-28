@@ -17,7 +17,7 @@ export const videoNotes = {
     note: 'Everything above is as shown in the video published October 1, 2026. Prices are as stated in the recording and have not been re-verified. Both tools change often, so check current plans.',
   },
   Ip8KBwDixJs: {
-    searchTitle: 'GrokBot as a chief of staff',
+    searchTitle: 'GrokBot as an AI chief of staff: video walkthrough',
     summary: 'See GrokBot review an end-of-day workload across two products, including failed reminders, outreach approvals, and tasks still needing human input.',
     tested: 'GrokBot as an end-of-day chief of staff, by voice, across my two products, TubeAnalytics and VisiScan: what ran today, what failed, and what still needs me.',
     columns: ['Task', 'What GrokBot did'],
