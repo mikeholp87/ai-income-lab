@@ -20,3 +20,8 @@ test('IndexNow gets only recently changed pages and new videos', () => {
   const sitemap = '<url><loc>https://x/old</loc><lastmod>2026-09-01</lastmod></url><url><loc>https://x/new</loc><lastmod>2026-10-27</lastmod></url>';
   assert.deepEqual(recentUrls(sitemap, videos, Date.parse('2026-10-28T12:00:00Z')), ['https://x/new', 'https://www.ai-automation-station.com/watch/abcdefghijk']);
 });
+
+test('search lists the most recently updated guides first, ahead of videos', () => {
+  const older = { ...guide, title: 'Older', modified: '2026-10-01' };
+  assert.deepEqual(searchIndex([older, guide], videos).map(row => row[1]).slice(0, 2), ['Ship A & B', 'Older']);
+});

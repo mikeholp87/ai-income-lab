@@ -42,7 +42,8 @@ ${items.map(item => `<item><title>${escape(item.title)}</title><link>${item.url}
 
 // Compact rows for /search.html: [kind, title, url, description].
 export const searchIndex = (guides, videos) => [
-  ...guides.map(guide => ['guide', guide.title, guide.url.replace(site, ''), guide.description]),
+  // Most recently updated guides first, so the search page's starting results are the freshest.
+  ...[...guides].sort((a, b) => (b.modified ?? '').localeCompare(a.modified ?? '')).map(guide => ['guide', guide.title, guide.url.replace(site, ''), guide.description]),
   ...videoItems(videos).map(video => ['video', video.title, video.url.replace(site, ''), video.description]),
 ];
 

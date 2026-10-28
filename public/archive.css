@@ -26,7 +26,10 @@ li img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object
 .thumb { position: relative; display: block; }
 .duration { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; color: #fff; background: rgb(0 0 0 / .8); font: 500 12px/1.4 'DM Mono', monospace; }
 h3 { font-size: 17px; font-weight: 600; line-height: 1.3; text-wrap: pretty; }
-li a:hover h3 { color: #ff6846; }
+li a:hover h3, li a:focus-visible h3 { color: #ff6846; }
+/* Hovered or focused cards outline the thumbnail in orange, on /videos and the guides hub. */
+li img { transition: border-color .2s ease, box-shadow .2s ease; }
+li a:hover img, li a:focus-visible img, .guide:hover img, .guide:focus-within img { border-color: #ff6846; box-shadow: 0 0 0 1px #ff6846, 0 8px 28px rgb(255 104 70 / .18); }
 /* Three lines keep cards in a row the same height; the full summary is on the watch page. */
 li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size: 14px; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .start { margin-top: 24px; }
@@ -63,7 +66,11 @@ li.guide { display: grid; gap: 12px; align-content: start; }
 .guide > div { display: grid; gap: 8px; }
 .guide a { display: inline; }
 .guide img { aspect-ratio: 1200 / 630; }
-.guide h3 a:hover { color: #ff6846; }
+.guide:hover h3 a, .guide h3 a:focus-visible { color: #ff6846; }
+/* The title link covers the whole card, so the image opens the guide too; the video link sits above it. */
+li.guide { position: relative; }
+.guide h3 a::after { content: ''; position: absolute; inset: 0; }
+.guide .meta a { position: relative; z-index: 1; }
 .guide p:not(.meta) { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size: 14px; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .guide .meta a { color: #b3b3ab; text-decoration: underline; text-underline-offset: 3px; }
 .guide .meta a:hover { color: #ff6846; }

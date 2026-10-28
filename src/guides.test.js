@@ -192,3 +192,18 @@ test('the guides hub uses the /videos page design', async () => {
   assert.match(hub, /<nav class="topics mono" aria-label="Guide topics">/);
   assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);
 });
+
+test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
+  const css = await read('public/archive.css');
+  assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: #ff6846;/);
+  assert.match(css, /\.guide h3 a::after \{ content: ''; position: absolute; inset: 0; \}/);
+  assert.match(css, /\.guide \.meta a \{ position: relative; z-index: 1; \}/);
+});
+
+test('search starts with a few results, then pages matches eight at a time', async () => {
+  const page = await read('public/search.html');
+  assert.match(page, /<button type="button" class="search-more" id="search-more" hidden>Show more results<\/button>/);
+  assert.match(page, /const pageSize = 8;/);
+  assert.match(page, /rows\.filter\(row => row\[0\] === 'guide'\)\.slice\(0, 3\), \.\.\.rows\.filter\(row => row\[0\] === 'video'\)\.slice\(0, 3\)/);
+  assert.match(page, /more\.addEventListener\('click', \(\) => \{ shown \+= pageSize; run\(\); \}\);/);
+});

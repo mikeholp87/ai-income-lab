@@ -6,30 +6,47 @@
 <form class="search" role="search" action="/search.html"><label for="q">Search</label><input id="q" name="q" type="search" placeholder="n8n, Claude Code, voice agent…" autocomplete="off"><button type="submit">Search</button></form>
 <p class="meta" id="search-status" role="status">Loading the index…</p>
 <ul class="search-results" id="search-results"></ul>
+<button type="button" class="search-more" id="search-more" hidden>Show more results</button>
 <script type="module">
 // Every word must appear in the title or description; title hits rank first. ponytail: substring match over ~250 rows, fine until thousands.
+// No query: the 3 newest guides and videos. A query: 8 results, then 8 more per "Show more results".
 const input = document.getElementById('q');
 const status = document.getElementById('search-status');
 const list = document.getElementById('search-results');
+const more = document.getElementById('search-more');
 const rows = await fetch('/search-index.json').then(response => response.json()).catch(() => null);
 const html = text => text.replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
+const pageSize = 8;
+let shown = pageSize;
+let lastQuery = '';
+const item = ([kind, title, url, description]) => `<li><span class="meta">${kind === 'guide' ? 'Guide' : 'Video'}</span><a href="${html(url)}">${html(title)}</a><p>${html(description)}</p></li>`;
+const starter = () => [...rows.filter(row => row[0] === 'guide').slice(0, 3), ...rows.filter(row => row[0] === 'video').slice(0, 3)];
 function run() {
   const query = input.value.trim().toLowerCase();
+  if (query !== lastQuery) { shown = pageSize; lastQuery = query; }
   history.replaceState(null, '', query ? `?q=${encodeURIComponent(query)}` : location.pathname);
+  more.hidden = true;
   if (!rows) return void (status.textContent = 'Search is unavailable right now. Browse the guides or all videos instead.');
-  if (!query) { list.innerHTML = ''; status.textContent = `${rows.length} guides and videos. Type to search.`; return; }
+  if (!query) {
+    list.innerHTML = starter().map(item).join('');
+    status.textContent = `Latest guides and videos. Type to search all ${rows.length}.`;
+    return;
+  }
   const words = query.split(/\s+/);
-  const hits = rows.map(([kind, title, url, description]) => {
-    const name = title.toLowerCase();
-    const text = `${name} ${description.toLowerCase()}`;
-    return words.every(word => text.includes(word)) && { kind, title, url, description, score: words.filter(word => name.includes(word)).length + (kind === 'guide' ? 0.5 : 0) };
-  }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 40);
-  status.textContent = hits.length ? `${hits.length}${hits.length === 40 ? '+' : ''} results for “${query}”` : `Nothing matches “${query}”. Try fewer words.`;
-  list.innerHTML = hits.map(hit => `<li><span class="meta">${hit.kind === 'guide' ? 'Guide' : 'Video'}</span><a href="${html(hit.url)}">${html(hit.title)}</a><p>${html(hit.description)}</p></li>`).join('');
+  const hits = rows.map(row => {
+    const name = row[1].toLowerCase();
+    const text = `${name} ${row[3].toLowerCase()}`;
+    return words.every(word => text.includes(word)) && { row, score: words.filter(word => name.includes(word)).length + (row[0] === 'guide' ? 0.5 : 0) };
+  }).filter(Boolean).sort((a, b) => b.score - a.score);
+  status.textContent = hits.length ? `${hits.length} ${hits.length === 1 ? 'result' : 'results'} for “${query}”` : `Nothing matches “${query}”. Try fewer words.`;
+  list.innerHTML = hits.slice(0, shown).map(hit => item(hit.row)).join('');
+  more.hidden = hits.length <= shown;
+  more.textContent = `Show more results (${hits.length - shown} more)`;
 }
 input.value = new URLSearchParams(location.search).get('q') ?? '';
 input.addEventListener('input', run);
 input.form.addEventListener('submit', event => { event.preventDefault(); run(); });
+more.addEventListener('click', () => { shown += pageSize; run(); });
 run();
 </script>
 </main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
