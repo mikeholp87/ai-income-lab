@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { POST } from '../api/subscribe.js';
+import { POST, welcome } from '../api/subscribe.js';
 
 const savedKey = process.env.RESEND_API_KEY;
 const savedFetch = globalThis.fetch;
@@ -18,12 +18,35 @@ test('bad addresses get 400 and a missing key gets 503', async () => {
   assert.equal((await post({ email: 'a@b.co' })).status, 503);
 });
 
-test('a signup adds a subscribed contact; an existing one still counts as done', async () => {
+test('a new signup adds a subscribed contact and sends the welcome email', async () => {
   process.env.RESEND_API_KEY = 're_full';
-  let sent;
-  globalThis.fetch = async (url, init) => { sent = JSON.parse(init.body); return new Response('{}', { status: 409 }); };
+  const calls = [];
+  globalThis.fetch = async (url, init) => { calls.push([url, JSON.parse(init.body)]); return new Response('{}', { status: 200 }); };
   assert.equal((await post({ email: ' Ada@Example.com ' })).status, 200);
-  assert.deepEqual(sent, { email: 'ada@example.com', unsubscribed: false });
+  assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
+  const [url, mail] = calls[1];
+  assert.equal(url, 'https://api.resend.com/emails');
+  assert.deepEqual(mail.to, ['ada@example.com']);
+  assert.match(mail.from, /@ai-automation-station\.com>$/);
+  assert.equal(mail.subject, welcome.subject);
+  assert.match(mail.text, /start-here\.html[\s\S]*guides\.html[\s\S]*\/videos[\s\S]*Reply "unsubscribe"/);
+});
+
+test('an address already on the list counts as done and is not welcomed twice', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const urls = [];
+  globalThis.fetch = async url => { urls.push(url); return new Response('{}', { status: 409 }); };
+  assert.equal((await post({ email: 'ada@example.com' })).status, 200);
+  assert.deepEqual(urls, ['https://api.resend.com/contacts']);
+});
+
+test('a failed welcome email still reports the signup as done', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const logged = console.error;
+  console.error = () => {};
+  globalThis.fetch = async url => new Response('{}', { status: url.endsWith('/emails') ? 500 : 200 });
+  try { assert.equal((await post({ email: 'ada@example.com' })).status, 200); }
+  finally { console.error = logged; }
 });
 
 test('honeypot hits never reach Resend, and Resend failures answer 502', async () => {

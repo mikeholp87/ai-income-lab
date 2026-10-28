@@ -88,6 +88,6 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) form.addEv
   button.disabled = false;
   if (!ok) return void (status.textContent = 'That didn’t go through. Try again in a minute.');
   form.reset();
-  status.textContent = 'You’re in. The next build notes will land in your inbox.';
+  status.textContent = 'Welcome to the build notes! Check your inbox for a welcome email.';
   trackGoogleEvent('newsletter_signup', { ...properties, placement: 'guide_end' });
 });
