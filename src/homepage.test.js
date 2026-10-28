@@ -143,8 +143,16 @@ test('sponsored videos sit directly above the booking section', () => {
   assert.match(jsx, /<section className="section" id="sponsored">[\s\S]*?<\/section>\s*<\/>\}\s*<div className="divider reveal" aria-hidden="true" \/>\s*<section className="section" id="work-together">/);
 });
 
-test('the media kit follows About, before sponsored videos and booking', () => {
-  assert.match(jsx, /<section className="section band" id="about">[\s\S]*?<\/section>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<MediaKit \/>\s*\{sponsoredVideos\.length > 0/);
+test('the media kit follows About, then services, before sponsored videos and booking', () => {
+  assert.match(jsx, /<section className="section band" id="about">[\s\S]*?<\/section>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<MediaKit \/>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<Services channel=\{channel\} \/>\s*\{sponsoredVideos\.length > 0/);
+});
+
+test('every rate card format has a service card with its price', () => {
+  const start = jsx.indexOf('function Services(');
+  const services = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
+  for (const [name, price] of [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350']]) {
+    assert.match(services, new RegExp(`<h3>${name}</h3>\\s*<p className="service-price">\\${price}`), name);
+  }
 });
 
 test('the header links to the media kit between About and Contact', () => {

@@ -317,6 +317,89 @@ const arrowKeys = { ArrowLeft: -1, ArrowRight: 1 };
 // Dot and legend colors, brightest first; the largest share gets the brand color.
 const tones = ['var(--signal)', 'var(--text)', 'var(--body)', 'var(--muted)', '#6b6b66', '#52524e', '#3d3d39'];
 
+// Rate card formats (public/media-kit/*rate-card*.pdf), each shown with a real campaign or a mock of the post.
+const postIcons = ['M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z', 'M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3', 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z'];
+
+function CampaignThumb({ id, caption, className = '' }) {
+  return (
+    <figure className={`campaign-thumb ${className}`}>
+      <a href={`/watch/${id}`}><img src={`https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp`} onError={event => swapToJpegThumbnail(event, id)} alt={`Watch the ${caption}`} width="1280" height="720" loading="lazy" decoding="async" /></a>
+      <figcaption>{caption}</figcaption>
+    </figure>
+  );
+}
+
+function MockPost({ network, byline, children }) {
+  return (
+    <figure className="mock-post" aria-label={`Example sponsored ${network} post`}>
+      <div className="mock-head"><img src="/mike-holp.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" /><p><strong>Mike Holp</strong><span>{byline}</span></p><span className="mock-network">{network}</span></div>
+      <p>{children}</p>
+      <div className="mock-actions" aria-hidden="true">{postIcons.map(icon => <svg key={icon} viewBox="0 0 24 24"><path d={icon} /></svg>)}</div>
+    </figure>
+  );
+}
+
+function Services({ channel }) {
+  const ask = label => trackClick('services', label, '#work-together', 'ask_service');
+  const yourProduct = <span className="your-product">your product</span>;
+  const subscribers = Number.isFinite(channel?.subscribers) ? viewFormat.format(channel.subscribers) : '5.2K';
+  return (
+    <section className="section" id="services">
+      <div className="shell">
+        <SectionHead eyebrow="Services" title="What I" accent="offer.">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
+        <article className="service service-featured reveal">
+          <div>
+            <p className="service-channels">YouTube · Shorts · AI Income Lab · LinkedIn</p>
+            <h3>Multi-platform campaign</h3>
+            <p className="service-price">$2,250 <span>value $2,550</span></p>
+            <p>A dedicated video, a Short, an AI Income Lab post and a LinkedIn post, with the description link and pinned comment. One launch, four audiences, the same week.</p>
+            <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
+            <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign')}>Book the campaign</a>
+          </div>
+          <div className="service-collage">
+            <CampaignThumb id="b0Izj5Pv0sQ" caption="Bluehost campaign" />
+            <div className="collage-second"><span className="collage-plus" aria-hidden="true">+</span><CampaignThumb id="qQVAnp4-EpI" caption="Runable campaign" /></div>
+          </div>
+        </article>
+        <div className="service-grid reveal-group">
+          <article className="service">
+            <h3>Dedicated video</h3>
+            <p className="service-price">$1,500</p>
+            <p>An 8 to 12 minute video built around your product on a real project, with description links and a pinned comment.</p>
+            <CampaignThumb id="wRqpZ9F3rmI" caption="DataForSEO campaign" />
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video')}>Ask about a dedicated video</a>
+          </article>
+          <article className="service">
+            <h3>YouTube Short</h3>
+            <p className="service-price">$400</p>
+            <p>A 30 to 60 second vertical demo or result, with a direct call to action and a link where YouTube allows one.</p>
+            <figure className="short-frame"><a href="https://www.youtube.com/shorts/thlvN9ZrFms" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/thlvN9ZrFms/oar2.jpg" alt="Watch the 9Router setup Short on YouTube" width="720" height="1280" loading="lazy" decoding="async" /></a><figcaption>9Router Short, 2.3K views</figcaption></figure>
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short')}>Ask about a Short</a>
+          </article>
+          <article className="service">
+            <h3>AI Income Lab post</h3>
+            <p className="service-price">$300</p>
+            <p>A sponsored post in the Skool community for 2,900+ members, with a product overview, key benefits and your link.</p>
+            <MockPost network="AI Income Lab" byline="Community post">New in the toolbox: {yourProduct}. I used it on this week&rsquo;s build. Here&rsquo;s the setup, and what it saved me.</MockPost>
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post')}>Ask about a community post</a>
+          </article>
+          <article className="service">
+            <h3>LinkedIn post</h3>
+            <p className="service-price">$350</p>
+            <p>A professional post for an AI and business audience, written for LinkedIn with its own message and call to action.</p>
+            <MockPost network="LinkedIn" byline="AI automation creator">I spent a week building with {yourProduct}. Three things it does better than the tools I was using.</MockPost>
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post')}>Ask about a LinkedIn post</a>
+          </article>
+        </div>
+        <div className="services-custom reveal">
+          <p>Need something custom? Extra Shorts, category exclusivity, paid usage rights and longer partnerships are on the rate card.</p>
+          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote')}>Get a quote →</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function MediaKit() {
   const [tab, setTab] = useState(0);
   const [shot, setShot] = useState(0);
@@ -760,6 +843,9 @@ function App() {
 
       <div className="divider reveal" aria-hidden="true" />
       <MediaKit />
+
+      <div className="divider reveal" aria-hidden="true" />
+      <Services channel={channel} />
 
       {sponsoredVideos.length > 0 && <>
         <div className="divider reveal" aria-hidden="true" />

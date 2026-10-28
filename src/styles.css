@@ -211,6 +211,47 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .studio-dots button::before { content: ''; display: block; width: 8px; height: 8px; margin: auto; border-radius: 999px; background: var(--muted); transition: width .2s ease, background-color .2s ease; }
 .studio-dots button[aria-current="true"] { width: 36px; }
 .studio-dots button[aria-current="true"]::before { width: 24px; background: var(--text); }
+/* Services: a wide featured campaign with a two-thumbnail collage, then the single formats two by two. */
+.service { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 36px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
+.service h3 { font: 600 26px/1.15 var(--sans); letter-spacing: -.01em; }
+.service > p:not(.service-price), .service-featured > div > p:not(.service-price, .service-channels), .services-custom p { max-width: 52ch; color: var(--body); font-family: var(--sans); }
+.service-price { font: 400 30px/1 var(--display); color: var(--signal); }
+.service-price span { margin-left: 8px; color: var(--muted); font: 500 12px var(--mono); text-decoration: line-through; }
+.service .button { margin-top: auto; }
+.service-featured { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; margin-top: 64px; padding: 48px; }
+.service-featured > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.service-featured h3 { font-size: clamp(30px, 3.4vw, 44px); }
+.service-channels { padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--muted); font: 500 11px var(--mono); }
+.service-stats { display: flex; gap: 40px; }
+.service-stats div { display: flex; flex-direction: column-reverse; gap: 6px; }
+.service-stats dd { font: 400 30px/1 var(--display); }
+.service-stats dt { color: var(--muted); font-size: 12px; }
+.campaign-thumb { width: 100%; }
+.campaign-thumb img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line-strong); border-radius: 12px; transition: transform .3s var(--ease); }
+.campaign-thumb a:hover img { transform: scale(1.02); }
+.campaign-thumb figcaption, .short-frame figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; }
+/* Two tilted thumbnails overlap, joined by a + badge, like a campaign pairing. */
+.service-collage { position: relative; min-height: 400px; }
+.service-collage > .campaign-thumb { position: absolute; top: 0; left: 0; width: 72%; transform: rotate(-3deg); }
+.collage-second { position: absolute; right: 0; bottom: 0; width: 66%; transform: rotate(2.5deg); }
+.service-collage img { box-shadow: 0 18px 50px rgb(0 0 0 / .55); }
+.collage-plus { position: absolute; z-index: 1; top: 0; left: 0; display: grid; place-items: center; width: 56px; height: 56px; border: 6px solid var(--panel); border-radius: 50%; color: var(--ink); background: var(--text); font: 400 26px/1 var(--sans); transform: translate(-50%, -50%); }
+.service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.short-frame { align-self: center; width: min(190px, 60%); }
+.short-frame img { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border: 1px solid var(--line-strong); border-radius: 14px; }
+.short-frame figcaption { text-align: center; }
+.mock-post { width: 100%; display: grid; gap: 14px; padding: 20px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--ink); font-family: var(--sans); }
+.mock-head { display: flex; align-items: center; gap: 12px; }
+.mock-head img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.mock-head p { display: grid; line-height: 1.3; }
+.mock-head span { color: var(--muted); font-size: 13px; }
+.mock-network { margin-left: auto; padding: 4px 10px; border: 1px solid var(--line-strong); border-radius: 999px; font: 500 11px var(--mono); }
+.mock-post > p { color: var(--text); line-height: 1.6; }
+.your-product { padding: 1px 8px; border: 1px dashed var(--muted); border-radius: 6px; color: var(--signal); white-space: nowrap; }
+.mock-actions { display: flex; gap: 28px; color: var(--muted); }
+.mock-actions svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.services-custom { display: grid; justify-items: center; gap: 4px; margin-top: 64px; text-align: center; }
+.services-custom .button-row { justify-content: center; margin-top: 24px; }
 /* Four sponsored videos fill one row; tablets and phones fall back to the .video-grid rules below. */
 .sponsored-grid { grid-template-columns: repeat(4, 1fr); }
 .video-card { display: grid; gap: 14px; }
@@ -378,6 +419,9 @@ a.video-card:hover h3 { color: var(--signal); }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
 
 @media (max-width: 960px) {
+  .service-featured { grid-template-columns: 1fr; padding: 32px; }
+  .service-collage { min-height: 0; aspect-ratio: 16 / 12; }
+  .service-grid { grid-template-columns: 1fr; }
   .audience { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; }
   .footer-directory { grid-template-columns: 1fr; gap: 32px; }
   .course-promo-card { display: grid; grid-template-columns: 1fr; gap: 28px; padding: 32px; }
@@ -398,6 +442,10 @@ a.video-card:hover h3 { color: var(--signal); }
 }
 
 @media (max-width: 640px) {
+  .service, .service-featured { padding: 24px; }
+  .service-stats { gap: 28px; }
+  .collage-plus { width: 44px; height: 44px; font-size: 22px; }
+  .service-collage { aspect-ratio: 8 / 9; }
   .audience-tabs button { padding: 0 10px; font-size: 11px; }
   .studio-arrow { width: 40px; height: 40px; left: 6px; }
   .studio-arrow.next { right: 6px; }
