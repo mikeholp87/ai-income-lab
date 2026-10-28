@@ -23,8 +23,9 @@ test('phones put each plan price on the plan name row', () => {
   assert.match(phone, /\.plan-list \.plan-price \{ grid-row: 1; grid-column: 2; \}/);
 });
 
-test('product card buttons align at the bottom of each card', () => {
-  assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*<a className="button button-primary"/);
+test('product card links align at the bottom of each card without competing with Join buttons', () => {
+  assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*<a className="tool-link"/);
+  assert.doesNotMatch(jsx, /\['#tools',/);
   assert.match(css, /\.tool ul \{[^}]*margin: 4px 0 0;/);
   assert.match(css, /\.tool-action \{ margin-top: auto; padding-top: 24px; \}/);
 });
@@ -118,7 +119,7 @@ test('prose uses Instrument Sans while labels keep DM Mono', () => {
 });
 
 test('the main Join buttons open the Skool plan picker', () => {
-  for (const placement of ['navigation', 'hero', 'footer']) {
+  for (const placement of ['navigation', 'hero', 'runable_course', 'footer']) {
     assert.match(jsx, new RegExp(`href=\\{plansUrl\\}[^\\n]*trackCommunityVisit\\('${placement}', 'Join AI Income Lab', plansUrl\\)`), placement);
   }
   assert.match(jsx, /trackCommunityVisit\('footer', 'AI Income Lab'\)/);
@@ -155,8 +156,8 @@ test('every rate card format has a service card with its price', () => {
   }
 });
 
-test('the header links to services between About and Contact', () => {
-  assert.match(jsx, /\['#about', 'About'\], \['#services', 'Services'\], \['#work-together', 'Contact'\]/);
+test('the header links to FAQ and sponsor packages between About and Contact', () => {
+  assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['#services', 'Sponsors'\], \['#work-together', 'Contact'\]/);
   assert.match(jsx, /<section className="section" id="services">/);
   // Seven links share the bar down to the 961px collapse point; none may wrap to two lines.
   assert.match(css, /\.nav-links a \{[^}]*white-space: nowrap;/);
@@ -168,4 +169,13 @@ test('every service card preselects a package the contact form offers', () => {
   assert.equal(choices.length, 6);
   for (const choice of choices) assert.ok(packages.includes(`['${choice}'`), choice);
   assert.match(jsx, /<select name="topic" required value=\{topic\}/);
+});
+
+test('plan cards show the verified monthly and annual prices and report the chosen plan', () => {
+  for (const [name, monthly, annual] of [['Standard', 29, 290], ['Premium', 49, 490], ['VIP', 89, 890]]) {
+    assert.match(jsx, new RegExp(`\\{ name: '${name}', price: ${monthly}, annual: ${annual},`), name);
+  }
+  assert.match(jsx, /or \$\{plan\.annual\} a year/);
+  assert.match(jsx, /plan_name: plan\.name, plan_price: plan\.price/);
+  assert.match(jsx, /From \$29 a month or \$290 a year\. You pick a plan on Skool and can cancel anytime\./);
 });

@@ -49,8 +49,8 @@ function trackClick(placement, buttonText, url, action) {
   return () => trackEvent('CTA Clicked', { button_text: buttonText, link_url: url, placement, action });
 }
 
-function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl, videoId) {
-  const properties = { ...campaignProperties(getCampaign(window.location.search, ['community'])), ...(videoId ? { video_id: videoId } : {}), content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
+function trackCommunityVisit(placement, buttonText, url = skoolAboutUrl, videoId, extra = {}) {
+  const properties = { ...campaignProperties(getCampaign(window.location.search, ['community'])), ...(videoId ? { video_id: videoId } : {}), ...extra, content_name: 'AI Income Lab membership', content_category: 'membership', button_text: buttonText, link_url: url, placement };
   trackEvent('CTA Clicked', { ...properties, action: 'visit_skool' });
   trackEvent('Skool Outbound Clicked', properties);
   trackMetaOutbound(properties);
@@ -135,9 +135,9 @@ const repos = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
-  { name: 'Premium', price: 49, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
-  { name: 'VIP', price: 89, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
+  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
+  { name: 'Premium', price: 49, annual: 490, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
+  { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
 
 const timeline = [
@@ -151,6 +151,7 @@ const timeline = [
 const faqs = [
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
+  ['What happens when I click Join?', 'Skool’s plan page opens in a new tab. You choose Standard, Premium, or VIP and monthly or yearly billing, then sign in or create a Skool account and pay on Skool. This site never sees your payment details.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
@@ -203,7 +204,7 @@ function SectionHead({ eyebrow, title, accent, children }) {
   );
 }
 
-const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#tools', 'Tools'], ['#about', 'About'], ['#services', 'Services'], ['#work-together', 'Contact']];
+const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['#services', 'Sponsors'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
@@ -341,7 +342,7 @@ function Services({ channel }) {
   return (
     <section className="section" id="services">
       <div className="shell">
-        <SectionHead eyebrow="Services" title="What I" accent="offer.">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
+        <SectionHead eyebrow="For brands" title="Sponsorship" accent="packages.">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
         <article className="service service-featured reveal">
           <div>
             <p className="service-channels">YouTube · Shorts · AI Income Lab · LinkedIn</p>
@@ -636,7 +637,6 @@ function App() {
   }, [campaign, campaignReady]);
 
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
-  const communityUrl = outboundUrl(skoolCommunityUrl, campaign);
   const plansUrl = outboundUrl(skoolPlansUrl, campaign);
   const communityHero = wantsCommunity(campaign);
   const active = useActiveSection(navIds);
@@ -673,7 +673,7 @@ function App() {
           <h1><span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
-        <p className="hero-text"><strong>AI Income Lab is the paid community from the AI Automation Station YouTube channel.</strong> Step-by-step courses, reusable templates, and 2,900+ members, hosted by Mike Holp.</p>
+        <p className="hero-text"><strong>AI Income Lab is the paid community from the AI Automation Station YouTube channel.</strong> It has step-by-step courses, from a beginner Make.com automation course to Claude Code, Codex, and AI voice agents. VIP adds weekly coaching and 6,400+ n8n templates. Ask 2,900+ members while you build. Hosted by Mike Holp.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {
@@ -681,7 +681,7 @@ function App() {
             videoPlayButton.current?.click();
           }}>Watch a free build</a>
         </nav>
-        <p className="fine-print hero-reassurance">From $29/month. Cancel anytime.</p>
+        <p className="fine-print hero-reassurance">From $29 a month or $290 a year. You pick a plan on Skool and can cancel anytime.</p>
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
         </div>
@@ -700,7 +700,7 @@ function App() {
               <li>Launch your finished site online.</li>
             </ul>
             <div className="course-promo-action">
-              <a className="button button-primary" href={communityUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Join AI Income Lab', communityUrl)}>Join AI Income Lab ↗</a>
+              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
               <p className="fine-print">Included with every AI Income Lab plan, from $29/month.</p>
             </div>
           </div>
@@ -726,13 +726,13 @@ function App() {
                     <h3>{plan.name}</h3>
                     <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
                     <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name}, $${plan.price}/month`, plansUrl)}>Choose {plan.name}, ${plan.price}/month ↗</a>
+                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name}, $${plan.price}/month`, plansUrl, undefined, { plan_name: plan.name, plan_price: plan.price, currency: 'USD' })}>Choose {plan.name}, ${plan.price}/month ↗</a>
                   </div>
-                  <p className="plan-price"><strong>${plan.price}</strong> a month</p>
+                  <p className="plan-price"><strong>${plan.price}</strong> a month<span>or ${plan.annual} a year</span></p>
                 </li>
               ))}
             </ul>
-            <p className="fine-print">Monthly prices shown; annual billing is available. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
+            <p className="fine-print">Pay monthly or yearly; a year costs the same as 10 months. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
             <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
           </div>
           <div className="reveal">
@@ -809,7 +809,7 @@ function App() {
       <div className="divider reveal" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead eyebrow="Products" title="Two products" accent="I built and run.">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
+          <SectionHead eyebrow="Also by Mike" title="Two products" accent="I built and run.">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
           <div className="tool-grid reveal-group">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -821,7 +821,7 @@ function App() {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                    <a className="tool-link" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>

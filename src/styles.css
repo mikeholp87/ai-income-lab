@@ -53,7 +53,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 /* Header */
 .site-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--line); background: rgb(10 10 10 / .82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 .nav { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; font: 400 15px var(--display); text-transform: uppercase; letter-spacing: .02em; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; font: 400 15px var(--display); text-transform: uppercase; letter-spacing: .02em; }
 .brand span { width: 12px; height: 12px; background: var(--signal); }
 .nav-links { align-self: stretch; display: flex; gap: clamp(18px, 2.8vw, 36px); color: var(--muted); font-size: 12px; font-weight: 500; }
 .nav-links a { display: flex; align-items: center; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .2s ease, border-color .2s ease; }
@@ -271,6 +271,8 @@ a.video-card:hover h3 { color: var(--signal); }
 /* The action block takes the free space, so both cards' buttons land on the same line. */
 .tool-action { margin-top: auto; padding-top: 24px; }
 .tool-action .fine-print { margin: 0 0 14px; }
+.tool-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.tool-link:hover { color: var(--signal); }
 
 /* Things I've built (inside About) */
 .built { margin-top: 112px; }
@@ -318,6 +320,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .plan-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--signal); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
 .plan-price { flex: none; color: var(--muted); font-size: 12px; }
 .plan-price strong { color: var(--text); font: 400 24px var(--display); }
+.plan-price span { display: block; margin-top: 2px; }
 .fine-print { margin-top: 14px; color: var(--muted); font-size: 12px; }
 /* Prose reads in Instrument Sans; DM Mono stays on labels, meta, prices, buttons, timeline and FAQ questions. */
 .lede, .about-copy > p:not(.about-links, .eyebrow), .tool-body > p:not(.tool-tagline), .plan-fit, .plan-features, .fine-print, .community-help, .support-note, .faq-list details p, .members p, .built > p, .repo-list li > p:not(.repo-meta, .repo-links), .next-step-access { font-family: var(--sans); }
