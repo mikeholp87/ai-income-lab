@@ -4,7 +4,7 @@
       "id": "wLIiTkra7uM",
       "title": "I Let GrokBot Run My Blog for 30 Days (Here's What Happened)",
       "published": "2026-10-27T14:00:36Z",
-      "views": 87,
+      "views": 89,
       "duration": "7:06",
       "summary": "Build an automated GrokBot WordPress blog writer to publish content hands-free. Learn to integrate AI agents for business.",
       "embeddable": true
@@ -13,7 +13,7 @@
       "id": "VE66JDHoS6Y",
       "title": "Herdr Lets You Run Claude Code And Codex In One Place",
       "published": "2026-10-26T10:58:24Z",
-      "views": 182,
+      "views": 220,
       "duration": "7:52",
       "summary": "",
       "embeddable": true
@@ -31,7 +31,7 @@
       "id": "UAPaM6KrC-M",
       "title": "Building My Own Video Editor Using REA (It's Insane!)",
       "published": "2026-10-14T08:36:41Z",
-      "views": 478,
+      "views": 479,
       "duration": "6:33",
       "summary": "Learn how to use software reverse engineering to recreate a powerful video editor using the powerful REA tool and Claude Code. Very impressive!",
       "embeddable": true
@@ -40,7 +40,7 @@
       "id": "mPHM81X1oqc",
       "title": "I Tested Meta Muse Wonder - Here's What Happened",
       "published": "2026-10-13T10:07:08Z",
-      "views": 700,
+      "views": 701,
       "duration": "8:16",
       "summary": "Meta Muse Wonder is now one of the most powerful AI models released by Meta in years.",
       "embeddable": true
@@ -49,7 +49,7 @@
       "id": "ys5tJuTFCEo",
       "title": "How To Connect Claude Code & Codex To GrokBot",
       "published": "2026-10-09T08:13:12Z",
-      "views": 1964,
+      "views": 1974,
       "duration": "7:50",
       "summary": "Learn how to integrate your Codex and Claude Code subscriptions directly into GrokBot to keep your AI workflows running smoothly when Cursor Cloud credits run out.",
       "embeddable": true
@@ -66,7 +66,7 @@
   ],
   "channel": {
     "subscribers": 5230,
-    "views": 532632,
+    "views": 533741,
     "videos": 350
   }
 }
