@@ -350,7 +350,7 @@ function Services({ channel }) {
             <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
             <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign', 'Multi-platform campaign')}>Book the campaign</a>
           </div>
-          <img className="service-image" src="/services/campaign.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
+          <img className="service-image" src="/services/campaign.webp" alt="" width="1152" height="864" loading="lazy" decoding="async" />
         </article>
         <div className="service-grid reveal-group">
           <article className="service">
