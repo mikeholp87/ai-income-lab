@@ -94,8 +94,7 @@ test('Skool buttons share one label and new-tab buttons end with ↗', () => {
   assert.equal(count(jsx, '>Subscribe on YouTube ↗</a>'), 2);
   assert.match(jsx, />\{tool\.cta\} ↗<\/a>/);
   for (const [link] of jsx.matchAll(/<a className="button.*?<\/a>/g)) {
-    // The booking button opens an inline calendar; its new-tab target is only the no-JS fallback.
-    if (link.includes('target="_blank"') && !link.includes('onClick={openCalendar}')) assert.match(link, /↗<\/a>$/, link);
+    if (link.includes('target="_blank"')) assert.match(link, /↗<\/a>$/, link);
   }
 });
 

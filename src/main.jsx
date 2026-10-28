@@ -312,6 +312,8 @@ function VideoGrid({ videos, failed }) {
   );
 }
 
+const arrowKeys = { ArrowLeft: -1, ArrowRight: 1 };
+
 // Dot and legend colors, brightest first; the largest share gets the brand color.
 const tones = ['var(--signal)', 'var(--text)', 'var(--body)', 'var(--muted)', '#6b6b66', '#52524e', '#3d3d39'];
 
@@ -348,25 +350,42 @@ function MediaKit() {
           </div>
         </div>
       </div>
-      {shots.length > 0 && <dialog ref={studio} className="studio-shots" aria-label="YouTube Studio screenshots" onClick={event => event.target === event.currentTarget && studio.current.close()}>
+      {shots.length > 0 && <dialog ref={studio} className="studio-shots" aria-label="YouTube Studio screenshots" onClick={event => event.target === event.currentTarget && studio.current.close()} onKeyDown={event => shots.length > 1 && event.key in arrowKeys && step(arrowKeys[event.key])}>
         <div className="studio-bar"><p>YouTube Studio, {shot + 1} of {shots.length}</p><button type="button" onClick={() => studio.current.close()}>Close ×</button></div>
-        <img src={shots[shot].src} alt={shots[shot].alt} width={shots[shot].width} height={shots[shot].height} loading="lazy" decoding="async" />
-        {shots.length > 1 && <div className="studio-steps"><button type="button" onClick={() => step(-1)} aria-label="Previous screenshot">←</button><button type="button" onClick={() => step(1)} aria-label="Next screenshot">→</button></div>}
+        <div className="studio-frame">
+          <img src={shots[shot].src} alt={shots[shot].alt} width={shots[shot].width} height={shots[shot].height} loading="lazy" decoding="async" />
+          {shots.length > 1 && <>
+            <button type="button" className="studio-arrow" onClick={() => step(-1)} aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg></button>
+            <button type="button" className="studio-arrow next" onClick={() => step(1)} aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
+          </>}
+        </div>
+        {shots.length > 1 && <div className="studio-dots">{shots.map((item, index) => <button key={item.src} type="button" aria-label={`Screenshot ${index + 1}`} aria-current={index === shot} onClick={() => setShot(index)} />)}</div>}
       </dialog>}
     </section>
   );
 }
 
-// The button is a real cal.com link, so it still works without JavaScript or if the embed is blocked.
+// The calendar loads once it nears the screen (and only while its tab is showing); the link below
+// it is a real cal.com link, so booking still works without JavaScript or if the embed is blocked.
 function BookingCalendar({ campaign }) {
-  const [open, setOpen] = useState(false);
+  const box = useRef(null);
   const started = useRef(false);
   const booked = useRef(false);
   const attributedBookingUrl = outboundUrl(bookingUrl, campaign, { utm_source: campaign.params.utm_source || 'ai-automation-station', utm_medium: campaign.params.utm_medium || 'website', utm_content: 'booking' });
 
   useEffect(() => {
-    if (!open || started.current) return;
-    started.current = true; // StrictMode runs effects twice in development
+    if (started.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || started.current) return;
+      started.current = true; // StrictMode runs effects twice in development
+      observer.disconnect();
+      startCalendar();
+    }, { rootMargin: '600px 0px' });
+    observer.observe(box.current);
+    return () => observer.disconnect();
+  });
+
+  function startCalendar() {
     const cal = getCal();
     cal('init', 'booking', { origin: 'https://cal.com' });
     cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme: 'dark' } });
@@ -376,19 +395,11 @@ function BookingCalendar({ campaign }) {
       booked.current = true;
       trackEvent('Call Requested', { placement: 'booking', device: window.matchMedia('(max-width: 640px)').matches ? 'mobile' : 'desktop', campaign: campaign.params.utm_campaign || 'direct' });
     } });
-  }, [open, attributedBookingUrl, campaign]);
-
-  function openCalendar(event) {
-    trackClick('booking', 'Book a free intro call', bookingUrl, 'book_call')();
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || window.matchMedia('(max-width: 640px)').matches) return;
-    event.preventDefault();
-    setOpen(true);
   }
 
-  if (!open) return <div className="button-row"><a className="button button-primary" href={attributedBookingUrl} target="_blank" rel="noreferrer" onClick={openCalendar}>Book a free intro call</a></div>;
   return (
     <>
-      <div className="booking-calendar" id="booking-calendar" role="region" aria-label="Book an intro call" tabIndex="0" />
+      <div className="booking-calendar" id="booking-calendar" ref={box} role="region" aria-label="Book an intro call" tabIndex="0" />
       <a className="text-link" href={attributedBookingUrl} target="_blank" rel="noreferrer">Calendar not loading? Book on cal.com ↗</a>
     </>
   );

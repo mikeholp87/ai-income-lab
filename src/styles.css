@@ -165,10 +165,21 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .studio-shots { width: min(1100px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 0; color: var(--text); background: none; }
 .studio-shots::backdrop { background: rgb(0 0 0 / .88); }
 .studio-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; color: var(--body); }
-.studio-bar button, .studio-steps button { min-height: 44px; min-width: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--text); background: var(--panel); font: 500 13px var(--mono); cursor: pointer; }
+.studio-bar button { min-height: 44px; min-width: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--text); background: var(--panel); font: 500 13px var(--mono); cursor: pointer; }
 .studio-bar button { padding: 0 16px; }
 .studio-shots img { display: block; width: 100%; height: auto; max-height: calc(100vh - 160px); object-fit: contain; border: 1px solid var(--line); border-radius: 8px; }
-.studio-steps { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
+.studio-frame { position: relative; }
+/* Round arrows over the screenshot's left and right edges, vertically centred. */
+.studio-arrow { position: absolute; top: 50%; left: 12px; display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ink); background: var(--text); box-shadow: 0 4px 18px rgb(0 0 0 / .45); transform: translateY(-50%); cursor: pointer; transition: transform .15s ease; }
+.studio-arrow:hover { transform: translateY(-50%) scale(1.06); }
+.studio-arrow.next { left: auto; right: 12px; }
+.studio-arrow svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.studio-dots { display: flex; justify-content: center; gap: 4px; margin-top: 12px; }
+/* 8px dots inside 24px hit areas; the current one stretches into a pill. */
+.studio-dots button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.studio-dots button::before { content: ''; display: block; width: 8px; height: 8px; margin: auto; border-radius: 999px; background: var(--muted); transition: width .2s ease, background-color .2s ease; }
+.studio-dots button[aria-current="true"] { width: 36px; }
+.studio-dots button[aria-current="true"]::before { width: 24px; background: var(--text); }
 /* Four sponsored videos fill one row; tablets and phones fall back to the .video-grid rules below. */
 .sponsored-grid { grid-template-columns: repeat(4, 1fr); }
 .video-card { display: grid; gap: 14px; }
@@ -357,6 +368,8 @@ a.video-card:hover h3 { color: var(--signal); }
 
 @media (max-width: 640px) {
   .audience-tabs button { padding: 0 10px; font-size: 11px; }
+  .studio-arrow { width: 40px; height: 40px; left: 6px; }
+  .studio-arrow.next { right: 6px; }
   .contact-form { grid-template-columns: 1fr; }
   .course-promo { padding-bottom: 40px; }
   .course-promo-card { padding: 16px; }
