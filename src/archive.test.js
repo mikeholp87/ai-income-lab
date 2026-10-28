@@ -374,7 +374,8 @@ test('all upload requests share one cancellation deadline', async t => {
 
 test('splits the archive into pages of 15 linked to each other', () => {
   const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 31 - index)).toISOString(), summary: '' }));
-  const cards = html => html.match(/<li>/g).length;
+  // Video cards only; the join card's benefit list also uses <li>.
+  const cards = html => html.match(/<li><a /g).length;
   assert.equal(pageCount(videos), 3);
   const first = renderArchive(videos, 1);
   assert.equal(cards(first), 15);
@@ -453,8 +454,8 @@ test('the archive links the reading pages and offers the community', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
   assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
   assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
-  assert.match(html, /<aside class="cta" aria-label="AI Income Lab"><p>[^<]*from \$29\/month\.<\/p><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><\/aside>/);
-  assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('</ul>'));
+  assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><p class="cta-eyebrow">AI Income Lab<\/p><h2 id="join-lab">Don’t build the next one <span>alone\.<\/span><\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
+  assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('<li><a '));
   assert.doesNotMatch(html, /builds something real with it/);
 });
 
