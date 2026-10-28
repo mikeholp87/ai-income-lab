@@ -512,7 +512,7 @@ function ContactForm({ topic, setTopic }) {
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
       <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
-      <label className="contact-trap" aria-hidden="true">Leave this empty<input name="website" tabIndex="-1" autoComplete="off" /></label>
+      <label className="contact-trap" aria-hidden="true">Leave this empty<input name="hp" tabIndex="-1" autoComplete="off" /></label>
       <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
       {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
     </form>
@@ -555,7 +555,7 @@ function NotesSignup() {
       <label htmlFor="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
       <div>
         <input id="footer-notes-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" />
-        <input className="contact-trap" name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" />
+        <input className="contact-trap" name="hp" tabIndex="-1" autoComplete="off" aria-hidden="true" />
         <button className="button" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Subscribing…' : 'Subscribe'}</button>
       </div>
       {status === 'failed' && <p className="notes-signup-status" role="alert">That didn&rsquo;t go through. Try again in a minute.</p>}

@@ -31,7 +31,7 @@ test('bad JSON and invalid fields get 400; a missing key gets 503', async () => 
 test('the honeypot is accepted without sending', async () => {
   process.env.RESEND_API_KEY = 're_test';
   globalThis.fetch = () => assert.fail('should not send');
-  assert.equal((await post({ ...valid, website: 'spam.example' })).status, 200);
+  assert.equal((await post({ ...valid, hp: 'spam.example' })).status, 200);
 });
 
 test('a valid message is emailed with Reply-To set to the visitor', async () => {

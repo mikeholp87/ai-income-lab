@@ -36,7 +36,9 @@ test('an address already on the list counts as done and is not welcomed twice', 
   process.env.RESEND_API_KEY = 're_full';
   const urls = [];
   globalThis.fetch = async url => { urls.push(url); return new Response('{}', { status: 409 }); };
-  assert.equal((await post({ email: 'ada@example.com' })).status, 200);
+  const res = await post({ email: 'ada@example.com' });
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { ok: true, already: true });
   assert.deepEqual(urls, ['https://api.resend.com/contacts']);
 });
 
@@ -52,10 +54,19 @@ test('a failed welcome email still reports the signup as done', async () => {
 test('honeypot hits never reach Resend, and Resend failures answer 502', async () => {
   process.env.RESEND_API_KEY = 're_full';
   globalThis.fetch = () => assert.fail('should not call');
-  assert.equal((await post({ email: 'a@b.co', website: 'x' })).status, 200);
+  assert.equal((await post({ email: 'a@b.co', hp: 'x' })).status, 200);
   const logged = console.error;
   console.error = () => {};
   globalThis.fetch = async () => new Response('bad', { status: 500 });
   try { assert.equal((await post({ email: 'a@b.co' })).status, 502); }
   finally { console.error = logged; }
+});
+
+test('trap fields avoid names that autofill fills, and the page explains an existing signup', async () => {
+  const { readFile, readdir } = await import('node:fs/promises');
+  const guides = (await readdir('public/guides')).map(file => `public/guides/${file}`);
+  for (const path of ['src/main.jsx', 'src/archive.js', 'public/start-here.html', ...guides]) {
+    assert.doesNotMatch(await readFile(path, 'utf8'), /name="website"/, path);
+  }
+  assert.match(await readFile('src/reading.js', 'utf8'), /result\.already\s*\?\s*'You’re already on the list/);
 });

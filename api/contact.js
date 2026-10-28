@@ -27,7 +27,7 @@ export async function POST(req) {
   try { body = await req.json(); }
   catch { return Response.json({ error: "invalid" }, { status: 400 }); }
   // Honeypot: the field is hidden from people, so only bots fill it. Pretend it worked.
-  if (body?.website) return Response.json({ ok: true });
+  if (body?.hp) return Response.json({ ok: true });
   const contact = readContact(body);
   if (!contact) return Response.json({ error: "invalid" }, { status: 400 });
   if (!process.env.RESEND_API_KEY) return Response.json({ error: "unavailable" }, { status: 503 });

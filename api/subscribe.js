@@ -41,7 +41,10 @@ export async function POST(req) {
   try { body = await req.json(); }
   catch { return Response.json({ error: "invalid" }, { status: 400 }); }
   // Honeypot: hidden from people, so only bots fill it. Pretend it worked.
-  if (body?.website) return Response.json({ ok: true });
+  if (body?.hp) {
+    console.log("subscribe: trap field filled, ignored");
+    return Response.json({ ok: true });
+  }
   const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
   if (email.length > 254 || !isEmail(email)) return Response.json({ error: "invalid" }, { status: 400 });
   if (!process.env.RESEND_API_KEY) return Response.json({ error: "unavailable" }, { status: 503 });
@@ -53,9 +56,13 @@ export async function POST(req) {
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ email, unsubscribed: false }),
     });
-    // 409: already on the list, which is the outcome the visitor wanted, and they were welcomed before.
-    if (res.status === 409) return Response.json({ ok: true });
+    // 409: already on the list. They were welcomed before, so the page tells them instead of promising an email.
+    if (res.status === 409) {
+      console.log("subscribe: already on the list, no welcome sent");
+      return Response.json({ ok: true, already: true });
+    }
     if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+    console.log("subscribe: contact added");
   } catch (err) {
     console.error("subscribe", err);
     return Response.json({ error: "failed" }, { status: 502 });
@@ -69,6 +76,7 @@ export async function POST(req) {
       body: JSON.stringify({ from: FROM, to: [email], reply_to: REPLY_TO, ...welcome }),
     });
     if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+    console.log("subscribe: welcome sent", (await res.json().catch(() => ({}))).id ?? "");
   } catch (err) {
     console.error("subscribe welcome", err);
   }
