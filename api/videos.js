@@ -1,4 +1,4 @@
-import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap } from '../src/archive.js';
+import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sponsoredVideos } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
@@ -41,6 +41,7 @@ export async function GET(request) {
   const url = new URL(request.url);
   const videoId = url.pathname.match(/^\/watch\/([^/]+)\/?$/)?.[1] ?? url.searchParams.get('video');
   const sitemap = url.pathname === '/video-sitemap.xml' || url.searchParams.get('sitemap') === 'videos';
+  const sponsored = url.searchParams.has('sponsored');
   if (videoId !== null && !/^[\w-]{11}$/.test(videoId)) return notFound();
   // The page arrives in the original path or, after the rewrite, as ?page=.
   const requested = url.pathname.match(/^\/videos\/([^/]+)\/?$/)?.[1] ?? url.searchParams.get('page');
@@ -53,6 +54,8 @@ export async function GET(request) {
   if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
   const cache = 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400';
+  // The homepage swaps in this list, so a newly ticked paid-promotion box shows within a day, no rebuild needed.
+  if (sponsored) return Response.json(sponsoredVideos(memo.videos), { headers: { 'Cache-Control': cache } });
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });
   if (videoId !== null) {
     const find = () => memo.videos.find(video => video.id === videoId);

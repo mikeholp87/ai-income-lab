@@ -7,8 +7,9 @@ import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
 import { videoOffer } from './video-offer.js';
 import { featuredThumbnail } from './thumbnail.js';
+import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
-import sponsoredVideos from './sponsored-snapshot.json';
+import sponsoredSnapshot from './sponsored-snapshot.json';
 import './fonts.css';
 import './styles.css';
 
@@ -176,6 +177,20 @@ function useYouTubeFeed() {
   return feed;
 }
 
+// Same pattern as the feed: the build's list renders first, the daily server list replaces it.
+function useSponsoredVideos() {
+  const [videos, setVideos] = useState(sponsoredSnapshot);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch('/api/videos?sponsored', { signal: controller.signal })
+      .then(response => response.ok ? response.json() : Promise.reject(response.status))
+      .then(next => { if (Array.isArray(next) && next.every(video => /^[\w-]{11}$/.test(video?.id) && typeof video.title === 'string')) setVideos(next); })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
+  return videos;
+}
+
 // eyebrow names the section; accent is the headline's closing clause, set in the signal color.
 function SectionHead({ eyebrow, title, accent, children }) {
   return (
@@ -297,6 +312,51 @@ function VideoGrid({ videos, failed }) {
   );
 }
 
+// Dot and legend colors, brightest first; the largest share gets the brand color.
+const tones = ['var(--signal)', 'var(--text)', 'var(--body)', 'var(--muted)', '#6b6b66', '#52524e', '#3d3d39'];
+
+function MediaKit() {
+  const [tab, setTab] = useState(0);
+  const [shot, setShot] = useState(0);
+  const studio = useRef(null);
+  const view = mediaKit.tabs[tab];
+  const dots = dotCounts(view.rows.map(([, share]) => share)).flatMap((count, tone) => Array(count).fill(tone));
+  const shots = mediaKit.screenshots;
+  const step = by => setShot(index => (index + by + shots.length) % shots.length);
+  return (
+    <section className="section" id="media-kit">
+      <div className="shell">
+        <div className="media-kit-head">
+          <SectionHead eyebrow="Media kit" title="Audience" accent="insights.">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
+          {(mediaKit.pdf || shots.length > 0) && <div className="button-row reveal">
+            {mediaKit.pdf && <a className="button button-primary" href={mediaKit.pdf} download onClick={trackClick('media_kit', 'Download media kit', mediaKit.pdf, 'download_media_kit')}>Download media kit</a>}
+            {shots.length > 0 && <button type="button" className="button button-quiet" onClick={() => { setShot(0); studio.current.showModal(); trackEvent('Studio Screenshots Opened'); }}>See the Studio screenshots</button>}
+          </div>}
+        </div>
+        <div className="stats media-kit-stats reveal"><dl>{mediaKit.stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+        <div className="audience reveal">
+          <div>
+            <div className="dot-grid" aria-hidden="true">{dots.map((tone, index) => <span key={index} style={{ background: tones[tone] }} />)}</div>
+            <p className="fine-print">Each dot is 1% of {view.unit}.</p>
+          </div>
+          <div>
+            <div className="audience-tabs" role="group" aria-label="Audience breakdown">{mediaKit.tabs.map((item, index) => <button key={item.label} type="button" aria-pressed={index === tab} onClick={() => setTab(index)}>{item.label}</button>)}</div>
+            <div aria-live="polite">
+              <h3>{view.headline}</h3>
+              <ul className="audience-list">{view.rows.map(([label, share], index) => <li key={label}><span className="swatch" style={{ background: tones[index] }} aria-hidden="true" />{label}<span>{share}%</span></li>)}</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {shots.length > 0 && <dialog ref={studio} className="studio-shots" aria-label="YouTube Studio screenshots" onClick={event => event.target === event.currentTarget && studio.current.close()}>
+        <div className="studio-bar"><p>YouTube Studio, {shot + 1} of {shots.length}</p><button type="button" onClick={() => studio.current.close()}>Close ×</button></div>
+        <img src={shots[shot].src} alt={shots[shot].alt} width={shots[shot].width} height={shots[shot].height} loading="lazy" decoding="async" />
+        {shots.length > 1 && <div className="studio-steps"><button type="button" onClick={() => step(-1)} aria-label="Previous screenshot">←</button><button type="button" onClick={() => step(1)} aria-label="Next screenshot">→</button></div>}
+      </dialog>}
+    </section>
+  );
+}
+
 // The button is a real cal.com link, so it still works without JavaScript or if the embed is blocked.
 function BookingCalendar({ campaign }) {
   const [open, setOpen] = useState(false);
@@ -334,6 +394,51 @@ function BookingCalendar({ campaign }) {
   );
 }
 
+// Posts to /api/contact; if that fails, the visitor still gets a mailto link with their message in it.
+function ContactForm() {
+  const [status, setStatus] = useState('idle');
+  const [mailto, setMailto] = useState('mailto:automojic@proton.me');
+
+  async function send(event) {
+    event.preventDefault();
+    const fields = Object.fromEntries(new FormData(event.currentTarget));
+    setMailto(`mailto:automojic@proton.me?subject=${encodeURIComponent(fields.topic || 'Website message')}&body=${encodeURIComponent(`${fields.message}\n\n${fields.name}`)}`);
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) });
+      if (!res.ok) throw new Error(res.status);
+      setStatus('sent');
+      trackEvent('Message Sent', { placement: 'contact' });
+    } catch {
+      setStatus('failed');
+    }
+  }
+
+  if (status === 'sent') return <p className="contact-sent" role="status">Message sent. I&rsquo;ll reply to the email you gave.</p>;
+  return (
+    <form className="contact-form" onSubmit={send}>
+      <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
+      <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+      <label className="contact-wide">What it&rsquo;s about (optional)<input name="topic" maxLength={120} placeholder="Sponsored video, collab, membership…" /></label>
+      <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
+      <label className="contact-trap" aria-hidden="true">Leave this empty<input name="website" tabIndex="-1" autoComplete="off" /></label>
+      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
+      {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
+    </form>
+  );
+}
+
+function ContactOptions({ campaign }) {
+  const [mode, setMode] = useState('call');
+  return (
+    <>
+      <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{[['call', 'Book a call'], ['message', 'Send a message']].map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
+      <div hidden={mode !== 'call'}><BookingCalendar campaign={campaign} /></div>
+      <div hidden={mode !== 'message'}><ContactForm /></div>
+    </>
+  );
+}
+
 function CommunityVideo() {
   const video = useRef(null);
   const [started, setStarted] = useState(false);
@@ -362,6 +467,7 @@ function App() {
   const [campaignReady, setCampaignReady] = useState(false);
   const videoPlayButton = useRef(null);
   const { videos, channel, failed } = useYouTubeFeed();
+  const sponsoredVideos = useSponsoredVideos();
   const latest = videos?.[0];
 
   useEffect(() => {
@@ -415,6 +521,7 @@ function App() {
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
+    <div className="scroll-progress" aria-hidden="true" />
     <header className="site-header" id="top">
       <div className="nav shell">
       <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
@@ -638,6 +745,9 @@ function App() {
         </div>
       </section>
 
+      <div className="divider reveal" aria-hidden="true" />
+      <MediaKit />
+
       {sponsoredVideos.length > 0 && <>
         <div className="divider reveal" aria-hidden="true" />
         <section className="section" id="sponsored">
@@ -651,8 +761,8 @@ function App() {
       <div className="divider reveal" aria-hidden="true" />
       <section className="section" id="work-together">
         <div className="shell">
-          <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Start with a free 10-minute intro call.</SectionHead>
-          <BookingCalendar campaign={campaign} />
+          <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
+          <ContactOptions campaign={campaign} />
           <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
         </div>
       </section>

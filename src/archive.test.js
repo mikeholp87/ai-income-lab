@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap } from './archive.js';
+import { fetchUploads, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
 import { uploads } from './uploads-snapshot.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
@@ -504,4 +504,12 @@ test('topic pages link the written guides on the same subject', () => {
   for (const [slug, guide] of [['n8n', 'self-host-n8n'], ['ai-seo', 'dataforseo-mcp-claude'], ['ai-agents', 'hermes-desktop']]) {
     assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guide: <a href="/guides/${guide}.html">`), slug);
   }
+});
+
+test('only videos with the paid promotion box ticked reach the sponsored section', () => {
+  const videos = [
+    { id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: 'PT18M3S', embeddable: true, sponsored: true, chapters: [] },
+    { id: 'bbbbbbbbbbb', title: 'Unpaid', published: '2026-10-19T00:00:00Z', views: 9, duration: 'PT1M', embeddable: true, sponsored: false },
+  ];
+  assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
 });

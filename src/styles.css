@@ -38,6 +38,12 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
 .skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; color: var(--on-signal); background: var(--signal); font: 600 13px var(--mono); transform: translateY(calc(-100% - 20px)); transition: transform .15s ease; }
 .skip-link:focus { transform: none; }
+/* Reading progress along the top edge, driven by page scroll (no JS) */
+.scroll-progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress { display: block; position: fixed; z-index: 60; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--signal), var(--signal-hover)); box-shadow: 0 0 10px rgb(255 104 70 / .65); transform-origin: left; animation: scroll-progress linear both; animation-timeline: scroll(root); }
+  @keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
 
 /* Labels: small tracked caps naming what follows */
 .eyebrow, .nav-links, .text-link, .button, .footer-columns h2, .stats dt { font-family: var(--mono); letter-spacing: .18em; text-transform: uppercase; }
@@ -142,6 +148,27 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .hero-preview .player-meta h2 { font-size: 20px; }
 .next-step-access { flex: 1 1 220px; }
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 24px; margin-top: 64px; }
+/* Media kit: header with buttons on the right, the shared stats row, then a 10×10 dot grid beside the tabs. */
+.media-kit-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 0 32px; }
+.media-kit-stats { margin-top: 56px; border: 1px solid var(--line); }
+.audience { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: start; margin-top: 72px; }
+.dot-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: clamp(6px, 1.2vw, 12px); max-width: 420px; }
+.dot-grid span { aspect-ratio: 1; border-radius: 50%; transition: background-color .35s var(--ease); }
+.audience-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; width: fit-content; }
+.audience-tabs button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; color: var(--muted); background: none; font: 500 12px var(--mono); cursor: pointer; }
+.audience-tabs button[aria-pressed="true"] { color: var(--ink); background: var(--text); }
+.audience h3 { margin-top: 32px; font: 400 clamp(26px, 3vw, 40px)/1.1 var(--display); text-transform: uppercase; text-wrap: balance; }
+.audience-list { margin-top: 28px; border-top: 1px solid var(--line); font-family: var(--sans); }
+.audience-list li { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.audience-list li > span:last-child { margin-left: auto; font-family: var(--mono); }
+.swatch { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.studio-shots { width: min(1100px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 0; color: var(--text); background: none; }
+.studio-shots::backdrop { background: rgb(0 0 0 / .88); }
+.studio-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; color: var(--body); }
+.studio-bar button, .studio-steps button { min-height: 44px; min-width: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--text); background: var(--panel); font: 500 13px var(--mono); cursor: pointer; }
+.studio-bar button { padding: 0 16px; }
+.studio-shots img { display: block; width: 100%; height: auto; max-height: calc(100vh - 160px); object-fit: contain; border: 1px solid var(--line); border-radius: 8px; }
+.studio-steps { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
 /* Four sponsored videos fill one row; tablets and phones fall back to the .video-grid rules below. */
 .sponsored-grid { grid-template-columns: repeat(4, 1fr); }
 .video-card { display: grid; gap: 14px; }
@@ -251,6 +278,19 @@ a.video-card:hover h3 { color: var(--signal); }
 .booking-calendar { min-height: 480px; max-height: 80svh; overflow: auto; overscroll-behavior: contain; margin-top: 40px; }
 .support-note, .community-help { margin-top: 20px; color: var(--body); font-size: 14px; }
 .support-note a, .community-help a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+/* Contact: call/message switch (shares the media kit tab style), then a two-column form. */
+.contact-tabs { margin-top: 40px; }
+.contact-form { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 720px; margin-top: 36px; }
+.contact-form label { display: grid; gap: 8px; color: var(--muted); font-size: 12px; }
+.contact-form input, .contact-form textarea { width: 100%; min-height: 48px; padding: 12px 16px; border: 1px solid var(--line-strong); border-radius: 12px; color: var(--text); background: var(--panel); font: 15px/1.5 var(--sans); }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--signal); }
+.contact-form textarea { resize: vertical; }
+.contact-form .button { justify-self: start; cursor: pointer; }
+.contact-form .button:disabled { opacity: .6; cursor: progress; }
+.contact-form .support-note { margin-top: 0; }
+.contact-wide { grid-column: 1 / -1; }
+.contact-trap { position: absolute; left: -9999px; }
+.contact-sent { margin-top: 36px; font-family: var(--sans); }
 .booking-calendar:empty::before { content: 'Loading the calendar…'; color: var(--muted); font-size: 12px; }
 
 /* FAQ: boxed, numbered rows */
@@ -296,6 +336,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
 
 @media (max-width: 960px) {
+  .audience { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; }
   .footer-directory { grid-template-columns: 1fr; gap: 32px; }
   .course-promo-card { display: grid; grid-template-columns: 1fr; gap: 28px; padding: 32px; }
   .course-promo-card::before { content: none; }
@@ -315,6 +356,8 @@ a.video-card:hover h3 { color: var(--signal); }
 }
 
 @media (max-width: 640px) {
+  .audience-tabs button { padding: 0 10px; font-size: 11px; }
+  .contact-form { grid-template-columns: 1fr; }
   .course-promo { padding-bottom: 40px; }
   .course-promo-card { padding: 16px; }
   .course-promo-content { padding: 8px; }

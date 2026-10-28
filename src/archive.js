@@ -56,6 +56,10 @@ export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
   return videos.filter(video => video.public);
 }
 
+// Videos with YouTube Studio's "Includes paid promotion" box ticked, as the homepage's sponsored section shows them.
+export const sponsoredVideos = videos => videos.filter(video => video.sponsored)
+  .map(({ id, title, published, views, duration, embeddable }) => ({ id, title, published, views, duration: formatDuration(duration), embeddable }));
+
 export const perPage = 15;
 export const pageCount = videos => Math.max(1, Math.ceil(videos.length / perPage));
 const pagePath = page => page === 1 ? '/videos' : `/videos/${page}`;

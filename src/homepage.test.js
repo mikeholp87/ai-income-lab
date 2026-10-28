@@ -143,3 +143,7 @@ test('the homepage links every written guide so new guides are found and crawled
 test('sponsored videos sit directly above the booking section', () => {
   assert.match(jsx, /<section className="section" id="sponsored">[\s\S]*?<\/section>\s*<\/>\}\s*<div className="divider reveal" aria-hidden="true" \/>\s*<section className="section" id="work-together">/);
 });
+
+test('the media kit follows About, before sponsored videos and booking', () => {
+  assert.match(jsx, /<section className="section band" id="about">[\s\S]*?<\/section>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<MediaKit \/>\s*\{sponsoredVideos\.length > 0/);
+});
