@@ -330,8 +330,9 @@ function MediaKit() {
       <div className="shell">
         <div className="media-kit-head">
           <SectionHead eyebrow="Media kit" title="Audience" accent="insights.">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
-          {(mediaKit.pdf || shots.length > 0) && <div className="button-row reveal">
+          {(mediaKit.pdf || mediaKit.rateCard || shots.length > 0) && <div className="button-row reveal">
             {mediaKit.pdf && <a className="button button-primary" href={mediaKit.pdf} download onClick={trackClick('media_kit', 'Download media kit', mediaKit.pdf, 'download_media_kit')}>Download media kit</a>}
+            {mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('media_kit', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}
             {shots.length > 0 && <button type="button" className="button button-quiet" onClick={() => { setShot(0); studio.current.showModal(); trackEvent('Studio Screenshots Opened'); }}>See the Studio screenshots</button>}
           </div>}
         </div>

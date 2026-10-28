@@ -2,8 +2,9 @@
 // device and discovery come from YouTube Analytics (vidIQ channel_analytics), September 30 to October 27. Update all of it together.
 export const mediaKit = {
   period: 'September 29 to October 26, 2026',
-  // Drop the PDF in public/ and set its path; the download button appears once it is set.
-  pdf: '',
+  // Drop the PDFs in public/ and set their paths; each download button appears once its path is set.
+  pdf: '/media-kit/ai-automation-station-media-kit-2026.pdf',
+  rateCard: '/media-kit/ai-automation-station-rate-card-2026.pdf',
   screenshots: [
     { src: '/media-kit/studio-content.webp', width: 2200, height: 869, alt: 'YouTube Studio, long-form videos, last 28 days: 40.6K views, 138.5K thumbnail impressions, 6.4% click-through rate, 2:26 average view duration.' },
     { src: '/media-kit/studio-audience.webp', width: 2200, height: 1045, alt: 'YouTube Studio audience, last 28 days: 98.9% male, 68% aged 25 to 44, top countries United States, India, Indonesia, Brazil and Germany.' },
