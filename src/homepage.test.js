@@ -139,3 +139,7 @@ test('the homepage links every written guide so new guides are found and crawled
   assert.ok(guides.length >= 9);
   for (const file of guides) assert.match(jsx, new RegExp(`<a href="/guides/${file.replace('.', '\\.')}">`), file);
 });
+
+test('sponsored videos sit directly above the booking section', () => {
+  assert.match(jsx, /<section className="section" id="sponsored">[\s\S]*?<\/section>\s*<\/>\}\s*<div className="divider reveal" aria-hidden="true" \/>\s*<section className="section" id="work-together">/);
+});

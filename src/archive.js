@@ -24,7 +24,8 @@ export function parseUploads(pages) {
 }
 
 // Every long-form upload: one playlistItems call (1 quota unit) per 50 videos, then one videos call per 50
-// (1 unit whatever parts are requested) for privacy, embedding, length (ISO 8601, e.g. PT13M3S) and views.
+// (1 unit whatever parts are requested) for privacy, embedding, length (ISO 8601, e.g. PT13M3S), views, and
+// the "Includes paid promotion" box ticked in YouTube Studio.
 export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
   const api = 'https://www.googleapis.com/youtube/v3';
   const pages = [];
@@ -40,7 +41,7 @@ export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
   // Confirm embedding is permitted before linking a watch page or listing it in the sitemap.
   for (let index = 0; index < videos.length; index += 50) {
     const batch = videos.slice(index, index + 50);
-    const response = await fetch(`${api}/videos?part=status,contentDetails,statistics&id=${batch.map(video => video.id).join(',')}&key=${key}`, { signal });
+    const response = await fetch(`${api}/videos?part=status,contentDetails,statistics,paidProductPlacementDetails&id=${batch.map(video => video.id).join(',')}&key=${key}`, { signal });
     if (!response.ok) throw new Error(`video status ${response.status}`);
     const details = new Map(((await response.json()).items ?? []).map(item => [item.id, item]));
     for (const video of batch) {
@@ -49,6 +50,7 @@ export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
       video.embeddable = video.public && Boolean(item.status.embeddable);
       video.duration = item?.contentDetails?.duration;
       video.views = Number(item?.statistics?.viewCount ?? 0);
+      video.sponsored = Boolean(item?.paidProductPlacementDetails?.hasPaidProductPlacement);
     }
   }
   return videos.filter(video => video.public);

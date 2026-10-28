@@ -142,6 +142,8 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .hero-preview .player-meta h2 { font-size: 20px; }
 .next-step-access { flex: 1 1 220px; }
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 24px; margin-top: 64px; }
+/* Four sponsored videos fill one row; tablets and phones fall back to the .video-grid rules below. */
+.sponsored-grid { grid-template-columns: repeat(4, 1fr); }
 .video-card { display: grid; gap: 14px; }
 .video-card img, .video-card .thumb { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); border-top: 2px solid var(--signal); background: var(--panel); }
 .thumb-frame { position: relative; display: block; }

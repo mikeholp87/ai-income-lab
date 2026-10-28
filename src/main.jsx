@@ -8,6 +8,7 @@ import { channelUrl, validFeed } from './youtube.js';
 import { videoOffer } from './video-offer.js';
 import { featuredThumbnail } from './thumbnail.js';
 import youtubeSnapshot from './youtube-snapshot.json';
+import sponsoredVideos from './sponsored-snapshot.json';
 import './fonts.css';
 import './styles.css';
 
@@ -270,6 +271,19 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
   );
 }
 
+function VideoCard({ video, placement }) {
+  return (
+    <a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick(placement, video.title, watchUrl(video), 'watch_video')}>
+      <span className="thumb-frame">
+        <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
+        {video.duration && <span className="duration">{video.duration}</span>}
+      </span>
+      <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
+      <h3>{video.title}</h3>
+    </a>
+  );
+}
+
 function VideoGrid({ videos, failed }) {
   // The featured slot above already shows the error and a YouTube link.
   if (failed) return null;
@@ -277,14 +291,7 @@ function VideoGrid({ videos, failed }) {
   return (
     <ul className="video-grid reveal-group" aria-busy={!videos}>
       {items.map((video, index) => video
-        ? <li key={video.id}><a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest_posts', video.title, watchUrl(video), 'watch_video')}>
-            <span className="thumb-frame">
-              <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
-              {video.duration && <span className="duration">{video.duration}</span>}
-            </span>
-            <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-            <h3>{video.title}</h3>
-          </a></li>
+        ? <li key={video.id}><VideoCard video={video} placement="latest_posts" /></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
     </ul>
   );
@@ -630,6 +637,16 @@ function App() {
           <a className="text-link" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('code', 'All repositories', githubUrl, 'visit_github')}>All repositories on GitHub ↗</a>
         </div>
       </section>
+
+      {sponsoredVideos.length > 0 && <>
+        <div className="divider reveal" aria-hidden="true" />
+        <section className="section" id="sponsored">
+          <div className="shell">
+            <SectionHead eyebrow="Sponsored" title="Sponsored" accent="builds.">Videos a brand paid for. Same rules as every build: a real project, the mistakes left in, and a plain verdict.</SectionHead>
+            <ul className="video-grid sponsored-grid reveal-group">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+          </div>
+        </section>
+      </>}
 
       <div className="divider reveal" aria-hidden="true" />
       <section className="section" id="work-together">
