@@ -216,8 +216,9 @@ export const guides = [
   [/\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b/i, '/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'],
 ];
 
-// Chapter links are #t=<sec> fragments so they add no crawlable URLs; this re-cues the player on click or on load.
-const chapterScript = `(()=>{const player=document.querySelector('.player');const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');player.src=url.href;return true;};seek(location.hash,false);document.querySelector('.chapters').addEventListener('click',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
+// The player starts as a thumbnail link (no YouTube scripts until someone presses play; without JS it opens YouTube).
+// Chapter links are #t=<sec> fragments so they add no crawlable URLs; they cue the thumbnail or re-cue the playing video.
+const playerScript = `(()=>{let player=document.querySelector('.player');const open=url=>{if(player.tagName==='IFRAME'){player.src=url;return;}const frame=document.createElement('iframe');frame.className='player';frame.title=document.querySelector('h1').textContent;frame.width=960;frame.height=540;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.referrerPolicy='strict-origin-when-cross-origin';frame.allowFullscreen=true;frame.src=url;player.replaceWith(frame);player=frame;frame.focus();};const cue=(start,autoplay)=>{const url=new URL(player.dataset.embed||player.src);if(start)url.searchParams.set('start',start);if(!autoplay){player.dataset.embed=url.href;return;}url.searchParams.set('autoplay','1');open(url.href);};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};player.addEventListener('click',event=>{if(!plain(event))return;event.preventDefault();cue(0,true);});seek(location.hash,false);document.querySelector('.chapters')?.addEventListener('click',event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
@@ -256,7 +257,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <title>${escape(watchNotes[video.id]?.searchTitle || notes?.searchTitle || video.title)}</title>
 <meta name="description" content="${escape(snippet(description))}">
 <link rel="canonical" href="${watchUrl(video)}">
-<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${readingCss}">
@@ -271,14 +272,14 @@ ${fontPreloads}
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}
-<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 'Instrument Sans',system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
+<style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 'Instrument Sans',system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}a.player{position:relative;overflow:hidden}a.player img{width:100%;height:100%;object-fit:cover}.play{position:absolute;inset:0;display:grid;place-items:center;width:72px;height:72px;margin:auto;border-radius:50%;background:#ff6846;box-shadow:0 8px 30px #ff684659;transition:transform .2s ease}.play svg{width:28px;height:28px;margin-left:4px;fill:#1a0a04}a.player:hover .play{transform:scale(1.06)}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
 <header><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a></header>
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
-<iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a class="player" href="https://www.youtube.com/watch?v=${video.id}" data-embed="${playerUrl(video)}${start ? `?start=${start}` : ''}" aria-label="Play ${escape(video.title)}"><img src="${thumbnailUrl(video)}" alt="" width="480" height="360" fetchpriority="high" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
@@ -295,8 +296,7 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <p class="meta">${escape(notes.note)}</p>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>
-<script>${chapterScript}</script>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}${topic ? `
 <p>More on this topic: <a href="/videos/${topic.slug}">${escape(topic.heading)}</a>.</p>` : ''}
 ${watchNotes[video.id]?.html ?? ''}${transcript.length ? `
@@ -314,6 +314,7 @@ ${transcript.slice(0, openParagraphs).map(paragraph => `<p>${escape(paragraph)}<
 <h2>More builds</h2>
 <ul class="related">${related.map(other => `<li><a href="/watch/${other.id}">${escape(other.title)}</a></li>`).join('')}</ul>` : ''}
 </main>
+<script>${playerScript}</script>
 <footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>
 </body></html>`;
 }

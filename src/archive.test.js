@@ -32,7 +32,7 @@ test('video next steps name relevant resources without hiding membership access 
     assert.match(offer.access, access);
     const html = renderWatch({ id: 'geKngm3sg3w', title, published: '2026-07-08T00:00:00Z', summary: '' });
     assert.match(html, /href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" data-placement="watch_video" data-video-id="geKngm3sg3w"/);
-    assert.ok(html.indexOf('id="video-next-step"') > html.indexOf('</iframe>'));
+    assert.ok(html.indexOf('id="video-next-step"') > html.indexOf('<span class="play"'));
   }
 });
 
@@ -63,7 +63,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
   assert.match(html, /<a href="#t=98">1:38<\/a> Providers/);
   const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('.chapters'));
-  assert.match(script, /event\.ctrlKey\|\|event\.metaKey\|\|event\.shiftKey\|\|event\.altKey\|\|event\.button!==0\)return/);
+  assert.match(script, /!\(event\.ctrlKey\|\|event\.metaKey\|\|event\.shiftKey\|\|event\.altKey\|\|event\.button!==0\)/);
   assert.match(script, /addEventListener\('hashchange',\(\)=>seek\(location\.hash,true\)\)/);
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
@@ -103,7 +103,7 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
 test('watch and subscribe actions follow the player before metadata and chapters', () => {
   for (const chapters of [[], [{ seconds: 0, label: 'Intro' }, { seconds: 30, label: 'Build' }, { seconds: 60, label: 'Check' }]]) {
     const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-20T00:00:00Z', duration: 'PT2M', chapters });
-    const playerEnd = html.indexOf('</iframe>');
+    const playerEnd = html.indexOf('<span class="play"');
     const action = html.indexOf('data-placement="watch_player"');
     assert.ok(action > playerEnd && action < html.indexOf('<p class="meta">By'), 'the YouTube action immediately follows the player');
     assert.equal((html.match(/>Watch on YouTube ↗<\/a>/g) ?? []).length, 1);
@@ -132,10 +132,13 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
-  assert.match(html, new RegExp(`src="${schema.embedUrl}"`));
+  assert.match(html, new RegExp(`data-embed="${schema.embedUrl}"`));
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
-  assert.equal((html.match(/<iframe /g) ?? []).length, 1);
+  // A thumbnail link stands in for the player: no YouTube scripts until play, and without JS it opens YouTube.
+  assert.equal((html.match(/class="player"/g) ?? []).length, 1);
+  assert.doesNotMatch(html, /<iframe /);
+  assert.match(html, /<a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=aaaaaaaaaaa"[^>]*aria-label="Play [^"]+"><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg"[^>]*fetchpriority="high"/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
@@ -275,7 +278,7 @@ test('priority build notes keep corrected summaries consistent across discovery 
     const video = { id, title: 'A recorded build', summary: 'Outdated promotional summary', published: '2026-07-08T00:00:00Z', embeddable: true };
     const html = renderWatch(video);
     const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
-    assert.ok(html.indexOf('id="build-notes"') > html.indexOf('</iframe>'));
+    assert.ok(html.indexOf('id="build-notes"') > html.indexOf('<span class="play"'));
     assert.match(html, /href="\/guides\//);
     assert.ok(renderArchive([video]).includes(schema.description));
     assert.ok(renderVideoSitemap([video]).includes(schema.description));
@@ -302,8 +305,8 @@ test('guide discovery includes title-only notes and avoids repeated companion li
   const companion = render('7v_675nO7nM', 'OpenCode desktop');
   assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
   assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
-  assert.match(companion, /<link rel="preconnect" href="https:\/\/www.youtube-nocookie.com">/);
-  assert.match(companion, /<iframe [^>]*src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.match(companion, /<link rel="preconnect" href="https:\/\/i.ytimg.com">/);
+  assert.match(companion, /<a class="player" [^>]*data-embed="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
   assert.doesNotMatch(companion, /loading="lazy"/);
 });
 
