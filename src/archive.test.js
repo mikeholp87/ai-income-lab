@@ -65,7 +65,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
   // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
-  assert.match(html, /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><\/header>/);
+  assert.match(html, /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><\/header>/);
   assert.doesNotMatch(html, /header a:first-child/);
   // Video titles use the reading pages' Instrument Sans, not the system font.
   assert.match(html, /h1\{font:700 clamp\(24px,4vw,36px\)\/1\.2 'Instrument Sans',system-ui,sans-serif;/);
@@ -311,7 +311,7 @@ test('renders year groups and escapes titles', () => {
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form videos/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
-  assert.match(html, /href="\/consent.css"/);
+  assert.match(html, /href="\/consent.css\?v=[0-9a-f]{8}"/);
   assert.doesNotMatch(html, /class="pager/);
   assert.equal((html.match(/loading="eager"/g) || []).length, 1);
   assert.equal((html.match(/loading="lazy"/g) || []).length, 1);
@@ -445,7 +445,7 @@ test('longer archives show first, last and nearby pages only', () => {
 
 test('the archive links the reading pages and offers the community', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
-  assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><\/nav>/);
+  assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
   assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
   assert.match(html, /<aside class="cta" aria-label="AI Income Lab"><p>[^<]*from \$29\/month\.<\/p><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><\/aside>/);
   assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('</ul>'));
@@ -477,7 +477,7 @@ test('topic pages list only matching videos on one page with their own canonical
   assert.doesNotMatch(html, /class="pager/);
   assert.match(html, /<a href="\/videos\/claude-code" aria-current="page">Claude Code<\/a>/);
   // The header's All videos link is not the current page on a topic page.
-  assert.match(html, /<a href="\/videos">All videos<\/a><\/nav><a class="join"/);
+  assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join"/);
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, 'Claude Code videos');
   assert.equal(schema.mainEntity.itemListElement.length, 1);

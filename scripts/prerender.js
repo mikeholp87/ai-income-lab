@@ -4,6 +4,10 @@ import { renderToString } from 'react-dom/server';
 import { build } from 'vite';
 import { uploads } from '../src/uploads-snapshot.js';
 import { renderPageSitemap } from '../src/archive.js';
+import { consentCss, readingCss } from '../src/asset-version.js';
+import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+
+const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
 
 await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: false, rollupOptions: { input: 'src/main.jsx', output: { entryFileNames: '[name].js' } } } });
 try {
@@ -19,11 +23,33 @@ try {
   await rm(new URL('../dist/.ssr', import.meta.url), { recursive: true, force: true });
 }
 
-for (const file of ['start-here.html', 'guides.html', 'privacy.html', 'terms.html', ...(await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`)]) {
+const guideFiles = (await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`);
+const guides = [];
+for (const file of ['start-here.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', ...guideFiles]) {
   const path = `dist/${file}`;
   const html = await readFile(path, 'utf8');
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
-  await writeFile(path, html.replace('src="/src/reading.js"', 'src="/assets/reading.js"'));
+  if (guideFiles.includes(file)) guides.push(guideMeta(html));
+  await writeFile(path, html.replace('src="/src/reading.js"', 'src="/assets/reading.js"').replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));
 }
+const notFound = await readFile('dist/404.html', 'utf8');
+await writeFile('dist/404.html', notFound.replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));
 
-await writeFile('dist/sitemap.xml', renderPageSitemap(await readFile('public/sitemap.xml', 'utf8'), uploads));
+const sitemap = renderPageSitemap(await readFile('public/sitemap.xml', 'utf8'), uploads);
+await writeFile('dist/sitemap.xml', sitemap);
+await writeFile('dist/rss.xml', renderFeed(guides, uploads));
+await writeFile('dist/search-index.json', JSON.stringify(searchIndex(guides, uploads)));
+
+// Tell Bing (and other IndexNow engines) about pages changed in the last two days. Production only;
+// a failed ping never fails the build. ponytail: pings at build time, a minute before the deploy goes live.
+if (process.env.VERCEL_ENV === 'production') {
+  const urlList = recentUrls(sitemap, uploads);
+  if (urlList.length) {
+    try {
+      const response = await fetch('https://api.indexnow.org/indexnow', { method: 'POST', signal: AbortSignal.timeout(8000), headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify({ host: 'www.ai-automation-station.com', key: indexNowKey, keyLocation: `https://www.ai-automation-station.com/${indexNowKey}.txt`, urlList }) });
+      console.log(`IndexNow: ${response.status} for ${urlList.length} URLs`);
+    } catch (error) {
+      console.warn('IndexNow ping failed', error);
+    }
+  }
+}

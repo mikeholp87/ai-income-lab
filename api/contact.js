@@ -7,6 +7,8 @@ const TO = "automojic@proton.me";
 const FROM = "AI Automation Station <contact@ai-automation-station.com>";
 const LIMITS = { name: 100, email: 254, topic: 120, message: 5000 };
 
+export const isEmail = text => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
+
 // Trimmed fields, or null when something required is missing, malformed, or too long.
 export function readContact(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
@@ -16,7 +18,7 @@ export function readContact(body) {
     if (value.length > max) return null;
     fields[key] = value;
   }
-  if (!fields.name || !fields.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return null;
+  if (!fields.name || !fields.message || !isEmail(fields.email)) return null;
   return fields;
 }
 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="noindex,follow"><title>Search guides and videos | AI Automation Station</title><meta name="description" content="Search every AI automation guide and tested build video on AI Automation Station."><link rel="canonical" href="https://www.ai-automation-station.com/search.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css"><link rel="alternate" type="application/rss+xml" title="AI Automation Station" href="/rss.xml"><script type="module" src="/src/reading.js"></script>
+</head>
+<body><a class="skip" href="#content">Skip to content</a><header><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html" aria-current="page">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a></header><main id="content">
+<h1>Search guides and videos.</h1>
+<form class="search" role="search" action="/search.html"><label for="q">Search</label><input id="q" name="q" type="search" placeholder="n8n, Claude Code, voice agent…" autocomplete="off"><button type="submit">Search</button></form>
+<p class="meta" id="search-status" role="status">Loading the index…</p>
+<ul class="search-results" id="search-results"></ul>
+<script type="module">
+// Every word must appear in the title or description; title hits rank first. ponytail: substring match over ~250 rows, fine until thousands.
+const input = document.getElementById('q');
+const status = document.getElementById('search-status');
+const list = document.getElementById('search-results');
+const rows = await fetch('/search-index.json').then(response => response.json()).catch(() => null);
+const html = text => text.replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
+function run() {
+  const query = input.value.trim().toLowerCase();
+  history.replaceState(null, '', query ? `?q=${encodeURIComponent(query)}` : location.pathname);
+  if (!rows) return void (status.textContent = 'Search is unavailable right now. Browse the guides or all videos instead.');
+  if (!query) { list.innerHTML = ''; status.textContent = `${rows.length} guides and videos. Type to search.`; return; }
+  const words = query.split(/\s+/);
+  const hits = rows.map(([kind, title, url, description]) => {
+    const name = title.toLowerCase();
+    const text = `${name} ${description.toLowerCase()}`;
+    return words.every(word => text.includes(word)) && { kind, title, url, description, score: words.filter(word => name.includes(word)).length + (kind === 'guide' ? 0.5 : 0) };
+  }).filter(Boolean).sort((a, b) => b.score - a.score).slice(0, 40);
+  status.textContent = hits.length ? `${hits.length}${hits.length === 40 ? '+' : ''} results for “${query}”` : `Nothing matches “${query}”. Try fewer words.`;
+  list.innerHTML = hits.map(hit => `<li><span class="meta">${hit.kind === 'guide' ? 'Guide' : 'Video'}</span><a href="${html(hit.url)}">${html(hit.title)}</a><p>${html(hit.description)}</p></li>`).join('');
+}
+input.value = new URLSearchParams(location.search).get('q') ?? '';
+input.addEventListener('input', run);
+input.form.addEventListener('submit', event => { event.preventDefault(); run(); });
+run();
+</script>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

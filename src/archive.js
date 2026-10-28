@@ -2,6 +2,9 @@ import { channelUrl, clock, durationSeconds, formatDuration, longFormPlaylistId,
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { watchNotes } from './watch-notes.js';
+import { consentCss, readingCss } from './asset-version.js';
+import { transcriptParagraphs } from './transcript.js';
+import transcripts from './transcripts.json' with { type: 'json' };
 import { topics } from './topics.js';
 
 const site = 'https://www.ai-automation-station.com';
@@ -138,7 +141,7 @@ export function renderArchive(videos, page = 1, topic = null) {
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/consent.css">
+<link rel="stylesheet" href="${consentCss}">
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}
 <style>
@@ -202,7 +205,7 @@ header nav { display: flex; gap: 24px; margin-left: auto; }
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
-<header class="shell"><a class="brand" href="/"><span></span>AI Income Lab</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
+<header class="shell"><a class="brand" href="/"><span></span>AI Income Lab</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.name : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p></div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
@@ -293,8 +296,8 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="preconnect" href="https://www.youtube-nocookie.com">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/reading.css">
-<link rel="stylesheet" href="/consent.css">
+<link rel="stylesheet" href="${readingCss}">
+<link rel="stylesheet" href="${consentCss}">
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">
@@ -308,7 +311,7 @@ ${jsonLd(breadcrumbs)}
 <style>header,main,footer{width:min(960px,calc(100% - 32px))}main{padding-top:20px}h1{font:700 clamp(24px,4vw,36px)/1.2 'Instrument Sans',system-ui,sans-serif;text-wrap:pretty;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
-<header><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a></header>
+<header><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a></header>
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / <span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
@@ -332,7 +335,11 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>
 <script>${chapterScript}</script>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
 <p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}
-${watchNotes[video.id]?.html ?? ''}
+${watchNotes[video.id]?.html ?? ''}${transcripts[video.id] ? `
+<section aria-labelledby="transcript">
+<h2 id="transcript">Transcript</h2>
+<details class="transcript"><summary>Read the full transcript</summary>${transcriptParagraphs(transcripts[video.id]).map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}</details>
+</section>` : ''}
 <aside class="note" aria-labelledby="video-next-step">
 <h2 id="video-next-step">${escape(offer.title)}</h2>
 <p>${escape(offer.detail)}</p><p class="meta">${escape(offer.access)}</p>

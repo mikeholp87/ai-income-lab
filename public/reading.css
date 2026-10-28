@@ -34,3 +34,14 @@ pre:focus-visible,table:focus-visible{outline:2px solid #ff6846;outline-offset:4
 .cta-faces{display:flex}.cta-faces img{width:30px;height:30px;margin-left:-8px;border:2px solid #111;border-radius:50%}.cta-faces img:first-child{margin-left:0}
 @media(max-width:640px){.cta{padding:28px 20px 22px}.cta-list{grid-template-columns:1fr}.cta-action{flex-direction:column;align-items:stretch;text-align:center}.cta .join{width:100%;justify-content:center;margin-left:0}}
 @media(prefers-reduced-motion:reduce){.cta .join{transition:none}.cta .join:hover{transform:none}}
+/* Search page: one input row, then a ruled list of results. */
+.search{display:flex;gap:8px;margin:8px 0 12px}.search label{position:absolute;left:-9999px}.search input{flex:1;min-width:0;min-height:48px;padding:0 16px;border:1px solid #333;border-radius:10px;background:#111;color:#f5f5f0;font:inherit;font-size:17px}.search input:focus{border-color:#ff6846;outline:none}.search button{min-height:48px;padding:0 20px;border:0;border-radius:10px;background:#ff6846;color:#1a0a04;font:500 13px 'DM Mono',monospace;cursor:pointer}
+.search-results{padding:0;list-style:none}.search-results li{margin:0;padding:18px 0;border-top:1px solid #333}.search-results a{display:block;margin:4px 0;color:#f5f5f0;font-size:19px;font-weight:600;text-decoration:none}.search-results a:hover{color:#ff6846}.search-results p{margin:0;font-size:16px}
+/* Weekly build notes signup under the join card: quieter than the card, one row on desktop. */
+.notes{margin:28px 0 0;padding:22px 24px;border:1px solid #333;border-radius:16px}.notes p{margin:0;font-size:16px}.notes strong{color:#f5f5f0}
+.notes div{display:flex;gap:8px;margin-top:14px}.notes label,.notes .trap{position:absolute;left:-9999px}
+.notes input{flex:1;min-width:0;min-height:48px;padding:0 16px;border:1px solid #333;border-radius:10px;background:#111;color:#f5f5f0;font:inherit;font-size:16px}.notes input:focus{border-color:#ff6846;outline:none}
+.notes button{min-height:48px;padding:0 20px;border:1px solid #ff6846;border-radius:10px;background:none;color:#ff6846;font:500 13px 'DM Mono',monospace;cursor:pointer}.notes button:hover{background:#ff6846;color:#1a0a04}.notes button:disabled{opacity:.6;cursor:progress}
+.notes-status{margin-top:10px!important;font-size:14px!important;color:#a5a59e}.notes-status:empty{display:none}
+@media(max-width:480px){.notes div{flex-direction:column}}
+.transcript summary{min-height:44px;display:flex;align-items:center}.transcript p{font-size:16px}

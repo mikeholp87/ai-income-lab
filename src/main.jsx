@@ -534,6 +534,33 @@ function ContactOptions({ campaign }) {
   );
 }
 
+// Weekly build notes signup in the footer; the list lives in Resend (see api/subscribe.js).
+function NotesSignup() {
+  const [status, setStatus] = useState('idle');
+
+  async function subscribe(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus('sending');
+    const ok = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }).then(response => response.ok, () => false);
+    setStatus(ok ? 'done' : 'failed');
+    if (ok) trackEvent('Newsletter Signup', { placement: 'footer' });
+  }
+
+  if (status === 'done') return <p className="notes-signup-status" role="status">You&rsquo;re in. The next build notes will land in your inbox.</p>;
+  return (
+    <form className="notes-signup" onSubmit={subscribe}>
+      <label htmlFor="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
+      <div>
+        <input id="footer-notes-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" />
+        <input className="contact-trap" name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" />
+        <button className="button" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Subscribing…' : 'Subscribe'}</button>
+      </div>
+      {status === 'failed' && <p className="notes-signup-status" role="alert">That didn&rsquo;t go through. Try again in a minute.</p>}
+    </form>
+  );
+}
+
 function CommunityVideo() {
   const video = useRef(null);
   const [started, setStarted] = useState(false);
@@ -878,7 +905,7 @@ function App() {
           </div>
         </div>
         <div className="footer-directory">
-          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp.</p></div>
+          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp.</p><NotesSignup /></div>
           <nav className="footer-columns" aria-label="Footer">
             <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a></div>
             <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>

@@ -75,3 +75,19 @@ for (const button of banner.querySelectorAll('button')) button.addEventListener(
 recordView();
 // The Clipboard API needs a secure page; without it the commands stay selectable as before.
 if (navigator.clipboard) addCopyButtons(document, navigator.clipboard);
+
+// Weekly build notes signup at the end of guides.
+for (const form of document.querySelectorAll('form[data-subscribe]')) form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const status = form.querySelector('[role="status"]');
+  const button = form.querySelector('button');
+  button.disabled = true;
+  status.textContent = 'Subscribing…';
+  const fields = Object.fromEntries(new FormData(form));
+  const ok = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) }).then(response => response.ok, () => false);
+  button.disabled = false;
+  if (!ok) return void (status.textContent = 'That didn’t go through. Try again in a minute.');
+  form.reset();
+  status.textContent = 'You’re in. The next build notes will land in your inbox.';
+  trackGoogleEvent('newsletter_signup', { ...properties, placement: 'guide_end' });
+});

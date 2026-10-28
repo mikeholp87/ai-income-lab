@@ -486,3 +486,12 @@ a.video-card:hover h3 { color: var(--signal); }
   .consent-actions { gap: 6px; }
   .consent-actions button { padding-inline: 10px; white-space: nowrap; }
 }
+/* Footer signup for the weekly build notes. */
+.notes-signup { position: relative; margin-top: 20px; max-width: 360px; }
+.notes-signup label { display: block; color: var(--body); font: 400 14px/1.5 var(--sans); }
+.notes-signup div { display: flex; gap: 8px; margin-top: 10px; }
+.notes-signup input { flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--text); background: var(--panel); font: 15px var(--sans); }
+.notes-signup input:focus { border-color: var(--signal); }
+.notes-signup .button { min-height: 44px; padding: 0 16px; color: var(--text); letter-spacing: .1em; cursor: pointer; }
+.notes-signup .button:hover { border-color: var(--signal); }
+.notes-signup-status { margin-top: 10px; color: var(--body); font: 400 14px var(--sans); }

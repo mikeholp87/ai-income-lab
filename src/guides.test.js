@@ -22,7 +22,7 @@ test('the guides hub links, lists and describes every guide', async () => {
 
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/guides.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
-    assert.match(await read(path), /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
+    assert.match(await read(path), /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
   }
 });
 
@@ -92,7 +92,7 @@ test('guides end with the standard next steps and every plans link says Join', a
   }
   for (const file of guides) {
     // The join card stands on its own after "Keep going", ending the article.
-    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n?<\/main>/, file);
+    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n<form class="notes" data-subscribe>[^\n]*<\/form>\n?<\/main>/, file);
   }
   for (const path of ['public/start-here.html', ...guides.map(file => `public/guides/${file}`)]) {
     const html = await read(path);
