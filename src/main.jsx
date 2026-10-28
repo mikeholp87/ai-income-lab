@@ -751,13 +751,6 @@ function App() {
         </div>
       </section>
 
-      <section className="section" id="faq">
-        <div className="shell faq-grid">
-          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
-          <div className="faq-list reveal-group">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
-        </div>
-      </section>
-
       <section className="section latest" id="latest">
         <div className="shell">
           <div className="latest-intro">
@@ -801,7 +794,7 @@ function App() {
             <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
             <li><a href="/guides/make-money-with-ai-fast.html">Make money with AI fast</a></li>
             <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
-            <li><a href="/guides/ai-automation-services-small-business.html">Scope AI automation services for small business</a></li>
+            <li><a href="/guides/ai-automation-services-small-business.html">Sell AI automation services to small businesses</a></li>
             <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
             <li><a href="/guides/chatgpt-pro-20x.html">ChatGPT Pro 20x: Pause, Return &amp; Codex Limits (2026)</a></li>
             <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
@@ -891,6 +884,14 @@ function App() {
           <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
           <ContactOptions campaign={campaign} />
           <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+        </div>
+      </section>
+
+      <div className="divider reveal" aria-hidden="true" />
+      <section className="section" id="faq">
+        <div className="shell faq-grid">
+          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
+          <div className="faq-list reveal-group">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
 
