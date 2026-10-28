@@ -21,7 +21,7 @@ test('the guides hub links, lists and describes every guide', async () => {
 });
 
 test('static pages share a header that links the guides hub', async () => {
-  for (const path of ['public/start-here.html', 'public/guides.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
+  for (const path of ['public/start-here.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
     assert.match(await read(path), /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
   }
 });
@@ -182,4 +182,13 @@ test('guide titles and sections match what people search for', async () => {
     assert.ok(html.match(/<title>([^<]*)<\/title>/)[1].length <= 60, file);
     assert.ok(html.match(/<meta name="description" content="([^"]*)"/)[1].length <= 160, file);
   }
+});
+
+test('the guides hub uses the /videos page design', async () => {
+  const hub = await read('public/guides.html');
+  assert.match(hub, /<link rel="stylesheet" href="\/archive.css">/);
+  assert.match(hub, /<header class="shell"><a class="brand" href="\/"><span><\/span>AI Income Lab<\/a><nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
+  assert.match(hub, /<div class="intro"><p class="mono path">~\/guides<\/p><h1>/);
+  assert.match(hub, /<nav class="topics mono" aria-label="Guide topics">/);
+  assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);
 });

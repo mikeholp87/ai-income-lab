@@ -13,6 +13,8 @@ import { topicBySlug, topics } from './topics.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
+const archiveStyles = await readFile(new URL('../public/archive.css', import.meta.url), 'utf8');
+
 test('video next steps name relevant resources without hiding membership access limits', () => {
   const examples = [
     ['Automate AI avatar videos with n8n', /Avatar Video Course/, /Premium and VIP/],
@@ -414,11 +416,11 @@ test('archive cards show sharp thumbnails, duration and views', () => {
 test('archive type and grid match the homepage and keep cards even', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.' }]);
   assert.ok(existsSync(new URL('../public/fonts/instrument-sans.woff2', import.meta.url)));
-  assert.match(html, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
-  assert.match(html, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
+  assert.match(archiveStyles, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
+  assert.match(archiveStyles, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
   // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
-  assert.match(html, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
-  assert.match(html, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
+  assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
+  assert.match(archiveStyles, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
   assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
 });
@@ -440,7 +442,7 @@ test('longer archives show first, last and nearby pages only', () => {
   assert.equal(pages(15), '← Newer 1 … 14 15 16 … 30 Older →');
   assert.equal(pages(30), '← Newer 1 … 29 30');
   // Phones: the arrows don't fit beside 44px targets, and the neighbouring pages are always listed.
-  assert.match(renderArchive(videos, 8), /@media \(max-width: 640px\) \{ \.pager a\[rel\] \{ display: none; \} \}/);
+  assert.match(archiveStyles, /@media \(max-width: 640px\) \{ \.pager a\[rel\] \{ display: none; \} \}/);
 });
 
 test('the archive links the reading pages and offers the community', () => {
@@ -459,7 +461,7 @@ test('reading-page cookie bar sits on one centred row and Privacy choices matche
   assert.match(css, /\.reading-consent>div\{display:flex;gap:8px\}/);
   // Phones: same 16px side gutter as the page content.
   assert.match(css, /@media\(max-width:640px\)\{\.reading-consent\{[^}]*padding:8px 16px;/);
-  assert.match(renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]), /footer button \{ min-height: 44px; color: inherit; text-decoration: none; \}/);
+  assert.match(archiveStyles, /footer button \{ min-height: 44px; color: inherit; text-decoration: none; \}/);
 });
 
 test('topic pages list only matching videos on one page with their own canonical', () => {
