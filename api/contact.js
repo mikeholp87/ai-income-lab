@@ -1,10 +1,10 @@
 // Contact form: emails the site owner through Resend, with Reply-To set to the visitor.
-// Env: RESEND_API_KEY (sending access for mail.beremoteconsulting.com). Without it the form
+// Env: RESEND_API_KEY (sending access for ai-automation-station.com). Without it the form
 // answers 503 and the page offers a prefilled mailto link instead.
 export const runtime = "nodejs";
 
 const TO = "automojic@proton.me";
-const FROM = "AI Automation Station <contact@mail.beremoteconsulting.com>";
+const FROM = "AI Automation Station <contact@ai-automation-station.com>";
 const LIMITS = { name: 100, email: 254, topic: 120, message: 5000 };
 
 // Trimmed fields, or null when something required is missing, malformed, or too long.
