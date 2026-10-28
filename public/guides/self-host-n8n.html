@@ -42,8 +42,8 @@
 <h2 id="node">1. Install Node.js 24</h2>
 <p>Check what you have first:</p>
 <pre tabindex="0"><code>node -v</code></pre>
-<p>The current n8n release (2.44.5 on October 22, 2026) requires Node.js 24 or newer, and <a href="https://docs.n8n.io/hosting/installation/npm/">n8n’s npm install docs</a> support versions up to 24.x. So aim for a <strong>v24</strong> number. Ubuntu’s own <code>nodejs</code> package is older than that, which is why <code>sudo apt install nodejs</code> alone no longer works for n8n.</p>
-<p>If you don’t have v24, install it with nvm, the version manager that <a href="https://nodejs.org/en/download">nodejs.org</a> suggests for Linux:</p>
+<p>The current n8n release (2.44.5 on October 22, 2026) requires Node.js 24 or newer, and n8n’s npm install docs support versions up to 24.x. So aim for a <strong>v24</strong> number. Ubuntu’s own <code>nodejs</code> package is older than that, which is why <code>sudo apt install nodejs</code> alone no longer works for n8n.</p>
+<p>If you don’t have v24, install it with nvm, the version manager that nodejs.org suggests for Linux:</p>
 <pre tabindex="0"><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 # open a new terminal so nvm loads, then:
 nvm install 24
@@ -57,7 +57,7 @@ node -v</code></pre>
 n8n</code></pre>
 <p>The first start downloads and prepares n8n, so give it a minute. When the terminal says the editor is ready, open <strong>http://localhost:5678</strong> in a browser on the same machine. Leave the terminal open: closing it, or pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>, stops n8n.</p>
 <h3 id="docker">Or run it in Docker</h3>
-<p>If Docker is already installed, you can skip Node.js and run n8n’s official image instead. These commands come from <a href="https://docs.n8n.io/hosting/installation/docker/">n8n’s Docker docs</a>; replace both timezone placeholders with yours, for example <code>Asia/Bangkok</code>:</p>
+<p>If Docker is already installed, you can skip Node.js and run n8n’s official image instead. These commands come from n8n’s Docker docs; replace both timezone placeholders with yours, for example <code>Asia/Bangkok</code>:</p>
 <pre tabindex="0"><code>docker volume create n8n_data
 docker run -it --rm \
  --name n8n \
@@ -80,7 +80,7 @@ docker run -it --rm \
 <p>Click <em>Execute workflow</em>. Open the Filter node’s output: it should show one item with <code>request_id</code> TEST-001. Now change <code>approved</code> to <code>no</code> in Edit Fields and run it again. The Filter node should pass zero items. If both runs behave that way, your self-hosted n8n is working, and you have tested it without connecting a single account.</p>
 <p>Save the workflow. Stop n8n with <kbd>Ctrl</kbd>+<kbd>C</kbd>, start it again with <code>n8n</code>, and reopen the workflow. Seeing it again confirms your data survives a restart; by default n8n keeps its database and settings in the <code>.n8n</code> folder in your home directory.</p>
 <h2 id="templates">5. Add templates and credentials carefully</h2>
-<p>The <a href="https://n8n.io/workflows/">n8n template library</a> imports straight into a self-hosted instance. In the video, most templates I tried still needed something before they ran: Gmail client credentials, an Apify key, or a community node such as Blotato that wasn’t installed. Treat each import as a checklist:</p>
+<p>The n8n template library (n8n.io/workflows) imports straight into a self-hosted instance. In the video, most templates I tried still needed something before they ran: Gmail client credentials, an Apify key, or a community node such as Blotato that wasn’t installed. Treat each import as a checklist:</p>
 <ul>
 <li>Open every node and note which credential it expects before running anything.</li>
 <li>Run a template once with test data, and keep its schedule trigger off until the output is right.</li>
@@ -88,7 +88,7 @@ docker run -it --rm \
 </ul>
 <h2 id="limits">Know the limits of this setup</h2>
 <p>This is a local install for learning and personal workflows. Schedules only run while the computer is on and n8n is running, and webhooks from outside services can’t reach <code>localhost</code>. Don’t open port 5678 to the internet to work around that.</p>
-<p>n8n’s docs also say npm installs are deprecated from n8n 3.0. For a server that runs around the clock, use n8n’s <a href="https://docs.n8n.io/hosting/installation/docker/">Docker setup</a> or a platform like Coolify, which I cover in <a href="/watch/m9VrHQHTMTE">Why You Should Self-Host N8N on Coolify</a>.</p>
+<p>n8n’s docs also say npm installs are deprecated from n8n 3.0. For a server that runs around the clock, use n8n’s Docker setup or a platform like Coolify, which I cover in <a href="/watch/m9VrHQHTMTE">Why You Should Self-Host N8N on Coolify</a>.</p>
 <h2 id="trouble">When it fails</h2>
 <ul>
 <li><strong>“Unsupported engine” or a crash on start:</strong> <code>node -v</code> isn’t v24. Run <code>nvm use 24</code> and try again.</li>
@@ -97,7 +97,15 @@ docker run -it --rm \
 <li><strong>“Unrecognized node type” after importing a template:</strong> the template uses a community node. Install it under Settings, or replace that step.</li>
 </ul>
 <p class="meta">Commands checked October 22, 2026 against n8n 2.44.5 on npm, n8n’s npm and Docker installation docs, nvm v0.40.8 and Node.js 24.22.1. The video was recorded in October 2025 on an earlier n8n release, so some screens will differ.</p>
-<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/make-first-automation.html">Build your first Make.com automation</a></li><li>Guide: <a href="/guides/ai-automation.html">What Is AI Automation?</a></li><li>Watch: <a href="/watch/7UMrV3w1e40">Self-Host N8N on Ubuntu: Save Thousands with This Method</a></li></ul><p>VIP members get the <strong>Ultimate N8N Template Library</strong> with 6,400+ workflows. AI Income Lab adds courses, templates and a community for builds like this one, from $29/month.</p><p><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p></aside>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://docs.n8n.io/hosting/installation/npm/">n8n docs: Install with npm</a></li>
+<li><a href="https://nodejs.org/en/download">Node.js: Download</a></li>
+<li><a href="https://docs.n8n.io/hosting/installation/docker/">n8n docs: Install with Docker</a></li>
+<li><a href="https://n8n.io/workflows/">n8n: Workflow templates</a></li>
+</ul>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/make-first-automation.html">Build your first Make.com automation</a></li><li>Guide: <a href="/guides/ai-automation.html">What Is AI Automation?</a></li><li>Watch: <a href="/watch/7UMrV3w1e40">Self-Host N8N on Ubuntu: Save Thousands with This Method</a></li></ul></aside>
+<section class="cta" aria-labelledby="join-lab"><p class="cta-eyebrow">AI Income Lab</p><h2 id="join-lab">Don’t build the next one <span>alone.</span></h2><p>Step-by-step courses, reusable templates, and a community that answers when you get stuck.</p><p class="cta-fit">VIP members get the <strong>Ultimate N8N Template Library</strong> with 6,400+ workflows.</p><ul class="cta-list"><li>Courses for builds like this one</li><li>Copy-ready templates</li><li>Ask questions while you build</li><li>Weekly coaching on VIP</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="guide_end">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime.</span></div><div class="cta-members"><span class="cta-faces" aria-hidden="true"><img src="/members/member-0.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-1.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-2.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-3.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-4.png" alt="" width="30" height="30" loading="lazy"></span><span>Join 2,900+ members building with AI</span></div></section>
 </main>
 <footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer>
 </body>

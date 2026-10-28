@@ -90,6 +90,10 @@ test('guides end with the standard next steps and every plans link says Join', a
     assert.match(html, new RegExp(`<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/${next}.html">`), slug);
     assert.equal((html.match(/class="note next-steps"/g) || []).length, 1, slug);
   }
+  for (const file of guides) {
+    // The join card stands on its own after "Keep going", ending the article.
+    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n?<\/main>/, file);
+  }
   for (const path of ['public/start-here.html', ...guides.map(file => `public/guides/${file}`)]) {
     const html = await read(path);
     for (const [link] of html.matchAll(/<a [^>]*href="https:\/\/www\.skool\.com\/ai-automation-station-7346\/plans"[^>]*>[^<]*<\/a>/g)) {
