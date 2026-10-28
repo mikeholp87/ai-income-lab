@@ -645,8 +645,9 @@ function App() {
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <div className="scroll-progress" aria-hidden="true" />
+    {/* No element has id="top", so browsers scroll "#top" to the very top of the page. */}
     <a className="to-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
-    <header className="site-header" id="top">
+    <header className="site-header">
       <div className="nav shell">
       <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
       <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
