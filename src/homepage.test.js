@@ -155,9 +155,17 @@ test('every rate card format has a service card with its price', () => {
   }
 });
 
-test('the header links to the media kit between About and Contact', () => {
-  assert.match(jsx, /\['#about', 'About'\], \['#media-kit', 'Media kit'\], \['#work-together', 'Contact'\]/);
-  assert.match(jsx, /<section className="section" id="media-kit">/);
+test('the header links to services between About and Contact', () => {
+  assert.match(jsx, /\['#about', 'About'\], \['#services', 'Services'\], \['#work-together', 'Contact'\]/);
+  assert.match(jsx, /<section className="section" id="services">/);
   // Seven links share the bar down to the 961px collapse point; none may wrap to two lines.
   assert.match(css, /\.nav-links a \{[^}]*white-space: nowrap;/);
+});
+
+test('every service card preselects a package the contact form offers', () => {
+  const packages = jsx.match(/const packages = (\[.*\]);/)[1];
+  const choices = [...jsx.matchAll(/onClick=\{ask\('[^']+', '([^']+)'\)\}/g)].map(match => match[1]);
+  assert.equal(choices.length, 6);
+  for (const choice of choices) assert.ok(packages.includes(`['${choice}'`), choice);
+  assert.match(jsx, /<select name="topic" required value=\{topic\}/);
 });

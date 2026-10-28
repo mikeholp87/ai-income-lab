@@ -202,7 +202,7 @@ function SectionHead({ eyebrow, title, accent, children }) {
   );
 }
 
-const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#tools', 'Tools'], ['#about', 'About'], ['#media-kit', 'Media kit'], ['#work-together', 'Contact']];
+const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#tools', 'Tools'], ['#about', 'About'], ['#services', 'Services'], ['#work-together', 'Contact']];
 const navIds = navLinks.map(([href]) => href.slice(1));
 
 // Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
@@ -317,17 +317,8 @@ const arrowKeys = { ArrowLeft: -1, ArrowRight: 1 };
 // Dot and legend colors, brightest first; the largest share gets the brand color.
 const tones = ['var(--signal)', 'var(--text)', 'var(--body)', 'var(--muted)', '#6b6b66', '#52524e', '#3d3d39'];
 
-// Rate card formats (public/media-kit/*rate-card*.pdf), each shown with a real campaign or a mock of the post.
+// Rate card formats (public/media-kit/*rate-card*.pdf), each with a studio image or a mock of the post.
 const postIcons = ['M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z', 'M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3', 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z'];
-
-function CampaignThumb({ id, caption, className = '' }) {
-  return (
-    <figure className={`campaign-thumb ${className}`}>
-      <a href={`/watch/${id}`}><img src={`https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp`} onError={event => swapToJpegThumbnail(event, id)} alt={`Watch the ${caption}`} width="1280" height="720" loading="lazy" decoding="async" /></a>
-      <figcaption>{caption}</figcaption>
-    </figure>
-  );
-}
 
 function MockPost({ network, byline, children }) {
   return (
@@ -340,7 +331,10 @@ function MockPost({ network, byline, children }) {
 }
 
 function Services({ channel }) {
-  const ask = label => trackClick('services', label, '#work-together', 'ask_service');
+  const ask = (label, choice) => () => {
+    trackClick('services', label, '#work-together', 'ask_service')();
+    window.dispatchEvent(new CustomEvent('choose-package', { detail: choice }));
+  };
   const yourProduct = <span className="your-product">your product</span>;
   const subscribers = Number.isFinite(channel?.subscribers) ? viewFormat.format(channel.subscribers) : '5.2K';
   return (
@@ -354,46 +348,43 @@ function Services({ channel }) {
             <p className="service-price">$2,250 <span>value $2,550</span></p>
             <p>A dedicated video, a Short, an AI Income Lab post and a LinkedIn post, with the description link and pinned comment. One launch, four audiences, the same week.</p>
             <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
-            <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign')}>Book the campaign</a>
+            <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign', 'Multi-platform campaign')}>Book the campaign</a>
           </div>
-          <div className="service-collage">
-            <CampaignThumb id="b0Izj5Pv0sQ" caption="Bluehost campaign" />
-            <div className="collage-second"><span className="collage-plus" aria-hidden="true">+</span><CampaignThumb id="qQVAnp4-EpI" caption="Runable campaign" /></div>
-          </div>
+          <img className="service-image" src="/services/campaign.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
         </article>
         <div className="service-grid reveal-group">
           <article className="service">
             <h3>Dedicated video</h3>
             <p className="service-price">$1,500</p>
             <p>An 8 to 12 minute video built around your product on a real project, with description links and a pinned comment.</p>
-            <CampaignThumb id="wRqpZ9F3rmI" caption="DataForSEO campaign" />
-            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video')}>Ask about a dedicated video</a>
+            <img className="service-image" src="/services/dedicated-video.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video', 'Dedicated video')}>Ask about a dedicated video</a>
           </article>
           <article className="service">
             <h3>YouTube Short</h3>
             <p className="service-price">$400</p>
             <p>A 30 to 60 second vertical demo or result, with a direct call to action and a link where YouTube allows one.</p>
-            <figure className="short-frame"><a href="https://www.youtube.com/shorts/thlvN9ZrFms" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/thlvN9ZrFms/oar2.jpg" alt="Watch the 9Router setup Short on YouTube" width="720" height="1280" loading="lazy" decoding="async" /></a><figcaption>9Router Short, 2.3K views</figcaption></figure>
-            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short')}>Ask about a Short</a>
+            <img className="service-image service-short" src="/services/short.webp" alt="" width="720" height="1280" loading="lazy" decoding="async" />
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short', 'YouTube Short')}>Ask about a Short</a>
           </article>
           <article className="service">
             <h3>AI Income Lab post</h3>
             <p className="service-price">$300</p>
             <p>A sponsored post in the Skool community for 2,900+ members, with a product overview, key benefits and your link.</p>
             <MockPost network="AI Income Lab" byline="Community post">New in the toolbox: {yourProduct}. I used it on this week&rsquo;s build. Here&rsquo;s the setup, and what it saved me.</MockPost>
-            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post')}>Ask about a community post</a>
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post', 'AI Income Lab post')}>Ask about a community post</a>
           </article>
           <article className="service">
             <h3>LinkedIn post</h3>
             <p className="service-price">$350</p>
             <p>A professional post for an AI and business audience, written for LinkedIn with its own message and call to action.</p>
             <MockPost network="LinkedIn" byline="AI automation creator">I spent a week building with {yourProduct}. Three things it does better than the tools I was using.</MockPost>
-            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post')}>Ask about a LinkedIn post</a>
+            <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post', 'LinkedIn post')}>Ask about a LinkedIn post</a>
           </article>
         </div>
         <div className="services-custom reveal">
           <p>Need something custom? Extra Shorts, category exclusivity, paid usage rights and longer partnerships are on the rate card.</p>
-          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote')}>Get a quote →</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
+          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote →</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
         </div>
       </div>
     </section>
@@ -489,8 +480,11 @@ function BookingCalendar({ campaign }) {
   );
 }
 
+// Contact form choices; each service card preselects its own through a 'choose-package' event.
+const packages = [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350'], ['Custom package'], ['Collab or something else']];
+
 // Posts to /api/contact; if that fails, the visitor still gets a mailto link with their message in it.
-function ContactForm() {
+function ContactForm({ topic, setTopic }) {
   const [status, setStatus] = useState('idle');
   const [mailto, setMailto] = useState('mailto:automojic@proton.me');
 
@@ -514,7 +508,7 @@ function ContactForm() {
     <form className="contact-form" onSubmit={send}>
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
-      <label className="contact-wide">What it&rsquo;s about (optional)<input name="topic" maxLength={120} placeholder="Sponsored video, collab, membership…" /></label>
+      <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
       <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
       <label className="contact-trap" aria-hidden="true">Leave this empty<input name="website" tabIndex="-1" autoComplete="off" /></label>
       <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
@@ -525,11 +519,17 @@ function ContactForm() {
 
 function ContactOptions({ campaign }) {
   const [mode, setMode] = useState('call');
+  const [topic, setTopic] = useState('');
+  useEffect(() => {
+    const choose = event => { setMode('message'); setTopic(event.detail); };
+    window.addEventListener('choose-package', choose);
+    return () => window.removeEventListener('choose-package', choose);
+  }, []);
   return (
     <>
       <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{[['call', 'Book a call'], ['message', 'Send a message']].map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
       <div hidden={mode !== 'call'}><BookingCalendar campaign={campaign} /></div>
-      <div hidden={mode !== 'message'}><ContactForm /></div>
+      <div hidden={mode !== 'message'}><ContactForm topic={topic} setTopic={setTopic} /></div>
     </>
   );
 }
