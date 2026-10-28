@@ -534,6 +534,7 @@ function App() {
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <div className="scroll-progress" aria-hidden="true" />
+    <a className="to-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
     <header className="site-header" id="top">
       <div className="nav shell">
       <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>

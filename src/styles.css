@@ -14,6 +14,7 @@
   --mono: 'DM Mono', ui-monospace, monospace;
   --sans: 'Instrument Sans', system-ui, sans-serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
   font-family: var(--mono);
   font-synthesis: none;
 }
@@ -83,16 +84,46 @@ section[id], main [id] { scroll-margin-top: 88px; }
 
 /* Scroll reveal: index.html sets .reveal-on only while the app will reveal these */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal, .reveal-group > * { transition: opacity .7s var(--ease), transform .7s var(--ease); }
-  .reveal-on .reveal:not(.is-visible), .reveal-on .reveal-group:not(.is-visible) > * { opacity: 0; transform: translateY(28px); }
-  .reveal-group > :nth-child(2) { transition-delay: .08s; }
-  .reveal-group > :nth-child(3) { transition-delay: .16s; }
-  .reveal-group > :nth-child(4) { transition-delay: .24s; }
-  .reveal-group > :nth-child(5) { transition-delay: .32s; }
-  .reveal-group > :nth-child(6) { transition-delay: .4s; }
-  .reveal-group > :nth-child(n + 7) { transition-delay: .48s; }
+  .reveal, .reveal-group > *, .section-head > * { transition: opacity .85s var(--ease-out), transform .85s var(--ease-out), clip-path .9s var(--ease-out); }
+  .reveal-on .reveal:not(.is-visible), .reveal-on .reveal-group:not(.is-visible) > * { opacity: 0; transform: translateY(32px) scale(.97); }
+  .reveal-group > :nth-child(2), .section-head > :nth-child(2) { transition-delay: .1s; }
+  .reveal-group > :nth-child(3), .section-head > :nth-child(3) { transition-delay: .2s; }
+  .reveal-group > :nth-child(4) { transition-delay: .3s; }
+  .reveal-group > :nth-child(5) { transition-delay: .4s; }
+  .reveal-group > :nth-child(6) { transition-delay: .5s; }
+  .reveal-group > :nth-child(n + 7) { transition-delay: .6s; }
+  /* Section heads: the block stays put and its lines rise in one after another; the title wipes up from its baseline */
+  .reveal-on .section-head.reveal:not(.is-visible) { opacity: 1; transform: none; }
+  .reveal-on .section-head:not(.is-visible) > * { opacity: 0; transform: translateY(24px); }
+  .reveal-on .section-head:not(.is-visible) h2 { clip-path: inset(0 0 100% 0); }
+  .section-head h2 { clip-path: inset(-10% -5% -20% -5%); }
   .divider.reveal { transform-origin: left; transition: transform 1.2s cubic-bezier(.65, 0, .35, 1); }
   .reveal-on .divider.reveal:not(.is-visible) { opacity: 1; transform: scaleX(0); }
+}
+
+/* Scroll-linked motion, scrubbed by the scrollbar itself (no JS); browsers without scroll timelines skip it */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Header firms up once the page leaves the top */
+    .site-header { animation: header-lift linear both; animation-timeline: scroll(root); animation-range: 0 160px; }
+    @keyframes header-lift { to { background: rgb(10 10 10 / .94); box-shadow: 0 10px 30px -12px rgb(0 0 0 / .8); } }
+    /* Featured video recedes as it scrolls away */
+    .hero-preview { animation: hero-recede linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    @keyframes hero-recede { to { opacity: .35; transform: translateY(-8%) scale(.92); } }
+    /* Thumbnails settle from a slight zoom as their card enters */
+    .thumb-frame { overflow: hidden; }
+    .video-card .thumb-frame img { animation: thumb-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    @keyframes thumb-settle { from { transform: scale(1.14); } }
+  }
+}
+
+/* Back to top: appears after the first screen, timed by scroll position like the progress bar */
+.to-top { display: none; }
+@supports (animation-timeline: scroll()) {
+  .to-top { position: fixed; z-index: 45; right: 24px; bottom: 24px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; color: var(--on-signal); background: linear-gradient(135deg, var(--signal-hover), var(--signal)); box-shadow: 0 0 22px -4px rgb(255 104 70 / .9); font: 600 18px/1 var(--sans); transition: scale .3s var(--ease-out); animation: to-top-in linear both; animation-timeline: scroll(root); animation-range: 500px 700px; }
+  .to-top:hover { scale: 1.1; }
+  body:has(.consent-banner) .to-top { bottom: 88px; }
+  @keyframes to-top-in { from { opacity: 0; translate: 0 16px; visibility: hidden; } to { opacity: 1; translate: 0 0; visibility: visible; } }
 }
 
 /* Three-segment rule between the big groups */
