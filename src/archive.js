@@ -64,11 +64,13 @@ export const perPage = 15;
 export const pageCount = videos => Math.max(1, Math.ceil(videos.length / perPage));
 const pagePath = page => page === 1 ? '/videos' : `/videos/${page}`;
 
-// First, last and the current page's neighbours; a one-page gap shows that page, longer gaps an ellipsis.
+// Every page while there are few enough to wrap onto two rows, so crawlers reach each one from any page in one hop.
+// Past that: first, last and the current page's neighbours; a one-page gap shows that page, longer gaps an ellipsis.
+const listAllPages = 20;
 function pager(page, pages) {
   if (pages === 1) return '';
   const link = (to, label, rel) => `<a href="${pagePath(to)}"${rel ? ` rel="${rel}"` : ''}>${label}</a>`;
-  const shown = Array.from({ length: pages }, (_, index) => index + 1).filter(n => n === 1 || n === pages || Math.abs(n - page) <= 1);
+  const shown = Array.from({ length: pages }, (_, index) => index + 1).filter(n => pages <= listAllPages || n === 1 || n === pages || Math.abs(n - page) <= 1);
   const numbers = [];
   let previous = 0;
   for (const n of shown) {
