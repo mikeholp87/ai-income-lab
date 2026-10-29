@@ -306,17 +306,21 @@ a.video-card:hover h3 { color: var(--signal); }
 .course-promo-action .fine-print { max-width: 40ch; }
 
 /* Community */
-.community-grid { display: grid; grid-template-columns: 6fr 5fr; gap: 64px; align-items: start; }
 .members { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
 .avatars { display: flex; flex: none; }
 .avatars img { width: 32px; height: 32px; margin-left: -8px; border: 2px solid var(--ink); border-radius: 50%; position: relative; }
 .avatars img:first-child { margin-left: 0; }
 .members p { flex: 1 1 200px; color: var(--muted); font-size: 13px; }
-.plan-list { margin-top: 32px; border-top: 1px solid var(--line); }
-.plan-list > li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.plan-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 40px; }
+/* Plan name and price share the first row; the link sits on the last row so the three cards line up. */
+.plan-list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto 1fr auto; align-items: baseline; gap: 0 16px; padding: 28px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
+.plan-list > li > div { display: contents; }
+.plan-list > li > div > :not(h3) { grid-column: 1 / -1; }
+.plan-list .plan-price { grid-row: 1; grid-column: 2; text-align: right; }
+.plan-list .plan-link { justify-self: start; align-self: end; margin-top: 16px; }
 .plan-list h3 { font: 600 17px var(--sans); }
 .plan-list li p { color: var(--body); font-size: 13px; }
-.plan-list .plan-fit { margin: 8px 0; color: var(--text); }
+.plan-list .plan-fit { margin: 16px 0 12px; color: var(--text); }
 .plan-features { display: grid; gap: 4px; padding-left: 18px; list-style: disc; color: var(--body); font-size: 13px; }
 .plan-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: var(--signal); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
 .plan-price { flex: none; color: var(--muted); font-size: 12px; }
@@ -326,18 +330,6 @@ a.video-card:hover h3 { color: var(--signal); }
 /* Prose reads in Instrument Sans; DM Mono stays on labels, meta, prices, buttons, timeline and FAQ questions. */
 .lede, .about-copy > p:not(.about-links, .eyebrow), .tool-body > p:not(.tool-tagline), .plan-fit, .plan-features, .fine-print, .community-help, .support-note, .faq-list details p, .members p, .built > p, .repo-list li > p:not(.repo-meta, .repo-links), .next-step-access { font-family: var(--sans); }
 .lede { font-size: 17px; line-height: 1.6; }
-.community-video { overflow: hidden; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
-/* The poster's headline ends about 64% down; size and place the play button in proportion so it stays below at every width. */
-.community-video .play-key { top: auto; left: 5%; bottom: 6%; width: min(72px, 15%); height: auto; aspect-ratio: 1; transform: none; }
-.community-video .play-key svg { width: 40%; height: 40%; }
-.community-video .play-overlay:hover .play-key { transform: scale(1.06); }
-.community-video figcaption { padding: 16px 20px; color: var(--muted); font-size: 12px; }
-
-.course-preview { margin-top: 28px; }
-.course-preview h3 { font: 600 22px var(--sans); }
-.course-preview li { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.course-preview strong { font: 600 15px/1.4 var(--sans); }
-.course-preview span { color: var(--body); font: 400 14px/1.6 var(--sans); }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: 4fr 7fr; gap: 72px; align-items: start; }
@@ -423,13 +415,14 @@ a.video-card:hover h3 { color: var(--signal); }
   .course-promo-content { grid-column: auto; grid-row: auto; max-width: none; }
   .nav-links { display: none; }
   .nav-mobile { display: block; }
-  .hero-grid, .community-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
   .portrait { position: static; max-width: 280px; justify-self: center; }
   .repo-list li { grid-template-columns: 1fr auto; gap: 8px 24px; }
   .repo-list li > p:not(.repo-meta, .repo-links) { grid-column: 1 / -1; grid-row: 2; }
   .repo-list .repo-meta { grid-row: 1; grid-column: 2; }
   .repo-list .repo-links { grid-column: 1 / -1; justify-content: flex-start; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
+  .plan-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .stats div { flex-direction: column; align-items: center; gap: 8px; padding: 28px 12px; }
   .built { margin-top: 80px; }
 }
@@ -466,12 +459,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .stats div:nth-child(n + 3) { border-top: 1px solid var(--line); }
   .tool h3 { font-size: 22px; }
   .player-meta { padding: 20px; }
-  /* Phones: plan name and price share the first row; the rest of the plan spans below. */
-  .plan-list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 16px; }
-  .plan-list > li > div { display: contents; }
-  .plan-list > li > div > :not(h3) { grid-column: 1 / -1; }
-  .plan-list .plan-price { grid-row: 1; grid-column: 2; }
-  .plan-list .plan-link { justify-self: start; }
+  .plan-list > li { padding: 22px 20px; }
   .faq-list summary { grid-template-columns: minmax(0, 1fr) 28px; gap: 10px; padding: 14px; }
   .faq-icon { width: 28px; height: 28px; }
   .faq-list details p { padding: 0 14px 20px; }

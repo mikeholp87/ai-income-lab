@@ -17,10 +17,11 @@ function media(query) {
   assert.fail(`unclosed @media ${query}`);
 }
 
-test('phones put each plan price on the plan name row', () => {
-  const phone = media('(max-width: 640px)');
-  assert.match(phone, /\.plan-list > li > div \{ display: contents; \}/);
-  assert.match(phone, /\.plan-list \.plan-price \{ grid-row: 1; grid-column: 2; \}/);
+test('plans are three equal cards on desktop and stack on tablets and phones, price on the name row', () => {
+  assert.match(css, /\.plan-list \{ display: grid; grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
+  assert.match(css, /\.plan-list > li > div \{ display: contents; \}/);
+  assert.match(css, /\.plan-list \.plan-price \{ grid-row: 1; grid-column: 2;/);
+  assert.match(media('(max-width: 960px)'), /\.plan-list \{ grid-template-columns: minmax\(0, 1fr\);/);
 });
 
 test('product card links align at the bottom of each card without competing with Join buttons', () => {
@@ -53,11 +54,9 @@ test('pricing ends with one billing note and one help line', () => {
   assert.match(jsx, /Levels are your Skool community level\./);
 });
 
-test('the classroom list names courses without repeating plan access', () => {
-  const start = jsx.indexOf('<h3>Inside the classroom</h3>');
-  const classroom = jsx.slice(start, jsx.indexOf('</ul>', start));
-  assert.ok(start >= 0);
-  assert.doesNotMatch(classroom, /level|Premium|VIP|Included with/i);
+test('the plans section has no classroom list or tour video beside it', () => {
+  assert.doesNotMatch(jsx, /Inside the classroom|CommunityVideo|hero-video/);
+  assert.doesNotMatch(css, /\.community-video|\.course-preview|\.community-grid/);
 });
 
 test('the guides section follows videos in the header and page, with one start link', () => {

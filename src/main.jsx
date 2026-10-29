@@ -569,29 +569,6 @@ function NotesSignup() {
   );
 }
 
-function CommunityVideo() {
-  const video = useRef(null);
-  const [started, setStarted] = useState(false);
-
-  function start() {
-    setStarted(true);
-    video.current?.play()?.catch(() => {}); // Native controls remain available if playback is blocked.
-  }
-
-  return (
-    <figure className="community-video">
-      <div className="player-screen">
-        <video ref={video} controls={started} preload="none" playsInline poster="/hero-video-poster.webp" width="1280" height="720" aria-label="A look inside AI Income Lab" onPlay={() => trackEvent('Hero Video Played', { placement: 'community' })} onEnded={() => trackEvent('Hero Video Completed', { placement: 'community' })}>
-          <source src="/hero-video.mp4" type="video/mp4" />
-          <track kind="captions" src="/hero-video.en.vtt" srcLang="en" label="English" default />
-        </video>
-        {!started && <button type="button" className="play-overlay" onClick={start} aria-label="Play the 14-second tour of AI Income Lab, sound on"><span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span></button>}
-      </div>
-      <figcaption>A 14-second look inside AI Income Lab</figcaption>
-    </figure>
-  );
-}
-
 function App() {
   const [campaign, setCampaign] = useState(() => getCampaign('', []));
   const [campaignReady, setCampaignReady] = useState(false);
@@ -718,43 +695,27 @@ function App() {
       </section>
 
       <section className="section band" id="community">
-        <div className="shell community-grid">
-          <div>
-            <SectionHead eyebrow="Plans" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
-            <div className="members">
-              <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
-              <p>Some of the members building AI workflows on Skool</p>
-            </div>
-            <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
-              {plans.map(plan => (
-                <li key={plan.name}>
-                  <div>
-                    <h3>{plan.name}</h3>
-                    <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
-                    <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `See ${plan.name} on Skool`, plansUrl, undefined, { plan_name: plan.name, plan_price: plan.price, currency: 'USD' })}>See {plan.name} on Skool ↗</a>
-                  </div>
-                  <p className="plan-price"><strong>${plan.price}</strong> a month<span>or ${plan.annual} a year</span></p>
-                </li>
-              ))}
-            </ul>
-            <p className="fine-print">Pay monthly or yearly; a year costs the same as 10 months. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
-            <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
+        <div className="shell">
+          <SectionHead eyebrow="Plans" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <div className="members">
+            <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
+            <p>Some of the members building AI workflows on Skool</p>
           </div>
-          <div className="reveal">
-            <CommunityVideo />
-            <div className="course-preview">
-              <h3>Inside the classroom</h3>
-              <ul>
-                <li><strong>Runable Course</strong><span>Build and launch an AI-powered business website.</span></li>
-                <li><strong>Beginner’s Automation Course</strong><span>Build simple business automations in Make.com.</span></li>
-                <li><strong>Claude Code &amp; Skills / Codex Tutorials &amp; Courses</strong><span>Follow coding workflows, prompts, and practical lessons.</span></li>
-                <li><strong>Complete AI Avatar Video Course</strong><span>Create an avatar, generate a voice, and automate the workflow with HeyGen, ElevenLabs, and Make.com.</span></li>
-                <li><strong>VAPI AI Voice Agent Course</strong><span>Build a voice agent with VAPI and ElevenLabs.</span></li>
-                <li><strong>Ultimate N8N Template Library</strong><span>6,400+ workflows for marketing, sales, operations, and data processing.</span></li>
-              </ul>
-            </div>
-          </div>
+          <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
+            {plans.map(plan => (
+              <li key={plan.name}>
+                <div>
+                  <h3>{plan.name}</h3>
+                  <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
+                  <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+                  <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `See ${plan.name} on Skool`, plansUrl, undefined, { plan_name: plan.name, plan_price: plan.price, currency: 'USD' })}>See {plan.name} on Skool ↗</a>
+                </div>
+                <p className="plan-price"><strong>${plan.price}</strong> a month<span>or ${plan.annual} a year</span></p>
+              </li>
+            ))}
+          </ul>
+          <p className="fine-print">Pay monthly or yearly; a year costs the same as 10 months. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
+          <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
         </div>
       </section>
 
