@@ -179,3 +179,8 @@ test('plan cards show the verified monthly and annual prices and report the chos
   assert.match(jsx, /plan_name: plan\.name, plan_price: plan\.price/);
   assert.match(jsx, /From \$29 a month or \$290 a year\. You pick a plan on Skool and can cancel anytime\./);
 });
+
+test('the hero heading names the community in both variants', () => {
+  assert.equal(count(jsx, '<h1><span className="hero-brand">AI Income Lab:</span> '), 2);
+  assert.match(css, /\.hero h1 \.hero-brand \{/);
+});

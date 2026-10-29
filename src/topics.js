@@ -14,7 +14,7 @@ export const topics = [
   },
   {
     slug: 'codex-opencode', name: 'Codex and OpenCode',
-    title: 'Codex and OpenCode tutorials: setup, limits and builds | Mike Holp',
+    title: 'Codex and OpenCode tutorials: setup and builds | Mike Holp',
     heading: 'Codex and OpenCode tutorials',
     intro: 'Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.',
     about: 'These videos cover OpenAI Codex and the open-source OpenCode agent: installing them on macOS and Linux, choosing providers and models, working within plan usage limits, and running the same task through different agents to compare the results. The written guides turn the recurring questions into checklists you can follow without rewatching: making and verifying a small code change, installing Codex on Linux, and checking usage limits and reset times before a long session.',
@@ -32,7 +32,7 @@ export const topics = [
   },
   {
     slug: 'make-com', name: 'Make.com',
-    title: 'Make.com tutorials: no-code AI automations, step by step | Mike Holp',
+    title: 'Make.com tutorials: no-code AI automations | Mike Holp',
     heading: 'Make.com tutorials: no-code AI automations',
     intro: 'No-code AI automations built step by step in Make.com.',
     about: 'Make.com is the easiest place to build a first automation without code. These videos range from a full one-hour course to short builds that connect Google Sheets, Gmail and AI modules, with the filters and field mapping shown on screen. The written guide is a small practice scenario you can finish in one sitting: watch a sheet, pass only approved rows, and verify the output before you turn on a schedule.',
@@ -41,7 +41,7 @@ export const topics = [
   },
   {
     slug: 'ai-agents', name: 'AI agents',
-    title: 'AI agent tutorials: assistants, voice agents and tools | Mike Holp',
+    title: 'AI agent tutorials: assistants and voice agents | Mike Holp',
     heading: 'AI agent tutorials and tests',
     intro: 'Personal assistants, research agents and agent tools tested on real tasks.',
     about: 'This is the largest topic on the channel: personal AI assistants, research and job-search agents, voice agents and desktop agent apps, each given a real task instead of a demo prompt. The videos show the setup, what the agent finished on its own, and what still needed a person. The written guides cover two agents in depth: installing Hermes with a desktop app, and building a Vapi voice agent with test calls and webhook checks.',

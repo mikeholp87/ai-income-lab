@@ -421,7 +421,10 @@ test('archive cards show sharp thumbnails, duration and views', () => {
 test('archive type and grid match the homepage and keep cards even', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.' }]);
   assert.ok(existsSync(new URL('../public/fonts/instrument-sans.woff2', import.meta.url)));
-  assert.match(archiveStyles, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: swap; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
+  // Preloaded fonts with optional display: a late font keeps the fallback instead of re-wrapping the topic row.
+  assert.match(archiveStyles, /@font-face \{ font-family: 'Instrument Sans'; font-weight: 400 700; font-display: optional; src: url\('\/fonts\/instrument-sans.woff2'\) format\('woff2'\); \}/);
+  assert.doesNotMatch(archiveStyles, /font-display: swap/);
+  assert.match(renderArchive(uploads.slice(0, 3)), /<link rel="preload" href="\/fonts\/instrument-sans\.woff2" as="font" type="font\/woff2" crossorigin>/);
   assert.match(archiveStyles, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
   // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
   assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
@@ -582,7 +585,7 @@ test('archive pages carry breadcrumbs and named list items, and the sitemap date
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', 'Claude Code tutorials and builds']);
   assert.match(html, /loading="eager" fetchpriority="high"/);
   for (const topic of topics) {
-    assert.ok(topic.title.length >= 50 && topic.title.length <= 70, `${topic.slug}: ${topic.title.length}`);
+    assert.ok(topic.title.length >= 50 && topic.title.length <= 65, `${topic.slug}: ${topic.title.length}`);
     assert.ok(topic.about.split(/\s+/).length >= 60, topic.slug);
   }
   const xml = '<urlset>\n  <url><loc>https://www.ai-automation-station.com/</loc><lastmod>2026-09-15</lastmod></url>\n</urlset>';

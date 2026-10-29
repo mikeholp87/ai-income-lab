@@ -666,11 +666,11 @@ function App() {
         <div className="hero-copy">
         {communityHero ? (
           <>
-          <h1><span>Build what you</span> <span className="accent">just watched.</span></h1>
+          <h1><span className="hero-brand">AI Income Lab:</span> <span>Build what you</span> <span className="accent">just watched.</span></h1>
           </>
         ) : (
           <>
-          <h1><span>Build real AI</span> <span className="accent">automations.</span></h1>
+          <h1><span className="hero-brand">AI Income Lab:</span> <span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
         <p className="hero-text"><strong>AI Income Lab is the paid community from the AI Automation Station YouTube channel.</strong> It has step-by-step courses, from a beginner Make.com automation course to Claude Code, Codex, and AI voice agents. VIP adds weekly coaching and 6,400+ n8n templates. Ask 2,900+ members while you build. Hosted by Mike Holp.</p>
@@ -908,7 +908,7 @@ function App() {
           </div>
         </div>
         <div className="footer-directory">
-          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp.</p><NotesSignup /></div>
+          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p><NotesSignup /></div>
           <nav className="footer-columns" aria-label="Footer">
             <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a></div>
             <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>

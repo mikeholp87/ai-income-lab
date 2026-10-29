@@ -78,6 +78,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 /* Sized to the copy column so the longest line ("Build what you") never breaks early; browsers without cqi keep the vw size above. */
 .hero h1 { font-size: clamp(30px, 10.4cqi, 64px); }
 .hero h1 span { display: block; }
+.hero h1 .hero-brand { margin-bottom: .5em; font-size: max(15px, .36em); letter-spacing: .04em; }
 .hero-text { max-width: 48ch; margin-top: 24px; color: var(--body); font: 400 18px/1.6 var(--sans); }
 .hero-text strong { color: var(--text); font-weight: 600; }
 .hero-reassurance { max-width: 48ch; }

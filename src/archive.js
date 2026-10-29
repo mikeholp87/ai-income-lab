@@ -147,6 +147,7 @@ export function renderArchive(videos, page = 1, topic = null) {
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://i.ytimg.com">
+${fontPreloads}
 <link rel="stylesheet" href="${consentCss}">
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}

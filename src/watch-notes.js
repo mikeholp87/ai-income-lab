@@ -190,7 +190,10 @@ export const watchNotes = {
   lumzbY6QV4Y: { searchTitle: 'Testing OpenAI Agent Builder: a hands-on first look' },
   SplwScUztfM: { searchTitle: 'Facebook monetization requirements: the 2025 walkthrough' },
   QlL87_URHZ8: { searchTitle: 'Create images with Nano Banana in Google Gemini' },
-  J86tffN9nmg: { searchTitle: 'Building a ChatGPT clone with Rocket AI' },
+  J86tffN9nmg: {
+    searchTitle: 'Building a ChatGPT clone with Rocket AI',
+    summary: 'Build a ChatGPT-style chat web app in Rocket.new using only prompts: pick a web app, describe the clone, let Rocket add OpenAI chat completions, then review the result. Recorded in about 20 minutes; Rocket needs credits in your account.',
+  },
   lKqe0r0zoGY: { searchTitle: 'Lindy AI tutorial: build your first agent' },
   ZlD4Z6UKS8o: { searchTitle: 'Build a website with AI: Lovable tutorial' },
   SLAnjvWK1Y4: { searchTitle: 'Automating YouTube Shorts with AI' },
@@ -359,5 +362,14 @@ export const watchNotes = {
 <p>The final audit reports 559 public English articles with valid link targets and no modeled orphans, followed by another pass on pages with weak incoming coverage. Those are tool-reported structural results. The video’s earlier totals cover different inventories and should not be presented as a controlled before-and-after ranking experiment.</p>
 <p>To measure visitor behavior, use the <a href="/guides/consent-tracking.html">consent-aware tracking guide</a>. A navigation click is a useful signal about the journey; it is not a confirmed membership purchase. If you need the desktop setup first, follow <a href="/watch/lbBZ7uLJwbM">Codex on Linux</a>.</p>
 </section>`,
+  },
+  VE66JDHoS6Y: {
+    summary: 'Install Herdr and run Codex, Claude Code, OpenCode and Hermes from one terminal workspace that saves every session. Covers installing on Mac, Linux and Windows, then a hands-on review.',
+  },
+  mPHM81X1oqc: {
+    summary: 'What Meta’s Muse Wonder model is, how its active memory, focus and coding features work, how it compares on Meta’s published benchmarks, and whether it is a real step forward for AI agents.',
+  },
+  IymTRFLMY_s: {
+    summary: 'A live session with GrokBot as a personal AI assistant: job follow-ups, backlink and outreach stats, traffic and indexing fixes, and investor pitches, run for real projects.',
   },
 };
