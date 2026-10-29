@@ -489,6 +489,7 @@ const packages = [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1
 function ContactForm({ topic, setTopic }) {
   const [status, setStatus] = useState('idle');
   const [mailto, setMailto] = useState('mailto:automojic@proton.me');
+  const started = useRef(false);
 
   async function send(event) {
     event.preventDefault();
@@ -507,7 +508,9 @@ function ContactForm({ topic, setTopic }) {
 
   if (status === 'sent') return <p className="contact-sent" role="status">Message sent. I&rsquo;ll reply to the email you gave.</p>;
   return (
-    <form className="contact-form" onSubmit={send}>
+    <form className="contact-form" onSubmit={send} onFocusCapture={event => {
+      if (!started.current && event.target.name !== 'hp') { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
+    }}>
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
@@ -539,6 +542,7 @@ function ContactOptions({ campaign }) {
 // Weekly build notes signup in the footer; the list lives in Resend (see api/subscribe.js).
 function NotesSignup() {
   const [status, setStatus] = useState('idle');
+  const started = useRef(false);
 
   async function subscribe(event) {
     event.preventDefault();
@@ -551,7 +555,9 @@ function NotesSignup() {
 
   if (status === 'done') return <p className="notes-signup-status" role="status">You&rsquo;re in. The next build notes will land in your inbox.</p>;
   return (
-    <form className="notes-signup" onSubmit={subscribe}>
+    <form className="notes-signup" onSubmit={subscribe} onFocusCapture={event => {
+      if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: 'footer_notes' }); }
+    }}>
       <label htmlFor="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
       <div>
         <input id="footer-notes-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" />
@@ -673,7 +679,7 @@ function App() {
           <h1><span className="hero-brand">AI Income Lab:</span> <span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
-        <p className="hero-text"><strong>AI Income Lab is the paid community from the AI Automation Station YouTube channel.</strong> It has step-by-step courses, from a beginner Make.com automation course to Claude Code, Codex, and AI voice agents. VIP adds weekly coaching and 6,400+ n8n templates. Ask 2,900+ members while you build. Hosted by Mike Holp.</p>
+        <p className="hero-text"><strong>AI Income Lab is Mike Holp&rsquo;s paid learning community from the AI Automation Station YouTube channel.</strong> Beginners and independent builders follow step-by-step courses to build a first Make.com automation or an AI-powered website, with community help when they get stuck.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {
@@ -726,7 +732,7 @@ function App() {
                     <h3>{plan.name}</h3>
                     <p className="plan-fit"><strong>Best for:</strong> {plan.fit}</p>
                     <ul className="plan-features">{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `Choose ${plan.name}, $${plan.price}/month`, plansUrl, undefined, { plan_name: plan.name, plan_price: plan.price, currency: 'USD' })}>Choose {plan.name}, ${plan.price}/month ↗</a>
+                    <a className="plan-link" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('pricing', `See ${plan.name} on Skool`, plansUrl, undefined, { plan_name: plan.name, plan_price: plan.price, currency: 'USD' })}>See {plan.name} on Skool ↗</a>
                   </div>
                   <p className="plan-price"><strong>${plan.price}</strong> a month<span>or ${plan.annual} a year</span></p>
                 </li>

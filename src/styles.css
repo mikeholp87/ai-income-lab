@@ -416,7 +416,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .service-featured { grid-template-columns: 1fr; padding: 32px; }
     .service-grid { grid-template-columns: 1fr; }
   .audience { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; }
-  .footer-directory { grid-template-columns: 1fr; gap: 32px; }
+  .footer-directory { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .course-promo-card { display: grid; grid-template-columns: 1fr; gap: 28px; padding: 32px; }
   .course-promo-card::before { content: none; }
   .course-promo-image { position: static; z-index: auto; width: 100%; height: auto; border-radius: 10px; object-fit: initial; }

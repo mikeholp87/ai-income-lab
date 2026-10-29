@@ -79,7 +79,7 @@ test('the build list shows three projects', () => {
 });
 
 test('the hero relates the two brands without an announcement pill', () => {
-  assert.match(jsx, /AI Income Lab is the paid community from the AI Automation Station YouTube channel\./);
+  assert.match(jsx, /AI Income Lab is Mike Holp.*paid learning community from the AI Automation Station YouTube channel\./);
   assert.doesNotMatch(jsx, /hero-status/);
 });
 

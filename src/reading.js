@@ -83,7 +83,14 @@ recordView();
 if (navigator.clipboard) addCopyButtons(document, navigator.clipboard);
 
 // Weekly build notes signup at the end of guides.
-for (const form of document.querySelectorAll('form[data-subscribe]')) form.addEventListener('submit', async event => {
+for (const form of document.querySelectorAll('form[data-subscribe]')) {
+  let started = false;
+  form.addEventListener('focusin', event => {
+    if (!started && event.target.name === 'email') {
+      started = trackGoogleEvent('form_start', { ...properties, placement: form.dataset.placement || 'guide_end' });
+    }
+  });
+  form.addEventListener('submit', async event => {
   event.preventDefault();
   const status = form.querySelector('[role="status"]');
   const button = form.querySelector('button');
@@ -98,4 +105,5 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) form.addEv
     ? 'You’re already on the list, so there’s no new welcome email. The next build notes come to this inbox; check spam if you haven’t seen one.'
     : 'Welcome to the build notes! Check your inbox (and spam) for a welcome email.';
   trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement || 'guide_end' });
-});
+  });
+}

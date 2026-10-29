@@ -14,6 +14,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const defaultVideo = { ...youtube, dataset: {} };
   const lookalike = { ...channel, href: 'https://www.youtube.com.example.org/watch?v=Ip8KBwDixJs' };
   const links = [link, youtube, subscribe, channel, defaultVideo, lookalike];
+  const form = { dataset: { placement: 'guide_end' }, addEventListener(type, fn) { this[type] = fn; } };
   const clickLinks = () => { for (const target of links) target.click?.(); };
   const images = [false, true, false].map((complete, index) => ({
     complete, naturalWidth: index === 2 ? 320 : 0, retries: 0, removed: 0,
@@ -31,7 +32,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   globalThis.document = {
     head: { appendChild: script => scripts.push(script), querySelector: () => null },
     body: { append: element => elements.push(element) },
-    querySelectorAll: selector => selector === 'a[href]' ? links : images,
+    querySelectorAll: selector => selector === 'a[href]' ? links : selector === 'form[data-subscribe]' ? [form] : images,
     querySelector: () => ({ append: element => elements.push(element) }),
     createElement: tag => tag === 'aside' ? { setAttribute() {}, querySelectorAll: () => buttons, querySelector: () => buttons[0], contains: () => false } : button(),
   };
@@ -49,10 +50,14 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     const gated = () => scripts.filter(script => !vercel.includes(script));
     assert.deepEqual(vercel.map(script => script.src).sort(), ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js'], 'cookieless Vercel analytics load without consent');
     clickLinks();
+    form.focusin({ target: { name: 'email' } });
     assert.equal(gated().length, 0);
     assert.equal(events.length, 0);
     buttons[1].click();
     assert.equal(banner.hidden, true);
+    form.focusin({ target: { name: 'email' } });
+    form.focusin({ target: { name: 'email' } });
+    assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'form_start').length, 1);
     assert.equal(gated().length, 1); // Existing Meta stub; only the Google loader is inserted.
     clickLinks();
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
