@@ -49,3 +49,6 @@ pre:focus-visible,table:focus-visible{outline:2px solid #ff6846;outline-offset:4
 .transcript summary{min-height:44px;display:flex;align-items:center}.transcript p{font-size:16px}
 @media(max-width:640px){header{column-gap:12px}header .join{padding:0 14px;letter-spacing:.02em}header nav{flex-wrap:nowrap;gap:0 20px;overflow-x:auto;scrollbar-width:none}header nav a{white-space:nowrap}}
 @media(max-width:640px){.breadcrumbs li:last-child{display:none}}
+.wide header,.wide main,.wide footer{width:min(1120px,calc(100% - 32px))}.wide main>h1,.wide main>p,.wide .note,.wide .notes{max-width:760px}.wide .paths{grid-template-columns:repeat(4,minmax(0,1fr))}.wide .choices>li{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:0 64px}.wide .choices .kit{grid-template-columns:1fr}
+@media(max-width:960px){.wide .paths{grid-template-columns:1fr 1fr}.wide .choices>li{display:block}.wide .choices .kit{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.wide .paths,.wide .choices .kit{grid-template-columns:1fr}}

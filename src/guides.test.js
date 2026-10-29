@@ -207,3 +207,17 @@ test('search starts with a few results, then pages matches eight at a time', asy
   assert.match(page, /rows\.filter\(row => row\[0\] === 'guide'\)\.slice\(0, 3\), \.\.\.rows\.filter\(row => row\[0\] === 'video'\)\.slice\(0, 3\)/);
   assert.match(page, /more\.addEventListener\('click', \(\) => \{ shown \+= pageSize; run\(\); \}\);/);
 });
+
+test('every guide image is a card from scripts/guide-cards.mjs, never a video thumbnail', async () => {
+  const { cards } = await import('../scripts/guide-cards.mjs');
+  const images = (await readdir(new URL('../public/assets/guides/', import.meta.url))).filter(name => name.endsWith('.webp'));
+  assert.deepEqual(images.map(name => name.replace(/\.webp$/, '')).sort(), Object.keys(cards).sort());
+  for (const [slug, card] of Object.entries(cards)) assert.equal(card.steps.length, 3, slug);
+  assert.doesNotMatch(await read('public/guides.html'), /ytimg\.com/);
+});
+
+test('Start here is as wide as the guides hub and the video archive', async () => {
+  assert.match(await read('public/start-here.html'), /<body class="wide">/);
+  assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1120px,calc\(100% - 32px\)\)\}/);
+  assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1120px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
+});
