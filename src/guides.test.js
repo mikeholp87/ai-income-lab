@@ -22,7 +22,7 @@ test('the guides hub links, lists and describes every guide', async () => {
 
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
-    assert.match(await read(path), /<header><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
+    assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><\/header>/, path);
   }
 });
 
@@ -30,7 +30,7 @@ test('the fast AI income guide is discoverable and has its own image', async () 
   const slug = 'make-money-with-ai-fast';
   const link = `/guides/${slug}.html`;
   assert.ok((await read('public/guides.html')).includes(`<a href="${link}">`));
-  assert.ok((await read('public/sitemap.xml')).includes(`<loc>https://www.ai-automation-station.com${link}</loc><lastmod>2026-10-25</lastmod>`));
+  assert.ok((await read('public/sitemap.xml')).includes(`<loc>https://www.ai-automation-station.com${link}</loc><lastmod>2026-10-30</lastmod>`));
   assert.ok((await read('public/llms.txt')).includes(`](https://www.ai-automation-station.com${link})`));
   const html = await read(`public${link}`);
   assert.ok(html.includes(`<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`));
@@ -159,8 +159,8 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(ccvc, /<title>Codex vs Claude Code: /);
   assert.match(ccvc, /<h1>Codex vs Claude Code: /);
   assert.match(ccvc, /<h2 id="short-answer">The short answer \(October 2026\)<\/h2>/);
-  assert.match(ccvc, /"dateModified":"2026-10-22"/);
-  assert.match(ccvc, /Updated <time datetime="2026-10-22">October 22, 2026<\/time>/);
+  assert.match(ccvc, /"dateModified":"2026-10-30"/);
+  assert.match(ccvc, /Updated <time datetime="2026-10-30">October 30, 2026<\/time>/);
   const hermes = await read('public/guides/hermes-desktop.html');
   assert.match(hermes, /<title>Hermes Desktop: /);
   assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
@@ -168,7 +168,7 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(n8n, /<h3 id="docker">Or run it in Docker<\/h3>/);
   // n8n's own docker run command, copied from its docs.
   assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
-  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-22</);
+  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-30</);
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
     ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
@@ -187,7 +187,7 @@ test('guide titles and sections match what people search for', async () => {
 test('the guides hub uses the /videos page design', async () => {
   const hub = await read('public/guides.html');
   assert.match(hub, /<link rel="stylesheet" href="\/archive.css">/);
-  assert.match(hub, /<header class="shell"><a class="brand" href="\/"><span><\/span>AI Income Lab<\/a><nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
+  assert.match(hub, /<header class="shell single-line-header"><a class="brand desktop-brand" href="\/">[\s\S]*?<a class="mobile-brand" href="\/">AI Income Lab<\/a><nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
   assert.match(hub, /<div class="intro"><p class="mono path">~\/guides<\/p><h1>/);
   assert.match(hub, /<nav class="topics mono" aria-label="Guide topics">/);
   assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);

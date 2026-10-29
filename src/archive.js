@@ -156,7 +156,7 @@ ${jsonLd(breadcrumbs)}
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
-<header class="shell"><a class="brand" href="/"><span></span>AI Income Lab</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
+<header class="shell single-line-header"><a class="brand desktop-brand" href="/"><span></span>AI Income Lab</a><a class="mobile-brand" href="/">AI Income Lab</a><nav class="mono" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a></header>
 <main class="shell" id="content">
 <div class="intro"><p class="mono path">~/videos${topic ? `/${topic.slug}` : ''}</p><h1>${escape(topic ? topic.heading : 'Every video')}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}

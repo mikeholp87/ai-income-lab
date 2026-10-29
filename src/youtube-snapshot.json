@@ -1,10 +1,19 @@
 {
   "videos": [
     {
+      "id": "wzC2r426KWs",
+      "title": "I Built a Virtual Office for My AI Agents in GrokBot",
+      "published": "2026-10-29T14:52:59Z",
+      "views": 97,
+      "duration": "9:43",
+      "summary": "In this video, I build a 2D Virtual Office for 35+ AI agents running inside GrokBot using the new Pages feature!",
+      "embeddable": true
+    },
+    {
       "id": "wLIiTkra7uM",
       "title": "I Let GrokBot Run My Blog for 30 Days (Here's What Happened)",
       "published": "2026-10-27T14:00:36Z",
-      "views": 93,
+      "views": 153,
       "duration": "7:06",
       "summary": "Build an automated GrokBot WordPress blog writer to publish content hands-free. Learn to integrate AI agents for business.",
       "embeddable": true
@@ -13,7 +22,7 @@
       "id": "VE66JDHoS6Y",
       "title": "Herdr Lets You Run Claude Code And Codex In One Place",
       "published": "2026-10-26T10:58:24Z",
-      "views": 228,
+      "views": 457,
       "duration": "7:52",
       "summary": "",
       "embeddable": true
@@ -22,7 +31,7 @@
       "id": "qQVAnp4-EpI",
       "title": "I Let Runable Build My Entire Online Business!",
       "published": "2026-10-20T15:43:31Z",
-      "views": 181,
+      "views": 188,
       "duration": "18:03",
       "summary": "",
       "embeddable": true
@@ -31,7 +40,7 @@
       "id": "UAPaM6KrC-M",
       "title": "Building My Own Video Editor Using REA (It's Insane!)",
       "published": "2026-10-14T08:36:41Z",
-      "views": 481,
+      "views": 491,
       "duration": "6:33",
       "summary": "Learn how to use software reverse engineering to recreate a powerful video editor using the powerful REA tool and Claude Code. Very impressive!",
       "embeddable": true
@@ -40,7 +49,7 @@
       "id": "mPHM81X1oqc",
       "title": "I Tested Meta Muse Wonder - Here's What Happened",
       "published": "2026-10-13T10:07:08Z",
-      "views": 701,
+      "views": 705,
       "duration": "8:16",
       "summary": "Meta Muse Wonder is now one of the most powerful AI models released by Meta in years.",
       "embeddable": true
@@ -49,24 +58,15 @@
       "id": "ys5tJuTFCEo",
       "title": "How To Connect Claude Code & Codex To GrokBot",
       "published": "2026-10-09T08:13:12Z",
-      "views": 1985,
+      "views": 2174,
       "duration": "7:50",
       "summary": "Learn how to integrate your Codex and Claude Code subscriptions directly into GrokBot to keep your AI workflows running smoothly when Cursor Cloud credits run out.",
-      "embeddable": true
-    },
-    {
-      "id": "taqTVHPlJ8w",
-      "title": "Claude Haiku 5.5: Everything You Need To Know",
-      "published": "2026-10-08T12:27:22Z",
-      "views": 197,
-      "duration": "7:05",
-      "summary": "Anthropic just dropped Claude Haiku 5.5, which is now 75% cheaper than Claude Haiku 4.5. Here is how it performs versus the rest of the models from OpenAI.",
       "embeddable": true
     }
   ],
   "channel": {
-    "subscribers": 5230,
-    "views": 533741,
-    "videos": 350
+    "subscribers": 5240,
+    "views": 536478,
+    "videos": 352
   }
 }
