@@ -756,6 +756,11 @@ function App() {
             <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
             <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
             <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
+            <li><a href="/guides/what-is-n8n-used-for.html">What is n8n used for? Real uses and a first workflow</a></li>
+            <li><a href="/guides/agentic-ai-vs-traditional-automation.html">How does agentic AI differ from traditional automation?</a></li>
+            <li><a href="/guides/n8n-vs-zapier-vs-make.html">n8n vs Zapier vs Make: billing, builders and AI agents</a></li>
+            <li><a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source: 5 tools and their licenses</a></li>
+            <li><a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: n8n, Make and Zapier compared</a></li>
             <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
             <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
             <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
