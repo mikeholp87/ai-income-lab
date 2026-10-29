@@ -37,6 +37,18 @@ export const watchNotes = {
 <p>If you later add Gmail, test with an address you control and review the generated text. Continue to the <a href="/watch/G8u1-hKEqig">HeyGen automation notes</a> for the actual avatar/API failures.</p>
 </section>`,
   },
+  xlVDUw_rBXE: {
+    html: `<section aria-labelledby="n8n-comparison-guide">
+<h2 id="n8n-comparison-guide">Compare n8n with Zapier and Make</h2>
+<p>Deciding which tool to build these in? Read <a href="/guides/n8n-vs-zapier-vs-make.html">n8n vs Zapier vs Make: billing, builders and AI agents</a>.</p>
+</section>`,
+  },
+  m9VrHQHTMTE: {
+    html: `<section aria-labelledby="n8n-open-source-guide">
+<h2 id="n8n-open-source-guide">Open-source alternatives to n8n</h2>
+<p>Want a self-hosted tool with an OSI license? Read <a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source: 5 tools and their licenses</a>.</p>
+</section>`,
+  },
   oDAKXkIyOHE: {
     html: `<section aria-labelledby="ai-automation-guide">
 <h2 id="ai-automation-guide">AI automation written guide</h2>
@@ -47,6 +59,7 @@ export const watchNotes = {
     html: `<section aria-labelledby="ai-automation-guide">
 <h2 id="ai-automation-guide">AI automation written guide</h2>
 <p>For the difference between AI automation and AI agents, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>. It compares tool types and walks through a small first build with a checked result.</p>
+<p>For how agents differ from fixed automations, read <a href="/guides/agentic-ai-vs-traditional-automation.html">How does agentic AI differ from traditional automation?</a></p>
 </section>`,
   },
   '9kHdIiobKMA': {
@@ -123,7 +136,7 @@ export const watchNotes = {
 <h3>Which should I pick: Dots or Grok Bot?</h3>
 <p>For this job-search workflow, the video’s verdict favors GrokBot: it finished in a couple of minutes what Dots couldn’t finish in 45. Mike felt Dots was rushed out and doesn’t think it is worth $100 a month when GrokBot starts free. That is one test of one workflow, so run your own small version of the task before paying for either.</p>
 <h3>Related</h3>
-<p>See more GrokBot recordings: <a href="/watch/ys5tJuTFCEo">GrokBot with Codex and Claude Code: routing walkthrough</a> and <a href="/watch/Ip8KBwDixJs">GrokBot as a chief of staff</a>. For how agents differ from fixed automations, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>.</p>
+<p>See more GrokBot recordings: <a href="/watch/ys5tJuTFCEo">GrokBot with Codex and Claude Code: routing walkthrough</a> and <a href="/watch/Ip8KBwDixJs">GrokBot as a chief of staff</a>. For how agents differ from fixed automations, read <a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a>. For the agentic side in depth, read <a href="/guides/agentic-ai-vs-traditional-automation.html">How does agentic AI differ from traditional automation?</a></p>
 </section>`,
   },
   ys5tJuTFCEo: {

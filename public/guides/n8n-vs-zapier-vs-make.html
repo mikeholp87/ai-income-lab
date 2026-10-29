@@ -49,7 +49,7 @@
 <tr>
 <td>What counts</td>
 <td>Each action step that runs successfully</td>
-<td>1 credit per operation for non-AI apps, AI usage based on tokens</td>
+<td>1 credit per operation. With Make's AI Provider, AI steps also use credits for tokens. With your own AI provider key (paid plans), AI steps cost operations and you pay the provider for tokens</td>
 <td>One run of a workflow, regardless of steps</td>
 </tr>
 <tr>
@@ -73,9 +73,9 @@
 </tbody>
 </table>
 <p>The sources for each row are below.</p>
-<p>Zapier counts a task each time an action runs successfully.</p>
+<p>Zapier counts a task each time an action runs successfully. Its help page lists steps that do not count, including triggers, Filter and Paths steps, and Formatter steps.</p>
 <p><a href="https://help.zapier.com/hc/en-us/articles/8496196837261">Zapier help: How is task usage measured</a></p>
-<p>Make renamed operations to credits. A non-AI module operation uses one credit, and AI features use credits based on tokens.</p>
+<p>Make renamed operations to credits. A non-AI module operation uses one credit, and AI features run through Make's AI Provider use credits based on tokens. With a custom AI provider connection on a paid plan, credits are based on operations and you pay your provider directly for tokens.</p>
 <p><a href="https://help.make.com/credits">Make help: Credits</a></p>
 <p>n8n Cloud pricing is based on monthly workflow executions, regardless of complexity.</p>
 <p><a href="https://n8n.io/pricing/">n8n pricing</a></p>
@@ -85,7 +85,7 @@
 <p>The billing unit decides what a long workflow costs you.</p>
 <p>Take a workflow with ten steps that runs once.</p>
 <ul>
-<li>On Zapier, each successful action step is a task.</li>
+<li>On Zapier, each successful action step is a task, apart from the step types Zapier excludes, such as Filter, Paths and Formatter.</li>
 <li>On Make, each module operation is at least one credit.</li>
 <li>On n8n Cloud, it is one execution.</li>
 </ul>
@@ -114,6 +114,8 @@
 <p><a href="https://help.make.com/make-ai-agent-new-app">Make help: Make AI Agent (New) app</a></p>
 <p>The n8n AI Agent node connects a chat model to tool sub-nodes. You must connect at least one tool.</p>
 <p><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/">n8n docs: AI Agent node</a></p>
+<p>To compare these three and other tools as agent builders, read this guide.</p>
+<p><a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: compare n8n, Make, Zapier and more</a></p>
 <p>For more on choosing between a fixed workflow and an agent, read this guide.</p>
 <p><a href="/guides/agentic-ai-vs-traditional-automation.html">How agentic AI differs from traditional automation</a></p>
 <h2 id="test">Run a one-hour test</h2>
@@ -141,6 +143,8 @@
 <p><a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source</a></p>
 <h2 id="limits">What this guide does not cover</h2>
 <p>This guide lists no plan prices, because they change. It makes no claims about speed or reliability, because those depend on your workflow and region.</p>
+<p>For six n8n workflow ideas on video, watch this.</p>
+<p><a href="/watch/xlVDUw_rBXE">Watch: 6 n8n automations for entrepreneurs</a></p>
 <p>New to n8n? Start here.</p>
 <p><a href="/guides/what-is-n8n-used-for.html">What is n8n used for</a></p>
 <p>New to Make? Build a first scenario.</p>

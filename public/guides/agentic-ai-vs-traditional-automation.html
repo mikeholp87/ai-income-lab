@@ -15,9 +15,9 @@
 <p>Traditional automation follows a path you drew in advance. Agentic AI is handed a goal and a set of tools, and it decides which steps to take.</p>
 <p>That one difference changes how you build, test and trust the system. This guide explains it in plain terms, then shows how to choose between the two for a real task.</p>
 <figure><img src="/assets/guides/agentic-ai-vs-traditional-automation.webp" alt="Two lanes compared: a fixed step-by-step workflow and an agent choosing tools toward a goal" width="1200" height="630" loading="lazy"><figcaption>Traditional automation follows a drawn path. An agent chooses its next step.</figcaption></figure>
-<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#short-answer">The short answer</a></li><li><a href="#comparison">Side by side</a></li><li><a href="#traditional">What traditional automation looks like</a></li><li><a href="#agentic">What agentic AI looks like</a></li><li><a href="#choose">How to choose for a real task</a></li><li><a href="#hybrid">The hybrid pattern most builders use</a></li><li><a href="#build">Build a small hybrid in n8n</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#limits">What this guide does not cover</a></li></ul></nav>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#short-answer">The short answer</a></li><li><a href="#comparison">Side by side</a></li><li><a href="#traditional">What traditional automation looks like</a></li><li><a href="#agentic">What agentic AI looks like</a></li><li><a href="#choose">How to choose for a real task</a></li><li><a href="#hybrid">The hybrid pattern most builders use</a></li><li><a href="#build">Build a small hybrid in n8n</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#limits">What this guide does not cover</a></li><li><a href="#video">See an agent test</a></li></ul></nav>
 <h2id="short-answer">The short answer</h2>
-<p>In traditional automation, every step and branch is fixed. The same input always takes the same path.</p>
+<p>How is agentic AI different from traditional automation? In traditional automation, every step and branch is fixed. The same input always takes the same path.</p>
 <p>In agentic AI, a language model reads the input, picks a tool, looks at the result and picks the next step. The path can change from run to run.</p>
 <p>The n8n docs define an agent along these lines. It receives data, makes decisions and uses tools to reach a goal, and it chooses which tool fits the task.</p>
 <p><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/">n8n docs: AI Agent node</a></p>
@@ -129,7 +129,10 @@
 <p>If you are new to n8n, start with what it is used for.</p>
 <p><a href="/guides/what-is-n8n-used-for.html">What is n8n used for</a></p>
 <p>If you want an agent without writing code, compare the builders next.</p>
-<p><a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: n8n, Make and Zapier compared</a></p>
+<p><a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: compare n8n, Make, Zapier and more</a></p>
+<h2 id="video">See an agent test</h2>
+<p>For a recorded example of one agent task built in two tools, watch this comparison.</p>
+<p><a href="/watch/vauqktcB6ak">Watch: Dots vs Grok Bot job-search agent test</a></p>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/">n8n docs: AI Agent node</a></li>
@@ -138,7 +141,7 @@
 <li><a href="https://help.make.com/sub-agents-and-tool-output-filtering-are-now-available-in-the-make-ai-agent-new-app">Make help: Sub-agents and tool output filtering</a></li>
 <li><a href="https://help.zapier.com/hc/en-us/articles/8496196837261">Zapier help: How is task usage measured</a></li>
 </ul>
-<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: n8n, Make and Zapier compared</a></li><li>All guides: <a href="/guides.html">Free build guides</a></li></ul></aside>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: compare n8n, Make, Zapier and more</a></li><li>All guides: <a href="/guides.html">Free build guides</a></li></ul></aside>
 <section class="cta" aria-labelledby="join-lab"><p class="cta-eyebrow">AI Income Lab</p><h2 id="join-lab">Don’t build the next one <span>alone.</span></h2><p>Step-by-step courses, reusable templates, and a community that answers when you get stuck.</p><p class="cta-fit">Members get the <strong>Claude Code &amp; Skills</strong> and <strong>Codex Tutorials &amp; Courses</strong> lessons.</p><ul class="cta-list"><li>Courses for builds like this one</li><li>Copy-ready templates</li><li>Ask questions while you build</li><li>Weekly coaching on VIP</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="guide_end">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime.</span></div><div class="cta-members"><span class="cta-faces" aria-hidden="true"><img src="/members/member-0.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-1.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-2.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-3.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-4.png" alt="" width="30" height="30" loading="lazy"></span><span>Join 2,900+ members building with AI</span></div></section>
 <form class="notes" data-subscribe><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
 </main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

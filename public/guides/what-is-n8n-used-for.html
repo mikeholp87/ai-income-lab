@@ -23,6 +23,8 @@
 <p><a href="https://docs.n8n.io/choose-how-to-use-n8n/">n8n docs: Choose how to use n8n</a></p>
 <p>The source code is public under n8n's own fair-code licenses. That matters if you plan to resell it or embed it in a product, so read the license before you build a business on it.</p>
 <p><a href="https://github.com/n8n-io/n8n#license">n8n on GitHub: license section</a></p>
+<p>If you need an OSI-licensed tool instead, compare the options here.</p>
+<p><a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source</a></p>
 <h2 id="how-it-works">How a workflow is built</h2>
 <p>Every n8n workflow has the same shape.</p>
 <ol>
@@ -38,6 +40,8 @@
 <h3>1. Lead and form routing</h3>
 <p>A form submits. n8n checks the fields, adds the lead to your CRM, tags it and pings the right person in chat.</p>
 <p>This is the classic first workflow because every step is visible and easy to test with a fake lead.</p>
+<p>See a job-search version of this pattern on video.</p>
+<p><a href="/watch/Z03CpV_8OIA">Watch: an n8n workflow that finds jobs</a></p>
 <h3>2. Scheduled reports</h3>
 <p>A schedule trigger runs every morning. n8n pulls numbers from a database or an API, formats them and posts a summary.</p>
 <h3>3. API glue</h3>
@@ -52,10 +56,14 @@
 <h3>5. Content pipelines</h3>
 <p>A new video or post goes live. n8n fetches it, asks a model to draft a summary or social copy, and drops the draft somewhere a human approves it.</p>
 <p>Keep the approval step. A model draft that posts itself is a risk to your brand.</p>
+<p>See a content pipeline built on video.</p>
+<p><a href="/watch/M_4KgrWyycI">Watch: automating LinkedIn content with n8n</a></p>
 <h3>6. Data clean-up and sync</h3>
 <p>Rows come in messy. n8n splits names, fixes formats, removes duplicates and writes clean rows to the destination.</p>
 <h3>7. Internal tools and alerts</h3>
 <p>A webhook fires when something breaks. n8n enriches the alert with context and sends it to the right channel.</p>
+<p>Email is a common place to start with this kind of routing.</p>
+<p><a href="/watch/_1bZhPHcsm4">Watch: n8n email automation</a></p>
 <h2 id="fit">When n8n is the right pick</h2>
 <p>n8n fits well when one or more of these are true.</p>
 <ul>
