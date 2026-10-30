@@ -194,6 +194,15 @@ function useSponsoredVideos() {
 }
 
 // eyebrow names the section; accent is the headline's closing clause, set in the signal color.
+const featuredGuides = [
+  { slug: 'ai-automation', tag: 'Beginner', title: 'What is AI automation? Examples, tools and a first build', alt: 'Guide card for What is AI automation, with examples, tools and a first build.' },
+  { slug: 'make-money-with-ai-no-experience', tag: 'Earning', title: 'Make money with AI with no experience', alt: 'Guide card for making money with AI with no experience.' },
+  { slug: 'ai-automation-services-small-business', tag: 'Earning', title: 'Sell AI automation services to small businesses', alt: 'Guide card for selling AI automation services to small businesses.' },
+  { slug: 'n8n-vs-zapier-vs-make', tag: 'Comparison', title: 'n8n vs Zapier vs Make: billing, builders and AI agents', alt: 'Guide card comparing n8n, Zapier and Make.' },
+  { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
+  { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
+];
+
 function SectionHead({ eyebrow, title, accent, children }) {
   return (
     <div className="section-head reveal">
@@ -739,42 +748,19 @@ function App() {
       <section className="section build-guides" id="guides">
         <div className="shell">
           <SectionHead eyebrow="Guides" title="Written guides," accent="step by step.">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
-          <ul>
-            <li><a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start here: your first build</a></li>
-            <li><a href="/guides/vapi-voice-agent-tutorial.html">Vapi AI tutorial: build a voice agent, test calls, webhooks</a></li>
-            <li><a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code: pricing, setup and limits</a></li>
-            <li><a href="/guides/9router-setup.html">9Router setup: providers, model combos and request checks</a></li>
-            <li><a href="/guides/codex-on-linux.html">Codex on Linux: install Codex CLI and the desktop app</a></li>
-            <li><a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it</a></li>
-            <li><a href="/guides/heygen-ai-avatar-tutorial.html">HeyGen AI avatar tutorial: create your first video</a></li>
-            <li><a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex: how I use both</a></li>
-            <li><a href="/guides/codex-usage-limits.html">Codex usage limits: check usage, plans and reset times</a></li>
-            <li><a href="/guides/codex-workflow.html">Use Codex to make and verify a code change</a></li>
-            <li><a href="/guides/ai-automation.html">What Is AI Automation? Examples, Tools and a First Build</a></li>
-            <li><a href="/guides/make-first-automation.html">Route a sample business request with Make.com</a></li>
-            <li><a href="/guides/first-api-request.html">Test your first AI API request locally</a></li>
-            <li><a href="/guides/youtube-feed.html">Build a resilient YouTube feed in React</a></li>
-            <li><a href="/guides/consent-tracking.html">Track clicks only after consent</a></li>
-            <li><a href="/guides/self-host-n8n.html">Run n8n on your own Ubuntu machine</a></li>
-            <li><a href="/guides/what-is-n8n-used-for.html">What is n8n used for? Real uses and a first workflow</a></li>
-            <li><a href="/guides/agentic-ai-vs-traditional-automation.html">How does agentic AI differ from traditional automation?</a></li>
-            <li><a href="/guides/n8n-vs-zapier-vs-make.html">n8n vs Zapier vs Make: billing, builders and AI agents</a></li>
-            <li><a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source: 5 tools and their licenses</a></li>
-            <li><a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: compare n8n, Make, Zapier and more</a></li>
-            <li><a href="/guides/hermes-desktop.html">Install Hermes Agent with Hermes Desktop</a></li>
-            <li><a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a></li>
-            <li><a href="/guides/dataforseo-mcp-claude.html">Give Claude Code real SEO data with DataForSEO</a></li>
-            <li><a href="/guides/make-money-with-ai-no-experience.html">Make money with AI with no experience</a></li>
-            <li><a href="/guides/make-money-with-ai-fast.html">Make money with AI fast</a></li>
-            <li><a href="/guides/ai-side-hustles.html">AI side hustles worth testing</a></li>
-            <li><a href="/guides/ai-automation-services-small-business.html">Sell AI automation services to small businesses</a></li>
-            <li><a href="/guides/make-money-with-chatgpt.html">Make money with ChatGPT in client work</a></li>
-            <li><a href="/guides/chatgpt-pro-20x.html">ChatGPT Pro 20x: Pause, Return &amp; Codex Limits (2026)</a></li>
-            <li><a href="/watch/7v_675nO7nM">Video: build an OpenCode desktop app</a></li>
-            <li><a href="/watch/geKngm3sg3w">Video: set up 9Router</a></li>
-            <li><a href="/watch/G8u1-hKEqig">Video: follow the HeyGen avatar workflow</a></li>
+          <ul className="guide-cards">
+            {featuredGuides.map(guide => (
+              <li key={guide.slug}>
+                <a className="guide-card" href={`/guides/${guide.slug}.html`}>
+                  <img src={`/assets/guides/${guide.slug}.webp`} srcSet={`/assets/guides/sizes/${guide.slug}-640.webp 640w, /assets/guides/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
+                  <span className="guide-card-tag">{guide.tag}</span>
+                  <h3>{guide.title}</h3>
+                </a>
+              </li>
+            ))}
           </ul>
-          <a className="text-link" href="/guides.html">All guides</a>
+          <p className="guide-more"><a className="text-link" href="/guides.html">Continue reading with all guides</a></p>
+          <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
         </div>
       </section>
 
