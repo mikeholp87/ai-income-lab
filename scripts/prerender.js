@@ -13,7 +13,7 @@ await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: fa
 try {
   const { Root } = await import('../dist/.ssr/main.js');
   const pages = [
-    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/']],
+    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'id="work-together"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/']],
     ['sponsors.html', 'sponsors', ['id="media-kit"', 'id="services"', 'id="work-together"']],
   ];
   for (const [file, page, required] of pages) {

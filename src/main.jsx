@@ -212,12 +212,12 @@ function SectionHead({ title, children }) {
 }
 
 const navLinks = {
-  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors']],
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
   sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
 // These sections lived on the homepage before /sponsors.html; old links to them still arrive there.
-const sponsorAnchors = ['#media-kit', '#services', '#sponsored', '#work-together'];
+const sponsorAnchors = ['#media-kit', '#services', '#sponsored'];
 
 // The nav link for the section currently under the header.
 function useActiveSection(ids) {
@@ -582,6 +582,18 @@ function NotesSignup({ placement = 'footer' }) {
   );
 }
 
+function WorkTogether({ campaign }) {
+  return (
+    <section className="section" id="work-together">
+      <div className="shell">
+        <SectionHead title="Book an intro call">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
+        <ContactOptions campaign={campaign} />
+        <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+      </div>
+    </section>
+  );
+}
+
 function SponsorsMain({ channel, campaign }) {
   const sponsoredVideos = useSponsoredVideos();
   return (
@@ -607,13 +619,7 @@ function SponsorsMain({ channel, campaign }) {
       </>}
 
       <div className="divider" aria-hidden="true" />
-      <section className="section" id="work-together">
-        <div className="shell">
-          <SectionHead title="Book an intro call">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
-          <ContactOptions campaign={campaign} />
-          <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
-        </div>
-      </section>
+      <WorkTogether campaign={campaign} />
     </>
   );
 }
@@ -871,6 +877,9 @@ function App({ page = 'home' }) {
           <a className="button button-quiet" href="/sponsors.html" onClick={trackClick('brands', 'See the media kit and packages', '/sponsors.html', 'view_sponsors')}>See the media kit and packages</a>
         </div>
       </section>
+
+      <div className="divider" aria-hidden="true" />
+      <WorkTogether campaign={campaign} />
 
       <div className="divider" aria-hidden="true" />
       <section className="section" id="faq">

@@ -110,8 +110,8 @@ section[id], main [id] { scroll-margin-top: 88px; }
   @keyframes to-top-in { from { opacity: 0; translate: 0 16px; visibility: hidden; } to { opacity: 1; translate: 0 0; visibility: visible; } }
 }
 
-/* Three-segment rule between the big groups */
-.divider { height: 3px; background: linear-gradient(90deg, var(--signal) 0 20%, transparent 20% 40%, var(--signal) 40% 60%, transparent 60% 80%, var(--signal) 80% 100%); }
+/* Hairline between the big groups, as wide as the content column */
+.divider { width: min(1120px, calc(100% - 48px)); height: 1px; margin-inline: auto; background: var(--line); }
 
 /* Stats */
 .stats { border-block: 1px solid var(--line); background: var(--panel); }
@@ -427,7 +427,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .course-promo { padding-bottom: 40px; }
   .course-promo-card { padding: 16px; }
   .course-promo-content { padding: 8px; }
-  .shell { width: calc(100% - 32px); }
+  .shell, .divider { width: calc(100% - 32px); }
   .hero { padding: 24px 0 40px; }
   .hero-grid { gap: 28px; }
   .hero h1 { margin-top: 24px; }

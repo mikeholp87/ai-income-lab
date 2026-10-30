@@ -159,16 +159,17 @@ test('the homepage shows six featured guide cards and links the full guides page
 test('the sponsors page holds the media kit, services, sponsored videos and booking, in that order', () => {
   const start = jsx.indexOf('function SponsorsMain(');
   const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
-  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', 'id="work-together"'].map(text => page.indexOf(text));
+  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', '<WorkTogether campaign={campaign} />'].map(text => page.indexOf(text));
   assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
   assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
 
-test('the homepage keeps one strip pointing brands to the sponsors page, after About', () => {
+test('the homepage keeps the brands strip and the contact section, in that order, above the FAQ', () => {
   const home = jsx.slice(jsx.indexOf('function App('));
-  assert.ok(home.indexOf('id="about"') < home.indexOf('id="brands"') && home.indexOf('id="brands"') < home.indexOf('id="faq"'));
+  const order = ['id="about"', 'id="brands"', '<WorkTogether campaign={campaign} />', 'id="faq"'].map(text => home.indexOf(text));
+  assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
   assert.match(home, /<a className="button button-quiet" href="\/sponsors\.html"/);
-  assert.doesNotMatch(home, /<MediaKit|<Services|id="work-together"/);
+  assert.doesNotMatch(home, /<MediaKit|<Services/);
 });
 
 test('every rate card format has a service card with its price', () => {
@@ -179,10 +180,10 @@ test('every rate card format has a service card with its price', () => {
   }
 });
 
-test('the homepage header links FAQ, then the sponsors page; old sponsor anchors forward there', () => {
-  assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['\/sponsors\.html', 'Sponsors'\]\]/);
+test('the homepage header links FAQ, the sponsors page and Contact; old sponsor anchors forward there', () => {
+  assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['\/sponsors\.html', 'Sponsors'\], \['#work-together', 'Contact'\]\]/);
   assert.match(jsx, /<section className="section" id="services">/);
-  assert.match(jsx, /const sponsorAnchors = \['#media-kit', '#services', '#sponsored', '#work-together'\];/);
+  assert.match(jsx, /const sponsorAnchors = \['#media-kit', '#services', '#sponsored'\];/);
   // Links share the bar down to the 961px collapse point; none may wrap to two lines.
   assert.match(css, /\.nav-links a \{[^}]*white-space: nowrap;/);
 });
