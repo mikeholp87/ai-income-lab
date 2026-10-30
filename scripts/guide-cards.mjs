@@ -1,8 +1,8 @@
-// Renders guide cards to public/assets/guides/<slug>.webp with one shared template.
+// Renders guide cards to public/assets/guides/<slug>.webp, plus sizes/<slug>-640.webp for phones and the hub, with one shared template.
 // Usage: node scripts/guide-cards.mjs [slug ...]   (no slugs renders every card below)
 // Needs google-chrome on PATH; text uses the system Noto Sans, like the existing cards.
 import { execFileSync } from 'node:child_process';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
@@ -179,6 +179,8 @@ export async function renderCard(slug, card, outDir = 'public/assets/guides') {
   try {
     await writeFile(join(dir, 'card.html'), cardHtml(card));
     execFileSync('google-chrome', ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1', '--window-size=1200,630', `--screenshot=${join(dir, 'card.png')}`, `file://${join(dir, 'card.html')}`], { stdio: 'ignore' });
+    await mkdir(join(outDir, 'sizes'), { recursive: true });
+    await sharp(join(dir, 'card.png')).resize(640, 336).webp({ quality: 82 }).toFile(join(outDir, 'sizes', `${slug}-640.webp`));
     return await sharp(join(dir, 'card.png')).resize(1200, 630).webp({ quality: 82 }).toFile(join(outDir, `${slug}.webp`));
   } finally {
     await rm(dir, { recursive: true, force: true });

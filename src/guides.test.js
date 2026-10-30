@@ -111,7 +111,7 @@ test('the Claude Code vs Codex guide has its own image and a contents list', asy
   assert.match(html, new RegExp(`<meta property="og:image" content="${image}">`));
   assert.match(html, new RegExp(`"image":"${image}"`));
   assert.doesNotMatch(html, /og-card\.jpg/);
-  assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" alt="Diagram: [^"]+" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
+  assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" [^>]*alt="Diagram: [^"]+" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
   const toc = html.match(/<nav class="toc" aria-label="On this page">([\s\S]*?)<\/nav>/)[1];
   const targets = [...toc.matchAll(/href="#([a-z-]+)"/g)].map(match => match[1]);
   assert.equal(targets.length, 8);
@@ -125,7 +125,7 @@ test('hub entries show an image, what the guide covers and the matching video', 
   const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
   assert.equal(entries.length, guides.length);
   for (const entry of entries) {
-    assert.match(entry, /<img src="\/assets\/guides\/[a-z0-9-]+\.webp" alt="" width="1200" height="630" loading="lazy">/);
+    assert.match(entry, /<img src="\/assets\/guides\/[a-z0-9-]+\.webp" srcset="[^"]+" sizes="[^"]+" alt="" width="1200" height="630" loading="lazy">/);
     assert.match(entry, /<h3><a href="\/guides\/[a-z0-9-]+\.html">[^<]+<\/a><\/h3>/);
   }
   assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
@@ -220,4 +220,14 @@ test('Start here is as wide as the guides hub and the video archive', async () =
   assert.match(await read('public/start-here.html'), /<body class="wide">/);
   assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1120px,calc\(100% - 32px\)\)\}/);
   assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1120px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
+});
+
+test('guide cards offer the 640px copy wherever they show, and every copy exists', async () => {
+  const { existsSync } = await import('node:fs');
+  for (const path of ['public/guides.html', ...guides.map(file => `public/guides/${file}`)]) {
+    for (const [tag, slug] of (await read(path)).matchAll(/<img src="\/assets\/guides\/([a-z0-9-]+)\.webp"[^>]*>/g)) {
+      assert.match(tag, new RegExp(`srcset="/assets/guides/sizes/${slug}-640\\.webp 640w, /assets/guides/${slug}\\.webp 1200w" sizes="`), `${path}: ${slug}`);
+      assert.ok(existsSync(new URL(`../public/assets/guides/sizes/${slug}-640.webp`, import.meta.url)), slug);
+    }
+  }
 });
