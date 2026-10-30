@@ -2,6 +2,7 @@
 // and welcomes new subscribers by email.
 // Env: RESEND_API_KEY, the same key as the contact form; it needs full access to add contacts.
 import { isEmail, TO as OWNER } from "./contact.js";
+import { addAirtableLead } from "./_lib/airtable-lead.js";
 
 export const runtime = "nodejs";
 
@@ -67,6 +68,7 @@ export async function POST(req) {
     console.error("subscribe", err);
     return Response.json({ error: "failed" }, { status: 502 });
   }
+  await addAirtableLead(email, req.headers.get("referer"));
   await notifyOwner(email, req.headers.get("referer"));
   // The contact already exists even when the welcome email fails.
   try {
