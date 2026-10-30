@@ -26,7 +26,11 @@ test('a new signup adds a subscribed contact and sends the welcome email', async
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { ok: true, welcomeSent: true });
   assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
-  const [url, mail] = calls[1];
+  const [nUrl, note] = calls[1];
+  assert.equal(nUrl, 'https://api.resend.com/emails');
+  assert.deepEqual(note.to, ['automojic@proton.me']);
+  assert.match(note.subject, /ada@example\.com/);
+  const [url, mail] = calls[2];
   assert.equal(url, 'https://api.resend.com/emails');
   assert.deepEqual(mail.to, ['ada@example.com']);
   assert.match(mail.from, /@ai-automation-station\.com>$/);

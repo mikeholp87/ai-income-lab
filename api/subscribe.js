@@ -1,7 +1,7 @@
 // Weekly build notes signup: adds the address to Resend's contact list, which broadcasts go to,
 // and welcomes new subscribers by email.
 // Env: RESEND_API_KEY, the same key as the contact form; it needs full access to add contacts.
-import { isEmail } from "./contact.js";
+import { isEmail, TO as OWNER } from "./contact.js";
 
 export const runtime = "nodejs";
 
@@ -67,6 +67,7 @@ export async function POST(req) {
     console.error("subscribe", err);
     return Response.json({ error: "failed" }, { status: 502 });
   }
+  await notifyOwner(email, req.headers.get("referer"));
   // The contact already exists even when the welcome email fails.
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -82,4 +83,26 @@ export async function POST(req) {
     return Response.json({ ok: true, welcomeSent: false });
   }
   return Response.json({ ok: true, welcomeSent: true });
+}
+
+// Tells Mike about each new signup. A failure here never fails the signup.
+async function notifyOwner(email, page) {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      signal: AbortSignal.timeout(8000),
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: FROM,
+        to: [OWNER],
+        reply_to: email,
+        subject: `New build notes signup: ${email}`,
+        text: `${email} signed up for the weekly build notes.\nPage: ${page ? String(page).slice(0, 300) : "unknown"}`,
+      }),
+    });
+    if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+    console.log("subscribe: owner notified", (await res.json().catch(() => ({}))).id ?? "");
+  } catch (err) {
+    console.error("subscribe notify", err);
+  }
 }
