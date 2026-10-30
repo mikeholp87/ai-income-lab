@@ -1,0 +1,1424 @@
+{
+ "guide-desktop": {
+  "url": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 264.635,
+   "LCP_ms": 264.635,
+   "TBT_ms": 0,
+   "CLS": 0.020734121196221672,
+   "SI_ms": 344.2802963355922,
+   "TTI_ms": 264.635,
+   "TTFB_ms": 56
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 80664,
+  "requests": 10,
+  "dom_size": null,
+  "failing": [
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 3\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "totalBytes": 3393
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 725
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+    "total": 111.675,
+    "scripting": 1.084
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 95.40100000000001
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 29.94999999999999
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 6.111999999999999
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 5.418999999999999
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 1.803
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 0.21100000000000002
+   }
+  ],
+  "lcp_discovery": null,
+  "cls_culprits": [
+   {
+    "type": "table"
+   }
+  ],
+  "cache": [
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 3393,
+    "wastedBytes": 2714.4
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 725,
+    "wastedBytes": 580
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "guide-mobile": {
+  "url": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 966.878,
+   "LCP_ms": 966.878,
+   "TBT_ms": 0,
+   "CLS": 0,
+   "SI_ms": 1226.3040181758263,
+   "TTI_ms": 966.878,
+   "TTFB_ms": 45
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 80654,
+  "requests": 10,
+  "dom_size": null,
+  "failing": [
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 3\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 698
+   },
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "totalBytes": 3447
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+    "total": 488.56399999999996,
+    "scripting": 4.38
+   },
+   {
+    "url": "Unattributable",
+    "total": 78.46799999999992,
+    "scripting": 5.728
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 429.32
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 102.32799999999993
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 31.200000000000006
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 30.67199999999998
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 7.539999999999998
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 1.112
+   }
+  ],
+  "lcp_discovery": null,
+  "cls_culprits": [],
+  "cache": [
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 3447,
+    "wastedBytes": 2757.6000000000004
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 698,
+    "wastedBytes": 558.4
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "home-desktop": {
+  "url": "https://www.ai-automation-station.com/",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 458.9835,
+   "LCP_ms": 533.9835,
+   "TBT_ms": 0,
+   "CLS": 0,
+   "SI_ms": 578.0420911293704,
+   "TTI_ms": 535.9835,
+   "TTFB_ms": 46
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 377715,
+  "requests": 24,
+  "dom_size": null,
+  "failing": [
+   [
+    "unused-javascript",
+    0,
+    "Est savings of 36\u00a0KiB"
+   ],
+   [
+    "lcp-discovery-insight",
+    0,
+    null
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 54\u00a0KiB"
+   ],
+   [
+    "image-delivery-insight",
+    0.5,
+    "Est savings of 47\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-DsYyysT4.css",
+    "totalBytes": 8685
+   }
+  ],
+  "unused_js": [
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-Ch8jJMnn.js",
+    "totalBytes": 90487,
+    "wastedBytes": 37293
+   }
+  ],
+  "unused_css": [],
+  "image_insight": [
+   {
+    "url": "https://www.ai-automation-station.com/hero-video-poster.webp",
+    "totalBytes": 37774,
+    "wastedBytes": 28409
+   },
+   {
+    "url": "https://www.ai-automation-station.com/assets/thumbnails/hero-f8e119902502-768.webp",
+    "totalBytes": 37876,
+    "wastedBytes": 19838
+   }
+  ],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/",
+    "total": 241.59999999999997,
+    "scripting": 3.2519999999999984
+   },
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-Ch8jJMnn.js",
+    "total": 67.26600000000002,
+    "scripting": 56.08300000000002
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 204.88099999999997
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 68.31400000000001
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 62.246999999999986
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 10.929999999999986
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 7.138
+   },
+   {
+    "group": "garbageCollection",
+    "groupLabel": "Garbage Collection",
+    "duration": 3.407999999999998
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 1.025
+   }
+  ],
+  "lcp_discovery": {
+   "type": "list",
+   "items": [
+    {
+     "type": "checklist",
+     "items": {
+      "priorityHinted": {
+       "label": "fetchpriority=high should be applied",
+       "value": false
+      },
+      "requestDiscoverable": {
+       "label": "Request is discoverable in initial document",
+       "value": true
+      },
+      "eagerlyLoaded": {
+       "label": "LCP resources shouldn\u2019t use loading=lazy",
+       "value": false
+      }
+     }
+    },
+    {
+     "type": "node",
+     "lhId": "page-0-IMG",
+     "path": "1,HTML,1,BODY,1,DIV,5,MAIN,1,SECTION,0,DIV,0,IMG",
+     "selector": "main > section.course-promo > div.course-promo-card > img.course-promo-image",
+     "boundingRect": {
+      "top": 634,
+      "bottom": 1153,
+      "left": 111,
+      "right": 1227,
+      "width": 1116,
+      "height": 519
+     },
+     "snippet": "<img class=\"course-promo-image\" src=\"/runable-course.webp\" srcset=\"/runable-course-640.webp 640w, /runable-course.webp 1200w\" sizes=\"(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116\u2026\" alt=\"Runable website-building course, featuring an AI Growth Audit business web\u2026\" width=\"1200\" height=\"618\" loading=\"lazy\" decoding=\"async\">",
+     "nodeLabel": "Runable website-building course, featuring an AI Growth Audit business website \u2026"
+    }
+   ]
+  },
+  "cls_culprits": [],
+  "cache": [
+   {
+    "url": "https://www.ai-automation-station.com/runable-course.webp",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 82060,
+    "wastedBytes": 32824
+   },
+   {
+    "url": "https://www.ai-automation-station.com/hero-video-poster.webp",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 37943,
+    "wastedBytes": 15177.2
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-5.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2706,
+    "wastedBytes": 1082.4
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-2.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2574,
+    "wastedBytes": 1029.6000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-0.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2322,
+    "wastedBytes": 928.8000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-1.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2276,
+    "wastedBytes": 910.4000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-7.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2257,
+    "wastedBytes": 902.8000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-6.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2214,
+    "wastedBytes": 885.6
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "home-mobile": {
+  "url": "https://www.ai-automation-station.com/",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 98,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 1280.3890000000001,
+   "LCP_ms": 1837.3890000000001,
+   "TBT_ms": 117,
+   "CLS": 0,
+   "SI_ms": 1280.3890000000001,
+   "TTI_ms": 1904.3890000000001,
+   "TTFB_ms": 44
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 324394,
+  "requests": 24,
+  "dom_size": null,
+  "failing": [
+   [
+    "unused-javascript",
+    0,
+    "Est savings of 37\u00a0KiB"
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "max-potential-fid",
+    0.36,
+    "300\u00a0ms"
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 34\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-DsYyysT4.css",
+    "totalBytes": 8739
+   }
+  ],
+  "unused_js": [
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-Ch8jJMnn.js",
+    "totalBytes": 90487,
+    "wastedBytes": 37515
+   }
+  ],
+  "unused_css": [],
+  "image_insight": [],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/",
+    "total": 787.924,
+    "scripting": 14.744
+   },
+   {
+    "url": "https://www.ai-automation-station.com/assets/main-Ch8jJMnn.js",
+    "total": 332.2919999999999,
+    "scripting": 310.1039999999999
+   },
+   {
+    "url": "Unattributable",
+    "total": 234.45200000000006,
+    "scripting": 7.132
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 601.5759999999999
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 336.7199999999998
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 293.6880000000003
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 66.89199999999997
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 41.1
+   },
+   {
+    "group": "garbageCollection",
+    "groupLabel": "Garbage Collection",
+    "duration": 25.300000000000004
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 3.808
+   }
+  ],
+  "lcp_discovery": {
+   "type": "list",
+   "items": [
+    {
+     "type": "checklist",
+     "items": {
+      "priorityHinted": {
+       "label": "fetchpriority=high applied",
+       "value": true
+      },
+      "requestDiscoverable": {
+       "label": "Request is discoverable in initial document",
+       "value": true
+      },
+      "eagerlyLoaded": {
+       "label": "LCP resources shouldn\u2019t use loading=lazy",
+       "value": true
+      }
+     }
+    },
+    {
+     "type": "node",
+     "lhId": "page-0-IMG",
+     "path": "1,HTML,1,BODY,1,DIV,5,MAIN,0,SECTION,0,DIV,1,DIV,0,ARTICLE,0,DIV,0,BUTTON,0,IMG",
+     "selector": "article.player > div.player-screen > button > img",
+     "boundingRect": {
+      "top": 527,
+      "bottom": 739,
+      "left": 17,
+      "right": 395,
+      "width": 378,
+      "height": 213
+     },
+     "snippet": "<img src=\"/assets/thumbnails/hero-f8e119902502-768.webp\" srcset=\"/assets/thumbnails/hero-be8c5b5ac54c-480.webp 480w, /assets/thumbnails/her\u2026\" sizes=\"(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50p\u2026\" alt=\"\" width=\"1280\" height=\"720\" fetchpriority=\"high\" decoding=\"async\">",
+     "nodeLabel": "article.player > div.player-screen > button > img"
+    }
+   ]
+  },
+  "cls_culprits": [],
+  "cache": [
+   {
+    "url": "https://www.ai-automation-station.com/hero-video-poster.webp",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 38771,
+    "wastedBytes": 15508.400000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/runable-course-640.webp",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 29406,
+    "wastedBytes": 11762.400000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-1.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 3100,
+    "wastedBytes": 1240
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-2.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2422,
+    "wastedBytes": 968.8000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-7.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2257,
+    "wastedBytes": 902.8000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-0.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2245,
+    "wastedBytes": 898
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-6.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2242,
+    "wastedBytes": 896.8000000000001
+   },
+   {
+    "url": "https://www.ai-automation-station.com/members/member-3.png",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 2207,
+    "wastedBytes": 882.8000000000001
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "topic-desktop": {
+  "url": "https://www.ai-automation-station.com/videos/n8n",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 251.6515,
+   "LCP_ms": 741.5055,
+   "TBT_ms": 0,
+   "CLS": 0.004937118405960993,
+   "SI_ms": 306.28898724527227,
+   "TTI_ms": 741.5055,
+   "TTFB_ms": 45
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 369001,
+  "requests": 24,
+  "dom_size": null,
+  "failing": [
+   [
+    "cache-insight",
+    0,
+    "Est savings of 212\u00a0KiB"
+   ],
+   [
+    "forced-reflow-insight",
+    0,
+    null
+   ],
+   [
+    "lcp-discovery-insight",
+    0,
+    null
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 707
+   },
+   {
+    "url": "https://www.ai-automation-station.com/archive.css?v=89c3107d",
+    "totalBytes": 2417
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [],
+  "third_party": [
+   {
+    "entity": "YouTube",
+    "mainThreadTime": 0,
+    "transferSize": 289144
+   }
+  ],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/videos/n8n",
+    "total": 99.527,
+    "scripting": 3.064999999999999
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 67.834
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 47.51200000000011
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 12.705000000000002
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 8.616999999999999
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 2.717
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 0.5720000000000001
+   }
+  ],
+  "lcp_discovery": {
+   "type": "list",
+   "items": [
+    {
+     "type": "checklist",
+     "items": {
+      "priorityHinted": {
+       "label": "fetchpriority=high should be applied",
+       "value": false
+      },
+      "requestDiscoverable": {
+       "label": "Request is discoverable in initial document",
+       "value": true
+      },
+      "eagerlyLoaded": {
+       "label": "LCP resources shouldn\u2019t use loading=lazy",
+       "value": true
+      }
+     }
+    },
+    {
+     "type": "node",
+     "lhId": "page-0-IMG",
+     "path": "1,HTML,1,BODY,2,MAIN,6,UL,0,LI,0,A,0,SPAN,0,PICTURE,1,IMG",
+     "selector": "a > span.thumb > picture > img",
+     "boundingRect": {
+      "top": 672,
+      "bottom": 873,
+      "left": 108,
+      "right": 465,
+      "width": 357,
+      "height": 201
+     },
+     "snippet": "<img src=\"https://i.ytimg.com/vi_webp/oP11zRs6628/hqdefault.webp\" srcset=\"https://i.ytimg.com/vi/oP11zRs6628/mqdefault.jpg 320w, https://i.ytimg.com\u2026\" sizes=\"(max-width: 655px) calc(100vw - 32px), 360px\" alt=\"\" width=\"320\" height=\"180\" loading=\"eager\" decoding=\"async\">",
+     "nodeLabel": "a > span.thumb > picture > img"
+    }
+   ]
+  },
+  "cls_culprits": [
+   {
+    "type": "table"
+   }
+  ],
+  "cache": [
+   {
+    "url": "https://i.ytimg.com/vi_webp/oP11zRs6628/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 25189,
+    "wastedBytes": 18891.75
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/pDbRjYYUjRI/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 24698,
+    "wastedBytes": 18523.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/7p3n6-FH9IQ/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 24213,
+    "wastedBytes": 18159.75
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/dEQ8OllsJmk/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23600,
+    "wastedBytes": 17700
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/M_4KgrWyycI/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23416,
+    "wastedBytes": 17562
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/Z03CpV_8OIA/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23134,
+    "wastedBytes": 17350.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/7UMrV3w1e40/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 20763,
+    "wastedBytes": 15572.25
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/rPhyYNMuDT4/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 20002,
+    "wastedBytes": 15001.5
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "topic-mobile": {
+  "url": "https://www.ai-automation-station.com/videos/n8n",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 100,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 798.6750000000002,
+   "LCP_ms": 1931.458,
+   "TBT_ms": 32,
+   "CLS": 0.0006830072250385786,
+   "SI_ms": 1203.0206947789582,
+   "TTI_ms": 1931.458,
+   "TTFB_ms": 46
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 254647,
+  "requests": 18,
+  "dom_size": null,
+  "failing": [
+   [
+    "cache-insight",
+    0,
+    "Est savings of 129\u00a0KiB"
+   ],
+   [
+    "forced-reflow-insight",
+    0,
+    null
+   ],
+   [
+    "lcp-discovery-insight",
+    0,
+    null
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/archive.css?v=89c3107d",
+    "totalBytes": 2358
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 750
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [],
+  "third_party": [
+   {
+    "entity": "YouTube",
+    "mainThreadTime": 0,
+    "transferSize": 174773
+   }
+  ],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/videos/n8n",
+    "total": 431.164,
+    "scripting": 12.375999999999998
+   },
+   {
+    "url": "Unattributable",
+    "total": 126.20800000000015,
+    "scripting": 5.38
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 294.95200000000006
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 197.1000000000002
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 48.71599999999996
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 39.45199999999999
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 10.439999999999996
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 2.468
+   }
+  ],
+  "lcp_discovery": {
+   "type": "list",
+   "items": [
+    {
+     "type": "checklist",
+     "items": {
+      "priorityHinted": {
+       "label": "fetchpriority=high should be applied",
+       "value": false
+      },
+      "requestDiscoverable": {
+       "label": "Request is discoverable in initial document",
+       "value": true
+      },
+      "eagerlyLoaded": {
+       "label": "LCP resources shouldn\u2019t use loading=lazy",
+       "value": true
+      }
+     }
+    },
+    {
+     "type": "node",
+     "lhId": "page-0-IMG",
+     "path": "1,HTML,1,BODY,2,MAIN,6,UL,0,LI,0,A,0,SPAN,0,PICTURE,1,IMG",
+     "selector": "a > span.thumb > picture > img",
+     "boundingRect": {
+      "top": 722,
+      "bottom": 936,
+      "left": 16,
+      "right": 396,
+      "width": 380,
+      "height": 214
+     },
+     "snippet": "<img src=\"https://i.ytimg.com/vi_webp/oP11zRs6628/hqdefault.webp\" srcset=\"https://i.ytimg.com/vi/oP11zRs6628/mqdefault.jpg 320w, https://i.ytimg.com\u2026\" sizes=\"(max-width: 655px) calc(100vw - 32px), 360px\" alt=\"\" width=\"320\" height=\"180\" loading=\"eager\" decoding=\"async\">",
+     "nodeLabel": "a > span.thumb > picture > img"
+    }
+   ]
+  },
+  "cls_culprits": [
+   {
+    "type": "table"
+   }
+  ],
+  "cache": [
+   {
+    "url": "https://i.ytimg.com/vi_webp/oP11zRs6628/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 25198,
+    "wastedBytes": 18898.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/pDbRjYYUjRI/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 24698,
+    "wastedBytes": 18523.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/dEQ8OllsJmk/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23591,
+    "wastedBytes": 17693.25
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/M_4KgrWyycI/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23416,
+    "wastedBytes": 17562
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/Z03CpV_8OIA/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 23125,
+    "wastedBytes": 17343.75
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/rPhyYNMuDT4/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 20002,
+    "wastedBytes": 15001.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/_1bZhPHcsm4/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 19814,
+    "wastedBytes": 14860.5
+   },
+   {
+    "url": "https://i.ytimg.com/vi_webp/xlVDUw_rBXE/hqdefault.webp",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 14929,
+    "wastedBytes": 11196.75
+   }
+  ],
+  "font_display": [],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "watch-desktop": {
+  "url": "https://www.ai-automation-station.com/watch/wL6bjqaUcd8",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 100,
+   "accessibility": 100,
+   "best-practices": 96,
+   "seo": 100,
+   "agentic-browsing": 100
+  },
+  "metrics": {
+   "FCP_ms": 639.9269999999999,
+   "LCP_ms": 639.9269999999999,
+   "TBT_ms": 0,
+   "CLS": 0.0008852564613382208,
+   "SI_ms": 737.3722067492599,
+   "TTI_ms": 639.9269999999999,
+   "TTFB_ms": 45
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 1333601,
+  "requests": 24,
+  "dom_size": null,
+  "failing": [
+   [
+    "inspector-issues",
+    0,
+    null
+   ],
+   [
+    "font-display-insight",
+    0,
+    "Est savings of 40\u00a0ms"
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 150\u00a0KiB"
+   ],
+   [
+    "image-delivery-insight",
+    0.5,
+    "Est savings of 43\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "totalBytes": 3393
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 725
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [
+   {
+    "url": "https://i.ytimg.com/vi/wL6bjqaUcd8/maxresdefault.jpg",
+    "totalBytes": 198047,
+    "wastedBytes": 44447
+   }
+  ],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/watch/wL6bjqaUcd8",
+    "total": 85.661,
+    "scripting": 0.7490000000000001
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 70.034
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 33.44400000000005
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 4.6759999999999975
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 2.9939999999999993
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 2.8779999999999983
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 0.173
+   }
+  ],
+  "lcp_discovery": null,
+  "cls_culprits": [
+   {
+    "type": "table"
+   }
+  ],
+  "cache": [
+   {
+    "url": "https://i.ytimg.com/vi/wL6bjqaUcd8/maxresdefault.jpg",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 198585,
+    "wastedBytes": 148938.75
+   },
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 3393,
+    "wastedBytes": 2714.4
+   },
+   {
+    "url": "https://yt3.ggpht.com/gBzOAExPOrguPmOEaKwtnosZ4wyeFbbTRPAePEUjLpOqA_KcFnX2rYeVv1LMby_0u2heHRLjtQ=s68-c-k-c0x00ffffff-no-rj",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 4112,
+    "wastedBytes": 1644.8000000000002
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 725,
+    "wastedBytes": 580
+   }
+  ],
+  "font_display": [
+   {
+    "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+    "wastedMs": 40
+   }
+  ],
+  "network_dep": null,
+  "legacy_js": []
+ },
+ "watch-mobile": {
+  "url": "https://www.ai-automation-station.com/watch/wL6bjqaUcd8",
+  "lh": "13.6.0",
+  "scores": {
+   "performance": 96,
+   "accessibility": 100,
+   "best-practices": 96,
+   "seo": 100,
+   "agentic-browsing": 99
+  },
+  "metrics": {
+   "FCP_ms": 2116.6555,
+   "LCP_ms": 2116.6555,
+   "TBT_ms": 50,
+   "CLS": 0.06456408745598628,
+   "SI_ms": 2116.6555,
+   "TTI_ms": 2664.1555,
+   "TTFB_ms": 45
+  },
+  "lcp_element": null,
+  "lcp_phases": null,
+  "total_bytes": 1204950,
+  "requests": 24,
+  "dom_size": null,
+  "failing": [
+   [
+    "inspector-issues",
+    0,
+    null
+   ],
+   [
+    "font-display-insight",
+    0,
+    "Est savings of 40\u00a0ms"
+   ],
+   [
+    "network-dependency-tree-insight",
+    0,
+    null
+   ],
+   [
+    "cache-insight",
+    0.5,
+    "Est savings of 57\u00a0KiB"
+   ],
+   [
+    "image-delivery-insight",
+    0.5,
+    "Est savings of 19\u00a0KiB"
+   ],
+   [
+    "render-blocking-insight",
+    0.5,
+    null
+   ],
+   [
+    "first-contentful-paint",
+    0.8,
+    "2.1\u00a0s"
+   ],
+   [
+    "max-potential-fid",
+    0.84,
+    "150\u00a0ms"
+   ]
+  ],
+  "render_blocking": [
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "totalBytes": 3393
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "totalBytes": 724
+   }
+  ],
+  "unused_js": [],
+  "unused_css": [],
+  "image_insight": [
+   {
+    "url": "https://i.ytimg.com/vi/wL6bjqaUcd8/sddefault.jpg",
+    "totalBytes": 70167,
+    "wastedBytes": 18967
+   }
+  ],
+  "third_party": [],
+  "bootup": [
+   {
+    "url": "https://www.ai-automation-station.com/watch/wL6bjqaUcd8",
+    "total": 386.072,
+    "scripting": 2.672
+   },
+   {
+    "url": "Unattributable",
+    "total": 90.67600000000003,
+    "scripting": 4.32
+   }
+  ],
+  "mainthread": [
+   {
+    "group": "styleLayout",
+    "groupLabel": "Style & Layout",
+    "duration": 312.44800000000004
+   },
+   {
+    "group": "other",
+    "groupLabel": "Other",
+    "duration": 107.93599999999998
+   },
+   {
+    "group": "parseHTML",
+    "groupLabel": "Parse HTML & CSS",
+    "duration": 45.044
+   },
+   {
+    "group": "scriptEvaluation",
+    "groupLabel": "Script Evaluation",
+    "duration": 18.50399999999999
+   },
+   {
+    "group": "paintCompositeRender",
+    "groupLabel": "Rendering",
+    "duration": 15.355999999999991
+   },
+   {
+    "group": "scriptParseCompile",
+    "groupLabel": "Script Parsing & Compilation",
+    "duration": 0.7520000000000001
+   }
+  ],
+  "lcp_discovery": null,
+  "cls_culprits": [
+   {
+    "type": "table"
+   }
+  ],
+  "cache": [
+   {
+    "url": "https://i.ytimg.com/vi/wL6bjqaUcd8/sddefault.jpg",
+    "cacheLifetimeMs": 7200000,
+    "totalBytes": 70623,
+    "wastedBytes": 52967.25
+   },
+   {
+    "url": "https://www.ai-automation-station.com/reading.css?v=c4cd6fb8",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 3393,
+    "wastedBytes": 2714.4
+   },
+   {
+    "url": "https://yt3.ggpht.com/gBzOAExPOrguPmOEaKwtnosZ4wyeFbbTRPAePEUjLpOqA_KcFnX2rYeVv1LMby_0u2heHRLjtQ=s68-c-k-c0x00ffffff-no-rj",
+    "cacheLifetimeMs": 86400000,
+    "totalBytes": 4112,
+    "wastedBytes": 1644.8000000000002
+   },
+   {
+    "url": "https://www.ai-automation-station.com/consent.css?v=bb1f53e6",
+    "cacheLifetimeMs": 3600000,
+    "totalBytes": 724,
+    "wastedBytes": 579.2
+   }
+  ],
+  "font_display": [
+   {
+    "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+    "wastedMs": 35
+   }
+  ],
+  "network_dep": null,
+  "legacy_js": []
+ }
+}

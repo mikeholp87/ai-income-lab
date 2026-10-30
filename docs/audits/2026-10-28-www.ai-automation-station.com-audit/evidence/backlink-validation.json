@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "data": {
+    "total_issues": 1,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1,
+    "issues": [
+      {
+        "severity": "info",
+        "field": "cc_data",
+        "message": "Domain not found in Common Crawl. Do NOT interpret as 'low authority' \u2014 it means CC hasn't crawled it yet. Could be new, niche, or geo-specific (.ro, .jp, etc.)."
+      }
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "source": "validate_backlink_report",
+    "checks_run": [
+      "schema_claims",
+      "verification_results",
+      "h1_claims",
+      "cc_claims",
+      "reciprocal_links",
+      "health_score",
+      "source_score_consistency"
+    ]
+  }
+}

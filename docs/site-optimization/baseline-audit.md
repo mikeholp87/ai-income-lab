@@ -43,3 +43,19 @@ These are lab measurements from one machine. Real-user field data comes from Ver
 | 9 | Forms have validation and a honeypot but no rate limit | Observed | Low: needs storage or a Vercel firewall rule |
 
 Performance, accessibility and SEO were already strong, so no redesign or speed work was justified.
+
+---
+
+# Baseline audit — October 29, 2026
+
+React 19/Vite builds and prerenders the homepage; static HTML serves guides, start here, about, search, privacy and terms. Vercel functions serve video archives/watch pages and contact, newsletter and feed endpoints. npm scripts provide dev, test, lint, build and preview. CSS and reusable React components form the existing design system; content is in source, static HTML and saved video snapshots. Vercel configuration supplies redirects, rewrites, caching and headers.
+
+Homepage sections include plans and classroom, videos, guides, products, about, media kit, sponsorships, contact, FAQ and newsletter. There are no separate community, course, template or coaching purchase pages: membership and courses lead to Skool; VIP coaching is part of membership. `/blog` redirects to guides. YouTube and social visitors can reach the hero or a watch/guide page, then Skool; organic visitors can use guides and topic/video pages. Referral and campaign links retain supported UTM labels. Paid campaign activity was not verified. Sponsorship inquiries use the contact form or Cal.com; newsletter forms use Resend. Membership questions have an email link.
+
+The live homepage matched the pre-edit repository offer and structure; dynamic YouTube counts differed from saved snapshots. The public Skool plan picker confirms monthly prices. Existing plan links all open the same picker, so their prior “Choose” wording implied a selection that had not happened. The homepage described the offer but did not explicitly identify its audience. These are observed copy issues; any resulting conversion effect is a hypothesis.
+
+At 320px the homepage footer extended to 356px, creating horizontal overflow. At 390px the guide's repeated current-page breadcrumb occupied about 48px and put the title at approximately 352px. The previous October 28 audit's eager watch-player and missing About-page findings are stale: the current code already uses a click-to-load player and has an About page.
+
+The homepage has title, description, canonical, Open Graph and JSON-LD; guide pages have article metadata and breadcrumbs. Sitemap and robots use the www canonical domain; robots currently allows all crawlers. Vercel config redirects extensionless static routes and rewrites video routes. The homepage sitemap date was stale. A prior audit reported www normalization and 274 successful crawl responses, but these were not independently re-crawled in this session. Search Console data and current search demand were unavailable; the existing guides map practical automation, Make, n8n, coding agents and tool comparisons to distinct intents. No search volumes or rankings are inferred.
+
+The homepage and watch pages defer YouTube embeds until interaction. Fonts are local, images have dimensions and lazy loading where appropriate, and Vercel Speed Insights is configured. October 28 audit lab results reported mobile homepage LCP 1.84s, CLS 0 and TBT 117ms; they are historical lab observations, not current field data. A comparable fresh performance run was unavailable. Contact and newsletter APIs validate inputs, use honeypots and server-side credentials; buttons disable while submitting. Honeypots alone do not establish robust rate limiting. No real messages or purchases were made.

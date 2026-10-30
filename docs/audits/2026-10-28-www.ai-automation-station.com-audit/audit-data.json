@@ -1,0 +1,179 @@
+{
+  "summary": {
+    "domain": "www.ai-automation-station.com",
+    "audit_date": "2026-10-28",
+    "health_score": 76,
+    "business_type": "Creator education + paid community (Skool, $29/$49/$89 per month) with YouTube channel and written guides",
+    "pages_crawled": 274,
+    "top_findings": [
+      "173 of 220 /watch/ pages are thin (<300 words, median ~210); only 30 have transcripts and they sit in a collapsed <details>",
+      "Watch pages cannibalize guides: searchTitle overrides in src/watch-notes.js copy guide head terms (HeyGen exact duplicate; OpenCode, 9Router, Vapi near-duplicates)",
+      "Brand entity is weak: 'AI Income Lab' is absent from schema, Organization has no logo, and other Skool communities use the same name",
+      "Internal linking is one-directional: 1 of 220 watch pages links a topic hub, only 3 of 24 guides link their hub, and the 'earn with AI' cluster has no hub or pillar",
+      "Watch pages load the full YouTube player (~1.1 MB) on page load instead of a click-to-load facade"
+    ],
+    "quick_wins": [
+      "Add Organization logo + alternateName 'AI Income Lab' and fix WebSite.alternateName in index.html",
+      "Retitle /watch/pMLyxz6Dyt4 and other searchTitle overrides that copy guide titles (src/watch-notes.js)",
+      "Add topic level to watch-page breadcrumbs and a hub link (src/archive.js)",
+      "Write descriptive alt text for the 9 guide hero diagrams (public/guides/*.html)",
+      "Reuse the homepage YouTube facade on /watch/ pages (src/archive.js:261, pattern from src/main.jsx:268)"
+    ],
+    "limitations": [
+      "No Google API credentials: no CrUX field data, GSC indexation or GA4 traffic",
+      "PageSpeed Insights API rate-limited; Core Web Vitals are local Lighthouse 13.6 lab data",
+      "No Moz / Bing / Keywords Everywhere keys; domain not yet in Common Crawl web graph, so backlinks are not scored",
+      "SERP checks used a 5-result web search sample, not a full Google top 10"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "weight": 0.22,
+      "score": 88,
+      "what_works": [
+        "All 274 crawled pages return 200; 0 broken internal links; self-referencing canonicals everywhere",
+        "308 redirects to https://www; /guides/x -> .html, trailing slash and /index.html normalized",
+        "Real 404s with noindex for unknown paths, video IDs and topics",
+        "Both sitemaps valid; video sitemap has all required video: tags; IndexNow wired into scripts/prerender.js",
+        "Brotli, HTTP/2, immutable hashed assets, HSTS, nosniff, XFO DENY"
+      ],
+      "findings": [
+        {"title": "Most /watch/ pages are thin", "severity": "Medium", "description": "173 of 220 under 300 words; only YouTube description is unique on most.", "recommendation": "Finish transcript backfill; surface summary/first transcript paragraphs outside <details> in renderWatch (src/archive.js)."},
+        {"title": "23 /videos URLs in sitemap.xml lack <lastmod>", "severity": "Low", "description": "29 of 52 main-sitemap URLs have lastmod.", "recommendation": "Emit newest upload date per page in renderPageSitemap() (src/archive.js)."},
+        {"title": "Homepage <lastmod> stale and hard-coded", "severity": "Low", "description": "Sitemap says 2026-10-16; homepage shows a 2026-10-27 video.", "recommendation": "Generate at build time in public/sitemap.xml pipeline."},
+        {"title": "Two-hop redirect chains", "severity": "Low", "description": "http apex -> https apex -> www; /guides/x/ -> /guides/x -> /guides/x.html.", "recommendation": "Add direct rules in vercel.json redirects."},
+        {"title": "CSP is Report-Only with no report endpoint", "severity": "Low", "description": "Content-Security-Policy-Report-Only only.", "recommendation": "Add report-to, review, then enforce in vercel.json."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "weight": 0.23,
+      "score": 62,
+      "what_works": [
+        "Guides have bylines, published/updated dates, primary sources, honest caveats and no income promises",
+        "Guides average ~1,570 words with readability 51-67, quick answers, tables, FAQs",
+        "Best watch pages (e.g. /watch/TuVL2x6IfDk) add chapters, build notes, fact-checks and transcripts"
+      ],
+      "findings": [
+        {"title": "Thin, templated watch pages", "severity": "High", "description": "Median watch page ~210 words; /watch/wL6bjqaUcd8 (117 words) is YouTube description + generic CTA.", "recommendation": "Transcripts + notes for all 220 (scripts/fetch-transcripts.mjs, src/watch-notes.js); noindex,follow pages with neither until enriched."},
+        {"title": "No standalone author/About page", "severity": "Medium", "description": "Bylines and Person schema point to /#about on a mixed-purpose homepage; YMYL-adjacent money guides.", "recommendation": "Create /about.html with bio, sameAs, editorial process; point bylines there."},
+        {"title": "Make-money guides lack first-hand proof and sources", "severity": "Medium", "description": "make-money-with-ai-no-experience and ai-side-hustles have no external links; 5 guides overlap on 'make money with AI'.", "recommendation": "Add one documented case, sources and a comparison table per guide; de-stuff keyword headings."},
+        {"title": "14 of 24 guides lack a quick-answer opener", "severity": "Medium", "description": "ai-automation.html shows the strong pattern.", "recommendation": "Add 40-60 word answer after the H1."},
+        {"title": "Transcripts are raw auto-captions", "severity": "Low", "description": "'codeex', 'Versal' on /watch/TuVL2x6IfDk.", "recommendation": "Add a term-correction pass to scripts/fetch-transcripts.mjs."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "weight": 0.20,
+      "score": 74,
+      "what_works": [
+        "No missing/duplicate meta descriptions; one H1 per page",
+        "Descriptive anchor text sitewide; Skool CTA on 271 of 274 pages",
+        "make-money-with-ai-fast observed at #1 in sampled SERP"
+      ],
+      "findings": [
+        {"title": "Watch pages cannibalize guides", "severity": "High", "description": "Identical title on /guides/heygen-ai-avatar-tutorial.html and /watch/pMLyxz6Dyt4; near-duplicates for OpenCode, 9Router, Vapi.", "recommendation": "Retitle watch pages as video walkthroughs in src/watch-notes.js; add a test blocking guide/watch title collisions."},
+        {"title": "Internal links don't connect clusters", "severity": "High", "description": "1 of 220 watch pages links a topic hub; 66 watch pages map to no hub; only 3 of 24 guides link their hub; 'earn with AI' cluster has no hub/pillar.", "recommendation": "Add topic level to watch breadcrumbs (src/archive.js ~230, ~259), a business topic in src/topics.js, and guide<->hub links."},
+        {"title": "Small-business guide targets the wrong intent", "severity": "High", "description": "Head term SERP is agency service pages (4/5); guide is written for sellers.", "recommendation": "Retitle to the seller query in public/guides/ai-automation-services-small-business.html."},
+        {"title": "Thin topic hubs with short titles", "severity": "Medium", "description": "/videos/n8n title 'n8n videos | Mike Holp' (22 chars), H1 'n8n'.", "recommendation": "55-65 char titles, descriptive H1s and 150-300 word intros in src/topics.js."},
+        {"title": "Over-broad guide-routing regex", "severity": "Medium", "description": "codex|open code|claude code sends 13 of 15 Claude Code videos to the Codex guide.", "recommendation": "Order specific patterns before broad ones in src/archive.js."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "weight": 0.10,
+      "score": 78,
+      "what_works": [
+        "No invalid JSON-LD; consistent @id graph (#mike, #org, #website) across pages",
+        "VideoObject complete on 220 watch pages, 195 with Clip key moments",
+        "Article complete on all 24 guides; BreadcrumbList on 246 pages"
+      ],
+      "findings": [
+        {"title": "Organization has no logo", "severity": "High", "description": "No logo/image on #org or Article publishers; no logo file in public/.", "recommendation": "Add square PNG logo (>=112px) and reference from index.html."},
+        {"title": "'AI Income Lab' missing from schema", "severity": "High", "description": "Organization named 'AI Automation Station' with no alternateName; WebSite.alternateName is 'Mike Holp'.", "recommendation": "Add alternateName ['AI Income Lab'] to #org and fix WebSite.alternateName in index.html."},
+        {"title": "No Product/Offer/Course markup for the paid community", "severity": "Medium", "description": "Visible $29/$49/$89 tiers and five courses are unmarked.", "recommendation": "Add Product + Offers and ItemList of Course (snippet B in findings/schema.md)."},
+        {"title": "Inconsistent Person URL and sameAs", "severity": "Medium", "description": "Person url is / on home/watch vs /#about elsewhere; YouTube missing from Person sameAs.", "recommendation": "Normalize in index.html and src/archive.js:226; add YouTube, worksFor."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "weight": 0.10,
+      "score": 92,
+      "what_works": [
+        "All tested URLs pass lab LCP/CLS/TBT on mobile and desktop; TTFB <60 ms",
+        "Lighthouse SEO and accessibility 100 on every tested page",
+        "Third-party tags gated behind consent; homepage uses a YouTube facade"
+      ],
+      "findings": [
+        {"title": "Watch pages load the full YouTube player eagerly", "severity": "High", "description": "~1.1 MB from youtube-nocookie.com; mobile LCP 2.12 s, the slowest tested.", "recommendation": "Reuse the homepage facade (src/main.jsx:268) in src/archive.js:261; preconnect i.ytimg.com."},
+        {"title": "Meta pixel adds ~279 KB and ~250-300 ms blocking after consent", "severity": "Medium", "description": "Not visible to Lighthouse, which runs pre-consent; main INP risk.", "recommendation": "Defer injection to idle in loadMarketingTracking (src/tracking.js); consider Conversions API."},
+        {"title": "No real-user CWV monitoring", "severity": "Medium", "description": "No CrUX key, no @vercel/speed-insights; analytics absent on guides and watch pages.", "recommendation": "Add Speed Insights and analytics across all templates."},
+        {"title": "Late font discovery on guide/watch pages", "severity": "Low", "description": "CLS 0.065 on watch mobile from fonts declared only in reading.css.", "recommendation": "Preload the two WOFF2 fonts in those heads."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "weight": 0.10,
+      "score": 74,
+      "what_works": [
+        "All 15 tested AI/search crawler UAs receive identical 200 responses",
+        "Quality llms.txt; server-rendered HTML; dated, sourced guides",
+        "ai-automation.html is a model citable page (quick answer, FAQ, table, 17 sources)"
+      ],
+      "findings": [
+        {"title": "Brand name collides with other 'AI Income Lab' communities", "severity": "High", "description": "Other Skool groups use the same name; observed rankings varied between checks, and AI summaries can blend them. Mike's Skool slug is ai-automation-station-7346.", "recommendation": "Pair the name with 'by Mike Holp' in titles, llms.txt and Skool description; add schema alternateName."},
+        {"title": "Few independent third-party mentions", "severity": "High", "description": "Only checkthecourse.com found as an independent source.", "recommendation": "Earn mentions on Reddit, podcasts, collaborator channels; Wikidata once sources exist."},
+        {"title": "No /llms-full.txt or About page", "severity": "Low", "description": "Both return 404.", "recommendation": "Add /about.html; optionally enrich llms.txt with per-link descriptions and topic hubs."}
+      ]
+    },
+    {
+      "name": "Images",
+      "weight": 0.05,
+      "score": 72,
+      "what_works": [
+        "All 587 images have width/height; 563 lazy-loaded",
+        "Empty alt on ~490 thumbnails/avatars beside text is correct decorative usage"
+      ],
+      "findings": [
+        {"title": "Guide hero diagrams have empty alt", "severity": "Medium", "description": "9 informative hero images in public/guides/*.html have alt=\"\".", "recommendation": "Write descriptive alt text and add an alt check to src/guide-seo.test.js."},
+        {"title": "Mostly JPG/PNG", "severity": "Low", "description": "403 jpg, 128 png, 56 webp (many are YouTube-hosted thumbnails).", "recommendation": "Use WebP/AVIF for self-hosted images."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": [
+        "Brand entity: logo + alternateName 'AI Income Lab' + Person sameAs/url fixes in index.html",
+        "Retitle watch pages that duplicate guide titles (src/watch-notes.js) and add a collision test",
+        "YouTube click-to-load facade on /watch/ pages (src/archive.js)",
+        "Add topic level to watch breadcrumbs and hub links (src/archive.js)"
+      ]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": [
+        "Finish transcript backfill; surface summary outside <details>; noindex unenriched watch pages",
+        "Create 'earn with AI' topic hub + pillar guide; link guides <-> hubs; fix guide-routing regex",
+        "Retitle small-business guide for the seller query",
+        "Create /about.html and point bylines and Person schema there",
+        "Alt text on 9 guide hero diagrams"
+      ]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": [
+        "Add sources, case studies and tables to the make-money guides",
+        "Quick-answer openers on remaining 14 guides; question-style H2s",
+        "Product/Offer/Course schema for the community",
+        "Expand topic hub intros/titles in src/topics.js",
+        "Third-party mentions and backlink outreach"
+      ]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": [
+        "Connect Google Search Console / CrUX API to the SEO toolkit; add Vercel Speed Insights",
+        "Defer Meta pixel; consider Conversions API",
+        "Create a drift baseline and re-audit monthly",
+        "Sitemap lastmod generation; redirect chain cleanup; enforce CSP"
+      ]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/",
+    "evidence_dir": "evidence/"
+  }
+}

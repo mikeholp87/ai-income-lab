@@ -16,3 +16,14 @@ Branch `site-optimization`, October 28, 2026. One batch; not deployed.
 Tests updated or added in `src/homepage.test.js`: the products use text links and are absent from the nav; the nav order includes FAQ and Sponsors; the Runable CTA uses the plan picker; plan prices (monthly and annual) and plan tracking properties are pinned.
 
 Unchanged by design: prices, plan benefits, cancellation wording, URLs, the FAQ's position (moved to the end earlier at the owner's request), the products section itself, the sponsor content, and the forms.
+
+---
+
+# Implementation log
+
+- Homepage copy identifies Mike, audience and two practical course outcomes; existing primary and free-video actions remain. Plan links now say “See [plan] on Skool” because the destination is a shared picker. `src/main.jsx`, `src/homepage.test.js`.
+- The footer's single-column grid can shrink at narrow widths; the repeated current breadcrumb is hidden on phones while the article heading remains visible. `src/styles.css`, `public/reading.css`, `src/asset-version.js`.
+- Form focus records one start per mounted homepage form; guide/watch newsletter forms record one consented Google event. No field values are sent. `src/main.jsx`, `src/reading.js`, `src/reading.test.js`.
+- Updated the homepage sitemap modification date to reflect this change. `public/sitemap.xml`.
+
+Prices, billing, guarantees and entitlements were preserved. Annual availability was confirmed by Mike; the public plan page did not display annual options during inspection. See the offer register for unresolved details and verification results for limits.

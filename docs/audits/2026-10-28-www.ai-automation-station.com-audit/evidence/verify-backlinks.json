@@ -1,0 +1,60 @@
+{
+  "status": "success",
+  "data": {
+    "target_url": "https://www.ai-automation-station.com",
+    "summary": {
+      "total": 3,
+      "verified": 1,
+      "lost": 0,
+      "moved": 0,
+      "link_removed": 1,
+      "unverifiable_js": 1,
+      "exists": 0,
+      "error": 0
+    },
+    "results": [
+      {
+        "source_url": "https://checkthecourse.com/communities/skool-ai-automation-station-7346",
+        "target_url": "https://www.ai-automation-station.com",
+        "status": "verified",
+        "http_status": 200,
+        "target_found": true,
+        "anchor_text": "ai-automation-station.com",
+        "rel_attributes": [
+          "nofollow"
+        ],
+        "link_context": null,
+        "error": null,
+        "match_type": "exact_url"
+      },
+      {
+        "source_url": "https://exa.ai/library/person/59bsgq2ymr2",
+        "target_url": "https://www.ai-automation-station.com",
+        "status": "link_removed",
+        "http_status": 200,
+        "target_found": false,
+        "anchor_text": null,
+        "rel_attributes": [],
+        "link_context": null,
+        "error": null
+      },
+      {
+        "source_url": "https://www.skool.com/ai-automation-station-7346/about",
+        "target_url": "https://www.ai-automation-station.com",
+        "status": "unverifiable_js",
+        "http_status": 200,
+        "target_found": null,
+        "anchor_text": null,
+        "rel_attributes": [],
+        "link_context": null,
+        "error": "Page appears JS-rendered; link may exist but cannot be confirmed via HTTP GET"
+      }
+    ]
+  },
+  "error": null,
+  "metadata": {
+    "source": "verify_crawler",
+    "head_only": false,
+    "timestamp": "2026-10-28T07:24:49Z"
+  }
+}

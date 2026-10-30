@@ -26,3 +26,15 @@ Local production build (`vite build` + `scripts/prerender.js`, snapshots not ref
 - Skool checkout itself; no account was created and nothing was purchased.
 - Course names and level unlocks inside the Skool classroom.
 - No form was submitted, so no email was sent.
+
+---
+
+# Verification results
+
+Live and local Chrome checks on October 29: at a 390px viewport the live guide title began around 352px; locally it began around 304px. The live homepage primary button ended around 504px; the revised local version ended around 477px. At 320px local homepage document width fell from 356px to 320px after the footer fix. Tablet and desktop layout widths were inspected; local homepage console showed no captured errors. These are layout observations, not speed or conversion results.
+
+The public Skool plans page was inspected without signing in or purchasing. The local homepage rendered the updated text and links. After the interruption, commit `9295231` changed the plan layout and removed the classroom list and tour. The final test suite, lint and production build passed against that newer code; the browser observations above predate that commit. The build used saved video snapshots because network fetches failed. No standalone typecheck script exists.
+
+The requested `gitleaks git --redact --no-banner` history scan examined 255 commits and reported 13 findings. They were not investigated or adjudicated here; review them securely before pushing, and rotate any confirmed active credentials.
+
+Fresh comparable Lighthouse before/after measurements, real-user metrics, complete keyboard and screen-reader testing, live analytics event receipt, provider-side form delivery, and all URLs were not verified. Automated and visual checks do not establish accessibility compliance. Recheck production metadata, redirects, consent, events and representative mobile/desktop journeys on an approved preview before release. Roll back by reverting the scoped code and sitemap changes and rebuilding; no production data migration is involved.

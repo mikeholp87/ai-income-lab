@@ -1,0 +1,130 @@
+{
+ "none/": [
+  {
+   "lcp": 1156,
+   "tbt_approx": 237,
+   "fcp": 1024,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 266078
+  },
+  {
+   "lcp": 1184,
+   "tbt_approx": 111,
+   "fcp": 916,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 266078
+  },
+  {
+   "lcp": 1172,
+   "tbt_approx": 177,
+   "fcp": 956,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 266078
+  }
+ ],
+ "none/guides/claude-code-for-beginners.html": [
+  {
+   "lcp": 576,
+   "tbt_approx": 27,
+   "fcp": 576,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 79541
+  },
+  {
+   "lcp": 556,
+   "tbt_approx": 0,
+   "fcp": 556,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 79541
+  },
+  {
+   "lcp": 536,
+   "tbt_approx": 1,
+   "fcp": 536,
+   "third_party_bytes": {},
+   "third_party_reqs": 0,
+   "total_bytes": 79541
+  }
+ ],
+ "granted/": [
+  {
+   "lcp": 1212,
+   "tbt_approx": 432,
+   "fcp": 908,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 544830
+  },
+  {
+   "lcp": 1204,
+   "tbt_approx": 437,
+   "fcp": 912,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 544830
+  },
+  {
+   "lcp": 1220,
+   "tbt_approx": 433,
+   "fcp": 884,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 544830
+  }
+ ],
+ "granted/guides/claude-code-for-beginners.html": [
+  {
+   "lcp": 540,
+   "tbt_approx": 302,
+   "fcp": 540,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 358293
+  },
+  {
+   "lcp": 536,
+   "tbt_approx": 307,
+   "fcp": 536,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 358293
+  },
+  {
+   "lcp": 556,
+   "tbt_approx": 290,
+   "fcp": 556,
+   "third_party_bytes": {
+    "www.googletagmanager.com": 0,
+    "connect.facebook.net": 278752,
+    "www.google-analytics.com": 0
+   },
+   "third_party_reqs": 4,
+   "total_bytes": 358293
+  }
+ ]
+}
