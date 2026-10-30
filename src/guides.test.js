@@ -125,7 +125,7 @@ test('hub entries show an image, what the guide covers and the matching video', 
   const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
   assert.equal(entries.length, guides.length);
   for (const entry of entries) {
-    assert.match(entry, /<img src="\/assets\/guides\/[a-z0-9-]+\.webp" srcset="[^"]+" sizes="[^"]+" alt="" width="1200" height="630" loading="lazy">/);
+    assert.match(entry, /<img src="\/assets\/guides\/hub\/[a-z0-9-]+\.webp" srcset="[^"]+" sizes="[^"]+" alt="" width="1200" height="630" loading="lazy">/);
     assert.match(entry, /<h3><a href="\/guides\/[a-z0-9-]+\.html">[^<]+<\/a><\/h3>/);
   }
   assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
@@ -187,9 +187,9 @@ test('guide titles and sections match what people search for', async () => {
 test('the guides hub uses the /videos page design', async () => {
   const hub = await read('public/guides.html');
   assert.match(hub, /<link rel="stylesheet" href="\/archive.css">/);
-  assert.match(hub, /<header class="shell single-line-header"><a class="brand desktop-brand" href="\/">[\s\S]*?<a class="mobile-brand" href="\/">AI Income Lab<\/a><nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
-  assert.match(hub, /<div class="intro"><p class="mono path">~\/guides<\/p><h1>/);
-  assert.match(hub, /<nav class="topics mono" aria-label="Guide topics">/);
+  assert.match(hub, /<header class="shell single-line-header"><a class="brand desktop-brand" href="\/">[\s\S]*?<a class="mobile-brand" href="\/">AI Income Lab<\/a><nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
+  assert.match(hub, /<div class="intro"><h1>/);
+  assert.match(hub, /<nav class="topics" aria-label="Guide topics">/);
   assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);
 });
 
@@ -214,6 +214,17 @@ test('every guide image is a card from scripts/guide-cards.mjs, never a video th
   assert.deepEqual(images.map(name => name.replace(/\.webp$/, '')).sort(), Object.keys(cards).sort());
   for (const [slug, card] of Object.entries(cards)) assert.equal(card.steps.length, 3, slug);
   assert.doesNotMatch(await read('public/guides.html'), /ytimg\.com/);
+});
+
+test('the guides hub shows the headline-only cards, which exist for every guide card', async () => {
+  const { existsSync } = await import('node:fs');
+  const { cards } = await import('../scripts/guide-cards.mjs');
+  const hub = await read('public/guides.html');
+  const shown = [...hub.matchAll(/<li class="guide"><img src="\/assets\/guides\/hub\/([a-z0-9-]+)\.webp" srcset="\/assets\/guides\/hub\/\1-640\.webp 640w, \/assets\/guides\/hub\/\1\.webp 1200w"/g)];
+  assert.equal(shown.length, hub.split('<li class="guide">').length - 1);
+  for (const slug of Object.keys(cards)) {
+    for (const file of [`${slug}.webp`, `${slug}-640.webp`]) assert.ok(existsSync(new URL(`../public/assets/guides/hub/${file}`, import.meta.url)), file);
+  }
 });
 
 test('Start here is as wide as the guides hub and the video archive', async () => {

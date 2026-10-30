@@ -193,7 +193,6 @@ function useSponsoredVideos() {
   return videos;
 }
 
-// eyebrow names the section; accent is the headline's closing clause, set in the signal color.
 const featuredGuides = [
   { slug: 'ai-automation', tag: 'Beginner', title: 'What is AI automation? Examples, tools and a first build', alt: 'Guide card for What is AI automation, with examples, tools and a first build.' },
   { slug: 'make-money-with-ai-no-experience', tag: 'Earning', title: 'Make money with AI with no experience', alt: 'Guide card for making money with AI with no experience.' },
@@ -203,35 +202,22 @@ const featuredGuides = [
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
 ];
 
-function SectionHead({ eyebrow, title, accent, children }) {
+function SectionHead({ title, children }) {
   return (
-    <div className="section-head reveal">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title} <span className="accent">{accent}</span></h2>
+    <div className="section-head">
+      <h2>{title}</h2>
       {children && <p className="lede">{children}</p>}
     </div>
   );
 }
 
-const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['#services', 'Sponsors'], ['#work-together', 'Contact']];
-const navIds = navLinks.map(([href]) => href.slice(1));
-
-// Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
-function useScrollReveal() {
-  useEffect(() => {
-    window.__revealReady = true;
-    const targets = document.querySelectorAll('.reveal, .reveal-group');
-    const show = target => target.classList.add('is-visible');
-    if (!('IntersectionObserver' in window)) return targets.forEach(show);
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      show(entry.target);
-      observer.unobserve(entry.target);
-    }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
-    targets.forEach(target => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
-}
+const navLinks = {
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors']],
+  sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
+};
+const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
+// These sections lived on the homepage before /sponsors.html; old links to them still arrive there.
+const sponsorAnchors = ['#media-kit', '#services', '#sponsored', '#work-together'];
 
 // The nav link for the section currently under the header.
 function useActiveSection(ids) {
@@ -316,7 +302,7 @@ function VideoGrid({ videos, failed }) {
   // Starts with the newest upload too, so the hero, this grid and /videos all lead with the same video.
   const items = videos ? videos.slice(0, 6) : Array(6).fill(null);
   return (
-    <ul className="video-grid reveal-group" aria-busy={!videos}>
+    <ul className="video-grid" aria-busy={!videos}>
       {items.map((video, index) => video
         ? <li key={video.id}><VideoCard video={video} placement="latest_posts" /></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
@@ -352,8 +338,8 @@ function Services({ channel }) {
   return (
     <section className="section" id="services">
       <div className="shell">
-        <SectionHead eyebrow="For brands" title="Sponsorship" accent="packages.">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
-        <article className="service service-featured reveal">
+        <SectionHead title="Sponsorship packages">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
+        <article className="service service-featured">
           <div>
             <p className="service-channels">YouTube · Shorts · AI Income Lab · LinkedIn</p>
             <h3>Multi-platform campaign</h3>
@@ -364,7 +350,7 @@ function Services({ channel }) {
           </div>
           <img className="service-image" src="/services/campaign.webp" alt="" width="1152" height="864" loading="lazy" decoding="async" />
         </article>
-        <div className="service-grid reveal-group">
+        <div className="service-grid">
           <article className="service">
             <h3>Dedicated video</h3>
             <p className="service-price">$1,500</p>
@@ -394,9 +380,9 @@ function Services({ channel }) {
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post', 'LinkedIn post')}>Ask about a LinkedIn post</a>
           </article>
         </div>
-        <div className="services-custom reveal">
+        <div className="services-custom">
           <p>Need something custom? Extra Shorts, category exclusivity, paid usage rights and longer partnerships are on the rate card.</p>
-          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote →</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
+          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
         </div>
       </div>
     </section>
@@ -415,15 +401,15 @@ function MediaKit() {
     <section className="section" id="media-kit">
       <div className="shell">
         <div className="media-kit-head">
-          <SectionHead eyebrow="Media kit" title="Audience" accent="insights.">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
-          {(mediaKit.pdf || mediaKit.rateCard || shots.length > 0) && <div className="button-row reveal">
+          <SectionHead title="Who watches the channel">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
+          {(mediaKit.pdf || mediaKit.rateCard || shots.length > 0) && <div className="button-row">
             {mediaKit.pdf && <a className="button button-primary" href={mediaKit.pdf} download onClick={trackClick('media_kit', 'Download media kit', mediaKit.pdf, 'download_media_kit')}>Download media kit</a>}
             {mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('media_kit', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}
             {shots.length > 0 && <button type="button" className="button button-quiet" onClick={() => { setShot(0); studio.current.showModal(); trackEvent('Studio Screenshots Opened'); }}>See the Studio screenshots</button>}
           </div>}
         </div>
-        <div className="stats media-kit-stats reveal"><dl>{mediaKit.stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
-        <div className="audience reveal">
+        <div className="stats media-kit-stats"><dl>{mediaKit.stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+        <div className="audience">
           <div>
             <div className="dot-grid" aria-hidden="true">{dots.map((tone, index) => <span key={index} style={{ background: tones[tone] }} />)}</div>
             <p className="fine-print">Each dot is 1% of {view.unit}.</p>
@@ -519,7 +505,7 @@ function ContactForm({ topic, setTopic }) {
   if (status === 'sent') return <p className="contact-sent" role="status">Message sent. I&rsquo;ll reply to the email you gave.</p>;
   return (
     <form className="contact-form" onSubmit={send} onFocusCapture={event => {
-      if (!started.current && event.target.name !== 'hp') { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
+      if (!started.current && ['name', 'email', 'topic', 'message'].includes(event.target.name)) { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
     }}>
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
@@ -596,18 +582,56 @@ function NotesSignup({ placement = 'footer' }) {
   );
 }
 
-function App() {
+function SponsorsMain({ channel, campaign }) {
+  const sponsoredVideos = useSponsoredVideos();
+  return (
+    <>
+      <section className="sponsors-intro shell" id="main-content" tabIndex="-1">
+        <h1>Sponsor a build on AI Automation Station</h1>
+        <p className="lede">I test AI models, agents and automation tools on real projects for the channel and the AI Income Lab community. Here are the audience numbers, the packages, past sponsored videos, and a way to book an intro call.</p>
+      </section>
+
+      <MediaKit />
+
+      <div className="divider" aria-hidden="true" />
+      <Services channel={channel} />
+
+      {sponsoredVideos.length > 0 && <>
+        <div className="divider" aria-hidden="true" />
+        <section className="section" id="sponsored">
+          <div className="shell">
+            <SectionHead title="Sponsored builds">Videos a brand paid for. Same rules as every build: a real project, the mistakes left in, and a plain verdict.</SectionHead>
+            <ul className="video-grid sponsored-grid">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+          </div>
+        </section>
+      </>}
+
+      <div className="divider" aria-hidden="true" />
+      <section className="section" id="work-together">
+        <div className="shell">
+          <SectionHead title="Book an intro call">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
+          <ContactOptions campaign={campaign} />
+          <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function App({ page = 'home' }) {
+  const sponsorsPage = page === 'sponsors';
+  const links = navLinks[page];
   const [campaign, setCampaign] = useState(() => getCampaign('', []));
   const [campaignReady, setCampaignReady] = useState(false);
   const videoPlayButton = useRef(null);
   const { videos, channel, failed } = useYouTubeFeed();
-  const sponsoredVideos = useSponsoredVideos();
   const latest = videos?.[0];
 
   useEffect(() => {
+    if (!sponsorsPage && sponsorAnchors.includes(window.location.hash)) window.location.replace(`/sponsors.html${window.location.search}${window.location.hash}`);
     setCampaign(getCampaign(window.location.search, ['community']));
     setCampaignReady(true);
-  }, []);
+  }, [sponsorsPage]);
 
   useEffect(() => {
     if (!campaignReady) return undefined;
@@ -649,8 +673,7 @@ function App() {
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
   const plansUrl = outboundUrl(skoolPlansUrl, campaign);
   const communityHero = wantsCommunity(campaign);
-  const active = useActiveSection(navIds);
-  useScrollReveal();
+  const active = useActiveSection(navIds[page]);
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
@@ -659,18 +682,19 @@ function App() {
     <a className="to-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
     <header className="site-header">
       <div className="nav shell">
-      <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
-      <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
+      <a className="brand" href={sponsorsPage ? '/' : '#top'} aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
+      <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
         <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
-        }}><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
+        }}><summary>Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
       </div>
       </div>
     </header>
 
     <main>
+      {sponsorsPage ? <SponsorsMain channel={channel} campaign={campaign} /> : <>
       <section className="hero shell" id="main-content" tabIndex="-1">
         <div className="hero-grid">
         <div className="hero-copy">
@@ -702,8 +726,7 @@ function App() {
         <div className="course-promo-card">
           <img className="course-promo-image" src="/runable-course.webp" srcSet="/runable-course-640.webp 640w, /runable-course.webp 1200w" sizes="(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116px), (max-width: 1168px) calc(100vw - 52px), 1116px" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
           <div className="course-promo-content">
-            <p className="eyebrow course-access">Included for all members</p>
-            <h2 id="runable-course-title">Build an AI website in Runable.</h2>
+            <h2 id="runable-course-title">Build an AI website in Runable</h2>
             <p className="course-promo-copy">Create and launch an AI-powered business website, from idea to live site. Take the course inside AI Income Lab, included for all members.</p>
             <ul className="course-outcomes" aria-label="What you’ll build">
               <li>Build a business website in Runable.</li>
@@ -719,12 +742,12 @@ function App() {
       </section>
 
       <section className="stats" aria-label="Community and channel numbers">
-        <dl className="shell reveal-group">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>
 
       <section className="section band" id="community">
         <div className="shell">
-          <SectionHead eyebrow="Plans" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
           <div className="members">
             <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
             <p>Some of the members building AI workflows on Skool</p>
@@ -751,7 +774,7 @@ function App() {
         <div className="shell">
           <div className="latest-intro">
             <div>
-              <SectionHead eyebrow="Latest videos" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
+              <SectionHead title="Latest videos">Watch another build, or follow a written guide for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
@@ -763,15 +786,15 @@ function App() {
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
       <section className="section build-guides" id="guides">
         <div className="shell">
-          <SectionHead eyebrow="Guides" title="Written guides," accent="step by step.">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
+          <SectionHead title="Written guides">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
           <ul className="guide-cards">
             {featuredGuides.map(guide => (
               <li key={guide.slug}>
                 <a className="guide-card" href={`/guides/${guide.slug}.html`}>
-                  <img src={`/assets/guides/${guide.slug}.webp`} srcSet={`/assets/guides/sizes/${guide.slug}-640.webp 640w, /assets/guides/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
+                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
                   <span className="guide-card-tag">{guide.tag}</span>
                   <h3>{guide.title}</h3>
                 </a>
@@ -783,11 +806,11 @@ function App() {
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead eyebrow="Also by Mike" title="Two products" accent="I built and run.">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
-          <div className="tool-grid reveal-group">
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
+          <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
                 <img src={tool.image} alt={`${tool.name} product screen`} width={tool.size[0]} height={tool.size[1]} loading="lazy" decoding="async" />
@@ -809,10 +832,9 @@ function App() {
 
       <section className="section band" id="about">
         <div className="shell about-grid">
-          <img className="portrait reveal" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
-          <div className="about-copy reveal">
-            <p className="eyebrow">About</p>
-            <h2>Hi, I&rsquo;m <span className="accent">Mike.</span></h2>
+          <img className="portrait" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
+          <div className="about-copy">
+            <h2>Hi, I&rsquo;m Mike</h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
             <p>AI Automation Station publishes my practical AI builds. AI Income Lab is its paid learning community on Skool, with courses, templates, and help while you build. I also build and run TubeAnalytics and VisiScan.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
@@ -823,7 +845,7 @@ function App() {
         <div className="shell built" id="code">
           <h3>Things I&rsquo;ve built</h3>
           <p>Side projects and experiments, with the source open on GitHub.</p>
-          <ul className="repo-list reveal-group">
+          <ul className="repo-list">
             {repos.map(repo => {
               const source = `${githubUrl}/${repo.name}`;
               return (
@@ -840,44 +862,30 @@ function App() {
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
-      <MediaKit />
-
-      <div className="divider reveal" aria-hidden="true" />
-      <Services channel={channel} />
-
-      {sponsoredVideos.length > 0 && <>
-        <div className="divider reveal" aria-hidden="true" />
-        <section className="section" id="sponsored">
-          <div className="shell">
-            <SectionHead eyebrow="Sponsored" title="Sponsored" accent="builds.">Videos a brand paid for. Same rules as every build: a real project, the mistakes left in, and a plain verdict.</SectionHead>
-            <ul className="video-grid sponsored-grid reveal-group">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+      <section className="section brands-strip" id="brands">
+        <div className="shell brands-row">
+          <div>
+            <h2>Sponsor a build</h2>
+            <p>Make an AI model, agent or automation tool? I test it on a real build for the channel, with the mistakes left in.</p>
           </div>
-        </section>
-      </>}
-
-      <div className="divider reveal" aria-hidden="true" />
-      <section className="section" id="work-together">
-        <div className="shell">
-          <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
-          <ContactOptions campaign={campaign} />
-          <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+          <a className="button button-quiet" href="/sponsors.html" onClick={trackClick('brands', 'See the media kit and packages', '/sponsors.html', 'view_sponsors')}>See the media kit and packages</a>
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
       <section className="section" id="faq">
         <div className="shell faq-grid">
-          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
-          <div className="faq-list reveal-group">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+          <SectionHead title="Questions people ask" />
+          <div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
 
+      </>}
     </main>
 
     <footer className="footer">
       <div className="shell">
-        <div className="footer-cta reveal">
+        <div className="footer-cta">
           <p>Build your next automation.</p>
           <div className="button-row">
             <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
@@ -901,12 +909,13 @@ function App() {
   );
 }
 
-export function Root() {
-  return <StrictMode><App /><Analytics /><SpeedInsights /></StrictMode>;
+export function Root({ page }) {
+  return <StrictMode><App page={page} /><Analytics /><SpeedInsights /></StrictMode>;
 }
 
 if (typeof document !== 'undefined') {
   const root = document.getElementById('root');
-  if (root.hasChildNodes()) hydrateRoot(root, <Root />);
-  else createRoot(root).render(<Root />);
+  const page = document.body.dataset.page || 'home';
+  if (root.hasChildNodes()) hydrateRoot(root, <Root page={page} />);
+  else createRoot(root).render(<Root page={page} />);
 }

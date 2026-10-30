@@ -1,6 +1,8 @@
-// Renders guide cards to public/assets/guides/<slug>.webp, plus sizes/<slug>-640.webp for phones and the hub, with one shared template.
+// Renders guide cards to public/assets/guides/<slug>.webp, plus sizes/<slug>-640.webp for phones, with one shared template.
+// The guides hub shows a headline-only version (hub/<slug>.webp and hub/<slug>-640.webp): the full card's step
+// text is unreadable at the hub's 360px card width.
 // Usage: node scripts/guide-cards.mjs [slug ...]   (no slugs renders every card below)
-// Needs google-chrome on PATH; text uses the system Noto Sans, like the existing cards.
+// Needs google-chrome on PATH; full cards use the system Noto Sans, hub cards the site's Archivo Black.
 import { execFileSync } from 'node:child_process';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -174,6 +176,38 @@ h1{margin-top:28px;font-size:60px;line-height:1.1;font-weight:700;max-width:820p
 <p class="by">Mike Holp · ai-automation-station.com</p>`;
 }
 
+// Laid out at 600×315 and captured at 2x; the headline shrinks until it fits in four lines.
+export function hubCardHtml({ title }) {
+  const font = new URL('../public/fonts/archivo-black.woff2', import.meta.url).href;
+  return `<!doctype html><meta charset="utf-8">
+<style>
+@font-face{font-family:'Archivo Black';src:url('${font}') format('woff2')}
+*{box-sizing:border-box;margin:0}body{width:600px;height:315px;display:flex;flex-direction:column;justify-content:flex-end;padding:36px 40px 40px;background:radial-gradient(420px 220px at 100% 0,rgb(255 104 70/.16),transparent 70%),#111;color:#f5f5f0}
+body::before{content:'';position:absolute;top:36px;left:40px;width:36px;height:5px;background:#ff6846}
+h1{font:400 40px/1.08 'Archivo Black',sans-serif;letter-spacing:-.01em;text-wrap:balance}
+</style>
+<h1>${escape(title)}</h1>
+<script>const h = document.querySelector('h1'); let size = 40; while (h.offsetHeight > 4 * size * 1.08 + 1 && size > 26) h.style.fontSize = \`\${--size}px\`;</script>`;
+}
+
+async function screenshot(html, [width, height], scale) {
+  const dir = await mkdtemp(join(tmpdir(), 'guide-card-'));
+  await writeFile(join(dir, 'card.html'), html);
+  execFileSync('google-chrome', ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', `--force-device-scale-factor=${scale}`, `--window-size=${width},${height}`, `--screenshot=${join(dir, 'card.png')}`, `file://${join(dir, 'card.html')}`], { stdio: 'ignore' });
+  return dir;
+}
+
+export async function renderHubCard(slug, card, outDir = 'public/assets/guides/hub') {
+  const dir = await screenshot(hubCardHtml(card), [600, 315], 2);
+  try {
+    await mkdir(outDir, { recursive: true });
+    await sharp(join(dir, 'card.png')).resize(640, 336).webp({ quality: 82 }).toFile(join(outDir, `${slug}-640.webp`));
+    return await sharp(join(dir, 'card.png')).resize(1200, 630).webp({ quality: 82 }).toFile(join(outDir, `${slug}.webp`));
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+}
+
 export async function renderCard(slug, card, outDir = 'public/assets/guides') {
   const dir = await mkdtemp(join(tmpdir(), 'guide-card-'));
   try {
@@ -192,6 +226,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const slug of slugs) {
     if (!cards[slug]) throw new Error(`No card data for ${slug}`);
     const { width, height, size } = await renderCard(slug, cards[slug]);
-    console.log(slug, width, height, size);
+    const hub = await renderHubCard(slug, cards[slug]);
+    console.log(slug, width, height, size, hub.size);
   }
 }

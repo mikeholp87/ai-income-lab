@@ -71,7 +71,8 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/);
   assert.doesNotMatch(html, /header a:first-child/);
   // Video titles use the reading pages' Instrument Sans, not the system font.
-  assert.match(html, /h1\{font:700 clamp\(24px,4vw,36px\)\/1\.2 'Instrument Sans',system-ui,sans-serif;/);
+  // The title takes the shared page-title style from reading.css.
+  assert.match(html, /h1\{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px\}/);
   // Same Skool label as the homepage and the archive.
   assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);
@@ -455,9 +456,9 @@ test('longer archives show first, last and nearby pages only', () => {
 
 test('the archive links the reading pages and offers the community', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
-  assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
+  assert.match(html, /<nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
   assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
-  assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><p class="cta-eyebrow">AI Income Lab<\/p><h2 id="join-lab">Don’t build the next one <span>alone\.<\/span><\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
+  assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab<\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
   assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('<li><a '));
   assert.doesNotMatch(html, /builds something real with it/);
 });
@@ -501,7 +502,7 @@ test('topic pages list only matching videos on one page with their own canonical
 
 test('the archive shows a topic row with every topic', () => {
   const html = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }]);
-  const row = html.match(/<nav class="topics mono" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
+  const row = html.match(/<nav class="topics" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
   assert.match(row, /^<a href="\/videos" aria-current="page">All videos<\/a>/);
   assert.equal((row.match(/<a /g) || []).length, topics.length + 1);
   for (const topic of topics) assert.ok(row.includes(`href="/videos/${topic.slug}"`), topic.slug);
@@ -608,4 +609,18 @@ test('a new upload reaches /videos within an hour via the cheap newest-upload pr
   advance(3600001);
   await request('/videos');
   assert.equal(calls(), 6, 'probe finds nothing new, no refresh');
+});
+
+test('watch headings drop hype and use sentence case, keeping product names', async () => {
+  const { watchHeading } = await import('./watch-title.js');
+  for (const [title, heading] of [
+    ['Building My Own Video Editor Using REA (It\'s Insane!)', 'Building my own video editor using REA'],
+    ['I Tested Meta Muse Wonder - Here\'s What Happened', 'I tested Meta Muse Wonder'],
+    ['OpenAI Just Released Dots! Here\'s What You Need To Know', 'OpenAI just released Dots: here\'s what you need to know'],
+    ['Give Your Hermes Agent A Memory Upgrade!', 'Give your Hermes Agent a memory upgrade'],
+    ['This AI Agent Found $81,000 In Brand Deals!', 'This AI agent found $81,000 in brand deals'],
+    ['Connect Fillout to Airtable in 15 Minutes (No Code)', 'Connect Fillout to Airtable in 15 minutes (no code)'],
+    ['These 20 GPT-6 Astra Demos Are INSANE!', 'These 20 GPT-6 Astra demos are insane'],
+    ['I Built My Own OpusClip for FREE! (Step-by-Step)', 'I built my own OpusClip for free (step-by-step)'],
+  ]) assert.equal(watchHeading(title), heading);
 });

@@ -64,7 +64,7 @@ test('the guides section follows videos in the header and page, with one start l
   const start = jsx.indexOf('id="guides"');
   const guides = jsx.slice(start, jsx.indexOf('</section>', start));
   assert.ok(jsx.indexOf('id="latest"') < start && start < jsx.indexOf('id="tools"'));
-  assert.match(guides, /<SectionHead eyebrow="Guides" /);
+  assert.match(guides, /<SectionHead title="Written guides">/);
   assert.equal(count(guides, 'href="/start-here.html"'), 1);
   assert.doesNotMatch(jsx, /Start your first build|Prefer a recording\?|'video_grid'|Every video on YouTube/);
   // Fixed /watch/ links keep evergreen video pages linked from the homepage for indexing.
@@ -98,10 +98,12 @@ test('Skool buttons share one label and new-tab buttons end with ↗', () => {
   }
 });
 
-test('the nav names the plans and section labels say what follows', () => {
+test('section heads are one plain sentence-case title, with no eyebrow label or accented phrase', () => {
   assert.match(jsx, /\['#community', 'Plans'\]/);
-  assert.match(jsx, /eyebrow="Plans" title="Your next build,"/);
-  assert.match(jsx, /eyebrow="Latest videos"/);
+  assert.match(jsx, /<SectionHead title="Choose a plan for your next build">/);
+  assert.match(jsx, /<SectionHead title="Latest videos">/);
+  assert.doesNotMatch(jsx, /eyebrow|SectionHead[^>]*accent=/);
+  assert.doesNotMatch(css, /\.eyebrow|\.section-head h2[^}]*uppercase/);
 });
 
 test('channel and member numbers sit just before the plans', () => {
@@ -112,9 +114,10 @@ test('channel and member numbers sit just before the plans', () => {
   assert.match(media('(max-width: 640px)'), /\.stats dl \{ width: 100%; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\); \}/);
 });
 
-test('prose uses Instrument Sans while labels keep DM Mono', () => {
-  assert.match(css, /\.lede,[^{]*\.fine-print,[^{]*\.faq-list details p,[^{]*\{ font-family: var\(--sans\); \}/);
-  assert.match(css, /\.eyebrow, \.nav-links, \.text-link, \.button, \.footer-columns h2, \.stats dt \{ font-family: var\(--mono\);/);
+test('Instrument Sans is the default face and DM Mono is kept for data', () => {
+  assert.match(css, /:root \{[^}]*font-family: var\(--sans\);/);
+  assert.match(css, /\.meta-row, \.duration, \.timeline span, [^{]*\{ font-family: var\(--mono\); \}/);
+  assert.doesNotMatch(css.replace(/\.hero h1[^}]*\}|\.brand \{[^}]*\}/g, ''), /uppercase/);
 });
 
 test('the main Join buttons open the Skool plan picker', () => {
@@ -153,12 +156,19 @@ test('the homepage shows six featured guide cards and links the full guides page
   for (const file of guides) assert.match(hub, new RegExp(`href="/guides/${file.replace('.', '\\.')}"`), file);
 });
 
-test('sponsored videos sit directly above the booking section', () => {
-  assert.match(jsx, /<section className="section" id="sponsored">[\s\S]*?<\/section>\s*<\/>\}\s*<div className="divider reveal" aria-hidden="true" \/>\s*<section className="section" id="work-together">/);
+test('the sponsors page holds the media kit, services, sponsored videos and booking, in that order', () => {
+  const start = jsx.indexOf('function SponsorsMain(');
+  const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
+  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', 'id="work-together"'].map(text => page.indexOf(text));
+  assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
+  assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
 
-test('the media kit follows About, then services, before sponsored videos and booking', () => {
-  assert.match(jsx, /<section className="section band" id="about">[\s\S]*?<\/section>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<MediaKit \/>\s*<div className="divider reveal" aria-hidden="true" \/>\s*<Services channel=\{channel\} \/>\s*\{sponsoredVideos\.length > 0/);
+test('the homepage keeps one strip pointing brands to the sponsors page, after About', () => {
+  const home = jsx.slice(jsx.indexOf('function App('));
+  assert.ok(home.indexOf('id="about"') < home.indexOf('id="brands"') && home.indexOf('id="brands"') < home.indexOf('id="faq"'));
+  assert.match(home, /<a className="button button-quiet" href="\/sponsors\.html"/);
+  assert.doesNotMatch(home, /<MediaKit|<Services|id="work-together"/);
 });
 
 test('every rate card format has a service card with its price', () => {
@@ -169,10 +179,11 @@ test('every rate card format has a service card with its price', () => {
   }
 });
 
-test('the header links to FAQ and sponsor packages between About and Contact', () => {
-  assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['#services', 'Sponsors'\], \['#work-together', 'Contact'\]/);
+test('the homepage header links FAQ, then the sponsors page; old sponsor anchors forward there', () => {
+  assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['\/sponsors\.html', 'Sponsors'\]\]/);
   assert.match(jsx, /<section className="section" id="services">/);
-  // Seven links share the bar down to the 961px collapse point; none may wrap to two lines.
+  assert.match(jsx, /const sponsorAnchors = \['#media-kit', '#services', '#sponsored', '#work-together'\];/);
+  // Links share the bar down to the 961px collapse point; none may wrap to two lines.
   assert.match(css, /\.nav-links a \{[^}]*white-space: nowrap;/);
 });
 

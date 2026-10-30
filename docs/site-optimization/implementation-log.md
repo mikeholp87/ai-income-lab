@@ -27,3 +27,5 @@ Unchanged by design: prices, plan benefits, cancellation wording, URLs, the FAQ'
 - Updated the homepage sitemap modification date to reflect this change. `public/sitemap.xml`.
 
 Prices, billing, guarantees and entitlements were preserved. Annual availability was confirmed by Mike; the public plan page did not display annual options during inspection. See the offer register for unresolved details and verification results for limits.
+
+October 30: restricted contact form-start tracking to its four actual fields. Previously keyboard focus on the submit button could count as a start. Local browser verification covered the button and repeated field focus without sending a message.

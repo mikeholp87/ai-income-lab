@@ -12,13 +12,19 @@ const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public
 await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: false, rollupOptions: { input: 'src/main.jsx', output: { entryFileNames: '[name].js' } } } });
 try {
   const { Root } = await import('../dist/.ssr/main.js');
-  const path = new URL('../dist/index.html', import.meta.url);
-  const html = await readFile(path, 'utf8');
-  const marker = '<div id="root"></div>';
-  if (!html.includes(marker)) throw new Error('Cannot find root in built HTML');
-  const content = renderToString(createElement(Root));
-  if (!content.includes('<h1') || !content.includes('id="latest"') || !content.includes('id="pricing"') || !content.includes('id="faq"') || !content.includes('skool.com/ai-automation-station-7346/about') || !content.includes('href="/watch/')) throw new Error('Pre-rendered page is incomplete');
-  await writeFile(path, html.replace(marker, `<div id="root">${content}</div>`));
+  const pages = [
+    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/']],
+    ['sponsors.html', 'sponsors', ['id="media-kit"', 'id="services"', 'id="work-together"']],
+  ];
+  for (const [file, page, required] of pages) {
+    const path = new URL(`../dist/${file}`, import.meta.url);
+    const html = await readFile(path, 'utf8');
+    const marker = '<div id="root"></div>';
+    if (!html.includes(marker)) throw new Error(`Cannot find root in built ${file}`);
+    const content = renderToString(createElement(Root, { page }));
+    if (!content.includes('<h1') || required.some(text => !content.includes(text))) throw new Error(`Pre-rendered ${file} is incomplete`);
+    await writeFile(path, html.replace(marker, `<div id="root">${content}</div>`));
+  }
 } finally {
   await rm(new URL('../dist/.ssr', import.meta.url), { recursive: true, force: true });
 }
