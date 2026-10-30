@@ -548,34 +548,49 @@ function ContactOptions({ campaign }) {
   );
 }
 
-// Weekly build notes signup in the footer; the list lives in Resend (see api/subscribe.js).
-function NotesSignup() {
+// Weekly build notes signup shared by the hero and footer.
+function NotesSignup({ placement = 'footer' }) {
   const [status, setStatus] = useState('idle');
   const started = useRef(false);
+  const isHero = placement === 'hero';
+  const emailId = `${placement}-notes-email`;
+  const errorId = `${placement}-notes-error`;
+  const complete = ['done', 'already', 'welcome_failed'].includes(status);
 
   async function subscribe(event) {
     event.preventDefault();
     const form = event.currentTarget;
+    const email = form.elements.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('invalid');
+      return;
+    }
     setStatus('sending');
-    const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }).then(response => response.ok ? response.json() : null).catch(() => null);
-    setStatus(!result ? 'failed' : result.already ? 'already' : result.welcomeSent === false ? 'welcome_failed' : 'done');
-    if (result) trackEvent('Newsletter Signup', { placement: 'footer' });
+    const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, hp: form.elements.hp.value }) }).then(response => response.ok ? response.json() : null).catch(() => null);
+    setStatus(!result?.ok ? 'failed' : result.already ? 'already' : result.welcomeSent === false ? 'welcome_failed' : 'done');
+    if (result?.ok) trackEvent('Newsletter Signup', { placement });
   }
 
-  if (status === 'done') return <p className="notes-signup-status" role="status">You&rsquo;re in. The next build notes will land in your inbox.</p>;
-  if (status === 'already') return <p className="notes-signup-status" role="status">You&rsquo;re already on the list. No new welcome email was sent.</p>;
-  if (status === 'welcome_failed') return <p className="notes-signup-status" role="status">You&rsquo;re subscribed, but the welcome email could not be sent. Email <a href="mailto:automojic@proton.me">automojic@proton.me</a> if you need help.</p>;
+  const message = <>
+    {status === 'done' && <p className="notes-signup-status" role="status" aria-live="polite">{isHero ? "You're in. Check your inbox for a welcome email." : 'You’re in. The next build notes will land in your inbox.'}</p>}
+    {status === 'already' && <p className="notes-signup-status" role="status" aria-live="polite">{isHero ? "You're already on the list. No new email was sent." : 'You’re already on the list. No new welcome email was sent.'}</p>}
+    {status === 'welcome_failed' && <p className="notes-signup-status" role="status" aria-live="polite">You&rsquo;re subscribed, but the welcome email could not be sent. Email <a href="mailto:automojic@proton.me">automojic@proton.me</a> if you need help.</p>}
+  </>;
+  if (!isHero && complete) return message;
   return (
-    <form className="notes-signup" onSubmit={subscribe} onFocusCapture={event => {
-      if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: 'footer_notes' }); }
+    <form className={`notes-signup${isHero ? ' notes-signup--hero' : ''}`} onSubmit={subscribe} onFocusCapture={event => {
+      if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: `${placement}_notes` }); }
     }}>
-      <label htmlFor="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
-      <div>
-        <input id="footer-notes-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" />
+      <label htmlFor={emailId}>{isHero ? 'Get the weekly build notes by email.' : 'Weekly build notes: new guides and tested builds in one short email.'}</label>
+      {!complete && <div>
+        <input id={emailId} name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" aria-invalid={status === 'invalid' || undefined} aria-describedby={status === 'invalid' ? errorId : undefined} onInvalid={() => setStatus('invalid')} />
         <input className="contact-trap" name="hp" tabIndex="-1" autoComplete="off" aria-hidden="true" />
-        <button className="button" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Subscribing…' : 'Subscribe'}</button>
-      </div>
-      {status === 'failed' && <p className="notes-signup-status" role="alert">That didn&rsquo;t go through. Try again in a minute.</p>}
+        <button className="button" type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing…' : 'Subscribe')}</button>
+      </div>}
+      {status === 'invalid' && <p id={errorId} className="notes-signup-status" role="alert" aria-live="assertive">Enter a valid email address.</p>}
+      {status === 'failed' && <p className="notes-signup-status" role="alert" aria-live="assertive">That didn&rsquo;t go through. Try again in a minute.</p>}
+      {message}
+      {isHero && <p className="notes-signup-privacy">One email a week. Unsubscribe anytime. <a href="/privacy.html">Privacy policy</a></p>}
     </form>
   );
 }
@@ -676,6 +691,7 @@ function App() {
           }}>Watch a free build</a>
         </nav>
         <p className="fine-print hero-reassurance">From $29 a month or $290 a year. You pick a plan on Skool and can cancel anytime.</p>
+        <NotesSignup placement="hero" />
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
         </div>

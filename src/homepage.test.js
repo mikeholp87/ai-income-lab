@@ -197,3 +197,11 @@ test('the hero heading names the community in both variants', () => {
   assert.equal(count(jsx, '<h1><span className="hero-brand">AI Income Lab:</span> '), 2);
   assert.match(css, /\.hero h1 \.hero-brand \{/);
 });
+
+test('the hero includes build notes signup after reassurance with a privacy link', () => {
+  const start = jsx.indexOf('<div className="hero-copy">');
+  const hero = jsx.slice(start, jsx.indexOf('<div className="hero-preview', start));
+  assert.match(hero, /<p className="fine-print hero-reassurance">[^<]*<\/p>\s*<NotesSignup placement="hero" \/>/);
+  const signup = jsx.slice(jsx.indexOf('function NotesSignup('), jsx.indexOf('function App('));
+  assert.match(signup, /isHero && <p className="notes-signup-privacy">One email a week\. Unsubscribe anytime\. <a href="\/privacy\.html">Privacy policy<\/a>/);
+});

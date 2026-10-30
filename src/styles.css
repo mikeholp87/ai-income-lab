@@ -518,3 +518,14 @@ a.video-card:hover h3 { color: var(--signal); }
 @media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
   #community .plan-list > li:hover { transform: translateY(-3px); }
 }
+
+.notes-signup--hero { width: 100%; max-width: 460px; margin-top: 24px; }
+.notes-signup--hero > div { flex-direction: column; }
+.notes-signup--hero .button { flex: none; letter-spacing: .04em; white-space: nowrap; }
+.notes-signup--hero input:focus-visible, .notes-signup--hero .button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.notes-signup--hero input[aria-invalid="true"] { border-color: var(--signal); }
+.notes-signup--hero .notes-signup-privacy { margin-top: 10px; color: var(--muted); font: 400 12px/1.5 var(--sans); }
+.notes-signup--hero a { text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 390px) {
+  .notes-signup--hero > div { flex-direction: row; }
+}
