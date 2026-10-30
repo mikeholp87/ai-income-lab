@@ -3,7 +3,7 @@ import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { build } from 'vite';
 import { uploads } from '../src/uploads-snapshot.js';
-import { fontPreloads, renderPageSitemap } from '../src/archive.js';
+import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
 
@@ -30,7 +30,7 @@ for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html
   const html = await readFile(path, 'utf8');
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));
-  await writeFile(path, html.replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
+  await writeFile(path, (guideFiles.includes(file) ? addGuideVideos(html, `/${file}`, uploads) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
 }
 const notFound = await readFile('dist/404.html', 'utf8');
 await writeFile('dist/404.html', notFound.replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));

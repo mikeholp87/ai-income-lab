@@ -4,7 +4,7 @@
       "id": "wzC2r426KWs",
       "title": "I Built a Virtual Office for My AI Agents in GrokBot",
       "published": "2026-10-29T14:52:59Z",
-      "views": 145,
+      "views": 158,
       "duration": "9:43",
       "summary": "In this video, I build a 2D Virtual Office for 35+ AI agents running inside GrokBot using the new Pages feature!",
       "embeddable": true
@@ -13,7 +13,7 @@
       "id": "wLIiTkra7uM",
       "title": "I Let GrokBot Run My Blog for 30 Days (Here's What Happened)",
       "published": "2026-10-27T14:00:36Z",
-      "views": 162,
+      "views": 163,
       "duration": "7:06",
       "summary": "Build an automated GrokBot WordPress blog writer to publish content hands-free. Learn to integrate AI agents for business.",
       "embeddable": true
@@ -22,7 +22,7 @@
       "id": "VE66JDHoS6Y",
       "title": "Herdr Lets You Run Claude Code And Codex In One Place",
       "published": "2026-10-26T10:58:24Z",
-      "views": 461,
+      "views": 466,
       "duration": "7:52",
       "summary": "",
       "embeddable": true
@@ -65,7 +65,7 @@
     }
   ],
   "channel": {
-    "subscribers": 5240,
+    "subscribers": 5250,
     "views": 536478,
     "videos": 352
   }

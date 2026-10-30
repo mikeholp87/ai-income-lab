@@ -552,7 +552,7 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.item), ['https://www.ai-automation-station.com/', 'https://www.ai-automation-station.com/videos', 'https://www.ai-automation-station.com/videos/n8n', 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa']);
   assert.match(html, /<a href="\/videos">Videos<\/a> \/ <a href="\/videos\/n8n">n8n<\/a> \/ <span aria-current="page">/);
   assert.match(html, /More on this topic: <a href="\/videos\/n8n">/);
-  assert.match(html, /Follow the written guide: <a href="\/guides\/self-host-n8n.html">/);
+  assert.match(html, /Related guides<\/h2>\n<ul><li><a href="\/guides\/self-host-n8n.html">/);
   assert.match(html, /<form class="notes" data-subscribe data-placement="watch_end">/);
 });
 

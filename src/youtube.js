@@ -20,6 +20,8 @@ const tag = (xml, name) => xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${n
 // First paragraph without links skips the "join the community" and affiliate blocks.
 // Chapter lists ("⌚ Timestamps:", "00:00 Intro" lines) and hashtag blocks are navigation, not a summary.
 const notProse = part => /^\W*(?:time ?stamps|chapters|hashtags)\b/i.test(part) || /^(?:#[\w-]+\s*)+$/.test(part) || (part.match(/\b\d{1,2}:\d{2}\b/g) ?? []).length >= 2;
+// Every prose paragraph of the description (no links, chapter lists or hashtags), for the watch page summary. Real text only.
+export const describe = (description, max = 6) => description.split(/\n\s*\n/).map(part => part.trim()).filter(part => part && !/https?:\/\//.test(part) && !notProse(part) && !/^[\p{Emoji_Presentation}\W]*(?:subscribe|join|follow|sponsored|affiliate|disclaimer)/iu.test(part)).slice(0, max);
 export const summarize = description => description.split(/\n\s*\n/).map(part => part.trim()).find(part => part && !/https?:\/\//.test(part) && !notProse(part)) ?? '';
 
 // Atom feed of the channel's latest 15 uploads. Shorts only differ by their /shorts/ link.
