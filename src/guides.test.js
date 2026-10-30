@@ -231,3 +231,13 @@ test('guide cards offer the 640px copy wherever they show, and every copy exists
     }
   }
 });
+
+test('every guide page shows its own branded card and never points at a YouTube thumbnail', async () => {
+  for (const file of guides) {
+    const slug = file.replace(/\.html$/, '');
+    const html = await read(`public/guides/${file}`);
+    assert.doesNotMatch(html, /i\.ytimg\.com|img\.youtube\.com/, file);
+    assert.match(html, new RegExp(`<img src="/assets/guides/${slug}\\.webp" srcset="/assets/guides/sizes/${slug}-640\\.webp 640w`), file);
+    assert.match(html, new RegExp(`<meta property="og:image" content="https://www\\.ai-automation-station\\.com/assets/guides/${slug}\\.webp"`), file);
+  }
+});
