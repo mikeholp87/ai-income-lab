@@ -9,31 +9,56 @@ const FROM = "Mike from AI Income Lab <notes@ai-automation-station.com>";
 const REPLY_TO = "automojic@proton.me";
 const site = "https://www.ai-automation-station.com";
 export const welcome = {
-  subject: "Welcome to the weekly build notes",
-  text: `Hey, Mike here. Thanks for signing up.
+  subject: "Welcome to AI Automation Station weekly build notes",
+  text: `Hi, Mike here. Thanks for signing up for the weekly build notes.
 
-Once a week you'll get one short email: the new guides I've published and the AI tools I've actually tested on real builds, with what worked and what didn't. No fluff, and nothing you have to read on a schedule.
+AI Automation Station is my YouTube channel and written guides on practical AI automation with tools like GrokBot, Claude Code and Codex.
 
-While you wait for the first one, three good places to start:
+You'll get new guides and tested builds in one short email each week, with video breakdowns and practical workflows.
 
-1. Start here, the shortest path through everything on the site:
-${site}/start-here.html
+The website holds the written guides and the AI Income Lab community, where you get courses, templates and help while you build.
 
-2. The free written build guides, step by step:
-${site}/guides.html
+Your next steps:
 
-3. Every video, grouped by tool (Claude Code, n8n, Make.com, AI agents and more):
-${site}/videos
+Start Here
+https://www.ai-automation-station.com/start-here.html
 
-If you want help building alongside other people, that's what AI Income Lab is for: courses, templates and 2,900+ members on Skool. Have a look whenever you're ready:
-${site}/#community
+Guides
+https://www.ai-automation-station.com/guides.html
 
-Hit reply and tell me what you're trying to build. I read every reply, and it shapes what I test next.
+YouTube channel
+https://www.youtube.com/@ai-automation-station
+
+Community
+https://www.ai-automation-station.com/#community
 
 Mike Holp
 AI Automation Station
 
-You're getting this because this address signed up for the build notes on ${site.replace("https://", "")}. Not you, or changed your mind? Reply "unsubscribe" and I'll take you off the list.`,
+You're getting this because this address signed up for the build notes on ai-automation-station.com. Not you, or changed your mind? Reply "unsubscribe" and I'll take you off the list.`,
+  html: `<div>
+<p>Hi, Mike here. Thanks for signing up for the weekly build notes.</p>
+
+<p>AI Automation Station is my YouTube channel and written guides on practical AI automation with tools like GrokBot, Claude Code and Codex.</p>
+
+<p>You'll get new guides and tested builds in one short email each week, with video breakdowns and practical workflows.</p>
+
+<p>The website holds the written guides and the AI Income Lab community, where you get courses, templates and help while you build.</p>
+
+<p>Your next steps:</p>
+
+<p><a href="https://www.ai-automation-station.com/start-here.html">Start Here</a></p>
+
+<p><a href="https://www.ai-automation-station.com/guides.html">Guides</a></p>
+
+<p><a href="https://www.youtube.com/@ai-automation-station">YouTube channel</a></p>
+
+<p><a href="https://www.ai-automation-station.com/#community">Community</a></p>
+
+<p>Mike Holp<br>AI Automation Station</p>
+
+<footer><p>You're getting this because this address signed up for the build notes on <a href="https://www.ai-automation-station.com" style="color:inherit;text-decoration:none">ai-automation-station.com</a>. Not you, or changed your mind? Reply "unsubscribe" and I'll take you off the list.</p></footer>
+</div>`,
 };
 
 export async function POST(req) {

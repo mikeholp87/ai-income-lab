@@ -35,7 +35,8 @@ test('a new signup adds a subscribed contact and sends the welcome email', async
   assert.deepEqual(mail.to, ['ada@example.com']);
   assert.match(mail.from, /@ai-automation-station\.com>$/);
   assert.equal(mail.subject, welcome.subject);
-  assert.match(mail.text, /start-here\.html[\s\S]*guides\.html[\s\S]*\/videos[\s\S]*Reply "unsubscribe"/);
+  assert.match(mail.text, /start-here\.html[\s\S]*guides\.html[\s\S]*youtube\.com\/@ai-automation-station[\s\S]*Reply "unsubscribe"/);
+  assert.equal(mail.html, welcome.html);
 });
 
 test('an address already on the list counts as done and is not welcomed twice', async () => {
