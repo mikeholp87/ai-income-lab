@@ -1,4 +1,4 @@
-import { channelUrl, clock, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
+import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { watchNotes } from './watch-notes.js';
@@ -23,6 +23,7 @@ export function parseUploads(pages) {
       title: snippet.title,
       published: contentDetails?.videoPublishedAt ?? snippet.publishedAt,
       summary: summarize(snippet.description ?? ''),
+      details: describe(snippet.description ?? ''),
       chapters: parseChapters(snippet.description ?? ''),
     }))
     .sort((a, b) => b.published.localeCompare(a.published));
@@ -239,6 +240,8 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const transcript = transcripts[video.id] ? transcriptParagraphs(transcripts[video.id]) : [];
   // The opening stays visible so the page carries the video's own words; the rest folds away.
   const openParagraphs = 2;
+  // From the YouTube description only, skipping the paragraph already shown above.
+  const summaryParagraphs = (video.details ?? []).filter(paragraph => paragraph !== description);
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
@@ -285,11 +288,16 @@ ${jsonLd(breadcrumbs)}
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(video.title)}</span></nav>
 <h1>${escape(video.title)}</h1>
-<a class="player" href="https://www.youtube.com/watch?v=${video.id}" data-embed="${playerUrl(video)}${start ? `?start=${start}` : ''}" aria-label="Play ${escape(video.title)}"><img src="${thumbnailUrl(video)}" alt="" width="480" height="360" fetchpriority="high" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a>
+<iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(video.title)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
-<p class="description">${escape(description)}</p>${notes ? `
+<p class="description">${escape(description)}</p>${summaryParagraphs.length || chapters.length ? `
+<section aria-labelledby="video-summary">
+<h2 id="video-summary">Video summary</h2>
+${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${chapters.length ? `
+<p>The video covers ${chapters.length} parts: ${escape(listFormat.format(chapters.map(chapter => chapter.label)))}.</p>` : ''}
+</section>` : ''}${notes ? `
 <section aria-labelledby="notes">
 <h2 id="notes">What I tested</h2>
 <p>${escape(notes.tested)}</p>
@@ -302,8 +310,11 @@ ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].
 <p class="meta">${escape(notes.note)}</p>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide && !watchNotes[video.id]?.html?.includes(guide[1]) ? `
-<p>Prefer reading? Follow the written guide: <a href="${guide[1]}">${guide[2]}</a>.</p>` : ''}${topic ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide ? `
+<section aria-labelledby="related-guides">
+<h2 id="related-guides">Related guides</h2>
+<ul><li><a href="${guide[1]}">${guide[2]}</a></li></ul>
+</section>` : ''}${topic ? `
 <p>More on this topic: <a href="/videos/${topic.slug}">${escape(topic.heading)}</a>.</p>` : ''}
 ${watchNotes[video.id]?.html ?? ''}${transcript.length ? `
 <section aria-labelledby="transcript">
@@ -352,4 +363,25 @@ export function renderPageSitemap(xml, videos) {
   // The homepage lists the latest uploads, so it is at least as fresh as the newest one.
   const home = core.replace(new RegExp(`(<loc>${site}/</loc><lastmod>)([\\d-]+)(</lastmod>)`), (match, open, date, close) => `${open}${[date, lastmod(videos)].filter(Boolean).sort().at(-1)}${close}`);
   return home.replace('</urlset>', `${[...archive, ...topicPages].join('\n')}\n</urlset>`);
+}
+
+// Guide path → its matching watch pages (newest first), using the same title patterns as the watch pages.
+export function guideVideos(videos, count = 3) {
+  const map = new Map();
+  for (const video of videos.filter(video => video.embeddable)) {
+    const guide = guides.find(([pattern]) => pattern.test(video.title));
+    if (!guide) continue;
+    const list = map.get(guide[1]) ?? [];
+    if (list.length < count) list.push(video);
+    map.set(guide[1], list);
+  }
+  return map;
+}
+
+export function addGuideVideos(html, path, videos) {
+  const list = guideVideos(videos).get(path);
+  if (!list || html.includes('id="watch-the-video"')) return html;
+  const section = `<section aria-labelledby="watch-the-video"><h2 id="watch-the-video">Watch the video</h2><ul>${list.map(video => `<li><a href="/watch/${video.id}">${escape(video.title)}</a></li>`).join('')}</ul></section>\n`;
+  const at = html.indexOf('<aside class="note next-steps"');
+  return at === -1 ? html.replace('</main>', `${section}</main>`) : html.slice(0, at) + section + html.slice(at);
 }

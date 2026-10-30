@@ -132,13 +132,13 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
-  assert.match(html, new RegExp(`data-embed="${schema.embedUrl}"`));
+  assert.match(html, new RegExp(`<iframe class="player" src="${schema.embedUrl}"`));
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
-  // A thumbnail link stands in for the player: no YouTube scripts until play, and without JS it opens YouTube.
+  // A real embedded player near the top, so the video is the page's main content.
   assert.equal((html.match(/class="player"/g) ?? []).length, 1);
-  assert.doesNotMatch(html, /<iframe /);
-  assert.match(html, /<a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=aaaaaaaaaaa"[^>]*aria-label="Play [^"]+"><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg"[^>]*fetchpriority="high"/);
+  assert.match(html, /<iframe class="player" src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa" title="[^"]+"[^>]*allowfullscreen><\/iframe>/);
+  assert.doesNotMatch(html, /<iframe class="player"[^>]*loading=/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
@@ -306,7 +306,7 @@ test('guide discovery includes title-only notes and avoids repeated companion li
   assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
   assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
   assert.match(companion, /<link rel="preconnect" href="https:\/\/i.ytimg.com">/);
-  assert.match(companion, /<a class="player" [^>]*data-embed="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.match(companion, /<iframe class="player" src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
   assert.doesNotMatch(companion, /loading="lazy"/);
 });
 
@@ -552,7 +552,7 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.item), ['https://www.ai-automation-station.com/', 'https://www.ai-automation-station.com/videos', 'https://www.ai-automation-station.com/videos/n8n', 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa']);
   assert.match(html, /<a href="\/videos">Videos<\/a> \/ <a href="\/videos\/n8n">n8n<\/a> \/ <span aria-current="page">/);
   assert.match(html, /More on this topic: <a href="\/videos\/n8n">/);
-  assert.match(html, /Follow the written guide: <a href="\/guides\/self-host-n8n.html">/);
+  assert.match(html, /Related guides<\/h2>\n<ul><li><a href="\/guides\/self-host-n8n.html">/);
   assert.match(html, /<form class="notes" data-subscribe data-placement="watch_end">/);
 });
 
