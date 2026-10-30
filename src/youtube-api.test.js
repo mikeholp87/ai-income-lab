@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-const cache = 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400';
+const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
 const playlist = { items: [{ snippet: { resourceId: { videoId: 'aaaaaaaaaaa' }, title: 'A build', publishedAt: '2026-10-05T12:37:47Z', description: 'Build an agent.' } }] };
 const details = { items: [{ id: 'aaaaaaaaaaa', statistics: { viewCount: '9191' }, contentDetails: { duration: 'PT12M4S' }, status: { embeddable: true } }] };
 const channel = { items: [{ statistics: { subscriberCount: '5120', viewCount: '498055', videoCount: '336' } }] };

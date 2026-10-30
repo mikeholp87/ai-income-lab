@@ -594,3 +594,18 @@ test('archive pages carry breadcrumbs and named list items, and the sitemap date
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos<\/loc><lastmod>2026-10-02<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos\/n8n<\/loc><lastmod>2026-09-01<\/lastmod>/);
 });
+
+test('a new upload reaches /videos within an hour via the cheap newest-upload probe', async t => {
+  const ids = ['geKngm3sg3w'];
+  const { request, calls, advance } = await earlyRefreshHarness(t, ids);
+  ids.unshift('newupload02');
+  advance(1800000);
+  assert.doesNotMatch(await (await request('/videos')).text(), /newupload02/, 'no probe within the hour');
+  assert.equal(calls(), 2);
+  advance(1800001);
+  assert.match(await (await request('/videos')).text(), /href="\/watch\/newupload02"/);
+  assert.equal(calls(), 5, 'one probe plus one full refresh');
+  advance(3600001);
+  await request('/videos');
+  assert.equal(calls(), 6, 'probe finds nothing new, no refresh');
+});

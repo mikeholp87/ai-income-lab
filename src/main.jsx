@@ -313,7 +313,8 @@ function VideoCard({ video, placement }) {
 function VideoGrid({ videos, failed }) {
   // The featured slot above already shows the error and a YouTube link.
   if (failed) return null;
-  const items = videos ? videos.slice(1) : Array(6).fill(null);
+  // Starts with the newest upload too, so the hero, this grid and /videos all lead with the same video.
+  const items = videos ? videos.slice(0, 6) : Array(6).fill(null);
   return (
     <ul className="video-grid reveal-group" aria-busy={!videos}>
       {items.map((video, index) => video
@@ -581,11 +582,11 @@ function NotesSignup({ placement = 'footer' }) {
     <form className={`notes-signup${isHero ? ' notes-signup--hero' : ''}`} onSubmit={subscribe} onFocusCapture={event => {
       if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: `${placement}_notes` }); }
     }}>
-      <label htmlFor={emailId}>{isHero ? 'Get the weekly build notes by email.' : 'Weekly build notes: new guides and tested builds in one short email.'}</label>
-      {!complete && <div>
+      <label htmlFor={emailId}>{isHero ? 'Weekly build notes, free' : 'Weekly build notes: new guides and tested builds in one short email.'}</label>
+      {!complete && <div className={isHero ? 'notes-signup-pill' : undefined}>
         <input id={emailId} name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" aria-invalid={status === 'invalid' || undefined} aria-describedby={status === 'invalid' ? errorId : undefined} onInvalid={() => setStatus('invalid')} />
         <input className="contact-trap" name="hp" tabIndex="-1" autoComplete="off" aria-hidden="true" />
-        <button className="button" type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing…' : 'Subscribe')}</button>
+        <button className={isHero ? 'button button-primary' : 'button'} type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing…' : 'Subscribe')}</button>
       </div>}
       {status === 'invalid' && <p id={errorId} className="notes-signup-status" role="alert" aria-live="assertive">Enter a valid email address.</p>}
       {status === 'failed' && <p className="notes-signup-status" role="alert" aria-live="assertive">That didn&rsquo;t go through. Try again in a minute.</p>}

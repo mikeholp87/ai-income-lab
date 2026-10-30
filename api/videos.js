@@ -1,6 +1,6 @@
 import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sponsoredVideos } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
-import { channelUrl } from '../src/youtube.js';
+import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
 
 const day = 86400000;
@@ -16,9 +16,20 @@ const earlyRefreshGap = 600000;
 let attemptedAt = Date.now();
 // Unknown-id answers (404 or the YouTube redirect) are cached briefly at the CDN so repeats never reach the function.
 const unknownCache = 'public, max-age=0, s-maxage=600';
+// The homepage feed (/api/youtube) and this archive are separate functions with separate caches. Without a probe the
+// archive kept a list up to a day old (plus a day of CDN staleness), so a new upload led the homepage hero but was
+// missing from /videos. Once an hour, one playlistItems call (1 quota unit) checks the newest upload; an unknown id
+// triggers the full refresh.
+const probeGap = 3600000;
+let probedAt = Date.now(); // Like attemptedAt: a cold instance serves its snapshot and probes an hour later, so new instances cannot burn quota.
+async function newestUploadId(key) {
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=1&playlistId=${longFormPlaylistId}&key=${key}`, { signal: AbortSignal.timeout(5000) });
+  if (!response.ok) return null;
+  return (await response.json()).items?.[0]?.snippet?.resourceId?.videoId ?? null;
+}
 
 function refreshUploads() {
-  attemptedAt = Date.now();
+  attemptedAt = probedAt = Date.now();
   const key = process.env.YOUTUBE_API_KEY;
   // Share a bounded refresh; retry failed upstream requests after five minutes.
   refresh ??= (key ? fetchUploads(key) : Promise.resolve(null))
@@ -52,8 +63,13 @@ export async function GET(request) {
   if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
 
   if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();
+  else if (process.env.YOUTUBE_API_KEY && Date.now() - probedAt >= probeGap && Date.now() >= retryAt) {
+    probedAt = Date.now();
+    const newest = await newestUploadId(process.env.YOUTUBE_API_KEY).catch(() => null);
+    if (newest && !memo.videos.some(video => video.id === newest)) await refreshUploads();
+  }
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
-  const cache = 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400';
+  const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
   // The homepage swaps in this list, so a newly ticked paid-promotion box shows within a day, no rebuild needed.
   if (sponsored) return Response.json(sponsoredVideos(memo.videos), { headers: { 'Cache-Control': cache } });
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });
