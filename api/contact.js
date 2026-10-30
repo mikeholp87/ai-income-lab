@@ -3,7 +3,7 @@
 // answers 503 and the page offers a prefilled mailto link instead.
 export const runtime = "nodejs";
 
-const TO = "automojic@proton.me";
+export const TO = "automojic@proton.me";
 const FROM = "AI Automation Station <contact@ai-automation-station.com>";
 const LIMITS = { name: 100, email: 254, topic: 120, message: 5000 };
 
