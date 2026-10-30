@@ -1,6 +1,7 @@
 import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
 
-const day = 86400000;
+// Hourly, to match /api/videos' newest-upload probe so the hero and /videos pick up a new upload in the same hour.
+const hour = 3600000;
 // Fluid Compute reuses instances, so this survives between requests. Cache-busting query strings
 // skip the CDN but not this, which keeps them from draining the API quota.
 let memo = { at: 0, feed: null };
@@ -49,9 +50,9 @@ async function fetchFeed(statuses) {
   return null;
 }
 
-// GET /api/youtube → latest long-form uploads and channel counts as JSON, refreshed once a day to save API quota.
+// GET /api/youtube → latest long-form uploads and channel counts as JSON, refreshed hourly (about 3 quota units per instance per hour).
 export async function GET() {
-  if (memo.feed && Date.now() - memo.at < day) return cached(memo.feed);
+  if (memo.feed && Date.now() - memo.at < hour) return cached(memo.feed);
   if (Date.now() >= retryAt) {
     refresh ??= fetchFeed(statuses = [])
       .catch(error => { statuses.push(error.message); return null; })

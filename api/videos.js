@@ -21,7 +21,7 @@ const unknownCache = 'public, max-age=0, s-maxage=600';
 // missing from /videos. Once an hour, one playlistItems call (1 quota unit) checks the newest upload; an unknown id
 // triggers the full refresh.
 const probeGap = 3600000;
-let probedAt = memo.at;
+let probedAt = Date.now(); // Like attemptedAt: a cold instance serves its snapshot and probes an hour later, so new instances cannot burn quota.
 async function newestUploadId(key) {
   const response = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=1&playlistId=${longFormPlaylistId}&key=${key}`, { signal: AbortSignal.timeout(5000) });
   if (!response.ok) return null;
