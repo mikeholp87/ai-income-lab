@@ -8,7 +8,7 @@ let refresh;
 let retryAt = 0;
 let statuses = [];
 
-const cached = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400' } });
+const cached = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600' } });
 
 // Data API when YOUTUBE_API_KEY is set (3 quota units per call), otherwise the public RSS feed.
 // Only the Data API has channel counts; without them the page keeps its built-in numbers.
