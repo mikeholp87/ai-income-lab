@@ -22,7 +22,9 @@ test('a new signup adds a subscribed contact and sends the welcome email', async
   process.env.RESEND_API_KEY = 're_full';
   const calls = [];
   globalThis.fetch = async (url, init) => { calls.push([url, JSON.parse(init.body)]); return new Response('{}', { status: 200 }); };
-  assert.equal((await post({ email: ' Ada@Example.com ' })).status, 200);
+  const response = await post({ email: ' Ada@Example.com ' });
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { ok: true, welcomeSent: true });
   assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
   const [url, mail] = calls[1];
   assert.equal(url, 'https://api.resend.com/emails');
@@ -47,7 +49,11 @@ test('a failed welcome email still reports the signup as done', async () => {
   const logged = console.error;
   console.error = () => {};
   globalThis.fetch = async url => new Response('{}', { status: url.endsWith('/emails') ? 500 : 200 });
-  try { assert.equal((await post({ email: 'ada@example.com' })).status, 200); }
+  try {
+    const response = await post({ email: 'ada@example.com' });
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { ok: true, welcomeSent: false });
+  }
   finally { console.error = logged; }
 });
 

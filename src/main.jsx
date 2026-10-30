@@ -557,12 +557,14 @@ function NotesSignup() {
     event.preventDefault();
     const form = event.currentTarget;
     setStatus('sending');
-    const ok = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }).then(response => response.ok, () => false);
-    setStatus(ok ? 'done' : 'failed');
-    if (ok) trackEvent('Newsletter Signup', { placement: 'footer' });
+    const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }).then(response => response.ok ? response.json() : null).catch(() => null);
+    setStatus(!result ? 'failed' : result.already ? 'already' : result.welcomeSent === false ? 'welcome_failed' : 'done');
+    if (result) trackEvent('Newsletter Signup', { placement: 'footer' });
   }
 
   if (status === 'done') return <p className="notes-signup-status" role="status">You&rsquo;re in. The next build notes will land in your inbox.</p>;
+  if (status === 'already') return <p className="notes-signup-status" role="status">You&rsquo;re already on the list. No new welcome email was sent.</p>;
+  if (status === 'welcome_failed') return <p className="notes-signup-status" role="status">You&rsquo;re subscribed, but the welcome email could not be sent. Email <a href="mailto:automojic@proton.me">automojic@proton.me</a> if you need help.</p>;
   return (
     <form className="notes-signup" onSubmit={subscribe} onFocusCapture={event => {
       if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: 'footer_notes' }); }
