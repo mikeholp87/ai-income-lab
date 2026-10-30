@@ -175,6 +175,7 @@ ${pager(page, pages)}
 const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+const videoHeading = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || watchHeading(video.title);
 const videoDescription = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || video.summary || `Watch ${video.title} by AI Automation Station.`;
 const number = new Intl.NumberFormat('en');
 
@@ -260,7 +261,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: trail.map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
   };
-  const heading = watchNotes[video.id]?.searchTitle || notes?.searchTitle || watchHeading(video.title);
+  const heading = videoHeading(video);
   const meta = [`<time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>`, seconds && clock(seconds), video.views > 0 && `${number.format(video.views)} views`].filter(Boolean).join(' · ');
   return `<!doctype html>
 <html lang="en"><head>
@@ -330,8 +331,8 @@ ${transcript.slice(0, openParagraphs).map(paragraph => `<p>${escape(paragraph)}<
 <p><a class="action" href="https://www.skool.com/ai-automation-station-7346/plans" data-placement="watch_video" data-video-id="${video.id}" target="_blank" rel="noreferrer">Join AI Income Lab ↗</a></p>
 </aside>
 <form class="notes" data-subscribe data-placement="watch_end"><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>${related.length ? `
-<h2>More builds</h2>
-<ul class="related">${related.map(other => `<li><a href="/watch/${other.id}">${escape(other.title)}</a></li>`).join('')}</ul>` : ''}
+<h2>You may also like</h2>
+<ul class="related">${related.map(other => `<li><a href="/watch/${other.id}"><img src="https://i.ytimg.com/vi/${other.id}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>${escape(videoHeading(other))}</span></a></li>`).join('')}</ul>` : ''}
 </main>
 <script>${playerScript}</script>
 <footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>

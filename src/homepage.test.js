@@ -148,7 +148,7 @@ test('the homepage shows six featured guide cards and links the full guides page
   }
   assert.match(section, /<a className="guide-card" href=\{`\/guides\/\$\{guide\.slug\}\.html`\}>/);
   assert.match(section, /alt=\{guide\.alt\}/);
-  assert.match(section, /<a className="text-link" href="\/guides\.html">Continue reading with all guides<\/a>/);
+  assert.match(section, /<a className="button button-primary" href="\/guides\.html"[^>]*>Continue reading with all guides<\/a>/);
   // The guides hub keeps every written guide linked for crawling.
   const hub = await readFile(new URL('../public/guides.html', import.meta.url), 'utf8');
   const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));

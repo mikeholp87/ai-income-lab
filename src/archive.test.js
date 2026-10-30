@@ -78,7 +78,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/9router-setup.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
-  assert.match(html, /More builds<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE">/);
+  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><img src="https:\/\/i\.ytimg\.com\/vi\/tzSGF7gu6EE\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
   assert.doesNotMatch(html, /lbBZ7uLJwbM/);
   const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
   assert.ok(description.length <= 160 && description.endsWith('costs.'), description);

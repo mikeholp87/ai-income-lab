@@ -807,7 +807,7 @@ function App({ page = 'home' }) {
               </li>
             ))}
           </ul>
-          <p className="guide-more"><a className="text-link" href="/guides.html">Continue reading with all guides</a></p>
+          <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
           <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
         </div>
       </section>
