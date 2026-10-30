@@ -67,7 +67,7 @@ export async function POST(req) {
     console.error("subscribe", err);
     return Response.json({ error: "failed" }, { status: 502 });
   }
-  // The signup already succeeded; a failed welcome is logged, not reported to the visitor.
+  // The contact already exists even when the welcome email fails.
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -79,6 +79,7 @@ export async function POST(req) {
     console.log("subscribe: welcome sent", (await res.json().catch(() => ({}))).id ?? "");
   } catch (err) {
     console.error("subscribe welcome", err);
+    return Response.json({ ok: true, welcomeSent: false });
   }
-  return Response.json({ ok: true });
+  return Response.json({ ok: true, welcomeSent: true });
 }
