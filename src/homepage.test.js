@@ -69,7 +69,7 @@ test('the guides section follows videos in the header and page, with one start l
   assert.doesNotMatch(jsx, /Start your first build|Prefer a recording\?|'video_grid'|Every video on YouTube/);
   // Fixed /watch/ links keep evergreen video pages linked from the homepage for indexing.
   for (const id of ['7v_675nO7nM', 'geKngm3sg3w', 'G8u1-hKEqig']) assert.match(jsx, new RegExp(`href="/watch/${id}"`));
-  assert.match(media('(max-width: 640px)'), /\.build-guides ul \{ grid-template-columns: 1fr; \}/);
+  assert.match(media('(max-width: 640px)'), /\.build-guides \.guide-cards \{ grid-template-columns: 1fr; gap: 24px; \}/);
 });
 
 test('the build list shows three projects', () => {
@@ -132,11 +132,25 @@ test('footer social links show an icon beside each name', () => {
   assert.doesNotMatch(jsx, /Sponsor a video \/ book a call/);
 });
 
-test('the homepage links every written guide so new guides are found and crawled', async () => {
-  const { readdir } = await import('node:fs/promises');
+test('the homepage shows six featured guide cards and links the full guides page', async () => {
+  const { readdir, readFile, access } = await import('node:fs/promises');
+  const start = jsx.indexOf('id="guides"');
+  const section = jsx.slice(start, jsx.indexOf('</section>', start));
+  const slugs = [...jsx.matchAll(/\{ slug: '([^']+)'/g)].map(m => m[1]);
+  assert.equal(slugs.length, 6);
+  for (const slug of slugs) {
+    await access(new URL(`../public/guides/${slug}.html`, import.meta.url));
+    await access(new URL(`../public/assets/guides/${slug}.webp`, import.meta.url));
+    await access(new URL(`../public/assets/guides/sizes/${slug}-640.webp`, import.meta.url));
+  }
+  assert.match(section, /<a className="guide-card" href=\{`\/guides\/\$\{guide\.slug\}\.html`\}>/);
+  assert.match(section, /alt=\{guide\.alt\}/);
+  assert.match(section, /<a className="text-link" href="\/guides\.html">Continue reading with all guides<\/a>/);
+  // The guides hub keeps every written guide linked for crawling.
+  const hub = await readFile(new URL('../public/guides.html', import.meta.url), 'utf8');
   const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
   assert.ok(guides.length >= 9);
-  for (const file of guides) assert.match(jsx, new RegExp(`<a href="/guides/${file.replace('.', '\\.')}">`), file);
+  for (const file of guides) assert.match(hub, new RegExp(`href="/guides/${file.replace('.', '\\.')}"`), file);
 });
 
 test('sponsored videos sit directly above the booking section', () => {
