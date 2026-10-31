@@ -41,26 +41,70 @@ test('a signup only sends a confirmation link, and adds nobody yet', async () =>
 test('the confirmation link adds the contact, tells Mike and sends the unchanged welcome', async () => {
   process.env.RESEND_API_KEY = 're_full';
   const calls = [];
-  globalThis.fetch = async (url, init) => { calls.push([url, JSON.parse(init.body)]); return new Response('{}', { status: 200 }); };
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push([init.method ?? 'GET', url, init.body && JSON.parse(init.body)]);
+    return init.method ? new Response('{}', { status: 200 }) : new Response('{"name":"not_found"}', { status: 404 });
+  };
   const res = await confirm(await signConfirmation('ada@example.com', 'https://www.ai-automation-station.com/'));
   assert.equal(res.status, 303);
   assert.match(res.headers.get('location'), /subscribe=confirmed/);
-  assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
-  assert.deepEqual(calls[1][1].to, ['automojic@proton.me']);
-  assert.match(calls[1][1].text, /Page: https:\/\/www\.ai-automation-station\.com\//);
-  const mail = calls[2][1];
+  assert.deepEqual(calls[0], ['GET', 'https://api.resend.com/contacts/ada%40example.com', undefined]);
+  assert.deepEqual(calls[1], ['POST', 'https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
+  assert.deepEqual(calls[2][2].to, ['automojic@proton.me']);
+  assert.match(calls[2][2].text, /Page: https:\/\/www\.ai-automation-station\.com\//);
+  const mail = calls[3][2];
   assert.deepEqual(mail.to, ['ada@example.com']);
   assert.equal(mail.subject, welcome.subject);
   assert.equal(mail.text, welcome.text);
 });
 
-test('an address already on the list is not welcomed twice', async () => {
+test('an address already on the list is not welcomed twice and Mike is not told again', async () => {
   process.env.RESEND_API_KEY = 're_full';
-  const urls = [];
-  globalThis.fetch = async url => { urls.push(url); return new Response('{}', { status: 409 }); };
+  const calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push([init.method ?? 'GET', url]);
+    return new Response('{"object":"contact","email":"ada@example.com","unsubscribed":false}', { status: 200 });
+  };
   const res = await confirm(await signConfirmation('ada@example.com'));
   assert.match(res.headers.get('location'), /subscribe=confirmed/);
-  assert.deepEqual(urls, ['https://api.resend.com/contacts']);
+  assert.deepEqual(calls, [['GET', 'https://api.resend.com/contacts/ada%40example.com']]);
+});
+
+test('a contact created between the lookup and the add is not welcomed twice', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push(init.method ?? 'GET');
+    return new Response('{}', { status: init.method ? 409 : 404 });
+  };
+  const res = await confirm(await signConfirmation('ada@example.com'));
+  assert.match(res.headers.get('location'), /subscribe=confirmed/);
+  assert.deepEqual(calls, ['GET', 'POST']);
+});
+
+test('an address that unsubscribed earlier is resubscribed and welcomed', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push([init.method ?? 'GET', url, init.body && JSON.parse(init.body)]);
+    return new Response(init.method ? '{}' : '{"object":"contact","unsubscribed":true}', { status: 200 });
+  };
+  const res = await confirm(await signConfirmation('ada@example.com'));
+  assert.match(res.headers.get('location'), /subscribe=confirmed/);
+  assert.deepEqual(calls[1], ['PATCH', 'https://api.resend.com/contacts/ada%40example.com', { unsubscribed: false }]);
+  assert.deepEqual(calls[2][2].to, ['automojic@proton.me']);
+  assert.equal(calls[3][2].subject, welcome.subject);
+});
+
+test('a failed contact lookup adds nobody and sends nothing', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const calls = [];
+  globalThis.fetch = async (url, init = {}) => { calls.push(init.method ?? 'GET'); return new Response('down', { status: 500 }); };
+  const logged = console.error;
+  console.error = () => {};
+  try { assert.match((await confirm(await signConfirmation('ada@example.com'))).headers.get('location'), /subscribe=failed/); }
+  finally { console.error = logged; }
+  assert.deepEqual(calls, ['GET']);
 });
 
 test('tampered, expired or unsigned links add nobody', async () => {

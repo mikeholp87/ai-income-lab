@@ -128,21 +128,40 @@ export async function verifyConfirmation(token, now = Date.now()) {
 }
 
 async function addSubscriber(email, page) {
+  const headers = { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" };
+  const contact = `https://api.resend.com/contacts/${encodeURIComponent(email)}`;
+  // Already subscribed: they were welcomed before, so no second welcome or owner alert, but the
+  // response matches a new signup so the form cannot be used to check who is subscribed.
+  const alreadySubscribed = () => {
+    console.log("subscribe: already on the list, no welcome sent");
+    return { ok: true, welcomeSent: true };
+  };
   try {
-    const res = await fetch("https://api.resend.com/contacts", {
-      method: "POST",
-      signal: AbortSignal.timeout(8000),
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ email, unsubscribed: false }),
-    });
-    // 409: already on the list. They were welcomed before, so no second welcome is sent, but the
-    // response matches a new signup so the form cannot be used to check who is subscribed.
-    if (res.status === 409) {
-      console.log("subscribe: already on the list, no welcome sent");
-      return { ok: true, welcomeSent: true };
+    // Resend accepts a POST for an existing contact instead of answering 409, so look it up first.
+    const found = await fetch(contact, { signal: AbortSignal.timeout(8000), headers });
+    if (found.ok) {
+      if (!(await found.json().catch(() => ({}))).unsubscribed) return alreadySubscribed();
+      const res = await fetch(contact, {
+        method: "PATCH",
+        signal: AbortSignal.timeout(8000),
+        headers,
+        body: JSON.stringify({ unsubscribed: false }),
+      });
+      if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+      console.log("subscribe: contact resubscribed");
+    } else if (found.status === 404) {
+      const res = await fetch("https://api.resend.com/contacts", {
+        method: "POST",
+        signal: AbortSignal.timeout(8000),
+        headers,
+        body: JSON.stringify({ email, unsubscribed: false }),
+      });
+      if (res.status === 409) return alreadySubscribed();
+      if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+      console.log("subscribe: contact added");
+    } else {
+      throw new Error(`Resend ${found.status} ${await found.text()}`);
     }
-    if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
-    console.log("subscribe: contact added");
   } catch (err) {
     console.error("subscribe", err);
     return { ok: false };
