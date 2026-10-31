@@ -63,3 +63,18 @@ test('the search pages fall back to searching inside videos and guides', async (
   // The client and the API normalize queries the same way, so the CDN caches repeats.
   assert.match(await read('public/inside-search.js'), /text\.toLowerCase\(\)\.replace\(\/\\s\+\/g, ' '\)\.trim\(\)\.slice\(0, 120\)/);
 });
+
+test('search answers 429 once one address makes too many uncached searches', async () => {
+  const { GET } = await import('../api/search.js');
+  const saved = process.env.SUPERMEMORY_API_KEY;
+  delete process.env.SUPERMEMORY_API_KEY;
+  try {
+    const ask = () => GET(new Request('https://www.ai-automation-station.com/api/search?q=corepack', { headers: { 'x-forwarded-for': '203.0.113.60' } }));
+    for (let i = 0; i < 30; i += 1) assert.equal((await ask()).status, 503);
+    const res = await ask();
+    assert.equal(res.status, 429);
+    assert.equal(res.headers.get('cache-control'), 'no-store');
+  } finally {
+    if (saved !== undefined) process.env.SUPERMEMORY_API_KEY = saved;
+  }
+});

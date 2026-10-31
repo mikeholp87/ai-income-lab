@@ -1,6 +1,8 @@
 // Contact form: emails the site owner through Resend, with Reply-To set to the visitor.
 // Env: RESEND_API_KEY (sending access for ai-automation-station.com). Without it the form
 // answers 503 and the page offers a prefilled mailto link instead.
+import { clientIp, createRateLimiter, tooManyRequests } from "../src/rate-limit.js";
+
 export const runtime = "nodejs";
 
 export const TO = "automojic@proton.me";
@@ -22,7 +24,12 @@ export function readContact(body) {
   return fields;
 }
 
+// 5 messages per IP per 10 minutes, per warm instance (see src/rate-limit.js for its limits).
+export const limitContact = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 1000 });
+
 export async function POST(req) {
+  const limited = limitContact(clientIp(req.headers));
+  if (!limited.ok) return tooManyRequests(limited.retryAfter);
   let body;
   try { body = await req.json(); }
   catch { return Response.json({ error: "invalid" }, { status: 400 }); }

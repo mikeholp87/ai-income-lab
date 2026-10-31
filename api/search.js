@@ -1,7 +1,13 @@
 import { Supermemory } from 'supermemory';
 import { namespace, searchRows } from '../src/site-memory.js';
 
+import { clientIp, createRateLimiter, tooManyRequests } from '../src/rate-limit.js';
+
 export const runtime = 'nodejs';
+
+// 30 searches per IP per minute, per warm instance (see src/rate-limit.js for its limits).
+// CDN cache hits never reach this function, so only uncached, paid Supermemory calls count.
+export const limitSearch = createRateLimiter({ limit: 30, windowMs: 60 * 1000 });
 
 // Clients send the query lowercased and trimmed, so the CDN serves repeats without another Supermemory call.
 export const normalizeQuery = text => String(text ?? '').toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 120);
@@ -12,6 +18,8 @@ const noStore = { 'Cache-Control': 'no-store' };
 export async function GET(request) {
   const query = normalizeQuery(new URL(request.url).searchParams.get('q'));
   if (query.length < 3) return Response.json([], { headers: noStore });
+  const limited = limitSearch(clientIp(request.headers));
+  if (!limited.ok) return tooManyRequests(limited.retryAfter);
   if (!process.env.SUPERMEMORY_API_KEY) return Response.json({ error: 'Search inside videos is not configured.' }, { status: 503, headers: noStore });
   try {
     const { results } = await new Supermemory().search(namespace, { query, searchMode: 'chunks', limit: 20, threshold: 0.5 }, { timeoutInSeconds: 8, maxRetries: 1 });

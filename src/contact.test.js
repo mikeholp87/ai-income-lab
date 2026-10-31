@@ -5,7 +5,8 @@ import { POST, readContact } from '../api/contact.js';
 const savedKey = process.env.RESEND_API_KEY;
 const savedFetch = globalThis.fetch;
 const valid = { name: 'Ada', email: 'ada@example.com', topic: 'Sponsored video', message: 'Hi there' };
-const post = body => POST(new Request('https://x/api/contact', { method: 'POST', body: typeof body === 'string' ? body : JSON.stringify(body) }));
+let ip = 0;
+const post = (body, headers = { 'x-forwarded-for': `198.51.100.${++ip}` }) => POST(new Request('https://x/api/contact', { method: 'POST', headers, body: typeof body === 'string' ? body : JSON.stringify(body) }));
 
 afterEach(() => {
   if (savedKey === undefined) delete process.env.RESEND_API_KEY;
@@ -54,4 +55,10 @@ test('a Resend failure answers 502 so the page can offer mailto', async () => {
   globalThis.fetch = async () => new Response('nope', { status: 422 });
   try { assert.equal((await post(valid)).status, 502); }
   finally { console.error = logged; }
+});
+
+test('one address that keeps posting gets 429 before anything is sent', async () => {
+  const headers = { 'x-forwarded-for': '203.0.113.50' };
+  for (let i = 0; i < 5; i += 1) assert.equal((await post({}, headers)).status, 400);
+  assert.equal((await post({}, headers)).status, 429);
 });
