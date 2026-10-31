@@ -72,6 +72,7 @@ export const videoTools = {
   "PDfEWpyyRMI": ["Syllaby","ChatGPT","YouTube"],
   "PS31s8REvlw": ["Claude Sonnet 5.5","Claude Desktop","Claude Code"],
   "QMqe2ubsn0g": ["DextroLab","Make.com"],
+  "gebtJAsMioo": ["TubeAnalytics"],
   "Qb6RG0-8O1k": ["Free Claude Code","NVIDIA NIM","OpenRouter","Claude Code","Claude Desktop","Next.js"],
   "QlL87_URHZ8": ["Nano Banana","Google AI Studio","Google Gemini","Make.com"],
   "R90zVHmoj7A": ["Make.com","Google Sheets","Gmail","OpenAI API","Airtable","Apify","Apollo","Facebook"],

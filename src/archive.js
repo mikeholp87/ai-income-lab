@@ -130,6 +130,14 @@ const card = (video, eager) => {
 <p class="summary">${escape(videoDescription(video))}</p></a></li>`;
 };
 
+// Rows for the /videos search box, served live at /video-index.json so new uploads are searchable before a rebuild:
+// [id, href, title, description, keywords, published, views, duration]. Keywords are the plain search title and tools.
+export const videoIndex = videos => videos.map(video => [
+  video.id, videoHref(video), video.title, snippet(videoDescription(video), 200),
+  [searchTitle(video), ...(videoSummaries[video.id]?.toolsUsed ?? videoTools[video.id] ?? [])].filter(Boolean).join(' '),
+  video.published, Number.isFinite(video.views) ? video.views : null, formatDuration(video.duration),
+]);
+
 // One page of the archive, 15 videos per page (callers check the page is within pageCount(videos)),
 // or with `topic`, every matching video on a single page at /videos/<slug>. `sort` is a key of `sorts`.
 export function renderArchive(videos, page = 1, topic = null, sort = 'newest') {
@@ -189,10 +197,13 @@ ${jsonLd(breadcrumbs)}
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
 ${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
-${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}
-${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
+<form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><div><input id="video-q" name="q" type="search" placeholder="n8n, Claude Code, ElevenLabs…" autocomplete="off"><button type="submit">Search</button></div></form>
+<section id="video-results" aria-live="polite" hidden><p class="search-status mono"></p><ul></ul></section>
+<div data-archive>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}
+${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}</div>
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>
-${pager(page, pages, sort)}
+<div data-archive>${pager(page, pages, sort)}</div>
+<script type="module" src="/video-search.js"></script>
 </main>
 <footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
 </body>

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
+import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos, videoIndex } from './archive.js';
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
 import { videoTools } from './video-tools.js';
@@ -403,15 +403,31 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   const html = renderWatch(video, { videos: uploads });
   assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
-  assert.match(renderWatch(uploads.find(upload => upload.id === '8ieDSa8BVH4'), { videos: uploads }), /<li>Facebook Messenger<\/li>/);
+  assert.match(renderWatch(uploads.find(upload => upload.id === 'QMqe2ubsn0g'), { videos: uploads }), /<li>DextroLab<\/li>/);
 });
 
 test('every watch page lists the tools used', () => {
   // No product is used on screen: a list of automation ideas, a moving vlog, and a TubeAnalytics-only demo.
-  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w', 'gebtJAsMioo']);
+  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w']);
   const missing = uploads.filter(video => video.embeddable && !noTools.has(video.id) && !/<h[23][^>]*>Tools used<\/h[23]>/.test(renderWatch(video, { videos: uploads })));
   assert.deepEqual(missing.map(video => video.id), [], 'add the tools to src/video-tools.js');
   for (const tools of Object.values(videoTools)) for (const tool of tools) assert.doesNotMatch(tool, /[—;…()]/, tool);
+});
+
+test('the videos page searches every video through a live index that includes search titles and tools', async () => {
+  const html = renderArchive(uploads, 2);
+  assert.match(html, new RegExp(`<form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${uploads.length} videos</label>`));
+  assert.match(html, /<script type="module" src="\/video-search\.js"><\/script>/);
+  assert.match(html, /<section id="video-results" aria-live="polite" hidden>/);
+  const response = await GET(new Request('https://www.ai-automation-station.com/video-index.json'));
+  assert.equal(response.status, 200);
+  assert.ok(Array.isArray(await response.json()));
+  const rows = videoIndex(uploads);
+  assert.equal(rows.length, uploads.length);
+  const row = rows.find(([id]) => id === '1TPm7B5oStw');
+  assert.equal(row[1], '/watch/1TPm7B5oStw');
+  assert.match(row[4], /ElevenLabs/);
+  assert.match(row[4], /WhatsApp AI voice agent with Make\.com and ElevenLabs/);
 });
 
 test('sorts the archive by views, date or length, keeping the sort across pages and out of the index', async () => {

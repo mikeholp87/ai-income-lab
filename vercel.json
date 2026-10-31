@@ -59,6 +59,7 @@
   "rewrites": [
     { "source": "/watch/:id", "destination": "/api/videos?video=:id" },
     { "source": "/video-sitemap.xml", "destination": "/api/videos?sitemap=videos" },
+    { "source": "/video-index.json", "destination": "/api/videos?index=1" },
     { "source": "/o/:token.gif", "destination": "/api/o/:token" },
     { "source": "/videos", "destination": "/api/videos" },
     { "source": "/videos/:page", "destination": "/api/videos?page=:page" }

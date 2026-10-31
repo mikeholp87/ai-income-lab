@@ -1,4 +1,4 @@
-import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sorts, sponsoredVideos } from '../src/archive.js';
+import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sorts, sponsoredVideos, videoIndex } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
@@ -56,6 +56,7 @@ export async function GET(request) {
   const videoId = url.pathname.match(/^\/watch\/([^/]+)\/?$/)?.[1] ?? url.searchParams.get('video');
   const sitemap = url.pathname === '/video-sitemap.xml' || url.searchParams.get('sitemap') === 'videos';
   const sponsored = url.searchParams.has('sponsored');
+  const index = url.pathname === '/video-index.json' || url.searchParams.has('index');
   if (videoId !== null && !/^[\w-]{11}$/.test(videoId)) return notFound();
   // The page arrives in the original path or, after the rewrite, as ?page=.
   const requested = url.pathname.match(/^\/videos\/([^/]+)\/?$/)?.[1] ?? url.searchParams.get('page');
@@ -66,7 +67,7 @@ export async function GET(request) {
   if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos${url.search.includes('sort=') ? `?sort=${encodeURIComponent(url.searchParams.get('sort'))}` : ''}`, 308);
   const sort = url.searchParams.get('sort') ?? 'newest';
   // An unknown or default sort would duplicate the plain page, so send it there.
-  if (videoId === null && !sitemap && !sponsored && (sort === 'newest' || !Object.hasOwn(sorts, sort)) && url.searchParams.has('sort')) {
+  if (videoId === null && !sitemap && !sponsored && !index && (sort === 'newest' || !Object.hasOwn(sorts, sort)) && url.searchParams.has('sort')) {
     return Response.redirect(`${url.origin}${topic ? `/videos/${topic.slug}` : page > 1 ? `/videos/${page}` : '/videos'}`, 308);
   }
 
@@ -80,6 +81,7 @@ export async function GET(request) {
   const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
   // The homepage swaps in this list, so a newly ticked paid-promotion box shows within a day, no rebuild needed.
   if (sponsored) return Response.json(sponsoredVideos(memo.videos), { headers: { 'Cache-Control': cache } });
+  if (index) return Response.json(videoIndex(memo.videos), { headers: { 'Cache-Control': cache } });
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });
   if (videoId !== null) {
     const find = () => memo.videos.find(video => video.id === videoId);
