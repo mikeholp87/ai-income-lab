@@ -9,6 +9,8 @@
 // Optional JSON override: AIRTABLE_PIXEL_ROUTES
 // The 1×1 GIF is always returned even when logging is skipped or fails.
 
+import { clientIp as requestIp, createRateLimiter } from './rate-limit.js';
+
 export const AIRTABLE_BASE_ID = 'appK4Nu5Dy4imXrDp';
 export const SKOOL_OPENS_TABLE_ID = 'tblFS59vmxGSrLCPJ';
 export const SKOOL_SENDS_TABLE_ID = 'tblsb6CJxqWZ93w74';
@@ -141,11 +143,12 @@ function escapeFormulaValue(value) {
   return String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
-async function airtableFetch(path, { env, baseId, method = 'GET', body } = {}) {
+async function airtableFetch(path, { env, baseId, method = 'GET', body, signal } = {}) {
   const key = airtableKey(env);
   if (!key || !baseId) return null;
   const response = await fetch(`https://api.airtable.com/v0/${baseId}/${path}`, {
     method,
+    signal,
     headers: {
       Authorization: `Bearer ${key}`,
       'Content-Type': 'application/json',
@@ -158,22 +161,30 @@ async function airtableFetch(path, { env, baseId, method = 'GET', body } = {}) {
   return response.json();
 }
 
-export async function recordOpen({ token, openedAt, userAgent }, env = process.env) {
+// A short one-way fingerprint, so logs can match repeat opens without exposing the raw token.
+export async function tokenFingerprint(token) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token));
+  return [...new Uint8Array(digest).slice(0, 6)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+export async function recordOpen({ token, openedAt, userAgent, signal }, env = process.env) {
+  // Only well-formed tokens are logged or looked up.
+  if (!token || sanitizeToken(token) !== token) return { logged: 'invalid' };
   const route = resolveAirtableRoute(token, env);
   const hit = {
-    token,
+    token: await tokenFingerprint(token),
     openedAt,
     userAgent: userAgent.slice(0, 300),
     route: route.key,
     product: route.product,
   };
   console.info('[open-pixel]', hit);
-  if (!token || sanitizeToken(token) !== token || !airtableKey(env) || !route.configured) return { logged: 'console', hit, route };
+  if (!airtableKey(env) || !route.configured) return { logged: 'console', hit, route };
 
   const formula = `{Send Token}='${escapeFormulaValue(token)}'`;
   const found = await airtableFetch(
     `${route.sendsTableId}?filterByFormula=${encodeURIComponent(formula)}&maxRecords=1`,
-    { env, baseId: route.baseId },
+    { env, baseId: route.baseId, signal },
   );
   const send = found?.records?.[0];
   if (!send?.id || send.fields?.['Send Token'] !== token) return { logged: 'skipped', hit, route };
@@ -182,6 +193,7 @@ export async function recordOpen({ token, openedAt, userAgent }, env = process.e
   await airtableFetch(route.opensTableId, {
     env,
     baseId: route.baseId,
+    signal,
     method: 'POST',
     body: {
       fields: {
@@ -198,6 +210,7 @@ export async function recordOpen({ token, openedAt, userAgent }, env = process.e
     await airtableFetch(`${route.sendsTableId}/${send.id}`, {
       env,
       baseId: route.baseId,
+      signal,
       method: 'PATCH',
       body: {
         fields: {
@@ -211,19 +224,46 @@ export async function recordOpen({ token, openedAt, userAgent }, env = process.e
   return { logged: 'airtable', hit, openId, sendId: send?.id, route };
 }
 
+// Mail clients and proxies often fetch the same pixel several times in a row. Within this window a
+// repeat of a token is not logged again. Like the limiter, this is per warm instance only.
+export const DEDUPE_WINDOW_MS = 10 * 60 * 1000;
+const recentOpens = new Map();
+const limitPixel = createRateLimiter({ limit: 60, windowMs: 60 * 1000 });
+
+export function resetOpenPixelState() {
+  recentOpens.clear();
+}
+
+function seenRecently(token, now) {
+  for (const [key, time] of recentOpens) {
+    if (now - time < DEDUPE_WINDOW_MS) break;
+    recentOpens.delete(key);
+  }
+  if (recentOpens.has(token)) return true;
+  if (recentOpens.size >= 5000) recentOpens.delete(recentOpens.keys().next().value);
+  recentOpens.set(token, now);
+  return false;
+}
+
 export async function handleOpenPixel(request, env = process.env) {
   if (request.method === 'HEAD') return new Response(null, { status: 200, headers: PIXEL_HEADERS });
   if (request.method !== 'GET') return pixelResponse();
   const token = extractToken(request.url);
+  // Invalid tokens, repeats and floods from one address still get the GIF, but nothing is logged.
+  if (!token || !limitPixel(requestIp(request.headers)).ok || seenRecently(token, Date.now())) return pixelResponse();
   const openedAt = new Date().toISOString();
   const userAgent = request.headers.get('user-agent') || '';
+  const controller = new AbortController();
   let timer;
   try {
     await Promise.race([
-      recordOpen({ token, openedAt, userAgent }, env),
+      recordOpen({ token, openedAt, userAgent, signal: controller.signal }, env),
       new Promise((_, reject) => {
-        // Stop waiting after 3 s; Airtable work can still finish in the background.
-        timer = setTimeout(() => reject(new Error('open-pixel log timeout')), 3000);
+        // Stop after 3 s and cancel any Airtable request still in flight.
+        timer = setTimeout(() => {
+          controller.abort();
+          reject(new Error('open-pixel log timeout'));
+        }, 3000);
       }),
     ]);
   } catch (error) {

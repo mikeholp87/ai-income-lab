@@ -12,9 +12,13 @@ import {
   matchPixelRoute,
   pixelResponse,
   recordOpen,
+  resetOpenPixelState,
   resolveAirtableRoute,
   sanitizeToken,
+  tokenFingerprint,
 } from './open-pixel.js';
+
+test.beforeEach(() => resetOpenPixelState());
 
 async function assertPixel(response) {
   assert.equal(response.status, 200);
@@ -292,6 +296,7 @@ test('unknown and mismatched send tokens return a GIF without Airtable writes', 
   const previous = globalThis.fetch;
   try {
     for (const records of [[], [{ id: 'recOther', fields: { 'Send Token': 'different-token' } }]]) {
+      resetOpenPixelState();
       const calls = [];
       globalThis.fetch = async (url, init = {}) => {
         calls.push(init.method || 'GET');
@@ -334,39 +339,66 @@ test('HEAD returns GIF headers without a body or a false email open', async t =>
   assert.equal(info.mock.callCount(), 0);
 });
 
-test('the 3 s deadline returns the GIF while Airtable work continues', async t => {
+test('the 3 s deadline returns the GIF and cancels the Airtable request', async t => {
   t.mock.timers.enable({ apis: ['setTimeout'] });
   const clearTimeout = t.mock.method(globalThis, 'clearTimeout');
   t.mock.method(console, 'info', () => {});
   const error = t.mock.method(console, 'error', () => {});
   const calls = [];
-  let finishLookup;
-  let finishRecording;
-  const recordingFinished = new Promise(resolve => { finishRecording = resolve; });
+  let aborted;
+  const abortSeen = new Promise(resolve => { aborted = resolve; });
   t.mock.method(globalThis, 'fetch', async (url, init) => {
     calls.push(init);
-    if (init.method === 'GET') return new Promise(resolve => { finishLookup = resolve; });
-    if (init.method === 'PATCH') finishRecording();
-    return Response.json({ id: 'recNew' });
+    return new Promise((_, reject) => {
+      init.signal.addEventListener('abort', () => { aborted(); reject(init.signal.reason); });
+    });
   });
   const response = handleOpenPixel(new Request('https://example.com/o/test-token.gif'), { AIRTABLE_API_KEY: 'mock' });
   let returned = false;
   response.then(() => { returned = true; });
+  // Let the token fingerprint and the lookup start before the clock moves.
+  for (let i = 0; i < 20 && !calls.length; i += 1) await new Promise(resolve => setImmediate(resolve));
   t.mock.timers.tick(2999);
   await Promise.resolve();
   assert.equal(returned, false);
   t.mock.timers.tick(1);
   await assertPixel(await response);
+  await abortSeen;
   assert.deepEqual(calls.map(call => call.method), ['GET']);
-  assert.equal(error.mock.callCount(), 1);
-  assert.equal(error.mock.calls[0].arguments[1].message, 'open-pixel log timeout');
-  assert.equal(clearTimeout.mock.callCount(), 1);
-  finishLookup(Response.json({
-    records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: false } }],
-  }));
-  await recordingFinished;
-  assert.deepEqual(calls.map(call => call.method), ['GET', 'POST', 'PATCH']);
-  assert.ok(calls.every(call => !Object.hasOwn(call, 'signal')));
+  assert.equal(calls[0].signal.aborted, true);
+  const failures = error.mock.calls.filter(call => call.arguments[0] === '[open-pixel] log failed');
+  assert.equal(failures.length, 1);
+  assert.equal(failures[0].arguments[1].message, 'open-pixel log timeout');
+  assert.ok(clearTimeout.mock.callCount() >= 1);
+});
+
+test('repeat opens of one token are logged once, and invalid tokens are never logged', async t => {
+  const info = t.mock.method(console, 'info', () => {});
+  const calls = [];
+  t.mock.method(globalThis, 'fetch', async (url, init) => {
+    calls.push(init.method);
+    return Response.json(init.method === 'GET'
+      ? { records: [{ id: 'recSend1', fields: { 'Send Token': 'test-token', Opened: true } }] }
+      : { id: 'recNew' });
+  });
+  for (let i = 0; i < 3; i += 1) await assertPixel(await handleOpenPixel(new Request('https://example.com/o/test-token.gif'), { AIRTABLE_API_KEY: 'mock' }));
+  assert.deepEqual(calls, ['GET', 'POST']);
+  await assertPixel(await handleOpenPixel(new Request('https://example.com/o/bad%27token.gif'), { AIRTABLE_API_KEY: 'mock' }));
+  assert.equal(info.mock.callCount(), 1);
+  assert.equal(JSON.stringify(info.mock.calls[0].arguments).includes('test-token'), false, 'raw token is not logged');
+  assert.equal(info.mock.calls[0].arguments[1].token, await tokenFingerprint('test-token'));
+  assert.deepEqual(await recordOpen({ token: "bad'token", openedAt: 'x', userAgent: '' }, { AIRTABLE_API_KEY: 'mock' }), { logged: 'invalid' });
+});
+
+test('one address flooding the pixel stops being logged but still gets the GIF', async t => {
+  t.mock.method(console, 'info', () => {});
+  let lookups = 0;
+  t.mock.method(globalThis, 'fetch', async () => { lookups += 1; return Response.json({ records: [] }); });
+  const headers = { 'x-forwarded-for': '203.0.113.99' };
+  for (let i = 0; i < 65; i += 1) {
+    await assertPixel(await handleOpenPixel(new Request(`https://example.com/o/flood-${i}.gif`, { headers }), { AIRTABLE_API_KEY: 'mock' }));
+  }
+  assert.equal(lookups, 60);
 });
 
 test('logs no client IP, caps logged user agent at 300 and Airtable user agent at 1000', async t => {
