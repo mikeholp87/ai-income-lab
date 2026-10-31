@@ -229,8 +229,8 @@ test('the guides hub shows the headline-only cards, which exist for every guide 
 
 test('Start here is as wide as the guides hub and the video archive', async () => {
   assert.match(await read('public/start-here.html'), /<body class="wide">/);
-  assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1120px,calc\(100% - 32px\)\)\}/);
-  assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1120px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
+  assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1280px,calc\(100% - 32px\)\)\}/);
+  assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1280px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
 });
 
 test('guide cards offer the 640px copy wherever they show, and every copy exists', async () => {

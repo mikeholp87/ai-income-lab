@@ -9,7 +9,7 @@
 body { margin: 0; background: #0a0a0a; color: #f5f5f0; font: 16px/1.6 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, p { margin: 0; }
-.shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.shell { width: min(1280px, calc(100% - 32px)); margin: 0 auto; }
 header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; }
 .brand { display: flex; align-items: center; gap: 10px; font: 400 15px 'Archivo Black', sans-serif; text-transform: uppercase; }
 .brand span { width: 12px; height: 12px; background: #ff6846; }
@@ -19,7 +19,7 @@ header { display: flex; align-items: center; justify-content: space-between; gap
 h1 { font: 400 clamp(32px, 4.6vw, 52px)/1.08 'Archivo Black', sans-serif; letter-spacing: -.015em; text-wrap: balance; }
 .intro p:last-child { max-width: 62ch; margin-top: 20px; color: #8c8c86; }
 h2 { margin: 56px 0 24px; font: 400 28px 'Archivo Black', sans-serif; }
-ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
+ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
 li a { display: grid; gap: 10px; }
 li img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #232323; background: #111111; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; color: #8c8c86; font: 400 12px 'DM Mono', monospace; }

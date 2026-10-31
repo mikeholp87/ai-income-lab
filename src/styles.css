@@ -44,7 +44,7 @@ button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 section[id], main [id] { scroll-margin-top: 88px; }
 .accent { color: var(--signal); }
 
-.shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+.shell { width: min(1280px, calc(100% - 48px)); margin-inline: auto; }
 .skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; color: var(--on-signal); background: var(--signal); font: 600 14px var(--sans); transform: translateY(calc(-100% - 20px)); transition: transform .15s ease; }
 .skip-link:focus { transform: none; }
 /* Reading progress along the top edge, driven by page scroll (no JS) */
@@ -112,7 +112,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 }
 
 /* Hairline between the big groups, as wide as the content column */
-.divider { width: min(1120px, calc(100% - 48px)); height: 1px; margin-inline: auto; background: var(--line); }
+.divider { width: min(1280px, calc(100% - 48px)); height: 1px; margin-inline: auto; background: var(--line); }
 
 /* Stats */
 .stats { border-block: 1px solid var(--line); background: var(--panel); }

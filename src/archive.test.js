@@ -427,8 +427,8 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.doesNotMatch(archiveStyles, /font-display: swap/);
   assert.match(renderArchive(uploads.slice(0, 3)), /<link rel="preload" href="\/fonts\/instrument-sans\.woff2" as="font" type="font\/woff2" crossorigin>/);
   assert.match(archiveStyles, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
-  // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
-  assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
+  // 340px minimum gives three columns in the 1280px shell, so 15 cards fill five rows.
+  assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(340px, 100%\), 1fr\)\)/);
   assert.match(archiveStyles, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
   assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
