@@ -20,6 +20,8 @@ test('misheard product names are corrected without touching real words', () => {
   assert.equal(fixTerms('I opened codeex and cloud code, deployed on Versal, then joined the school community.'), 'I opened Codex and Claude Code, deployed on Vercel, then joined the Skool community.');
   assert.equal(fixTerms('Export with the H.264 codec from open code'), 'Export with the H.264 codec from OpenCode');
   assert.equal(transcriptParagraphs('chat GPT on superbase')[0], 'ChatGPT on Supabase');
+  assert.equal(fixTerms('Use Hey Genen and hijen with 11 labs, then nan and air table in clawed code with cloud opus on grockbot.'), 'Use HeyGen and HeyGen with ElevenLabs, then n8n and Airtable in Claude Code with Claude Opus on GrokBot.');
+  assert.equal(fixTerms('Join my school community, I went to school and the cloud server is fine.'), 'Join my Skool community, I went to school and the cloud server is fine.');
 });
 
 test('watch pages show a transcript only when one is saved', () => {

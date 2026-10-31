@@ -307,7 +307,7 @@ export const watchNotes = {
     summary: 'Business automation and the community’s earlier free offer. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
     notice: 'This 2025 recording mentions free community access. As of October 8, 2026, AI Income Lab membership starts at $29/month. The recorded offer is historical.',
   },
-  '1aG1XbAQj-k': { summary: 'Claude Opus 5 is here and it’s my new go-to model.' },
+  '1aG1XbAQj-k': { summary: 'A rundown of Claude Opus 5: pricing against Fable 5, coding and reasoning benchmarks, visual reasoning, and real bug-fixing examples.' },
   geKngm3sg3w: {
     searchTitle: '9Router video walkthrough: providers and fallbacks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',

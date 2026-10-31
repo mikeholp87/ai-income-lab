@@ -5,7 +5,7 @@ import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
-import { transcriptParagraphs } from './transcript.js';
+import { fixTerms, transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
 import { topicFor, topics } from './topics.js';
 
@@ -235,6 +235,16 @@ export const guides = [
   [/codex.*linux|linux.*codex/i, '/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'],
   [/\bcodex\b/i, '/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'],
   [/make\.com/i, '/guides/make-first-automation.html', 'Make.com Google Sheets tutorial: filter approved requests'],
+  [/voice agent|phone agent/i, '/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'],
+  [/syllaby|faceless|without showing your face/i, '/guides/heygen-ai-avatar-tutorial.html', 'HeyGen AI avatar tutorial: create your first video'],
+  [/gpt-6|gpt 5\.6|chatgpt 5\.6/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x: Pause, Return & Codex Limits (2026)'],
+  [/token usage/i, '/guides/9router-setup.html', '9Router setup: providers, model combos and request checks'],
+  [/ollama|private ai/i, '/guides/first-api-request.html', 'Make your first AI API request with a local test'],
+  [/claude.*\bseo\b|\bseo\b.*claude/i, '/guides/dataforseo-mcp-claude.html', 'DataForSEO MCP: give Claude Code real SEO data'],
+  [/\bseo\b|ai visibility|ai search|answer engines|invisible to ai/i, '/guides/openseo-review.html', 'OpenSEO review: setup, data costs and practical limits'],
+  [/\bleads?\b|agency/i, '/guides/ai-automation-services-small-business.html', 'How to sell AI automation services to small businesses'],
+  [/ai automations?\b|automation tools/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
+  [/\bai agents?\b/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
   [/\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b/i, '/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'],
 ];
 
@@ -247,7 +257,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const description = videoDescription(video);
   const offer = videoOffer(video.title);
   const seconds = durationSeconds(video.duration);
-  const chapters = validChapters(video.chapters, seconds);
+  const chapters = validChapters(video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
   const related = relatedVideos(video, videos);
   const guide = guides.find(([pattern]) => pattern.test(video.title));
   const topic = topicFor(video.title);
@@ -405,7 +415,7 @@ const guideVideoTopics = {
   '/guides/agentic-ai-vs-traditional-automation.html': /5 ai agents you need to build|10 ai automations you can build|relay\.app|hermes agent: automate/i,
   '/guides/ai-automation-services-small-business.html': /white label automation agency|competition is using ai automations|top 5 ai automations your competitors|5 ai automation tools are scaling/i,
   '/guides/ai-automation.html': /10 ai automations you can build|make\.com tutorial: automate your business|5 ai automation tools are scaling|ai workflow saves me 20\+ hours/i,
-  '/guides/ai-side-hustles.html': /white label automation agency|more clients for your web agency|find website clients|profitable skool community/i,
+  '/guides/ai-side-hustles.html': /automated my lead generation|cold leads into closed deals|saved me 10 hours a week on emails|fillout to airtable/i,
   '/guides/chatgpt-pro-20x.html': /chatgpt 5\.6 is available|gpt 5\.6 is here|gpt-6 sol|new codex cli/i,
   '/guides/claude-code-for-beginners.html': /claude code skills will 10x|build apps using free claude code|claude code hack saves token|complete web app in claude code/i,
   '/guides/claude-code-vs-codex.html': /herdr lets you run claude code and codex|new codex cli|codex just changed how i build|claude code skills will 10x/i,
