@@ -30,7 +30,8 @@ test('the fast AI income guide is discoverable and has its own image', async () 
   const slug = 'make-money-with-ai-fast';
   const link = `/guides/${slug}.html`;
   assert.ok((await read('public/guides.html')).includes(`<a href="${link}">`));
-  assert.ok((await read('public/sitemap.xml')).includes(`<loc>https://www.ai-automation-station.com${link}</loc><lastmod>2026-10-30</lastmod>`));
+  // guide-seo.test.js checks this lastmod against the page's dateModified.
+  assert.match(await read('public/sitemap.xml'), new RegExp(`<loc>https://www\\.ai-automation-station\\.com${link}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`));
   assert.ok((await read('public/llms.txt')).includes(`](https://www.ai-automation-station.com${link})`));
   const html = await read(`public${link}`);
   assert.ok(html.includes(`<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`));
