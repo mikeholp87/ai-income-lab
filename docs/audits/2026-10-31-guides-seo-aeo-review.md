@@ -54,6 +54,28 @@ Observations:
   - to openseo-review and dataforseo-mcp-claude from claude-code-vs-codex.
 - **Skipped:** links to heygen and consent-tracking. No candidate page had a natural place for them.
 
+**#4 and #5, done later the same day:**
+
+- **#4 videos:** the matching video is embedded, with VideoObject data copied from its watch page, in 9router-setup, heygen, vapi, openseo-review, self-host-n8n and codex-on-linux. Updating the YouTube descriptions is still to do in Studio.
+- **#5 make-money cluster:**
+  - make-money-with-ai-fast now opens with its verdict.
+  - New sources: FTC (AI-claims crackdown, job scams, fake-reviews rule), US Copyright Office Part 2, n8n hosting docs and the IRS.
+  - New tables: practice routes, ChatGPT client services and small-business services.
+  - Each guide links to a matching video and to the Earn with AI hub.
+  - Still open: one real, dated example with numbers for each guide. Only Mike can supply those.
+
+**P2 status:**
+
+- **#6 tables:** added to codex-on-linux, 9router-setup, vapi, hermes-desktop, what-is-n8n-used-for, claude-code-for-beginners and self-host-n8n.
+  - The no-code builder and n8n alternatives tables now have a "checked on" line.
+  - Skipped DataForSEO because its page states no prices.
+- **#7 question headings:** added only where live People Also Ask data exists:
+  - Claude Code vs Codex: "How are Codex and Claude Code different?" and "How much do Claude Code and Codex cost?"
+  - n8n vs Zapier vs Make: a 1,000-runs cost example and "What are some competitors to n8n?"
+- **#8 related searches:**
+  - Covered: Claude Code vs Codex price, limits and VS Code; Ubuntu in the Codex desktop heading; npm uninstall; 9Router's VS Code clients.
+  - Not added: 9Router on Windows and Claude Code vs Cursor. The pages have no sourced facts for either.
+
 ### 1. Open tool guides with a definition or direct answer, not a description of the article
 
 Four quick answers describe the article instead of answering the query, so an AI engine has nothing to quote:

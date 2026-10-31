@@ -50,7 +50,14 @@ codex</code></pre>
 <pre tabindex="0"><code>npm install -g @openai/codex
 codex</code></pre>
 <p>Pick one of the two. Running <code>codex</code> in your project folder starts the sign-in flow. The sections below explain each method, the binary downloads and what to do when sign-in fails.</p>
-<h2 id="desktop">Codex desktop app for Linux: official status and download</h2>
+<p>All four routes at a glance:</p>
+<table tabindex="0"><thead><tr><th scope="col">Method</th><th scope="col">Install command</th><th scope="col">Updates and removal</th></tr></thead><tbody>
+<tr><th scope="row">Official installer</th><td><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></td><td>Run the same command to update</td></tr>
+<tr><th scope="row">npm</th><td><code>npm install -g @openai/codex</code></td><td>Remove with <code>npm uninstall -g @openai/codex</code></td></tr>
+<tr><th scope="row">Release binary</th><td><code>codex-x86_64-unknown-linux-musl.tar.gz</code> or the <code>aarch64</code> archive; extract and rename to <code>codex</code></td><td>Download the newer archive</td></tr>
+<tr><th scope="row">Desktop app preview</th><td>ChatGPT desktop app for Linux: <code>.deb</code> for Ubuntu and Debian, <code>.rpm</code> for Fedora, a script for Arch</td><td>Your distribution’s package manager</td></tr>
+</tbody></table>
+<h2 id="desktop">Codex desktop app for Linux (Ubuntu, Debian, Fedora, Arch): official status and download</h2>
 <p>The current documentation calls this the ChatGPT desktop app for Linux, with Codex available inside it. Install the app, sign in, choose a project or folder, then select Codex and start a new chat. That naming explains why a search for a Codex desktop download can lead to a ChatGPT page.</p>
 <p>The Linux preview lists Ubuntu 24.04 and 26.04 LTS, Debian 13, Fedora 43 and 44, and fully updated Arch Linux, with x64 and ARM64 packages. Use the download matching both your distribution and architecture. Ubuntu and Debian use a .deb; Fedora uses an .rpm; Arch has a separate script.</p>
 <p>For example, after downloading the x64 Debian package into Downloads, OpenAI documents:</p>

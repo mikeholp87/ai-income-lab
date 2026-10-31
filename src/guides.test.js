@@ -115,7 +115,7 @@ test('the Claude Code vs Codex guide has its own image and a contents list', asy
   assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" [^>]*alt="Diagram: [^"]+" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
   const toc = html.match(/<nav class="toc" aria-label="On this page">([\s\S]*?)<\/nav>/)[1];
   const targets = [...toc.matchAll(/href="#([a-z-]+)"/g)].map(match => match[1]);
-  assert.equal(targets.length, 8);
+  assert.equal(targets.length, 9);
   for (const id of targets) assert.match(html, new RegExp(`<h2 id="${id}">`), id);
   const { size } = await import('node:fs/promises').then(fs => fs.stat(new URL('../public/assets/guides/claude-code-vs-codex.webp', import.meta.url)));
   assert.ok(size > 5000 && size < 60000, `image is ${size} bytes`);
@@ -161,8 +161,8 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(ccvc, /<title>Codex vs Claude Code: /);
   assert.match(ccvc, /<h1>Codex vs Claude Code: /);
   assert.match(ccvc, /<h2 id="short-answer">The short answer \(October 2026\)<\/h2>/);
-  assert.match(ccvc, /"dateModified":"2026-10-30"/);
-  assert.match(ccvc, /Updated <time datetime="2026-10-30">October 30, 2026<\/time>/);
+  assert.match(ccvc, /"dateModified":"2026-10-31"/);
+  assert.match(ccvc, /Updated <time datetime="2026-10-31">October 31, 2026<\/time>/);
   const hermes = await read('public/guides/hermes-desktop.html');
   assert.match(hermes, /<title>Hermes Desktop: /);
   assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
@@ -170,7 +170,7 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(n8n, /<h3 id="docker">Or run it in Docker<\/h3>/);
   // n8n's own docker run command, copied from its docs.
   assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
-  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-30</);
+  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-31</);
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
     ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],

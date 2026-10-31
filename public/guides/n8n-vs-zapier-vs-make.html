@@ -107,6 +107,13 @@
 <li>On Make, each module operation is at least one credit.</li>
 <li>On n8n Cloud, it is one execution.</li>
 </ul>
+<h3 id="cost-example">What does a 10-step workflow use at 1,000 runs a month?</h3>
+<p>Say the workflow is one trigger and nine action steps, and it runs 1,000 times a month:</p>
+<table tabindex="0"><thead><tr><th scope="col">Tool</th><th scope="col">Billed per run</th><th scope="col">Per month</th><th scope="col">Against the entry plan above</th></tr></thead><tbody>
+<tr><th scope="row">Zapier</th><td>Up to 9 tasks (excluded step types such as Filter, Paths and Formatter don’t count)</td><td>Up to 9,000 tasks</td><td>Compare with the task allowance on the plan you pick</td></tr>
+<tr><th scope="row">Make</th><td>At least 10 credits, one per module operation</td><td>At least 10,000 credits</td><td>Uses all of Core’s 10,000 credits</td></tr>
+<tr><th scope="row">n8n Cloud</th><td>1 execution</td><td>1,000 executions</td><td>Within Starter’s 2,500 executions</td></tr>
+</tbody></table>
 <p>That does not make n8n cheaper for every case. Plan prices, limits and included volume differ, and they change. It does mean you should count steps and runs for your real workflow before you compare plan prices.</p>
 <p>Check current plans on each pricing page.</p>
 <p><a href="https://zapier.com/pricing">Zapier pricing</a></p>
@@ -157,7 +164,8 @@
 <li><strong>Data rules.</strong> Teams that must keep data on their own servers look at self-hosting.</li>
 <li><strong>Team skills.</strong> Teams without developers often stay on the more guided builders.</li>
 </ul>
-<p>If self-hosting is the reason, also look at open-source options.</p>
+<h3 id="competitors">What are some competitors to n8n?</h3>
+<p>Besides Zapier and Make, open-source options include Node-RED, Activepieces, Windmill, Kestra and Huginn. If self-hosting is the reason, start with those.</p>
 <p><a href="/guides/n8n-alternatives-open-source.html">n8n alternatives that are open source</a></p>
 <h2 id="limits">What this guide does not cover</h2>
 <p>This guide lists no plan prices, because they change. It makes no claims about speed or reliability, because those depend on your workflow and region.</p>

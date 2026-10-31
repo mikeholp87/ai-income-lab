@@ -72,6 +72,13 @@ docker run -it --rm \
  -v n8n_data:/home/node/.n8n \
  n8nio/n8n</code></pre>
 <p>It opens on the same <strong>http://localhost:5678</strong>, and the <code>n8n_data</code> volume keeps your workflows when the container stops, so the steps below work the same way. For a server that stays up, n8n now recommends Docker Compose over this single command; their Docker page links to it.</p>
+<p>Every route opens the editor at <code>http://localhost:5678</code>.</p>
+<table tabindex="0"><thead><tr><th scope="col">Route</th><th scope="col">Command</th><th scope="col">Needs</th><th scope="col">Best for</th></tr></thead><tbody>
+<tr><th scope="row">npx</th><td><code>npx n8n</code></td><td>Node.js 24</td><td>Trying n8n without a permanent install</td></tr>
+<tr><th scope="row">npm</th><td><code>npm install n8n -g</code>, then <code>n8n</code></td><td>Node.js 24</td><td>Keeping it installed (the video’s route)</td></tr>
+<tr><th scope="row">Docker</th><td><code>docker run … n8nio/n8n</code> with the <code>n8n_data</code> volume</td><td>Docker</td><td>Skipping Node.js; workflows survive container restarts</td></tr>
+<tr><th scope="row">Docker Compose</th><td>See n8n’s Docker docs</td><td>Docker</td><td>A server that stays up (n8n’s recommendation)</td></tr>
+</tbody></table>
 <h2 id="account">3. Create the owner account</h2>
 <p>The first visit asks you to set up an owner account. This account lives in your own n8n data, not on n8n.io. Use a real email you control and a strong password, even on a laptop, because the same login protects n8n if you later move it to a server.</p>
 <h2 id="workflow">4. Build a workflow you can check</h2>

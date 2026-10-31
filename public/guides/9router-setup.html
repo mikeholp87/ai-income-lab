@@ -50,6 +50,16 @@
 9router</code></pre>
 <p>Run these in a terminal where npm is already available. Keep that terminal visible while checking the dashboard. If installation fails, save the first error rather than repeatedly reinstalling. Separate an installation problem from a provider problem: there is no reason to change credentials before the application starts.</p>
 <p>For this exercise, keep the gateway and client on the same machine. Write down the installed version and the date. Save your client’s existing configuration before editing it, so restoring the previous setup is straightforward. This article is documentation-checked, not a report of a live installation on every operating system.</p>
+<h3 id="defaults">9Router defaults at a glance</h3>
+<table tabindex="0"><thead><tr><th scope="col">Setting</th><th scope="col">Default or command</th></tr></thead><tbody>
+<tr><th scope="row">Dashboard</th><td><code>http://localhost:20128</code></td></tr>
+<tr><th scope="row">API base URL for clients</th><td><code>http://localhost:20128/v1</code></td></tr>
+<tr><th scope="row">Install and start</th><td><code>npm install -g 9router</code>, then <code>9router</code></td></tr>
+<tr><th scope="row">Custom port</th><td><code>9router --port 8080</code>, then update the base URL in every client</td></tr>
+<tr><th scope="row">Update (CLI)</th><td>Checks for updates on start; <code>9router --skip-update</code> skips the check</td></tr>
+<tr><th scope="row">Update (Docker)</th><td><code>docker pull decolua/9router:latest</code></td></tr>
+<tr><th scope="row">Docs</th><td>GitHub repository (the CLI README points there) and 9router.com</td></tr>
+</tbody></table>
 <h2 id="providers">Add one provider and verify one request</h2>
 <p>The official setup overview describes provider connections using OAuth or an API key. Choose a provider you already have access to and follow its connection flow. Keep the upstream credential and the key given to your coding client clearly labeled.</p>
 <ol><li>Open the provider area and connect just one account.</li><li>Choose a model shown by that connection. Copy the identifier exactly.</li><li>Record the endpoint, client key and model together in private setup notes.</li><li>Send a short prompt such as “Reply with the word ready.” Note the time.</li><li>Inspect the returned text and look for the corresponding request before proceeding.</li></ol>
@@ -72,7 +82,7 @@ env_key = "NINE_ROUTER_API_KEY"
 wire_api = "responses"</code></pre>
 <p>Set <code>NINE_ROUTER_API_KEY</code> in the environment that launches Codex to your gateway key. The configuration reference defines these fields and specifies Responses as the supported wire protocol. A successful chat-completions test alone is insufficient: verify a Codex request too. Check model recognition and metadata against the gateway setup requirements before using a custom model or combo.</p>
 <h3>Other clients</h3>
-<p>The 9Router integration examples configure Cline, Continue and RooCode with an OpenAI-compatible provider, <code>http://localhost:20128/v1</code>, a dashboard key and a model identifier. Start with one client. Preserve a working configuration before adapting another tool, and inspect its first request separately.</p>
+<p>The 9Router integration examples configure the VS Code extensions Cline, Continue and RooCode with an OpenAI-compatible provider, <code>http://localhost:20128/v1</code>, a dashboard key and a model identifier. Start with one client. Preserve a working configuration before adapting another tool, and inspect its first request separately.</p>
 <h2 id="combos">Model combos and auto-fallback</h2>
 <p>The README combo instructions describe creating a named model sequence under <strong>Combos → Create New</strong>, then requesting that name from the client. They describe fallback on exhausted quota or errors.</p>
 <p>Build a small sequence from models you have already checked individually. Give it a descriptive name, record the intended order, and decide which destinations you are willing to use. Avoid adding an unfamiliar destination just to make the chain longer.</p>

@@ -42,6 +42,13 @@
 <figure><img src="/assets/guides/hermes-desktop.webp" srcset="/assets/guides/sizes/hermes-desktop-640.webp 640w, /assets/guides/hermes-desktop.webp 1200w" sizes="(max-width: 1160px) calc(100vw - 40px), 1120px" alt="Diagram: install Hermes Agent with a desktop app in three steps: install Hermes One, connect a provider, check with /tools." width="1200" height="630" loading="lazy"><figcaption>Install the Hermes One package, connect one model provider, and check the agent with small tasks before adding more.</figcaption></figure>
 <nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#install">1. Install the desktop app</a></li><li><a href="#setup">2. Let it install Hermes Agent</a></li><li><a href="#provider">3. Connect one model provider</a></li><li><a href="#check">4. Check it with tasks you can verify</a></li><li><a href="#extras">5. Add the extras one at a time</a></li><li><a href="#trouble">When it fails</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
 <h2 id="install">1. Install the desktop app</h2>
+<table tabindex="0"><thead><tr><th scope="col">Your system</th><th scope="col">App to install</th><th scope="col">Package</th></tr></thead><tbody>
+<tr><th scope="row">macOS 12 or later</th><td>Hermes Desktop (official, Nous Research)</td><td>Download from Nous Research</td></tr>
+<tr><th scope="row">Windows 10 or 11</th><td>Hermes Desktop (official, Nous Research)</td><td>Download from Nous Research</td></tr>
+<tr><th scope="row">Debian</th><td>Hermes One (community)</td><td><code>.deb</code></td></tr>
+<tr><th scope="row">Fedora</th><td>Hermes One (community)</td><td><code>.rpm</code></td></tr>
+<tr><th scope="row">Other Linux</th><td>Hermes One (community)</td><td><code>.AppImage</code></td></tr>
+</tbody></table>
 <p>Download the package for your system from the Hermes One releases page on GitHub (fathah/hermes-desktop) (version 0.7.7 on October 22, 2026). I use Debian in the video:</p>
 <pre tabindex="0"><code>sudo apt install ./hermes-desktop_0.7.7_amd64.deb</code></pre>
 <p>On Fedora use the <code>.rpm</code>, and on other Linux systems the <code>.AppImage</code>. Hermes One also ships macOS and Windows builds, but on those systems the official app above is the simpler choice. If you do use Hermes One on Windows, its installer isn’t code-signed, so SmartScreen warns on first launch; the project README explains what to click.</p>
