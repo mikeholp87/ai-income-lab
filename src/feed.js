@@ -23,9 +23,12 @@ const videoItems = videos => videos.filter(video => video.public !== false)
   .map(video => ({ title: video.title, description: snippet(video.summary || '', 200), url: `${site}/watch/${video.id}`, published: video.published, kind: 'video' }));
 
 // Newest first: every guide plus the latest videos, capped so feed readers get a small file.
+// A guide's date is its last update: Google reads an RSS pubDate as the modification time when the
+// feed is submitted as a sitemap, so an updated guide moves back to the top and gets recrawled.
 export function renderFeed(guides, videos, limit = 40) {
-  const items = [...guides.map(guide => ({ ...guide, kind: 'guide' })), ...videoItems(videos)]
-    .sort((a, b) => Date.parse(b.published) - Date.parse(a.published)).slice(0, limit);
+  const items = [...guides.map(guide => ({ ...guide, date: guide.modified || guide.published, kind: 'guide' })), ...videoItems(videos).map(video => ({ ...video, date: video.published }))]
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).slice(0, limit);
+  const built = items.length ? `\n<lastBuildDate>${new Date(items[0].date).toUTCString()}</lastBuildDate>` : '';
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
@@ -33,8 +36,8 @@ export function renderFeed(guides, videos, limit = 40) {
 <link>${site}/</link>
 <atom:link href="${site}/rss.xml" rel="self" type="application/rss+xml"/>
 <description>New AI automation guides and tested builds from Mike Holp.</description>
-<language>en</language>
-${items.map(item => `<item><title>${escape(item.title)}</title><link>${item.url}</link><guid>${item.url}</guid><pubDate>${new Date(item.published).toUTCString()}</pubDate><category>${item.kind === 'guide' ? 'Guide' : 'Video'}</category><description>${escape(item.description)}</description></item>`).join('\n')}
+<language>en</language>${built}
+${items.map(item => `<item><title>${escape(item.title)}</title><link>${item.url}</link><guid>${item.url}</guid><pubDate>${new Date(item.date).toUTCString()}</pubDate><category>${item.kind === 'guide' ? 'Guide' : 'Video'}</category><description>${escape(item.description)}</description></item>`).join('\n')}
 </channel>
 </rss>
 `;
