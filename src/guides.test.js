@@ -173,7 +173,7 @@ test('guide titles and sections match what people search for', async () => {
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
     ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
-    ['codex-on-linux', 'Codex on Linux: install Codex CLI'],
+    ['codex-on-linux', 'Codex desktop app for Linux: download Codex'],
     ['codex-usage-limits', 'Codex usage limits: check usage'],
     ['vapi-voice-agent-tutorial', 'Vapi AI tutorial: '],
   ]) {
