@@ -1,6 +1,7 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
+import { showSubscribeNotice } from './subscribe-notice.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
@@ -81,6 +82,10 @@ for (const button of banner.querySelectorAll('button')) button.addEventListener(
 recordView();
 // The Clipboard API needs a secure page; without it the commands stay selectable as before.
 if (navigator.clipboard) addCopyButtons(document, navigator.clipboard);
+
+if (showSubscribeNotice(document, window.location, window.history) === 'confirmed') {
+  trackGoogleEvent('newsletter_confirmed', properties);
+}
 
 // Weekly build notes signup at the end of guides.
 for (const form of document.querySelectorAll('form[data-subscribe]')) {
