@@ -282,3 +282,23 @@ test('guide FAQs are collapsible and their FAQPage data matches the visible ques
   }
   assert.match(await read('public/reading.css'), /\.faq-item\[open\] summary::after\{content:'−';border-color:#ff6846;color:#ff6846\}/);
 });
+
+test('guides have no unverified placeholders and link to at least five other guides', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    assert.doesNotMatch(html, /TODO/, file);
+    const body = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    const linked = new Set([...body.matchAll(/href="\/guides\/([a-z0-9-]+)\.html/g)].map(([, slug]) => slug).filter(slug => `${slug}.html` !== file));
+    assert.ok(linked.size >= 5, `${file}: ${linked.size}`);
+  }
+});
+
+test('guide Article data names the author profiles and the topics the guide covers', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const article = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(entry => entry['@type'] === 'Article');
+    assert.ok(article.author.sameAs.includes('https://www.youtube.com/@ai-automation-station'), file);
+    assert.ok(article.about.length >= 1, file);
+    for (const entity of [...article.about, ...(article.mentions || [])]) assert.equal(entity['@type'], 'Thing', `${file}: ${entity.name}`);
+  }
+});
