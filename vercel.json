@@ -1,4 +1,5 @@
 {
+  "crons": [{ "path": "/api/new-video-check", "schedule": "0 17 * * *" }],
   "headers": [
     {
       "source": "/api/(.*)",
