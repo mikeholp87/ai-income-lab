@@ -134,13 +134,13 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
-  assert.match(html, new RegExp(`<iframe class="player" src="${schema.embedUrl}"`));
+  assert.match(html, new RegExp(`<a class="player" href="https://www.youtube.com/watch\\?v=aaaaaaaaaaa" data-embed="${schema.embedUrl}"`));
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
-  // A real embedded player near the top, so the video is the page's main content.
+  // One click-to-load player near the top: no YouTube frame loads until the visitor presses play.
   assert.equal((html.match(/class="player"/g) ?? []).length, 1);
-  assert.match(html, /<iframe class="player" src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa" title="[^"]+"[^>]*allowfullscreen><\/iframe>/);
-  assert.doesNotMatch(html, /<iframe class="player"[^>]*loading=/);
+  assert.doesNotMatch(html, /<iframe/);
+  assert.match(html, /<a class="player"[^>]*data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg"[^>]*><span class="play">/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
@@ -308,7 +308,7 @@ test('guide discovery includes title-only notes and avoids repeated companion li
   assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
   assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
   assert.match(companion, /<link rel="preconnect" href="https:\/\/i.ytimg.com">/);
-  assert.match(companion, /<iframe class="player" src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.match(companion, /<a class="player"[^>]*data-embed="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
   assert.doesNotMatch(companion, /loading="lazy"/);
 });
 
