@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
-import { curatedSummary, fetchUploads, sponsoredVideos } from '../src/archive.js';
+import { fetchUploads, sponsoredVideos } from '../src/archive.js';
+import { curatedSummary, withSummaries } from '../src/curated-summary.js';
 import { validFeed } from '../src/youtube.js';
 import { refreshThumbnail } from './thumbnail.js';
 
@@ -15,7 +16,7 @@ try {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const feed = await response.json();
   if (!validFeed(feed)) throw new Error('Invalid YouTube feed');
-  await writeFile(path, `${JSON.stringify(feed, null, 2)}\n`);
+  await writeFile(path, `${JSON.stringify(withSummaries(feed), null, 2)}\n`);
   console.log('Updated the latest-video snapshot.');
 } catch (error) {
   if (!validFeed(JSON.parse(await readFile(path, 'utf8')))) throw new Error('No usable video snapshot', { cause: error });

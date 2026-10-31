@@ -225,3 +225,15 @@ test('the hero includes build notes signup after reassurance with a privacy link
   const signup = jsx.slice(jsx.indexOf('function NotesSignup('), jsx.indexOf('function App('));
   assert.match(signup, /isHero && <p className="notes-signup-privacy">One email a week\. Unsubscribe anytime\. <a href="\/privacy\.html">Privacy policy<\/a>/);
 });
+
+test('every homepage video shows a description, preferring the written summary', async () => {
+  const { withSummaries } = await import('./curated-summary.js');
+  const { listingSummaries } = await import('./video-summaries.js');
+  const snapshot = JSON.parse(await readFile(new URL('./youtube-snapshot.json', import.meta.url), 'utf8'));
+  // An empty YouTube description leaves the card blank: add the video to listingSummaries in src/video-summaries.js.
+  for (const video of snapshot.videos) assert.ok(video.summary.trim(), `${video.id} "${video.title}" has no description`);
+  const [written] = withSummaries({ videos: [{ id: 'rMRsVyIsZCU', summary: '' }] }).videos;
+  assert.equal(written.summary, listingSummaries.rMRsVyIsZCU);
+  assert.match(jsx, /\{video\.summary && <p className="player-summary">\{video\.summary\}<\/p>\}/);
+  assert.match(await readFile(new URL('../api/youtube.js', import.meta.url), 'utf8'), /feed: withSummaries\(feed\)/);
+});

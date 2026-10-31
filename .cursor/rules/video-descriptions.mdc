@@ -1,0 +1,13 @@
+---
+description: Every new YouTube upload needs a written description for the homepage and watch pages
+alwaysApply: true
+---
+
+# Video descriptions
+
+Every video shown on the homepage must have a description under its title.
+
+- The homepage feed (`api/youtube.js`) uses `withSummaries` from `src/curated-summary.js`: the written summary first, then the prose from the YouTube description.
+- When a new upload has an empty or link-only YouTube description, add a factual one to `listingSummaries` in `src/video-summaries.js`. `npm run build` lists videos missing one ("No written summary for …"), and `src/homepage.test.js` fails until every homepage video has one.
+- Write it from the video's transcript (`src/transcripts.json`) or chapters, in third person, 120–155 characters where possible. Do not use em dashes, semicolons or ellipses (a test enforces this), and do not invent claims the video doesn't make.
+- After adding it, run `node scripts/refresh-videos.js` so `src/youtube-snapshot.json` carries the new text.

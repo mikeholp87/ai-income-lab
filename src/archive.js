@@ -4,10 +4,13 @@ import { videoOffer } from './video-offer.js';
 import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
+import { curatedSummary } from './curated-summary.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
 import { topicFor, topics } from './topics.js';
+
+export { curatedSummary };
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -189,7 +192,6 @@ export const fallbackDescription = video => {
   const parts = validChapters(video.chapters, seconds).slice(1, 4).map(chapter => chapter.label);
   return `${video.title} is ${seconds ? `${article(minutes)} ${minutes} minute` : 'an'} AI Automation Station video${topic ? ` on ${topic.name}` : ''}, published ${longDate.format(new Date(video.published))}.${parts.length ? ` It covers ${listFormat.format(parts)}.` : ''}`;
 };
-export const curatedSummary = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || videoSummaries[video.id]?.summary || listingSummaries[video.id];
 export const videoDescription = video => curatedSummary(video) || video.summary || fallbackDescription(video);
 const number = new Intl.NumberFormat('en');
 

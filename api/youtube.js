@@ -1,3 +1,4 @@
+import { withSummaries } from '../src/curated-summary.js';
 import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
 
 // Hourly, to match /api/videos' newest-upload probe so the hero and /videos pick up a new upload in the same hour.
@@ -57,7 +58,7 @@ export async function GET() {
     refresh ??= fetchFeed(statuses = [])
       .catch(error => { statuses.push(error.message); return null; })
       .then(feed => {
-        if (feed) memo = { at: Date.now(), feed };
+        if (feed) memo = { at: Date.now(), feed: withSummaries(feed) };
         else retryAt = Date.now() + 300000;
       })
       .finally(() => { refresh = null; });

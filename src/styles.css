@@ -156,6 +156,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .player-meta { display: grid; gap: 10px; padding: 24px 28px 28px; }
 .player-meta h2 { font: 600 22px/1.25 var(--sans); }
 .player-meta h2 a:hover { color: var(--signal); }
+.player-summary { display: -webkit-box; overflow: hidden; color: var(--body); font-size: 15px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .hero-actions .button { flex: 1 1 auto; justify-content: center; padding: 12px 20px; text-align: center; }
 .video-next-step { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line-strong); color: var(--body); font-size: 14px; }
 .video-next-step .next-step-access { color: var(--muted); font-size: 12px; }

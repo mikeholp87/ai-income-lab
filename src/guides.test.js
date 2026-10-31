@@ -253,3 +253,15 @@ test('every guide page shows its own branded card and never points at a YouTube 
     assert.match(html, new RegExp(`<meta property="og:image" content="https://www\\.ai-automation-station\\.com/assets/guides/${slug}\\.webp"`), file);
   }
 });
+
+test('every in-page link on a static page points at an element that exists', async () => {
+  const pages = [...guides.map(file => `public/guides/${file}`), ...(await readdir(new URL('../public', import.meta.url))).filter(file => file.endsWith('.html')).map(file => `public/${file}`)];
+  for (const path of pages) {
+    const html = await read(path);
+    // A missing space ("<h2id=") makes the browser drop the attribute, so the anchor silently disappears.
+    assert.doesNotMatch(html, /<[a-z][a-z0-9]*(?:id|class|href|src)="/, path);
+    const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map(match => match[1]));
+    // "#top" scrolls to the top of the page without a matching element.
+    for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) if (id !== 'top') assert.ok(ids.has(id), `${path}: #${id}`);
+  }
+});
