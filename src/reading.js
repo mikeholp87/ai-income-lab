@@ -101,11 +101,9 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) {
   button.disabled = false;
   if (!result) return void (status.textContent = 'That didn’t go through. Try again in a minute.');
   form.reset();
-  status.textContent = result.already
-    ? 'You’re already on the list, so there’s no new welcome email. The next build notes come to this inbox; check spam if you haven’t seen one.'
-    : result.welcomeSent === false
-      ? 'You’re subscribed, but the welcome email could not be sent. Please email automojic@proton.me if you need help.'
-      : 'Welcome to the build notes! Check your inbox (and spam) for a welcome email.';
+  status.textContent = result.welcomeSent === false
+    ? 'You’re subscribed, but the welcome email could not be sent. Please email automojic@proton.me if you need help.'
+    : 'Welcome to the build notes! Check your inbox (and spam) for a welcome email.';
   trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement || 'guide_end' });
   });
 }

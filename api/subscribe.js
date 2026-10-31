@@ -2,6 +2,7 @@
 // and welcomes new subscribers by email.
 // Env: RESEND_API_KEY, the same key as the contact form; it needs full access to add contacts.
 import { isEmail, TO as OWNER } from "./contact.js";
+import { clientIp, createRateLimiter, tooManyRequests } from "../src/rate-limit.js";
 
 export const runtime = "nodejs";
 
@@ -36,7 +37,12 @@ AI Automation Station
 You're getting this because this address signed up for the build notes on ${site.replace("https://", "")}. Not you, or changed your mind? Reply "unsubscribe" and I'll take you off the list.`,
 };
 
+// 5 signups per IP per 10 minutes, per warm instance (see src/rate-limit.js for its limits).
+export const limitSubscribe = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 1000 });
+
 export async function POST(req) {
+  const limited = limitSubscribe(clientIp(req.headers));
+  if (!limited.ok) return tooManyRequests(limited.retryAfter);
   let body;
   try { body = await req.json(); }
   catch { return Response.json({ error: "invalid" }, { status: 400 }); }
@@ -56,10 +62,11 @@ export async function POST(req) {
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
       body: JSON.stringify({ email, unsubscribed: false }),
     });
-    // 409: already on the list. They were welcomed before, so the page tells them instead of promising an email.
+    // 409: already on the list. They were welcomed before, so no second welcome is sent, but the
+    // response matches a new signup so the form cannot be used to check who is subscribed.
     if (res.status === 409) {
       console.log("subscribe: already on the list, no welcome sent");
-      return Response.json({ ok: true, already: true });
+      return Response.json({ ok: true, welcomeSent: true });
     }
     if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
     console.log("subscribe: contact added");
