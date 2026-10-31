@@ -7,13 +7,17 @@
 <p class="meta" id="search-status" role="status">Loading the index…</p>
 <ul class="search-results" id="search-results"></ul>
 <button type="button" class="search-more" id="search-more" hidden>Show more results</button>
+<section class="search-inside" id="search-inside" aria-labelledby="inside-heading" hidden><h2 id="inside-heading">Mentioned inside videos and guides</h2><ul class="search-results" id="inside-results"></ul></section>
 <script type="module">
+import { afterTyping, searchInside } from '/inside-search.js';
 // Every word must appear in the title or description; title hits rank first. ponytail: substring match over ~250 rows, fine until thousands.
 // No query: the 3 newest guides and videos. A query: 8 results, then 8 more per "Show more results".
 const input = document.getElementById('q');
 const status = document.getElementById('search-status');
 const list = document.getElementById('search-results');
 const more = document.getElementById('search-more');
+const inside = document.getElementById('search-inside');
+const insideList = document.getElementById('inside-results');
 const rows = await fetch('/search-index.json').then(response => response.json()).catch(() => null);
 const html = text => text.replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
 const pageSize = 8;
@@ -26,6 +30,7 @@ function run() {
   if (query !== lastQuery) { shown = pageSize; lastQuery = query; }
   history.replaceState(null, '', query ? `?q=${encodeURIComponent(query)}` : location.pathname);
   more.hidden = true;
+  inside.hidden = true;
   if (!rows) return void (status.textContent = 'Search is unavailable right now. Browse the guides or all videos instead.');
   if (!query) {
     list.innerHTML = starter().map(item).join('');
@@ -42,7 +47,17 @@ function run() {
   list.innerHTML = hits.slice(0, shown).map(hit => item(hit.row)).join('');
   more.hidden = hits.length <= shown;
   more.textContent = `Show more results (${hits.length - shown} more)`;
+  findInside(query, new Set(hits.map(hit => hit.row[2])));
 }
+// Passages from the transcripts and guide text, for words a title or description doesn't contain.
+const findInside = afterTyping(async (query, listed) => {
+  const found = await searchInside(query);
+  if (query !== input.value.trim().toLowerCase() || !found) return;
+  const extra = found.filter(row => !listed.has(row[2]));
+  insideList.innerHTML = extra.map(item).join('');
+  inside.hidden = !extra.length;
+  if (!listed.size && extra.length) status.textContent = `No titles match “${query}”, but ${extra.length === 1 ? 'this mentions' : 'these mention'} it:`;
+});
 input.value = new URLSearchParams(location.search).get('q') ?? '';
 input.addEventListener('input', run);
 input.form.addEventListener('submit', event => { event.preventDefault(); run(); });

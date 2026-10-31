@@ -1,5 +1,7 @@
 // The /videos search box: filters /video-index.json (rendered live by api/videos.js) as you type and swaps
 // the matching cards in place of the archive. Without JavaScript the form submits to /search.html instead.
+import { afterTyping, searchInside } from '/inside-search.js';
+
 const form = document.getElementById('video-search');
 const input = form.elements.q;
 const results = document.getElementById('video-results');
@@ -38,7 +40,18 @@ async function run() {
   }).filter(Boolean).sort((a, b) => b.score - a.score);
   status.textContent = hits.length ? `${hits.length} ${hits.length === 1 ? 'video matches' : 'videos match'} “${typed}”` : `No videos match “${typed}”. Try fewer words.`;
   list.innerHTML = hits.map(hit => card(hit.row)).join('');
+  if (!hits.length) findInside(typed, rows);
 }
+// No title or description matches: look for videos where it's said in the transcript.
+const findInside = afterTyping(async (typed, rows) => {
+  const found = await searchInside(typed);
+  if (input.value.trim() !== typed || !found) return;
+  const byId = new Map(rows.map(row => [row[0], row]));
+  const videos = found.filter(row => row[0] === 'video').map(row => byId.get(row[2].replace('/watch/', ''))).filter(Boolean);
+  if (!videos.length) return;
+  status.textContent = `No titles match “${typed}”, but ${videos.length === 1 ? 'this video mentions' : `these ${videos.length} videos mention`} it:`;
+  list.innerHTML = videos.map(card).join('');
+});
 input.value = new URLSearchParams(location.search).get('q') ?? '';
 input.addEventListener('input', run);
 input.addEventListener('focus', load, { once: true });
