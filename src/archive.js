@@ -176,6 +176,7 @@ ${pager(page, pages)}
 const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}"><img src="https://i.ytimg.com/vi/${video.id}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
 const videoHeading = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || watchHeading(video.title);
 const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
@@ -362,7 +363,7 @@ ${transcript.slice(0, openParagraphs).map(paragraph => `<p>${escape(paragraph)}<
 </aside>
 <form class="notes" data-subscribe data-placement="watch_end"><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>${related.length ? `
 <h2>You may also like</h2>
-<ul class="related">${related.map(other => `<li><a href="/watch/${other.id}"><img src="https://i.ytimg.com/vi/${other.id}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>${escape(videoHeading(other))}</span></a></li>`).join('')}</ul>` : ''}
+${relatedList(related)}` : ''}
 </main>
 <script>${playerScript}</script>
 <footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>
@@ -399,7 +400,7 @@ export function renderPageSitemap(xml, videos) {
 }
 
 // Guide path → its matching watch pages (newest first), using the same title patterns as the watch pages.
-export function guideVideos(videos, count = 3) {
+export function guideVideos(videos, count = 4) {
   const map = new Map();
   for (const video of videos.filter(video => video.embeddable)) {
     const guide = guides.find(([pattern]) => pattern.test(video.title));
@@ -413,8 +414,8 @@ export function guideVideos(videos, count = 3) {
 
 export function addGuideVideos(html, path, videos) {
   const list = guideVideos(videos).get(path);
-  if (!list || html.includes('id="watch-the-video"')) return html;
-  const section = `<section aria-labelledby="watch-the-video"><h2 id="watch-the-video">Watch the video</h2><ul>${list.map(video => `<li><a href="/watch/${video.id}">${escape(video.title)}</a></li>`).join('')}</ul></section>\n`;
+  if (!list || html.includes('id="you-may-also-like"')) return html;
+  const section = `<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like</h2>${relatedList(list)}</section>\n`;
   const at = html.indexOf('<aside class="note next-steps"');
   return at === -1 ? html.replace('</main>', `${section}</main>`) : html.slice(0, at) + section + html.slice(at);
 }

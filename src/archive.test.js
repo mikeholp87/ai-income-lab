@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
+import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
 import { watchNotes } from './watch-notes.js';
@@ -642,4 +642,13 @@ test('transcript summaries render a build section and valid FAQPage data', async
 test('videos without any summary get a descriptive fallback', () => {
   const html = renderWatch({ id: 'abcdefghijk', title: 'Test n8n build', published: '2026-10-01T00:00:00Z', duration: 'PT7M52S', summary: '', chapters: [] });
   assert.match(html, /Test n8n build is an 8 minute AI Automation Station video on n8n, published October 1, 2026\./);
+});
+
+test('guide pages list up to four matching videos as thumbnail cards', () => {
+  const videos = ['a', 'b', 'c', 'd', 'e'].map(letter => ({ id: letter.repeat(11), title: `n8n build ${letter}`, embeddable: true }));
+  const html = addGuideVideos('<main><p>Guide</p><aside class="note next-steps">Next</aside></main>', '/guides/self-host-n8n.html', videos);
+  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/aaaaaaaaaaa"><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
+  assert.equal(html.match(/<li>/g).length, 4);
+  assert.ok(html.indexOf('you-may-also-like') < html.indexOf('next-steps'));
+  assert.equal(addGuideVideos(html, '/guides/self-host-n8n.html', videos), html);
 });
