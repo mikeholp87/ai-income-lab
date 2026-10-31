@@ -128,12 +128,6 @@ const tools = [
   },
 ];
 
-const repos = [
-  { name: 'solar-business-directory', copy: 'Next.js directory of UK solar installers, with lead capture, an installer portal, and Stripe billing.', language: 'TypeScript', year: 2026, live: 'https://solar-business-directory.vercel.app' },
-  { name: 'seo-tool', copy: 'SEO Scout: paste a URL, get a scored audit across eight categories with the steps to fix each issue.', language: 'TypeScript', year: 2026 },
-  { name: 'ai-income-lab', copy: 'The source for this page. React and Vite on Vercel, with a YouTube feed that refreshes daily.', language: 'JavaScript', year: 2026 },
-];
-
 const plans = [
   { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
   { name: 'Premium', price: 49, annual: 490, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
@@ -800,7 +794,7 @@ function App({ page = 'home' }) {
             {featuredGuides.map(guide => (
               <li key={guide.slug}>
                 <a className="guide-card" href={`/guides/${guide.slug}.html`}>
-                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
+                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-400.webp 400w, /assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}-800.webp 800w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
                   <span className="guide-card-tag">{guide.tag}</span>
                   <h3>{guide.title}</h3>
                 </a>
@@ -848,24 +842,6 @@ function App({ page = 'home' }) {
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>
           </div>
         </div>
-        <div className="shell built" id="code">
-          <h3>Things I&rsquo;ve built</h3>
-          <p>Side projects and experiments, with the source open on GitHub.</p>
-          <ul className="repo-list">
-            {repos.map(repo => {
-              const source = `${githubUrl}/${repo.name}`;
-              return (
-                <li key={repo.name}>
-                  <h4><a href={source} target="_blank" rel="noreferrer" onClick={trackClick('code', repo.name, source, 'visit_github')}>{repo.name}</a></h4>
-                  <p>{repo.copy}</p>
-                  <p className="repo-meta"><span>{repo.language}</span><span>{repo.year}</span></p>
-                  <p className="repo-links"><a href={source} target="_blank" rel="noreferrer" aria-label={`${repo.name} source on GitHub`}>Source ↗</a>{repo.live && <a href={repo.live} target="_blank" rel="noreferrer" aria-label={`${repo.name} live site`}>Live site ↗</a>}</p>
-                </li>
-              );
-            })}
-          </ul>
-          <a className="text-link" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('code', 'All repositories', githubUrl, 'visit_github')}>All repositories on GitHub ↗</a>
-        </div>
       </section>
 
       <section className="section brands-strip" id="brands">
@@ -874,7 +850,7 @@ function App({ page = 'home' }) {
             <h2>Sponsor a build</h2>
             <p>Make an AI model, agent or automation tool? I test it on a real build for the channel, with the mistakes left in.</p>
           </div>
-          <a className="button button-quiet" href="/sponsors.html" onClick={trackClick('brands', 'See the media kit and packages', '/sponsors.html', 'view_sponsors')}>See the media kit and packages</a>
+          <a className="button button-primary" href="/sponsors.html" onClick={trackClick('brands', 'See the media kit and packages', '/sponsors.html', 'view_sponsors')}>See the media kit and packages</a>
         </div>
       </section>
 

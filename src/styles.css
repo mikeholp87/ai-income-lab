@@ -28,7 +28,7 @@ img { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4, p, dl, dd, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
-/* Guides under the latest videos: ruled two-column list, same rhythm as the repo list */
+/* Guides under the latest videos: ruled two-column list */
 .build-guides .guide-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; margin-top: 32px; }
 .guide-card { display: grid; gap: 10px; align-content: start; height: 100%; }
 .guide-card img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border: 1px solid var(--line); border-top: 2px solid var(--signal); background: var(--panel); }
@@ -54,8 +54,8 @@ section[id], main [id] { scroll-margin-top: 88px; }
   @keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 }
 
-/* DM Mono is for data only: dates, views, durations, years, shares and repository names */
-.meta-row, .duration, .timeline span, .repo-meta, .repo-list h4, .audience-list li > span:last-child, .service-price span { font-family: var(--mono); }
+/* DM Mono is for data only: dates, views, durations, years and shares */
+.meta-row, .duration, .timeline span, .audience-list li > span:last-child, .service-price span { font-family: var(--mono); }
 
 /* Header */
 .site-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--line); background: rgb(10 10 10 / .82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
@@ -259,19 +259,6 @@ a.video-card:hover h3 { color: var(--signal); }
 .tool-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
 .tool-link:hover { color: var(--signal); }
 
-/* Things I've built (inside About) */
-.built { margin-top: 112px; }
-.built h3 { font: 600 22px/1.25 var(--sans); }
-.built > p { margin-top: 8px; color: var(--body); }
-.repo-list { margin-top: 32px; border-top: 1px solid var(--line); }
-.repo-list li { display: grid; grid-template-columns: 240px 1fr 140px 150px; gap: 32px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); }
-.repo-list h4 { font: 500 15px var(--mono); }
-.repo-list h4 a:hover { color: var(--signal); }
-.repo-list p { color: var(--body); font-size: 14px; }
-.repo-list .repo-meta, .repo-list .repo-links { display: flex; gap: 16px; justify-content: flex-end; font-size: 12px; white-space: nowrap; }
-.repo-list .repo-meta { color: var(--muted); }
-.repo-links a { color: var(--text); }
-.repo-links a:hover { color: var(--signal); }
 
 /* VIP course, directly below the hero */
 .course-promo { padding-bottom: 64px; }
@@ -359,9 +346,10 @@ a.video-card:hover h3 { color: var(--signal); }
 .sponsors-intro + .section { padding-top: 72px; }
 .sponsors-intro h1 { max-width: 20ch; font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
 .brands-strip.section { padding: 64px 0; }
-.brands-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; }
-.brands-row h2 { font: 400 clamp(24px, 2.6vw, 32px)/1.15 var(--display); }
-.brands-row p { margin-top: 10px; color: var(--body); }
+.brands-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; padding: 48px 56px; border: 1px solid rgb(255 104 70 / .35); border-radius: 24px; background: radial-gradient(700px 320px at 90% -20%, rgb(255 104 70 / .18), transparent 60%), linear-gradient(180deg, #141210, var(--panel)); box-shadow: 0 30px 80px -40px rgb(255 104 70 / .35), inset 0 1px 0 rgb(255 255 255 / .04); }
+.brands-row::before { content: ''; position: absolute; top: -1px; left: 56px; width: 120px; height: 3px; border-radius: 0 0 3px 3px; background: var(--signal); }
+.brands-row h2 { font: 400 clamp(26px, 3vw, 38px)/1.12 var(--display); }
+.brands-row p { margin-top: 10px; color: var(--text); font-size: 17px; }
 
 /* Footer */
 .footer { padding: 80px 0 32px; border-top: 1px solid var(--line); }
@@ -408,17 +396,14 @@ a.video-card:hover h3 { color: var(--signal); }
   .nav-mobile { display: block; }
   .hero-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
   .portrait { position: static; max-width: 280px; justify-self: center; }
-  .repo-list li { grid-template-columns: 1fr auto; gap: 8px 24px; }
-  .repo-list li > p:not(.repo-meta, .repo-links) { grid-column: 1 / -1; grid-row: 2; }
-  .repo-list .repo-meta { grid-row: 1; grid-column: 2; }
-  .repo-list .repo-links { grid-column: 1 / -1; justify-content: flex-start; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
   .plan-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .stats div { flex-direction: column; align-items: center; gap: 8px; padding: 28px 12px; }
-  .built { margin-top: 80px; }
 }
 
 @media (max-width: 640px) {
+  .brands-row { padding: 36px 24px 28px; border-radius: 18px; }
+  .brands-row::before { left: 24px; }
   .service, .service-featured { padding: 24px; }
   .service-stats { gap: 28px; }
       .audience-tabs button { padding: 0 10px; font-size: 12px; }

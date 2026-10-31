@@ -58,3 +58,16 @@ test('expired snapshots refresh on each cold instance and concurrent requests sh
   assert.equal((await second.GET(request())).status, 200);
   assert.equal(requests, 4, 'another cold instance does not reset the saved fetch timestamp');
 });
+
+test('bad video URLs get the site 404 page, with its header, nav and versioned stylesheet', async () => {
+  const { readingCss } = await import('./asset-version.js');
+  for (const path of ['/videos/not-a-page', '/watch/too-short']) {
+    const response = await GET(new Request(`https://www.ai-automation-station.com${path}`));
+    assert.equal(response.status, 404, path);
+    const html = await response.text();
+    assert.match(html, /<meta name="robots" content="noindex,follow">/, path);
+    assert.ok(html.includes(`<link rel="stylesheet" href="${readingCss}">`), path);
+    assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a>/, path);
+    assert.match(html, /<p class="meta">404<\/p><h1>Page not found<\/h1>/, path);
+  }
+});

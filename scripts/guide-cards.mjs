@@ -1,6 +1,6 @@
 // Renders guide cards to public/assets/guides/<slug>.webp, plus sizes/<slug>-640.webp for phones, with one shared template.
-// The guides hub shows a headline-only version (hub/<slug>.webp and hub/<slug>-640.webp): the full card's step
-// text is unreadable at the hub's 360px card width.
+// The guides hub shows a headline-only version (hub/<slug>.webp, -400, -640 and -800): the full card's
+// step text is unreadable at the hub's card width.
 // Usage: node scripts/guide-cards.mjs [slug ...]   (no slugs renders every card below)
 // Needs google-chrome on PATH; full cards use the system Noto Sans, hub cards the site's Archivo Black.
 import { execFileSync } from 'node:child_process';
@@ -201,7 +201,9 @@ export async function renderHubCard(slug, card, outDir = 'public/assets/guides/h
   const dir = await screenshot(hubCardHtml(card), [600, 315], 2);
   try {
     await mkdir(outDir, { recursive: true });
+    await sharp(join(dir, 'card.png')).resize(400, 210).webp({ quality: 82 }).toFile(join(outDir, `${slug}-400.webp`));
     await sharp(join(dir, 'card.png')).resize(640, 336).webp({ quality: 82 }).toFile(join(outDir, `${slug}-640.webp`));
+    await sharp(join(dir, 'card.png')).resize(800, 420).webp({ quality: 82 }).toFile(join(outDir, `${slug}-800.webp`));
     return await sharp(join(dir, 'card.png')).resize(1200, 630).webp({ quality: 82 }).toFile(join(outDir, `${slug}.webp`));
   } finally {
     await rm(dir, { recursive: true, force: true });

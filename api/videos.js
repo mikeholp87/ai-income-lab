@@ -2,6 +2,7 @@ import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
+import { readingCss } from '../src/asset-version.js';
 
 const day = 86400000;
 // Same idea as /api/youtube: the instance keeps the video list for a day, so cache-busting URLs cost no quota.
@@ -43,7 +44,9 @@ function refreshUploads() {
 }
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
-const message = (title, text) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,follow"><title>${title} | AI Automation Station</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/reading.css"></head><body><a class="skip" href="#content">Skip to content</a><header><a href="/">AI Income Lab</a></header><main id="content"><h1>${title}</h1><p>${text}</p><p><a href="/guides.html">Read the free guides</a> or <a href="/">return home</a>.</p></main><footer><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer></body></html>`;
+const nav = '<a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a>';
+// Same header and footer as public/404.html.
+const message = (title, text) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="noindex,follow"><title>${title} | AI Automation Station</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${readingCss}"></head><body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu">${nav}</nav></details></header><main id="content"><p class="meta">${title === 'Page not found' ? '404' : 'Temporarily unavailable'}</p><h1>${title}</h1><p>${text}</p><p><a href="/">Go home</a> · <a href="/guides.html">Read the free guides</a> · <a href="/start-here.html">Choose a first build</a></p></main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>`;
 const notFound = (cache = 'no-store') => html(message('Page not found', 'That page of videos doesn’t exist. <a href="/videos">See the newest videos</a>.'), 404, cache);
 
 // Archive, watch pages and video sitemap share the same daily upload cache.

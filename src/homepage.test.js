@@ -72,9 +72,18 @@ test('the guides section follows videos in the header and page, with one start l
   assert.match(media('(max-width: 640px)'), /\.build-guides \.guide-cards \{ grid-template-columns: 1fr; gap: 24px; \}/);
 });
 
-test('the build list shows three projects', () => {
-  const start = jsx.indexOf('const repos = [');
-  assert.equal(count(jsx.slice(start, jsx.indexOf('];', start)), "{ name: '"), 3);
+test('the homepage has no GitHub project list', () => {
+  assert.doesNotMatch(jsx, /const repos = \[|Things I&rsquo;ve built|id="code"/);
+  assert.doesNotMatch(css, /\.repo-list|\.built\b/);
+});
+
+test('the sponsor strip is an orange-accented card with a primary button', () => {
+  const start = jsx.indexOf('id="brands"');
+  const strip = jsx.slice(start, jsx.indexOf('</section>', start));
+  assert.match(strip, /<h2>Sponsor a build<\/h2>/);
+  assert.match(strip, /<a className="button button-primary" href="\/sponsors.html"/);
+  assert.match(css, /\.brands-row \{[^}]*border: 1px solid rgb\(255 104 70 \/ \.35\)/);
+  assert.match(css, /\.brands-row::before \{[^}]*background: var\(--signal\)/);
 });
 
 test('the hero relates the two brands without an announcement pill', () => {
@@ -168,7 +177,6 @@ test('the homepage keeps the brands strip and the contact section, in that order
   const home = jsx.slice(jsx.indexOf('function App('));
   const order = ['id="about"', 'id="brands"', '<WorkTogether campaign={campaign} />', 'id="faq"'].map(text => home.indexOf(text));
   assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
-  assert.match(home, /<a className="button button-quiet" href="\/sponsors\.html"/);
   assert.doesNotMatch(home, /<MediaKit|<Services/);
 });
 

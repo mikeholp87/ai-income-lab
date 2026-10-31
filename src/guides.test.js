@@ -124,10 +124,11 @@ test('hub entries show an image, what the guide covers and the matching video', 
   const hub = await read('public/guides.html');
   const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
   assert.equal(entries.length, guides.length);
-  for (const entry of entries) {
-    assert.match(entry, /<img src="\/assets\/guides\/hub\/[a-z0-9-]+\.webp" srcset="[^"]+" sizes="[^"]+" alt="" width="1200" height="630" loading="lazy">/);
+  // The first card is the hub's largest above-the-fold image on phones, so it loads eagerly.
+  entries.forEach((entry, index) => {
+    assert.match(entry, new RegExp(`<img src="/assets/guides/hub/[a-z0-9-]+\\.webp" srcset="[^"]+" sizes="\\(max-width: 735px\\) calc\\(100vw - 32px\\), [^"]+, 411px" alt="" width="1200" height="630" ${index ? 'loading="lazy"' : 'fetchpriority="high"'}>`));
     assert.match(entry, /<h3><a href="\/guides\/[a-z0-9-]+\.html">[^<]+<\/a><\/h3>/);
-  }
+  });
   assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
   assert.match(hub, /<a href="\/videos\/make-com">Make.com videos<\/a>/);
 });
@@ -220,10 +221,10 @@ test('the guides hub shows the headline-only cards, which exist for every guide 
   const { existsSync } = await import('node:fs');
   const { cards } = await import('../scripts/guide-cards.mjs');
   const hub = await read('public/guides.html');
-  const shown = [...hub.matchAll(/<li class="guide"><img src="\/assets\/guides\/hub\/([a-z0-9-]+)\.webp" srcset="\/assets\/guides\/hub\/\1-640\.webp 640w, \/assets\/guides\/hub\/\1\.webp 1200w"/g)];
+  const shown = [...hub.matchAll(/<li class="guide"><img src="\/assets\/guides\/hub\/([a-z0-9-]+)\.webp" srcset="\/assets\/guides\/hub\/\1-400\.webp 400w, \/assets\/guides\/hub\/\1-640\.webp 640w, \/assets\/guides\/hub\/\1-800\.webp 800w, \/assets\/guides\/hub\/\1\.webp 1200w"/g)];
   assert.equal(shown.length, hub.split('<li class="guide">').length - 1);
   for (const slug of Object.keys(cards)) {
-    for (const file of [`${slug}.webp`, `${slug}-640.webp`]) assert.ok(existsSync(new URL(`../public/assets/guides/hub/${file}`, import.meta.url)), file);
+    for (const file of [`${slug}.webp`, `${slug}-640.webp`, `${slug}-400.webp`, `${slug}-800.webp`]) assert.ok(existsSync(new URL(`../public/assets/guides/hub/${file}`, import.meta.url)), file);
   }
 });
 
