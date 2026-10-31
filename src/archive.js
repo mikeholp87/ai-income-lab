@@ -5,6 +5,7 @@ import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
 import { toolLink } from './tool-links.js';
+import { videoTools } from './video-tools.js';
 import { curatedSummary } from './curated-summary.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
@@ -297,6 +298,8 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   // From the YouTube description only, skipping the paragraph already shown above.
   const summaryParagraphs = (video.details ?? []).filter(paragraph => paragraph !== description && !(listingSummaries[video.id] && paragraph === video.summary));
   const brief = videoSummaries[video.id];
+  // A written summary lists its own tools inside "What this video covers".
+  const tools = brief?.toolsUsed?.length ? null : videoTools[video.id];
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
@@ -382,6 +385,10 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <h3>Questions and answers</h3>
 ${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join('\n')}` : ''}
 <p class="meta">Summary written from the video's transcript and chapters.</p>
+</section>` : ''}${tools?.length ? `
+<section aria-labelledby="tools-used">
+<h2 id="tools-used">Tools used</h2>
+<ul>${tools.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide || topic ? `

@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
+import { videoTools } from './video-tools.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
 import { durationSeconds } from './youtube.js';
@@ -403,6 +404,14 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
   assert.match(renderWatch(uploads.find(upload => upload.id === '8ieDSa8BVH4'), { videos: uploads }), /<li>Facebook Messenger<\/li>/);
+});
+
+test('every watch page lists the tools used', () => {
+  // No product is used on screen: a list of automation ideas, a moving vlog, and a TubeAnalytics-only demo.
+  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w', 'gebtJAsMioo']);
+  const missing = uploads.filter(video => video.embeddable && !noTools.has(video.id) && !/<h[23][^>]*>Tools used<\/h[23]>/.test(renderWatch(video, { videos: uploads })));
+  assert.deepEqual(missing.map(video => video.id), [], 'add the tools to src/video-tools.js');
+  for (const tools of Object.values(videoTools)) for (const tool of tools) assert.doesNotMatch(tool, /[—;…()]/, tool);
 });
 
 test('sorts the archive by views, date or length, keeping the sort across pages and out of the index', async () => {
