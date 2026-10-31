@@ -194,6 +194,7 @@ const featuredGuides = [
   { slug: 'n8n-vs-zapier-vs-make', tag: 'Comparison', title: 'n8n vs Zapier vs Make: billing, builders and AI agents', alt: 'Guide card comparing n8n, Zapier and Make.' },
   { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
+  { slug: '9router-setup', tag: 'Setup', title: '9Router setup: providers, model combos and request checks', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
 ];
 
 function SectionHead({ title, children }) {

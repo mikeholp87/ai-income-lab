@@ -30,6 +30,7 @@ ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 /* Guides under the latest videos: ruled two-column list */
 .build-guides .guide-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; margin-top: 32px; }
+.build-guides .guide-cards > li:last-child:nth-child(3n+1) { grid-column: 2; }
 .guide-card { display: grid; gap: 10px; align-content: start; height: 100%; }
 .guide-card img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border: 1px solid var(--line); border-top: 2px solid var(--signal); background: var(--panel); }
 .guide-card-tag { font: 600 13px/1 var(--sans); color: var(--muted); }
@@ -385,6 +386,8 @@ a.video-card:hover h3 { color: var(--signal); }
 
 @media (max-width: 960px) {
   .build-guides .guide-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .build-guides .guide-cards > li:last-child:nth-child(3n+1) { grid-column: auto; }
+  .build-guides .guide-cards > li:last-child:nth-child(2n+1) { grid-column: 1 / -1; justify-self: center; width: calc((100% - 24px) / 2); }
   .service-featured { grid-template-columns: 1fr; padding: 32px; }
     .service-grid { grid-template-columns: 1fr; }
   .audience { grid-template-columns: 1fr; gap: 40px; margin-top: 56px; }
@@ -430,6 +433,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .video-card .meta-row { grid-row: 2; grid-column: 2; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; }
   .video-card .duration { right: 4px; bottom: 4px; padding: 1px 4px; font-size: 12px; }
   .build-guides .guide-cards { grid-template-columns: 1fr; gap: 24px; }
+  .build-guides .guide-cards > li:last-child:nth-child(2n+1) { grid-column: auto; width: auto; }
   .tool-body { padding: 24px; }
   .stats dt { font-size: 13px; text-align: center; }
   .stats dl { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
