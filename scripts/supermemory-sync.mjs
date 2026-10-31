@@ -3,6 +3,8 @@
 //   node scripts/supermemory-sync.mjs            upload what's missing
 //   node scripts/supermemory-sync.mjs --dry-run  list what would be uploaded
 //   node scripts/supermemory-sync.mjs --limit 2  upload at most two (for a test)
+//   node scripts/supermemory-sync.mjs --replace guide_ai-automation,video_abc  re-upload edited documents
+// Adding an ID that already exists appends to that document, so edits need --replace.
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import { Supermemory } from 'supermemory';
@@ -16,6 +18,8 @@ for (const file of ['.env.local', '.env']) {
 const dryRun = process.argv.includes('--dry-run');
 const limitAt = process.argv.indexOf('--limit');
 const limit = limitAt > 0 ? Number(process.argv[limitAt + 1]) : Infinity;
+const replaceAt = process.argv.indexOf('--replace');
+const replace = new Set(replaceAt > 0 ? process.argv[replaceAt + 1].split(',') : []);
 if (!dryRun && !process.env.SUPERMEMORY_API_KEY) throw new Error('Set SUPERMEMORY_API_KEY in .env.local first.');
 
 const root = new URL('../', import.meta.url);
@@ -25,12 +29,18 @@ const transcripts = JSON.parse(await readFile(new URL('src/transcripts.json', ro
 const documents = memoryDocuments(guides, uploads, transcripts);
 
 const client = new Supermemory();
-const existing = new Set();
+const existing = new Map();
 if (!dryRun) {
   for (let page = 1; ; page++) {
     const { documents: listed, pagination } = await client.list(namespace, 'documents', { page, limit: 100 });
-    for (const document of listed) existing.add(document.customId ?? document.id);
+    for (const document of listed) existing.set(document.customId ?? document.id, document.id);
     if (!pagination?.hasMore) break;
+  }
+  const stale = [...replace].filter(id => existing.has(id));
+  if (stale.length) {
+    await client.documents.delete(namespace, { ids: stale.map(id => existing.get(id)) });
+    for (const id of stale) existing.delete(id);
+    console.log(`Deleted ${stale.length} documents to replace: ${stale.join(', ')}`);
   }
 }
 const missing = documents.filter(document => !existing.has(document.id)).slice(0, limit);

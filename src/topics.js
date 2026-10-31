@@ -17,9 +17,9 @@ export const topics = [
     title: 'Codex and OpenCode tutorials: setup and builds | Mike Holp',
     heading: 'Codex and OpenCode tutorials',
     intro: 'Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.',
-    about: 'These videos cover OpenAI Codex and the open-source OpenCode agent: installing them on macOS and Linux, choosing providers and models, working within plan usage limits, and running the same task through different agents to compare the results. The written guides turn the recurring questions into checklists you can follow without rewatching: making and verifying a small code change, installing Codex on Linux, and checking usage limits and reset times before a long session.',
+    about: 'These videos cover OpenAI Codex and the open-source OpenCode agent: installing them on macOS and Linux, choosing providers and models, working within plan usage limits, and running the same task through different agents to compare the results. The written guides turn the recurring questions into checklists you can follow without rewatching: making and verifying a small code change, installing Codex on Linux, checking usage limits and reset times before a long session, and setting up OpenCode Go or an OpenRouter key.',
     pattern: /\bcodex\b|open ?code/i,
-    guides: [['/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'], ['/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'], ['/guides/codex-usage-limits.html', 'Codex usage limits: check usage, plans and reset times'], ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits']],
+    guides: [['/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'], ['/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'], ['/guides/codex-usage-limits.html', 'Codex usage limits: check usage, plans and reset times'], ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'], ['/guides/opencode-go.html', 'OpenCode Go: pricing, models, limits and setup'], ['/guides/openrouter-setup.html', 'OpenRouter: API key, free models, pricing and setup']],
   },
   {
     slug: 'n8n', name: 'n8n',
@@ -71,9 +71,9 @@ export const topics = [
     title: 'AI website and app builders: tutorials and tests | Mike Holp',
     heading: 'AI website and app builder tutorials',
     intro: 'Websites, landing pages and web apps built with AI builders, start to finish.',
-    about: 'Each video builds a real site or app with an AI builder, from Lovable, Replit and Base44 to Google AI Studio, Antigravity and KiloCode, then checks what shipped. You see the prompts, the fixes and the deployment, so you can compare how much each tool did on its own. For a hand-built alternative, the written guide shows how to add a YouTube feed to a React site with caching and a fallback when the API is down.',
+    about: 'Each video builds a real site or app with an AI builder, from Lovable, Replit and Base44 to Google AI Studio, Antigravity and KiloCode, then checks what shipped. You see the prompts, the fixes and the deployment, so you can compare how much each tool did on its own. The written guides cover installing Kilo Code and running a first task you can check, and adding a YouTube feed to a React site with caching and a fallback when the API is down.',
     pattern: /website|landing pages?|web apps?|\bsaas\b|lovable|replit|base44|ai studio|antigravity|kilocode|runable|bluehost|rocket ai/i,
-    guides: [['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks']],
+    guides: [['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks']],
   },
   {
     slug: 'ai-video', name: 'AI video and YouTube',

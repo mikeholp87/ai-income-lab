@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>OpenCode Go: pricing, models, limits and setup</title>
+<meta name="description" content="OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/opencode-go.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenCode Go: pricing, models, limits and setup">
+<meta property="og:description" content="OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/opencode-go.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/opencode-go.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenCode Go: pricing, models, limits and setup">
+<meta name="twitter:description" content="OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/opencode-go.webp">
+<script type="module" src="/src/reading.js"></script>
+<meta property="og:site_name" content="AI Automation Station">
+<meta property="article:published_time" content="2026-11-01">
+<meta property="article:modified_time" content="2026-11-01">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"OpenCode Go: pricing, usage limits and setup","description":"OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.","url":"https://www.ai-automation-station.com/guides/opencode-go.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/opencode-go.html","image":"https://www.ai-automation-station.com/assets/guides/opencode-go.webp","datePublished":"2026-11-01","dateModified":"2026-11-01","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html","sameAs":["https://www.youtube.com/@ai-automation-station","https://github.com/mikeholp87","https://www.linkedin.com/in/mikeholp","https://x.com/mikeholp"]},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"inLanguage":"en","about":[{"@type":"Thing","name":"OpenCode Go","sameAs":"https://opencode.ai/go"}],"mentions":[{"@type":"Thing","name":"OpenCode","sameAs":"https://opencode.ai/"},{"@type":"Thing","name":"OpenCode Zen","sameAs":"https://opencode.ai/zen"},{"@type":"Thing","name":"Hermes Agent","sameAs":"https://hermes-agent.nousresearch.com/"}],"video":{"@type":"VideoObject","@id":"https://www.ai-automation-station.com/guides/opencode-go.html#video","name":"GLM 5.2 Inside OpenCode Go In Minutes!","description":"Learn how to set up GLM 5.2 inside OpenCode and connect it to Hermes Agent using a simple, cost-effective method.","thumbnailUrl":"https://www.ai-automation-station.com/assets/guides/opencode-go.webp","uploadDate":"2026-06-30T06:46:53Z","duration":"PT8M44S","embedUrl":"https://www.youtube-nocookie.com/embed/0tmhsHn5B30","url":"https://www.youtube.com/watch?v=0tmhsHn5B30","publisher":{"@id":"https://www.ai-automation-station.com/#org"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"OpenCode Go: pricing, usage limits and setup","item":"https://www.ai-automation-station.com/guides/opencode-go.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/opencode-go.html#faq-schema","url":"https://www.ai-automation-station.com/guides/opencode-go.html","mainEntity":[{"@type":"Question","name":"How much does OpenCode Go cost?","acceptedAnswer":{"@type":"Answer","text":"Go costs $10 a month, Go Plus $40 a month and Go Teams $20 per member per month, as listed on November 1, 2026. Token prices are the same on every plan; the plans differ in how much usage each model includes."}},{"@type":"Question","name":"What models are in OpenCode Go?","acceptedAnswer":{"@type":"Answer","text":"About 30 models, mainly open coding models such as GLM, Kimi, DeepSeek, Qwen, MiniMax and MiMo, plus Grok 4.7, GPT 6 Luna, GPT 5.6 Luna, Claude Haiku 5.5 and Gemini 4 Argon. The list changes, so check the models endpoint or the Go page."}},{"@type":"Question","name":"What are the OpenCode Go usage limits?","acceptedAnswer":{"@type":"Answer","text":"Each model has a monthly allowance in dollars. You can use up to 20% of it in any 5 hours, 50% in a week and 100% in a month. Allowances range from $15 to $100 a month per model on Go, and are higher on Go Plus."}},{"@type":"Question","name":"Is OpenCode Go the same as OpenCode Zen?","acceptedAnswer":{"@type":"Answer","text":"No. Zen is pay as you go from a credit balance and includes frontier models. Go is a monthly subscription with per-model limits on a curated set of open and low-cost models."}},{"@type":"Question","name":"Do I need OpenCode Go to use OpenCode?","acceptedAnswer":{"@type":"Answer","text":"No. OpenCode is free and open source, and works with other providers, local models and its own free models. Go is an optional provider."}},{"@type":"Question","name":"Can I use OpenCode Go in Claude Code or Hermes?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenCode lists Claude Code, Codex, Hermes v0.21.6 or later, Pi, jcode, ZCode and the Kilo Code CLI as validated clients, without guaranteeing they will keep working. Clients should send normal coding-agent traffic with their own user agent and a session ID."}},{"@type":"Question","name":"What happens when I reach the limit?","acceptedAnswer":{"@type":"Answer","text":"You can keep using the free models, or turn on Extra Usage on the Go page so requests fall back to your pay-as-you-go balance. Extra Usage needs credits in your console balance."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav></details></header>
+<main id="content">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides.html">Guides</a></li><li><span aria-current="page">OpenCode Go: pricing, usage limits and setup</span></li></ol></nav>
+<p class="meta">Build guide · By <a href="/about.html" rel="author">Mike Holp</a> · Published <time datetime="2026-11-01">November 1, 2026</time> · Updated <time datetime="2026-11-01">November 1, 2026</time></p>
+<h1>OpenCode Go: pricing, usage limits and setup</h1>
+<p><strong>Quick answer:</strong> OpenCode Go is a monthly subscription to a curated set of open and low-cost coding models, run by the team behind OpenCode. Go costs $10 a month, Go Plus $40 a month, and Go Teams $20 per member per month. Each model has its own monthly allowance in dollars, with 20% usable per 5 hours and 50% per week. You connect it in OpenCode with <code>/connect</code>, then pick a model with <code>/models</code>. It is optional: OpenCode itself is free and works with other providers.</p>
+<p>OpenCode Go is not the same as OpenCode Zen. Zen is pay as you go: you add credits and pay per request. Go is a flat monthly plan with usage limits. This guide covers what each plan includes, how the limits work, how to connect Go to OpenCode and other agents, and how to choose between Go and Zen.</p>
+<p>I use Go for most of my OpenCode work. In <a href="/watch/0tmhsHn5B30">GLM 5.2 Inside OpenCode Go In Minutes!</a> I run GLM 5.2 through Go in OpenCode and then in Hermes Agent, and in <a href="/watch/cfYpzY-o3fQ">This AI Coding Agent Is 100% Free (And Better Than You Think)</a> I move from Zen credits to the Go plan. Prices and model lists below come from OpenCode’s own pages, checked November 1, 2026. The second video mentions an affiliate link; this guide uses plain links only.</p>
+<figure><img src="/assets/guides/opencode-go.webp" srcset="/assets/guides/sizes/opencode-go-640.webp 640w, /assets/guides/opencode-go.webp 1200w" sizes="(max-width: 1160px) calc(100vw - 40px), 1120px" alt="Guide card: OpenCode Go plans, model limits and setup. Plan: Go, Go Plus or Go Teams; Connect: /connect, then /models; Limits: 5-hour, weekly and monthly." width="1200" height="630" loading="lazy"><figcaption>Zen is pay as you go. Go is a monthly plan.</figcaption></figure>
+<figure class="video"><iframe class="player" src="https://www.youtube-nocookie.com/embed/0tmhsHn5B30" title="GLM 5.2 Inside OpenCode Go In Minutes!" width="560" height="315" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><figcaption>Watch on YouTube: GLM 5.2 Inside OpenCode Go In Minutes! (8:44). Also on this site with notes: <a href="/watch/0tmhsHn5B30">the watch page</a>.</figcaption></figure>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#pricing">Plans and pricing</a></li><li><a href="#models">Included models</a></li><li><a href="#limits">How the limits work</a></li><li><a href="#setup">Set up Go in OpenCode</a></li><li><a href="#other-agents">Use Go in other agents</a></li><li><a href="#go-vs-zen">Go vs Zen</a></li><li><a href="#privacy">Privacy settings</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+<h2 id="pricing">OpenCode Go pricing: Go, Go Plus and Go Teams</h2>
+<p>There are three plans. The model list and the per-token prices are the same on all of them; what changes is how much of each model you can use in a month.</p>
+<table tabindex="0"><thead><tr><th scope="col">Plan</th><th scope="col">Price</th><th scope="col">Who it is for</th></tr></thead><tbody>
+<tr><th scope="row">Go</th><td>$10/month</td><td>One person, in a workspace with a single member</td></tr>
+<tr><th scope="row">Go Plus</th><td>$40/month</td><td>One person who needs higher limits on every model</td></tr>
+<tr><th scope="row">Go Teams</th><td>$20 per member per month</td><td>Workspaces with several members; each member gets their own limits, $5 a month higher than Go on every model</td></tr>
+</tbody></table>
+<p>Go and Go Plus can upgrade to Go Teams at any time, with the unused part of the month’s allowance credited. Service accounts are not covered by Go Teams. OpenCode says you may qualify for a refund if the charge was made in the last 14 days and you have not used that period’s allowance.</p>
+<p>When I recorded the Zen-to-Go video in May 2026, the signup page offered $5 for the first month. The current Go page lists $10 a month with no introductory price, so check the page on the day you subscribe.</p>
+<h2 id="models">Which models OpenCode Go includes</h2>
+<p>The Go docs list 30 models as of November 1, 2026. They are mostly open-weight coding models, plus a few low-cost models from the large labs:</p>
+<ul><li><strong>Open models:</strong> GLM-5.3, GLM-5.3-Flash and GLM-5.2; Kimi K3.1 Pro, Kimi K3 and Kimi K2.7 Code; DeepSeek V4.1 Flash and V4 Pro; Qwen3.8 Max, Qwen3.8 Flash and Qwen3.7 Plus; MiniMax M3 and M3.1 Flash; MiMo-V2.6 and V2.5 (Flash and Pro); LongCat-2.0; Step 5 Preview; Hy4 preview and Hy3.</li><li><strong>Lab models:</strong> Grok 4.7, GPT 6 Luna, GPT 5.6 Luna, Claude Haiku 5.5 and Gemini 4 Argon.</li><li><strong>Contributor and free models:</strong> Muse Spark 1.3 and 1.2 Contributor, plus Beam Free and Iceman Contributor Free, both free for a limited time.</li></ul>
+<p>The list changes as OpenCode tests and adds models, so treat the one above as a snapshot. For the current list with metadata, call the models endpoint:</p>
+<pre tabindex="0"><code>curl https://opencode.ai/inference/go/v1/models</code></pre>
+<p>Frontier models such as Claude Opus, Claude Sonnet and GPT 6 Sol are not in Go. They are available pay as you go through Zen, or through your own provider account.</p>
+<h2 id="limits">How OpenCode Go usage limits work</h2>
+<p>Go limits are set per model as a monthly dollar amount, not as a request count. Every request is priced at the model’s token rates and counted against that model’s allowance. Each model then has three windows:</p>
+<ul><li><strong>5 hours:</strong> up to 20% of the model’s monthly limit.</li><li><strong>Weekly:</strong> up to 50%.</li><li><strong>Monthly:</strong> 100%.</li></ul>
+<p>So you cannot spend a whole month’s allowance on one model in an afternoon. Each response reports how much it counted, in the <code>opencode.allowance</code> field, and the console shows your current usage.</p>
+<p>The allowance differs by model. OpenCode says it negotiates bulk discounts and reserved capacity for most models and passes the savings on as higher limits; newer or already-discounted models get less. A few examples from the docs:</p>
+<table tabindex="0"><thead><tr><th scope="col">Model</th><th scope="col">Go monthly limit</th><th scope="col">Go Plus monthly limit</th><th scope="col">Estimated requests per 5 hours on Go</th></tr></thead><tbody>
+<tr><th scope="row">DeepSeek V4.1 Flash</th><td>$100</td><td>$200</td><td>43,330</td></tr>
+<tr><th scope="row">GLM-5.2</th><td>$60</td><td>$180</td><td>880</td></tr>
+<tr><th scope="row">Kimi K2.7 Code</th><td>$60</td><td>$180</td><td>1,350</td></tr>
+<tr><th scope="row">Kimi K3</th><td>$15</td><td>$60</td><td>110</td></tr>
+<tr><th scope="row">Claude Haiku 5.5</th><td>$15</td><td>$60</td><td>3,850</td></tr>
+</tbody></table>
+<p>The request estimates assume a typical coding-agent request with a large cached context, for example 700 input, 52,000 cached and 150 output tokens for GLM. Your requests will differ, so use the estimates to compare models, not to plan a budget.</p>
+<p>In my GLM 5.2 session, after a site audit and several test prompts, the console showed 15% of the weekly allowance and 11% of the monthly allowance used. In the earlier video, a session of site fixes across Kimi, MiniMax and Qwen came to 5% of the monthly, 11% of the weekly and 27% of the 5-hour allowance. Those are single sessions on my account, not a benchmark.</p>
+<h3 id="limit-reached">When you hit a limit</h3>
+<p>You have two options. You can keep working on the free models, or turn on <strong>Extra Usage</strong> on the Go page so requests fall back to your pay-as-you-go balance instead of being blocked. Extra Usage needs credits in your console balance. Go Teams starts with Extra Usage on.</p>
+<p>The same habits that help with <a href="/guides/codex-usage-limits.html">Codex usage limits</a> apply here: check the console before a long task, and move routine work to a model with a larger allowance.</p>
+<h2 id="setup">Set up OpenCode Go in OpenCode</h2>
+<p>If you have not installed OpenCode yet, the <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code guide</a> covers installation and the free option first.</p>
+<ol><li>Sign in to the OpenCode console, subscribe to Go, Go Plus or Go Teams, add your billing details and copy your API key.</li><li>In the OpenCode terminal app, run <code>/connect</code>, choose <strong>OpenCode Go</strong> and paste the key.</li><li>Run <code>/models</code> and pick a model listed under Go.</li><li>Send a short prompt such as “Reply with the word test.” and check that the console’s usage page shows the request.</li></ol>
+<pre tabindex="0"><code>/connect
+/models</code></pre>
+<p>To make a Go model the default, set it in your OpenCode config using the <code>opencode-go/</code> prefix:</p>
+<pre tabindex="0"><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/kimi-k3"
+}</code></pre>
+<p>Go models use the <code>opencode-go/</code> prefix. Zen models use <code>opencode/</code>. If a model you expect is missing, check which provider you selected. In the GLM 5.2 video, my first test on Zen returned “insufficient balance” because I had no Zen credits; switching the model to the Go provider fixed it.</p>
+<h2 id="other-agents">Use OpenCode Go in Claude Code, Codex, Hermes and others</h2>
+<p>Go is a provider, so other coding agents can use it with your Go API key. OpenCode lists these as validated, without guaranteeing they will keep working:</p>
+<ul><li><strong>Hermes:</strong> update to v0.21.6 or later.</li><li><strong>Claude Code</strong> and <strong>Codex:</strong> Go recognises their native session headers. Some Codex versions and proxy setups still drop the header.</li><li><strong>ZCode, Pi, jcode</strong> and the <strong>Kilo Code CLI</strong>, with recent versions. The Kilo fix covers the CLI, not the VS Code extension.</li></ul>
+<p>OpenCode asks other clients to send normal coding-agent traffic, identify themselves with their own user agent, and send a stable session ID for each conversation. It monitors traffic for abuse, so Go is not a general-purpose API for an app you are building.</p>
+<p>In Hermes Agent, I connected the Go plan, ran <code>/model</code> and chose GLM 5.2 under OpenCode Go. Hermes showed the model’s context window and token prices, and the usage appeared in the same Go console. For a first Hermes install, see the <a href="/guides/hermes-desktop.html">Hermes Desktop guide</a>. If you want one local endpoint in front of several providers, the <a href="/guides/9router-setup.html">9Router setup guide</a> covers that pattern, and the <a href="/guides/kilo-code-tutorial.html">Kilo Code tutorial</a> covers another agent that can use Go.</p>
+<h2 id="go-vs-zen">OpenCode Go vs Zen: which one to pick</h2>
+<p>Both come from the OpenCode team, use the same console and work in OpenCode with <code>/connect</code>. They bill differently.</p>
+<table tabindex="0"><thead><tr><th scope="col"></th><th scope="col">OpenCode Go</th><th scope="col">OpenCode Zen</th></tr></thead><tbody>
+<tr><th scope="row">Billing</th><td>Monthly plan: $10, $40 or $20 per member</td><td>Pay as you go from a credit balance</td></tr>
+<tr><th scope="row">Models</th><td>About 30 open and low-cost models</td><td>A larger list, including Claude Opus and Sonnet, GPT 6 Sol and Gemini</td></tr>
+<tr><th scope="row">Limits</th><td>Per-model monthly allowance with 5-hour and weekly windows</td><td>Your balance and any spend limit you set</td></tr>
+<tr><th scope="row">Fees</th><td>The plan price</td><td>Provider token prices with no markup, plus 4.6% + $0.31 on each credit purchase</td></tr>
+<tr><th scope="row">Model prefix</th><td><code>opencode-go/</code></td><td><code>opencode/</code></td></tr>
+</tbody></table>
+<p>OpenCode’s docs now call the pay-as-you-go side the OpenCode Console provider, but the product page still calls it Zen. Zen also lists free models for a limited time, such as Big Pickle. The docs say free chat models require OpenCode itself, so they will not work from another client.</p>
+<p>Pick Go if most of your work runs well on open models such as GLM, Kimi, DeepSeek or Qwen and you want a predictable monthly cost. Pick Zen if you need frontier models, or use an agent only occasionally and would rather pay per request. You can use both. With Extra Usage on, Go falls back to your Zen balance when a model’s allowance runs out. I switched from Zen to Go because I kept running out of Zen credits on the models I use most.</p>
+<p>If you would rather use one key for many providers outside OpenCode, compare <a href="/guides/openrouter-setup.html">OpenRouter</a>, which bills per request across hundreds of models.</p>
+<h2 id="privacy">Privacy settings and restricted models</h2>
+<p>Workspace privacy settings apply to Go. By default, paid endpoints that train on request data are blocked, and requests are allowed in Europe and the United States. That means a few models need a setting changed before they work:</p>
+<ul><li><strong>DeepSeek V4.1 Flash and V4 Pro:</strong> an owner or admin selects Global under Regions in Settings › Privacy.</li><li><strong>Muse Spark 1.3 and 1.2 Contributor:</strong> turn on “Allow paid endpoints that train on request data”. These are priced low in exchange for your prompts being used for training.</li></ul>
+<p>Iceman Contributor Free also uses prompts and completions to improve the model. The privacy table on the Go page lists retention per model: most are 0 days, while Grok, GPT, Claude Haiku and Beam Free requests are kept for 30 days. Do not send client code or credentials to a model whose terms you have not read.</p>
+<h2 id="faq">FAQ</h2>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>How much does OpenCode Go cost?</h3></summary>
+<p>Go costs $10 a month, Go Plus $40 a month and Go Teams $20 per member per month, as listed on November 1, 2026. Token prices are the same on every plan; the plans differ in how much usage each model includes.</p>
+</details>
+<details class="faq-item"><summary><h3>What models are in OpenCode Go?</h3></summary>
+<p>About 30 models, mainly open coding models such as GLM, Kimi, DeepSeek, Qwen, MiniMax and MiMo, plus Grok 4.7, GPT 6 Luna, GPT 5.6 Luna, Claude Haiku 5.5 and Gemini 4 Argon. The list changes, so check the models endpoint or the Go page.</p>
+</details>
+<details class="faq-item"><summary><h3>What are the OpenCode Go usage limits?</h3></summary>
+<p>Each model has a monthly allowance in dollars. You can use up to 20% of it in any 5 hours, 50% in a week and 100% in a month. Allowances range from $15 to $100 a month per model on Go, and are higher on Go Plus.</p>
+</details>
+<details class="faq-item"><summary><h3>Is OpenCode Go the same as OpenCode Zen?</h3></summary>
+<p>No. Zen is pay as you go from a credit balance and includes frontier models. Go is a monthly subscription with per-model limits on a curated set of open and low-cost models.</p>
+</details>
+<details class="faq-item"><summary><h3>Do I need OpenCode Go to use OpenCode?</h3></summary>
+<p>No. OpenCode is free and open source, and works with other providers, local models and its own free models. Go is an optional provider.</p>
+</details>
+<details class="faq-item"><summary><h3>Can I use OpenCode Go in Claude Code or Hermes?</h3></summary>
+<p>Yes. OpenCode lists Claude Code, Codex, Hermes v0.21.6 or later, Pi, jcode, ZCode and the Kilo Code CLI as validated clients, without guaranteeing they will keep working. Clients should send normal coding-agent traffic with their own user agent and a session ID.</p>
+</details>
+<details class="faq-item"><summary><h3>What happens when I reach the limit?</h3></summary>
+<p>You can keep using the free models, or turn on Extra Usage on the Go page so requests fall back to your pay-as-you-go balance. Extra Usage needs credits in your console balance.</p>
+</details>
+</div>
+<h2 id="sources">Sources</h2>
+<p class="meta">Plans, models, limits and privacy terms checked November 1, 2026 against OpenCode’s own pages. Usage figures from my sessions are single examples, not benchmarks.</p>
+<ul><li><a href="https://opencode.ai/docs/go/">OpenCode docs: Go plans, models, limits, endpoints and privacy</a></li><li><a href="https://opencode.ai/go">OpenCode Go product page and FAQ</a></li><li><a href="https://opencode.ai/docs/zen/">OpenCode docs: pay-as-you-go models (Zen) and pricing</a></li><li><a href="https://opencode.ai/zen">OpenCode Zen product page and FAQ</a></li></ul>
+<p class="related-guides">Related guides: <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code</a>, <a href="/guides/openrouter-setup.html">OpenRouter setup</a>, <a href="/guides/kilo-code-tutorial.html">Kilo Code tutorial</a>, <a href="/guides/9router-setup.html">9Router setup</a>, <a href="/guides/codex-usage-limits.html">Codex usage limits</a>, <a href="/guides/claude-code-vs-codex.html">Claude Code vs Codex</a>.</p>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/openrouter-setup.html">OpenRouter: API key, free models and pricing</a></li><li>Compare agents: <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code</a></li><li>Use it with an agent: <a href="/guides/hermes-desktop.html">Hermes Desktop: install Hermes Agent and connect a model provider</a></li><li>Watch: <a href="/watch/cfYpzY-o3fQ">Moving from Zen credits to the Go plan</a></li></ul></aside>
+<section class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><p>Step-by-step courses, reusable templates, and a community that answers when you get stuck.</p><ul class="cta-list"><li>Courses for builds like this one</li><li>Copy-ready templates</li><li>Ask questions while you build</li><li>Weekly coaching on VIP</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="guide_end">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime.</span></div><div class="cta-members"><span class="cta-faces" aria-hidden="true"><img src="/members/member-0.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-1.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-2.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-3.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-4.png" alt="" width="30" height="30" loading="lazy"></span><span>Join 2,900+ members building with AI</span></div></section>
+<form class="notes" data-subscribe><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
+</main>
+<footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer>
+</body>
+</html>

@@ -578,7 +578,7 @@ test('topic pages link the written guides on the same subject', () => {
   const videos = [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true }];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
   assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it<\/a> and <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a><\/p>/);
-  assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, and <a /);
+  assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: (?:<a [^>]+>[^<]+<\/a>, ){3,}and <a /);
   assert.doesNotMatch(renderArchive(videos, 1, topicBySlug('new-models')), /Written guide/);
   for (const [slug, guide] of [['n8n', 'self-host-n8n'], ['ai-seo', 'dataforseo-mcp-claude'], ['ai-agents', 'hermes-desktop']]) {
     assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guides?: <a href="/guides/${guide}.html">`), slug);

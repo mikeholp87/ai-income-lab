@@ -65,6 +65,21 @@ export const cards = {
     steps: [['OpenCode', 'Open source, bring your own provider'], ['Claude Code', 'Anthropic models, Claude plan or API'], ['Pick', 'Match the tool to your models']],
     note: 'Check limits and prices on the official pages first.',
   },
+  'opencode-go': {
+    title: 'OpenCode Go: plans, model limits and setup',
+    steps: [['Plan', 'Go, Go Plus or Go Teams'], ['Connect', '/connect, then /models'], ['Limits', '5-hour, weekly and monthly']],
+    note: 'Zen is pay as you go. Go is a monthly plan.',
+  },
+  'openrouter-setup': {
+    title: 'OpenRouter: API key, free models and costs',
+    steps: [['Key', 'Create one key per tool'], ['Free', ':free models and daily caps'], ['Check', 'Read /api/v1/key and errors']],
+    note: 'Credits carry a fee; model prices pass through.',
+  },
+  'kilo-code-tutorial': {
+    title: 'Kilo Code tutorial: install and first task',
+    steps: [['Install', 'VS Code extension or CLI'], ['Model', 'Auto Free, your key or credits'], ['Review', 'Set approvals, check the diff']],
+    note: 'Free to install; model usage is billed separately.',
+  },
   'openseo-review': {
     title: 'OpenSEO review: setup, data costs and limits',
     steps: [['Setup', 'Hosted connection or your own instance'], ['Data', 'DataForSEO costs are a separate bill'], ['Limits', 'Check the gaps vs a paid SEO suite']],
