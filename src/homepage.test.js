@@ -163,6 +163,14 @@ test('the homepage shows nine featured guide cards and links the full guides pag
   const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
   assert.ok(guides.length >= 9);
   for (const file of guides) assert.match(hub, new RegExp(`href="/guides/${file.replace('.', '\\.')}"`), file);
+  // The "New guides" line links real guides that aren't already cards.
+  const block = jsx.slice(jsx.indexOf('const newGuides = ['), jsx.indexOf('];', jsx.indexOf('const newGuides = [')));
+  const fresh = [...block.matchAll(/\['([a-z0-9-]+)', '[^']+'\]/g)].map(m => m[1]);
+  assert.ok(fresh.length >= 3, 'newGuides list');
+  for (const slug of fresh) {
+    assert.ok(guides.includes(`${slug}.html`), slug);
+    assert.ok(!slugs.includes(slug), `${slug} is already a card`);
+  }
 });
 
 test('the sponsors page holds the media kit, services, sponsored videos and booking, in that order', () => {

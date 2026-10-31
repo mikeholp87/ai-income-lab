@@ -199,6 +199,15 @@ const featuredGuides = [
   { slug: 'self-host-n8n', tag: 'Setup', title: 'Self-host n8n on Ubuntu: Docker and Node.js setup', alt: 'Guide card for self-hosting n8n on Ubuntu with Docker or Node.js.' },
 ];
 
+// Newest guides that aren't among the cards above: a homepage link gets them crawled sooner.
+// ponytail: hand-kept list; rotate it when a guide is published or promoted into featuredGuides.
+const newGuides = [
+  ['no-code-ai-agent-builder', 'No-code AI agent builders compared'],
+  ['n8n-alternatives-open-source', 'Open source n8n alternatives'],
+  ['agentic-ai-vs-traditional-automation', 'Agentic AI vs traditional automation'],
+  ['make-money-with-ai-fast', 'Make money with AI fast: the honest path'],
+];
+
 function SectionHead({ title, children }) {
   return (
     <div className="section-head">
@@ -805,6 +814,7 @@ function App({ page = 'home' }) {
               </li>
             ))}
           </ul>
+          <p className="guide-start">New guides: {newGuides.map(([slug, label], i) => <span key={slug}>{i > 0 && ', '}<a href={`/guides/${slug}.html`}>{label}</a></span>)}.</p>
           <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
           <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
         </div>
