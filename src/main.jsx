@@ -195,6 +195,8 @@ const featuredGuides = [
   { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
   { slug: '9router-setup', tag: 'Setup', title: '9Router setup: providers, model combos and request checks', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
+  { slug: 'what-is-n8n-used-for', tag: 'Beginner', title: 'What is n8n used for? Real uses and a first workflow', alt: 'Guide card for What is n8n used for, with real uses and a first workflow.' },
+  { slug: 'self-host-n8n', tag: 'Setup', title: 'Self-host n8n on Ubuntu: Docker and Node.js setup', alt: 'Guide card for self-hosting n8n on Ubuntu with Docker or Node.js.' },
 ];
 
 function SectionHead({ title, children }) {
@@ -283,7 +285,7 @@ function VideoCard({ video, placement }) {
   return (
     <a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick(placement, video.title, watchUrl(video), 'watch_video')}>
       <span className="thumb-frame">
-        <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
+        <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
         {video.duration && <span className="duration">{video.duration}</span>}
       </span>
       <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
@@ -796,7 +798,7 @@ function App({ page = 'home' }) {
             {featuredGuides.map(guide => (
               <li key={guide.slug}>
                 <a className="guide-card" href={`/guides/${guide.slug}.html`}>
-                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-400.webp 400w, /assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}-800.webp 800w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
+                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-400.webp 400w, /assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}-800.webp 800w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
                   <span className="guide-card-tag">{guide.tag}</span>
                   <h3>{guide.title}</h3>
                 </a>

@@ -144,12 +144,12 @@ test('footer social links show an icon beside each name', () => {
   assert.doesNotMatch(jsx, /Sponsor a video \/ book a call/);
 });
 
-test('the homepage shows seven featured guide cards and links the full guides page', async () => {
+test('the homepage shows nine featured guide cards and links the full guides page', async () => {
   const { readdir, readFile, access } = await import('node:fs/promises');
   const start = jsx.indexOf('id="guides"');
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
   const slugs = [...jsx.matchAll(/\{ slug: '([^']+)'/g)].map(m => m[1]);
-  assert.equal(slugs.length, 7);
+  assert.equal(slugs.length, 9);
   for (const slug of slugs) {
     await access(new URL(`../public/guides/${slug}.html`, import.meta.url));
     await access(new URL(`../public/assets/guides/${slug}.webp`, import.meta.url));
