@@ -41,22 +41,23 @@ li .summary { display: -webkit-box; overflow: hidden; color: #8c8c86; font-size:
 /* Phones: one swipeable row instead of four wrapped rows; it bleeds to the screen edges. */
 @media (max-width: 640px) { .topics { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; } }
 [hidden] { display: none !important; }
-.video-search { margin-top: 32px; }
-.video-search label { display: block; margin-bottom: 10px; color: #8c8c86; font: 400 12px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
-.video-search div { display: flex; gap: 8px; max-width: 640px; }
-.video-search input { flex: 1; min-width: 0; min-height: 48px; padding: 0 20px; border: 1px solid #232323; border-radius: 999px; background: #111111; color: #f5f5f0; font: inherit; }
+/* Search and sort share one row; sort is a segmented control so it reads differently from the topic pills. */
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 32px; }
+.video-search { position: relative; flex: 1 1 280px; max-width: 420px; }
+.video-search label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.video-search input { width: 100%; height: 40px; padding: 0 16px 0 40px; border: 1px solid #232323; border-radius: 999px; background: #111111 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238c8c86' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='m11 11 3.5 3.5'/%3E%3C/svg%3E") no-repeat 16px 50%; color: #f5f5f0; font: 400 15px 'Instrument Sans', system-ui, sans-serif; }
 .video-search input::placeholder { color: #6b6b66; }
+.video-search input:hover { border-color: #3a3a37; }
 .video-search input:focus-visible { outline: none; border-color: #ff6846; box-shadow: 0 0 0 3px rgb(255 104 70 / .18); }
-.video-search button { min-height: 48px; padding: 0 22px; border: 1px solid #232323; border-radius: 999px; background: transparent; color: #f5f5f0; font: inherit; cursor: pointer; }
-.video-search button:hover, .video-search button:focus-visible { border-color: #8c8c86; }
 #video-results { margin-top: 32px; }
 .search-status { margin-bottom: 24px; color: #8c8c86; font-size: 13px; }
-.sort { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 32px; font-size: 13px; }
-.sort span { color: #8c8c86; text-transform: uppercase; letter-spacing: .08em; }
-.sort a { display: inline-flex; align-items: center; min-height: 44px; color: #8c8c86; text-underline-offset: 6px; }
+.sort { display: flex; padding: 3px; border: 1px solid #232323; border-radius: 999px; font-size: 13px; white-space: nowrap; }
+.sort a { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: 999px; color: #8c8c86; }
 .sort a:hover { color: #f5f5f0; }
-.sort [aria-current] { color: #f5f5f0; text-decoration: underline 2px #ff6846; }
-@media (max-width: 640px) { .sort { flex-wrap: nowrap; gap: 14px; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; white-space: nowrap; } }
+.sort [aria-current] { background: #2a2a28; color: #f5f5f0; font-weight: 600; }
+.toolbar + section + [data-archive] > h2:first-child { margin-top: 40px; }
+/* Phones: search takes the full row and the sort control scrolls sideways beneath it. */
+@media (max-width: 640px) { .video-search { max-width: none; flex-basis: 100%; } .sort { width: 100%; overflow-x: auto; scrollbar-width: none; } .sort a { flex: 1 0 auto; justify-content: center; padding: 0 10px; } }
 .pager { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 64px; }
 .pager a, .pager span { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; padding: 0 12px; border: 1px solid #232323; }
 .pager a:hover { border-color: #8c8c86; color: #f5f5f0; }

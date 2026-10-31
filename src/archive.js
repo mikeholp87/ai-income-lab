@@ -106,7 +106,7 @@ function pager(page, pages, sort) {
 }
 
 // Sorted lists are reorderings of indexed pages, so the links are nofollow and the pages noindex.
-const sortNav = (base, current) => `<nav class="sort mono" aria-label="Sort videos"><span>Sort</span>${Object.entries(sorts).map(([key, { label }]) => `<a href="${base}${sortQuery(key)}" rel="nofollow"${key === current ? ' aria-current="true"' : ''}>${label}</a>`).join('')}</nav>`;
+const sortNav = (base, current) => `<nav class="sort" aria-label="Sort videos" data-archive>${Object.entries(sorts).map(([key, { label }]) => `<a href="${base}${sortQuery(key)}" rel="nofollow"${key === current ? ' aria-current="true"' : ''}>${label}</a>`).join('')}</nav>`;
 
 // Phones show the topic row as one swipeable line; start it at the current pill. Only the row scrolls, never the page.
 const currentPillScript = `(()=>{const pill=document.querySelector('.topics [aria-current]');if(pill)pill.parentElement.scrollLeft=pill.offsetLeft-pill.parentElement.offsetLeft-16})()`;
@@ -196,11 +196,9 @@ ${jsonLd(breadcrumbs)}
 <main class="shell" id="content">
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
-${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
-<form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><div><input id="video-q" name="q" type="search" placeholder="n8n, Claude Code, ElevenLabs…" autocomplete="off"><button type="submit">Search</button></div></form>
+${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<div class="toolbar"><form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><input id="video-q" name="q" type="search" placeholder="Search all ${videos.length} videos" autocomplete="off"></form>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}</div>
 <section id="video-results" aria-live="polite" hidden><p class="search-status mono"></p><ul></ul></section>
-<div data-archive>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}
-${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}</div>
+<div data-archive>${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}</div>
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>
 <div data-archive>${pager(page, pages, sort)}</div>
 <script type="module" src="/video-search.js"></script>

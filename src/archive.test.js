@@ -489,7 +489,8 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(340px, 100%\), 1fr\)\)/);
   assert.match(archiveStyles, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
-  assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
+  assert.doesNotMatch(html, /New here\?/);
+  assert.match(html, /<div class="toolbar"><form class="video-search"[^]*?<\/form><nav class="sort" aria-label="Sort videos" data-archive>/);
 });
 
 test('archives up to 20 pages link every page so each is one hop from any other', () => {
