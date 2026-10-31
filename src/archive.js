@@ -1,6 +1,7 @@
 import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
+import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
@@ -107,7 +108,7 @@ const card = (video, eager) => {
   return `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
 <span class="thumb"><picture data-thumbnail><source type="image/webp" srcset="${thumbSet(id, 'vi_webp', 'webp')}" sizes="${thumbSizes}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" srcset="${thumbSet(id, 'vi', 'jpg')}" sizes="${thumbSizes}" alt="" width="320" height="180" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>${duration ? `<span class="duration">${duration}</span>` : ''}</span>
 <p class="meta"><time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>${viewCount(video)}</p>
-<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
+<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] || videoSummaries[video.id] || listingSummaries[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
 };
 
 // One page of the archive, 15 videos per page (callers check the page is within pageCount(videos)),
@@ -176,7 +177,18 @@ const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 const videoHeading = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || watchHeading(video.title);
-const videoDescription = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || video.summary || `Watch ${video.title} by AI Automation Station.`;
+const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
+// Used only when a video has no summary anywhere: length, topic and date, plus the first chapters after the intro.
+export const fallbackDescription = video => {
+  const seconds = durationSeconds(video.duration);
+  const minutes = Math.max(1, Math.round(seconds / 60));
+  const topic = topicFor(video.title);
+  const parts = validChapters(video.chapters, seconds).slice(1, 4).map(chapter => chapter.label);
+  return `${video.title} is ${seconds ? `${article(minutes)} ${minutes} minute` : 'an'} AI Automation Station video${topic ? ` on ${topic.name}` : ''}, published ${longDate.format(new Date(video.published))}.${parts.length ? ` It covers ${listFormat.format(parts)}.` : ''}`;
+};
+const curatedSummary = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || videoSummaries[video.id]?.summary || listingSummaries[video.id];
+export const videoDescription = video => curatedSummary(video) || video.summary || fallbackDescription(video);
 const number = new Intl.NumberFormat('en');
 
 // Keep snippets concise; search engines choose the final displayed text and length.
@@ -243,7 +255,8 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   // The opening stays visible so the page carries the video's own words; the rest folds away.
   const openParagraphs = 2;
   // From the YouTube description only, skipping the paragraph already shown above.
-  const summaryParagraphs = (video.details ?? []).filter(paragraph => paragraph !== description);
+  const summaryParagraphs = (video.details ?? []).filter(paragraph => paragraph !== description && !(listingSummaries[video.id] && paragraph === video.summary));
+  const brief = videoSummaries[video.id];
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
@@ -260,6 +273,10 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const breadcrumbs = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: trail.map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
+  };
+  const faq = brief?.qa?.length && {
+    '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${watchUrl(video)}#faq`,
+    mainEntity: brief.qa.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   };
   const heading = videoHeading(video);
   const meta = [`<time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>`, seconds && clock(seconds), video.views > 0 && `${number.format(video.views)} views`].filter(Boolean).join(' · ');
@@ -283,7 +300,7 @@ ${fontPreloads}
 <meta property="og:image" content="${thumbnailUrl(video)}">
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
-${jsonLd(breadcrumbs)}
+${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <style>header,main,footer{width:min(1120px,calc(100% - 32px))}main{padding-top:20px}h1{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}a.player{position:relative;overflow:hidden}a.player img{width:100%;height:100%;object-fit:cover}.play{position:absolute;inset:0;display:grid;place-items:center;width:72px;height:72px;margin:auto;border-radius:50%;background:#ff6846;box-shadow:0 8px 30px #ff684659;transition:transform .2s ease}.play svg{width:28px;height:28px;margin-left:4px;fill:#1a0a04}a.player:hover .play{transform:scale(1.06)}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{padding:0;list-style:none}.chapters li{margin:4px 0}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
@@ -311,6 +328,20 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <h3>Verdict</h3>
 <p>${escape(notes.verdict)}</p>` : ''}
 <p class="meta">${escape(notes.note)}</p>
+</section>` : ''}${brief ? `
+<section aria-labelledby="build-summary">
+<h2 id="build-summary">What this video covers</h2>
+<h3>What you build</h3>
+<p>${escape(brief.whatYouBuild)}</p>${brief.toolsUsed?.length ? `
+<h3>Tools used</h3>
+<ul>${brief.toolsUsed.map(tool => `<li>${escape(tool)}</li>`).join('')}</ul>` : ''}${brief.keySteps?.length ? `
+<h3>Key steps</h3>
+<ol>${brief.keySteps.map(step => `<li>${Number.isFinite(step.seconds) ? `<a href="#t=${step.seconds}">${clock(step.seconds)}</a> ` : ''}${escape(step.step)}</li>`).join('')}</ol>` : ''}${brief.notCovered?.length ? `
+<h3>Not covered</h3>
+<ul>${brief.notCovered.map(item => `<li>${escape(item)}</li>`).join('')}</ul>` : ''}${brief.qa?.length ? `
+<h3>Questions and answers</h3>
+${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join('\n')}` : ''}
+<p class="meta">Summary written from the video's transcript and chapters.</p>
 </section>` : ''}${chapters.length ? `
 <h2>In this video</h2>
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide ? `

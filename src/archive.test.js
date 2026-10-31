@@ -624,3 +624,22 @@ test('watch headings drop hype and use sentence case, keeping product names', as
     ['I Built My Own OpusClip for FREE! (Step-by-Step)', 'I built my own OpusClip for free (step-by-step)'],
   ]) assert.equal(watchHeading(title), heading);
 });
+
+test('transcript summaries render a build section and valid FAQPage data', async () => {
+  const { videoSummaries, listingSummaries } = await import('./video-summaries.js');
+  const video = uploads.find(upload => upload.id === 'VE66JDHoS6Y');
+  const html = renderWatch(video);
+  const brief = videoSummaries[video.id];
+  assert.match(html, /<h2 id="build-summary">What this video covers<\/h2>/);
+  const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(data => data['@type'] === 'FAQPage');
+  assert.equal(faq.mainEntity.length, brief.qa.length);
+  assert.ok(faq.mainEntity.every(item => item.name && item.acceptedAnswer.text));
+  for (const text of [...Object.values(videoSummaries).flatMap(entry => [entry.summary, entry.whatYouBuild, ...entry.toolsUsed, ...entry.keySteps.map(step => step.step), ...entry.notCovered, ...entry.qa.flatMap(({ q, a }) => [q, a])]), ...Object.values(listingSummaries)]) {
+    assert.doesNotMatch(text, /[—;…]/, text);
+  }
+});
+
+test('videos without any summary get a descriptive fallback', () => {
+  const html = renderWatch({ id: 'abcdefghijk', title: 'Test n8n build', published: '2026-10-01T00:00:00Z', duration: 'PT7M52S', summary: '', chapters: [] });
+  assert.match(html, /Test n8n build is an 8 minute AI Automation Station video on n8n, published October 1, 2026\./);
+});
