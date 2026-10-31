@@ -549,7 +549,7 @@ function NotesSignup({ placement = 'footer' }) {
   const isHero = placement === 'hero';
   const emailId = `${placement}-notes-email`;
   const errorId = `${placement}-notes-error`;
-  const complete = ['done', 'welcome_failed'].includes(status);
+  const complete = ['done'].includes(status);
 
   async function subscribe(event) {
     event.preventDefault();
@@ -561,13 +561,12 @@ function NotesSignup({ placement = 'footer' }) {
     }
     setStatus('sending');
     const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, hp: form.elements.hp.value }) }).then(response => response.ok ? response.json() : null).catch(() => null);
-    setStatus(!result?.ok ? 'failed' : result.welcomeSent === false ? 'welcome_failed' : 'done');
+    setStatus(!result?.ok ? 'failed' : 'done');
     if (result?.ok) trackEvent('Newsletter Signup', { placement });
   }
 
   const message = <>
-    {status === 'done' && <p className="notes-signup-status" role="status" aria-live="polite">{isHero ? "You're in. Check your inbox for a welcome email." : 'You’re in. The next build notes will land in your inbox.'}</p>}
-    {status === 'welcome_failed' && <p className="notes-signup-status" role="status" aria-live="polite">You&rsquo;re subscribed, but the welcome email could not be sent. Email <a href="mailto:automojic@proton.me">automojic@proton.me</a> if you need help.</p>}
+    {status === 'done' && <p className="notes-signup-status" role="status" aria-live="polite">{isHero ? "Almost there. Check your inbox and click the link to confirm." : 'Almost there. Check your inbox (and spam) and click the link to confirm.'}</p>}
   </>;
   if (!isHero && complete) return message;
   return (
