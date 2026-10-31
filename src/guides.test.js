@@ -195,6 +195,16 @@ test('the guides hub uses the /videos page design', async () => {
   assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);
 });
 
+test('the guides hub filters its cards with the same search box as /videos', async () => {
+  const hub = await read('public/guides.html');
+  assert.match(hub, /<\/nav>\n<div class="toolbar"><form class="search-box" id="guide-search" role="search" action="\/search.html"><label for="guide-q">Search the guides<\/label><input id="guide-q" name="q" type="search"/);
+  assert.match(hub, /<p class="search-status" id="guide-status" aria-live="polite" hidden><\/p>/);
+  assert.match(hub, /<script type="module" src="\/guide-search\.js"><\/script>/);
+  const script = await read('public/guide-search.js');
+  assert.match(script, /ul\.guide-list/);
+  assert.match(script, /\/videos\?q=\$\{encodeURIComponent\(typed\)\}/);
+});
+
 test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
   const css = await read('public/archive.css');
   assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: #ff6846;/);

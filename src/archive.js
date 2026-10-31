@@ -165,7 +165,6 @@ export function renderArchive(videos, page = 1, topic = null, sort = 'newest') {
   const trail = [['Home', `${site}/`], ['Videos', `${site}/videos`], ...(topic || page > 1 ? [[name, url]] : [])];
   const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: trail.map(([label, item], index) => ({ '@type': 'ListItem', position: index + 1, name: label, item })) };
   // Topic pages lead with the videos that carry a written summary, so those links sit near the top.
-  const startWith = topic ? list.filter(video => video.embeddable && (videoSummaries[video.id] || watchNotes[video.id]?.html || videoNotes[video.id])).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 4) : [];
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -196,7 +195,7 @@ ${jsonLd(breadcrumbs)}
 <main class="shell" id="content">
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
-${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<div class="toolbar"><form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><input id="video-q" name="q" type="search" placeholder="Search all ${videos.length} videos" autocomplete="off"></form>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}</div>
+${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}<div class="toolbar"><form class="search-box" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><input id="video-q" name="q" type="search" placeholder="Search all ${videos.length} videos" autocomplete="off"></form>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}</div>
 <section id="video-results" aria-live="polite" hidden><p class="search-status mono"></p><ul></ul></section>
 <div data-archive>${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}</div>
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>

@@ -416,7 +416,7 @@ test('every watch page lists the tools used', () => {
 
 test('the videos page searches every video through a live index that includes search titles and tools', async () => {
   const html = renderArchive(uploads, 2);
-  assert.match(html, new RegExp(`<form class="video-search" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${uploads.length} videos</label>`));
+  assert.match(html, new RegExp(`<form class="search-box" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${uploads.length} videos</label>`));
   assert.match(html, /<script type="module" src="\/video-search\.js"><\/script>/);
   assert.match(html, /<section id="video-results" aria-live="polite" hidden>/);
   const response = await GET(new Request('https://www.ai-automation-station.com/video-index.json'));
@@ -490,7 +490,7 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.match(archiveStyles, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
   assert.doesNotMatch(html, /New here\?/);
-  assert.match(html, /<div class="toolbar"><form class="video-search"[^]*?<\/form><nav class="sort" aria-label="Sort videos" data-archive>/);
+  assert.match(html, /<div class="toolbar"><form class="search-box"[^]*?<\/form><nav class="sort" aria-label="Sort videos" data-archive>/);
 });
 
 test('archives up to 20 pages link every page so each is one hop from any other', () => {
@@ -716,15 +716,8 @@ test('guide pages list up to four related videos as thumbnail cards, skipping vi
   assert.equal(addGuideVideos('<main></main>', '/guides/unknown.html', videos), '<main></main>');
 });
 
-test('topic pages lead with up to four videos that have a written summary, most viewed first', async () => {
-  const { videoSummaries } = await import('./video-summaries.js');
-  const topic = topics.find(item => item.slug === 'claude-code');
-  const html = renderArchive(uploads, 1, topic);
-  const line = html.match(/<p class="start">Start with these videos: (.*?)<\/p>/)[1];
-  const ids = [...line.matchAll(/href="\/watch\/([\w-]{11})"/g)].map(match => match[1]);
-  assert.ok(ids.length >= 1 && ids.length <= 4, line);
-  const views = ids.map(id => uploads.find(video => video.id === id).views ?? 0);
-  assert.deepEqual(views, [...views].sort((a, b) => b - a));
-  for (const id of ids) assert.ok(videoSummaries[id] || watchNotes[id]?.html || videoNotes[id], id);
-  assert.doesNotMatch(renderArchive(uploads, 1), /Start with these videos/);
+test('topic pages link their written guides without a separate start-with list', () => {
+  const html = renderArchive(uploads, 1, topics.find(item => item.slug === 'n8n'));
+  assert.match(html, /<p class="start">Written guides?: <a href="\/guides\//);
+  assert.doesNotMatch(html, /Start with these videos/);
 });

@@ -814,9 +814,9 @@ function App({ page = 'home' }) {
               </li>
             ))}
           </ul>
+          <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
           <p className="guide-start">New guides: {newGuides.map(([slug, label], i) => <span key={slug}>{i > 0 && ', '}<a href={`/guides/${slug}.html`}>{label}</a></span>)}.</p>
           <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
-          <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
         </div>
       </section>
 
@@ -835,7 +835,7 @@ function App({ page = 'home' }) {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="tool-link" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>
