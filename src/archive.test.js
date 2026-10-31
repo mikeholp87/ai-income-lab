@@ -644,11 +644,14 @@ test('videos without any summary get a descriptive fallback', () => {
   assert.match(html, /Test n8n build is an 8 minute AI Automation Station video on n8n, published October 1, 2026\./);
 });
 
-test('guide pages list up to four matching videos as thumbnail cards', () => {
-  const videos = ['a', 'b', 'c', 'd', 'e'].map(letter => ({ id: letter.repeat(11), title: `n8n build ${letter}`, embeddable: true }));
-  const html = addGuideVideos('<main><p>Guide</p><aside class="note next-steps">Next</aside></main>', '/guides/self-host-n8n.html', videos);
-  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/aaaaaaaaaaa"><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
-  assert.equal(html.match(/<li>/g).length, 4);
+test('guide pages list up to four related videos as thumbnail cards, skipping videos the guide already shows', () => {
+  const videos = ['a', 'b', 'c', 'd', 'e', 'f'].map((letter, index) => ({ id: letter.repeat(11), title: `N8N 2.0 build ${letter}`, embeddable: true, views: 100 - index }));
+  videos.push({ id: 'zzzzzzzzzzz', title: 'Suno music video', embeddable: true, views: 999 });
+  const html = addGuideVideos('<main><iframe src="https://www.youtube-nocookie.com/embed/aaaaaaaaaaa"></iframe><a href="/watch/bbbbbbbbbbb">B</a><aside class="note next-steps">Next</aside></main>', '/guides/self-host-n8n.html', videos);
+  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/ccccccccccc"><img src="https:\/\/i\.ytimg\.com\/vi\/ccccccccccc\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
+  const listed = [...html.matchAll(/<li><a href="\/watch\/(\w+)"/g)].map(match => match[1]);
+  assert.deepEqual(listed, ['ccccccccccc', 'ddddddddddd', 'eeeeeeeeeee', 'fffffffffff']);
   assert.ok(html.indexOf('you-may-also-like') < html.indexOf('next-steps'));
   assert.equal(addGuideVideos(html, '/guides/self-host-n8n.html', videos), html);
+  assert.equal(addGuideVideos('<main></main>', '/guides/unknown.html', videos), '<main></main>');
 });

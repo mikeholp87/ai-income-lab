@@ -399,22 +399,49 @@ export function renderPageSitemap(xml, videos) {
   return home.replace('</urlset>', `${[...archive, ...topicPages].join('\n')}\n</urlset>`);
 }
 
-// Guide path → its matching watch pages (newest first), using the same title patterns as the watch pages.
-export function guideVideos(videos, count = 4) {
-  const map = new Map();
-  for (const video of videos.filter(video => video.embeddable)) {
-    const guide = guides.find(([pattern]) => pattern.test(video.title));
-    if (!guide) continue;
-    const list = map.get(guide[1]) ?? [];
-    if (list.length < count) list.push(video);
-    map.set(guide[1], list);
-  }
-  return map;
+// Guide path → titles of videos that cover the same job. Videos the guide already embeds or links are skipped.
+const guideVideoTopics = {
+  '/guides/9router-setup.html': /track token usage|saves token usage|glm 5\.2 inside opencode|kimi k2\.7 code vs deepseek/i,
+  '/guides/agentic-ai-vs-traditional-automation.html': /5 ai agents you need to build|10 ai automations you can build|relay\.app|hermes agent: automate/i,
+  '/guides/ai-automation-services-small-business.html': /white label automation agency|competition is using ai automations|top 5 ai automations your competitors|5 ai automation tools are scaling/i,
+  '/guides/ai-automation.html': /10 ai automations you can build|make\.com tutorial: automate your business|5 ai automation tools are scaling|ai workflow saves me 20\+ hours/i,
+  '/guides/ai-side-hustles.html': /white label automation agency|more clients for your web agency|find website clients|profitable skool community/i,
+  '/guides/chatgpt-pro-20x.html': /chatgpt 5\.6 is available|gpt 5\.6 is here|gpt-6 sol|new codex cli/i,
+  '/guides/claude-code-for-beginners.html': /claude code skills will 10x|build apps using free claude code|claude code hack saves token|complete web app in claude code/i,
+  '/guides/claude-code-vs-codex.html': /herdr lets you run claude code and codex|new codex cli|codex just changed how i build|claude code skills will 10x/i,
+  '/guides/codex-on-linux.html': /new codex cli|ghostty|codex just changed how i build|herdr lets you run/i,
+  '/guides/codex-usage-limits.html': /new codex cli|codex just changed how i build|track token usage|chatgpt 5\.6 is available/i,
+  '/guides/codex-workflow.html': /new codex cli|codex just changed how i build|codex on linux: official|herdr lets you run/i,
+  '/guides/consent-tracking.html': /deploy a saas with vercel|codex just changed how i build websites|professional website in replit|saas website using only ai/i,
+  '/guides/dataforseo-mcp-claude.html': /claude skill replaces your seo team|claude skill writes seo articles|let claude code manage my seo|vidiq claude mcp/i,
+  '/guides/first-api-request.html': /private ai made simple|9router setup: providers|9router cost tracking|track token usage/i,
+  '/guides/hermes-desktop.html': /hermes agent desktop app is here|desktop app with hermes|cron jobs \(hermes|hermes agent: automate/i,
+  '/guides/heygen-ai-avatar-tutorial.html': /syllaby to build a faceless|without showing your face|sora 2 is here|unlimited ai videos with this make\.com/i,
+  '/guides/make-first-automation.html': /make\.com tutorial|ai agent in make\.com|make\.com automation saved me 10 hours|fillout to airtable/i,
+  '/guides/make-money-with-ai-fast.html': /white label automation agency|more clients for your web agency|find website clients|profitable skool community/i,
+  '/guides/make-money-with-ai-no-experience.html': /only ai skills you need to master|10 ai automations you can build|complete ebook in 30 minutes|profitable skool community/i,
+  '/guides/make-money-with-chatgpt.html': /chatgpt images 2\.0|chatgpt images 2\.5|complete ebook in 30 minutes|generate linkedin content using ai/i,
+  '/guides/n8n-alternatives-open-source.html': /self-host n8n on ubuntu|self host n8n on hostinger|n8n 2\.0|relay\.app/i,
+  '/guides/n8n-vs-zapier-vs-make.html': /make\.com tutorial|self-host n8n on ubuntu|relay\.app|n8n 2\.0/i,
+  '/guides/no-code-ai-agent-builder.html': /mindstudio|relay\.app|ai agent in make\.com|manus ai agents/i,
+  '/guides/opencode-vs-claude-code.html': /opencode better than free claude code|glm 5\.2 inside opencode|desktop app with opencode|opencode makes it easy/i,
+  '/guides/openseo-review.html': /dataforseo|replace your seo team|replaces your seo team|grok bot for seo/i,
+  '/guides/self-host-n8n.html': /self host n8n on hostinger|n8n 2\.0|private ai made simple|6 n8n automations/i,
+  '/guides/vapi-voice-agent-tutorial.html': /facebook ai chatbot|automating my messenger|facebook chatbot in minutes|ai assistant that actually works/i,
+  '/guides/what-is-n8n-used-for.html': /whatsapp workflow in n8n|shorts machine in n8n|6 n8n automations|n8n workflow saves me hours weekly on linkedin/i,
+  '/guides/youtube-feed.html': /youtube transcript automation|youtube competitor spy tool|deploy a saas with vercel|web apps in minutes with google ai studio/i,
+};
+
+export function guideVideos(html, path, videos, count = 4) {
+  const topic = guideVideoTopics[path];
+  if (!topic) return [];
+  const featured = new Set([...html.matchAll(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/|\/watch\/|i\.ytimg\.com\/vi\/)([\w-]{11})/g)].map(match => match[1]));
+  return videos.filter(video => video.embeddable && topic.test(video.title) && !featured.has(video.id)).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, count);
 }
 
 export function addGuideVideos(html, path, videos) {
-  const list = guideVideos(videos).get(path);
-  if (!list || html.includes('id="you-may-also-like"')) return html;
+  const list = guideVideos(html, path, videos);
+  if (!list.length || html.includes('id="you-may-also-like"')) return html;
   const section = `<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like</h2>${relatedList(list)}</section>\n`;
   const at = html.indexOf('<aside class="note next-steps"');
   return at === -1 ? html.replace('</main>', `${section}</main>`) : html.slice(0, at) + section + html.slice(at);
