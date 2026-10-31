@@ -622,6 +622,7 @@ export const videoSummaries = {
 export const listingSummaries = {
   "p_qQNolHR-c": "Generate and edit images with Google's Nano Banana in Gemini: text-to-image, reference image edits, free access options and a speed comparison.",
   "t0nQSyryTPg": "A tour of community demos made with GPT-6 Astra: exploding 3D models, a working V8 engine, browser racing games and a Counter-Strike 2 recreation.",
+  "rMRsVyIsZCU": "Mike installs Open Design, a free Claude Design alternative, on Linux from source, fixes its Node and Corepack setup, connects a model with an API key, then uses it to make a motion design clip, a visual design system and an HTML slide deck from a YouTube link. The last chapter covers its pricing and credit use.",
   "-L0CVvJMzZI": "Behind the scenes of building TubeAnalytics, a YouTube analytics platform, in public.",
   "-cLECY10Tzg": "A look at Manus AI, which builds landing pages, apps and games, and its acquisition by Meta.",
   "-viL36QDF_8": "Gemini 3 tried on real tasks against ChatGPT: benchmark results, a no-code website, merch mockups, a landing page redesign and game demos.",

@@ -108,7 +108,8 @@ const card = (video, eager) => {
   return `<li><a href="${escape(videoHref(video))}"${video.embeddable ? '' : ' target="_blank" rel="noreferrer"'}>
 <span class="thumb"><picture data-thumbnail><source type="image/webp" srcset="${thumbSet(id, 'vi_webp', 'webp')}" sizes="${thumbSizes}"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" srcset="${thumbSet(id, 'vi', 'jpg')}" sizes="${thumbSizes}" alt="" width="320" height="180" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async"></picture>${duration ? `<span class="duration">${duration}</span>` : ''}</span>
 <p class="meta"><time datetime="${escape(video.published)}">${dateFormat.format(new Date(video.published))}</time>${viewCount(video)}</p>
-<h3>${escape(video.title)}</h3>${video.summary || watchNotes[video.id] || videoNotes[video.id] || videoSummaries[video.id] || listingSummaries[video.id] ? `\n<p class="summary">${escape(videoDescription(video))}</p>` : ''}</a></li>`;
+<h3>${escape(video.title)}</h3>
+<p class="summary">${escape(videoDescription(video))}</p></a></li>`;
 };
 
 // One page of the archive, 15 videos per page (callers check the page is within pageCount(videos)),
@@ -188,7 +189,7 @@ export const fallbackDescription = video => {
   const parts = validChapters(video.chapters, seconds).slice(1, 4).map(chapter => chapter.label);
   return `${video.title} is ${seconds ? `${article(minutes)} ${minutes} minute` : 'an'} AI Automation Station video${topic ? ` on ${topic.name}` : ''}, published ${longDate.format(new Date(video.published))}.${parts.length ? ` It covers ${listFormat.format(parts)}.` : ''}`;
 };
-const curatedSummary = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || videoSummaries[video.id]?.summary || listingSummaries[video.id];
+export const curatedSummary = video => watchNotes[video.id]?.summary || videoNotes[video.id]?.summary || videoSummaries[video.id]?.summary || listingSummaries[video.id];
 export const videoDescription = video => curatedSummary(video) || video.summary || fallbackDescription(video);
 const number = new Intl.NumberFormat('en');
 
