@@ -390,6 +390,8 @@ test('splits the archive into pages of 15 linked to each other', () => {
   assert.match(last, /<a href="\/videos\/2" rel="prev">← Newer<\/a>/);
   assert.match(last, /<span aria-current="page">3<\/span>/);
   assert.match(last, /<title>Every video, page 3 of 3 \| Mike Holp<\/title>/);
+  assert.match(last, /<h1>Every video, page 3 of 3<\/h1>/);
+  assert.match(first, /<h1>Every video<\/h1>/);
   const list = JSON.parse(last.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(list['@type'], 'CollectionPage');
   assert.deepEqual(list.mainEntity.itemListElement.map(item => item.position), [31]);

@@ -159,6 +159,10 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .player-meta h2 a:hover { color: var(--signal); }
 .player-summary { display: -webkit-box; overflow: hidden; color: var(--body); font-size: 15px; line-height: 1.55; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .hero-actions .button { flex: 1 1 auto; justify-content: center; padding: 12px 20px; text-align: center; }
+/* Join is the one filled action; the video button stays outlined and points at the player with a play mark. */
+.hero-actions .button-primary { flex-grow: 3; min-height: 54px; font-size: 16px; }
+.hero-actions .button-quiet { gap: 10px; min-height: 54px; }
+.hero-actions .button-quiet::before { content: ''; width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid var(--signal); }
 .video-next-step { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--line-strong); color: var(--body); font-size: 14px; }
 .video-next-step .next-step-access { color: var(--muted); font-size: 12px; }
 .video-next-step a { justify-self: start; display: inline-flex; align-items: center; min-height: 44px; color: var(--signal); text-decoration: underline; text-underline-offset: 4px; }
@@ -399,6 +403,12 @@ a.video-card:hover h3 { color: var(--signal); }
   .nav-links { display: none; }
   .nav-mobile { display: block; }
   .hero-grid, .about-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
+  /* One column: the video follows the price line, and the build notes signup moves below it. */
+  .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .hero-copy { display: contents; }
+  .hero h1 { font-size: clamp(30px, calc((100vw - 48px) * .104), 64px); }
+  .hero-preview { margin-top: 36px; }
+  .notes-signup--hero { order: 1; max-width: none; }
   .portrait { position: static; max-width: 280px; justify-self: center; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
   .plan-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
@@ -420,8 +430,8 @@ a.video-card:hover h3 { color: var(--signal); }
   .shell, .divider { width: calc(100% - 32px); }
   .guide-more .button { width: 100%; justify-content: center; }
   .hero { padding: 24px 0 40px; }
-  .hero-grid { gap: 28px; }
-  .hero h1 { margin-top: 24px; }
+  .hero h1 { margin-top: 24px; font-size: clamp(30px, calc((100vw - 32px) * .104), 64px); }
+  .hero-preview { margin-top: 28px; }
   .hero-text { margin-top: 18px; font-size: 17px; }
   .section { padding: 88px 0; }
   .tool-grid { grid-template-columns: 1fr; }
@@ -492,13 +502,13 @@ a.video-card:hover h3 { color: var(--signal); }
   #community .plan-list > li:hover { transform: translateY(-3px); }
 }
 
-.notes-signup--hero { width: 100%; max-width: 380px; margin-top: 28px; }
+.notes-signup--hero { width: 100%; max-width: 380px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
 .notes-signup--hero label { color: var(--muted); font: 500 14px/1.5 var(--sans); }
 .notes-signup--hero > .notes-signup-pill { flex-direction: row; gap: 4px; margin-top: 10px; padding: 4px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--panel); transition: border-color .2s ease, box-shadow .2s ease; }
 .notes-signup--hero > .notes-signup-pill:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 30%, transparent); }
 .notes-signup--hero input { min-height: 44px; padding: 0 12px; border: 0; background: transparent; }
-.notes-signup--hero .button { flex: none; min-height: 44px; padding: 0 14px; border-color: var(--signal); color: var(--on-signal); background: var(--signal); letter-spacing: .04em; white-space: nowrap; }
-.notes-signup--hero .button:hover { border-color: var(--signal-hover); background: var(--signal-hover); }
+.notes-signup--hero .button { flex: none; min-height: 44px; padding: 0 16px; border-color: var(--line-strong); color: var(--text); background: transparent; white-space: nowrap; }
+.notes-signup--hero .button:hover { border-color: var(--signal); color: var(--signal); }
 .notes-signup--hero input:focus-visible { outline: none; }
 .notes-signup--hero .button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 .notes-signup--hero .notes-signup-privacy { margin-top: 10px; color: var(--muted); font: 400 12px/1.5 var(--sans); }

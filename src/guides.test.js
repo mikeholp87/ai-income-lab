@@ -302,3 +302,10 @@ test('guide Article data names the author profiles and the topics the guide cove
     for (const entity of [...article.about, ...(article.mentions || [])]) assert.equal(entity['@type'], 'Thing', `${file}: ${entity.name}`);
   }
 });
+
+test('site page titles end in the same brand as the guides', async () => {
+  for (const page of ['404', 'privacy', 'search', 'start-here', 'terms']) {
+    assert.match((await read(`public/${page}.html`)).match(/<title>(.*?)<\/title>/)[1], / \| Mike Holp$/, page);
+  }
+  assert.match(await read('api/videos.js'), /<title>\$\{title\} \| Mike Holp<\/title>/);
+});

@@ -87,7 +87,7 @@ test('the sponsor strip is an orange-accented card with a primary button', () =>
 });
 
 test('the hero relates the two brands without an announcement pill', () => {
-  assert.match(jsx, /Build AI automations with Mike Holp\./);
+  assert.match(jsx, /<strong>Step-by-step courses from Mike Holp, and 2,900\+ members to ask when you get stuck\.<\/strong>/);
   assert.doesNotMatch(jsx, /hero-status/);
 });
 
