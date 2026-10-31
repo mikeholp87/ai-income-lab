@@ -17,7 +17,7 @@ header { display: flex; align-items: center; justify-content: space-between; gap
 .intro { padding: 56px 0 24px; border-bottom: 1px solid #232323; }
 /* Page titles share one style with the reading pages and the homepage. */
 h1 { font: 400 clamp(32px, 4.6vw, 52px)/1.08 'Archivo Black', sans-serif; letter-spacing: -.015em; text-wrap: balance; }
-.intro p:last-child { max-width: 62ch; margin-top: 20px; color: #8c8c86; }
+.intro p:last-child { max-width: none; margin-top: 20px; color: #8c8c86; }
 h2 { margin: 56px 0 24px; font: 400 28px 'Archivo Black', sans-serif; }
 ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
 li a { display: grid; gap: 10px; }
