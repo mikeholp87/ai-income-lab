@@ -29,7 +29,7 @@
 <meta property="article:modified_time" content="2026-10-28">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"OpenSEO review: setup, data costs and practical limits","description":"OpenSEO review grounded in Mike’s live demo: what it does, hosted and self-hosted setup, DataForSEO costs, and what to check before replacing a paid SEO suite.","url":"https://www.ai-automation-station.com/guides/openseo-review.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/openseo-review.html","datePublished":"2026-10-23","dateModified":"2026-10-28","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html"},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"image":"https://www.ai-automation-station.com/assets/guides/openseo-review.webp","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"OpenSEO review: setup, data costs and practical limits","item":"https://www.ai-automation-station.com/guides/openseo-review.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is OpenSEO free?","acceptedAnswer":{"@type":"Answer","text":"The self-hosted app has no software fee, but DataForSEO requests cost money. The hosted Base Plan is $10 per month and includes $10 of monthly usage credits."}},{"@type":"Question","name":"Where does OpenSEO get its SEO data?","acceptedAnswer":{"@type":"Answer","text":"OpenSEO uses DataForSEO for SEO research data. Its Google Search Console connection reads performance data for a property you can access."}},{"@type":"Question","name":"Can OpenSEO replace a paid SEO suite?","acceptedAnswer":{"@type":"Answer","text":"That depends on the work you need to finish. Compare the same keywords, domains and deliverables before switching; this review does not establish complete feature parity or better data quality."}},{"@type":"Question","name":"Can I connect OpenSEO to Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenSEO documents a Claude Code plugin and a separate MCP-only connection, with OpenSEO login approval after connection."}},{"@type":"Question","name":"Does self-hosting make all the data local?","acceptedAnswer":{"@type":"Answer","text":"No. Self-hosting runs the app on your infrastructure, but SEO data requests still go to DataForSEO."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/openseo-review.html#faq-schema","url":"https://www.ai-automation-station.com/guides/openseo-review.html","mainEntity":[{"@type":"Question","name":"Is OpenSEO free?","acceptedAnswer":{"@type":"Answer","text":"The self-hosted app has no software fee, but DataForSEO requests cost money. The hosted Base Plan is $10 per month and includes $10 of monthly usage credits."}},{"@type":"Question","name":"Where does OpenSEO get its SEO data?","acceptedAnswer":{"@type":"Answer","text":"OpenSEO uses DataForSEO for SEO research data. Its Google Search Console connection reads performance data for a property you can access."}},{"@type":"Question","name":"Can OpenSEO replace a paid SEO suite?","acceptedAnswer":{"@type":"Answer","text":"That depends on the work you need to finish. Compare the same keywords, domains and deliverables before switching; this review does not establish complete feature parity or better data quality."}},{"@type":"Question","name":"Can I connect OpenSEO to Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Yes. OpenSEO documents a Claude Code plugin and a separate MCP-only connection, with OpenSEO login approval after connection."}},{"@type":"Question","name":"Does self-hosting make all the data local?","acceptedAnswer":{"@type":"Answer","text":"No. Self-hosting runs the app on your infrastructure, but SEO data requests still go to DataForSEO."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -84,16 +84,23 @@ cp .env.example .env</code></pre>
 <p>OpenSEO is a reasonable candidate for a site owner or freelancer who can name a small research task and review its output. A useful first evaluation is one topic shortlist, one competitor comparison and one confirmed technical issue. Record the cost and time required, then decide whether the workflow deserves a larger role.</p>
 <p>Self-hosting is more appealing when someone will maintain the deployment. A team already relying on a suite’s established reports should evaluate a replacement alongside that process before cancelling anything. For the related direct-provider workflow, continue with <a href="/guides/dataforseo-mcp-claude.html">DataForSEO MCP with Claude Code</a>.</p>
 <h2 id="faq">FAQ</h2>
-<h3>Is OpenSEO free?</h3>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>Is OpenSEO free?</h3></summary>
 <p>The self-hosted app has no software fee, but DataForSEO requests cost money. The hosted Base Plan is $10 per month and includes $10 of monthly usage credits.</p>
-<h3>Where does OpenSEO get its SEO data?</h3>
+</details>
+<details class="faq-item"><summary><h3>Where does OpenSEO get its SEO data?</h3></summary>
 <p>OpenSEO uses DataForSEO for SEO research data. Its Google Search Console connection reads performance data for a property you can access.</p>
-<h3>Can OpenSEO replace a paid SEO suite?</h3>
+</details>
+<details class="faq-item"><summary><h3>Can OpenSEO replace a paid SEO suite?</h3></summary>
 <p>That depends on the work you need to finish. Compare the same keywords, domains and deliverables before switching; this review does not establish complete feature parity or better data quality.</p>
-<h3>Can I connect OpenSEO to Claude Code?</h3>
+</details>
+<details class="faq-item"><summary><h3>Can I connect OpenSEO to Claude Code?</h3></summary>
 <p>Yes. OpenSEO documents a Claude Code plugin and a separate MCP-only connection, with OpenSEO login approval after connection.</p>
-<h3>Does self-hosting make all the data local?</h3>
+</details>
+<details class="faq-item"><summary><h3>Does self-hosting make all the data local?</h3></summary>
 <p>No. Self-hosting runs the app on your infrastructure, but SEO data requests still go to DataForSEO.</p>
+</details>
+</div>
 <h2 id="sources">Sources</h2>
 <p class="meta">Documentation checked as of October 23, 2026. Product terms can change; the linked primary sources govern. Video context comes from the <a href="/watch/dQ_gnts0JCE">September 7 live demo</a>.</p>
 <ul>

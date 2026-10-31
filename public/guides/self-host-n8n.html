@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Self-host n8n on Ubuntu with Docker or Node.js","description":"Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding API credentials.","url":"https://www.ai-automation-station.com/guides/self-host-n8n.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/self-host-n8n.html","datePublished":"2026-10-22","dateModified":"2026-10-31","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html"},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"image":"https://www.ai-automation-station.com/assets/guides/self-host-n8n.webp","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"Self-host n8n on Ubuntu with Docker or Node.js","item":"https://www.ai-automation-station.com/guides/self-host-n8n.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Node.js version does n8n need?","acceptedAnswer":{"@type":"Answer","text":"The current n8n release requires Node.js 24 or newer. Ubuntu’s own nodejs package is older, so install v24 with nvm."}},{"@type":"Question","name":"Is self-hosting n8n free?","acceptedAnswer":{"@type":"Answer","text":"Yes, self-hosting n8n is free. AI or app nodes you add later may need paid accounts."}},{"@type":"Question","name":"Can outside services reach my local n8n?","acceptedAnswer":{"@type":"Answer","text":"No. It runs on localhost, so webhooks from outside services can’t reach it, and schedules only run while the computer and n8n are on. Don’t open port 5678 to the internet to work around that."}},{"@type":"Question","name":"Should I install n8n with npm or Docker?","acceptedAnswer":{"@type":"Answer","text":"Either works for learning. n8n’s docs say npm installs are deprecated from n8n 3.0, so for a server that runs around the clock use Docker or a platform like Coolify."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/self-host-n8n.html#faq-schema","url":"https://www.ai-automation-station.com/guides/self-host-n8n.html","mainEntity":[{"@type":"Question","name":"Which Node.js version does n8n need?","acceptedAnswer":{"@type":"Answer","text":"The current n8n release requires Node.js 24 or newer. Ubuntu’s own nodejs package is older, so install v24 with nvm."}},{"@type":"Question","name":"Is self-hosting n8n free?","acceptedAnswer":{"@type":"Answer","text":"Yes, self-hosting n8n is free. AI or app nodes you add later may need paid accounts."}},{"@type":"Question","name":"Can outside services reach my local n8n?","acceptedAnswer":{"@type":"Answer","text":"No. It runs on localhost, so webhooks from outside services can’t reach it, and schedules only run while the computer and n8n are on. Don’t open port 5678 to the internet to work around that."}},{"@type":"Question","name":"Should I install n8n with npm or Docker?","acceptedAnswer":{"@type":"Answer","text":"Either works for learning. n8n’s docs say npm installs are deprecated from n8n 3.0, so for a server that runs around the clock use Docker or a platform like Coolify."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -101,14 +101,20 @@ docker run -it --rm \
 </ul>
 <p class="meta">Commands checked October 22, 2026 against n8n 2.44.5 on npm, n8n’s npm and Docker installation docs, nvm v0.40.8 and Node.js 24.22.1. The video was recorded in October 2025 on an earlier n8n release, so some screens will differ.</p>
 <h2 id="faq">FAQ</h2>
-<h3>Which Node.js version does n8n need?</h3>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>Which Node.js version does n8n need?</h3></summary>
 <p>The current n8n release requires Node.js 24 or newer. Ubuntu’s own nodejs package is older, so install v24 with nvm.</p>
-<h3>Is self-hosting n8n free?</h3>
+</details>
+<details class="faq-item"><summary><h3>Is self-hosting n8n free?</h3></summary>
 <p>Yes, self-hosting n8n is free. AI or app nodes you add later may need paid accounts.</p>
-<h3>Can outside services reach my local n8n?</h3>
+</details>
+<details class="faq-item"><summary><h3>Can outside services reach my local n8n?</h3></summary>
 <p>No. It runs on localhost, so webhooks from outside services can’t reach it, and schedules only run while the computer and n8n are on. Don’t open port 5678 to the internet to work around that.</p>
-<h3>Should I install n8n with npm or Docker?</h3>
+</details>
+<details class="faq-item"><summary><h3>Should I install n8n with npm or Docker?</h3></summary>
 <p>Either works for learning. n8n’s docs say npm installs are deprecated from n8n 3.0, so for a server that runs around the clock use Docker or a platform like Coolify.</p>
+</details>
+</div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://docs.n8n.io/hosting/installation/npm/">n8n docs: Install with npm</a></li>

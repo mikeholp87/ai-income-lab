@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/hermes-desktop.webp">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes Desktop: install Hermes Agent on Mac, Windows or Linux","description":"Install Hermes Agent with Hermes Desktop on Mac or Windows, or Hermes One on Linux, then connect a model provider and check it with tasks you can verify.","url":"https://www.ai-automation-station.com/guides/hermes-desktop.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/hermes-desktop.html","datePublished":"2026-10-22","dateModified":"2026-10-31","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html"},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"image":"https://www.ai-automation-station.com/assets/guides/hermes-desktop.webp","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"Hermes Desktop: install Hermes Agent on Mac, Windows or Linux","item":"https://www.ai-automation-station.com/guides/hermes-desktop.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which Hermes desktop app should I install?","acceptedAnswer":{"@type":"Answer","text":"On macOS or Windows, the official Hermes Desktop from Nous Research. It has no Linux build, so on Linux use Hermes One, the community app this guide follows."}},{"@type":"Question","name":"Do I need an API key for Hermes?","acceptedAnswer":{"@type":"Answer","text":"You need one model provider. Use a key you already have, such as OpenRouter, Anthropic, OpenAI or Google, a local endpoint like Ollama or LM Studio, or sign in to Nous Portal, which offered a free model in the video. Plans change, so check what Portal offers when you sign up."}},{"@type":"Question","name":"How do I check that Hermes is working?","acceptedAnswer":{"@type":"Answer","text":"Run /version and /tools in the app’s chat, then give it a task with an answer you can check, such as summarising a paragraph in exactly two sentences. In a terminal, hermes doctor reports missing keys for optional tools."}},{"@type":"Question","name":"Why does the chat show an internal server error?","acceptedAnswer":{"@type":"Answer","text":"There is no working model connection. Run hermes model in a terminal, sign in or add a key, then restart the app."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/hermes-desktop.html#faq-schema","url":"https://www.ai-automation-station.com/guides/hermes-desktop.html","mainEntity":[{"@type":"Question","name":"Which Hermes desktop app should I install?","acceptedAnswer":{"@type":"Answer","text":"On macOS or Windows, the official Hermes Desktop from Nous Research. It has no Linux build, so on Linux use Hermes One, the community app this guide follows."}},{"@type":"Question","name":"Do I need an API key for Hermes?","acceptedAnswer":{"@type":"Answer","text":"You need one model provider. Use a key you already have, such as OpenRouter, Anthropic, OpenAI or Google, a local endpoint like Ollama or LM Studio, or sign in to Nous Portal, which offered a free model in the video. Plans change, so check what Portal offers when you sign up."}},{"@type":"Question","name":"How do I check that Hermes is working?","acceptedAnswer":{"@type":"Answer","text":"Run /version and /tools in the app’s chat, then give it a task with an answer you can check, such as summarising a paragraph in exactly two sentences. In a terminal, hermes doctor reports missing keys for optional tools."}},{"@type":"Question","name":"Why does the chat show an internal server error?","acceptedAnswer":{"@type":"Answer","text":"There is no working model connection. Run hermes model in a terminal, sign in or add a key, then restart the app."}}]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -79,14 +79,20 @@
 </ul>
 <p class="meta">Checked October 22, 2026 against Hermes One 0.7.7, the Hermes One and Hermes Agent READMEs, Hermes Agent v0.22.4, and the official Hermes Desktop download page. The video was recorded in May 2026 on an earlier version; menus and plans may differ.</p>
 <h2 id="faq">FAQ</h2>
-<h3>Which Hermes desktop app should I install?</h3>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>Which Hermes desktop app should I install?</h3></summary>
 <p>On macOS or Windows, the official Hermes Desktop from Nous Research. It has no Linux build, so on Linux use Hermes One, the community app this guide follows.</p>
-<h3>Do I need an API key for Hermes?</h3>
+</details>
+<details class="faq-item"><summary><h3>Do I need an API key for Hermes?</h3></summary>
 <p>You need one model provider. Use a key you already have, such as OpenRouter, Anthropic, OpenAI or Google, a local endpoint like Ollama or LM Studio, or sign in to Nous Portal, which offered a free model in the video. Plans change, so check what Portal offers when you sign up.</p>
-<h3>How do I check that Hermes is working?</h3>
+</details>
+<details class="faq-item"><summary><h3>How do I check that Hermes is working?</h3></summary>
 <p>Run /version and /tools in the app’s chat, then give it a task with an answer you can check, such as summarising a paragraph in exactly two sentences. In a terminal, hermes doctor reports missing keys for optional tools.</p>
-<h3>Why does the chat show an internal server error?</h3>
+</details>
+<details class="faq-item"><summary><h3>Why does the chat show an internal server error?</h3></summary>
 <p>There is no working model connection. Run hermes model in a terminal, sign in or add a key, then restart the app.</p>
+</details>
+</div>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://github.com/NousResearch/hermes-agent">Nous Research: Hermes Agent (GitHub)</a></li>

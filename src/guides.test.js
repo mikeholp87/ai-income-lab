@@ -265,3 +265,20 @@ test('every in-page link on a static page points at an element that exists', asy
     for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) if (id !== 'top') assert.ok(ids.has(id), `${path}: #${id}`);
   }
 });
+
+test('guide FAQs are collapsible and their FAQPage data matches the visible questions and answers', async () => {
+  const plain = fragment => fragment.replace(/<p class="meta">[\s\S]*?<\/p>/g, '').replace(/<\/(p|li|ul|ol)>/g, ' ').replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const items = [...html.matchAll(/<details class="faq-item"><summary><h3>([\s\S]*?)<\/h3><\/summary>\n([\s\S]*?)\n<\/details>/g)];
+    assert.ok(items.length >= 2, file);
+    assert.doesNotMatch(html.slice(html.indexOf('<div class="faq-list">'), html.indexOf('</div>', html.indexOf('<div class="faq-list">'))), /<h3>(?![\s\S]*?<\/h3><\/summary>)/, file);
+    const data = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).filter(entry => entry['@type'] === 'FAQPage');
+    assert.equal(data.length, 1, file);
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)[1];
+    assert.equal(data[0].url, canonical, file);
+    assert.deepEqual(data[0].mainEntity, items.map(([, question, answer]) => ({ '@type': 'Question', name: plain(question), acceptedAnswer: { '@type': 'Answer', text: plain(answer) } })), file);
+  }
+  assert.match(await read('public/reading.css'), /\.faq-item\[open\] summary::after\{content:'−';border-color:#ff6846;color:#ff6846\}/);
+});
