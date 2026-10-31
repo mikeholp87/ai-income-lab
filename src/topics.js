@@ -9,7 +9,7 @@ export const topics = [
     heading: 'Claude Code tutorials and builds',
     intro: 'Builds, skills and workflows with Anthropic’s Claude Code in the terminal.',
     about: 'Each video here uses Claude Code on a real project rather than a toy prompt: installing it, adding skills and routines, wiring it to outside data, and checking what it gets wrong. Start with the beginner walkthrough if you have never run a coding agent, then use the comparison guide to decide when Claude Code is the right tool and when Codex or OpenCode fits the task better. Most builds show the full session, including the fixes, so you can judge how much supervision the agent needed.',
-    pattern: /claude code|claude (skills?|design|routines)/i,
+    pattern: /claude code|claude (skills?|routines)/i,
     guides: [['/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'], ['/guides/claude-code-vs-codex.html', 'Codex vs Claude Code: how I use both and route tasks']],
   },
   {
