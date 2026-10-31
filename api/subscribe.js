@@ -49,12 +49,85 @@ export async function POST(req) {
   // Honeypot: hidden from people, so only bots fill it. Pretend it worked.
   if (body?.hp) {
     console.log("subscribe: trap field filled, ignored");
-    return Response.json({ ok: true });
+    return Response.json({ ok: true, confirm: true });
   }
   const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
   if (email.length > 254 || !isEmail(email)) return Response.json({ error: "invalid" }, { status: 400 });
-  if (!process.env.RESEND_API_KEY) return Response.json({ error: "unavailable" }, { status: 503 });
+  if (!process.env.RESEND_API_KEY || !process.env.SUBSCRIBE_SECRET) return Response.json({ error: "unavailable" }, { status: 503 });
 
+  // Double opt-in: nothing is added until the address owner clicks the link in this email.
+  const page = req.headers.get("referer");
+  const link = `${site}/api/subscribe?t=${await signConfirmation(email, page)}`;
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      signal: AbortSignal.timeout(8000),
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: FROM, to: [email], reply_to: REPLY_TO, ...confirmation(link) }),
+    });
+    if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
+    console.log("subscribe: confirmation sent");
+  } catch (err) {
+    console.error("subscribe confirm", err);
+    return Response.json({ error: "failed" }, { status: 502 });
+  }
+  // The same answer for new and existing addresses, so the form reveals nothing about the list.
+  return Response.json({ ok: true, confirm: true });
+}
+
+// GET /api/subscribe?t=… is the confirmation link. A valid, unexpired link adds the contact,
+// tells Mike and sends the welcome email, then lands on a page saying it worked.
+export async function GET(req) {
+  const claim = await verifyConfirmation(new URL(req.url).searchParams.get("t"));
+  if (!claim) return Response.redirect(`${site}/start-here.html?subscribe=expired`, 303);
+  if (!process.env.RESEND_API_KEY) return Response.redirect(`${site}/start-here.html?subscribe=failed`, 303);
+  const result = await addSubscriber(claim.email, claim.page);
+  return Response.redirect(`${site}/start-here.html?subscribe=${result.ok ? "confirmed" : "failed"}`, 303);
+}
+
+export const confirmation = link => ({
+  subject: "Confirm your weekly build notes signup",
+  text: `Hey, Mike here. Someone (hopefully you) asked to get the weekly build notes at this address.
+
+Confirm with this link and the first email will be on its way:
+${link}
+
+The link works for 48 hours. If you didn't sign up, ignore this email and you won't hear from me again.
+
+Mike Holp
+AI Automation Station`,
+});
+
+const CONFIRM_TTL_MS = 48 * 60 * 60 * 1000;
+const b64url = bytes => Buffer.from(bytes).toString("base64url");
+
+async function hmac(data) {
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(process.env.SUBSCRIBE_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  return b64url(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(data)));
+}
+
+export async function signConfirmation(email, page, now = Date.now()) {
+  const payload = b64url(JSON.stringify({ e: email, p: page ? String(page).slice(0, 300) : "", x: now + CONFIRM_TTL_MS }));
+  return `${payload}.${await hmac(payload)}`;
+}
+
+export async function verifyConfirmation(token, now = Date.now()) {
+  if (!process.env.SUBSCRIBE_SECRET || typeof token !== "string" || token.length > 1200) return null;
+  const [payload, sig] = token.split(".");
+  if (!payload || !sig) return null;
+  const expected = await hmac(payload);
+  if (expected.length !== sig.length) return null;
+  let diff = 0;
+  for (let i = 0; i < sig.length; i += 1) diff |= sig.charCodeAt(i) ^ expected.charCodeAt(i);
+  if (diff) return null;
+  try {
+    const { e, p, x } = JSON.parse(Buffer.from(payload, "base64url").toString());
+    if (typeof e !== "string" || !isEmail(e) || !(x > now)) return null;
+    return { email: e, page: p || null };
+  } catch { return null; }
+}
+
+async function addSubscriber(email, page) {
   try {
     const res = await fetch("https://api.resend.com/contacts", {
       method: "POST",
@@ -66,15 +139,15 @@ export async function POST(req) {
     // response matches a new signup so the form cannot be used to check who is subscribed.
     if (res.status === 409) {
       console.log("subscribe: already on the list, no welcome sent");
-      return Response.json({ ok: true, welcomeSent: true });
+      return { ok: true, welcomeSent: true };
     }
     if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
     console.log("subscribe: contact added");
   } catch (err) {
     console.error("subscribe", err);
-    return Response.json({ error: "failed" }, { status: 502 });
+    return { ok: false };
   }
-  await notifyOwner(email, req.headers.get("referer"));
+  await notifyOwner(email, page);
   // The contact already exists even when the welcome email fails.
   try {
     const res = await fetch("https://api.resend.com/emails", {
@@ -87,10 +160,11 @@ export async function POST(req) {
     console.log("subscribe: welcome sent", (await res.json().catch(() => ({}))).id ?? "");
   } catch (err) {
     console.error("subscribe welcome", err);
-    return Response.json({ ok: true, welcomeSent: false });
+    return { ok: true, welcomeSent: false };
   }
-  return Response.json({ ok: true, welcomeSent: true });
+  return { ok: true, welcomeSent: true };
 }
+
 
 // Tells Mike about each new signup. A failure here never fails the signup.
 async function notifyOwner(email, page) {

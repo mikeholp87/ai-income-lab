@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { POST, welcome } from '../api/subscribe.js';
+import { GET, POST, signConfirmation, verifyConfirmation, welcome } from '../api/subscribe.js';
 
 const savedKey = process.env.RESEND_API_KEY;
+process.env.SUBSCRIBE_SECRET = 'test-secret';
 const savedFetch = globalThis.fetch;
 let ip = 0;
 const post = (body, headers = { 'x-forwarded-for': `198.51.100.${++ip}` }) => POST(new Request('https://x/api/subscribe', { method: 'POST', headers, body: JSON.stringify(body) }));
@@ -13,53 +14,65 @@ afterEach(() => {
   globalThis.fetch = savedFetch;
 });
 
+const confirm = token => GET(new Request(`https://x/api/subscribe?t=${encodeURIComponent(token)}`));
+
 test('bad addresses get 400 and a missing key gets 503', async () => {
   delete process.env.RESEND_API_KEY;
   assert.equal((await post({ email: 'nope' })).status, 400);
   assert.equal((await post({ email: 'a@b.co' })).status, 503);
 });
 
-test('a new signup adds a subscribed contact and sends the welcome email', async () => {
+test('a signup only sends a confirmation link, and adds nobody yet', async () => {
   process.env.RESEND_API_KEY = 're_full';
   const calls = [];
   globalThis.fetch = async (url, init) => { calls.push([url, JSON.parse(init.body)]); return new Response('{}', { status: 200 }); };
   const response = await post({ email: ' Ada@Example.com ' });
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { ok: true, welcomeSent: true });
-  assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
-  const [nUrl, note] = calls[1];
-  assert.equal(nUrl, 'https://api.resend.com/emails');
-  assert.deepEqual(note.to, ['automojic@proton.me']);
-  assert.match(note.subject, /ada@example\.com/);
-  const [url, mail] = calls[2];
+  assert.deepEqual(await response.json(), { ok: true, confirm: true });
+  assert.equal(calls.length, 1);
+  const [url, mail] = calls[0];
   assert.equal(url, 'https://api.resend.com/emails');
   assert.deepEqual(mail.to, ['ada@example.com']);
-  assert.match(mail.from, /@ai-automation-station\.com>$/);
-  assert.equal(mail.subject, welcome.subject);
-  assert.match(mail.text, /start-here\.html[\s\S]*guides\.html[\s\S]*\/videos[\s\S]*Reply "unsubscribe"/);
+  assert.match(mail.subject, /Confirm/);
+  const token = decodeURIComponent(mail.text.match(/\/api\/subscribe\?t=(\S+)/)[1]);
+  assert.equal((await verifyConfirmation(token)).email, 'ada@example.com');
 });
 
-test('an address already on the list gets the same answer as a new one and is not welcomed twice', async () => {
+test('the confirmation link adds the contact, tells Mike and sends the unchanged welcome', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const calls = [];
+  globalThis.fetch = async (url, init) => { calls.push([url, JSON.parse(init.body)]); return new Response('{}', { status: 200 }); };
+  const res = await confirm(await signConfirmation('ada@example.com', 'https://www.ai-automation-station.com/'));
+  assert.equal(res.status, 303);
+  assert.match(res.headers.get('location'), /subscribe=confirmed/);
+  assert.deepEqual(calls[0], ['https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
+  assert.deepEqual(calls[1][1].to, ['automojic@proton.me']);
+  assert.match(calls[1][1].text, /Page: https:\/\/www\.ai-automation-station\.com\//);
+  const mail = calls[2][1];
+  assert.deepEqual(mail.to, ['ada@example.com']);
+  assert.equal(mail.subject, welcome.subject);
+  assert.equal(mail.text, welcome.text);
+});
+
+test('an address already on the list is not welcomed twice', async () => {
   process.env.RESEND_API_KEY = 're_full';
   const urls = [];
   globalThis.fetch = async url => { urls.push(url); return new Response('{}', { status: 409 }); };
-  const res = await post({ email: 'ada@example.com' });
-  assert.equal(res.status, 200);
-  assert.deepEqual(await res.json(), { ok: true, welcomeSent: true });
+  const res = await confirm(await signConfirmation('ada@example.com'));
+  assert.match(res.headers.get('location'), /subscribe=confirmed/);
   assert.deepEqual(urls, ['https://api.resend.com/contacts']);
 });
 
-test('a failed welcome email still reports the signup as done', async () => {
+test('tampered, expired or unsigned links add nobody', async () => {
   process.env.RESEND_API_KEY = 're_full';
-  const logged = console.error;
-  console.error = () => {};
-  globalThis.fetch = async url => new Response('{}', { status: url.endsWith('/emails') ? 500 : 200 });
-  try {
-    const response = await post({ email: 'ada@example.com' });
-    assert.equal(response.status, 200);
-    assert.deepEqual(await response.json(), { ok: true, welcomeSent: false });
+  globalThis.fetch = () => assert.fail('should not call');
+  const good = await signConfirmation('ada@example.com');
+  const [payload, sig] = good.split('.');
+  const forged = `${Buffer.from(JSON.stringify({ e: 'eve@example.com', p: '', x: Date.now() + 1e6 })).toString('base64url')}.${sig}`;
+  const expired = await signConfirmation('ada@example.com', null, Date.now() - 49 * 3600 * 1000);
+  for (const token of [forged, expired, payload, 'x', `${payload}.${sig}x`]) {
+    assert.match((await confirm(token)).headers.get('location'), /subscribe=expired/, token);
   }
-  finally { console.error = logged; }
 });
 
 test('honeypot hits never reach Resend, and Resend failures answer 502', async () => {
@@ -85,7 +98,7 @@ test('trap fields avoid names that autofill fills, and pages never reveal an exi
 test('one address that keeps posting gets 429 with Retry-After, and the trap still answers ok', async () => {
   delete process.env.RESEND_API_KEY;
   const headers = { 'x-forwarded-for': '203.0.113.77' };
-  assert.deepEqual(await (await post({ email: 'x@y.co', hp: 'bot' }, headers)).json(), { ok: true });
+  assert.deepEqual(await (await post({ email: 'x@y.co', hp: 'bot' }, headers)).json(), { ok: true, confirm: true });
   for (let i = 0; i < 4; i += 1) assert.equal((await post({ email: 'nope' }, headers)).status, 400);
   const res = await post({ email: 'nope' }, headers);
   assert.equal(res.status, 429);
