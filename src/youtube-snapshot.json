@@ -4,7 +4,7 @@
       "id": "rMRsVyIsZCU",
       "title": "I Tested This FREE Claude Design Alternative (It's Good!)",
       "published": "2026-10-30T09:57:49Z",
-      "views": 152,
+      "views": 153,
       "duration": "6:54",
       "summary": "Mike installs Open Design, a free Claude Design alternative, on Linux from source, fixes its Node and Corepack setup, connects a model with an API key, then uses it to make a motion design clip, a visual design system and an HTML slide deck from a YouTube link. The last chapter covers its pricing and credit use.",
       "embeddable": true
@@ -13,7 +13,7 @@
       "id": "wzC2r426KWs",
       "title": "I Built a Virtual Office for My AI Agents in GrokBot",
       "published": "2026-10-29T14:52:59Z",
-      "views": 846,
+      "views": 851,
       "duration": "9:43",
       "summary": "In this video, I build a 2D Virtual Office for 35+ AI agents running inside GrokBot using the new Pages feature!",
       "embeddable": true
@@ -31,7 +31,7 @@
       "id": "VE66JDHoS6Y",
       "title": "Herdr Lets You Run Claude Code And Codex In One Place",
       "published": "2026-10-26T10:58:24Z",
-      "views": 547,
+      "views": 551,
       "duration": "7:52",
       "summary": "Install Herdr and run Codex, Claude Code, OpenCode and Hermes from one terminal workspace that saves every session. Covers installing on Mac, Linux and Windows, then a hands-on review.",
       "embeddable": true
@@ -49,7 +49,7 @@
       "id": "UAPaM6KrC-M",
       "title": "Building My Own Video Editor Using REA (It's Insane!)",
       "published": "2026-10-14T08:36:41Z",
-      "views": 498,
+      "views": 499,
       "duration": "6:33",
       "summary": "Install the REA skill into several coding agents, then use it with Claude Code to rebuild a version of the Kdenlive video editor. The rebuild took four to five hours and the result imports, plays and splits clips, while effects and some sliders do not work yet.",
       "embeddable": true

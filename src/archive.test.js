@@ -541,7 +541,8 @@ test('watch page titles never reuse a written guide title or its lead phrase', a
   const guideTitles = await Promise.all((await readdir(dir)).filter(file => file.endsWith('.html')).map(async file => (await readFile(new URL(file, dir), 'utf8')).match(/<title>(.*?)<\/title>/)[1].replace(/ \| Mike Holp$/, '').replace(/&amp;/g, '&')));
   const lead = title => title.split(':')[0].trim().toLowerCase();
   const guideLeads = new Set(guideTitles.map(lead));
-  for (const [id, notes] of [...Object.entries(watchNotes), ...Object.entries(videoNotes)]) {
+  const { videoSummaries } = await import('./video-summaries.js');
+  for (const [id, notes] of [...Object.entries(watchNotes), ...Object.entries(videoNotes), ...Object.entries(videoSummaries)]) {
     if (!notes.searchTitle) continue;
     assert.ok(!guideTitles.some(title => title.toLowerCase() === notes.searchTitle.toLowerCase()), `${id} copies a guide title`);
     assert.ok(!guideLeads.has(lead(notes.searchTitle)), `${id} shares a guide's lead phrase: ${notes.searchTitle}`);
@@ -656,4 +657,17 @@ test('guide pages list up to four related videos as thumbnail cards, skipping vi
   assert.ok(html.indexOf('you-may-also-like') < html.indexOf('next-steps'));
   assert.equal(addGuideVideos(html, '/guides/self-host-n8n.html', videos), html);
   assert.equal(addGuideVideos('<main></main>', '/guides/unknown.html', videos), '<main></main>');
+});
+
+test('topic pages lead with up to four videos that have a written summary, most viewed first', async () => {
+  const { videoSummaries } = await import('./video-summaries.js');
+  const topic = topics.find(item => item.slug === 'claude-code');
+  const html = renderArchive(uploads, 1, topic);
+  const line = html.match(/<p class="start">Start with these videos: (.*?)<\/p>/)[1];
+  const ids = [...line.matchAll(/href="\/watch\/([\w-]{11})"/g)].map(match => match[1]);
+  assert.ok(ids.length >= 1 && ids.length <= 4, line);
+  const views = ids.map(id => uploads.find(video => video.id === id).views ?? 0);
+  assert.deepEqual(views, [...views].sort((a, b) => b - a));
+  for (const id of ids) assert.ok(videoSummaries[id] || watchNotes[id]?.html || videoNotes[id], id);
+  assert.doesNotMatch(renderArchive(uploads, 1), /Start with these videos/);
 });

@@ -137,6 +137,8 @@ export function renderArchive(videos, page = 1, topic = null) {
   };
   const trail = [['Home', `${site}/`], ['Videos', `${site}/videos`], ...(topic || page > 1 ? [[name, url]] : [])];
   const breadcrumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: trail.map(([label, item], index) => ({ '@type': 'ListItem', position: index + 1, name: label, item })) };
+  // Topic pages lead with the videos that carry a written summary, so those links sit near the top.
+  const startWith = topic ? list.filter(video => video.embeddable && (videoSummaries[video.id] || watchNotes[video.id]?.html || videoNotes[video.id])).sort((a, b) => (b.views ?? 0) - (a.views ?? 0)).slice(0, 4) : [];
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -167,7 +169,7 @@ ${jsonLd(breadcrumbs)}
 <main class="shell" id="content">
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
-${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
+${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
 ${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>
 ${pager(page, pages)}
@@ -181,7 +183,8 @@ const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}"><img src="https://i.ytimg.com/vi/${video.id}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
-const videoHeading = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || watchHeading(video.title);
+const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle;
+const videoHeading = video => searchTitle(video) || watchHeading(video.title);
 const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
 // Used only when a video has no summary anywhere: length, topic and date, plus the first chapters after the intro.
@@ -297,7 +300,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   return `<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escape(watchNotes[video.id]?.searchTitle || notes?.searchTitle || video.title)}</title>
+<title>${escape(searchTitle(video) || video.title)}</title>
 <meta name="description" content="${escape(snippet(description))}">
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="preconnect" href="https://i.ytimg.com">
