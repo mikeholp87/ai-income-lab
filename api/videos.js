@@ -1,4 +1,4 @@
-import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sponsoredVideos } from '../src/archive.js';
+import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sorts, sponsoredVideos } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
 import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
@@ -63,7 +63,12 @@ export async function GET(request) {
   const topic = requested === null ? null : topicBySlug(requested) ?? null;
   if (requested !== null && !topic && !/^[1-9]\d{0,3}$/.test(requested)) return notFound();
   const page = topic ? 1 : Number(requested ?? 1);
-  if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos`, 308);
+  if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos${url.search.includes('sort=') ? `?sort=${encodeURIComponent(url.searchParams.get('sort'))}` : ''}`, 308);
+  const sort = url.searchParams.get('sort') ?? 'newest';
+  // An unknown or default sort would duplicate the plain page, so send it there.
+  if (videoId === null && !sitemap && !sponsored && (sort === 'newest' || !Object.hasOwn(sorts, sort)) && url.searchParams.has('sort')) {
+    return Response.redirect(`${url.origin}${topic ? `/videos/${topic.slug}` : page > 1 ? `/videos/${page}` : '/videos'}`, 308);
+  }
 
   if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();
   else if (process.env.YOUTUBE_API_KEY && Date.now() - probedAt >= probeGap && Date.now() >= retryAt) {
@@ -96,7 +101,7 @@ export async function GET(request) {
   // An empty topic would be a thin page; 404 it until a matching video exists.
   if (topic && !memo.videos.some(video => topic.pattern.test(video.title))) return notFound();
   if (page > pageCount(memo.videos)) return notFound();
-  return html(renderArchive(memo.videos, page, topic), 200, cache);
+  return html(renderArchive(memo.videos, page, topic, sort), 200, cache);
 }
 
 // Link checkers and some crawlers send HEAD; answer with GET's status and headers, no body.

@@ -4,6 +4,7 @@ import { videoOffer } from './video-offer.js';
 import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
+import { toolLink } from './tool-links.js';
 import { curatedSummary } from './curated-summary.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
@@ -73,14 +74,23 @@ export const sponsoredVideos = videos => videos.filter(video => video.sponsored)
 
 export const perPage = 15;
 export const pageCount = videos => Math.max(1, Math.ceil(videos.length / perPage));
-const pagePath = page => page === 1 ? '/videos' : `/videos/${page}`;
+// The uploads list arrives newest first, so `newest` keeps its order.
+export const sorts = {
+  newest: { label: 'Newest', order: 'newest first' },
+  views: { label: 'Most viewed', order: 'most viewed first', compare: (a, b) => (b.views ?? 0) - (a.views ?? 0) },
+  oldest: { label: 'Oldest', order: 'oldest first', compare: (a, b) => a.published.localeCompare(b.published) },
+  longest: { label: 'Longest', order: 'longest first', compare: (a, b) => durationSeconds(b.duration) - durationSeconds(a.duration) },
+  shortest: { label: 'Shortest', order: 'shortest first', compare: (a, b) => durationSeconds(a.duration) - durationSeconds(b.duration) },
+};
+const sortQuery = sort => sort === 'newest' ? '' : `?sort=${sort}`;
+const pagePath = (page, sort = 'newest') => `${page === 1 ? '/videos' : `/videos/${page}`}${sortQuery(sort)}`;
 
 // Every page while there are few enough to wrap onto two rows, so crawlers reach each one from any page in one hop.
 // Past that: first, last and the current page's neighbours; a one-page gap shows that page, longer gaps an ellipsis.
 const listAllPages = 20;
-function pager(page, pages) {
+function pager(page, pages, sort) {
   if (pages === 1) return '';
-  const link = (to, label, rel) => `<a href="${pagePath(to)}"${rel ? ` rel="${rel}"` : ''}>${label}</a>`;
+  const link = (to, label, rel) => `<a href="${pagePath(to, sort)}"${rel ? ` rel="${rel}"` : ''}>${label}</a>`;
   const shown = Array.from({ length: pages }, (_, index) => index + 1).filter(n => pages <= listAllPages || n === 1 || n === pages || Math.abs(n - page) <= 1);
   const numbers = [];
   let previous = 0;
@@ -90,8 +100,12 @@ function pager(page, pages) {
     numbers.push(n === page ? `<span aria-current="page">${n}</span>` : link(n, n));
     previous = n;
   }
-  return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, '← Newer', 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, 'Older →', 'next') : ''}</nav>`;
+  const [back, forward] = sort === 'newest' ? ['← Newer', 'Older →'] : ['← Previous', 'Next →'];
+  return `<nav class="pager mono" aria-label="Video pages">${page > 1 ? link(page - 1, back, 'prev') : ''}${numbers.join('')}${page < pages ? link(page + 1, forward, 'next') : ''}</nav>`;
 }
+
+// Sorted lists are reorderings of indexed pages, so the links are nofollow and the pages noindex.
+const sortNav = (base, current) => `<nav class="sort mono" aria-label="Sort videos"><span>Sort</span>${Object.entries(sorts).map(([key, { label }]) => `<a href="${base}${sortQuery(key)}" rel="nofollow"${key === current ? ' aria-current="true"' : ''}>${label}</a>`).join('')}</nav>`;
 
 // Phones show the topic row as one swipeable line; start it at the current pill. Only the row scrolls, never the page.
 const currentPillScript = `(()=>{const pill=document.querySelector('.topics [aria-current]');if(pill)pill.parentElement.scrollLeft=pill.offsetLeft-pill.parentElement.offsetLeft-16})()`;
@@ -116,15 +130,19 @@ const card = (video, eager) => {
 };
 
 // One page of the archive, 15 videos per page (callers check the page is within pageCount(videos)),
-// or with `topic`, every matching video on a single page at /videos/<slug>.
-export function renderArchive(videos, page = 1, topic = null) {
-  const list = topic ? videos.filter(video => topic.pattern.test(video.title)) : videos;
+// or with `topic`, every matching video on a single page at /videos/<slug>. `sort` is a key of `sorts`.
+export function renderArchive(videos, page = 1, topic = null, sort = 'newest') {
+  const matching = topic ? videos.filter(video => topic.pattern.test(video.title)) : videos;
+  const { order, compare } = sorts[sort];
+  const list = compare ? matching.toSorted(compare) : matching;
   // ponytail: topic pages are unpaginated (largest is 38 videos); add paging if one passes ~60.
   const pages = topic ? 1 : pageCount(list);
   const items = topic ? list : list.slice((page - 1) * perPage, page * perPage);
-  const years = Map.groupBy(items, video => video.published.slice(0, 4));
+  // Year headings only make sense while the list runs in date order.
+  const groups = sort === 'newest' || sort === 'oldest' ? [...Map.groupBy(items, video => video.published.slice(0, 4))] : [[sorts[sort].label, items]];
   const pageNote = page > 1 ? `Page ${page} of ${pages}. ` : '';
   const count = `${list.length} ${list.length === 1 ? 'video' : 'videos'}`;
+  const sorted = sort !== 'newest';
   const description = topic ? `${topic.intro} ${count}, newest first.` : `${pageNote}Browse ${list.length} AI Automation Station tutorials: coding agents, AI tools, and automation workflows tested on real builds.`;
   const url = `${site}${topic ? `/videos/${topic.slug}` : pagePath(page)}`;
   const title = topic ? topic.title : page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp';
@@ -146,7 +164,7 @@ export function renderArchive(videos, page = 1, topic = null) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)}</title>
 <meta name="description" content="${escape(description)}">
-<link rel="canonical" href="${url}">${page > 1 ? `\n<link rel="prev" href="${site}${pagePath(page - 1)}">` : ''}${page < pages ? `\n<link rel="next" href="${site}${pagePath(page + 1)}">` : ''}
+${sorted ? '<meta name="robots" content="noindex,follow">' : `<link rel="canonical" href="${url}">${page > 1 ? `\n<link rel="prev" href="${site}${pagePath(page - 1)}">` : ''}${page < pages ? `\n<link rel="next" href="${site}${pagePath(page + 1)}">` : ''}`}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Automation Station">
@@ -167,12 +185,13 @@ ${jsonLd(breadcrumbs)}
 <a class="skip" href="#content">Skip to videos</a>
 <header class="shell single-line-header"><a class="brand desktop-brand" href="/"><span></span>AI Income Lab</a><a class="mobile-brand" href="/">AI Income Lab</a><nav class="site-nav" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav></details></header>
 <main class="shell" id="content">
-<div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, newest first. ${escape(topic.intro)}` : `${list.length} long-form videos, newest first. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
+<div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
 ${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${startWith.length ? `<p class="start">Start with these videos: ${listFormat.format(startWith.map(video => `<a href="/watch/${escape(video.id)}">${escape(videoHeading(video))}</a>`))}</p>\n` : ''}<p class="start"><a href="/start-here.html">New here? Choose your first build</a> or <a href="/guides.html">read the free guides</a></p>
-${[...years].map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
+${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}
+${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>
-${pager(page, pages)}
+${pager(page, pages, sort)}
 </main>
 <footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
 </body>
@@ -185,6 +204,10 @@ const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}"><img src="https://i.ytimg.com/vi/${video.id}/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
 const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle;
 const videoHeading = video => searchTitle(video) || watchHeading(video.title);
+const toolItem = tool => {
+  const link = toolLink(tool);
+  return link ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
+};
 const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
 // Used only when a video has no summary anywhere: length, topic and date, plus the first chapters after the intro.
@@ -351,7 +374,7 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <h3>What you build</h3>
 <p>${escape(brief.whatYouBuild)}</p>${brief.toolsUsed?.length ? `
 <h3>Tools used</h3>
-<ul>${brief.toolsUsed.map(tool => `<li>${escape(tool)}</li>`).join('')}</ul>` : ''}${brief.keySteps?.length ? `
+<ul>${brief.toolsUsed.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>` : ''}${brief.keySteps?.length ? `
 <h3>Key steps</h3>
 <ol>${brief.keySteps.map(step => `<li>${Number.isFinite(step.seconds) ? `<a href="#t=${step.seconds}">${clock(step.seconds)}</a> ` : ''}${escape(step.step)}</li>`).join('')}</ol>` : ''}${brief.notCovered?.length ? `
 <h3>Not covered</h3>

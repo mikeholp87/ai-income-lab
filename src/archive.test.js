@@ -397,6 +397,37 @@ test('splits the archive into pages of 15 linked to each other', () => {
   assert.deepEqual(list.mainEntity.itemListElement.map(item => item.position), [31]);
 });
 
+test('links tools used on watch pages in a new tab, marking referral links sponsored', () => {
+  const video = uploads.find(upload => upload.id === '1TPm7B5oStw');
+  const html = renderWatch(video, { videos: uploads });
+  assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
+  assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
+  assert.match(renderWatch(uploads.find(upload => upload.id === '8ieDSa8BVH4'), { videos: uploads }), /<li>Facebook Messenger<\/li>/);
+});
+
+test('sorts the archive by views, date or length, keeping the sort across pages and out of the index', async () => {
+  const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 31 - index)).toISOString(), views: index * 10, duration: `PT${index + 1}M`, embeddable: true, summary: '' }));
+  const ids = html => html.match(/href="\/watch\/(v\d+)"/g)?.map(match => match.slice(13, -1)) ?? [];
+  const plain = renderArchive(videos, 1);
+  assert.match(plain, /<a href="\/videos\?sort=views" rel="nofollow">Most viewed<\/a>/);
+  assert.match(plain, /<a href="\/videos" rel="nofollow" aria-current="true">Newest<\/a>/);
+  const views = renderArchive(videos, 1, null, 'views');
+  assert.equal(ids(views)[0], 'v30');
+  assert.match(views, /<meta name="robots" content="noindex,follow">/);
+  assert.doesNotMatch(views, /rel="canonical"/);
+  assert.match(views, /<a href="\/videos\/2\?sort=views" rel="next">Next →<\/a>/);
+  assert.match(views, /<h2>Most viewed<\/h2>/);
+  assert.match(views, /31 long-form videos, most viewed first\./);
+  assert.equal(ids(renderArchive(videos, 3, null, 'oldest'))[0], 'v0');
+  assert.equal(ids(renderArchive(videos, 1, null, 'shortest'))[0], 'v0');
+  assert.equal(ids(renderArchive(videos, 1, null, 'longest'))[0], 'v30');
+  for (const [path, location] of [['/videos?sort=bogus', '/videos'], ['/videos?sort=newest', '/videos'], ['/videos/1?sort=views', '/videos?sort=views']]) {
+    const response = await GET(new Request(`https://www.ai-automation-station.com${path}`));
+    assert.equal(response.status, 308, path);
+    assert.equal(new URL(response.headers.get('location')).pathname + new URL(response.headers.get('location')).search, location, path);
+  }
+});
+
 test('routes page numbers before loading any videos', async () => {
   const one = await GET(new Request('https://www.ai-automation-station.com/videos/1'));
   assert.equal(one.status, 308);
