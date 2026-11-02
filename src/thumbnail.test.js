@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import sharp from 'sharp';
 import { thumbnailVariants, refreshThumbnail } from '../scripts/thumbnail.js';
-import { featuredThumbnail } from './thumbnail.js';
+import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import snapshot from './thumbnail-snapshot.json' with { type: 'json' };
 import { readFile } from 'node:fs/promises';
 
@@ -47,4 +47,15 @@ test('failed thumbnail refresh does not publish replacement metadata', async t =
   await assert.rejects(refreshThumbnail({ id: 'aaaaaaaaaaa' }), /HTTP 404/);
   assert.equal(await readFile(path, 'utf8'), before);
   await assert.rejects(refreshThumbnail({ id: '../bad' }), /Invalid/);
+});
+
+test('a grey 4:3 maxres placeholder drops the 1280w candidate from the image and its webp source', () => {
+  const source = { srcset: youtubeSrcSet('aaaaaaaaaaa') };
+  const image = { currentSrc: 'https://i.ytimg.com/vi_webp/aaaaaaaaaaa/maxresdefault.webp', naturalWidth: 104, naturalHeight: 78, srcset: youtubeSrcSet('aaaaaaaaaaa', 'vi', 'jpg'), previousElementSibling: source };
+  dropMissingMaxres(image);
+  assert.equal(source.srcset, 'https://i.ytimg.com/vi_webp/aaaaaaaaaaa/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/aaaaaaaaaaa/sddefault.webp 640w');
+  assert.doesNotMatch(image.srcset, /maxres/);
+  const sharp = { currentSrc: 'https://i.ytimg.com/vi_webp/b/maxresdefault.webp', naturalWidth: 1116, naturalHeight: 628, srcset: youtubeSrcSet('b') };
+  dropMissingMaxres(sharp);
+  assert.match(sharp.srcset, /maxresdefault.webp 1280w$/);
 });

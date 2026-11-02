@@ -79,7 +79,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/9router-setup.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
-  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><img src="https:\/\/i\.ytimg\.com\/vi\/tzSGF7gu6EE\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
+  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><picture data-thumbnail><source type="image\/webp" srcset="[^"]+maxresdefault\.webp 1280w"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/tzSGF7gu6EE\/sddefault\.jpg"[^>]*loading="lazy"[^>]*><\/picture><span>[^<]+<\/span><\/a><\/li>/);
   assert.doesNotMatch(html, /lbBZ7uLJwbM/);
   const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
   assert.ok(description.length <= 160 && description.endsWith('costs.'), description);
@@ -140,7 +140,7 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   // One click-to-load player near the top: no YouTube frame loads until the visitor presses play.
   assert.equal((html.match(/class="player"/g) ?? []).length, 1);
   assert.doesNotMatch(html, /<iframe/);
-  assert.match(html, /<a class="player"[^>]*data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg"[^>]*><span class="play">/);
+  assert.match(html, /<a class="player"[^>]*data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*><picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i\.ytimg\.com\/vi_webp\/aaaaaaaaaaa\/mqdefault\.webp 320w, [^"]+sddefault\.webp 640w, [^"]+maxresdefault\.webp 1280w"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/sddefault\.jpg"[^>]*fetchpriority="high"[^>]*><\/picture><span class="play">/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
@@ -323,7 +323,7 @@ test('renders year groups and escapes titles', () => {
   assert.doesNotMatch(html, /class="pager/);
   assert.equal((html.match(/loading="eager"/g) || []).length, 1);
   assert.equal((html.match(/loading="lazy"/g) || []).length, 1);
-  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp 320w, [^"]+"[^>]*><img src="https:\/\/i.ytimg.com\/vi\/a1\/mqdefault.jpg"/);
+  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp 320w, [^"]+"[^>]*><img src="https:\/\/i.ytimg.com\/vi\/a1\/sddefault.jpg"/);
 });
 
 test('saved chapter lists produce only valid Clips within video duration', () => {
@@ -468,8 +468,8 @@ test('routes page numbers before loading any videos', async () => {
 test('archive cards show sharp thumbnails, duration and views', () => {
   const video = { id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.', duration: 'PT18M3S', views: 1234, embeddable: true };
   const html = renderArchive([video]);
-  assert.match(html, /srcset="https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/mqdefault.webp 320w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/hqdefault.webp 480w" sizes="/);
-  assert.match(html, /<img src="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg" srcset="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg 320w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/hqdefault.jpg 480w" sizes="/);
+  assert.match(html, /srcset="https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/mqdefault.webp 320w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/sddefault.webp 640w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/maxresdefault.webp 1280w" sizes="/);
+  assert.match(html, /<img src="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/sddefault.jpg" srcset="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg 320w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/sddefault.jpg 640w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/maxresdefault.jpg 1280w" sizes="/);
   assert.match(html, /<span class="duration">18:03<\/span>/);
   assert.match(html, /<p class="meta"><time datetime="2026-10-20T00:00:00Z">Oct 20, 2026<\/time><span>1,234 views<\/span><\/p>/);
   assert.match(html, /<p class="summary">Build an agent.<\/p>/);
@@ -708,7 +708,7 @@ test('guide pages list up to four related videos as thumbnail cards, skipping vi
   const videos = ['a', 'b', 'c', 'd', 'e', 'f'].map((letter, index) => ({ id: letter.repeat(11), title: `N8N 2.0 build ${letter}`, embeddable: true, views: 100 - index }));
   videos.push({ id: 'zzzzzzzzzzz', title: 'Suno music video', embeddable: true, views: 999 });
   const html = addGuideVideos('<main><iframe src="https://www.youtube-nocookie.com/embed/aaaaaaaaaaa"></iframe><a href="/watch/bbbbbbbbbbb">B</a><aside class="note next-steps">Next</aside></main>', '/guides/self-host-n8n.html', videos);
-  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/ccccccccccc"><img src="https:\/\/i\.ytimg\.com\/vi\/ccccccccccc\/mqdefault\.jpg" alt="" width="320" height="180" loading="lazy" decoding="async"><span>[^<]+<\/span><\/a><\/li>/);
+  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/ccccccccccc"><picture data-thumbnail><source [^>]+><img src="https:\/\/i\.ytimg\.com\/vi\/ccccccccccc\/sddefault\.jpg"[^>]*loading="lazy"[^>]*><\/picture><span>[^<]+<\/span><\/a><\/li>/);
   const listed = [...html.matchAll(/<li><a href="\/watch\/(\w+)"/g)].map(match => match[1]);
   assert.deepEqual(listed, ['ccccccccccc', 'ddddddddddd', 'eeeeeeeeeee', 'fffffffffff']);
   assert.ok(html.indexOf('you-may-also-like') < html.indexOf('next-steps'));

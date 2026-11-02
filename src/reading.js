@@ -2,6 +2,7 @@ import { campaignProperties, getCampaign, readingLink } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
 import { showSubscribeNotice } from './subscribe-notice.js';
+import { dropMissingMaxres } from './thumbnail.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
@@ -20,7 +21,9 @@ for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
     image.src = image.src;
   };
   image.addEventListener('error', fallback, { once: true });
+  image.addEventListener('load', () => dropMissingMaxres(image));
   if (image.complete && !image.naturalWidth) fallback();
+  if (image.complete) dropMissingMaxres(image);
 }
 const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
   : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view'

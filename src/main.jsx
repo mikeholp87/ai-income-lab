@@ -7,7 +7,7 @@ import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, se
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
 import { videoOffer } from './video-offer.js';
-import { featuredThumbnail } from './thumbnail.js';
+import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import sponsoredSnapshot from './sponsored-snapshot.json';
@@ -273,6 +273,7 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
               <img
                 {...featuredThumbnail(video.id)}
                 sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
+                onLoad={event => dropMissingMaxres(event.currentTarget)}
                 onError={event => swapToJpegThumbnail(event, video.id)}
                 alt="" width="1280" height="720" fetchPriority="high" decoding="async"
               />
@@ -294,7 +295,7 @@ function VideoCard({ video, placement }) {
   return (
     <a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick(placement, video.title, watchUrl(video), 'watch_video')}>
       <span className="thumb-frame">
-        <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
+        <img src={`https://i.ytimg.com/vi_webp/${video.id}/sddefault.webp`} srcSet={youtubeSrcSet(video.id)} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onLoad={event => dropMissingMaxres(event.currentTarget)} onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="640" height="360" loading="lazy" decoding="async" />
         {video.duration && <span className="duration">{video.duration}</span>}
       </span>
       <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
