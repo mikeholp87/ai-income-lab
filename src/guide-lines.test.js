@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { guideLines, linkedPage, withGuideLine } from '../scripts/guide-lines.mjs';
+import { guideLines, linkedPage, resourceLine, withGuideLine } from '../scripts/guide-lines.mjs';
 
-const line = 'Written guide: 9Router setup: https://www.ai-automation-station.com/guides/9router-setup.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=miBtL2fVkpg';
+const url = 'https://www.ai-automation-station.com/guides/9router-setup.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=miBtL2fVkpg';
+const line = `Written guide: 9Router setup: install, port 20128, updates and providers: ${url}`;
+const resources = '🔗 Useful Links & Resources:\nGet started with 9Router → https://9router.com/\nGet TubeAnalytics → https://www.tubeanalytics.net\nWork with me → https://automojic.vercel.app/\n\n🌐 Follow Me on Social Media:\n🧿 Linkedin: http://www.linkedin.com/in/mikeholp';
 
 test('the description-links doc yields one tagged site line per video, in priority order', async () => {
   const rows = guideLines(await readFile(new URL('../docs/youtube-description-links.md', import.meta.url), 'utf8'));
@@ -11,20 +13,20 @@ test('the description-links doc yields one tagged site line per video, in priori
   assert.equal(new Set(rows.map(row => row.id)).size, rows.length, 'one line per video');
   for (const { id, line: row } of rows) {
     assert.ok(linkedPage(row), id);
-    assert.ok(row.includes(`utm_content=${id}`), id);
-    assert.doesNotMatch(row, /[<>]/, id);
+    assert.ok(resourceLine(row).endsWith(`utm_content=${id}`), id);
+    assert.doesNotMatch(resourceLine(row), /[<>]/, id);
   }
 });
 
-test('the guide line goes first and everything else in the description is kept', () => {
-  const before = 'My video about 9Router.\n\nhttps://www.ai-automation-station.com/?utm_source=youtube&utm_content=miBtL2fVkpg';
+test('the link goes directly below "Work with me" in the same "Name → URL" style', () => {
+  const before = `Intro.\n\n${resources}`;
   const { description } = withGuideLine(before, line);
-  assert.equal(description, `${line}\n\n${before}`);
+  assert.equal(description, before.replace('Work with me → https://automojic.vercel.app/', `Work with me → https://automojic.vercel.app/\nRead the written guide → ${url}`));
+  assert.equal(resourceLine(`Notes and chapters: https://www.ai-automation-station.com/watch/abcdefghijk?utm_content=abcdefghijk`), 'Notes and chapters → https://www.ai-automation-station.com/watch/abcdefghijk?utm_content=abcdefghijk');
 });
 
-test('a description that already links the page, or would grow too long, is skipped', () => {
-  const linked = 'See https://www.ai-automation-station.com/guides/9router-setup.html for the guide.';
-  assert.deepEqual(withGuideLine(linked, line), { description: null, reason: 'already links this page' });
-  assert.equal(withGuideLine('x'.repeat(4950), line).description, null);
-  assert.equal(withGuideLine('', line).description, line);
+test('already-linked, anchor-less or too-long descriptions are skipped, never guessed at', () => {
+  assert.deepEqual(withGuideLine(`See https://www.ai-automation-station.com/guides/9router-setup.html\n${resources}`, line), { description: null, reason: 'already links this page' });
+  assert.deepEqual(withGuideLine('No resources section here.', line), { description: null, reason: 'no "Work with me" line' });
+  assert.equal(withGuideLine(`${resources}${'x'.repeat(4900)}`, line).description, null);
 });

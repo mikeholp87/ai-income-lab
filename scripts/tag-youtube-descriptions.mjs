@@ -6,8 +6,9 @@
 //   node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]    newest long-form uploads
 //   node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]  specific videos
 //   node scripts/tag-youtube-descriptions.mjs --guide-links [--limit 40] [--dry-run]
-//     Put each video's line from docs/youtube-description-links.md first in its description (its guide,
-//     or its watch page when no guide matches), in that file's priority order. Each write costs about
+//     Add each video's link from docs/youtube-description-links.md (its guide, or its watch page when no
+//     guide matches) below the "Work with me → …" line in Useful Links & Resources, in that file's
+//     priority order. Videos without that line are skipped. Each write costs about
 //     55 quota units of the project's shared 10,000 a day, so run it in batches with --limit.
 //
 // Needs the Desktop OAuth client at ~/.config/yt-oauth/client_secret.json (Google Cloud project ai-income-lab-site-1006).
@@ -15,7 +16,7 @@
 // videos.update replaces the whole snippet, so title, tags, category and languages are sent back unchanged.
 import { readFile } from 'node:fs/promises';
 import { longFormPlaylistId } from '../src/youtube.js';
-import { guideLines, withGuideLine } from './guide-lines.mjs';
+import { guideLines, resourceLine, withGuideLine } from './guide-lines.mjs';
 import { accessToken } from './youtube-oauth.mjs';
 
 const args = process.argv.slice(2);
@@ -67,7 +68,7 @@ for (const id of ids) {
       if (!bare.test(before.description)) { console.log(`${id}  skipped (no untagged link): ${before.title.slice(0, 60)}`); skipped++; continue; }
       description = before.description.replace(bare, tagged(id));
     }
-    if (dryRun) { console.log(`${id}  would update: ${before.title.slice(0, 60)}${guideMode ? `\n    first line: ${lineById.get(id).replace(/\?utm_\S*$/, '')}` : ''}`); continue; }
+    if (dryRun) { console.log(`${id}  would update: ${before.title.slice(0, 60)}${guideMode ? `\n    adds below Work with me: ${resourceLine(lineById.get(id))}` : ''}`); continue; }
     const snippet = Object.fromEntries(kept.filter(key => before[key] !== undefined).map(key => [key, before[key]]));
     await call('PUT', '/videos?part=snippet', { id, snippet: { ...snippet, description } });
     // YouTube serves the old snippet for a few seconds after an update, so re-read until it settles.
