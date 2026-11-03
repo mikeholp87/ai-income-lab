@@ -15,7 +15,7 @@ Sections, in priority order:
 2. Videos whose watch page links a guide.
 3. Videos with no matching guide. These link their own watch page.
 
-## 1. Guide links this video (do these first) (35)
+## 1. Guide links this video (do these first) (39)
 
 | Video | Line to paste |
 |---|---|
@@ -54,6 +54,10 @@ Sections, in priority order:
 | [I Automated My LinkedIn Content in 30 Minutes With N8N!](https://studio.youtube.com/video/M_4KgrWyycI/edit) | `Written guide: What is n8n used for? Real uses and a first workflow: https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=M_4KgrWyycI` |
 | [N8N Email Automation: Save Hours Every Week](https://studio.youtube.com/video/_1bZhPHcsm4/edit) | `Written guide: What is n8n used for? Real uses and a first workflow: https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=_1bZhPHcsm4` |
 | [This N8N Workflow Finds You Jobs So You Don't Have To!](https://studio.youtube.com/video/Z03CpV_8OIA/edit) | `Written guide: What is n8n used for? Real uses and a first workflow: https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=Z03CpV_8OIA` |
+| [KiloCode Builds Web Apps In Minutes (Free Cursor Alternative)](https://studio.youtube.com/video/ncg6F27PYt0/edit) | `Written guide: Kilo Code tutorial: install it, pick a model, run a first task: https://www.ai-automation-station.com/guides/kilo-code-tutorial.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=ncg6F27PYt0` |
+| [The Terminal AI Coding Agent You Need to Try](https://studio.youtube.com/video/C5wEcJRo_VA/edit) | `Written guide: OpenRouter: API key, free models and pricing: https://www.ai-automation-station.com/guides/openrouter-setup.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=C5wEcJRo_VA` |
+| [This AI Coding Agent Is 100% Free (And Better Than You Think)](https://studio.youtube.com/video/cfYpzY-o3fQ/edit) | `Written guide: OpenCode Go: pricing, usage limits and setup: https://www.ai-automation-station.com/guides/opencode-go.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=cfYpzY-o3fQ` |
+| [This Free AI Coding Agent Is Actually Insane!](https://studio.youtube.com/video/2OB6_oZAe9s/edit) | `Written guide: Kilo Code tutorial: install it, pick a model, run a first task: https://www.ai-automation-station.com/guides/kilo-code-tutorial.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=2OB6_oZAe9s` |
 
 ## 2. Watch page links a guide (88)
 
@@ -148,7 +152,7 @@ Sections, in priority order:
 | [Create a Realistic AI Voice Agent in Minutes (No Coding)](https://studio.youtube.com/video/4uNxh9FW6Ho/edit) | `Written guide: Vapi AI tutorial: build a voice agent, test calls, webhooks: https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=4uNxh9FW6Ho` |
 | [How I Built an AI Voice Agent That Actually Sounds Real](https://studio.youtube.com/video/4x2gxyIFUa8/edit) | `Written guide: Vapi AI tutorial: build a voice agent, test calls, webhooks: https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=4x2gxyIFUa8` |
 
-## 3. No matching guide: link the watch page (99)
+## 3. No matching guide: link the watch page (95)
 
 | Video | Line to paste |
 |---|---|
@@ -216,7 +220,6 @@ Sections, in priority order:
 | [I Tested This FREE Claude Design Alternative (It's Good!)](https://studio.youtube.com/video/rMRsVyIsZCU/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/rMRsVyIsZCU?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=rMRsVyIsZCU` |
 | [I Tested the Bluehost AI Assistant: Here’s My Verdict](https://studio.youtube.com/video/b0Izj5Pv0sQ/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/b0Izj5Pv0sQ?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=b0Izj5Pv0sQ` |
 | [Is GLM 5.2 The Best Opensource Model Ever?](https://studio.youtube.com/video/pRnJdlMSSqM/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/pRnJdlMSSqM?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=pRnJdlMSSqM` |
-| [KiloCode Builds Web Apps In Minutes (Free Cursor Alternative)](https://studio.youtube.com/video/ncg6F27PYt0/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/ncg6F27PYt0?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=ncg6F27PYt0` |
 | [Kimi K2.7 Code Vs DeepSeek V4 Pro: Is It Actually Better?](https://studio.youtube.com/video/LqRRXcM8Kxc/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/LqRRXcM8Kxc?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=LqRRXcM8Kxc` |
 | [Make Viral YouTube Thumbnails In Minutes With NanoBanana!](https://studio.youtube.com/video/ix3C2JBFII8/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/ix3C2JBFII8?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=ix3C2JBFII8` |
 | [Nano Banana Pro Makes Content Repurposing Easier Than Ever!](https://studio.youtube.com/video/bt-zM7QuKkU/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/bt-zM7QuKkU?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=bt-zM7QuKkU` |
@@ -232,12 +235,9 @@ Sections, in priority order:
 | [The Fastest Way To Generate LinkedIn Content Using AI](https://studio.youtube.com/video/vvDdXF2Yuz8/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/vvDdXF2Yuz8?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=vvDdXF2Yuz8` |
 | [The Future Of Coding: 10 AI Skills You Need To Install Now](https://studio.youtube.com/video/kxp_dF6NEbg/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/kxp_dF6NEbg?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=kxp_dF6NEbg` |
 | [The Only AI Skills You Need to Master in 2026](https://studio.youtube.com/video/508QvEHI5n0/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/508QvEHI5n0?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=508QvEHI5n0` |
-| [The Terminal AI Coding Agent You Need to Try](https://studio.youtube.com/video/C5wEcJRo_VA/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/C5wEcJRo_VA?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=C5wEcJRo_VA` |
-| [This AI Coding Agent Is 100% Free (And Better Than You Think)](https://studio.youtube.com/video/cfYpzY-o3fQ/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/cfYpzY-o3fQ?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=cfYpzY-o3fQ` |
 | [This AI Skill Edits Your Videos For Free!](https://studio.youtube.com/video/yR-zoMUY27Q/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/yR-zoMUY27Q?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=yR-zoMUY27Q` |
 | [This AI System Generates YouTube Shorts on Complete Autopilot!](https://studio.youtube.com/video/SLAnjvWK1Y4/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/SLAnjvWK1Y4?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=SLAnjvWK1Y4` |
 | [This AI Workflow Saves Me 20+ Hours Weekly on Content](https://studio.youtube.com/video/4jK9RraWbiU/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/4jK9RraWbiU?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=4jK9RraWbiU` |
-| [This Free AI Coding Agent Is Actually Insane!](https://studio.youtube.com/video/2OB6_oZAe9s/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/2OB6_oZAe9s?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=2OB6_oZAe9s` |
 | [This Skill Creates YouTube Shorts In Seconds!](https://studio.youtube.com/video/jtyWB5iGPOs/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/jtyWB5iGPOs?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=jtyWB5iGPOs` |
 | [This VidIQ Claude MCP Is A Game Changer!](https://studio.youtube.com/video/bCsSqZp0yVg/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/bCsSqZp0yVg?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=bCsSqZp0yVg` |
 | [Treg.to Inside Grok Bot Is A Game Changer!](https://studio.youtube.com/video/9A2StjrxOms/edit) | `Notes and chapters: https://www.ai-automation-station.com/watch/9A2StjrxOms?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=9A2StjrxOms` |
