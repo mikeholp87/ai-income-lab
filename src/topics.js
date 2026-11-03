@@ -46,7 +46,7 @@ export const topics = [
     intro: 'Personal assistants, research agents and agent tools tested on real tasks.',
     about: 'This is the largest topic on the channel: personal AI assistants, research and job-search agents, voice agents and desktop agent apps, each given a real task instead of a demo prompt. The videos show the setup, what the agent finished on its own, and what still needed a person. The written guides cover two agents in depth: installing Hermes with a desktop app, and building a Vapi voice agent with test calls and webhook checks.',
     pattern: /\bagents?\b|grok ?bot|hermes|openclaw|second brain|chief of staff|personal ai assistant|\bvapi\b/i,
-    guides: [['/guides/hermes-desktop.html', 'Hermes Desktop: install on Mac, Windows or Linux'], ['/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks']],
+    guides: [['/guides/hermes-desktop.html', 'Hermes Desktop: install on Mac, Windows or Linux'], ['/guides/install-openclaw.html', 'How to install OpenClaw: local, VPS or hosted, safely'], ['/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks']],
   },
   {
     slug: 'ai-seo', name: 'AI SEO',
@@ -73,7 +73,7 @@ export const topics = [
     intro: 'Websites, landing pages and web apps built with AI builders, start to finish.',
     about: 'Each video builds a real site or app with an AI builder, from Lovable, Replit and Base44 to Google AI Studio, Antigravity and KiloCode, then checks what shipped. You see the prompts, the fixes and the deployment, so you can compare how much each tool did on its own. The written guides cover installing Kilo Code and running a first task you can check, and adding a YouTube feed to a React site with caching and a fallback when the API is down.',
     pattern: /website|landing pages?|web apps?|\bsaas\b|lovable|replit|base44|ai studio|antigravity|kilocode|runable|bluehost|rocket ai/i,
-    guides: [['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks']],
+    guides: [['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit: pricing and which to pick'], ['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks']],
   },
   {
     slug: 'ai-video', name: 'AI video and YouTube',
@@ -91,6 +91,7 @@ export const topics = [
     intro: 'Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.',
     about: 'When a new model ships, these videos cover what changed, what it costs, and how it handles a real build compared with the model it replaces. They include Claude, GPT, Gemini, Grok and open-weight releases such as Qwen, DeepSeek and GLM. Launch details change quickly, so check the provider’s own pricing and limits before you switch a production workload to a model you saw here.',
     pattern: /claude (opus|sonnet|haiku|fable|mythos)|\bgpt[- ]?\d|chatgpt (\d|images)|gemini \d|grok \d|deepseek|\bglm\b|qwen|kimi|\bllama\b|meta muse|mistral|openai just released/i,
+    guides: [['/guides/claude-models-compared.html', 'Claude Opus vs Sonnet vs Haiku vs Fable: which to use']],
   },
 ];
 

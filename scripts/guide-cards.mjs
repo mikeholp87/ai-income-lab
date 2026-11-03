@@ -80,6 +80,21 @@ export const cards = {
     steps: [['Install', 'VS Code extension or CLI'], ['Model', 'Auto Free, your key or credits'], ['Review', 'Set approvals, check the diff']],
     note: 'Free to install; model usage is billed separately.',
   },
+  'claude-models-compared': {
+    title: 'Claude Opus vs Sonnet vs Haiku vs Fable',
+    steps: [['Opus 5.5', 'The default for most work'], ['Sonnet 5.5', 'Fast, cheaper everyday coding'], ['Haiku / Fable', 'Bulk work / the hardest tasks']],
+    note: 'Lower the effort before you change the model.',
+  },
+  'lovable-vs-base44-vs-replit': {
+    title: 'Lovable vs Base44 vs Replit',
+    steps: [['Lovable', 'Polished sites, credits per change'], ['Base44', 'Apps with sign-in and data built in'], ['Replit', 'A full workspace when you want the code']],
+    note: 'All three start free: test one prompt in each.',
+  },
+  'install-openclaw': {
+    title: 'How to install OpenClaw safely',
+    steps: [['Where', 'A VPS or hosted, not your main computer'], ['Install', 'One installer, then onboarding'], ['Lock down', 'Pairing, localhost, security audit']],
+    note: 'Formerly Clawdbot and Moltbot.',
+  },
   'openseo-review': {
     title: 'OpenSEO review: setup, data costs and limits',
     steps: [['Setup', 'Hosted connection or your own instance'], ['Data', 'DataForSEO costs are a separate bill'], ['Limits', 'Check the gaps vs a paid SEO suite']],
