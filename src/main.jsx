@@ -202,10 +202,10 @@ const featuredGuides = [
 // Newest guides that aren't among the cards above: a homepage link gets them crawled sooner.
 // ponytail: hand-kept list; rotate it when a guide is published or promoted into featuredGuides.
 const newGuides = [
+  ['claude-models-compared', 'Claude Opus vs Sonnet vs Haiku vs Fable'],
+  ['lovable-vs-base44-vs-replit', 'Lovable vs Base44 vs Replit'],
+  ['install-openclaw', 'How to install OpenClaw safely'],
   ['no-code-ai-agent-builder', 'No-code AI agent builders compared'],
-  ['n8n-alternatives-open-source', 'Open source n8n alternatives'],
-  ['agentic-ai-vs-traditional-automation', 'Agentic AI vs traditional automation'],
-  ['make-money-with-ai-fast', 'Make money with AI fast: the honest path'],
 ];
 
 function SectionHead({ title, children }) {

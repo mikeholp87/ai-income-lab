@@ -55,7 +55,7 @@
 <ul><li><strong>Open models:</strong> GLM-5.3, GLM-5.3-Flash and GLM-5.2; Kimi K3.1 Pro, Kimi K3 and Kimi K2.7 Code; DeepSeek V4.1 Flash and V4 Pro; Qwen3.8 Max, Qwen3.8 Flash and Qwen3.7 Plus; MiniMax M3 and M3.1 Flash; MiMo-V2.6 and V2.5 (Flash and Pro); LongCat-2.0; Step 5 Preview; Hy4 preview and Hy3.</li><li><strong>Lab models:</strong> Grok 4.7, GPT 6 Luna, GPT 5.6 Luna, Claude Haiku 5.5 and Gemini 4 Argon.</li><li><strong>Contributor and free models:</strong> Muse Spark 1.3 and 1.2 Contributor, plus Beam Free and Iceman Contributor Free, both free for a limited time.</li></ul>
 <p>The list changes as OpenCode tests and adds models, so treat the one above as a snapshot. For the current list with metadata, call the models endpoint:</p>
 <pre tabindex="0"><code>curl https://opencode.ai/inference/go/v1/models</code></pre>
-<p>Frontier models such as Claude Opus, Claude Sonnet and GPT 6 Sol are not in Go. They are available pay as you go through Zen, or through your own provider account.</p>
+<p>Frontier models such as Claude Opus, Claude Sonnet and GPT 6 Sol are not in Go. They are available pay as you go through Zen, or through your own provider account. The <a href="/guides/claude-models-compared.html">Claude model comparison</a> lists their prices.</p>
 <h2 id="limits">How OpenCode Go usage limits work</h2>
 <p>Go limits are set per model as a monthly dollar amount, not as a request count. Every request is priced at the model’s token rates and counted against that model’s allowance. Each model then has three windows:</p>
 <ul><li><strong>5 hours:</strong> up to 20% of the model’s monthly limit.</li><li><strong>Weekly:</strong> up to 50%.</li><li><strong>Monthly:</strong> 100%.</li></ul>
