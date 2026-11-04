@@ -186,6 +186,7 @@ ${sorted ? '<meta name="robots" content="noindex,follow">' : `<link rel="canonic
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
 <link rel="stylesheet" href="${consentCss}">
+<script src="/theme.js"></script>
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}
@@ -347,6 +348,7 @@ ${fontPreloads}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${readingCss}">
 <link rel="stylesheet" href="${consentCss}">
+<script src="/theme.js"></script>
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">

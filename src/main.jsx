@@ -468,9 +468,10 @@ function BookingCalendar({ campaign }) {
 
   function startCalendar() {
     const cal = getCal();
+    const theme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
     cal('init', 'booking', { origin: 'https://cal.com' });
-    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme: 'dark' } });
-    cal.ns.booking('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' } }, hideEventTypeDetails: false, layout: 'month_view' });
+    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme } });
+    cal.ns.booking('ui', { theme, cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' }, light: { 'cal-brand': '#c2370c' } }, hideEventTypeDetails: false, layout: 'month_view' });
     cal.ns.booking('on', { action: 'bookingSuccessfulV2', callback: () => {
       if (booked.current) return;
       booked.current = true;
@@ -697,10 +698,11 @@ function App({ page = 'home' }) {
       <a className="brand" href={sponsorsPage ? '/' : '#top'} aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
       <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
+        <button className="theme-toggle" type="button" data-theme-toggle="" aria-label="Switch to light mode" title="Switch to light mode"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" /></svg></button>
         <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
-        }}><summary>Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
+        }}><summary>Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
       </div>
       </div>
     </header>

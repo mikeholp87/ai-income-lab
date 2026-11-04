@@ -72,15 +72,15 @@ test('reading pages share the homepage type, link colour and header styles', asy
   assert.match(css, /font-family:'Instrument Sans';font-weight:400 700;src:url\('\/fonts\/instrument-sans.woff2'\)/);
   assert.match(css, /font-family:'DM Mono';src:url\('\/fonts\/dm-mono.woff2'\)/);
   assert.match(css, /body\{[^}]*font:18px\/1\.7 'Instrument Sans',system-ui,sans-serif\}/);
-  assert.match(css, /a\{color:#ff6846;/);
+  assert.match(css, /a\{color:var\(--signal\);/);
   // The brand is the header's own first link; nav links have their own style.
   assert.match(css, /header>a:first-child\{font-family:Archivo/);
   assert.doesNotMatch(css, /header a:first-child/);
-  assert.match(css, /\.join\{[^}]*background:#ff6846;/);
+  assert.match(css, /\.join\{[^}]*background:var\(--signal\);/);
   // Phones: brand left and Join right on the first row, the nav close beneath them.
   assert.match(css, /@media\(max-width:640px\)\{header\{row-gap:4px\}header nav\{order:3;width:100%;margin-left:0\}\.join\{margin-left:auto\}\}/);
   // Instrument Sans has narrow spaces; widen them in bylines so "Name · Date" separators stay readable.
-  assert.match(css, /small,\.meta\{font-size:14px;color:#a5a59e;word-spacing:\.15em\}/);
+  assert.match(css, /small,\.meta\{font-size:14px;color:var\(--soft\);word-spacing:\.15em\}/);
 });
 
 test('guides end with the standard next steps and every plans link says Join', async () => {
@@ -207,7 +207,7 @@ test('the guides hub filters its cards with the same search box as /videos', asy
 
 test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
   const css = await read('public/archive.css');
-  assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: #ff6846;/);
+  assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: var\(--signal\);/);
   assert.match(css, /\.guide h3 a::after \{ content: ''; position: absolute; inset: 0; \}/);
   assert.match(css, /\.guide \.meta a \{ position: relative; z-index: 1; \}/);
 });
@@ -291,7 +291,7 @@ test('guide FAQs are collapsible and their FAQPage data matches the visible ques
     assert.equal(data[0].url, canonical, file);
     assert.deepEqual(data[0].mainEntity, items.map(([, question, answer]) => ({ '@type': 'Question', name: plain(question), acceptedAnswer: { '@type': 'Answer', text: plain(answer) } })), file);
   }
-  assert.match(await read('public/reading.css'), /\.faq-item\[open\] summary::after\{content:'−';border-color:#ff6846;color:#ff6846\}/);
+  assert.match(await read('public/reading.css'), /\.faq-item\[open\] summary::after\{content:'−';border-color:var\(--signal\);color:var\(--signal\)\}/);
 });
 
 test('guides have no unverified placeholders and link to at least five other guides', async () => {

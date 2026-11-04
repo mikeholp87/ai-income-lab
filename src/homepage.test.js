@@ -82,7 +82,7 @@ test('the sponsor strip is an orange-accented card with a primary button', () =>
   const strip = jsx.slice(start, jsx.indexOf('</section>', start));
   assert.match(strip, /<h2>Sponsor a build<\/h2>/);
   assert.match(strip, /<a className="button button-primary" href="\/sponsors.html"/);
-  assert.match(css, /\.brands-row \{[^}]*border: 1px solid rgb\(255 104 70 \/ \.35\)/);
+  assert.match(css, /\.brands-row \{[^}]*border: 1px solid color-mix\(in srgb,var\(--signal\) 35%,transparent\)/);
   assert.match(css, /\.brands-row::before \{[^}]*background: var\(--signal\)/);
 });
 
