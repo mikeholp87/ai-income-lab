@@ -1,0 +1,100 @@
+{
+  "name": "Starter kit: approved requests to a work queue",
+  "flow": [
+    {
+      "id": 1,
+      "module": "google-sheets:watchRows",
+      "version": 2,
+      "parameters": {
+        "mode": "map",
+        "spreadsheetId": "YOUR_TEST_SPREADSHEET_ID",
+        "sheetId": "Intake",
+        "includesHeaders": true,
+        "tableFirstRow": "A1:C1",
+        "limit": 2,
+        "valueRenderOption": "FORMATTED_VALUE",
+        "dateTimeRenderOption": "FORMATTED_STRING"
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        },
+        "interface": [
+          {
+            "name": "0",
+            "type": "text",
+            "label": "Request ID (A)"
+          },
+          {
+            "name": "1",
+            "type": "text",
+            "label": "Task (B)"
+          },
+          {
+            "name": "2",
+            "type": "text",
+            "label": "Approved (C)"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": {},
+      "filter": {
+        "name": "Approved requests",
+        "conditions": [
+          [
+            {
+              "a": "{{1.`2`}}",
+              "b": "yes",
+              "o": "text:equal"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "mode": "map",
+        "spreadsheetId": "YOUR_TEST_SPREADSHEET_ID",
+        "sheetId": "Work queue",
+        "tableFirstRow": "A1:Z1",
+        "includesHeaders": true,
+        "valueInputOption": "RAW",
+        "insertDataOption": "INSERT_ROWS",
+        "insertUnformatted": false,
+        "values": {
+          "0": "{{1.`0`}}",
+          "1": "{{1.`1`}}",
+          "2": "{{1.`2`}}"
+        }
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}
