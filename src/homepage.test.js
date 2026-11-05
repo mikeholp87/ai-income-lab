@@ -77,8 +77,10 @@ test('the homepage lists GitHub projects in a separate section', () => {
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
   for (const name of ['Tasky', 'Luma Launcher', 'Restic Studio']) assert.match(section, new RegExp(name));
   assert.doesNotMatch(section, /DoStuff-Media/);
-  assert.match(section, /See all public repositories on GitHub/);
+  assert.match(section, /View all on GitHub/);
   assert.match(css, /\.repo-list \{ display: grid;/);
+  assert.match(css, /\.open-source\.section \{[^}]*background: var\(--signal\);/);
+  assert.match(media('(max-width: 640px)'), /\.open-source-head \{ display: grid;/);
 });
 
 test('the sponsor strip is an orange-accented card with a primary button', () => {
@@ -201,6 +203,7 @@ test('every rate card format has a service card with its price', () => {
 });
 
 test('the homepage header links FAQ, the sponsors page and Contact; old sponsor anchors forward there', () => {
+  assert.match(jsx, /\['#guides', 'Guides'\], \['#code', 'Projects'\], \['#about', 'About'\]/);
   assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['\/sponsors\.html', 'Sponsors'\], \['#work-together', 'Contact'\]\]/);
   assert.match(jsx, /<section className="section" id="services">/);
   assert.match(jsx, /const sponsorAnchors = \['#media-kit', '#services', '#sponsored'\];/);

@@ -224,7 +224,7 @@ function SectionHead({ title, children }) {
 }
 
 const navLinks = {
-  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
   sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
@@ -851,16 +851,18 @@ function App({ page = 'home' }) {
         </div>
       </section>
 
-      <section className="section" id="code">
+      <section className="section open-source" id="code">
         <div className="shell">
-          <SectionHead title="Open source projects">A few things I&rsquo;ve built and shared on GitHub.</SectionHead>
+          <div className="open-source-head">
+            <SectionHead title="Open source projects">Free projects I&rsquo;ve built and shared for anyone to use.</SectionHead>
+            <a className="repo-profile" href={githubUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
+          </div>
           <ul className="repo-list">
             {repositories.map(repo => <li key={repo.name}>
               <h3><a href={repo.url} target="_blank" rel="noreferrer">{repo.name} ↗</a></h3>
               <p>{repo.description}</p>
             </li>)}
           </ul>
-          <p className="repo-profile"><a href={githubUrl} target="_blank" rel="noreferrer">See all public repositories on GitHub ↗</a></p>
         </div>
       </section>
 
