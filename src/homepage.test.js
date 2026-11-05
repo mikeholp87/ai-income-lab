@@ -72,9 +72,13 @@ test('the guides section follows videos in the header and page, with one start l
   assert.match(media('(max-width: 640px)'), /\.build-guides \.guide-cards \{ grid-template-columns: 1fr; gap: 24px; \}/);
 });
 
-test('the homepage has no GitHub project list', () => {
-  assert.doesNotMatch(jsx, /const repos = \[|Things I&rsquo;ve built|id="code"/);
-  assert.doesNotMatch(css, /\.repo-list|\.built\b/);
+test('the homepage lists GitHub projects in a separate section', () => {
+  const start = jsx.indexOf('id="code"');
+  const section = jsx.slice(start, jsx.indexOf('</section>', start));
+  for (const name of ['Tasky', 'Luma Launcher', 'Restic Studio']) assert.match(section, new RegExp(name));
+  assert.doesNotMatch(section, /DoStuff-Media/);
+  assert.match(section, /See all public repositories on GitHub/);
+  assert.match(css, /\.repo-list \{ display: grid;/);
 });
 
 test('the sponsor strip is an orange-accented card with a primary button', () => {

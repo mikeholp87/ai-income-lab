@@ -128,6 +128,12 @@ const tools = [
   },
 ];
 
+const repositories = [
+  { name: 'Tasky', description: 'A private, cross-platform task manager and system monitor for Windows and Linux.', url: 'https://github.com/mikeholp87/Tasky' },
+  { name: 'Luma Launcher', description: 'A native, keyboard-driven Linux application launcher built with Rust and GTK4.', url: 'https://github.com/mikeholp87/Luma-Launcher' },
+  { name: 'Restic Studio', description: 'A development preview of a Rust backup and recovery app with a GTK desktop client.', url: 'https://github.com/mikeholp87/Restic-Studio' },
+];
+
 const plans = [
   { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
   { name: 'Premium', price: 49, annual: 490, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
@@ -842,6 +848,19 @@ function App({ page = 'home' }) {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section" id="code">
+        <div className="shell">
+          <SectionHead title="Open source projects">A few things I&rsquo;ve built and shared on GitHub.</SectionHead>
+          <ul className="repo-list">
+            {repositories.map(repo => <li key={repo.name}>
+              <h3><a href={repo.url} target="_blank" rel="noreferrer">{repo.name} ↗</a></h3>
+              <p>{repo.description}</p>
+            </li>)}
+          </ul>
+          <p className="repo-profile"><a href={githubUrl} target="_blank" rel="noreferrer">See all public repositories on GitHub ↗</a></p>
         </div>
       </section>
 
