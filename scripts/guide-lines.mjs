@@ -1,6 +1,6 @@
 // Pure helpers for `tag-youtube-descriptions.mjs --guide-links`: read the lines from
 // docs/youtube-description-links.md and add a video's link to the "Useful Links & Resources"
-// section of its YouTube description, directly below the "Work with me → …" line.
+// section of its YouTube description, directly below the "Work with me → …" line or at the end.
 
 // Rows look like: | [Title](https://studio.youtube.com/video/<id>/edit) | `Written guide: …: https://…` |
 // Returned in the file's order, which is the priority order (guides that link the video come first).
@@ -24,15 +24,17 @@ const workWithMe = /^Work with me\b.*$/im;
 
 // Returns the new description, or null with a reason when the video should be skipped.
 export function withGuideLine(description, line) {
+  const current = description ?? '';
   const page = linkedPage(line);
   const resource = resourceLine(line);
   if (!page || !resource) return { description: null, reason: 'no site link in the line' };
-  if (description.includes(`ai-automation-station.com${page}`)) return { description: null, reason: 'already links this page' };
+  if (current.includes(`ai-automation-station.com${page}`)) return { description: null, reason: 'already links this page' };
   if (/[<>]/.test(resource)) return { description: null, reason: 'line contains < or >' };
-  const anchor = description.match(workWithMe);
-  if (!anchor) return { description: null, reason: 'no "Work with me" line' };
-  const at = anchor.index + anchor[0].length;
-  const next = `${description.slice(0, at)}\n${resource}${description.slice(at)}`;
+  const anchor = current.match(workWithMe);
+  const at = anchor ? anchor.index + anchor[0].length : current.trimEnd().length;
+  const next = anchor
+    ? `${current.slice(0, at)}\n${resource}${current.slice(at)}`
+    : `${current.trimEnd()}${current.trim() ? '\n\n' : ''}${resource}`;
   if (next.length > maxLength) return { description: null, reason: `would exceed ${maxLength} characters` };
   return { description: next, reason: null };
 }

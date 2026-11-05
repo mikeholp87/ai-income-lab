@@ -5,7 +5,8 @@
 // Usage:
 //   node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]    newest long-form uploads
 //   node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]  specific videos
-//   node scripts/tag-youtube-descriptions.mjs --guide-links [--limit 40] [--dry-run]
+//   node scripts/tag-youtube-descriptions.mjs --all-bare                all long-form uploads
+//   node scripts/tag-youtube-descriptions.mjs --guide-links [--offset 0] [--limit 40] [--dry-run]
 //     Add each video's link from docs/youtube-description-links.md (its guide, or its watch page when no
 //     guide matches) below the "Work with me → …" line in Useful Links & Resources, in that file's
 //     priority order. Videos without that line are skipped. Each write costs about
@@ -22,13 +23,16 @@ import { accessToken } from './youtube-oauth.mjs';
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const guideMode = args.includes('--guide-links');
+const allBare = args.includes('--all-bare');
 const latestAt = args.indexOf('--latest');
 const latest = latestAt === -1 ? 0 : Number(args[latestAt + 1]);
 const limitAt = args.indexOf('--limit');
 const limit = limitAt === -1 ? Infinity : Number(args[limitAt + 1]);
-const valueAt = new Set([latestAt, limitAt].filter(index => index !== -1).map(index => index + 1));
+const offsetAt = args.indexOf('--offset');
+const offset = offsetAt === -1 ? 0 : Number(args[offsetAt + 1]);
+const valueAt = new Set([latestAt, limitAt, offsetAt].filter(index => index !== -1).map(index => index + 1));
 const givenIds = args.filter((arg, index) => !arg.startsWith('--') && !valueAt.has(index));
-if (!guideMode && !latest && !givenIds.length) {
+if (!guideMode && !allBare && !latest && !givenIds.length) {
   console.log('Usage: node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs --guide-links [--limit 40] [--dry-run]');
   process.exit(1);
 }
@@ -36,7 +40,7 @@ const lines = guideMode ? guideLines(await readFile(new URL('../docs/youtube-des
 const lineById = new Map(lines.map(row => [row.id, row.line]));
 
 const api = 'https://www.googleapis.com/youtube/v3';
-const bare = /https:\/\/www\.ai-automation-station\.com(?![/?#\w.-])/;
+const bare = /https:\/\/www\.ai-automation-station\.com\/?(?![/?#\w.-])/;
 const tagged = id => `https://www.ai-automation-station.com/?utm_source=youtube&utm_content=${id}`;
 
 const token = await accessToken();
@@ -49,9 +53,19 @@ const call = async (method, path, body) => {
 const snippetOf = async id => (await call('GET', `/videos?part=snippet&id=${id}`)).items?.[0]?.snippet;
 const kept = ['title', 'categoryId', 'tags', 'defaultLanguage', 'defaultAudioLanguage'];
 
-const ids = (latest
+let uploadIds;
+if (allBare) {
+  uploadIds = [];
+  let pageToken = '';
+  do {
+    const page = await call('GET', `/playlistItems?part=contentDetails&maxResults=50&playlistId=${longFormPlaylistId}${pageToken ? `&pageToken=${pageToken}` : ''}`);
+    uploadIds.push(...page.items.map(item => item.contentDetails.videoId));
+    pageToken = page.nextPageToken ?? '';
+  } while (pageToken);
+}
+const ids = (allBare ? uploadIds : latest
   ? (await call('GET', `/playlistItems?part=contentDetails&maxResults=${Math.min(latest, 50)}&playlistId=${longFormPlaylistId}`)).items.map(item => item.contentDetails.videoId)
-  : givenIds.length ? givenIds : lines.map(row => row.id)).slice(0, limit);
+  : givenIds.length ? givenIds : lines.map(row => row.id)).slice(offset, offset + limit);
 
 let updated = 0, skipped = 0, failed = 0;
 for (const id of ids) {
@@ -66,7 +80,7 @@ for (const id of ids) {
       description = result.description;
     } else {
       if (!bare.test(before.description)) { console.log(`${id}  skipped (no untagged link): ${before.title.slice(0, 60)}`); skipped++; continue; }
-      description = before.description.replace(bare, tagged(id));
+      description = before.description.replace(new RegExp(bare, 'g'), tagged(id)); // every bare link, not just the first
     }
     if (dryRun) { console.log(`${id}  would update: ${before.title.slice(0, 60)}${guideMode ? `\n    adds below Work with me: ${resourceLine(lineById.get(id))}` : ''}`); continue; }
     const snippet = Object.fromEntries(kept.filter(key => before[key] !== undefined).map(key => [key, before[key]]));
