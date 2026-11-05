@@ -6,6 +6,7 @@ import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
+import { validGithubRepositories } from './github-repositories.js';
 import { videoOffer } from './video-offer.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
@@ -177,6 +178,20 @@ function useYouTubeFeed() {
     return () => controller.abort();
   }, []);
   return feed;
+}
+
+function useGitHubRepositories(enabled) {
+  const [projects, setProjects] = useState(repositories);
+  useEffect(() => {
+    if (!enabled) return undefined;
+    const controller = new AbortController();
+    fetch('/api/github-repositories', { signal: controller.signal })
+      .then(response => response.ok ? response.json() : Promise.reject(response.status))
+      .then(next => { if (validGithubRepositories(next)) setProjects(next); })
+      .catch(() => {}); // Keep the prerendered list when GitHub is unavailable.
+    return () => controller.abort();
+  }, [enabled]);
+  return projects;
 }
 
 // Same pattern as the feed: the build's list renders first, the daily server list replaces it.
@@ -644,6 +659,7 @@ function App({ page = 'home' }) {
   const [campaignReady, setCampaignReady] = useState(false);
   const videoPlayButton = useRef(null);
   const { videos, channel, failed } = useYouTubeFeed();
+  const projects = useGitHubRepositories(!sponsorsPage);
   const latest = videos?.[0];
 
   useEffect(() => {
@@ -858,7 +874,7 @@ function App({ page = 'home' }) {
             <a className="repo-profile" href={githubUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
           </div>
           <ul className="repo-list">
-            {repositories.map(repo => <li key={repo.name}>
+            {projects.map(repo => <li key={repo.name}>
               <h3><a href={repo.url} target="_blank" rel="noreferrer">{repo.name} ↗</a></h3>
               <p>{repo.description}</p>
             </li>)}

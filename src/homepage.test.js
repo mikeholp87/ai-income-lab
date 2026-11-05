@@ -79,8 +79,10 @@ test('the homepage lists GitHub projects in a separate section', () => {
   assert.doesNotMatch(section, /DoStuff-Media/);
   assert.match(section, /View all on GitHub/);
   assert.match(css, /\.repo-list \{ display: grid;/);
-  assert.match(css, /\.open-source\.section \{[^}]*background: var\(--signal\);/);
+  assert.match(css, /\.open-source\.section \{[^}]*background: var\(--raised\);/);
   assert.match(media('(max-width: 640px)'), /\.open-source-head \{ display: grid;/);
+  assert.match(jsx, /fetch\('\/api\/github-repositories'/);
+  assert.match(jsx, /if \(validGithubRepositories\(next\)\) setProjects\(next\)/);
 });
 
 test('the sponsor strip is an orange-accented card with a primary button', () => {

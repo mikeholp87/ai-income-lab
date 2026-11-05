@@ -274,14 +274,13 @@ a.video-card:hover h3 { color: var(--signal); }
 .tool-action .fine-print { margin: 0 0 14px; }
 
 /* GitHub projects */
-.open-source.section { padding: 88px 0 96px; background: var(--signal); color: var(--on-signal); }
+.open-source.section { padding: 88px 0 96px; background: var(--raised); }
 .open-source-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 48px; }
 .open-source-head .section-head { max-width: 720px; }
-.open-source-head .section-head .lede { max-width: 54ch; margin-top: 16px; color: color-mix(in srgb,var(--on-signal) 82%,var(--signal)); }
-.repo-profile { flex: none; min-height: 44px; display: inline-flex; align-items: center; color: var(--on-signal); font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
-.repo-profile:focus-visible { outline-color: var(--on-signal); }
+.open-source-head .section-head .lede { max-width: 54ch; margin-top: 16px; color: var(--body); }
+.repo-profile { flex: none; min-height: 44px; display: inline-flex; align-items: center; color: var(--signal); font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
 .repo-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
-.repo-list li { display: grid; align-content: start; gap: 20px; min-height: 190px; padding: 28px; border-top: 3px solid var(--on-signal); background: var(--ink); color: var(--text); }
+.repo-list li { display: grid; align-content: start; gap: 20px; min-height: 190px; padding: 28px; border-top: 3px solid var(--signal); background: var(--ink); color: var(--text); }
 .repo-list h3 { font: 400 24px/1.15 var(--display); letter-spacing: -.015em; }
 .repo-list h3 a { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: .18em; }
 .repo-list h3 a:hover { color: var(--signal); text-decoration-color: var(--signal); }
