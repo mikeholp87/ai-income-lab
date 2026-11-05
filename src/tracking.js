@@ -27,6 +27,16 @@ export function trackMetaOutbound(properties) {
 export function loadMarketingTracking() {
   if (typeof window === 'undefined' || getTrackingConsent() !== 'granted') return;
   if (window.__marketingTrackingActive) return;
+  if (typeof window.clarity === 'function') {
+    window.clarity('consentv2', { ad_Storage: 'granted', analytics_Storage: 'granted' });
+  } else {
+    window.clarity = window.clarity || function (...args) { (window.clarity.q = window.clarity.q || []).push(args); };
+    const clarity = document.createElement('script');
+    clarity.async = true;
+    clarity.src = 'https://www.clarity.ms/tag/z8txdoz9f4?ref=bwt';
+    document.head.appendChild(clarity);
+    window.clarity('consentv2', { ad_Storage: 'granted', analytics_Storage: 'granted' });
+  }
   if (window.__marketingTrackingLoaded) {
     window.__marketingTrackingActive = true;
     window.gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
@@ -71,6 +81,7 @@ export function loadMarketingTracking() {
 export function disableMarketingTracking() {
   if (typeof window === 'undefined') return;
   window.__marketingTrackingActive = false;
+  if (typeof window.clarity === 'function') window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
   if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   if (typeof window.fbq === 'function') window.fbq('consent', 'revoke');
 }
