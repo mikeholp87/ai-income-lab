@@ -1,6 +1,8 @@
 // Tools each video uses on screen, read from its transcript, for videos without a written summary in
 // video-summaries.js (those list their own). Names link through tool-links.js.
 export const videoTools = {
+  "phVQuQMojA8": ["Claude Code", "Tasky", "GitHub"],
+  "0iTOlQjNdhs": ["Claude Code", "CleanYourTV", "Docker"],
   "-L0CVvJMzZI": ["OpenCode","OpenCode Zen","Vercel","skills.sh","Codex","Google Search Console","IndexNow","ChatGPT"],
   "-viL36QDF_8": ["Gemini 3","Google AI Studio","Google Cloud Console"],
   "0jzTOUv_B04": ["Trakkr","Codex","ChatGPT","IndexNow"],

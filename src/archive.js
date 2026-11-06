@@ -1,3 +1,4 @@
+import { watchSeo } from './watch-seo.js';
 import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
@@ -214,7 +215,7 @@ const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
-const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle;
+const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle || watchSeo[video.id]?.title;
 const videoHeading = video => searchTitle(video) || watchHeading(video.title);
 const toolItem = tool => {
   const link = toolLink(tool);
@@ -271,7 +272,8 @@ export const guides = [
   [/^This N8N Workflow Finds You Jobs So You Don't Have To!$/i, '/guides/what-is-n8n-used-for.html', 'What is n8n used for? Real uses and a first workflow'],
   [/^I Tested OpenAI's New Agent Builder So You Don't Have To$/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
   [/^Complete Lindy AI Agent Tutorial - Build Your First Agent Today!$/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
-  [/\bn8n\b/i, '/guides/self-host-n8n.html', 'Self-host n8n on Ubuntu: Docker and Node.js setup'],
+  [/\bn8n\b/i, '/guides/what-is-n8n-used-for.html', 'What is n8n used for? Real uses and a first workflow'],
+  [/open\s?code\s+go/i, '/guides/opencode-go.html', 'OpenCode Go: pricing, models, limits and setup'],
   [/open\s?code/i, '/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'],
   [/(?=.*\bcodex\b)(?=.*claude code)/i, '/guides/claude-code-vs-codex.html', 'Codex vs Claude Code: how I use both and route tasks'],
   [/claude code/i, '/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'],
@@ -368,6 +370,7 @@ ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(heading)}</span></nav>
 <h1>${escape(heading)}</h1>
 <a class="player" href="https://www.youtube.com/watch?v=${video.id}" data-embed="${playerUrl(video)}${start ? `?start=${start}` : ''}" aria-label="Play ${escape(video.title)}">${thumbPicture(video.id, 'min(1120px, 100vw - 32px)', 'width="960" height="540" fetchpriority="high"')}<span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>
+${chapters.length ? `<p class="meta"><a href="#chapters">Jump to video chapters</a></p>` : ''}
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
@@ -406,7 +409,7 @@ ${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join(
 <h2 id="tools-used">Tools used</h2>
 <ul>${tools.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>
 </section>` : ''}${chapters.length ? `
-<h2>In this video</h2>
+<h2 id="chapters">In this video</h2>
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide || topic ? `
 <section aria-labelledby="related-guides">
 <h2 id="related-guides">Keep learning</h2>
