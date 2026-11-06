@@ -404,6 +404,9 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
   assert.match(renderWatch(uploads.find(upload => upload.id === 'QMqe2ubsn0g'), { videos: uploads }), /<li>DextroLab<\/li>/);
+  const tubeAnalytics = renderWatch(uploads.find(upload => upload.id === 'gebtJAsMioo'), { videos: uploads });
+  assert.match(tubeAnalytics, /<li>TubeAnalytics<\/li>/);
+  assert.doesNotMatch(tubeAnalytics, /href="https:\/\/www\.tubeanalytics\.net/);
 });
 
 test('every watch page lists the tools used', () => {

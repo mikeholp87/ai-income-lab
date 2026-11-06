@@ -107,14 +107,13 @@ const stats = [
 const tools = [
   {
     name: 'TubeAnalytics',
-    url: 'https://www.tubeanalytics.net',
+    url: null,
     image: '/tools/tubeanalytics.webp',
     size: [1600, 1000],
     tagline: 'YouTube analytics for creators.',
     copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
-    facts: ['Real CPM and RPM for connected channels', '180+ registered creators', '7-day free trial, plans from $19 a month'],
-    cta: 'Start a free trial',
-    note: 'Payment details required. Cancel before the trial ends to avoid a charge.',
+    facts: ['Real CPM and RPM for connected channels', '180+ registered creators'],
+    note: 'TubeAnalytics is temporarily unavailable.',
   },
   {
     name: 'VisiScan',
@@ -818,7 +817,7 @@ function App({ page = 'home' }) {
       <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try; TubeAnalytics is temporarily unavailable.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -830,7 +829,7 @@ function App({ page = 'home' }) {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                    {tool.url && <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>}
                   </div>
                 </div>
               </article>
@@ -905,7 +904,7 @@ function App({ page = 'home' }) {
           <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p><NotesSignup /></div>
           <nav className="footer-columns" aria-label="Footer">
             <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a></div>
-            <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
+            <div><h2>Products</h2><span>TubeAnalytics (temporarily unavailable)</span><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
             <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
             <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>
           </nav>

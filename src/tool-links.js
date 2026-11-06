@@ -86,7 +86,6 @@ const links = [
   [['WhatsApp'], 'https://www.whatsapp.com'],
   [['apt'], 'https://wiki.debian.org/Apt'],
   [['Konsole'], 'https://konsole.kde.org'],
-  [['TubeAnalytics'], 'https://www.tubeanalytics.net'],
   [['n8n'], 'https://n8n.io'],
   [['Coolify'], 'https://coolify.io'],
   [['Docker'], 'https://www.docker.com'],
