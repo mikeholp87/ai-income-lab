@@ -96,7 +96,7 @@ test('the sponsor strip is an orange-accented card with a primary button', () =>
 });
 
 test('the hero relates the two brands without an announcement pill', () => {
-  assert.match(jsx, /<strong>Step-by-step courses from Mike Holp, and 2,900\+ members to ask when you get stuck\.<\/strong>/);
+  assert.match(jsx, /<strong>Get step-by-step courses and practical help from 2,900\+ members while you build\.<\/strong>/);
   assert.doesNotMatch(jsx, /hero-status/);
 });
 
@@ -228,12 +228,14 @@ test('plan cards show the verified monthly and annual prices and report the chos
   }
   assert.match(jsx, /or \$\{plan\.annual\} a year/);
   assert.match(jsx, /plan_name: plan\.name, plan_price: plan\.price/);
-  assert.match(jsx, /From \$29 a month or \$290 a year\. You pick a plan on Skool and can cancel anytime\./);
+  assert.match(jsx, /Plans from \$29\/month or \$290\/year\. Cancel anytime\./);
 });
 
 test('the hero heading names the community in both variants', () => {
   assert.equal(count(jsx, '<h1><span className="hero-brand">AI Income Lab:</span> '), 2);
   assert.match(css, /\.hero h1 \.hero-brand \{/);
+  assert.match(jsx, /Get step-by-step courses and practical help from 2,900\+ members while you build\./);
+  assert.match(css, /\.hero \.hero-actions \{ margin-top: 24px; \}/);
 });
 
 test('the hero includes build notes signup after reassurance with a privacy link', () => {

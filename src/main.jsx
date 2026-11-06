@@ -744,7 +744,7 @@ function App({ page = 'home' }) {
           <h1><span className="hero-brand">AI Income Lab:</span> <span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
-        <p className="hero-text"><strong>Step-by-step courses from Mike Holp, and 2,900+ members to ask when you get stuck.</strong> Beginners and independent builders start with a first Make.com automation or an AI-powered website.</p>
+        <p className="hero-text"><strong>Get step-by-step courses and practical help from 2,900+ members while you build.</strong></p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {
@@ -752,7 +752,7 @@ function App({ page = 'home' }) {
             videoPlayButton.current?.click();
           }}>Watch a free build</a>
         </nav>
-        <p className="fine-print hero-reassurance">From $29 a month or $290 a year. You pick a plan on Skool and can cancel anytime.</p>
+        <p className="fine-print hero-reassurance">Plans from $29/month or $290/year. Cancel anytime.</p>
         <NotesSignup placement="hero" />
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>

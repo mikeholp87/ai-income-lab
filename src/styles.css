@@ -86,20 +86,21 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .nav-mobile nav a { padding: 12px; font: 500 15px var(--sans); }
 
 /* The first build sits beside the introduction; the CTA precedes media on phones. */
-.hero { padding: 32px 0 64px; }
+.hero { padding: 24px 0 48px; }
 .live-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb,var(--signal) 16%,transparent); }
 /* Copy centers against the video card so neither column leaves a dead gap on desktop. */
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; }
 .hero-copy, .hero-preview { min-width: 0; }
 .hero-copy { container-type: inline-size; }
-.hero h1 { margin-top: 28px; font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
+.hero h1 { margin-top: 20px; font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
 /* Sized to the copy column so the longest line ("Build what you") never breaks early; browsers without cqi keep the vw size above. */
 .hero h1 { font-size: clamp(30px, 10.4cqi, 64px); }
 .hero h1 span { display: block; }
 .hero h1 .hero-brand { margin-bottom: .5em; font-size: max(15px, .36em); letter-spacing: .04em; }
-.hero-text { max-width: 48ch; margin-top: 24px; color: var(--body); font: 400 18px/1.6 var(--sans); }
+.hero-text { max-width: 48ch; margin-top: 16px; color: var(--body); font: 400 18px/1.5 var(--sans); }
 .hero-text strong { color: var(--text); font-weight: 600; }
 .hero-reassurance { max-width: 48ch; }
+.hero .hero-actions { margin-top: 24px; }
 
 /* Scroll-linked motion, scrubbed by the scrollbar itself (no JS); browsers without scroll timelines skip it */
 @supports (animation-timeline: view()) {
@@ -428,7 +429,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .hero-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .hero-copy { display: contents; }
   .hero h1 { font-size: clamp(30px, calc((100vw - 48px) * .104), 64px); }
-  .hero-preview { margin-top: 36px; }
+  .hero-preview { margin-top: 24px; }
   .notes-signup--hero { order: 1; max-width: none; }
   .portrait { position: static; max-width: 280px; justify-self: center; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
@@ -450,10 +451,10 @@ a.video-card:hover h3 { color: var(--signal); }
   .course-promo-content { padding: 8px; }
   .shell, .divider { width: calc(100% - 32px); }
   .guide-more .button { width: 100%; justify-content: center; }
-  .hero { padding: 24px 0 40px; }
-  .hero h1 { margin-top: 24px; font-size: clamp(30px, calc((100vw - 32px) * .104), 64px); }
-  .hero-preview { margin-top: 28px; }
-  .hero-text { margin-top: 18px; font-size: 17px; }
+  .hero { padding: 20px 0 32px; }
+  .hero h1 { margin-top: 16px; font-size: clamp(30px, calc((100vw - 32px) * .104), 64px); }
+  .hero-preview { margin-top: 20px; }
+  .hero-text { margin-top: 14px; font-size: 17px; }
   .section { padding: 88px 0; }
   .open-source.section { padding: 64px 0; }
   .open-source-head { display: grid; justify-items: start; gap: 18px; }
@@ -527,7 +528,7 @@ a.video-card:hover h3 { color: var(--signal); }
   #community .plan-list > li:hover { transform: translateY(-3px); }
 }
 
-.notes-signup--hero { width: 100%; max-width: 380px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.notes-signup--hero { width: 100%; max-width: 380px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
 .notes-signup--hero label { color: var(--muted); font: 500 14px/1.5 var(--sans); }
 .notes-signup--hero > .notes-signup-pill { flex-direction: row; gap: 4px; margin-top: 10px; padding: 4px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--panel); transition: border-color .2s ease, box-shadow .2s ease; }
 .notes-signup--hero > .notes-signup-pill:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 30%, transparent); }
