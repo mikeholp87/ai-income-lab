@@ -2,6 +2,7 @@ const endpoint = 'https://api.github.com/users/mikeholp87/repos?type=owner&sort=
 const cache = { 'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400' };
 const noStore = { 'Cache-Control': 'no-store' };
 const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2026-03-10' };
+const projectCutoff = '2026-01-01T00:00:00Z';
 
 export async function GET() {
   try {
@@ -12,7 +13,7 @@ export async function GET() {
       const data = await response.json();
       if (!Array.isArray(data)) throw new Error('GitHub returned an invalid repository list');
       projects.push(...data
-        .filter(repo => repo?.owner?.login === 'mikeholp87' && repo.private === false && repo.fork === false && typeof repo.name === 'string' && /^[\w.-]+$/.test(repo.name))
+        .filter(repo => repo?.owner?.login === 'mikeholp87' && repo.private === false && repo.fork === false && typeof repo.name === 'string' && /^[\w.-]+$/.test(repo.name) && repo.created_at >= projectCutoff)
         .map(repo => ({
           name: repo.name,
           description: typeof repo.description === 'string' ? repo.description : 'No description provided on GitHub.',

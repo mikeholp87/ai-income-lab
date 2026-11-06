@@ -4,6 +4,7 @@ import { validGithubRepositories } from './github-repositories.js';
 
 const publicRepo = (name, extra = {}) => ({
   name,
+  created_at: '2026-01-01T00:00:00Z',
   description: `${name} project`,
   private: false,
   fork: false,
@@ -30,6 +31,8 @@ test('GitHub endpoint returns every owned public source repository', async t => 
       publicRepo('other-owner', { owner: { login: 'someone-else' } }),
       publicRepo('third'),
       publicRepo('fourth'),
+      publicRepo('older', { created_at: '2025-12-31T23:59:59Z' }),
+      publicRepo('next-year', { created_at: '2027-01-01T00:00:00Z' }),
     ]);
   });
   const { GET } = await import(`../api/github-repositories.js?test=${encodeURIComponent(t.name)}`);
@@ -37,7 +40,7 @@ test('GitHub endpoint returns every owned public source repository', async t => 
   const projects = await response.json();
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('Cache-Control'), 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
-  assert.deepEqual(projects.map(project => project.name), ['newest', 'second', 'third', 'fourth']);
+  assert.deepEqual(projects.map(project => project.name), ['newest', 'second', 'third', 'fourth', 'next-year']);
   assert.ok(validGithubRepositories(projects));
   assert.equal(validGithubRepositories([{ name: 'external', description: 'bad', url: 'https://example.com' }]), false);
 });
