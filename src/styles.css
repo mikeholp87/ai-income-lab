@@ -86,10 +86,10 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .nav-mobile nav a { padding: 12px; font: 500 15px var(--sans); }
 
 /* The first build sits beside the introduction; the CTA precedes media on phones. */
-.hero { padding: 24px 0 48px; }
+.hero { padding: 48px 0 64px; }
 .live-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb,var(--signal) 16%,transparent); }
 /* Copy centers against the video card so neither column leaves a dead gap on desktop. */
-.hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 56px; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; }
 .hero-copy, .hero-preview { min-width: 0; }
 .hero-copy { container-type: inline-size; }
 .hero h1 { margin-top: 20px; font: 400 clamp(40px, 4.4vw, 64px)/1 var(--display); text-transform: uppercase; letter-spacing: -.025em; text-wrap: balance; }
@@ -294,6 +294,10 @@ a.video-card:hover h3 { color: var(--signal); }
 .avatars img { width: 32px; height: 32px; margin-left: -8px; border: 2px solid var(--ink); border-radius: 50%; position: relative; }
 .avatars img:first-child { margin-left: 0; }
 .members p { flex: 1 1 200px; color: var(--muted); font-size: 13px; }
+.community-host { display: flex; align-items: center; gap: 14px; margin-top: 28px; }
+.community-host img { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.community-host p { display: grid; gap: 3px; color: var(--body); font-size: 14px; line-height: 1.45; }
+.community-host strong { color: var(--text); }
 .plan-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 40px; }
 /* Plan name and price share the first row; the link sits on the last row so the three cards line up. */
 .plan-list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto 1fr auto; align-items: baseline; gap: 0 16px; padding: 28px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--panel); }
@@ -506,7 +510,7 @@ a.video-card:hover h3 { color: var(--signal); }
   #community .plan-list > li:hover { transform: translateY(-3px); }
 }
 
-.notes-signup--hero { width: 100%; max-width: 380px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.notes-signup--hero { width: 100%; max-width: 350px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
 .notes-signup--hero label { color: var(--muted); font: 500 14px/1.5 var(--sans); }
 .notes-signup--hero > .notes-signup-pill { flex-direction: row; gap: 4px; margin-top: 10px; padding: 4px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--panel); transition: border-color .2s ease, box-shadow .2s ease; }
 .notes-signup--hero > .notes-signup-pill:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 30%, transparent); }
@@ -540,3 +544,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .nav-actions > .theme-toggle { display: none; }
   .nav-mobile .theme-toggle-row { display: flex; align-items: center; width: 100%; min-height: 44px; padding: 12px; border: 0; border-top: 1px solid var(--line); background: none; color: var(--text); font: 500 15px var(--sans); text-align: left; cursor: pointer; }
 }
+
+/* Give the immediate-access plan a quiet visual emphasis. */
+#community .plan-list > li.plan-featured { border-color: var(--signal); background: color-mix(in srgb, var(--signal) 5%, var(--panel)); }
+#community .plan-list > li.plan-featured h3 { color: var(--signal); }

@@ -7,7 +7,6 @@ import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, se
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
 import { validGithubRepositories } from './github-repositories.js';
-import { videoOffer } from './video-offer.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
@@ -261,15 +260,6 @@ function useActiveSection(ids) {
   return active;
 }
 
-function VideoNextStep({ video, campaign }) {
-  const offer = videoOffer(video.title);
-  const url = outboundUrl(skoolPlansUrl, campaign);
-  return <aside className="video-next-step" aria-label="Build with the Skool community">
-    <p className="next-step-access">{offer.access}</p>
-    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Join AI Income Lab', url, video.id)}>Join AI Income Lab ↗</a>
-  </aside>;
-}
-
 function swapToJpegThumbnail(event, id) {
   const image = event.currentTarget;
   if (image.src.endsWith('/hqdefault.jpg')) return;
@@ -277,7 +267,7 @@ function swapToJpegThumbnail(event, id) {
   image.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 
-function FeaturedVideo({ video, campaign, playButtonRef }) {
+function FeaturedVideo({ video, playButtonRef }) {
   const [playing, setPlaying] = useState(false);
   if (!video) return <div className="player"><div className="player-screen is-loading" /><div className="player-meta"><span className="skeleton-line" /><span className="skeleton-line short" /></div></div>;
 
@@ -307,7 +297,6 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
         <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
-        <VideoNextStep video={video} campaign={campaign} />
       </div>
     </article>
   );
@@ -755,7 +744,7 @@ function App({ page = 'home' }) {
         <p className="fine-print hero-reassurance">Plans from $29/month or $290/year. Cancel anytime.</p>
         <NotesSignup placement="hero" />
         </div>
-        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
+        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} playButtonRef={videoPlayButton} /></div>
         </div>
       </section>
 
@@ -770,6 +759,7 @@ function App({ page = 'home' }) {
             <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
             <p>Some of the members building AI workflows on Skool</p>
           </div>
+          <div className="community-host"><img src="/mike-holp.jpg" alt="" width="56" height="56" loading="lazy" decoding="async" /><p><strong>Built and hosted by Mike Holp</strong><span>Practical AI builds, shared with the community as I learn.</span></p></div>
           <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
             {plans.map(plan => (
               <li key={plan.name}>
@@ -809,7 +799,7 @@ function App({ page = 'home' }) {
         <div className="shell">
           <SectionHead title="Written guides">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
           <ul className="guide-cards">
-            {featuredGuides.map(guide => (
+            {featuredGuides.slice(0, 6).map(guide => (
               <li key={guide.slug}>
                 <a className="guide-card" href={`/guides/${guide.slug}.html`}>
                   <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-400.webp 400w, /assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}-800.webp 800w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
