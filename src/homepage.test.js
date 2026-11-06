@@ -75,7 +75,8 @@ test('the guides section follows videos in the header and page, with one start l
 test('the homepage lists GitHub projects in a separate section', () => {
   const start = jsx.indexOf('id="code"');
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
-  for (const name of ['Tasky', 'Luma Launcher', 'Restic Studio']) assert.match(section, new RegExp(name));
+  for (const name of ['Tasky', 'Luma[- ]Launcher', 'Restic[- ]Studio']) assert.match(jsx, new RegExp(name));
+  assert.match(section, /projects\.map\(repo/);
   assert.doesNotMatch(section, /DoStuff-Media/);
   assert.match(section, /View all on GitHub/);
   assert.match(css, /\.repo-list \{ display: grid;/);

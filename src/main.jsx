@@ -130,10 +130,24 @@ const tools = [
 ];
 
 const repositories = [
-  { name: 'Tasky', description: 'A private, cross-platform task manager and system monitor for Windows and Linux.', url: 'https://github.com/mikeholp87/Tasky' },
-  { name: 'Luma Launcher', description: 'A native, keyboard-driven Linux application launcher built with Rust and GTK4.', url: 'https://github.com/mikeholp87/Luma-Launcher' },
-  { name: 'Restic Studio', description: 'A development preview of a Rust backup and recovery app with a GTK desktop client.', url: 'https://github.com/mikeholp87/Restic-Studio' },
-];
+  ['Restic-Studio', 'A development preview of a Rust backup and recovery app with a GTK desktop client.'],
+  ['Luma-Launcher', 'A native, keyboard-driven Linux application launcher built with Rust and GTK4.'],
+  ['Tasky', 'A private, cross-platform task manager and system monitor for Windows and Linux.'],
+  ['ai-income-lab', 'The website and resources for AI Income Lab.'],
+  ['solar-business-directory', 'Public project on GitHub.'],
+  ['trading-app', 'An Alpaca trading app.'],
+  ['seo-tool', 'Public project on GitHub.'],
+  ['Swiftris', 'Public project on GitHub.'],
+  ['MyCharityLife', 'Public project on GitHub.'],
+  ['FoTacts', 'Public project on GitHub.'],
+  ['Entre', 'Public project on GitHub.'],
+  ['Giving-Tree', 'Public project on GitHub.'],
+  ['DoStuff-Media', 'Find fun events nearby with the DoStuff Media API.'],
+  ['QRScanner', 'Public project on GitHub.'],
+  ['BLEDevice', 'Public project on GitHub.'],
+  ['Carvoyant', 'Public project on GitHub.'],
+  ['MamaLingua', 'Public project on GitHub.'],
+].map(([name, description]) => ({ name, description, url: `${githubUrl}/${name}` }));
 
 const plans = [
   { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
