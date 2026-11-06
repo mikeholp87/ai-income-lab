@@ -10,6 +10,13 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  "ai-agent-workflow": {"title": "An AI agent workflow with checks at every boundary", "steps": [["Brief", "Define inputs and allowed actions"], ["Draft", "Propose a structured result"], ["Check", "Validate before acting"]], "note": "Practice: classify three fictional requests without sending anything."},
+  "ai-content-creation-workflows": {"title": "Make an AI content draft you can review", "steps": [["Brief", "One message and one format"], ["Draft", "Create one small asset"], ["Review", "Check facts, rights and export"]], "note": "Practice: turn three supplied facts into a 20-second explainer."},
+  "build-apps-with-ai-coding-agents": {"title": "Build a small app with an AI coding agent", "steps": [["Scope", "One feature with clear checks"], ["Change", "Use the project’s existing pattern"], ["Verify", "Try edge cases and read the diff"]], "note": "Practice: add a case-insensitive filter to a local task list."},
+  "choosing-ai-models-for-a-task": {"title": "Choose a model using your actual task", "steps": [["Examples", "Write the answers first"], ["Compare", "Use the same prompt and inputs"], ["Choose", "Check quality, cost and failure"]], "note": "Practice: compare two models on six fictional requests."},
+  "youtube-channel-growth-workflow": {"title": "Improve one upload with a repeatable workflow", "steps": [["Research", "Choose one viewer problem"], ["Publish", "Deliver the title’s promise"], ["Learn", "Compare reach, clicks and retention"]], "note": "Practice: review one upload and record one change for the next."},
+  "chatgpt-linux": {"title": "Use ChatGPT on Linux through official sources", "steps": [["Web", "Open chatgpt.com in your browser"], ["Desktop", "Check supported Linux preview releases"], ["Check", "Try a fictional task before real work"]], "note": "Practice: extract three fields and check that unknown facts stay unknown."},
+
   '9router-setup': {
     title: '9Router setup: providers, combos and fallbacks',
     steps: [['Providers', 'Connect the accounts you use'], ['Combos', 'Group models with fallback'], ['Check', 'Test requests and track cost']],

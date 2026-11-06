@@ -39,6 +39,16 @@ function recordView() {
 for (const link of document.querySelectorAll('a[href]')) {
   link.href = readingLink(link.href, window.location.href);
   const target = new URL(link.href);
+  if (link.dataset.starterKit) {
+    link.addEventListener('click', () => trackGoogleEvent('starter_kit_download', {
+      ...properties,
+      kit_id: link.dataset.starterKit,
+      kit_version: link.dataset.kitVersion,
+      file_name: target.pathname.split('/').at(-1),
+      link_url: link.href,
+      placement: link.dataset.placement || 'written_guide',
+    }));
+  }
   if (target.origin === 'https://www.youtube.com') {
     link.addEventListener('click', () => {
       const videoId = target.pathname === '/watch' ? target.searchParams.get('v') || '' : '';

@@ -13,7 +13,8 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const channel = { ...link, dataset: {}, href: channelUrl, textContent: 'YouTube' };
   const defaultVideo = { ...youtube, dataset: {} };
   const lookalike = { ...channel, href: 'https://www.youtube.com.example.org/watch?v=Ip8KBwDixJs' };
-  const links = [link, youtube, subscribe, channel, defaultVideo, lookalike];
+  const download = { ...link, href: 'https://www.ai-automation-station.com/downloads/make-approved-requests-starter-kit.zip', dataset: { starterKit: 'make-approved-requests', kitVersion: '1' }, textContent: 'Download the starter kit (ZIP)' };
+  const links = [link, youtube, subscribe, channel, defaultVideo, lookalike, download];
   const form = { dataset: { placement: 'guide_end' }, addEventListener(type, fn) { this[type] = fn; } };
   const clickLinks = () => { for (const target of links) target.click?.(); };
   const images = [false, true, false].map((complete, index) => ({
@@ -58,8 +59,13 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     form.focusin({ target: { name: 'email' } });
     form.focusin({ target: { name: 'email' } });
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'form_start').length, 1);
-    assert.equal(gated().length, 1); // Existing Meta stub; only the Google loader is inserted.
+    assert.equal(gated().length, 2); // Existing Meta stub; Clarity and Google loaders are inserted.
     clickLinks();
+    const downloads = events.filter(event => event[0] === 'event' && event[1] === 'starter_kit_download');
+    assert.equal(downloads.length, 1);
+    assert.equal(downloads[0][2].kit_id, 'make-approved-requests');
+    assert.equal(downloads[0][2].kit_version, '1');
+    assert.equal(downloads[0][2].file_name, 'make-approved-requests-starter-kit.zip');
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
     assert.equal(clicks.length, 1);
     const youtubeClicks = events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked');
@@ -82,6 +88,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     buttons[1].click();
     clickLinks();
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked').length, 8);
+    assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'starter_kit_download').length, 2);
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === eventName).length, 1);
     assert.equal(events.filter(event => event[0] === 'meta' && event[1] === 'track' && event[2] === 'PageView').length, 2);
     assert.equal(events.some(event => /purchase|lead|signup/i.test(event[1] || '')), false);

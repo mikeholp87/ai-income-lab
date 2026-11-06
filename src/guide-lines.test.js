@@ -25,8 +25,12 @@ test('the link goes directly below "Work with me" in the same "Name → URL" sty
   assert.equal(resourceLine(`Notes and chapters: https://www.ai-automation-station.com/watch/abcdefghijk?utm_content=abcdefghijk`), 'Notes and chapters → https://www.ai-automation-station.com/watch/abcdefghijk?utm_content=abcdefghijk');
 });
 
-test('already-linked, anchor-less or too-long descriptions are skipped, never guessed at', () => {
+test('already-linked or too-long descriptions are skipped', () => {
   assert.deepEqual(withGuideLine(`See https://www.ai-automation-station.com/guides/9router-setup.html\n${resources}`, line), { description: null, reason: 'already links this page' });
-  assert.deepEqual(withGuideLine('No resources section here.', line), { description: null, reason: 'no "Work with me" line' });
   assert.equal(withGuideLine(`${resources}${'x'.repeat(4900)}`, line).description, null);
+});
+
+test('descriptions without a resources anchor keep their text and append the guide', () => {
+  assert.deepEqual(withGuideLine('No resources section here.', line), { description: `No resources section here.\n\n${resourceLine(line)}`, reason: null });
+  assert.deepEqual(withGuideLine('', line), { description: resourceLine(line), reason: null });
 });
