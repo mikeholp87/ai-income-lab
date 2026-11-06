@@ -759,25 +759,6 @@ function App({ page = 'home' }) {
         </div>
       </section>
 
-      <section className="course-promo shell" aria-labelledby="runable-course-title">
-        <div className="course-promo-card">
-          <img className="course-promo-image" src="/runable-course.webp" srcSet="/runable-course-640.webp 640w, /runable-course.webp 1200w" sizes="(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116px), (max-width: 1168px) calc(100vw - 52px), 1116px" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
-          <div className="course-promo-content">
-            <h2 id="runable-course-title">Build an AI website in Runable</h2>
-            <p className="course-promo-copy">Create and launch an AI-powered business website, from idea to live site. Take the course inside AI Income Lab, included for all members.</p>
-            <ul className="course-outcomes" aria-label="What you’ll build">
-              <li>Build a business website in Runable.</li>
-              <li>Add AI features to your website.</li>
-              <li>Launch your finished site online.</li>
-            </ul>
-            <div className="course-promo-action">
-              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-              <p className="fine-print">Included with every AI Income Lab plan, from $29/month.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="stats" aria-label="Community and channel numbers">
         <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
       </section>

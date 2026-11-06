@@ -139,7 +139,7 @@ test('Instrument Sans is the default face and DM Mono is kept for data', () => {
 });
 
 test('the main Join buttons open the Skool plan picker', () => {
-  for (const placement of ['navigation', 'hero', 'runable_course', 'footer']) {
+  for (const placement of ['navigation', 'hero', 'footer']) {
     assert.match(jsx, new RegExp(`href=\\{plansUrl\\}[^\\n]*trackCommunityVisit\\('${placement}', 'Join AI Income Lab', plansUrl\\)`), placement);
   }
   assert.match(jsx, /trackCommunityVisit\('footer', 'AI Income Lab'\)/);
