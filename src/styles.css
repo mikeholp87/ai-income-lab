@@ -290,7 +290,6 @@ a.video-card:hover h3 { color: var(--signal); }
 .repo-list h3 a:hover { color: var(--signal); text-decoration-color: var(--signal); }
 .repo-list p { max-width: 36ch; color: var(--body); font-size: 14px; line-height: 1.55; }
 
-
 /* Community */
 .members { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 28px; }
 .avatars { display: flex; flex: none; }

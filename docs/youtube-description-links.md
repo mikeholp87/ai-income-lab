@@ -2,10 +2,13 @@
 
 Generated November 5, 2026 from the channel's complete uploads playlist and current guide library (347 videos).
 
+
+Shorts checked November 6, 2026: all 120 uploads link to their assigned guide; one new assignment was added.
 Each row gives the relevant guide link for that video's description. Existing specific guide assignments are retained; videos without a prior guide assignment use the closest topical guide. Rows without that exact page link in their current description appear first.
 
 | Video | Line to add |
 |---|---|
+| [3 Open Source Projects I've Built #github](https://studio.youtube.com/video/mB2FYNWmtL0/edit) | `Written guide: Build apps with AI coding agents: a safe first workflow: https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=mB2FYNWmtL0` |
 | [I Built My Own Task Manager for Linux!](https://studio.youtube.com/video/-D_iZYpDOZs/edit) | `Written guide: Build apps with AI coding agents: a safe first workflow: https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=-D_iZYpDOZs` |
 | [Claude Codex Fixed My Android TV](https://studio.youtube.com/video/3YgUJvrpHzo/edit) | `Written guide: Build apps with AI coding agents: a safe first workflow: https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=3YgUJvrpHzo` |
 | [I Tested This FREE Claude Design Alternative](https://studio.youtube.com/video/UDPtp5oQhAo/edit) | `Written guide: AI content creation workflow: images, video and audio: https://www.ai-automation-station.com/guides/ai-content-creation-workflows.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=UDPtp5oQhAo` |

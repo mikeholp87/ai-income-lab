@@ -6,6 +6,7 @@
 //   node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]    newest long-form uploads
 //   node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]  specific videos
 //   node scripts/tag-youtube-descriptions.mjs --all-bare                all long-form uploads
+//   node scripts/tag-youtube-descriptions.mjs --all-shorts               all Shorts
 //   node scripts/tag-youtube-descriptions.mjs --guide-links [--offset 0] [--limit 40] [--dry-run]
 //     Add each video's link from docs/youtube-description-links.md (its guide, or its watch page when no
 //     guide matches) below the "Work with me → …" line in Useful Links & Resources, in that file's
@@ -16,7 +17,7 @@
 // At sign-in, choose the AI Automation Station brand account. Already-tagged videos are skipped, so reruns are safe.
 // videos.update replaces the whole snippet, so title, tags, category and languages are sent back unchanged.
 import { readFile } from 'node:fs/promises';
-import { longFormPlaylistId } from '../src/youtube.js';
+import { longFormPlaylistId, shortsPlaylistId } from '../src/youtube.js';
 import { guideLines, resourceLine, withGuideLine } from './guide-lines.mjs';
 import { accessToken } from './youtube-oauth.mjs';
 
@@ -24,6 +25,7 @@ const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const guideMode = args.includes('--guide-links');
 const allBare = args.includes('--all-bare');
+const allShorts = args.includes('--all-shorts');
 const latestAt = args.indexOf('--latest');
 const latest = latestAt === -1 ? 0 : Number(args[latestAt + 1]);
 const limitAt = args.indexOf('--limit');
@@ -32,8 +34,8 @@ const offsetAt = args.indexOf('--offset');
 const offset = offsetAt === -1 ? 0 : Number(args[offsetAt + 1]);
 const valueAt = new Set([latestAt, limitAt, offsetAt].filter(index => index !== -1).map(index => index + 1));
 const givenIds = args.filter((arg, index) => !arg.startsWith('--') && !valueAt.has(index));
-if (!guideMode && !allBare && !latest && !givenIds.length) {
-  console.log('Usage: node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs --guide-links [--limit 40] [--dry-run]');
+if (!guideMode && !allBare && !allShorts && !latest && !givenIds.length) {
+  console.log('Usage: node scripts/tag-youtube-descriptions.mjs --latest 5 [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs VIDEO_ID ... [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs --all-bare|--all-shorts [--limit 40] [--dry-run]\n       node scripts/tag-youtube-descriptions.mjs --guide-links [--limit 40] [--dry-run]');
   process.exit(1);
 }
 const lines = guideMode ? guideLines(await readFile(new URL('../docs/youtube-description-links.md', import.meta.url), 'utf8')) : [];
@@ -54,16 +56,17 @@ const snippetOf = async id => (await call('GET', `/videos?part=snippet&id=${id}`
 const kept = ['title', 'categoryId', 'tags', 'defaultLanguage', 'defaultAudioLanguage'];
 
 let uploadIds;
-if (allBare) {
+if (allBare || allShorts) {
   uploadIds = [];
   let pageToken = '';
   do {
-    const page = await call('GET', `/playlistItems?part=contentDetails&maxResults=50&playlistId=${longFormPlaylistId}${pageToken ? `&pageToken=${pageToken}` : ''}`);
+    const playlistId = allShorts ? shortsPlaylistId : longFormPlaylistId;
+    const page = await call('GET', `/playlistItems?part=contentDetails&maxResults=50&playlistId=${playlistId}${pageToken ? `&pageToken=${pageToken}` : ''}`);
     uploadIds.push(...page.items.map(item => item.contentDetails.videoId));
     pageToken = page.nextPageToken ?? '';
   } while (pageToken);
 }
-const ids = (allBare ? uploadIds : latest
+const ids = (allBare || allShorts ? uploadIds : latest
   ? (await call('GET', `/playlistItems?part=contentDetails&maxResults=${Math.min(latest, 50)}&playlistId=${longFormPlaylistId}`)).items.map(item => item.contentDetails.videoId)
   : givenIds.length ? givenIds : lines.map(row => row.id)).slice(offset, offset + limit);
 

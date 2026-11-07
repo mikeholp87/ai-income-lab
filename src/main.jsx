@@ -742,6 +742,7 @@ function App({ page = 'home' }) {
         </nav>
         <p className="fine-print hero-reassurance">Plans from $29/month or $290/year. Cancel anytime.</p>
         <NotesSignup placement="hero" />
+        <p className="guide-start">Try a first build: <a href="/guides/make-first-automation.html#starter-kit" onClick={trackClick('hero', 'Download the free Make.com starter kit', '/guides/make-first-automation.html#starter-kit', 'view_starter_kit')}>Download the free Make.com starter kit</a>.</p>
         </div>
         <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} playButtonRef={videoPlayButton} /></div>
         </div>
@@ -818,6 +819,7 @@ function App({ page = 'home' }) {
           </ul>
           <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
           <p className="guide-start">New guides: {newGuides.map(([slug, label], i) => <span key={slug}>{i > 0 && ', '}<a href={`/guides/${slug}.html`}>{label}</a></span>)}.</p>
+          <p className="guide-start">Build case study: <a href="/guides/youtube-feed.html#site-case-study">How this site keeps its guides and videos available</a>, with screenshots, checks, and costs.</p>
           <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
         </div>
       </section>

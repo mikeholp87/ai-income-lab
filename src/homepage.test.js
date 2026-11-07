@@ -165,6 +165,7 @@ test('the main Join buttons open the Skool plan picker', () => {
     assert.match(jsx, new RegExp(`href=\\{plansUrl\\}[^\\n]*trackCommunityVisit\\('${placement}', 'Join AI Income Lab', plansUrl\\)`), placement);
   }
   assert.match(jsx, /trackCommunityVisit\('footer', 'AI Income Lab'\)/);
+  assert.doesNotMatch(jsx, /course-promo|runable-course-title/);
 });
 
 test('footer social links show an icon beside each name', () => {

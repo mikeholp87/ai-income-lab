@@ -3,6 +3,7 @@ export const channelId = 'UC8_eYAfJcUgI5BV3hg9U2cw';
 export const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 // YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts).
 export const longFormPlaylistId = `UULF${channelId.slice(2)}`;
+export const shortsPlaylistId = `UUSH${channelId.slice(2)}`;
 
 // Validate the public feed before it becomes rendered content or a persisted build snapshot.
 export function validFeed(feed) {
