@@ -214,7 +214,7 @@ const featuredGuides = [
   { slug: 'n8n-vs-zapier-vs-make', tag: 'Comparison', title: 'n8n vs Zapier vs Make: billing, builders and AI agents', alt: 'Guide card comparing n8n, Zapier and Make.' },
   { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
-  { slug: '9router-setup', tag: 'Setup', title: '9Router setup: providers, model combos and request checks', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
+  { slug: '9router-setup', tag: 'Setup', title: '9Router setup: install, port 20128, updates and providers', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
   { slug: 'what-is-n8n-used-for', tag: 'Beginner', title: 'What is n8n used for? Real uses and a first workflow', alt: 'Guide card for What is n8n used for, with real uses and a first workflow.' },
   { slug: 'self-host-n8n', tag: 'Setup', title: 'Self-host n8n on Ubuntu: Docker and Node.js setup', alt: 'Guide card for self-hosting n8n on Ubuntu with Docker or Node.js.' },
 ];
@@ -787,6 +787,14 @@ function App({ page = 'home' }) {
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
+              <nav className="topic-row" aria-label="Browse videos by topic">
+                <a href="/videos/claude-code">Claude Code</a>
+                <a href="/videos/n8n">n8n</a>
+                <a href="/videos/codex-opencode">Codex and OpenCode</a>
+                <a href="/videos/ai-agents">AI agents</a>
+                <a href="/videos/ai-seo">AI SEO</a>
+                <a href="/videos/make-money">Earn with AI</a>
+              </nav>
             </div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
