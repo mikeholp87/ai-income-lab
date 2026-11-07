@@ -272,12 +272,19 @@ test('the hero includes build notes signup after reassurance with a privacy link
 
 test('every homepage video shows a description, preferring the written summary', async () => {
   const { withSummaries } = await import('./curated-summary.js');
-  const { listingSummaries } = await import('./video-summaries.js');
+  const { listingSummaries, videoSummaries } = await import('./video-summaries.js');
+  const { videoNotes } = await import('./video-notes.js');
+  const { watchNotes } = await import('./watch-notes.js');
+  const { watchSeo } = await import('./watch-seo.js');
   const snapshot = JSON.parse(await readFile(new URL('./youtube-snapshot.json', import.meta.url), 'utf8'));
   // An empty YouTube description leaves the card blank: add the video to listingSummaries in src/video-summaries.js.
   for (const video of snapshot.videos) assert.ok(video.summary.trim(), `${video.id} "${video.title}" has no description`);
-  const [written] = withSummaries({ videos: [{ id: 'rMRsVyIsZCU', summary: '' }] }).videos;
-  assert.equal(written.summary, listingSummaries.rMRsVyIsZCU);
+  // A video whose only curated text is its listing summary; videos with a fuller written summary use that instead.
+  const listingOnly = Object.keys(listingSummaries).find(id => !videoSummaries[id]?.summary && !videoNotes[id]?.summary && !watchNotes[id]?.summary && !watchSeo[id]?.summary);
+  const [written] = withSummaries({ videos: [{ id: listingOnly, summary: '' }] }).videos;
+  assert.equal(written.summary, listingSummaries[listingOnly]);
+  const [full] = withSummaries({ videos: [{ id: 'rMRsVyIsZCU', summary: '' }] }).videos;
+  assert.equal(full.summary, videoSummaries.rMRsVyIsZCU.summary);
   assert.match(jsx, /\{video\.summary && <p className="player-summary">\{video\.summary\}<\/p>\}/);
   assert.match(await readFile(new URL('../api/youtube.js', import.meta.url), 'utf8'), /feed: withSummaries\(feed\)/);
 });

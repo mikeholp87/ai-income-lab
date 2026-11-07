@@ -5598,6 +5598,697 @@ export const videoSummaries = {
         "a": "On the Pro plan it used credits faster than any other model the presenter has tried, per the video."
       }
     ]
+  },
+  "yHaBYtUnzBg": {
+    "summary": "A first test of Claude Design, an Anthropic Labs product launched on April 17, 2026 in research preview for paid Claude plans. The presenter uploads one screenshot of their app and gets a ten-slide investor pitch deck from a few qualifying questions. The deck needs work and one slide overflows before it is fixed. The presenter does not yet see it as a Canva competitor.",
+    "whatYouBuild": "A ten-slide investor pitch deck in Claude Design, built from an app screenshot and short answers on round size, audience, tone and competitors, then exported or presented full screen.",
+    "toolsUsed": [
+      "Claude Design",
+      "Claude Opus 4.7",
+      "Canva"
+    ],
+    "keySteps": [
+      {
+        "seconds": 93,
+        "step": "Upload a screenshot and ask for an investor pitch deck."
+      },
+      {
+        "seconds": 132,
+        "step": "Answer questions about the round, audience, slide count, tone and competitors."
+      },
+      {
+        "seconds": 184,
+        "step": "Watch it write a JavaScript and HTML deck with speaker notes and fix an overflowing slide."
+      },
+      {
+        "seconds": 308,
+        "step": "Look at export options: PowerPoint, PDF, HTML and a send-to-Canva option."
+      },
+      {
+        "seconds": 341,
+        "step": "Switch from Opus 4.7 to Sonnet 4.6 to save credits."
+      },
+      {
+        "seconds": 365,
+        "step": "Present the deck in full screen."
+      },
+      {
+        "seconds": 441,
+        "step": "Give the verdict on whether it competes with Canva."
+      }
+    ],
+    "notCovered": [
+      "A finished deck. The presenter gave a minimal prompt and says it needs a lot of work.",
+      "Accuracy of the competitor comparisons shown in the slides.",
+      "Credit use over a full project, since the presenter was already out of Claude Pro credits.",
+      "The Figma stock reaction mentioned at the start, which comes from a news article."
+    ],
+    "qa": [
+      {
+        "q": "Who can use Claude Design?",
+        "a": "Claude Pro, Max, Team and Enterprise subscribers in research preview, according to the announcement shown."
+      },
+      {
+        "q": "What can it export?",
+        "a": "The video shows PowerPoint, PDF, HTML and sending the design to Canva."
+      },
+      {
+        "q": "Does it replace Canva?",
+        "a": "Not yet in the presenter's view, though they think it could become a serious competitor."
+      }
+    ]
+  },
+  "rMRsVyIsZCU": {
+    "summary": "Build Open Design, a free open-source alternative to Claude Design, from source on Linux and use it with DeepSeek V4 Flash. A 20-second paper cutout motion video takes about a minute for roughly a cent, and a slide deck built from a YouTube transcript takes three to four minutes for about 16 cents and exports to HTML. Mac and Windows have downloads, while Linux needs a source build with Node and corepack fixes.",
+    "whatYouBuild": "A local Open Design workspace connected to model credits, used to make a motion design sample and an HTML slide deck from a YouTube video.",
+    "toolsUsed": [
+      "Open Design",
+      "DeepSeek V4 Flash",
+      "Herdr"
+    ],
+    "keySteps": [
+      {
+        "seconds": 37,
+        "step": "Pull the Open Design source from GitHub since Linux has no download."
+      },
+      {
+        "seconds": 84,
+        "step": "Fix a missing node_modules folder and install corepack with brew."
+      },
+      {
+        "seconds": 138,
+        "step": "Sign in and open the workspace with its sample prompts."
+      },
+      {
+        "seconds": 172,
+        "step": "Pick a model such as DeepSeek V4 Flash or add an API key."
+      },
+      {
+        "seconds": 204,
+        "step": "Generate a 20-second paper cutout motion design video."
+      },
+      {
+        "seconds": 281,
+        "step": "Create a slide deck from a YouTube URL as a reference."
+      },
+      {
+        "seconds": 330,
+        "step": "Preview and export the deck as a standalone HTML file."
+      }
+    ],
+    "notCovered": [
+      "Pricing in detail. The presenter says free plans go up to about $8 a month, which is not checked here.",
+      "Design systems, which are shown only as a menu option.",
+      "Accuracy of the slide content drawn from the video transcript.",
+      "Independent checks of the 100,000 GitHub stars quoted."
+    ],
+    "qa": [
+      {
+        "q": "Does it run on Linux?",
+        "a": "Not as a download. The presenter builds it from source after installing the missing Node dependencies and corepack."
+      },
+      {
+        "q": "What did the tests cost?",
+        "a": "About 1 cent for the motion video and about 16 cents for the slide deck, from a starting balance near 50 cents."
+      },
+      {
+        "q": "Which models can it use?",
+        "a": "The presenter lists Claude, DeepSeek, GPT and Gemini options, some of which need your own API key."
+      }
+    ]
+  },
+  "UoMuiKjDu4A": {
+    "summary": "A walkthrough of OpenAI's GPT-6 Astra launch, using the announcement page, OpenAI's demos and third-party benchmark charts. The presenter has not used the model yet because it has not rolled out to Codex or ChatGPT. Claims such as 99.9 percent on ARC-AGI-3 and the intelligence and cost rankings come from OpenAI and the charts shown.",
+    "whatYouBuild": "Nothing is built. The video reviews launch claims, demos, availability and benchmark comparisons for GPT-6 Astra.",
+    "toolsUsed": [
+      "GPT-6 Astra",
+      "Codex",
+      "Unreal Engine",
+      "KiCad"
+    ],
+    "keySteps": [
+      {
+        "seconds": 54,
+        "step": "See a villa tour demo compared with Fable 5.1."
+      },
+      {
+        "seconds": 93,
+        "step": "Read the rollout plan for Plus, Pro, Business and Enterprise and the banked usage resets while waiting."
+      },
+      {
+        "seconds": 144,
+        "step": "Watch OpenAI's PCB layout demo in KiCad."
+      },
+      {
+        "seconds": 184,
+        "step": "See a Unity city scene built from existing assets."
+      },
+      {
+        "seconds": 231,
+        "step": "See front-end QA and a Blender to Unreal Engine 5 house walkthrough."
+      },
+      {
+        "seconds": 343,
+        "step": "See computer use demos such as apartment hunting in a browser."
+      },
+      {
+        "seconds": 383,
+        "step": "Compare benchmark, speed and cost charts with Fable 5.1 and Opus 5."
+      }
+    ],
+    "notCovered": [
+      "The presenter's own tests of the model.",
+      "Independent verification of the benchmark claims. One chart in the video puts Astra at 61 against 66 for Fable 5.1 on an intelligence index.",
+      "How soon each plan actually gets access.",
+      "The presenter's remark that this is near AGI, which is an opinion."
+    ],
+    "qa": [
+      {
+        "q": "Is GPT-6 Astra available to everyone?",
+        "a": "It is described as launching to paid ChatGPT plans over a few days, and not yet in Codex or ChatGPT when the video was recorded."
+      },
+      {
+        "q": "Does it beat Fable 5.1?",
+        "a": "On the charts shown it leads on speed and often on cost, while one intelligence index has Fable 5.1 ahead."
+      },
+      {
+        "q": "Do I need API credits?",
+        "a": "The presenter says it is included in subscription plans, unlike Fable 5.1 which they say needs usage credits."
+      }
+    ]
+  },
+  "GhHYtL5pQXU": {
+    "summary": "An n8n workflow that watches a YouTube channel's RSS feed, pulls the new video's transcript with Apify, and has Claude write a 400-word LinkedIn newsletter that is saved to Google Docs. The run works in the demo. Posting to LinkedIn stays manual because the presenter cannot verify their account and prefers not to automate LinkedIn.",
+    "whatYouBuild": "An n8n workflow with an RSS trigger every 10 minutes, an Apify transcript actor, split and aggregate steps, a Claude newsletter prompt, and Google Docs create and update nodes.",
+    "toolsUsed": [
+      "n8n",
+      "Apify",
+      "Claude",
+      "Google Docs",
+      "Google Drive"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Add an RSS feed trigger with the channel's YouTube feed URL."
+      },
+      {
+        "seconds": 94,
+        "step": "Run the Apify YouTube transcript actor with the video URL and fetch its dataset items."
+      },
+      {
+        "seconds": 152,
+        "step": "Split out the dataset items to remove timestamps."
+      },
+      {
+        "seconds": 205,
+        "step": "Aggregate the text into one transcript."
+      },
+      {
+        "seconds": 260,
+        "step": "Write a prompt for a 400-word newsletter at about a sixth grade reading level and add the transcript."
+      },
+      {
+        "seconds": 318,
+        "step": "Enable the Google Docs and Drive APIs in Google Cloud Console and add OAuth credentials."
+      },
+      {
+        "seconds": 385,
+        "step": "Create a document, then update it with Claude's text."
+      },
+      {
+        "seconds": 450,
+        "step": "Copy the text into a LinkedIn newsletter by hand and add the video link."
+      }
+    ],
+    "notCovered": [
+      "Posting to LinkedIn automatically, which fails because the account is not verified.",
+      "Checking the newsletter against the video for accuracy.",
+      "Costs of Apify and Claude per run.",
+      "Whether a 10-minute poll is the right interval, which the presenter suggests could be 30 or 60 minutes."
+    ],
+    "qa": [
+      {
+        "q": "Why not post to LinkedIn automatically?",
+        "a": "The presenter cannot get the credentials verified and also worries that LinkedIn may detect automation."
+      },
+      {
+        "q": "Why remove the timestamps?",
+        "a": "The transcript actor returns lines with timestamps, so the workflow splits and aggregates them into plain text for the prompt."
+      },
+      {
+        "q": "What does it need set up?",
+        "a": "An Apify account and actor, an Anthropic API key, and Google Cloud OAuth credentials for Docs and Drive."
+      }
+    ]
+  },
+  "lumzbY6QV4Y": {
+    "summary": "A first look at OpenAI's Agent Builder one day after its announcement. The presenter creates a customer service workflow, picks GPT-5, adds tool options and reviews two templates, but cannot run any of it. Preview is blocked for unverified organizations, and verification with a passport had not cleared by the end. The title promises a test, which does not happen.",
+    "whatYouBuild": "Nothing runs. The video builds a workflow with an agent node, a vector store file search and guardrails, and walks through the customer service and data enrichment templates.",
+    "toolsUsed": [
+      "OpenAI Agent Builder",
+      "GPT-5",
+      "n8n"
+    ],
+    "keySteps": [
+      {
+        "seconds": 30,
+        "step": "Create a customer service agent workflow and publish it."
+      },
+      {
+        "seconds": 70,
+        "step": "Set the instructions, the GPT-5 model and the reasoning effort."
+      },
+      {
+        "seconds": 110,
+        "step": "Look at tool options such as MCP servers, Gmail, Google Calendar and Stripe."
+      },
+      {
+        "seconds": 150,
+        "step": "Hit the message that preview is unavailable for non-verified organizations and start identity verification."
+      },
+      {
+        "seconds": 190,
+        "step": "Add a file search node pointing at a vector store."
+      },
+      {
+        "seconds": 230,
+        "step": "Read the customer service template: a jailbreak guardrail, an intent classifier, branches for returns, subscription cancellation and questions, and an approval step."
+      },
+      {
+        "seconds": 270,
+        "step": "Read the data enrichment template that uses web search."
+      },
+      {
+        "seconds": 310,
+        "step": "Look at the guardrails for personal information and errors."
+      }
+    ],
+    "notCovered": [
+      "Running or deploying any agent, because preview stays unavailable.",
+      "Costs, limits and the SDK, which are mentioned only as options.",
+      "A comparison with n8n or Make.com beyond the opinion that the builder is less advanced.",
+      "Whether organization verification later cleared."
+    ],
+    "qa": [
+      {
+        "q": "Why couldn't the presenter run the agent?",
+        "a": "The preview needs a verified organization. The presenter submitted a passport and selfies, but the page still showed it as unverified."
+      },
+      {
+        "q": "What does the customer service template do?",
+        "a": "It checks input with a guardrail, classifies the request as a return, a cancellation or a question, then sends it down the matching branch."
+      },
+      {
+        "q": "Does the presenter recommend it?",
+        "a": "For something simple, yes, but for most automations they recommend n8n."
+      }
+    ]
+  },
+  "dIZ7xNyWu3M": {
+    "summary": "A Make.com scenario that reads YouTube links from Google Sheets, extracts transcripts with Dumpling AI, saves them to Google Drive and uploads them to an OpenAI vector store as a knowledge base. The goal is an ElevenLabs voice clone that answers WhatsApp messages, but the voice clone and WhatsApp parts are not built in this video. The template is offered in the presenter's free community.",
+    "whatYouBuild": "A Make.com loop that fetches transcripts without timestamps, writes each to a Drive file, downloads it and adds it to an OpenAI assistant's vector store.",
+    "toolsUsed": [
+      "Make.com",
+      "Dumpling AI",
+      "Google Drive",
+      "OpenAI",
+      "ElevenLabs"
+    ],
+    "keySteps": [
+      {
+        "seconds": 25,
+        "step": "Search a Google Sheet of YouTube video links and titles."
+      },
+      {
+        "seconds": 87,
+        "step": "Extract each transcript with a Dumpling AI module with timestamps turned off."
+      },
+      {
+        "seconds": 116,
+        "step": "Create a Google Drive file per video, then download it."
+      },
+      {
+        "seconds": 140,
+        "step": "Upload the files to an OpenAI vector store attached to a custom assistant."
+      },
+      {
+        "seconds": 228,
+        "step": "See where the ElevenLabs voice clone would be built, which needs a paid plan and about 30 minutes of audio."
+      }
+    ],
+    "notCovered": [
+      "The voice clone, which is not built here.",
+      "The WhatsApp auto-reply, which is described as the eventual goal.",
+      "Checking the assistant's answers against the videos.",
+      "Consent, disclosure and impersonation concerns when replying to messages in a cloned voice."
+    ],
+    "qa": [
+      {
+        "q": "What is the knowledge base for?",
+        "a": "It trains a custom assistant on the presenter's own videos so a later voice clone can answer messages."
+      },
+      {
+        "q": "Does the scenario run?",
+        "a": "It runs once in the demo: it gets a transcript, saves it to Drive, downloads it and uploads it to the vector store, then moves to the next link."
+      },
+      {
+        "q": "Where is the template?",
+        "a": "In the presenter's free school community, according to the video."
+      }
+    ]
+  },
+  "uTcTJd5JaZU": {
+    "summary": "A recap of OpenAI's September 29, 2026 dev day announcements and a first try of Dots, an always-on agent inside ChatGPT with its own cloud computer. The presenter customizes a dot, gets task suggestions drawn from past chats and email, and prepares a podcast application, though a site is blocked in the cloud browser. Prices, benchmarks and model claims are from OpenAI's recap. The presenter plans more videos before judging it.",
+    "whatYouBuild": "A Dots agent named by the presenter, connected to ChatGPT history and plugins, used to prepare a podcast guest application and explore the cloud computer's terminal and file explorer.",
+    "toolsUsed": [
+      "OpenAI Dots",
+      "GPT-6 Astra",
+      "Codex",
+      "GrokBot"
+    ],
+    "keySteps": [
+      {
+        "step": "Read OpenAI's recap: Dots, GPT-6.1 Sol, an Ultra fast mode and Codex in the cloud."
+      },
+      {
+        "step": "Set up a dot from ChatGPT, name it and choose an avatar."
+      },
+      {
+        "step": "Accept a suggested task to prepare a podcast guest application with bio, pitch and talking points."
+      },
+      {
+        "step": "Open the cloud computer to use the terminal, file explorer and browser, where the application site is blocked."
+      },
+      {
+        "step": "Ask the dot to gather knowledge from past ChatGPT projects."
+      }
+    ],
+    "notCovered": [
+      "Dots' permissions and safety controls, which the video does not detail.",
+      "Connecting a large number of apps, or a full automation run.",
+      "Independent checks of the cost and benchmark claims in OpenAI's recap.",
+      "Whether the dot handles private email and chat history safely, which matters before connecting it."
+    ],
+    "qa": [
+      {
+        "q": "What are Dots?",
+        "a": "An always-on AI agent in ChatGPT that can run on a local or cloud computer, take tasks and send updates, per the announcement."
+      },
+      {
+        "q": "What does Ultra fast mode cost?",
+        "a": "The presenter says it needs a new $500 a month plan, and that a $200 plan returned with about half the usage. These are quoted from the recap."
+      },
+      {
+        "q": "Did the podcast application get submitted?",
+        "a": "No. It was prepared for review, and the form site did not load fully in the cloud browser."
+      }
+    ]
+  },
+  "oQot9GoNZDA": {
+    "summary": "A news summary of Anthropic's announcement that Claude Fable 5 would return globally on the next day, read from the company's post and press coverage. It says Fable 5 comes back with new classifiers, some routine coding tasks fall back to Opus 4.8, and Pro, Max, Team and some Enterprise plans include it for up to 50 percent of weekly limits through July 7. The model had not returned when this was recorded.",
+    "whatYouBuild": "Nothing is built. The video summarizes the redeployment details and compares Fable 5's price with GLM 5.2.",
+    "toolsUsed": [
+      "Claude Fable 5",
+      "Claude Code",
+      "OpenCode"
+    ],
+    "keySteps": [
+      {
+        "seconds": 72,
+        "step": "Hear why Fable 5 was paused on June 9, which the video links to US export controls."
+      },
+      {
+        "seconds": 118,
+        "step": "Hear that the controls were lifted on June 30 and that redeployment was announced."
+      },
+      {
+        "seconds": 194,
+        "step": "See where it returns: the Claude platform, Claude.ai and Claude Code, with cloud providers to follow."
+      },
+      {
+        "seconds": 235,
+        "step": "Read the new safeguards: classifiers that drop some requests back to Opus 4.8."
+      },
+      {
+        "seconds": 322,
+        "step": "Compare its $10 and $50 per million token prices with GLM 5.2."
+      }
+    ],
+    "notCovered": [
+      "Fable 5 actually back online. The presenter is still waiting for it.",
+      "Independent confirmation of the export control details, which come from the announcement and press coverage.",
+      "How often the classifiers fall back to Opus 4.8 in real coding work.",
+      "A quality comparison with GLM 5.2. The presenter only compares prices and recommends cheaper models."
+    ],
+    "qa": [
+      {
+        "q": "Which plans get Fable 5?",
+        "a": "Pro, Max, Team and select Enterprise plans, for up to 50 percent of weekly usage limits through July 7, and then through usage credits."
+      },
+      {
+        "q": "Why was it paused?",
+        "a": "The video says US export controls triggered a suspension days after its June 9 release."
+      },
+      {
+        "q": "What does it cost?",
+        "a": "$10 per million input tokens and $50 per million output tokens, according to the video."
+      }
+    ]
+  },
+  "i2na8YZI7KM": {
+    "summary": "Use Claude Code in the terminal to write SEO blog articles for the presenter's own site, first with a general skill and then with a custom project-local skill file. An article takes about 10 to 15 minutes and includes a slug, excerpt, internal links and an FAQ. The video also covers llms.txt and ai.txt files. No ranking results are shown, so the title's claim that the articles rank is not demonstrated.",
+    "whatYouBuild": "A Claude Code SKILL.md for writing blog articles with format, SEO link target, E-E-A-T and citation rules, plus llms.txt, ai.txt and llms-full.txt files for AI crawlers.",
+    "toolsUsed": [
+      "Claude Code",
+      "Ubersuggest",
+      "Claude skills"
+    ],
+    "keySteps": [
+      {
+        "seconds": 33,
+        "step": "Review an article Claude Code wrote with a slug, excerpt, category, internal links and FAQ."
+      },
+      {
+        "seconds": 91,
+        "step": "Pick another topic from keyword research in Ubersuggest and run the same prompt."
+      },
+      {
+        "seconds": 154,
+        "step": "Create a custom skill so the prompt does not need repeating."
+      },
+      {
+        "seconds": 199,
+        "step": "Look at the llms.txt file that lists the site's pages for AI search."
+      },
+      {
+        "seconds": 232,
+        "step": "Look at an ai.txt that lists which AI crawlers may access the site."
+      },
+      {
+        "seconds": 287,
+        "step": "Read the skill file's rendering constraints, blog format, link targets and E-E-A-T rules."
+      },
+      {
+        "seconds": 344,
+        "step": "Run the skill, which Claude reads directly because it is project-local."
+      }
+    ],
+    "notCovered": [
+      "Rankings. No search or AI citation results are shown.",
+      "Fact-checking the generated articles or search engine guidance on AI-written content.",
+      "Whether llms.txt or ai.txt files change AI recommendations, which the video asserts without evidence.",
+      "Costs of running article generation at scale."
+    ],
+    "qa": [
+      {
+        "q": "How long does an article take?",
+        "a": "About 10 to 15 minutes, according to the presenter."
+      },
+      {
+        "q": "What is in the skill file?",
+        "a": "Rendering constraints, a blog post format, SEO link targets, E-E-A-T requirements and citation and data point rules."
+      },
+      {
+        "q": "Do these articles rank?",
+        "a": "The video does not show it. The presenter only says the aim is to help them rank in search and AI answers."
+      }
+    ]
+  },
+  "vvDdXF2Yuz8": {
+    "summary": "Build a script with OpenCode and DeepSeek V4 Flash that turns a video, from YouTube or a local file, into five LinkedIn post variants. OpenCode trims videos to two minutes with FFmpeg, then writes a Node.js script that gets a transcript with yt-dlp captions or Whisper and asks ChatGPT 5.4 for thought leadership, storytelling, listicle, hot take and question posts. Posting stays manual. The sign-up link is an affiliate link.",
+    "whatYouBuild": "A Node.js script that extracts a transcript, writes five LinkedIn post variants into one file and applies LinkedIn formatting rules such as a hook, short lines and tighter hashtags.",
+    "toolsUsed": [
+      "OpenCode",
+      "OpenCode Go",
+      "DeepSeek V4 Flash",
+      "FFmpeg",
+      "OpenAI API",
+      "Whisper"
+    ],
+    "keySteps": [
+      {
+        "seconds": 62,
+        "step": "Trim videos to two minutes for LinkedIn by telling OpenCode to run FFmpeg."
+      },
+      {
+        "seconds": 98,
+        "step": "Ask for a script that gets transcripts from YouTube or local videos and writes posts, and answer its clarifying questions."
+      },
+      {
+        "seconds": 128,
+        "step": "Create an OpenAI API key and keep it in the environment file."
+      },
+      {
+        "seconds": 206,
+        "step": "Fix a missing OpenAI import and heavy package installs."
+      },
+      {
+        "seconds": 289,
+        "step": "Test the Node.js script on a video, since it chose Node instead of the Python asked for."
+      },
+      {
+        "seconds": 364,
+        "step": "Generate five post variants and merge them into a single file."
+      },
+      {
+        "seconds": 522,
+        "step": "Rewrite the prompt for LinkedIn engagement with a hook first and short lines."
+      }
+    ],
+    "notCovered": [
+      "Automatic posting to LinkedIn, which is manual.",
+      "Which variant performs best, since no engagement results are shown.",
+      "Total cost. The spoken spend figure is unclear, and the presenter reports 6 percent of the day's and 19 percent of the month's OpenCode Go usage.",
+      "The lost earlier output files, which the presenter notes were deleted by a script change."
+    ],
+    "qa": [
+      {
+        "q": "Is the OpenCode link an affiliate link?",
+        "a": "Yes. The presenter says sign-ups get $5 in credits and the presenter gets $5."
+      },
+      {
+        "q": "Why Node.js instead of Python?",
+        "a": "OpenCode chose Node.js on its own. The presenter would have preferred Python but kept it."
+      },
+      {
+        "q": "Which post styles does it make?",
+        "a": "Thought leadership, storytelling, listicle, hot take and question, all saved in one file."
+      }
+    ]
+  },
+  "pwLLS6zFpKs": {
+    "summary": "A build-in-public look at Cortex, the presenter's business second brain made in Claude Code and Codex. It tracks 26 project notes and the channel transcripts, has a capture inbox, a theme graph and a planned radar for what to build and film next. The vidIQ MCP is connected and a LeadScope CRM integration is prompted. The presenter says they are not yet sure the tool helps earn more.",
+    "whatYouBuild": "A local dashboard with project spaces, transcripts, an inbox, a theme graph and a radar recommendation page, with Claude Haiku summarizing items in a queue.",
+    "toolsUsed": [
+      "Claude Code",
+      "Codex",
+      "vidIQ",
+      "Claude Haiku"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Look at project spaces and the transcripts script for one channel."
+      },
+      {
+        "seconds": 80,
+        "step": "Open a project markdown file that lists the stack, state and file structure."
+      },
+      {
+        "seconds": 120,
+        "step": "See the radar idea for suggesting what to build and film next."
+      },
+      {
+        "seconds": 160,
+        "step": "Test the new theme graph and the capture inbox."
+      },
+      {
+        "seconds": 200,
+        "step": "Check the vidIQ MCP in Claude Code and its credit balance."
+      },
+      {
+        "seconds": 240,
+        "step": "Prompt for a LeadScope CRM integration to show outreach and open rates."
+      },
+      {
+        "seconds": 280,
+        "step": "Move the build to Codex because Claude rate limits are used up."
+      },
+      {
+        "seconds": 320,
+        "step": "Run the Claude Haiku summary queue, which has 218 summaries and nothing pending."
+      }
+    ],
+    "notCovered": [
+      "Whether the radar gives useful recommendations, since it is only started.",
+      "The second YouTube channel's 1,200 video transcripts, which are still to be collected.",
+      "How the retrieval system works or how business data is protected.",
+      "Any measured business benefit. The presenter says it is not obvious that it will make more money."
+    ],
+    "qa": [
+      {
+        "q": "What is Cortex for?",
+        "a": "A single place that tracks the presenter's projects and channels and, eventually, suggests what to do next."
+      },
+      {
+        "q": "What does it connect to?",
+        "a": "Project markdown files, YouTube transcripts, the vidIQ MCP and a planned LeadScope CRM."
+      },
+      {
+        "q": "Why switch to Codex?",
+        "a": "Claude usage was exhausted and about 45 minutes from resetting, so the presenter continued in Codex."
+      }
+    ]
+  },
+  "IlOJWfmlpGg": {
+    "summary": "A sponsored build of a YouTube competitor analysis dashboard in Claude Code using Apify agent skills to scrape channels. Claude writes scraper, topic analysis and HTML dashboard files, the scrape takes about ten minutes, and the dashboard loads after fixes and a top-up of Anthropic credits. The video says Apify sponsored it and gave $50 in credits. The numbers on screen do not match each other.",
+    "whatYouBuild": "A local project with an Apify-powered YouTube scraper, a topic analysis script and a standalone HTML dashboard served on localhost showing topics, trending keywords and channel specialties.",
+    "toolsUsed": [
+      "Apify",
+      "Claude Code",
+      "VS Code"
+    ],
+    "keySteps": [
+      {
+        "step": "Install the Apify agent skills and ask Claude Code to build a competitor analysis tool, choosing top competitors and the last 30 days."
+      },
+      {
+        "step": "Pick a standalone HTML and JavaScript dashboard and let Claude write the scraper, the topic analysis script and the dashboard."
+      },
+      {
+        "step": "Add the Apify token to the environment file."
+      },
+      {
+        "step": "Run the scrape, which takes about ten minutes."
+      },
+      {
+        "step": "Top up Anthropic credits after a balance error, run the analysis and start the dashboard."
+      },
+      {
+        "step": "Fix a no analysis data error and review the topics, keywords and channel charts."
+      }
+    ],
+    "notCovered": [
+      "Terms of service for scraping YouTube through Apify.",
+      "Accuracy of the topic analysis and the channel list that Claude chose.",
+      "A match between the numbers shown: the scrape reports 305 videos while the dashboard shows 74, with 175 million views in total.",
+      "Links from the dashboard to each video, which the presenter says could be added."
+    ],
+    "qa": [
+      {
+        "q": "Is this video sponsored?",
+        "a": "Yes. The presenter says Apify sponsored it and gave $50 in free credits for the demo."
+      },
+      {
+        "q": "How long did the build take?",
+        "a": "The presenter says about 15 to 20 minutes, plus a ten-minute scrape."
+      },
+      {
+        "q": "What does Apify cost?",
+        "a": "The video says a free plan with $5 of credits a month and paid plans from $29 a month."
+      }
+    ]
   }
 };
 
