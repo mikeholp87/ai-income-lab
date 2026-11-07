@@ -2580,6 +2580,125 @@ export const videoSummaries = {
         "a": "The dashboard text quotes 60 to 95 percent fewer tokens for JSON data and 15 to 20 percent fewer for coding agents. The video does not measure this."
       }
     ]
+  },
+  "kXw2yntdmo4": {
+    "summary": "A Make.com scenario that runs an Apify scraper on an Apollo search, takes 100 leads and writes their names, emails and other fields into a new Google Sheet. The run works after a sheet-name clash is fixed, but the phone number column comes back wrong. The presenter offers the template on Gumroad as pay what you want.",
+    "whatYouBuild": "A Make.com scenario that creates a Google Sheet, runs an Apify Apollo actor with a search URL and a 100-lead limit, reads the dataset items and adds one row per lead.",
+    "toolsUsed": [
+      "Make.com",
+      "Apify",
+      "Apollo",
+      "Google Sheets"
+    ],
+    "keySteps": [
+      { "seconds": 67, "step": "Choose the Apify Apollo actor and paste in the URL of an Apollo people search." },
+      { "seconds": 108, "step": "Run the actor from Make.com with a JSON input that limits the scrape to 100 leads." },
+      { "seconds": 159, "step": "Get the dataset items, map first name, last name, email, phone, industry and location into an array, and iterate it into sheet rows." },
+      { "step": "Rename the sheet after a name clash and run the scenario again." }
+    ],
+    "notCovered": [
+      "Sending any emails. The leads are only collected and the next step is left to you.",
+      "Fixing the phone number column, which the presenter says is not working.",
+      "Apollo's and Apify's terms of use, or the privacy rules and consent that apply to cold email in your country.",
+      "A clear cost per lead. The video quotes a price per thousand leads that does not match the claim that free credits cover it."
+    ],
+    "qa": [
+      {
+        "q": "Why use Apify instead of Apollo directly?",
+        "a": "The presenter was nearly out of Apollo credits, which are spent per lead, and says Apify's free monthly credit meant their usage did not rise in the demo."
+      },
+      {
+        "q": "How many leads did it collect?",
+        "a": "100 in the demo. The actor can scrape far more, but the presenter limited the test."
+      },
+      {
+        "q": "Where is the template?",
+        "a": "On the presenter's Gumroad page as pay what you want, according to the video."
+      }
+    ]
+  },
+  "ztEj6zCJh5k": {
+    "summary": "Install an open-source Video Use skill and ask Claude Code to cut a long tutorial into a 9:16 YouTube Short with the screen share on top and the webcam below. The first result repeats the webcam in both halves. A second, more exact prompt produces a roughly 17-second clip with burned-in subtitles. The presenter calls the result a work in progress.",
+    "whatYouBuild": "A Claude Code skill setup that transcribes a long video with Faster Whisper, picks a clip, crops the layout with FFmpeg and renders a vertical Short with captions.",
+    "toolsUsed": [
+      "Video Use",
+      "Claude Code",
+      "FFmpeg",
+      "Faster Whisper",
+      "Claude"
+    ],
+    "keySteps": [
+      { "step": "Clone the skill from GitHub, install FFmpeg and place the skill under .claude/skills." },
+      { "seconds": 44, "step": "Prompt for a 1080p vertical 30-second Short with the screen share on top and the webcam below." },
+      { "seconds": 98, "step": "Watch FFmpeg find the webcam in the bottom right and plan the crop." },
+      { "seconds": 186, "step": "Spot a second webcam at the top and ask Claude for a better prompt for a 15 to 30 second clip with no webcam in the top half." },
+      { "seconds": 271, "step": "Run the skill again with Faster Whisper transcribing the audio to find the best standalone moment." },
+      { "seconds": 298, "step": "Note the optional ElevenLabs voiceover, which is skipped because there is no API key." },
+      { "seconds": 410, "step": "Render burned-in subtitles and verify three sample frames." },
+      { "seconds": 518, "step": "Review the finished Short." }
+    ],
+    "notCovered": [
+      "A polished result. The presenter says the subtitles could sit better and the output could be improved.",
+      "A fair comparison with Opus Clip. The presenter says the free plan results were poor but does not run the same clip through both.",
+      "Which model ran the work and its cost beyond a remark that it was cheap through OpenRouter.",
+      "Automating the process with a scheduled job, which is only suggested."
+    ],
+    "qa": [
+      {
+        "q": "What do I need to install?",
+        "a": "The skill from GitHub and FFmpeg, plus a package to download videos from YouTube if you want that. Claude Code then runs it from the skills folder."
+      },
+      {
+        "q": "How long did the Short take to make?",
+        "a": "The second run was still working after about five minutes of analysis, and the video render itself took about a minute and a half. The finished clip is about 17 seconds."
+      },
+      {
+        "q": "Did the first prompt work?",
+        "a": "Only partly. The webcam appeared in both halves of the layout, so a second prompt was written to remove it from the top."
+      }
+    ]
+  },
+  "1LN7TqmW--w": {
+    "summary": "Run an SEO audit skill in OpenCode on the presenter's own AI search visibility site, then let the agent fix blog articles and work on llms.txt, ai.txt and sitemap.xml before a commit and redeploy on Vercel. The presenter hits 98 percent of the OpenCode Go monthly limit and switches to a free model. No ranking result is shown, so the video does not answer its own title question.",
+    "whatYouBuild": "An OpenCode session that runs an SEO audit skill on a live site and applies fixes to blog posts and discovery files, followed by a commit and push for a Vercel deploy.",
+    "toolsUsed": [
+      "OpenCode",
+      "OpenCode Go",
+      "OpenCode Zen",
+      "Hermes Agent",
+      "RTK",
+      "Vercel"
+    ],
+    "keySteps": [
+      { "seconds": 48, "step": "Look at the OpenCode Go plan and the desktop app for Linux, Windows and Mac." },
+      { "seconds": 97, "step": "List installed skills with the skills command and start the SEO audit skill." },
+      { "seconds": 135, "step": "Run the audit on the presenter's own site and read the issues found." },
+      { "seconds": 180, "step": "Check DeepSeek V4 Pro usage, which is at 98 percent of the month's limit." },
+      { "seconds": 211, "step": "Switch to a free OpenCode Zen model to keep working." },
+      { "seconds": 344, "step": "Look at the existing llms.txt, the missing ai.txt and the sitemap.xml the agent is working on." },
+      { "seconds": 401, "step": "Use the same OpenCode models inside Hermes Agent." },
+      { "seconds": 477, "step": "See RTK token compression reporting 81 percent efficiency." }
+    ],
+    "notCovered": [
+      "Any improvement in search or AI answer rankings. The deploy happens at the end of the video.",
+      "A review of the changes the agent made, or how the audit skill scores a site.",
+      "A comparison with a human SEO team or a paid SEO tool.",
+      "Exact costs. The usage figures spoken in the video are hard to read, so they are not quoted here."
+    ],
+    "qa": [
+      {
+        "q": "Can OpenCode replace an SEO team?",
+        "a": "The video shows one audit and one round of fixes on one site, without ranking results. It does not show that, and the presenter does not claim a measured gain."
+      },
+      {
+        "q": "What does OpenCode Go cost?",
+        "a": "The video says $10 a month. The description link is an affiliate link that gives $5 in credits to a new user and $5 to the presenter."
+      },
+      {
+        "q": "What happens when the Go limit runs out?",
+        "a": "The presenter switches to a free model under OpenCode Zen, such as DeepSeek V4 Flash Free, and keeps going."
+      }
+    ]
   }
 };
 
