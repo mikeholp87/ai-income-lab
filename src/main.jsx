@@ -145,7 +145,7 @@ const timeline = [
   ['2014', 'Rebuilt Tetris in Swift the year it came out'],
   ['2016', 'Built an iOS client for OBD car devices'],
   ['2025', 'Started AI Automation Station on YouTube'],
-  ['Now', 'Building TubeAnalytics and VisiScan, and hosting AI Income Lab'],
+  ['Now', 'Building VisiScan and hosting AI Income Lab'],
 ];
 
 const faqs = [
@@ -713,7 +713,7 @@ function App({ page = 'home' }) {
         <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
-        }}><summary>Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
+        }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
       </div>
       </div>
     </header>
@@ -817,7 +817,7 @@ function App({ page = 'home' }) {
       <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try; TubeAnalytics is temporarily unavailable.</SectionHead>
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try. TubeAnalytics is temporarily unavailable.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -859,7 +859,7 @@ function App({ page = 'home' }) {
           <div className="about-copy">
             <h2>Hi, I&rsquo;m Mike</h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
-            <p>AI Automation Station publishes my practical AI builds. AI Income Lab is its paid learning community on Skool, with courses, templates, and help while you build. I also build and run TubeAnalytics and VisiScan.</p>
+            <p>AI Automation Station publishes my practical AI builds. AI Income Lab is its paid learning community on Skool, with courses, templates, and help while you build. I also build and run VisiScan. TubeAnalytics is temporarily unavailable.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
             <ol className="timeline">{timeline.map(([year, event]) => <li key={year}><span>{year}</span>{event}</li>)}</ol>
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>

@@ -241,6 +241,9 @@ test('search starts with a few results, then pages matches eight at a time', asy
   assert.match(page, /const pageSize = 8;/);
   assert.match(page, /rows\.filter\(row => row\[0\] === 'guide'\)\.slice\(0, 3\), \.\.\.rows\.filter\(row => row\[0\] === 'video'\)\.slice\(0, 3\)/);
   assert.match(page, /more\.addEventListener\('click', \(\) => \{ shown \+= pageSize; run\(\); \}\);/);
+  assert.match(page, /<meta name="twitter:title" content="Search guides and videos \| Mike Holp">/);
+  assert.match(page, /<meta name="twitter:description" content="Search every AI automation guide and tested build video on AI Automation Station.">/);
+  assert.match(page, /<meta name="twitter:image" content="https:\/\/www.ai-automation-station.com\/og-card.jpg\?v=2">/);
 });
 
 test('every guide image is a card from scripts/guide-cards.mjs, never a video thumbnail', async () => {
