@@ -18,4 +18,6 @@ export const watchSeo = {
   tzSGF7gu6EE: { title: '9Router cost tracking: model combos and auto-fallback', summary: 'Explore 9Router token-cost tracking, provider warnings, model combinations and automatic fallback configuration.' },
   ztEj6zCJh5k: { title: 'Claude Code video editor: turn long videos into Shorts', summary: 'Use a Claude Code skill and FFmpeg to edit a long video into a vertical Short, add captions and review the result.' },
   '1LN7TqmW--w': { title: 'OpenCode SEO audit: testing skills and model limits', summary: 'Run an SEO audit with OpenCode skills, explore model limits and review generated site files in this recorded test.' },
+  vxH102ZvjUg: { title: 'OpenClaw VPS install: the Clawdbot recording', summary: 'Install Clawdbot, later renamed OpenClaw, on a VPS rather than a daily-driver computer, then connect WhatsApp. The recording uses the official installer on a Hostinger server.' },
+  '7UMrV3w1e40': { title: 'Recorded n8n npm install on Ubuntu', summary: 'Install n8n on Ubuntu with Node.js and npm, open the editor on localhost, and start a first workflow. The recording predates n8n 3.0, when npm installs became deprecated.' },
 };

@@ -51,6 +51,9 @@ ul, ol { padding: 0; list-style: none; }
 .guide-more .button { padding-inline: 32px; font-size: 16px; }
 .guide-start { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .guide-start a { text-decoration: underline; text-underline-offset: 3px; }
+.topic-row { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 20px; }
+.topic-row a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
+.topic-row a:hover { color: var(--signal); border-color: var(--signal); }
 button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 section[id], main [id] { scroll-margin-top: 88px; }
 .accent { color: var(--signal); }

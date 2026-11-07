@@ -42,3 +42,16 @@ test('topic pages are served at /videos/<slug> next to the numbered pages', asyn
   assert.equal((await get('/videos/2')).status, 200);
   assert.equal((await get('/videos/1')).status, 308);
 });
+
+test('topic hubs list the matching written guides', () => {
+  const hrefs = slug => topicBySlug(slug).guides.map(([href]) => href);
+  for (const href of ['/guides/what-is-n8n-used-for.html', '/guides/self-host-n8n.html', '/guides/n8n-vs-zapier-vs-make.html', '/guides/n8n-alternatives-open-source.html']) {
+    assert.ok(hrefs('n8n').includes(href), href);
+  }
+  for (const href of ['/guides/no-code-ai-agent-builder.html', '/guides/agentic-ai-vs-traditional-automation.html', '/guides/install-openclaw.html']) {
+    assert.ok(hrefs('ai-agents').includes(href), href);
+  }
+  assert.ok(hrefs('ai-video').includes('/guides/youtube-channel-growth-workflow.html'));
+  assert.ok(hrefs('ai-video').includes('/guides/ai-content-creation-workflows.html'));
+  assert.ok(hrefs('new-models').includes('/guides/choosing-ai-models-for-a-task.html'));
+});
