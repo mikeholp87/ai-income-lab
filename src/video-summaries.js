@@ -6289,6 +6289,1160 @@ export const videoSummaries = {
         "a": "The video says a free plan with $5 of credits a month and paid plans from $29 a month."
       }
     ]
+  },
+  "wniZpV6LZsE": {
+    "summary": "Set up a SendPulse chatbot that replies to comments on any post of a Facebook page and sends each commenter one direct message with buttons to the presenter's Facebook group, YouTube channel and Skool community. The presenter has used it for about two years on a page with roughly 175,000 followers. The ChatGPT agent step needs the paid plan, and the contact limit on the free plan has already been exceeded.",
+    "whatYouBuild": "A SendPulse comment trigger on any post with randomized replies, a repeat-trigger delay, and a direct message with three link buttons that then closes the chat.",
+    "toolsUsed": [
+      "SendPulse",
+      "Facebook Messenger",
+      "ChatGPT",
+      "Make.com"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Connect Facebook Messenger by logging in and entering a code."
+      },
+      {
+        "seconds": 80,
+        "step": "Create a trigger for public comments on any post and add randomized replies."
+      },
+      {
+        "seconds": 125,
+        "step": "Edit the workflow so each commenter gets one message with buttons to a Facebook group, a YouTube channel and a Skool community."
+      },
+      {
+        "seconds": 170,
+        "step": "Ignore repeated triggers for 12 hours so the same person is not messaged again."
+      },
+      {
+        "seconds": 210,
+        "step": "See the AI agent node for ChatGPT replies, which needs the paid plan."
+      },
+      {
+        "seconds": 260,
+        "step": "Compare with ManyChat, which the presenter says starts at $15 a month."
+      },
+      {
+        "seconds": 310,
+        "step": "Use the inbox and built-in CRM, where 1,700 contacts exceed the free limit of 500."
+      }
+    ],
+    "notCovered": [
+      "Meta's rules on automated replies and direct messages to people who commented.",
+      "Results such as clicks to the group, channel or community.",
+      "A working ChatGPT reply, which needs a paid plan.",
+      "The claim that Make.com cannot reply to comments and send DMs, which is the presenter's understanding."
+    ],
+    "qa": [
+      {
+        "q": "How much does SendPulse cost?",
+        "a": "The video says there is a free start and paid plans from about $10 a month, scaling with the number of subscribers."
+      },
+      {
+        "q": "Why close the chat after one message?",
+        "a": "To avoid messaging the same person every time they comment, which the presenter says would bother them."
+      },
+      {
+        "q": "Can it use ChatGPT?",
+        "a": "Yes, through an AI agent node, but the presenter says that now needs the paid plan."
+      }
+    ]
+  },
+  "9hs6n1enosI": {
+    "summary": "A news summary of Anthropic's June 9, 2026 launch of Claude Fable 5, which Anthropic calls a Mythos-class model with safeguards for general use. The presenter reads the press release and benchmark pages: it is included on paid plans until June 22, then needs usage credits, and costs $10 per million input tokens and $50 for output. The presenter had not used it yet. The title mentions Mythos, but the video is about Fable 5.",
+    "whatYouBuild": "Nothing is built. The video reviews the release, the Glass Wing partner rollout, the plan access dates and benchmark charts for Fable 5.",
+    "toolsUsed": [
+      "Claude Fable 5",
+      "Claude Opus 4.8"
+    ],
+    "keySteps": [
+      {
+        "seconds": 135,
+        "step": "Read the benchmark comparison with Opus 4.8, GPT 5.5 and Gemini 3.1 Pro from Anthropic's page."
+      },
+      {
+        "seconds": 270,
+        "step": "Read the access terms: included on Pro, Max, Team and seat-based Enterprise through June 22, then usage credits from June 23."
+      }
+    ],
+    "notCovered": [
+      "The presenter's own tests, which are planned after upgrading to Pro.",
+      "Independent checks of the benchmark claims. A separate index in the video ranks it first on intelligence but near the bottom on input price and mid-tier on speed.",
+      "How the Glass Wing partner rollout affects individual users.",
+      "Whether the included-plan window was extended."
+    ],
+    "qa": [
+      {
+        "q": "Why does the title say Mythos?",
+        "a": "Anthropic describes Fable 5 as a Mythos-class model. The earlier Mythos preview was kept from general release over cyber security concerns, according to the announcement."
+      },
+      {
+        "q": "How much does Fable 5 cost?",
+        "a": "$10 per million input tokens and $50 per million output tokens, more than Opus 4.8."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "Paid plan users until June 22, then usage credits through the API, per the announcement as read in the video."
+      }
+    ]
+  },
+  "woyme-rVDGw": {
+    "summary": "A news explainer on OpenAI's GPT 5.6, which is reported to be limited to about 20 pre-approved organizations through the API and Codex, with no paid ChatGPT tier unlocking it. The presenter attributes the staggered rollout to a US government request, based on reports and OpenAI's statements. Benchmark numbers and rollout rumors are repeated, not tested. The presenter advises staying with existing models and distrusting early access offers.",
+    "whatYouBuild": "Nothing is built. The video summarizes who can use GPT 5.6, what the Sol, Terra and Luna models are, and how to tell when it reaches ChatGPT.",
+    "toolsUsed": [
+      "GPT 5.6",
+      "ChatGPT",
+      "Codex"
+    ],
+    "keySteps": [
+      {
+        "seconds": 75,
+        "step": "Hear that access is limited to about 20 approved organizations, many of them Glass Wing partners."
+      },
+      {
+        "seconds": 118,
+        "step": "Learn that access is through the API and Codex only for those partners."
+      },
+      {
+        "seconds": 162,
+        "step": "Hear why ChatGPT Plus and free users cannot unlock it."
+      },
+      {
+        "seconds": 205,
+        "step": "Read the reports that the staggered release was requested by the US government on cyber security grounds."
+      },
+      {
+        "seconds": 340,
+        "step": "See the signs that general availability has arrived, such as a 5.6 option in the model picker."
+      }
+    ],
+    "notCovered": [
+      "Independent confirmation of the government request, which is reported in the video from news coverage.",
+      "Independent benchmark results, since the model is not public. The scores quoted are from OpenAI's materials.",
+      "A release date. The video says only that wider availability is promised in coming weeks, and cites betting market rumors.",
+      "Whether the identity checks the presenter mentions as a rumor will apply."
+    ],
+    "qa": [
+      {
+        "q": "Can I use GPT 5.6 now?",
+        "a": "Not according to the video. It is limited to about 20 organizations, and paying for ChatGPT does not unlock it."
+      },
+      {
+        "q": "What are Sol, Terra and Luna?",
+        "a": "Sol is the flagship model, Terra is for everyday work and Luna is the minimal, lower-cost one."
+      },
+      {
+        "q": "What does the presenter suggest?",
+        "a": "Keep using the models you already have, such as GPT 5.4 mini for coding, and be skeptical of sites offering early access."
+      }
+    ]
+  },
+  "Z03CpV_8OIA": {
+    "summary": "An n8n workflow that pulls a resume from Google Docs, scrapes remote digital marketing jobs from Indeed with Apify, has GPT-4.1 judge fit, writes a tailored resume in a Google Doc for good matches and logs every job in a Google Sheet. Google authentication errors stop the live run in the demo, so it is explained rather than shown working. Applying to jobs stays manual.",
+    "whatYouBuild": "An n8n workflow with a manual trigger, an Apify Indeed scraper in batches of five, a fit-check filter, a resume rewrite step, HTML to markdown conversion, Google Docs creation and a Google Sheets tracker.",
+    "toolsUsed": [
+      "n8n",
+      "Apify",
+      "OpenAI API",
+      "Google Docs",
+      "Google Sheets"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Start with a manual trigger and fetch the resume from Google Docs, which fails on authentication."
+      },
+      {
+        "seconds": 80,
+        "step": "Configure the Apify Indeed scraper for remote digital marketing jobs in the United States."
+      },
+      {
+        "seconds": 125,
+        "step": "Loop over jobs in batches of five and ask GPT-4.1 whether the resume fits each description."
+      },
+      {
+        "seconds": 170,
+        "step": "Tailor the resume with GPT-4.1 mini, written in HTML for easy copying."
+      },
+      {
+        "seconds": 215,
+        "step": "Create the resume document in Google Docs and set its sharing permission."
+      },
+      {
+        "seconds": 260,
+        "step": "Add every matching job to a Google Sheets tracker."
+      }
+    ],
+    "notCovered": [
+      "A successful run. The Google Docs authentication error is not resolved in the video.",
+      "Checking that tailored resumes stay truthful, since an AI model can overstate or invent qualifications.",
+      "The sharing setting that makes each resume document readable by anyone with the link, which matters for personal data.",
+      "Applying, which the presenter says cannot be easily automated."
+    ],
+    "qa": [
+      {
+        "q": "Does the workflow apply for jobs?",
+        "a": "No. It finds jobs, scores fit, writes tailored resumes and logs them. The presenter says applying still has to be done by hand."
+      },
+      {
+        "q": "Where is the template?",
+        "a": "On the presenter's Gumroad page as pay what you want."
+      },
+      {
+        "q": "Why did the demo fail?",
+        "a": "Google Docs returned a client authentication error that the presenter could not resolve during recording."
+      }
+    ]
+  },
+  "X0X8kJTK7vA": {
+    "summary": "A Make.com scenario that finds businesses on Google Maps, creates a Google Sheet, fetches each business website and uses a pattern from ChatGPT to extract email addresses into a column. A run for marketing agencies in Bangkok fills the sheet automatically, though some emails are wrong or missing. The presenter plans to send the leads cold email. Terms of use and cold email rules are not covered.",
+    "whatYouBuild": "A Make.com scenario with a Google Maps text search, HTTP requests for place details and website HTML, a regular expression for emails, and rows added to Google Sheets.",
+    "toolsUsed": [
+      "Make.com",
+      "Google Maps API",
+      "Google Sheets",
+      "ChatGPT",
+      "MailerLite"
+    ],
+    "keySteps": [
+      {
+        "seconds": 127,
+        "step": "Create a Google Sheet and sheet name from the scenario."
+      },
+      {
+        "seconds": 198,
+        "step": "Connect the Google Maps API with a Google Cloud key and run a text search for marketing agencies in Bangkok, limited to 50."
+      },
+      {
+        "seconds": 281,
+        "step": "Call the place details endpoint for each result's website and add name and website rows."
+      },
+      {
+        "seconds": 333,
+        "step": "Fetch each site's HTML and extract emails with a regular expression written by ChatGPT."
+      },
+      {
+        "seconds": 371,
+        "step": "Ignore validation errors so the run continues, and run or schedule the scenario."
+      },
+      {
+        "seconds": 409,
+        "step": "Watch the sheet fill in real time and review which emails were found."
+      }
+    ],
+    "notCovered": [
+      "Accuracy of the emails. The presenter says some are image file names or are missing and need a tool such as Hunter.",
+      "Google Maps Platform terms on storing business data, and anti-spam and data protection rules for cold email.",
+      "A count that matches the 50 requested. The sheet shows 72 rows added.",
+      "Results from emailing the leads."
+    ],
+    "qa": [
+      {
+        "q": "Can I use it for any city or industry?",
+        "a": "The presenter says any location and industry works as long as the business is on Google Maps."
+      },
+      {
+        "q": "What do you need besides Make.com?",
+        "a": "A Google Cloud project with an API key for Google Maps, and a Google account for Sheets."
+      },
+      {
+        "q": "Are the emails reliable?",
+        "a": "No. The presenter says it does not always get the right address and sometimes finds none."
+      }
+    ]
+  },
+  "is7JIUfHsng": {
+    "summary": "An attempt to set up an OpenClaw assistant on KiloClaw, Kilo's hosted version, on a 21-day free trial. The dashboard, soul.md personality file, skills and update settings are shown, but a LinkedIn post generator fails to submit approval, WhatsApp and Telegram channels cannot be linked and an error message is unexplained. The presenter says they prefer Claude Code and finds OpenClaw hard to get working.",
+    "whatYouBuild": "A KiloClaw instance on its free trial, with a LinkedIn post generator request that errors and unfinished channel connections.",
+    "toolsUsed": [
+      "KiloClaw",
+      "OpenClaw",
+      "Claude Sonnet"
+    ],
+    "keySteps": [
+      {
+        "seconds": 24,
+        "step": "Set up the hosted assistant and see the trial period and prices quoted at $8 or $9 a month."
+      },
+      {
+        "seconds": 62,
+        "step": "Open the OpenClaw dashboard and read the soul.md personality file."
+      },
+      {
+        "seconds": 109,
+        "step": "Try to approve a LinkedIn post generator, which fails to submit approval."
+      },
+      {
+        "seconds": 161,
+        "step": "Review configuration, the gateway token and environment variables."
+      },
+      {
+        "seconds": 183,
+        "step": "See bundled skills and the skill hub."
+      },
+      {
+        "seconds": 219,
+        "step": "Turn on auto-updates on the stable channel."
+      },
+      {
+        "seconds": 252,
+        "step": "Try WhatsApp and Telegram, where the QR code option is unavailable."
+      },
+      {
+        "seconds": 312,
+        "step": "Switch the model to Claude Sonnet and retry the generator."
+      }
+    ],
+    "notCovered": [
+      "A working assistant or LinkedIn generator. The approval and send errors are not resolved.",
+      "Connecting WhatsApp or Telegram.",
+      "Security of giving an assistant API keys, which the presenter says they do not trust OpenClaw with.",
+      "Current KiloClaw price. The video quotes $8 a month, while a later video by the same presenter quotes $55."
+    ],
+    "qa": [
+      {
+        "q": "Did it work?",
+        "a": "Not in this video. The presenter hits several errors and ends with a negative view of OpenClaw."
+      },
+      {
+        "q": "What does KiloClaw offer?",
+        "a": "A hosted OpenClaw instance on a private virtual server, so you do not install it yourself."
+      },
+      {
+        "q": "Why does the presenter prefer Claude Code?",
+        "a": "They find it faster and more secure for what they want, which is a personal view."
+      }
+    ]
+  },
+  "KKw2Q9-Ge_0": {
+    "summary": "Use Gemini 3 Pro Preview in Google AI Studio to build single-file HTML versions of Tetris, Snake, Asteroids and Pac-Man from prompts written in ChatGPT. Tetris, Snake and Asteroids each take a couple of minutes and play, though the snake looks like a Tetris block and Asteroids runs slowly. The Pac-Man version does not work. The presenter may host the games online.",
+    "whatYouBuild": "Four browser games as single HTML files, previewed in AI Studio and downloaded to run locally.",
+    "toolsUsed": [
+      "Gemini 3 Pro",
+      "Google AI Studio",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 102,
+        "step": "Ask ChatGPT to write a detailed Gemini prompt for a Tetris replica as one HTML, CSS and JavaScript file."
+      },
+      {
+        "seconds": 222,
+        "step": "Run the prompt in AI Studio, preview the playable Tetris game and download the HTML."
+      },
+      {
+        "seconds": 380,
+        "step": "Build Asteroids and Snake in parallel tabs."
+      },
+      {
+        "seconds": 466,
+        "step": "Play Snake, which works but looks wrong, and download it."
+      },
+      {
+        "seconds": 652,
+        "step": "Try Pac-Man, which does not run properly."
+      },
+      {
+        "seconds": 750,
+        "step": "Wrap up with the idea of publishing many classic games online."
+      }
+    ],
+    "notCovered": [
+      "A fix for Pac-Man, which the presenter says needs more prompting.",
+      "Code quality or how Gemini's output compares with other models on the same prompts.",
+      "Rights questions around publishing copies of well-known games.",
+      "Graphics polish. The presenter calls the Asteroids graphics not great."
+    ],
+    "qa": [
+      {
+        "q": "How long did each game take?",
+        "a": "About one and a half to two minutes for Tetris and a few minutes for the others."
+      },
+      {
+        "q": "Did all four work?",
+        "a": "No. Tetris, Snake and Asteroids ran, while the Pac-Man file was broken."
+      },
+      {
+        "q": "Do you need a paid plan?",
+        "a": "The presenter used the free version of AI Studio, and says upgrading would probably help."
+      }
+    ]
+  },
+  "pYHt2qWvAr8": {
+    "summary": "A tour of LeadScope, a lead generation tool the presenter built in about four hours with Codex and GPT 5.6. It searches businesses by category and place through the Google Places API, audits their websites with PageSpeed, writes pitch emails, keeps a CRM and sends through Gmail or Mailgun. Mailgun and the automations page are not working reliably, and redesign mockups are weak. Spending so far is $1.73 on Places.",
+    "whatYouBuild": "A web app with lead search, Playwright contact discovery, website audits, drafted emails, a built-in CRM, sequences and an insights page.",
+    "toolsUsed": [
+      "Codex",
+      "Google Places API",
+      "PageSpeed Insights",
+      "Playwright",
+      "Mailgun",
+      "Gmail",
+      "Vercel"
+    ],
+    "keySteps": [
+      {
+        "seconds": 33,
+        "step": "See the landing page built in GPT 5.6 and the idea of audit-based outreach."
+      },
+      {
+        "seconds": 100,
+        "step": "Search for HVAC businesses in Phoenix with the Places API and find contact details with Playwright."
+      },
+      {
+        "seconds": 145,
+        "step": "Open a lead page with rating, phone and email, or view it in the CRM."
+      },
+      {
+        "seconds": 184,
+        "step": "Run automated site audits that flag missing HTTPS, meta descriptions, JSON-LD and image alt text."
+      },
+      {
+        "seconds": 225,
+        "step": "Generate pitch emails and send one through Gmail."
+      },
+      {
+        "seconds": 306,
+        "step": "Switch between Mailgun and Gmail settings, since Mailgun is not working fully."
+      },
+      {
+        "seconds": 382,
+        "step": "Set up follow-up sequences and pipeline tracking."
+      },
+      {
+        "seconds": 472,
+        "step": "Read the insights page and discovery funnel."
+      },
+      {
+        "seconds": 566,
+        "step": "Look at the unfinished redesign preview and deep research plans."
+      }
+    ],
+    "notCovered": [
+      "Results from outreach, such as replies or clients won.",
+      "Automatic sending and open or reply tracking, which wait on Mailgun working.",
+      "Rules on cold email and on collecting contact details from business websites in different countries.",
+      "Pricing for the tool, which is still to be built."
+    ],
+    "qa": [
+      {
+        "q": "How much has it cost to run?",
+        "a": "The presenter says $1.73 on the Places API and nothing for PageSpeed, which was called about 1,300 times."
+      },
+      {
+        "q": "What does the audit look for?",
+        "a": "Things like missing HTTPS, meta descriptions, structured data, Open Graph tags and image alt text."
+      },
+      {
+        "q": "Is it available?",
+        "a": "Not yet. The presenter asks viewers to comment if they would use it, and the landing page and pricing are unfinished."
+      }
+    ]
+  },
+  "ZNuGmX1HpxM": {
+    "summary": "An update on Cortex, the presenter's business second brain built with Claude Code and Codex. It now maps 27 projects with Graphify, imports Claude chat history into a retrieval library, answers questions through a Claude managed agent, stores contacts and campaigns, and has a content kanban and radar. The title's $25,000 figure is the presenter's idea of what it could be sold for to clients, not a measured value. The Tube Analytics connector is planned.",
+    "whatYouBuild": "A local knowledge system with a project map, a library of imported chats and transcripts, an Ask Cortex page backed by a Claude managed agent, contact and campaign tabs, a content studio board and a signals radar.",
+    "toolsUsed": [
+      "Claude Code",
+      "Codex",
+      "Graphify",
+      "Mailgun",
+      "Claude"
+    ],
+    "keySteps": [
+      {
+        "seconds": 60,
+        "step": "Look at the project map of 27 projects built with Graphify."
+      },
+      {
+        "seconds": 120,
+        "step": "Browse the library of imported Claude chats and video transcripts behind the retrieval system."
+      },
+      {
+        "seconds": 180,
+        "step": "Ask a question through the Ask Cortex page, which starts a read-only managed agent on Sonnet 5."
+      },
+      {
+        "seconds": 240,
+        "step": "Open spaces for each project with its inbox, transcripts and skills."
+      },
+      {
+        "seconds": 300,
+        "step": "Review contacts and email campaigns, where Mailgun email verification needs a paid account."
+      },
+      {
+        "seconds": 360,
+        "step": "See the content studio kanban and the build and content radar."
+      },
+      {
+        "seconds": 420,
+        "step": "Search the full chat history for a topic."
+      },
+      {
+        "seconds": 480,
+        "step": "Plan an MCP connector from the presenter's analytics app into Cortex."
+      }
+    ],
+    "notCovered": [
+      "Any customer or sale. The $25,000 to $35,000 figures are what the presenter says they could charge.",
+      "The accuracy of the radar's recommendations, which the presenter has not yet tested.",
+      "Privacy of importing full chat histories and contact lists into a new system.",
+      "The finished analytics connector, which is still being planned."
+    ],
+    "qa": [
+      {
+        "q": "What does Ask Cortex use?",
+        "a": "A read-only Claude managed agent on Sonnet 5, working over the imported chats, transcripts and project notes."
+      },
+      {
+        "q": "Is the project map useful?",
+        "a": "The presenter calls it pretty but not particularly useful."
+      },
+      {
+        "q": "Why can't it verify emails yet?",
+        "a": "Mailgun's email verification is only available on paid accounts, and the presenter is still on the free plan."
+      }
+    ]
+  },
+  "_1bZhPHcsm4": {
+    "summary": "An n8n workflow that watches an Airtable table for new community members and adds them to an email marketing platform, then marks each record done so it is not added again. A separate automation in the email tool sends the welcome message. Tests run in batches of ten before a full import of about 770 people, and everyone is re-sent the welcome email. The presenter cancelled Make.com after running out of free credits.",
+    "whatYouBuild": "An n8n workflow with an Airtable trigger every hour, a filter on status equal to new, a limit node for testing, a contact add step with first name, and an Airtable update that sets status to done.",
+    "toolsUsed": [
+      "n8n",
+      "Airtable",
+      "Engine Mailer"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Add an Airtable trigger that runs hourly, with a status field of new or done."
+      },
+      {
+        "seconds": 90,
+        "step": "Search records with the formula status equals new, sorted by created time."
+      },
+      {
+        "seconds": 130,
+        "step": "Add a limit node of ten so tests do not import all 770 people."
+      },
+      {
+        "seconds": 170,
+        "step": "Add each person to the email platform with email and first name, using an API key."
+      },
+      {
+        "seconds": 215,
+        "step": "Update the Airtable record to done, which needs the record ID to match."
+      },
+      {
+        "seconds": 260,
+        "step": "Check the welcome email automation in the email tool."
+      },
+      {
+        "seconds": 305,
+        "step": "Remove the limit and run the full import."
+      }
+    ],
+    "notCovered": [
+      "Consent and unsubscribe handling for emailing existing community members. The presenter re-sends the welcome email to everyone.",
+      "Adding members to Airtable, which stays manual.",
+      "Delivery results beyond the first test sends.",
+      "Limits beyond the quoted cap of 500 emails a day on the platform's free plan."
+    ],
+    "qa": [
+      {
+        "q": "Why mark records as done?",
+        "a": "So the hourly run does not add the same person to the email list again."
+      },
+      {
+        "q": "Why move from Make.com?",
+        "a": "The presenter ran out of free credits on Make.com and switched to n8n, cancelling their Make.com plan."
+      },
+      {
+        "q": "What bug came up?",
+        "a": "The status did not update to done until the Airtable record ID was added as the matching field."
+      }
+    ]
+  },
+  "NH6t9M2vFrk": {
+    "summary": "A look at Claude Opus 5.5 two days after its announcement, using Anthropic's benchmark charts and pricing, then a live design audit of the presenter's homepage in the Claude desktop app with $100 of free cloud session credits. The quoted benchmarks come from Anthropic. The audit finds layout and copy bugs, and the fix plan is approved, but the results are not shown.",
+    "whatYouBuild": "A Claude cloud session that runs a design audit on a site, writes an implementation plan in plan mode and starts applying fixes on a branch.",
+    "toolsUsed": [
+      "Claude Opus 5.5",
+      "Claude Desktop",
+      "GitHub"
+    ],
+    "keySteps": [
+      {
+        "seconds": 38,
+        "step": "Read the announcement's benchmark comparison with Fable 5.1 and GPT-6 models."
+      },
+      {
+        "seconds": 112,
+        "step": "Check pricing of $4 and $20 per million tokens against $5 and $25 for Opus 5, and the claimed 30 percent speed gain."
+      },
+      {
+        "seconds": 203,
+        "step": "Claim free cloud session credits and a usage reset in the Claude desktop app."
+      },
+      {
+        "seconds": 271,
+        "step": "Start a cloud session, which pulls the project from GitHub."
+      },
+      {
+        "seconds": 304,
+        "step": "Run a design audit of the homepage using screenshots."
+      },
+      {
+        "seconds": 331,
+        "step": "Review bugs such as doubled dollar signs on pricing cards and an early affiliate pitch."
+      },
+      {
+        "seconds": 383,
+        "step": "Create an implementation plan in plan mode and approve it for automatic implementation."
+      }
+    ],
+    "notCovered": [
+      "The fixes landing or improving the site. The video ends as implementation starts, with about $5 of the $100 credit used.",
+      "Independent verification of Anthropic's benchmarks and the 40 percent cost reduction.",
+      "How the free credits and reset are limited.",
+      "Whether Opus 5.5 beats Fable 5.1 on the presenter's own work."
+    ],
+    "qa": [
+      {
+        "q": "How much does Opus 5.5 cost?",
+        "a": "$4 per million input tokens and $20 per million output tokens, against $5 and $25 for Opus 5, according to the announcement."
+      },
+      {
+        "q": "What are cloud sessions?",
+        "a": "Claude runs the task in the cloud on a copy of your GitHub project instead of on your machine."
+      },
+      {
+        "q": "What did the audit find?",
+        "a": "Two bugs and layout issues on the homepage, including doubled dollar signs and an oversized hero, plus a suggested reorder of the affiliate pitch."
+      }
+    ]
+  },
+  "eui7NABhRV8": {
+    "summary": "A live first test of Syllaby on a free trial: set the style, voice, music and subtitles, use a custom topic to script a one-minute faceless video about low-cost places for digital nomads, wait about three minutes for it to render and publish it to YouTube from inside Syllaby. An application error appears but the video still renders. Results are unknown, and the cost-of-living claims in the AI script are not checked. The link is an affiliate link.",
+    "whatYouBuild": "A portrait faceless video made with Syllaby from a custom topic script, with ambient music and karaoke-style subtitles, published straight to a YouTube channel.",
+    "toolsUsed": [
+      "Syllaby",
+      "ChatGPT",
+      "YouTube"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Start a faceless video and choose portrait format and a short length, since the trial has about 50 credits."
+      },
+      {
+        "seconds": 80,
+        "step": "Pick a visual style, subtitle style and an American male voice."
+      },
+      {
+        "seconds": 120,
+        "step": "Use ChatGPT for topic ideas and enter a custom topic for the script assistant."
+      },
+      {
+        "seconds": 200,
+        "step": "Generate and read the AI script, adding ambient music and sound effects."
+      },
+      {
+        "seconds": 240,
+        "step": "Create the video, which shows an error and then renders in about three minutes."
+      },
+      {
+        "seconds": 280,
+        "step": "Connect a YouTube account and publish the video directly."
+      },
+      {
+        "seconds": 320,
+        "step": "Review pricing of about $25 a month for 500 credits."
+      }
+    ],
+    "notCovered": [
+      "How the video performs on YouTube, which the presenter says they will watch for a couple of weeks.",
+      "Checking the facts in the script, such as the countries and costs listed.",
+      "YouTube's disclosure rules for AI-generated or synthetic content.",
+      "Avatars, thumbnails and analytics, which the presenter says they may explore later."
+    ],
+    "qa": [
+      {
+        "q": "Is Syllaby free?",
+        "a": "There is a 7-day free trial with limited credits. The presenter quotes about $25 a month afterwards."
+      },
+      {
+        "q": "How long did the video take?",
+        "a": "About three minutes to render a video of roughly one minute."
+      },
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says they earn a commission if you sign up for a paid plan."
+      }
+    ]
+  },
+  "PS31s8REvlw": {
+    "summary": "A walkthrough of Anthropic's Claude Sonnet 5.5, announced as over 30 percent faster than Sonnet 5 and up to 30 percent cheaper for most work at the same $2 and $10 per million token price. The presenter reads Anthropic's benchmark charts, runs a side-by-side HTML game speed test against Sonnet 5, and recommends high effort for coding. The benchmark claims come from Anthropic's announcement.",
+    "whatYouBuild": "Nothing is built beyond a short speed test of a sand dune game and a starling flock page generated by Sonnet 5.5 and Sonnet 5 side by side.",
+    "toolsUsed": [
+      "Claude Sonnet 5.5",
+      "Claude Desktop",
+      "Claude Code"
+    ],
+    "keySteps": [
+      {
+        "seconds": 24,
+        "step": "Compare Sonnet 5.5 and Opus 5.5 benchmarks from Anthropic's post."
+      },
+      {
+        "seconds": 78,
+        "step": "Read the pricing: $2 and $10 per million tokens for Sonnet 5.5, against $4 and $20 for Opus 5.5."
+      },
+      {
+        "seconds": 140,
+        "step": "Look at coding scores by effort level and why high effort is worth using."
+      },
+      {
+        "seconds": 265,
+        "step": "See image understanding and chart recognition gains."
+      },
+      {
+        "seconds": 321,
+        "step": "Watch a speed test creating HTML games with Sonnet 5.5 and Sonnet 5, where 5.5 uses about 13,000 tokens against 21,000."
+      },
+      {
+        "seconds": 380,
+        "step": "Learn that Claude Code defaults to medium effort and the platform to high."
+      },
+      {
+        "seconds": 410,
+        "step": "Read how higher-risk cyber security tasks fall back to Sonnet 5."
+      }
+    ],
+    "notCovered": [
+      "Independent benchmarks. The charts and percentages come from Anthropic.",
+      "A quality comparison of the two models' games beyond speed and token use.",
+      "Real project results from the presenter, who is only starting to use the model.",
+      "How often the cyber safeguards trigger a fallback during normal coding."
+    ],
+    "qa": [
+      {
+        "q": "What does Sonnet 5.5 cost?",
+        "a": "$2 per million input tokens and $10 per million output tokens, the same as Sonnet 5, with cache reads at 20 cents."
+      },
+      {
+        "q": "What did the speed test show?",
+        "a": "Sonnet 5.5 finished a game faster and used about 13,000 tokens against 21,000 for Sonnet 5, in one run."
+      },
+      {
+        "q": "Which effort level is suggested?",
+        "a": "High for coding, instead of the medium default in Claude Code."
+      }
+    ]
+  },
+  "lKqe0r0zoGY": {
+    "summary": "A first test of Lindy, a platform that builds AI agents from prompts. On a free account with 400 credits, the presenter finds software engineers in Hong Kong, tries the contact finder, lead outreacher and lead generator templates, and gets a Google Sheet of profiles, emails and phone numbers. Several agents need app permissions the presenter skips. The referral link pays $50 to each side, according to the video.",
+    "whatYouBuild": "Lindy agents from templates: a contact finder, a lead generator that fills a Google Sheet, and an unfinished lead outreach flow and WhatsApp support agent.",
+    "toolsUsed": [
+      "Lindy",
+      "Google Sheets",
+      "Perplexity"
+    ],
+    "keySteps": [
+      {
+        "seconds": 37,
+        "step": "Create a free account and try a prompt to find 10 software engineers in Hong Kong."
+      },
+      {
+        "seconds": 131,
+        "step": "Review the results with LinkedIn profiles, work emails and job titles."
+      },
+      {
+        "seconds": 208,
+        "step": "Add the contact finder template and enrich a contact with email, phone and profiles."
+      },
+      {
+        "seconds": 255,
+        "step": "Add the lead outreacher template, which needs Slack and email permissions."
+      },
+      {
+        "seconds": 412,
+        "step": "Authorize Google, add the lead generator and find engineers at a company in San Francisco."
+      },
+      {
+        "seconds": 491,
+        "step": "Check the Google Sheet Lindy created with the contact data."
+      },
+      {
+        "seconds": 577,
+        "step": "Review the credits left and paid plans from about $49 a month."
+      }
+    ],
+    "notCovered": [
+      "Accuracy of the contact details, and the legal basis and privacy rules for collecting people's emails and phone numbers.",
+      "A deployed outreach agent, because permissions are skipped.",
+      "The WhatsApp support agent, which needs an access token.",
+      "Costs per run, beyond 167 of 400 free credits left after the demo."
+    ],
+    "qa": [
+      {
+        "q": "Is Lindy free?",
+        "a": "There is a free account with 400 credits in the video. Paid plans are quoted from about $49 a month, up to $300 or more for 5,000 credits."
+      },
+      {
+        "q": "What data does it return?",
+        "a": "Names, LinkedIn and other profiles, work emails, phone numbers, job titles and company details, saved to a Google Sheet."
+      },
+      {
+        "q": "Is the link a referral link?",
+        "a": "Yes. The presenter says they earn a commission and both the presenter and a new user get $50."
+      }
+    ]
+  },
+  "qzIaEA0wBCw": {
+    "summary": "Use Trakkr, an AI search visibility tracker with a new MCP server, from Codex to find content gaps and write articles with a GEO blog writer skill. Trakkr shows citations, AI crawler visits and prompt coverage for the presenter's site, and the MCP returns citation trends, top-cited pages and competitor gaps. Codex then drafts a 16-article cluster and a competitor gap plan. Whether the articles earn more citations is not shown.",
+    "whatYouBuild": "Trakkr's MCP connected to Codex, a GEO content skill installed from skills.sh, and batches of blog articles with quick answers, key takeaways, tables, sources and schema.",
+    "toolsUsed": [
+      "Trakkr",
+      "Codex",
+      "skills.sh",
+      "Vercel"
+    ],
+    "keySteps": [
+      {
+        "seconds": 52,
+        "step": "Read the Trakkr dashboard: citations, AI crawler traffic and the share of prompts where the brand appears."
+      },
+      {
+        "seconds": 93,
+        "step": "Add the Trakkr MCP to Codex by pasting its config."
+      },
+      {
+        "seconds": 134,
+        "step": "Ask for citation trends and top-cited pages through the MCP tools."
+      },
+      {
+        "seconds": 221,
+        "step": "Find citation gaps where competitors appear and the presenter's site does not."
+      },
+      {
+        "seconds": 242,
+        "step": "Install the GEO content optimizer skill with the skills command."
+      },
+      {
+        "seconds": 316,
+        "step": "Review articles the skill wrote, with a quick answer at the top and sources at the bottom."
+      },
+      {
+        "seconds": 413,
+        "step": "Plan a 16-article cluster and a second round aimed at competitor gaps."
+      }
+    ],
+    "notCovered": [
+      "Any change in citations after the new articles go live.",
+      "Whether the crawler visit counts quoted, such as 10,000 and 15,000 a day, reflect real readers. They come from the presenter's tracker.",
+      "A review of the articles' accuracy and sources.",
+      "Trial terms and prices for Trakkr, which are not stated clearly in the video."
+    ],
+    "qa": [
+      {
+        "q": "What does the Trakkr MCP add?",
+        "a": "It lets a coding agent read visibility, citations, competitor gaps and content ideas directly, so articles can be planned from the data."
+      },
+      {
+        "q": "Where does the GEO skill come from?",
+        "a": "From skills.sh, the skills registry, installed with a copied command and set to global."
+      },
+      {
+        "q": "How are the articles structured?",
+        "a": "With a quick answer at the top, key takeaways, tables, sources, an FAQ, schema and an author section."
+      }
+    ]
+  },
+  "enKnxKJJFZw": {
+    "summary": "The presenter explains why they launched a free Skool community two weeks earlier, how it grew to 160 members and how they plan to earn from it with templates, a course and consultation calls. The earnings and ranking claims are the presenter's own. The Skool link is an affiliate link, and the video encourages viewers to start their own community.",
+    "whatYouBuild": "Nothing is built. The video describes a free community with paid upsells and a welcome email automation made in Make.com.",
+    "toolsUsed": [
+      "Skool",
+      "Make.com"
+    ],
+    "keySteps": [
+      {
+        "seconds": 68,
+        "step": "Hear how the community was promoted on Facebook, YouTube and an email list."
+      },
+      {
+        "seconds": 106,
+        "step": "Hear the offers inside: paid templates, a Make.com course and consultation calls at $150 an hour."
+      },
+      {
+        "seconds": 154,
+        "step": "Learn that a welcome email is sent automatically when someone joins."
+      },
+      {
+        "seconds": 262,
+        "step": "Hear about affiliate links as another income source."
+      },
+      {
+        "seconds": 288,
+        "step": "Hear the pitch for starting your own Skool community."
+      }
+    ],
+    "notCovered": [
+      "Proof of the roughly $300 earned in two weeks or of the page six ranking.",
+      "How the free-first model compares with a paid community, beyond the presenter's view that a free one lets them collect emails.",
+      "Skool's rules on member emails and marketing to them.",
+      "Whether the community stayed profitable. The video is from the first two weeks."
+    ],
+    "qa": [
+      {
+        "q": "Is the Skool link an affiliate link?",
+        "a": "Yes. The presenter says they earn a commission when you create an account."
+      },
+      {
+        "q": "How does the community earn money?",
+        "a": "Through paid templates, a Make.com course, consultation calls and affiliate links, per the presenter."
+      },
+      {
+        "q": "How big was it?",
+        "a": "About 160 members after two weeks, according to the presenter."
+      }
+    ]
+  },
+  "h8KLzYPMjjE": {
+    "summary": "A news summary of Claude Fable 5.1, released on September 2, 2026, read from Anthropic's press release and benchmark pages. Anthropic says it costs about 25 percent less than Fable 5, with larger savings on agentic work, and it needs usage credits rather than Pro or Max plans. The presenter's chart shows only a small intelligence lead over Opus 5, and they will mostly keep using cheaper models.",
+    "whatYouBuild": "Nothing is built. The video reviews pricing, access, safeguards and benchmarks and shows the model picker in Claude Code.",
+    "toolsUsed": [
+      "Claude Fable 5.1",
+      "Claude Code"
+    ],
+    "keySteps": [
+      {
+        "seconds": 28,
+        "step": "Read the press release on safeguards and the Fable 5.1 and Mythos 5.1 versions."
+      },
+      {
+        "seconds": 56,
+        "step": "Read the pricing changes: about 25 percent cheaper for typical workloads and up to about 45 percent for agentic work."
+      },
+      {
+        "seconds": 85,
+        "step": "Note that it needs API usage credits, with discounts of 20 percent at $250 and 30 percent at $1,000."
+      },
+      {
+        "seconds": 113,
+        "step": "Compare intelligence, speed and cost charts with Opus 5, GPT 5.6 Sol and Kimi K3."
+      },
+      {
+        "seconds": 170,
+        "step": "See Fable listed in the terminal model picker, which opens the Claude website to enable usage credits."
+      },
+      {
+        "seconds": 198,
+        "step": "Hear about the Enterprise Frontier Safeguards for data retention."
+      }
+    ],
+    "notCovered": [
+      "The presenter's own tests, since they will not use usage credits.",
+      "Independent checks of the benchmark and discount claims, which come from Anthropic's materials.",
+      "Exact prices per token, which are not read out clearly.",
+      "How the safeguards change day-to-day coding."
+    ],
+    "qa": [
+      {
+        "q": "Can I use it on a Pro or Max plan?",
+        "a": "No. The video says it needs usage credits through the API."
+      },
+      {
+        "q": "How much cheaper is it than Fable 5?",
+        "a": "About 25 percent for typical token-billed workloads and up to about 45 percent for highly agentic work, according to Anthropic."
+      },
+      {
+        "q": "Is it much smarter than Opus 5?",
+        "a": "On the chart shown, only about three points higher on one intelligence index."
+      }
+    ]
+  },
+  "s6004nmWG9g": {
+    "summary": "Pull B2B lead lists without spending Apollo credits: filter people in Apollo for owners and founders of small US marketing companies in the AI space, then scrape the search with an Apify actor and export to CSV. A Make.com version reads search URLs from Airtable, runs the actor and writes leads to Google Sheets, but hits Apify's free daily run limit. The presenter's view that this is safe under the terms of service is an opinion.",
+    "whatYouBuild": "An Apollo search narrowed to about 1,200 people, an Apify scrape of that search to CSV, and a paid Make.com template that automates it with Airtable and Google Sheets.",
+    "toolsUsed": [
+      "Apollo",
+      "Apify",
+      "Make.com",
+      "Airtable",
+      "Google Sheets"
+    ],
+    "keySteps": [
+      {
+        "seconds": 71,
+        "step": "Filter Apollo for verified emails, owner and founder titles, the United States, 1 to 10 employees, marketing and advertising, and an AI keyword."
+      },
+      {
+        "seconds": 132,
+        "step": "Paste the search URL into the Apify Apollo scraper and start it, using free monthly credits."
+      },
+      {
+        "seconds": 195,
+        "step": "Export the scraped leads to CSV for use elsewhere."
+      },
+      {
+        "seconds": 268,
+        "step": "Walk through a Make.com scenario that reads search URLs from Airtable, runs the actor, reads dataset items and adds rows to Google Sheets."
+      },
+      {
+        "seconds": 509,
+        "step": "Hit the free Apify limit of 10 runs a day and compare paid plan prices with Apollo."
+      },
+      {
+        "seconds": 644,
+        "step": "See other Apify scrapers for YouTube, LinkedIn, Upwork, Google Maps and TikTok."
+      }
+    ],
+    "notCovered": [
+      "Whether scraping is allowed by Apollo's and Apify's terms. The presenter says it is safe if you do not scrape huge numbers, which is not verified here.",
+      "Laws on cold email and on using scraped personal data.",
+      "Lead quality or what happens after the leads are exported. The presenter imports them into their Skool community.",
+      "A clean automation run, since the free Apify limit interrupts it."
+    ],
+    "qa": [
+      {
+        "q": "Why scrape instead of using Apollo credits?",
+        "a": "Apollo gives a limited number of credits a month and caps the free plan at five pages, while Apify gives $5 of monthly credit and the presenter used $3."
+      },
+      {
+        "q": "How much does the Make.com template cost?",
+        "a": "The presenter says it is $15 on Gumroad."
+      },
+      {
+        "q": "What do paid plans cost?",
+        "a": "The presenter quotes Apify from $39 a month and Apollo from about $60 a month."
+      }
+    ]
+  },
+  "LoNsDme0XQI": {
+    "summary": "Build a Kilo Code skill that scores a blog article against a 23-point AI visibility checklist taken from a LinkedIn guide, then run it on the presenter's own articles. One article scores 91 out of 100 and 98 after the skill's fixes. The score and the 80 to 90 percent citation probability come from the skill itself and are not checked against real AI citations. The presenter has about 350 articles to go.",
+    "whatYouBuild": "A custom AI Visibility Optimizer skill with TypeScript scripts that audit a page against 23 elements and apply fixes such as a direct answer, FAQ, freshness and meta description changes.",
+    "toolsUsed": [
+      "Kilo Code",
+      "VS Code"
+    ],
+    "keySteps": [
+      {
+        "seconds": 32,
+        "step": "Install Kilo Code from the command line with npm."
+      },
+      {
+        "seconds": 54,
+        "step": "Ask it to read a published AI visibility guide and create a skill from it."
+      },
+      {
+        "seconds": 119,
+        "step": "Review the 23 criteria, including four critical elements."
+      },
+      {
+        "seconds": 200,
+        "step": "Read the generated scripts, types and skill documentation."
+      },
+      {
+        "seconds": 255,
+        "step": "Check rules such as a direct answer in the first 100 words with no links."
+      },
+      {
+        "seconds": 314,
+        "step": "Run the skill on a live blog article and read the analysis."
+      },
+      {
+        "seconds": 376,
+        "step": "See the initial 91 out of 100 score and a prioritized action plan."
+      },
+      {
+        "seconds": 590,
+        "step": "Apply the fixes and see the score rise to 98."
+      }
+    ],
+    "notCovered": [
+      "Any increase in real citations by ChatGPT, Claude, Perplexity or Gemini after the changes.",
+      "How well the skill's reading of the guide matches the guide, or the guide's own evidence for its percentages.",
+      "Several of the skill's checks that fail or are only partial, such as the 61-word opening and the citation mix.",
+      "Running it across the 350 articles."
+    ],
+    "qa": [
+      {
+        "q": "Where do the 23 criteria come from?",
+        "a": "From a LinkedIn playbook by another author, which the presenter credits and turns into a skill."
+      },
+      {
+        "q": "Is the 98 percent score proof of citations?",
+        "a": "No. It is the skill's own rating of the page against the checklist."
+      },
+      {
+        "q": "Is the skill available?",
+        "a": "The presenter says they may put it on Gumroad if viewers ask."
+      }
+    ]
+  },
+  "VYx1wZ0Ct38": {
+    "summary": "A look at OpenAI's GPT 5.6 release of July 9, 2026 with its Sol, Terra and Luna models, ChatGPT Work and the GPT Live voice model, from the news page and the Codex model picker. The presenter says they built a Chrome extension for their analytics app with GPT 5.6 in about an hour and a half and found credits last longer than with Fable 5. Benchmark and price figures come from OpenAI's materials.",
+    "whatYouBuild": "Nothing in the video is built live. It shows a previously built Chrome extension with a creator score sidebar and title analysis.",
+    "toolsUsed": [
+      "GPT 5.6",
+      "Codex",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 13,
+        "step": "Meet the three models: Sol, Terra and Luna."
+      },
+      {
+        "seconds": 30,
+        "step": "See reasoning levels in Codex, including extra high and a maximum depth."
+      },
+      {
+        "seconds": 56,
+        "step": "Look at ChatGPT Work, which connects apps and plugins."
+      },
+      {
+        "seconds": 93,
+        "step": "Hear a demo of the GPT Live voice model."
+      },
+      {
+        "seconds": 140,
+        "step": "Open the Chrome extension built with GPT 5.6 and test its sidebar on a YouTube page."
+      },
+      {
+        "seconds": 215,
+        "step": "Compare usage credit life with Fable 5."
+      },
+      {
+        "seconds": 248,
+        "step": "Read Terminal Bench scores and token prices for Sol and Fable 5."
+      }
+    ],
+    "notCovered": [
+      "Independent benchmark checks. The 88.8 against 84 Terminal Bench figure is quoted from the release.",
+      "The extension's accuracy or its code quality.",
+      "Exact limits of the plan the presenter recommends, which they describe as $20 a month.",
+      "A side-by-side build with another model."
+    ],
+    "qa": [
+      {
+        "q": "What are Sol, Terra and Luna?",
+        "a": "Sol is the flagship, Terra the mid-tier and Luna the lightest, cheapest model, per the release."
+      },
+      {
+        "q": "How does Sol compare on price?",
+        "a": "The presenter quotes $5 per million input and $30 per million output tokens, against $10 and $50 for Fable 5."
+      },
+      {
+        "q": "What did the presenter build?",
+        "a": "A Chrome extension for their own SaaS that adds a sidebar with research, keyword and title analysis on YouTube pages."
+      }
+    ]
   }
 };
 
