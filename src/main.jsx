@@ -531,7 +531,7 @@ function ContactForm({ topic, setTopic }) {
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
       <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
       <label className="contact-trap" aria-hidden="true">Leave this empty<input name="hp" tabIndex="-1" autoComplete="off" /></label>
-      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
+      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : 'Send message'}</button>
       {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
     </form>
   );
@@ -589,7 +589,7 @@ function NotesSignup({ placement = 'footer' }) {
       {!complete && <div className={isHero ? 'notes-signup-pill' : undefined}>
         <input id={emailId} name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" aria-invalid={status === 'invalid' || undefined} aria-describedby={status === 'invalid' ? errorId : undefined} onInvalid={() => setStatus('invalid')} />
         <input className="contact-trap" name="hp" tabIndex="-1" autoComplete="off" aria-hidden="true" />
-        <button className="button" type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing…' : 'Subscribe')}</button>
+        <button className="button" type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing' : 'Subscribe')}</button>
       </div>}
       {status === 'invalid' && <p id={errorId} className="notes-signup-status" role="alert" aria-live="assertive">Enter a valid email address.</p>}
       {status === 'failed' && <p className="notes-signup-status" role="alert" aria-live="assertive">That didn&rsquo;t go through. Try again in a minute.</p>}
@@ -713,7 +713,7 @@ function App({ page = 'home' }) {
         <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
-        }}><summary>Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
+        }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
       </div>
       </div>
     </header>
@@ -817,7 +817,7 @@ function App({ page = 'home' }) {
       <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try; TubeAnalytics is temporarily unavailable.</SectionHead>
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try. TubeAnalytics is temporarily unavailable.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>

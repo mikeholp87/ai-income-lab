@@ -22,6 +22,6 @@ test('the content security policy is enforced and allows the consented analytics
   const directive = name => policy.split(';').map(part => part.trim()).find(part => part.startsWith(`${name} `));
   assert.match(directive('frame-ancestors'), /'none'/);
   // Google Analytics and the Meta pixel load these as images once a visitor allows tracking.
-  for (const origin of ['https://www.googletagmanager.com', 'https://connect.facebook.net']) assert.ok(directive('img-src').includes(origin), origin);
+  for (const origin of ['https://www.googletagmanager.com', 'https://connect.facebook.net', 'https://*.clarity.ms']) assert.ok(directive('img-src').includes(origin), origin);
   for (const origin of ['https://app.cal.com', 'https://www.youtube-nocookie.com']) assert.ok(directive('frame-src').includes(origin), origin);
 });

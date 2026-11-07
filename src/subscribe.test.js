@@ -14,7 +14,12 @@ afterEach(() => {
   globalThis.fetch = savedFetch;
 });
 
-const confirm = token => GET(new Request(`https://x/api/subscribe?t=${encodeURIComponent(token)}`));
+const confirmLink = token => GET(new Request(`https://x/api/subscribe?t=${encodeURIComponent(token)}`));
+const confirm = token => POST(new Request('https://x/api/subscribe', {
+  method: 'POST',
+  headers: { 'content-type': 'application/x-www-form-urlencoded', 'x-forwarded-for': `198.51.100.${++ip}` },
+  body: `t=${encodeURIComponent(token)}`,
+}));
 
 test('bad addresses get 400 and a missing key gets 503', async () => {
   delete process.env.RESEND_API_KEY;
@@ -36,6 +41,19 @@ test('a signup only sends a confirmation link, and adds nobody yet', async () =>
   assert.match(mail.subject, /Confirm/);
   const token = decodeURIComponent(mail.text.match(/\/api\/subscribe\?t=(\S+)/)[1]);
   assert.equal((await verifyConfirmation(token)).email, 'ada@example.com');
+});
+
+test('opening the confirmation link does not add the contact until the button is pressed', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  globalThis.fetch = () => assert.fail('prefetch must not call Resend');
+  const token = await signConfirmation('ada@example.com');
+  const preview = await confirmLink(token);
+  assert.equal(preview.status, 200);
+  assert.equal(preview.headers.get('x-robots-tag'), 'noindex');
+  const html = await preview.text();
+  assert.match(html, /<button class="join" type="submit">Confirm signup<\/button>/);
+  assert.match(html, new RegExp(`name="t" value="${token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`));
+  assert.doesNotMatch(html, /ada@example.com/);
 });
 
 test('the confirmation link adds the contact, tells Mike and sends the unchanged welcome', async () => {
@@ -115,6 +133,7 @@ test('tampered, expired or unsigned links add nobody', async () => {
   const forged = `${Buffer.from(JSON.stringify({ e: 'eve@example.com', p: '', x: Date.now() + 1e6 })).toString('base64url')}.${sig}`;
   const expired = await signConfirmation('ada@example.com', null, Date.now() - 49 * 3600 * 1000);
   for (const token of [forged, expired, payload, 'x', `${payload}.${sig}x`]) {
+    assert.match((await confirmLink(token)).headers.get('location'), /subscribe=expired/, token);
     assert.match((await confirm(token)).headers.get('location'), /subscribe=expired/, token);
   }
 });

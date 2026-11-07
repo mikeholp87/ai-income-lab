@@ -28,9 +28,17 @@ test('product card links align at the bottom of each card without competing with
   assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*\{tool\.url && <a className="button button-primary" href=\{tool\.url\}/);
   assert.match(jsx, /name: 'TubeAnalytics',\s*url: null/);
   assert.match(jsx, /TubeAnalytics is temporarily unavailable/);
+  assert.match(jsx, /<summary aria-label="Site menu">Menu<\/summary>/);
   assert.doesNotMatch(jsx, /\['#tools',/);
   assert.match(css, /\.tool ul \{[^}]*margin: 4px 0 0;/);
   assert.match(css, /\.tool-action \{ margin-top: auto; padding-top: 24px; \}/);
+});
+
+test('privacy and terms descriptions use the www host', async () => {
+  const privacy = await readFile(new URL('../public/privacy.html', import.meta.url), 'utf8');
+  const terms = await readFile(new URL('../public/terms.html', import.meta.url), 'utf8');
+  assert.match(privacy, /www\.ai-automation-station\.com handles/);
+  assert.match(terms, /www\.ai-automation-station\.com and joining/);
 });
 
 test('the portrait stays beside the About copy on desktop', () => {
@@ -107,6 +115,7 @@ test('FAQ questions are not numbered and plan copy skips em dashes', () => {
   const start = jsx.indexOf('const plans = [');
   assert.doesNotMatch(jsx.slice(start, jsx.indexOf('];', start)), /—/);
   assert.doesNotMatch(jsx, /Choose \{plan\.name\} —/);
+  assert.doesNotMatch(jsx, /Sending…|Subscribing…/);
 });
 
 test('Skool buttons share one label and new-tab buttons end with ↗', () => {

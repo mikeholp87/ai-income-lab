@@ -11,6 +11,21 @@
     document.querySelectorAll('[data-theme-toggle]').forEach(function (button) { button.setAttribute('aria-label', label); button.title = label; });
   }
   apply(saved());
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('.nav-mobile[open]').forEach(function (details) {
+      details.open = false;
+      var summary = details.querySelector('summary');
+      if (summary) summary.focus();
+    });
+  });
+  document.addEventListener('click', function (event) {
+    var item = event.target.closest && event.target.closest('.nav-mobile nav a');
+    if (item) {
+      var menu = item.closest('details');
+      if (menu) menu.open = false;
+    }
+  });
   document.addEventListener('click', function (event) {
     var button = event.target.closest && event.target.closest('[data-theme-toggle]');
     if (!button) return;

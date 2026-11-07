@@ -2,6 +2,7 @@
 // and welcomes new subscribers by email.
 // Env: RESEND_API_KEY, the same key as the contact form; it needs full access to add contacts.
 import { isEmail, TO as OWNER } from "./contact.js";
+import { readingCss } from "../src/asset-version.js";
 import { clientIp, createRateLimiter, tooManyRequests } from "../src/rate-limit.js";
 
 export const runtime = "nodejs";
@@ -43,6 +44,10 @@ export const limitSubscribe = createRateLimiter({ limit: 5, windowMs: 10 * 60 * 
 export async function POST(req) {
   const limited = limitSubscribe(clientIp(req.headers));
   if (!limited.ok) return tooManyRequests(limited.retryAfter);
+  const type = req.headers.get("content-type") || "";
+  if (type.includes("application/x-www-form-urlencoded")) {
+    return finishConfirmation(new URLSearchParams(await req.text()).get("t"));
+  }
   let body;
   try { body = await req.json(); }
   catch { return Response.json({ error: "invalid" }, { status: 400 }); }
@@ -75,14 +80,42 @@ export async function POST(req) {
   return Response.json({ ok: true, confirm: true });
 }
 
-// GET /api/subscribe?t=… is the confirmation link. A valid, unexpired link adds the contact,
-// tells Mike and sends the welcome email, then lands on a page saying it worked.
+// GET /api/subscribe?t=… is the confirmation link. It only shows a Confirm button.
+// Email scanners that prefetch the link must not add the contact. The form POST does that.
 export async function GET(req) {
-  const claim = await verifyConfirmation(new URL(req.url).searchParams.get("t"));
+  const token = new URL(req.url).searchParams.get("t");
+  const claim = await verifyConfirmation(token);
+  if (!claim) return Response.redirect(`${site}/start-here.html?subscribe=expired`, 303);
+  return new Response(confirmationPage(token), {
+    status: 200,
+    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" },
+  });
+}
+
+async function finishConfirmation(token) {
+  const claim = await verifyConfirmation(token);
   if (!claim) return Response.redirect(`${site}/start-here.html?subscribe=expired`, 303);
   if (!process.env.RESEND_API_KEY) return Response.redirect(`${site}/start-here.html?subscribe=failed`, 303);
   const result = await addSubscriber(claim.email, claim.page);
   return Response.redirect(`${site}/start-here.html?subscribe=${result.ok ? "confirmed" : "failed"}`, 303);
+}
+
+const escape = text => String(text).replace(/[&<>"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
+
+export function confirmationPage(token) {
+  return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="noindex,follow"><title>Confirm your signup | Mike Holp</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${readingCss}"><script src="/theme.js"></script></head>
+<body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav></header>
+<main id="content">
+<h1>Confirm your weekly build notes signup.</h1>
+<p>Nothing is added to the list until you press the button. If you did not ask for these emails, close this page.</p>
+<form method="post" action="/api/subscribe">
+<input type="hidden" name="t" value="${escape(token)}">
+<button class="join" type="submit">Confirm signup</button>
+</form>
+</main>
+<footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer>
+</body></html>`;
 }
 
 export const confirmation = link => ({
