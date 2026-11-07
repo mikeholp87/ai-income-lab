@@ -1,6 +1,7 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
+import { bindGuidePlayers } from './guide-player.js';
 import { showSubscribeNotice } from './subscribe-notice.js';
 import { dropMissingMaxres } from './thumbnail.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
@@ -9,6 +10,7 @@ import { injectSpeedInsights } from '@vercel/speed-insights';
 // Cookieless page views and Core Web Vitals from real visitors, the same as the homepage sends.
 injectAnalytics();
 injectSpeedInsights();
+bindGuidePlayers(document);
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
@@ -113,7 +115,7 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) {
   const status = form.querySelector('[role="status"]');
   const button = form.querySelector('button');
   button.disabled = true;
-  status.textContent = 'Subscribing…';
+  status.textContent = 'Subscribing';
   const fields = Object.fromEntries(new FormData(form));
   const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) }).then(response => response.ok ? response.json() : null).catch(() => null);
   button.disabled = false;

@@ -20,6 +20,12 @@ test('the guides hub links, lists and describes every guide', async () => {
   assert.match(await read('public/sitemap.xml'), /<loc>https:\/\/www.ai-automation-station.com\/guides.html<\/loc>/);
 });
 
+test('static pages close the mobile menu after a choice or Escape', async () => {
+  const js = await read('public/theme.js');
+  assert.match(js, /\.nav-mobile nav a/);
+  assert.match(js, /event.key !== 'Escape'/);
+});
+
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
     assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/, path);
@@ -46,7 +52,23 @@ test('/guides redirects once to the hub without catching guide pages', async () 
   const page = redirects.find(rule => rule.destination === '/:page.html');
   const pattern = new RegExp(`^${page.source.replace(':page', '')}$`);
   assert.ok(pattern.test('/guides'));
-  for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html']) assert.ok(!pattern.test(path), path);
+  assert.ok(pattern.test('/search'));
+  for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html', '/search.html']) assert.ok(!pattern.test(path), path);
+});
+
+test('guide video figures are click-to-load players with no YouTube iframe in the HTML', async () => {
+  const reading = await read('src/reading.js');
+  assert.match(reading, /bindGuidePlayers\(document\)/);
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    assert.doesNotMatch(html, /<iframe/, file);
+    for (const [, id, title] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})" data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/\1" aria-label="Play ([^"]+)"><span class="play" aria-hidden="true">/g)) {
+      assert.ok(id && title, file);
+    }
+    if (html.includes('figure class="video"')) {
+      assert.match(html, /<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}" data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/[\w-]{11}" aria-label="Play /, file);
+    }
+  }
 });
 
 test('/blog sends readers to the guides hub', async () => {
@@ -214,6 +236,7 @@ test('guide and video cards outline in orange on hover, and a guide image opens 
 
 test('search starts with a few results, then pages matches eight at a time', async () => {
   const page = await read('public/search.html');
+  assert.doesNotMatch(page, /voice agent…|Loading the index…/);
   assert.match(page, /<button type="button" class="search-more" id="search-more" hidden>Show more results<\/button>/);
   assert.match(page, /const pageSize = 8;/);
   assert.match(page, /rows\.filter\(row => row\[0\] === 'guide'\)\.slice\(0, 3\), \.\.\.rows\.filter\(row => row\[0\] === 'video'\)\.slice\(0, 3\)/);

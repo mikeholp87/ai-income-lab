@@ -107,6 +107,7 @@ test('FAQ questions are not numbered and plan copy skips em dashes', () => {
   const start = jsx.indexOf('const plans = [');
   assert.doesNotMatch(jsx.slice(start, jsx.indexOf('];', start)), /—/);
   assert.doesNotMatch(jsx, /Choose \{plan\.name\} —/);
+  assert.doesNotMatch(jsx, /Sending…|Subscribing…/);
 });
 
 test('Skool buttons share one label and new-tab buttons end with ↗', () => {

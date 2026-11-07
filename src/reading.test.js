@@ -33,7 +33,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   globalThis.document = {
     head: { appendChild: script => scripts.push(script), querySelector: () => null },
     body: { append: element => elements.push(element) },
-    querySelectorAll: selector => selector === 'a[href]' ? links : selector === 'form[data-subscribe]' ? [form] : images,
+    querySelectorAll: selector => selector === 'a[href]' ? links : selector === 'form[data-subscribe]' ? [form] : selector === 'figure.video a.player[data-embed]' ? [] : images,
     querySelector: () => ({ append: element => elements.push(element) }),
     createElement: tag => tag === 'aside' ? { setAttribute() {}, querySelectorAll: () => buttons, querySelector: () => buttons[0], contains: () => false } : button(),
   };
