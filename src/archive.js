@@ -263,7 +263,7 @@ export const guides = [
   [/task manager in claude code/i, '/guides/claude-code-task-manager.html', 'Claude Code Task Manager: Scope, Checks and Packaging'],
   [/rocket launch simulator/i, '/guides/ai-threejs-rocket-demo.html', 'AI Rocket Demo: Three.js Scene and Camera Controls'],
   [/chatgpt images 2\.5|sketch-to-image/i, '/guides/chatgpt-images-sketch-workflow.html', 'ChatGPT Images Sketch: Composition and Local Edits'],
-  [/crowd ?reply/i, '/guides/crowdreply-mcp-codex.html', 'CrowdReply MCP with Codex: Citation Data to Review Plans'],
+  [/this is the ai seo strategy you.?re missing|crowd ?reply/i, '/guides/crowdreply-mcp-codex.html', 'CrowdReply MCP with Codex: Citation Data to Review Plans'],
   [/deepseek coding harness|deepseek harness/i, '/guides/deepseek-harness-first-test.html', 'DeepSeek Harness First Test: Setup Errors and Demo Limits'],
   [/ghostty/i, '/guides/ghostty-debian-configuration.html', 'Ghostty on Debian: Configuration and Theme Checks'],
   [/5 ai agents you need to build with grok/i, '/guides/grokbot-for-beginners.html', 'GrokBot for Beginners: First Bot, Access and Approvals'],

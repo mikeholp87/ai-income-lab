@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
+import { guides } from './archive.js';
 
 const site = 'https://www.ai-automation-station.com';
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -85,6 +86,14 @@ test('the rocket guide stays a qualified case study without reconstructing the p
   assert.match(html, /The original prompt is not reproduced here/);
   assert.match(html, /not a physics-validated simulator|without treating the demo as a validated flight simulator/);
   assert.doesNotMatch(html, /TODO|lorem ipsum/i);
+});
+
+test('CrowdReply and Herdr desktop routing do not invent a missing watch page', () => {
+  const route = title => guides.find(([pattern]) => pattern.test(title))?.[1];
+  assert.equal(route('This Is The AI SEO Strategy You’re Missing!'), '/guides/crowdreply-mcp-codex.html');
+  assert.equal(route("This Is The AI SEO Strategy You're Missing!"), '/guides/crowdreply-mcp-codex.html');
+  assert.equal(route('New HERDR Desktop App Is A Game Changer!'), '/guides/herdr-desktop-app.html');
+  assert.equal(route('Herdr Lets You Run Claude Code And Codex In One Place'), '/guides/herdr-guide.html');
 });
 
 test('Dots is one guide with both long-form embeds and Shorts stay excluded', async () => {
