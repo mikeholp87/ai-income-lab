@@ -30,6 +30,8 @@ test('GitHub endpoint returns every owned public source repository', async t => 
       publicRepo('second'),
       publicRepo('other-owner', { owner: { login: 'someone-else' } }),
       publicRepo('third'),
+      publicRepo('solar-business-directory'),
+      publicRepo('SEO-Tool'),
       publicRepo('fourth'),
       publicRepo('older', { created_at: '2025-12-31T23:59:59Z' }),
       publicRepo('next-year', { created_at: '2027-01-01T00:00:00Z' }),
