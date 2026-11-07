@@ -2042,6 +2042,544 @@ export const videoSummaries = {
         "a": "It removed seven filler words, auto-detected a hook, selected five segments and output a 64-second 1920x1080 video of about 6 MB."
       }
     ]
+  },
+  "Qb6RG0-8O1k": {
+    "summary": "Cancel a Claude Pro subscription and run Claude Code through Free Claude Code, a GitHub proxy that sends its requests to NVIDIA NIM and OpenRouter models. The default NVIDIA model was slow, so the demo switches to Step 3.5 Flash on OpenRouter and starts a Next.js app, which is not finished by the end.",
+    "whatYouBuild": "A local proxy setup that lets the Claude Code command line use free or cheap models, then the first files of a Next.js app that checks how visible a website is to AI search, planned from a CLAUDE.md file.",
+    "toolsUsed": [
+      "Free Claude Code",
+      "NVIDIA NIM",
+      "OpenRouter",
+      "Claude Code",
+      "Claude Desktop",
+      "Next.js"
+    ],
+    "keySteps": [
+      { "seconds": 71, "step": "Cancel the Claude Pro subscription in the billing settings." },
+      { "seconds": 98, "step": "Clone Free Claude Code from GitHub and copy the example environment file." },
+      { "seconds": 131, "step": "Create an NVIDIA NIM account and generate an API key for the free model endpoints." },
+      { "seconds": 187, "step": "Generate an OpenRouter API key and add it to the same environment file." },
+      { "seconds": 226, "step": "Start the proxy on port 8082 and launch Claude Code with its base URL pointed at the proxy." },
+      { "seconds": 284, "step": "Test a prompt, find the default NVIDIA model slow and switch to Step 3.5 Flash." },
+      { "seconds": 384, "step": "Have Claude Desktop write a detailed CLAUDE.md prompt for an AI search visibility app." },
+      { "seconds": 445, "step": "Watch the agent create package.json, the Tailwind and TypeScript config and the Next.js layout files." }
+    ],
+    "notCovered": [
+      "A finished app. The recording ends while files are still being created.",
+      "A speed or quality comparison with Claude on a paid plan beyond the remark that the default model felt slower.",
+      "Setting up Ollama, LM Studio or DeepSeek, which are only mentioned.",
+      "Whether routing Claude Code through a third-party proxy fits Anthropic's terms or your data-handling needs."
+    ],
+    "qa": [
+      {
+        "q": "Is Free Claude Code an Anthropic product?",
+        "a": "No. It is a separate GitHub project that runs a local proxy so the Claude Code command line can use models from NVIDIA NIM, OpenRouter and other providers."
+      },
+      {
+        "q": "What did the build cost?",
+        "a": "The OpenRouter balance stayed at $1.68 while the app files were being created. The video suggests Step 3.5 Flash, priced at $0.10 per million tokens, or any of the free models."
+      },
+      {
+        "q": "Was it as fast as a paid Claude plan?",
+        "a": "No. A simple test prompt took a long time on the default NVIDIA model. Step 3.5 Flash through OpenRouter ran faster."
+      }
+    ]
+  },
+  "miBtL2fVkpg": {
+    "summary": "Install 9Router, a local gateway that connects coding tools such as Kilo Code and OpenCode to more than 60 AI providers with a three-tier fallback from paid to cheap to free models. Kilo Code connects and passes a connection test. OpenCode connects but returns no output in the demo.",
+    "whatYouBuild": "A local 9Router dashboard with provider connections, Kilo Code and OpenCode pointed at it, an OpenRouter key for more free models and the 9Remote add-on for coding from another device.",
+    "toolsUsed": [
+      "9Router",
+      "Kilo Code",
+      "OpenCode",
+      "OpenRouter",
+      "RTK",
+      "9Remote"
+    ],
+    "keySteps": [
+      { "seconds": 44, "step": "Install 9Router with the npm command and start it with 9router on localhost." },
+      { "seconds": 68, "step": "See how the fallback works: paid subscriptions first, then cheap models such as GLM, MiniMax and Kimi, then free models." },
+      { "seconds": 130, "step": "Read the risk notice on the Claude Code and Codex connections before deciding whether to connect them." },
+      { "seconds": 180, "step": "Connect Kilo Code, select a 9Router model and run the connection test." },
+      { "seconds": 205, "step": "Connect OpenCode and pick a free model such as DeepSeek V4 Flash through 9Router." },
+      { "seconds": 410, "step": "Add an OpenRouter API key to reach more free models." },
+      { "seconds": 435, "step": "Install 9Remote to reach a terminal from another place." },
+      { "seconds": 480, "step": "Review the built-in token-saving tools: RTK, Caveman and Ponytail." }
+    ],
+    "notCovered": [
+      "Why OpenCode returned no output during the demo. The cause was not found.",
+      "A full setup of the token-saving tools, which is promised for a later video.",
+      "Independent measurement of the 20 to 65 percent token savings the project claims.",
+      "A walkthrough of 9Remote beyond installing it."
+    ],
+    "qa": [
+      {
+        "q": "What does 9Router do?",
+        "a": "It sits between your coding tools and many AI providers. When a paid plan runs out it drops to a cheaper model tier, then to a free one, so you can keep working."
+      },
+      {
+        "q": "Is it safe to connect Claude Code or Codex?",
+        "a": "9Router shows a risk notice on both. They use a subscription session that is not officially licensed for proxy use, and the account may be restricted or banned. The video connects Claude Code but uses these tools in their own command line instead."
+      },
+      {
+        "q": "Did the OpenCode connection work?",
+        "a": "OpenCode connected and the 9Router models appeared in its model list, but no output came back during the demo and the cause was not identified."
+      }
+    ]
+  },
+  "dQ_gnts0JCE": {
+    "summary": "A live walkthrough of OpenSEO, an open-source SEO platform with a free tier. It connects Google Search Console, links the MCP to Claude Code, and runs keyword research, a site audit and backlink checks on a competitor and on the presenter's own sites. Prices and star counts are quoted from the presenter, not checked here.",
+    "whatYouBuild": "An OpenSEO account connected to Google Search Console and to Claude Code through MCP, used to pull keyword data, run an SEO audit and generate an HTML report of fixes.",
+    "toolsUsed": [
+      "OpenSEO",
+      "Claude Code",
+      "Google Search Console"
+    ],
+    "keySteps": [
+      { "seconds": 27, "step": "Compare OpenSEO's free tier and plans from $10 a month with Semrush, which the presenter says starts at $149." },
+      { "seconds": 56, "step": "Find the MCP install instructions for Claude Code or Codex." },
+      { "seconds": 81, "step": "Connect Google Search Console so site data comes in without a custom skill." },
+      { "seconds": 105, "step": "Paste the setup prompt into Claude Code to link the MCP." },
+      { "seconds": 145, "step": "Run keyword research for a seed term and sort long-tail results by competition." },
+      { "seconds": 231, "step": "Run the recommended SEO audit command through the MCP and authorize read access." },
+      { "seconds": 260, "step": "Check a large competitor's backlinks, referring domains and domain rating." },
+      { "seconds": 316, "step": "Review the backlink profile of the presenter's own domain." },
+      { "seconds": 448, "step": "Read the generated report, which finds few inbound links as the main gap, and start the fixes." }
+    ],
+    "notCovered": [
+      "The brand lookup for AI citations, which needs a paid plan and is not shown.",
+      "A full-site audit. The test crawl covers 50 pages of a site the presenter says has about 5,000.",
+      "Independent checks of the pricing, star counts and backlink figures quoted in the video.",
+      "A side-by-side accuracy comparison with paid tools such as Semrush or Ahrefs."
+    ],
+    "qa": [
+      {
+        "q": "Is OpenSEO free?",
+        "a": "The video shows a free tier and says paid plans start at $10 a month. Check the current pricing page before relying on that."
+      },
+      {
+        "q": "What does the MCP add?",
+        "a": "It lets Claude Code or Codex read OpenSEO data directly, so an audit command can pull the data and produce a written report without leaving the coding tool."
+      },
+      {
+        "q": "What did the audit find?",
+        "a": "On one site the report said pages load and are set up correctly and the main gap is that almost no other sites link to it, plus six smaller fixes. Another test showed slow server responses and long titles and meta descriptions."
+      }
+    ]
+  },
+  "t0nQSyryTPg": {
+    "summary": "A tour of demos that other people made with GPT-6 Astra, shown from posts and the product site: exploded 3D models, a V8 engine, a Zillow-style house, browser racing games and a Counter-Strike recreation. The presenter does not build or test any of them in this video.",
+    "whatYouBuild": "Nothing is built in this video. It reviews finished community demos so you can see what GPT-6 Astra is being used for.",
+    "toolsUsed": [
+      "GPT-6 Astra",
+      "Three.js",
+      "Blender",
+      "Unreal Engine"
+    ],
+    "keySteps": [
+      { "seconds": 70, "step": "An interactive exploded 3D Tesla that names each part on mouseover." },
+      { "seconds": 140, "step": "A mechanical 3D design of a turbofan jet engine." },
+      { "seconds": 206, "step": "A real estate listing turned into a navigable 3D model." },
+      { "seconds": 256, "step": "Polished interface elements in a macOS style." },
+      { "seconds": 317, "step": "A V8 engine with moving internal parts such as the crankshaft." },
+      { "seconds": 409, "step": "A browser racing game with a speedometer and map." },
+      { "seconds": 582, "step": "A game built with Fable 5.1 compared with one built by GPT-6 Astra." },
+      { "seconds": 653, "step": "A Counter-Strike 2 style game running in the browser with Three.js." },
+      { "seconds": 720, "step": "A BMX downhill game with physics, rain and cinematic cameras." }
+    ],
+    "notCovered": [
+      "Any build or test by the presenter. Every demo comes from other creators.",
+      "Prompts, build times and costs for most demos, which the video says it does not know.",
+      "Independent checks of claims such as one-shot builds and view counts, which come from the original posts.",
+      "How well these demos run on average hardware."
+    ],
+    "qa": [
+      {
+        "q": "Did the presenter make these demos?",
+        "a": "No. They are shared by other creators and the product site, and the video walks through them."
+      },
+      {
+        "q": "Are the one-shot claims verified?",
+        "a": "No. The video repeats what creators say about how a demo was made, and it does not reproduce any of them."
+      },
+      {
+        "q": "What plan does the presenter suggest for building games like these?",
+        "a": "The $200 a month max plan, since the presenter expects this kind of build to use credits quickly. That is an opinion, and the presenter does not run a build to show the usage."
+      }
+    ]
+  },
+  "wzC2r426KWs": {
+    "summary": "A work-in-progress virtual office for at least 35 AI agents in GrokBot, built with its Pages feature. A chief-of-staff agent sits in the middle, tasks and an event log show on screen, and click-to-approve is added. A blank-page bug is fixed during the video, but approvals do not update the office automatically yet.",
+    "whatYouBuild": "A GrokBot Page showing every agent as a character in an office, with active tasks, a quest log and an approve-in-chat button, driven by plain-language requests to the chief-of-staff agent.",
+    "toolsUsed": [
+      "GrokBot",
+      "GrokBot Pages"
+    ],
+    "keySteps": [
+      { "seconds": 60, "step": "Tour the office map, the active and waiting tasks and the quest log." },
+      { "seconds": 94, "step": "Ask GrokBot to fix the blurry canvas, which came from the canvas being stretched." },
+      { "seconds": 149, "step": "Ask for a separate viewer bot dedicated to the virtual office." },
+      { "seconds": 188, "step": "Open an agent that drafts and posts to the Skool community and read its event log." },
+      { "seconds": 218, "step": "Ask for a click-to-approve button on each agent." },
+      { "seconds": 290, "step": "Move the office from the slow virtual computer to a GrokBot Page." },
+      { "seconds": 354, "step": "Report and fix a blank page that appears after pressing approve." },
+      { "seconds": 445, "step": "Press approve in chat, which copies an approval line to paste into the conversation." }
+    ],
+    "notCovered": [
+      "Automatic updates of the office after a task is approved. The presenter asks for this at the end.",
+      "The agent avatar update, which has not been done when the video ends.",
+      "How the 35 agents were built, beyond what the office shows.",
+      "Usage limits in detail. The presenter mentions being on a $60 a month plan and a base plan from $20."
+    ],
+    "qa": [
+      {
+        "q": "What is the virtual office for?",
+        "a": "It gives a visual overview of many agents at once, with their tasks, event logs and items waiting for approval."
+      },
+      {
+        "q": "Does click-to-approve work?",
+        "a": "Partly. The button copies an approval line to paste into chat. After a blank-page bug was fixed it worked, but the office did not update on its own yet."
+      },
+      {
+        "q": "Why use a Page instead of the virtual computer?",
+        "a": "The office ran slowly inside the virtual computer, and a Page loaded faster and was easier to preview."
+      }
+    ]
+  },
+  "6jDcOXSOT00": {
+    "summary": "A first test of GrokBot for SEO on a free trial: import the site audit bot, turn on weekly and monthly audits, connect Treg for keyword data and DataForSEO, then run an audit and an AI citation plan. The audit scores the site 83 out of 100 across 30 pages. Opening a fix pull request needs a paid plan.",
+    "whatYouBuild": "A GrokBot SEO setup with an imported site audit bot, scheduled audits, Treg as a keyword source with DataForSEO behind it, and an audit report with prioritized fixes.",
+    "toolsUsed": [
+      "GrokBot",
+      "Treg",
+      "DataForSEO",
+      "GitHub"
+    ],
+    "keySteps": [
+      { "seconds": 20, "step": "Browse the GrokBot marketplace of bots and plugins." },
+      { "seconds": 63, "step": "Import the site audit bot, which sets up its routines and memory." },
+      { "seconds": 112, "step": "Turn on the weekly audit and monthly re-audit and set the primary domain." },
+      { "seconds": 140, "step": "Look for SEO plugins and find no DataForSEO plugin in the catalog." },
+      { "seconds": 186, "step": "Connect Treg with an API key and use it as the keyword source." },
+      { "seconds": 254, "step": "Run a full site audit and an AI visibility pull, which the bot estimates at 15 to 20 cents." },
+      { "seconds": 320, "step": "Connect DataForSEO through the Treg account so GrokBot can use its data." },
+      { "seconds": 413, "step": "Read the audit report with an 83 out of 100 score and the top five actions, then connect GitHub." },
+      { "seconds": 504, "step": "Request an AI citation plan built from keyword data." }
+    ],
+    "notCovered": [
+      "The fixes being made. Cloud agents are not on the free trial, so the presenter files GitHub issues instead.",
+      "The contents of the AI citation plan briefs.",
+      "Getting the three bots to pass work to one another, which is planned but not done.",
+      "Independent checks of the traffic and keyword estimates shown."
+    ],
+    "qa": [
+      {
+        "q": "What did the audit find?",
+        "a": "A score of 83 out of 100 across 30 public pages. The top actions include fixing the HTML language attribute on localized routes, hreflang, and desktop homepage performance."
+      },
+      {
+        "q": "What does it cost?",
+        "a": "The video uses a free trial and mentions a Pro plan at $20 a month. Treg data is billed from a credit balance, shown as 77 cents at the time."
+      },
+      {
+        "q": "Could it open a pull request with the fixes?",
+        "a": "Not on the free trial. The cloud agent that does that needs the paid plan, so the presenter files issues and plans to fix them with another coding tool."
+      }
+    ]
+  },
+  "QMqe2ubsn0g": {
+    "summary": "A walkthrough of DextroLab, a tool for giving agency clients a branded portal to run Make.com or n8n automations, with usage billing through Stripe. The presenter connects Make.com, delivers a voice agent workflow to a client and sets example pricing. A custom-variable step fails with an invalid API key error and is dropped. The link in the description is an affiliate link.",
+    "whatYouBuild": "A white-label client setup in DextroLab: a Make.com connection, a workflow delivered to a client for approval, and example pricing with a per-run fee, a monthly base fee and a one-time setup fee.",
+    "toolsUsed": [
+      "DextroLab",
+      "Make.com",
+      "n8n",
+      "Stripe"
+    ],
+    "keySteps": [
+      { "seconds": 37, "step": "Review the free start and the paid plan, quoted at about £47 a month with a 14-day trial when recorded." },
+      { "seconds": 103, "step": "Set example prices: $0.05 per run, a $100 monthly base fee and a $250 one-time setup fee." },
+      { "seconds": 167, "step": "Look at the agency dashboard and the custom domain setting." },
+      { "seconds": 202, "step": "Add a connection with an API key and base URL for Make.com or n8n." },
+      { "seconds": 276, "step": "Pick a Make.com voice agent workflow and deliver it to the one client, where it waits for approval." },
+      { "step": "Try adding the DextroLab variables node to a scenario, get an unauthorized error and remove the node." },
+      { "step": "Look at the Stripe payment settings and the subscription plans for clients." },
+      { "seconds": 640, "step": "View the client portal a client sees after accepting the workflow." }
+    ],
+    "notCovered": [
+      "The custom-variable feature working. The error was not solved.",
+      "The client accepting the workflow and being billed.",
+      "Current pricing, which was quoted in pounds when the video was recorded in August 2025.",
+      "Any result from running the delivered workflow."
+    ],
+    "qa": [
+      {
+        "q": "Which platforms does DextroLab connect to?",
+        "a": "The video shows two connection options, n8n and Make.com, each using an API key and a base URL."
+      },
+      {
+        "q": "How do clients pay?",
+        "a": "Through Stripe. The presenter shows a per-run fee, a recurring monthly fee and a one-time setup fee that DextroLab bills automatically."
+      },
+      {
+        "q": "Is the link in the description an affiliate link?",
+        "a": "Yes. The presenter says they earn a recurring commission if you sign up through it."
+      }
+    ]
+  },
+  "dVvazfQHhW4": {
+    "summary": "Build a Python script with an AI agent that fetches your latest YouTube video and writes a LinkedIn post and a 1,500-word newsletter from it, then schedule it as a daily Hermes cron job. The first Hermes output is weak, so the presenter moves the edits to OpenCode and the OpenAI API. The results still need editing, and posting is done by hand.",
+    "whatYouBuild": "A Python script and a daily Hermes cron job that find the newest video, then write two LinkedIn post versions (one for reach, one for engagement) and a long newsletter into date-stamped files.",
+    "toolsUsed": [
+      "Hermes Agent",
+      "OpenCode",
+      "OpenAI API",
+      "Python",
+      "Google AI Studio",
+      "LinkedIn"
+    ],
+    "keySteps": [
+      { "seconds": 45, "step": "Give Hermes the channel URL and ID so it can write the script." },
+      { "seconds": 138, "step": "Review the first script, which pulls the latest video without a YouTube API key." },
+      { "seconds": 183, "step": "Try a Google AI Studio key, then switch to an OpenAI API key in the environment file." },
+      { "seconds": 291, "step": "Move the edits to OpenCode after the Hermes drafts read poorly." },
+      { "seconds": 406, "step": "Fix the unsupported max_tokens error by switching to max_completion_tokens." },
+      { "seconds": 442, "step": "Compare version A for reach with version B for engagement." },
+      { "seconds": 517, "step": "Require a newsletter of at least 1,500 words." },
+      { "seconds": 544, "step": "Create the daily YouTube-to-LinkedIn cron job in Hermes." },
+      { "seconds": 607, "step": "Add dates to the output file names so each run keeps its own files." }
+    ],
+    "notCovered": [
+      "Automatic posting to LinkedIn. The presenter pastes the newsletter in by hand.",
+      "A successful scheduled run. The cron job shows an error because the API limit was exceeded.",
+      "Measured results from the posts, and the cost of each run.",
+      "A fair model comparison. Hermes and OpenCode are run on different prompts and models."
+    ],
+    "qa": [
+      {
+        "q": "Do I need a YouTube API key?",
+        "a": "Not in this build. The presenter says the script found the latest video without a key from Google Cloud Console."
+      },
+      {
+        "q": "Why switch from Hermes to OpenCode?",
+        "a": "The presenter did not like the Hermes drafts and found OpenCode edited the script faster. This is a personal view from one run."
+      },
+      {
+        "q": "Is the output ready to post?",
+        "a": "No. The presenter says the newsletter needs editing and formatting before it goes to subscribers."
+      }
+    ]
+  },
+  "9A2StjrxOms": {
+    "summary": "A sponsored demo of Treg, a pay-per-call catalog of agent tools, connected to Codex and GrokBot. The presenter calls DataForSEO through Treg for keyword and backlink data, and builds an SEO auditor in GrokBot that reports a total spend of 13 cents. The video states that Treg sponsored it and that the sign-up link is an affiliate link.",
+    "whatYouBuild": "Treg installed in Codex and as a GrokBot plugin, a DataForSEO connection, example keyword and backlink calls with their costs, and a GrokBot SEO auditor that creates a report and next actions.",
+    "toolsUsed": [
+      "Treg",
+      "GrokBot",
+      "Codex",
+      "DataForSEO",
+      "Cursor cloud agents"
+    ],
+    "keySteps": [
+      { "seconds": 30, "step": "Set the task: find backlink opportunities by comparing data providers on price and reliability." },
+      { "seconds": 74, "step": "Install Treg in Codex with the copied one-line command." },
+      { "seconds": 106, "step": "Add the Treg plugin to GrokBot from its marketplace." },
+      { "seconds": 134, "step": "Watch live API calls, request JSON and responses in the Treg dashboard." },
+      { "seconds": 230, "step": "See how pay-per-call billing works against a topped-up balance." },
+      { "seconds": 295, "step": "Fetch keyword data through DataForSEO, where a prompt left the example keyword as coffee." },
+      { "seconds": 457, "step": "Run a DataForSEO backlink summary on the presenter's domain at a quoted per-call price." },
+      { "seconds": 576, "step": "Build the GrokBot SEO auditor and read its report, which starts a Cursor cloud agent for fixes." }
+    ],
+    "notCovered": [
+      "A comparison of providers on real accuracy or reliability. Prices are shown but quality is not tested.",
+      "Costs without the presenter's balance. The presenter says a paid collaboration funded a $100 balance.",
+      "The fixes the cloud agent makes after the audit.",
+      "Independent checks of the traffic, keyword and backlink figures returned."
+    ],
+    "qa": [
+      {
+        "q": "Is this video sponsored?",
+        "a": "Yes. The presenter says Treg sponsored it and asked for a practical workflow. The link is also an affiliate link that gives a $5 credit after a $10 deposit, and the presenter earns $5."
+      },
+      {
+        "q": "How does Treg charge?",
+        "a": "Per call from a prepaid balance, rather than a monthly subscription. Each endpoint shows its price, and the dashboard shows the calls made."
+      },
+      {
+        "q": "What did the SEO audit cost?",
+        "a": "GrokBot reported a total spend of 13 cents through Treg for pulling ranked keywords, competitors, backlinks and AI mentions."
+      }
+    ]
+  },
+  "AkIz84oXvdk": {
+    "summary": "A walkthrough of Syllaby for making faceless videos and scheduling them to YouTube, TikTok, Instagram and other networks. It covers styles, voices, credits, the script assistant and the bulk scheduler. The script assistant fails with a not found error several times before it works. The link in the description is an affiliate link.",
+    "whatYouBuild": "A faceless video made from a script in Syllaby, plus a bulk schedule that generates scripts and videos for 7 to 30 days and posts them from a content calendar.",
+    "toolsUsed": [
+      "Syllaby",
+      "ElevenLabs",
+      "YouTube"
+    ],
+    "keySteps": [
+      { "seconds": 59, "step": "See the AI avatar and voice clone options." },
+      { "seconds": 121, "step": "Tour the dashboard and analytics." },
+      { "seconds": 157, "step": "Start a faceless video and choose a style, subtitles, voice and aspect ratio. The presenter quotes 13 credits per minute and 500 credits a month on the paid plan." },
+      { "seconds": 195, "step": "Adjust animation, sound effects, background music and subtitle position." },
+      { "seconds": 270, "step": "Use the AI script assistant, which returns not found errors at first." },
+      { "seconds": 560, "step": "Schedule a post from the content calendar." },
+      { "seconds": 866, "step": "Set up the bulk scheduler for 7 to 30 days of videos with up to five posts a day." }
+    ],
+    "notCovered": [
+      "Results from the presenter's own videos. The claim of good results after three months is not shown.",
+      "The cause of the not found script errors.",
+      "The finished bulk-scheduled videos, which were still rendering at the end.",
+      "Current pricing. Paid plans were quoted from $25 a month in August 2025."
+    ],
+    "qa": [
+      {
+        "q": "Is Syllaby free?",
+        "a": "It offers some free credits to start. The presenter says most people will need a paid plan, quoted from $25 a month when recorded."
+      },
+      {
+        "q": "Can I use my own ElevenLabs voice?",
+        "a": "The presenter could not find a direct ElevenLabs integration. Syllaby makes voice clones itself and the presenter says it uses ElevenLabs behind the scenes."
+      },
+      {
+        "q": "Does the presenter recommend Shorts for income?",
+        "a": "Not for direct income. The presenter says Shorts pay little without millions of views and favors long-form videos for monetization."
+      }
+    ]
+  },
+  "EECptdYND6k": {
+    "summary": "Install Odysseus, the free self-hosted AI chat workspace that the video attributes to PewDiePie, on Linux and try it with OpenRouter, OpenCode Go and OpenAI models. The setup takes about five minutes. The tour covers the windowed interface, model comparison, an evening email digest task and the cookbook. The shell tool and a local-model run are not set up, and the Gmail connection takes several tries.",
+    "whatYouBuild": "A local Odysseus install running in the browser, connected to OpenRouter, OpenCode Go, OpenCode Zen and OpenAI models, with an email digest task scheduled for 7 pm.",
+    "toolsUsed": [
+      "Odysseus",
+      "OpenRouter",
+      "OpenCode Go",
+      "OpenCode Zen",
+      "OpenAI API",
+      "Gmail",
+      "Playwright"
+    ],
+    "keySteps": [
+      { "step": "Clone the repository from GitHub, create a Python virtual environment and install the requirements." },
+      { "step": "Start Odysseus on localhost and sign in with the username and password you created." },
+      { "step": "Add an OpenRouter key and test it, which finds 341 models, then add OpenCode Go, OpenCode Zen and OpenAI keys the same way." },
+      { "step": "Set default models for chat and research, and DuckDuckGo for search." },
+      { "step": "Switch between chat mode and agent mode, and see that the agent has no shell access until it is set up." },
+      { "step": "Browse the cookbook for local model and dependency installs, including Playwright." },
+      { "step": "Move, dock and resize the browser windows, change themes, and compare two models side by side." },
+      { "step": "Ask the agent to create an evening email digest task, enable two-factor sign-in and connect Gmail with an app password." }
+    ],
+    "notCovered": [
+      "Running a local model. The presenter says the hardware cannot handle one.",
+      "Setting up the agent's shell, so it could not run local skills.",
+      "A finished model comparison. The Pong test failed for one model.",
+      "Proof that the scheduled email digest arrives. The video ends after an inbox summary of 30 emails.",
+      "An independent check of the star count and view numbers quoted in the video."
+    ],
+    "qa": [
+      {
+        "q": "Is Odysseus free?",
+        "a": "The video says it is free and open source with no subscription. Model usage is billed by whichever provider you connect, such as OpenRouter."
+      },
+      {
+        "q": "How long does installing it take?",
+        "a": "About five minutes on Debian Linux in this video, using a Python virtual environment and pip."
+      },
+      {
+        "q": "What did the demo cost?",
+        "a": "Using DeepSeek V4 Flash through OpenCode, the presenter reports about two cents early on and about five cents by the end."
+      },
+      {
+        "q": "Did the email connection work?",
+        "a": "After several failed tests, adding a Gmail app password with IMAP and SMTP passed and an inbox summary returned."
+      }
+    ]
+  },
+  "Zi_PG07mDxo": {
+    "summary": "Wrap Odysseus in an Electron desktop app. The presenter asks Odysseus with DeepSeek V4 Pro to build it, the run stalls on an npm install, and Codex plus the terminal finish the job. The app crashes once, then runs in its own window using about 2.3 GB of memory. Credits used in OpenCode: 31 cents.",
+    "whatYouBuild": "A standalone Electron desktop app for Odysseus that opens the local web interface in its own window, with a launch script and a README.",
+    "toolsUsed": [
+      "Odysseus",
+      "Electron",
+      "DeepSeek V4 Pro",
+      "Codex",
+      "OpenCode"
+    ],
+    "keySteps": [
+      { "step": "Ask Odysseus to build an Electron desktop app for its own project." },
+      { "step": "Let the agent inspect the FastAPI and static web app and create the Electron wrapper files." },
+      { "step": "Hit a long npm install that has not finished after about eight minutes, so stop it." },
+      { "step": "Ask Codex for the same job and run npm install in the terminal." },
+      { "step": "Start the app with the launch script, which crashes once, then with npm start." },
+      { "step": "Sign in with two-factor authentication, check memory use and compare speed with the browser." }
+    ],
+    "notCovered": [
+      "Odysseus completing the job on its own. The install stalled and the finish used Codex and the terminal.",
+      "Packaging an installer or testing on Windows and Mac. The wrapper is described for all three but only run on Debian Linux.",
+      "How to share the app. The presenter has not merged it into the main repository.",
+      "A speed measurement. The faster feel is the presenter's impression."
+    ],
+    "qa": [
+      {
+        "q": "Did Odysseus build the whole app?",
+        "a": "It created the wrapper structure, but its npm install stalled. Codex and terminal commands finished the setup."
+      },
+      {
+        "q": "What did it cost?",
+        "a": "The presenter reports 31 cents in total on DeepSeek V4 Pro through OpenCode."
+      },
+      {
+        "q": "Where can I get the app?",
+        "a": "It is not published. The presenter says they may suggest it to the Odysseus project."
+      }
+    ]
+  },
+  "tzSGF7gu6EE": {
+    "summary": "Use 9Router as a local proxy to track what OpenCode Go costs, then look at its token savers, auto-fallback tiers and model combos. The dashboard shows 52 million input tokens as an estimated cost, not a bill. Kilo Code is left unconfigured, and Claude Code and Codex are kept off the proxy because of the account-restriction notice.",
+    "whatYouBuild": "A 9Router setup that routes OpenCode through the proxy for usage tracking, with token savers turned on and example model combos.",
+    "toolsUsed": [
+      "9Router",
+      "OpenCode",
+      "OpenCode Go",
+      "Kilo Code",
+      "Codex",
+      "Headroom",
+      "Caveman",
+      "Ponytail"
+    ],
+    "keySteps": [
+      { "seconds": 52, "step": "Run 9Router as a local proxy and send OpenCode requests through it." },
+      { "seconds": 107, "step": "Read the risk notices on provider connections that use a subscription login." },
+      { "seconds": 149, "step": "Try to configure Kilo Code and skip it for now." },
+      { "seconds": 186, "step": "Explain why OpenCode is used here to keep costs low and visible." },
+      { "seconds": 264, "step": "Turn on Headroom, Caveman and Ponytail token savers and pick a mode." },
+      { "seconds": 364, "step": "Look at proxy pools and the built-in skills." },
+      { "seconds": 394, "step": "See the subscription, cheap and free fallback tiers." },
+      { "seconds": 434, "step": "Set model combos and reorder their priority." },
+      { "seconds": 525, "step": "Check weekly quota use across Codex and Claude." }
+    ],
+    "notCovered": [
+      "Measured savings from the token savers. The dashboard shows none yet because only OpenCode is routed.",
+      "A working Kilo Code connection.",
+      "A comparison of the dashboard estimate with actual provider bills, beyond the presenter's remark that it is an estimate.",
+      "Claude Code or Codex routed through the proxy, which the presenter avoids."
+    ],
+    "qa": [
+      {
+        "q": "Is the cost shown in 9Router what I will pay?",
+        "a": "No. The presenter says it is an estimate, and compares it with the actual spend shown in the OpenCode account."
+      },
+      {
+        "q": "Why not route Claude Code or Codex through 9Router?",
+        "a": "9Router warns that these connections use a subscription login that is not officially licensed for proxy use and the account may be restricted or banned. The presenter avoids it to protect the accounts."
+      },
+      {
+        "q": "What do the token savers claim?",
+        "a": "The dashboard text quotes 60 to 95 percent fewer tokens for JSON data and 15 to 20 percent fewer for coding agents. The video does not measure this."
+      }
+    ]
   }
 };
 
