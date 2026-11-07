@@ -222,10 +222,12 @@ const featuredGuides = [
 // Newest guides that aren't among the cards above: a homepage link gets them crawled sooner.
 // ponytail: hand-kept list; rotate it when a guide is published or promoted into featuredGuides.
 const newGuides = [
-  ['claude-models-compared', 'Claude Opus vs Sonnet vs Haiku vs Fable'],
-  ['lovable-vs-base44-vs-replit', 'Lovable vs Base44 vs Replit'],
-  ['install-openclaw', 'How to install OpenClaw safely'],
-  ['no-code-ai-agent-builder', 'No-code AI agent builders compared'],
+  ['grokbot-for-beginners', 'GrokBot for beginners'],
+  ['herdr-desktop-app', 'Herdr desktop app'],
+  ['grokbot-vs-dots', 'GrokBot vs Dots'],
+  ['codex-seo-workflow', 'Codex for SEO'],
+  ['treg-inside-grokbot', 'Treg inside GrokBot'],
+  ['chatgpt-images-sketch-workflow', 'ChatGPT Images Sketch'],
 ];
 
 function SectionHead({ title, children }) {
