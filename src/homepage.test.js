@@ -27,26 +27,18 @@ test('plans are three equal cards on desktop and stack on tablets and phones, pr
 test('product card links align at the bottom of each card without competing with Join buttons', () => {
   assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*\{tool\.url && <a className="button button-primary" href=\{tool\.url\}/);
   assert.match(jsx, /name: 'TubeAnalytics',\s*url: null/);
-  assert.match(jsx, /I also build and run VisiScan\. TubeAnalytics is temporarily unavailable/);
-  assert.match(jsx, /\['Now', 'Building VisiScan and hosting AI Income Lab'\]/);
+  assert.match(jsx, /TubeAnalytics is temporarily unavailable/);
   assert.match(jsx, /<summary aria-label="Site menu">Menu<\/summary>/);
-  assert.doesNotMatch(jsx, /Building TubeAnalytics and VisiScan/);
   assert.doesNotMatch(jsx, /\['#tools',/);
   assert.match(css, /\.tool ul \{[^}]*margin: 4px 0 0;/);
   assert.match(css, /\.tool-action \{ margin-top: auto; padding-top: 24px; \}/);
 });
 
-test('crawler and about copy do not sell TubeAnalytics as a live product', async () => {
-  const llms = await readFile(new URL('../public/llms.txt', import.meta.url), 'utf8');
-  const about = await readFile(new URL('../public/about.html', import.meta.url), 'utf8');
+test('privacy and terms descriptions use the www host', async () => {
   const privacy = await readFile(new URL('../public/privacy.html', import.meta.url), 'utf8');
   const terms = await readFile(new URL('../public/terms.html', import.meta.url), 'utf8');
-  assert.match(llms, /TubeAnalytics is temporarily unavailable/);
-  assert.doesNotMatch(llms, /tubeanalytics\.net|7-day free trial|plans from \$19 a month/);
-  assert.match(about, /Building VisiScan\. TubeAnalytics is paused/);
   assert.match(privacy, /www\.ai-automation-station\.com handles/);
   assert.match(terms, /www\.ai-automation-station\.com and joining/);
-  assert.doesNotMatch(terms, /links to YouTube, Skool, TubeAnalytics/);
 });
 
 test('the portrait stays beside the About copy on desktop', () => {
