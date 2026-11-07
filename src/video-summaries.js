@@ -7443,6 +7443,4053 @@ export const videoSummaries = {
         "a": "A Chrome extension for their own SaaS that adds a sidebar with research, keyword and title analysis on YouTube pages."
       }
     ]
+  },
+  "w_MoA8lpWTg": {
+    "summary": "A live demo of ShortForge, the presenter's own Opus Clip alternative, built in about four hours with Codex and OpenCode. It imports a YouTube link or a file, transcribes with Whisper, finds about nine clips in a ten-minute video, renders them with FFmpeg and scores each for virality. Exports work, but subtitles are not burned in, the webcam-over-screen layout from the presenter's skill is not integrated and the app is not live.",
+    "whatYouBuild": "A local web app with video import, Whisper transcripts, AI clip detection, FFmpeg rendering, a virality score per clip, a simple editor, local export and batch export.",
+    "toolsUsed": [
+      "Codex",
+      "OpenCode",
+      "FFmpeg",
+      "Whisper",
+      "OpenAI API"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Compare the clips from Opus Clip, which hide the screen share, with the goal of a custom layout."
+      },
+      {
+        "seconds": 105,
+        "step": "Import a YouTube URL, download the video, extract audio and transcribe with Whisper."
+      },
+      {
+        "seconds": 140,
+        "step": "Render about nine clips from a ten-minute video with FFmpeg."
+      },
+      {
+        "seconds": 158,
+        "step": "Open the editor and read a virality score broken into hook, emotion, shareability, clarity and trend."
+      },
+      {
+        "seconds": 201,
+        "step": "Export a Short, which is stored on the local machine."
+      },
+      {
+        "seconds": 255,
+        "step": "Start integrating the presenter's own webcam and subtitle skill so clips match the target layout."
+      },
+      {
+        "seconds": 390,
+        "step": "Fix a failing file upload with Codex and import a file from the computer."
+      },
+      {
+        "seconds": 482,
+        "step": "Outline plans for auto-publishing, batch exports and tiered pricing."
+      }
+    ],
+    "notCovered": [
+      "Burned-in animated subtitles and the webcam and screen layout, which are still unfinished.",
+      "How the virality score is calculated. The presenter says it is probably ChatGPT.",
+      "A public release. The app runs locally and would need cloud storage such as S3.",
+      "Pricing in practice. The plan is free up to $49 a month, and the YouTube publishing feature is not built."
+    ],
+    "qa": [
+      {
+        "q": "Is ShortForge available?",
+        "a": "Not yet. It runs on the presenter's computer, and they ask viewers to comment if they would use it."
+      },
+      {
+        "q": "How long did it take to build?",
+        "a": "About four hours so far with Codex and OpenCode, according to the presenter."
+      },
+      {
+        "q": "Why not use Opus Clip?",
+        "a": "The presenter found its clips show only the webcam and hide the screen share."
+      }
+    ]
+  },
+  "3X2VU7EyaEU": {
+    "summary": "Set up a free self-hosted GEO and AEO tracker from GitHub that queries six AI models through Bright Data scrapers, then run an audit, add competitors and schedule checks every 12 hours. The audit gives readiness scores around 75 to 80 percent and lists fixes. Bright Data's free trial is used, and one run costs about two cents. The presenter points to Trakkr as another tool.",
+    "whatYouBuild": "A local dashboard from a GitHub repo with Bright Data keys, the Bright Data CLI and MCP in Claude Code, an AEO readiness audit, citation tracking, competitor tracking and a 12-hour auto-run schedule.",
+    "toolsUsed": [
+      "GEO AEO Tracker",
+      "Bright Data",
+      "Claude Code",
+      "OpenRouter"
+    ],
+    "keySteps": [
+      {
+        "seconds": 83,
+        "step": "Clone the repo, run npm install and put the skill in the Claude Code skills folder."
+      },
+      {
+        "seconds": 105,
+        "step": "Create a free Bright Data account and use its free trial credits for the scrapers."
+      },
+      {
+        "seconds": 231,
+        "step": "Install the Bright Data CLI and add its MCP to Claude Code, Cursor and Codex."
+      },
+      {
+        "seconds": 324,
+        "step": "Run an AEO audit, which shows 17 of 20 checks passing and a score near 75 percent for one article."
+      },
+      {
+        "seconds": 389,
+        "step": "Track brand mentions and citations across the six models over time."
+      },
+      {
+        "seconds": 468,
+        "step": "Add competitors and track prompts to generate niche queries."
+      },
+      {
+        "seconds": 526,
+        "step": "Use the generated queries to improve articles and set the auto-run to every 12 hours."
+      }
+    ],
+    "notCovered": [
+      "How accurate the scraped AI answers are, or whether Bright Data's terms cover scraping those chat products.",
+      "Real changes in citations over time, since the tracker has only just started.",
+      "Bright Data costs at scale. The video quotes a $500 a month plan and $1.50 per 1,000 records, and only about two cents spent.",
+      "The project's maturity. The repo had about 108 stars at the time."
+    ],
+    "qa": [
+      {
+        "q": "Is the tracker free?",
+        "a": "The software is free and self-hosted, but it needs Bright Data credits for scraping, covered by a trial in the video."
+      },
+      {
+        "q": "Which AI models does it query?",
+        "a": "ChatGPT, Perplexity, Copilot, Gemini, Google AI and Grok."
+      },
+      {
+        "q": "What did the audit find?",
+        "a": "A score of 75 to 80 percent on the pages tested, with issues such as page size, inline JavaScript weight and a missing no-script fallback."
+      }
+    ]
+  },
+  "508QvEHI5n0": {
+    "summary": "An opinion and pitch video arguing that AI automation, faceless video tools and no-code app builders are the skills to learn. The presenter shares their background, says they built their agency site in Lovable in six to eight hours, and promotes Make.com, Syllaby and their community and consultation. No steps are taught and the claims about leverage and job loss are the presenter's own.",
+    "whatYouBuild": "Nothing is built. The video describes tools the presenter uses and why they recommend learning them.",
+    "toolsUsed": [
+      "Make.com",
+      "n8n",
+      "Syllaby",
+      "Lovable"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Hear why the presenter teaches Make.com rather than n8n: a gentler learning curve for beginners."
+      },
+      {
+        "seconds": 130,
+        "step": "Hear how faceless video tools could have helped the presenter monetize their channel sooner."
+      },
+      {
+        "seconds": 185,
+        "step": "Hear that no-code builders like Lovable, Bolt and Emergent remove the need to code."
+      },
+      {
+        "seconds": 235,
+        "step": "Hear how the agency site was built in Lovable in about six to eight hours."
+      },
+      {
+        "seconds": 285,
+        "step": "Hear why Make.com's thousands of templates and free plan suit beginners."
+      }
+    ],
+    "notCovered": [
+      "Any build or demo. The video is explanation and persuasion.",
+      "Evidence for the claims that automation makes people irreplaceable or that AI is replacing jobs across every sector.",
+      "Costs of hiring a virtual assistant versus automation, which the presenter mentions without a clear figure.",
+      "Limits of no-code builders for larger projects."
+    ],
+    "qa": [
+      {
+        "q": "Is there a tutorial in this video?",
+        "a": "No. It is a talk about why to learn automation and no-code tools, ending with an offer of a free consultation."
+      },
+      {
+        "q": "Why Make.com instead of n8n?",
+        "a": "The presenter says Make.com has a less steep learning curve for the beginners watching their channel."
+      },
+      {
+        "q": "How long did the agency site take?",
+        "a": "About six to eight hours in total, with a first version in 10 to 15 minutes, per the presenter."
+      }
+    ]
+  },
+  "DbYip6KaNHo": {
+    "summary": "Connect the free DataForSEO MCP server from GitHub to Claude Code, pull keyword and AI mention data, and have Claude write an SEO audit report, implementation summary, keyword map and priority list for the presenter's site. Codex then carries out the fixes, including less DOM bloat, product schema and render-blocking resources, and a Lighthouse run shows better desktop performance. Rankings are not shown, and the AI mention check returns a result the presenter says is wrong.",
+    "whatYouBuild": "A DataForSEO MCP install in Claude Code with generated audit files, followed by a Codex run of the fixes and a Lighthouse before and after check.",
+    "toolsUsed": [
+      "DataForSEO",
+      "Claude Code",
+      "Codex",
+      "Lighthouse"
+    ],
+    "keySteps": [
+      {
+        "seconds": 41,
+        "step": "Create a DataForSEO account, copy the API key, clone the MCP from GitHub, run npm install and add a .env file."
+      },
+      {
+        "seconds": 105,
+        "step": "Ask for search volume on the top keywords the domain ranks for, approving the ranked keywords tool."
+      },
+      {
+        "seconds": 150,
+        "step": "Check LLM mention metrics, which needs a 14-day trial and returns no tracked mentions."
+      },
+      {
+        "seconds": 231,
+        "step": "Generate an SEO audit report, implementation summary, keyword map and priority list."
+      },
+      {
+        "seconds": 341,
+        "step": "Review fixes such as reducing the DOM size and adding product schema."
+      },
+      {
+        "seconds": 455,
+        "step": "Use Codex with its plan skills to implement the fixes."
+      },
+      {
+        "seconds": 520,
+        "step": "Fix page speed issues and render-blocking resources."
+      },
+      {
+        "seconds": 555,
+        "step": "Run Lighthouse on desktop and mobile and see performance rise on desktop."
+      }
+    ],
+    "notCovered": [
+      "Search ranking or traffic changes. Only Lighthouse performance is rechecked.",
+      "Mobile results, which are not read out.",
+      "Why the AI mention check says nothing is tracked when the presenter knows otherwise.",
+      "DataForSEO costs beyond the free MCP and the trial."
+    ],
+    "qa": [
+      {
+        "q": "Is the MCP free?",
+        "a": "The presenter says the MCP server on GitHub is free. The data itself needs a DataForSEO account, and the LLM mention module needed a 14-day trial."
+      },
+      {
+        "q": "What files does Claude write?",
+        "a": "An SEO audit report, an implementation summary, a keyword map and an SEO issues priority list."
+      },
+      {
+        "q": "Did it fix the SEO?",
+        "a": "It applied performance and schema fixes, and desktop performance went up. Whether rankings improved is not shown."
+      }
+    ]
+  },
+  "LD2ef2uUauo": {
+    "summary": "A first try of Grok 4.5 and the Grok command line tool, using a documentation prompt to build a single-file solar system app with satellites and asteroids from real-time data. Prices of $2 and $6 per million tokens and benchmark rankings are from xAI's article. The app works with some visual glitches, and the free daily usage limit is reached before the presenter can finish.",
+    "whatYouBuild": "A single index.html solar system with zoom, orbit and label controls, plus satellites and asteroids pulled from public catalog data such as CelesTrak.",
+    "toolsUsed": [
+      "Grok 4.5",
+      "Grok CLI",
+      "CelesTrak"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Read xAI's benchmark claims against Opus 4.8, Fable 5 and GPT 5.5."
+      },
+      {
+        "seconds": 91,
+        "step": "Note the price of $2 per million input tokens and $6 per million output tokens."
+      },
+      {
+        "seconds": 120,
+        "step": "Install the Grok CLI with the curl command and bring over existing skills."
+      },
+      {
+        "seconds": 185,
+        "step": "Ask it to add satellites and asteroids from real-time data, which it fetches from public sources."
+      },
+      {
+        "seconds": 216,
+        "step": "Test orbit controls, the pause slider and focus on Earth and Mars."
+      },
+      {
+        "seconds": 252,
+        "step": "Skim the voice and Imagine API overview."
+      },
+      {
+        "seconds": 415,
+        "step": "Hit the free usage limit and consider the $30 Super Grok plan."
+      }
+    ],
+    "notCovered": [
+      "Independent checks of xAI's benchmark and token efficiency claims.",
+      "Labels for satellites, and fixes for glitches such as labels showing through the sun.",
+      "The voice and image APIs beyond a quick look.",
+      "A fair comparison with other coding agents. This is the presenter's first use of Grok."
+    ],
+    "qa": [
+      {
+        "q": "What does Grok 4.5 cost?",
+        "a": "$2 per million input tokens and $6 per million output tokens, according to the article shown."
+      },
+      {
+        "q": "Where does the satellite data come from?",
+        "a": "The agent pulled it from public sources including CelesTrak, NASA and JPL, per the video."
+      },
+      {
+        "q": "Why did the demo stop?",
+        "a": "The presenter reached the free daily usage limit, and upgrading would cost about $30 a month."
+      }
+    ]
+  },
+  "bAgP_0uW0dY": {
+    "summary": "Improve the title and description of a YouTube video with a popular ChatGPT custom GPT for YouTube SEO, then recreate the same format with the OpenAI API when free usage runs out. The presenter edits the description, tests a title with a vidIQ score, tries Nano Banana on the thumbnail and advises changing one thing at a time. No view results are shown. The links in the description include affiliate links.",
+    "whatYouBuild": "An SEO description and title for one video, made with a custom GPT and a custom assistant that keeps the same format, then pasted into YouTube Studio.",
+    "toolsUsed": [
+      "ChatGPT",
+      "OpenAI API",
+      "vidIQ",
+      "Nano Banana",
+      "YouTube Studio"
+    ],
+    "keySteps": [
+      {
+        "seconds": 23,
+        "step": "Search ChatGPT's GPT store for YouTube SEO and open the most used one."
+      },
+      {
+        "seconds": 49,
+        "step": "Ask for an SEO description from a video title and choose the keyword-dense version."
+      },
+      {
+        "seconds": 107,
+        "step": "Paste it into YouTube Studio and edit it by hand."
+      },
+      {
+        "seconds": 204,
+        "step": "Plan to check analytics after about a week."
+      },
+      {
+        "seconds": 277,
+        "step": "Use a custom assistant on the API when the GPT plan runs out, fixing its output format."
+      },
+      {
+        "seconds": 366,
+        "step": "Test titles with the vidIQ score and keep the version that scores higher."
+      },
+      {
+        "seconds": 477,
+        "step": "Try Nano Banana on a thumbnail, then keep the original to change one thing at a time."
+      },
+      {
+        "seconds": 668,
+        "step": "Add timestamps and links to the description."
+      }
+    ],
+    "notCovered": [
+      "Whether views or ranking improved. The presenter says to check back in a week or two.",
+      "How reliable the vidIQ score is for predicting performance.",
+      "Fact checking the description text the GPT writes.",
+      "A controlled test, since only one video is changed and without a comparison."
+    ],
+    "qa": [
+      {
+        "q": "Why change only one thing at a time?",
+        "a": "So you can tell whether the title, description or thumbnail caused a change in views."
+      },
+      {
+        "q": "What if free ChatGPT usage runs out?",
+        "a": "The presenter builds a custom assistant with the OpenAI API and the same prompt format."
+      },
+      {
+        "q": "Are the links affiliate links?",
+        "a": "The presenter says their description includes affiliate links that earn a commission."
+      }
+    ]
+  },
+  "3j4YyYFRQKU": {
+    "summary": "A Make.com scenario that posts a daily AI-generated image and caption to a Facebook page: ChatGPT writes a visual post of under 150 words, DALL-E 3 makes the image, an HTTP step fetches the file and a Facebook step publishes a photo post, scheduled for 10 am. The presenter built it in about 20 minutes. The first run errors and a retry works. The engagement benefit is the presenter's expectation. The Make.com link is an affiliate link.",
+    "whatYouBuild": "A Make.com scenario with an OpenAI chat completion, a DALL-E 3 image, a set variable step, an HTTP get-file step and a Facebook Pages post with photos, set to run daily.",
+    "toolsUsed": [
+      "Make.com",
+      "OpenAI API",
+      "DALL-E 3",
+      "Facebook"
+    ],
+    "keySteps": [
+      {
+        "seconds": 77,
+        "step": "Add an OpenAI create-completion module with an API key and a prompt for a short, visually descriptive post."
+      },
+      {
+        "seconds": 113,
+        "step": "Choose the ChatGPT 4o model and enter the prompt."
+      },
+      {
+        "seconds": 205,
+        "step": "Add a second OpenAI module that creates an image with DALL-E 3 from the first output."
+      },
+      {
+        "seconds": 285,
+        "step": "Add an HTTP step that downloads the image from its URL."
+      },
+      {
+        "seconds": 332,
+        "step": "Replace the plain post module with Create a Post with Photos for a Facebook page."
+      },
+      {
+        "seconds": 416,
+        "step": "Run once, see an error, then run again and get the post."
+      },
+      {
+        "seconds": 461,
+        "step": "Schedule the scenario to run daily at 10 am Bangkok time."
+      }
+    ],
+    "notCovered": [
+      "Evidence that engagement rises over time. The presenter only says it will.",
+      "Facebook's rules on automated or AI-generated content, and labeling of AI images.",
+      "Costs of the OpenAI calls and images per day.",
+      "Quality control, since posts are published without review."
+    ],
+    "qa": [
+      {
+        "q": "How long did it take to build?",
+        "a": "About 20 minutes, according to the presenter."
+      },
+      {
+        "q": "Why use the Facebook with-photos module?",
+        "a": "The plain post module does not upload an image, so the presenter swaps it for Create a Post with Photos."
+      },
+      {
+        "q": "Is the Make.com link an affiliate link?",
+        "a": "Yes. The presenter says they earn a small commission."
+      }
+    ]
+  },
+  "1aG1XbAQj-k": {
+    "summary": "A rundown of Anthropic's Claude Opus 5 from the company's press release and benchmark pages. Anthropic says it comes close to Fable 5 on coding and knowledge work at about half the price, $5 per million input tokens and $25 for output, with a 1 million token context window. The presenter has not yet tested it. All performance and safety claims are Anthropic's.",
+    "whatYouBuild": "Nothing is built. The video reviews price, benchmarks and examples from the launch post, and the presenter's RTK token savings.",
+    "toolsUsed": [
+      "Claude Opus 5",
+      "Claude Code",
+      "RTK"
+    ],
+    "keySteps": [
+      {
+        "seconds": 26,
+        "step": "Read the press release and price comparison with Fable 5, Sonnet 5 and Haiku."
+      },
+      {
+        "seconds": 79,
+        "step": "Review benchmark charts against Fable 5, Opus 4.8 and GPT 5.6 Sol."
+      },
+      {
+        "seconds": 121,
+        "step": "See an independent speed, intelligence and price chart that has it slower than Fable 5."
+      },
+      {
+        "seconds": 195,
+        "step": "Read coding benchmark claims on Frontier Bench and Cursor Bench."
+      },
+      {
+        "seconds": 246,
+        "step": "See RTK reporting about 67 percent token savings."
+      },
+      {
+        "seconds": 287,
+        "step": "Read Anthropic's examples: rebuilding a part from raw pixels, fixing a package manager bug and building a market data feed."
+      },
+      {
+        "seconds": 404,
+        "step": "Read the alignment and misuse resistance claims."
+      }
+    ],
+    "notCovered": [
+      "The presenter's own tests. They are waiting for usage credits to reset.",
+      "Independent verification of the benchmark scores and example stories, which come from Anthropic.",
+      "Cyber security tasks, where Anthropic says Opus 5 stays behind Mythos 5.",
+      "How much quota Opus 5 uses in practice, other than the remark that it uses about twice as much as Sonnet."
+    ],
+    "qa": [
+      {
+        "q": "What does Opus 5 cost?",
+        "a": "$5 per million input tokens and $25 per million output tokens, against $10 and $50 for Fable 5."
+      },
+      {
+        "q": "Who gets it?",
+        "a": "It is the default model on Claude Max and the strongest on Claude Pro, per the press release."
+      },
+      {
+        "q": "Is it smarter than Fable 5?",
+        "a": "Anthropic says it comes close, and one independent chart in the video has it one point ahead, but it is slower."
+      }
+    ]
+  },
+  "F5PwcTwtEos": {
+    "summary": "A news reaction to Anthropic's report that a US export control directive forced it to suspend access to Fable 5 and Mythos 5 for all foreign nationals, inside or outside the US. The presenter reads Anthropic's statement, which complies but disagrees, and adds speculation about causes that is not supported in the video. The title says banned, but the report describes a suspension for foreign nationals. A later video covers its return.",
+    "whatYouBuild": "Nothing is built. The video summarizes the directive, Anthropic's response, the earlier call for a pause on frontier AI development and reactions.",
+    "toolsUsed": [
+      "Claude Fable 5",
+      "Claude"
+    ],
+    "keySteps": [
+      {
+        "seconds": 63,
+        "step": "Read the details of the export control directive from Anthropic's statement."
+      },
+      {
+        "seconds": 101,
+        "step": "Read Anthropic's disagreement, which says it received only verbal evidence of a possible jailbreak."
+      },
+      {
+        "seconds": 143,
+        "step": "Hear Anthropic's view that the same capability is available in other public models."
+      },
+      {
+        "seconds": 187,
+        "step": "Hear about the company's June 4 post calling for a pause on frontier AI development."
+      },
+      {
+        "seconds": 233,
+        "step": "Note that Fable 5 could roll back to Opus 4.8 for sensitive requests."
+      },
+      {
+        "seconds": 339,
+        "step": "See reports of the effect on pre-IPO share prices."
+      }
+    ],
+    "notCovered": [
+      "Independent confirmation of the directive's details or the existence of the jailbreak.",
+      "How the restriction is checked or enforced for individual users.",
+      "The presenter's suggestion that politics or the Pentagon played a part, which is speculation.",
+      "What happened next. Another video covers Fable 5's return after the controls were lifted."
+    ],
+    "qa": [
+      {
+        "q": "Was Fable 5 banned?",
+        "a": "According to Anthropic's statement as read in the video, access was suspended for foreign nationals under a US export control directive."
+      },
+      {
+        "q": "What does Anthropic say?",
+        "a": "It is complying but strongly disagrees, and says the claimed jailbreak evidence is weak."
+      },
+      {
+        "q": "Is the share price claim verified?",
+        "a": "No. It comes from news coverage quoted in the video, not from the presenter's own check."
+      }
+    ]
+  },
+  "FBlN3qWR9kg": {
+    "summary": "A hands-on tour of ChatGPT Images 2.0 right after launch: OpenAI's sample prompts, the selection tool for editing part of an image, a caricature from a selfie, an aspect ratio change, a house blueprint from a photo, a sketch turned photorealistic and a book back cover whose generated ISBN barcode scans to the right listing. The leaderboard lead over Nano Banana Pro 2 is a claim from the video, and results vary between runs.",
+    "whatYouBuild": "Images made in ChatGPT's image mode, including selection edits that change hair color and swap animals, plus a scannable ISBN image.",
+    "toolsUsed": [
+      "ChatGPT Images 2.0",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 15,
+        "step": "Hear the claim that Images 2.0 leads Nano Banana Pro 2 by about 242 points on a leaderboard."
+      },
+      {
+        "seconds": 35,
+        "step": "Browse OpenAI's gallery for text, multilingual and logic examples."
+      },
+      {
+        "seconds": 121,
+        "step": "Open image creation mode in ChatGPT and run OpenAI's sample prompts, which give similar but different results."
+      },
+      {
+        "seconds": 223,
+        "step": "Select part of an image to change the hair color and replace rabbits with elephants."
+      },
+      {
+        "seconds": 338,
+        "step": "Turn a selfie into a caricature that includes a Boba Fett shirt."
+      },
+      {
+        "seconds": 400,
+        "step": "Change the aspect ratio from portrait to landscape."
+      },
+      {
+        "seconds": 423,
+        "step": "Create a house blueprint from a photo."
+      },
+      {
+        "seconds": 471,
+        "step": "Turn a simple sketch into a photorealistic portrait."
+      },
+      {
+        "seconds": 511,
+        "step": "Recreate a book back cover so the generated ISBN barcode scans to the right Amazon page."
+      }
+    ],
+    "notCovered": [
+      "Independent confirmation of the leaderboard scores.",
+      "The accuracy of the house blueprint, since the presenter says they are not an architect.",
+      "Privacy of uploading selfies and photos, and rights questions around reproducing a book cover or copyrighted characters.",
+      "A repeatable test. OpenAI's sample prompts do not reproduce its gallery images."
+    ],
+    "qa": [
+      {
+        "q": "What can the selection tool do?",
+        "a": "You select an area of a generated image and describe a change, such as hair color or replacing objects, and ChatGPT edits only that part."
+      },
+      {
+        "q": "Do OpenAI's sample prompts give the same images?",
+        "a": "No. The results are similar in style but different characters and scenes."
+      },
+      {
+        "q": "Did the ISBN trick work?",
+        "a": "Yes in the demo. Scanning the generated barcode opened the right book listing."
+      }
+    ]
+  },
+  "qA683UQVDt4": {
+    "summary": "A Make.com scenario that updates YouTube video descriptions automatically: it reads records with status to-do from Airtable, fetches each transcript with Dumpling AI, asks a custom OpenAI assistant to write an SEO description from a template, updates the video through the YouTube module and marks the Airtable record done. An OpenAI credit error is fixed with a $6 top-up. The scenario runs every five minutes and titles are not changed. The template costs $15.",
+    "whatYouBuild": "A Make.com scenario with an Airtable search, a Dumpling AI transcript step, an OpenAI assistant message, a YouTube video update and an Airtable status update, scheduled every five minutes.",
+    "toolsUsed": [
+      "Make.com",
+      "Airtable",
+      "Dumpling AI",
+      "OpenAI API",
+      "YouTube"
+    ],
+    "keySteps": [
+      {
+        "seconds": 35,
+        "step": "Set up an Airtable table with the title, YouTube URL, video ID, description template, description and status."
+      },
+      {
+        "seconds": 101,
+        "step": "Search records with status to-do, limited to one video at a time."
+      },
+      {
+        "seconds": 171,
+        "step": "Get the video transcript with the Dumpling AI module."
+      },
+      {
+        "seconds": 184,
+        "step": "Message a custom OpenAI assistant that writes a description from the transcript and a template."
+      },
+      {
+        "seconds": 274,
+        "step": "Update the video's description with the YouTube module using the video ID."
+      },
+      {
+        "seconds": 363,
+        "step": "Hit a quota error from OpenAI and top up the balance."
+      },
+      {
+        "seconds": 454,
+        "step": "Run the scenario and confirm the description and timestamps on YouTube."
+      },
+      {
+        "seconds": 577,
+        "step": "Switch the scenario on to run every five minutes."
+      }
+    ],
+    "notCovered": [
+      "Review before publishing. The scenario overwrites live descriptions automatically and the presenter still edits some by hand.",
+      "Changes to titles, which are left manual.",
+      "Results from the new descriptions, such as views or subscribers.",
+      "YouTube API quota or per-run costs for the AI and transcript calls."
+    ],
+    "qa": [
+      {
+        "q": "Why is there a status field?",
+        "a": "So only to-do videos are processed, and each is marked done so it is not updated again."
+      },
+      {
+        "q": "Why did the first run fail?",
+        "a": "OpenAI reported an exceeded quota because the account balance was negative. Adding $6 fixed it."
+      },
+      {
+        "q": "Where is the template?",
+        "a": "The presenter sells it for $15, per the video."
+      }
+    ]
+  },
+  "L_dAm5Xh-fQ": {
+    "summary": "Build a local dashboard that shows token usage, estimated cost and token savings across coding tools, using the free ccusage command line tool and a Python server written with Codex and Hermes Agent. It reads daily usage by model and tool, shows RTK, Ponytail and Caveman savings and refreshes every 60 seconds. The cost figures are estimates at API rates, not what a subscription plan actually charges.",
+    "whatYouBuild": "A Python server on localhost that wraps ccusage output and RTK stats in a dashboard with daily, weekly and monthly breakdowns by model and tool.",
+    "toolsUsed": [
+      "ccusage",
+      "Codex",
+      "Hermes Agent",
+      "RTK",
+      "Supermemory"
+    ],
+    "keySteps": [
+      {
+        "seconds": 74,
+        "step": "Meet ccusage, a free tool that reads usage from Claude Code, Codex, OpenCode, Hermes and Copilot."
+      },
+      {
+        "seconds": 103,
+        "step": "Look at the local Python server that serves the dashboard."
+      },
+      {
+        "seconds": 143,
+        "step": "Ask Hermes Agent, on DeepSeek V4 Pro, to read the ccusage docs and improve the script."
+      },
+      {
+        "seconds": 166,
+        "step": "Run npx ccusage latest and its per-tool commands."
+      },
+      {
+        "seconds": 198,
+        "step": "Read daily usage and cost by model."
+      },
+      {
+        "seconds": 266,
+        "step": "Compare rtk gain with the dashboard's savings numbers."
+      },
+      {
+        "seconds": 309,
+        "step": "See savings from Caveman and Ponytail alongside RTK."
+      },
+      {
+        "seconds": 365,
+        "step": "Restart the server after a failed to fetch error so the updated dashboard loads."
+      }
+    ],
+    "notCovered": [
+      "How ccusage prices subscription usage. The roughly $1,600 and $1,000 monthly figures for Claude Code and Codex are estimates at API prices, not real charges.",
+      "Independent measurement of the token savings, which come from the tools' own reports.",
+      "Securing the local server or exposing it beyond one machine.",
+      "The Supermemory and Graphify tools mentioned at the end, which are not shown working."
+    ],
+    "qa": [
+      {
+        "q": "Is ccusage free?",
+        "a": "Yes. It is a free command line tool, run with npx."
+      },
+      {
+        "q": "Did the presenter really spend $4,000?",
+        "a": "No. The presenter says it is not the real cost, because they use subscription plans and no API credits."
+      },
+      {
+        "q": "How much have the savings tools saved?",
+        "a": "The dashboard shows about 35 million tokens from RTK, 8 million from Ponytail and 2.4 million from Caveman."
+      }
+    ]
+  },
+  "9WPazkEp7VU": {
+    "summary": "Use CrowdReply, an AI search visibility platform with an MCP server, to see where the presenter's site is cited by ChatGPT, Gemini, Claude and Perplexity and to feed that data into Codex. The dashboard and MCP show citation records, competitor visibility, sentiment and tracked keywords, and Codex writes reports and applies fixes before a push to Vercel. The video shows a 7-day trial and plans from $99 a month. The paid backlink marketplace is described but not used.",
+    "whatYouBuild": "CrowdReply's MCP connected to Codex to pull 178 citation records, competitor data and keyword reports, followed by fixes committed to GitHub and deployed on Vercel.",
+    "toolsUsed": [
+      "CrowdReply",
+      "Codex",
+      "Vercel"
+    ],
+    "keySteps": [
+      {
+        "seconds": 60,
+        "step": "Review the platform's features: AI visibility tracking, social listening and a backlink marketplace."
+      },
+      {
+        "seconds": 114,
+        "step": "Walk through the dashboard with competitor visibility, mention coverage and top citations."
+      },
+      {
+        "seconds": 218,
+        "step": "Browse the AI backlinks marketplace with domain traffic and prices, such as $98 and $589 links."
+      },
+      {
+        "seconds": 325,
+        "step": "Connect the CrowdReply MCP to Codex with a short prompt."
+      },
+      {
+        "seconds": 378,
+        "step": "Pull citation data into Codex, which finds 178 citation records across 15 responses."
+      },
+      {
+        "seconds": 436,
+        "step": "Ask for an implementation plan to increase citations."
+      },
+      {
+        "seconds": 494,
+        "step": "Compare competitors on visibility, which is 25 percent against 65 and 75 percent for two rivals, and on sentiment."
+      },
+      {
+        "seconds": 590,
+        "step": "Pull tracked keyword and prompt reports via the MCP."
+      },
+      {
+        "seconds": 750,
+        "step": "Implement the fixes and commit and push to deploy."
+      }
+    ],
+    "notCovered": [
+      "Whether the fixes raise citations over the following weeks.",
+      "Buying backlinks. The presenter browses the marketplace but does not purchase, and paid links can conflict with search engine guidelines.",
+      "Consistent figures. The presenter's visibility rank is shown as both fifth of eleven and third, and sentiment is early data.",
+      "Pricing beyond the quoted 7-day trial and $99 a month starting plan."
+    ],
+    "qa": [
+      {
+        "q": "What does the MCP give Codex?",
+        "a": "Live citation records, competitor visibility, sentiment and keyword reports from CrowdReply, so fixes can be planned from real data."
+      },
+      {
+        "q": "Did the presenter buy backlinks?",
+        "a": "No. They looked at the marketplace's prices and domain data and said few sites fit their niche."
+      },
+      {
+        "q": "How is the presenter's site doing?",
+        "a": "Second in citations behind YouTube, with 25 percent visibility against 65 and 75 percent for two competitors, per the dashboard."
+      }
+    ]
+  },
+  "TZxNymn9msU": {
+    "summary": "A scripted-style overview of five AI automation tools for business in 2025: ChatGPT, Google Gemini, Lindy, Microsoft Power Automate and a fifth enterprise platform whose name is garbled in the transcript. Each gets a general description and use cases, followed by advice on choosing by company size and tech stack. There are no demos, prices or evidence for the savings claims.",
+    "whatYouBuild": "Nothing is built. The video is a narrated list of tools and use cases.",
+    "toolsUsed": [
+      "ChatGPT",
+      "Google Gemini",
+      "Lindy",
+      "Microsoft Power Automate"
+    ],
+    "keySteps": [
+      {
+        "seconds": 66,
+        "step": "Hear how ChatGPT is used for customer service, content and reports."
+      },
+      {
+        "seconds": 156,
+        "step": "Hear how Gemini fits Google Workspace for data insights and research."
+      },
+      {
+        "seconds": 253,
+        "step": "Hear how Lindy builds no-code AI agents for sales and support."
+      },
+      {
+        "seconds": 362,
+        "step": "Hear how Power Automate suits regulated enterprise processes."
+      },
+      {
+        "seconds": 480,
+        "step": "Hear about a fifth platform for intelligent, predictive automation."
+      },
+      {
+        "seconds": 599,
+        "step": "Get advice on choosing by business size, industry and existing tools."
+      }
+    ],
+    "notCovered": [
+      "Demos, screenshots or hands-on testing of any tool.",
+      "Prices, limits or setup steps.",
+      "Evidence for claims such as saving thousands of hours.",
+      "The correct name of the fifth platform, which the transcript spells inconsistently."
+    ],
+    "qa": [
+      {
+        "q": "Which tool is suggested for small teams without developers?",
+        "a": "Lindy, for its no-code approach and quick setup."
+      },
+      {
+        "q": "Which fits a Google Workspace business?",
+        "a": "Gemini, because of its integration with Google apps."
+      },
+      {
+        "q": "Is anything shown working?",
+        "a": "No. The video describes the tools and does not run any of them."
+      }
+    ]
+  },
+  "zWM4AjUto2A": {
+    "summary": "A three-minute list of five AI automation ideas for a business: customer service chatbots, email triage, invoice processing, content and social media automation, and no-code workflow automation. It names no tools and shows no demos. The claim that chatbots can resolve up to 80 percent of routine questions is stated without a source.",
+    "whatYouBuild": "Nothing is built. The video lists automation ideas.",
+    "toolsUsed": [
+      "No-code automation platforms"
+    ],
+    "keySteps": [
+      {
+        "seconds": 21,
+        "step": "Customer service chatbots and virtual assistants for routine questions."
+      },
+      {
+        "seconds": 46,
+        "step": "Email filtering, categorizing and automated replies to common questions."
+      },
+      {
+        "seconds": 74,
+        "step": "Invoice processing, verification and recording."
+      },
+      {
+        "seconds": 98,
+        "step": "Content creation and scheduled posting across social platforms."
+      },
+      {
+        "seconds": 122,
+        "step": "No-code platforms that run business workflows without programming."
+      }
+    ],
+    "notCovered": [
+      "Which tools to use or how to build any of the automations.",
+      "A source for the 80 percent figure.",
+      "Costs, risks or accuracy of invoice and email automation.",
+      "Any demonstration."
+    ],
+    "qa": [
+      {
+        "q": "Does the video show how to build these?",
+        "a": "No. It lists the ideas in general terms."
+      },
+      {
+        "q": "What is the main claim?",
+        "a": "That chatbots can resolve up to 80 percent of routine customer questions, with no source given."
+      },
+      {
+        "q": "Who is it for?",
+        "a": "Small businesses wanting to save time, per the presenter."
+      }
+    ]
+  },
+  "KDZ7yefRv54": {
+    "summary": "Make an infographic from a YouTube video with Google's NotebookLM in about a minute or two, then compare it with the presenter's own n8n workflow that calls Nano Banana Pro through KIE. The presenter finds the n8n version more detailed with cleaner text, but NotebookLM is quicker for a one-off. The n8n template is in the presenter's paid community tiers.",
+    "whatYouBuild": "A NotebookLM notebook from a YouTube URL with a generated infographic, compared against an n8n workflow that writes an infographic, a LinkedIn post and a newsletter.",
+    "toolsUsed": [
+      "NotebookLM",
+      "n8n",
+      "Nano Banana Pro",
+      "KIE",
+      "Google Drive"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Add a YouTube URL as a source in NotebookLM and read the summary."
+      },
+      {
+        "seconds": 90,
+        "step": "Choose the infographic option and wait for it to generate."
+      },
+      {
+        "seconds": 135,
+        "step": "See other NotebookLM outputs: slide decks, reports, audio overviews and mind maps."
+      },
+      {
+        "seconds": 180,
+        "step": "Run the n8n automation on the same video, which uses KIE's Nano Banana Pro and saves to Google Drive."
+      },
+      {
+        "seconds": 270,
+        "step": "Compare the two infographics, where the Nano Banana Pro one is more detailed."
+      },
+      {
+        "seconds": 315,
+        "step": "Hear where the template is offered in the presenter's community."
+      }
+    ],
+    "notCovered": [
+      "Which model NotebookLM uses, which the presenter does not know.",
+      "A timed, side-by-side test. The comparison is the presenter's impression from one video.",
+      "Checking that either infographic matches the video's content.",
+      "The cost of KIE credits per image."
+    ],
+    "qa": [
+      {
+        "q": "Which is better, NotebookLM or the n8n workflow?",
+        "a": "The presenter prefers their own workflow for detail, and NotebookLM for quick one-off infographics."
+      },
+      {
+        "q": "Is NotebookLM free?",
+        "a": "The presenter says it is free to get started."
+      },
+      {
+        "q": "Where is the n8n template?",
+        "a": "In the templates section of the presenter's Skool community, for paid members."
+      }
+    ]
+  },
+  "rPhyYNMuDT4": {
+    "summary": "A look at the n8n 2.0 beta announced on December 8, 2025, after updating a self-hosted instance on a Hostinger VPS. The presenter notes a cleaner look, easier movement between nodes, a new execution spinner, a resizable sidebar and a separate publish step. They find the new features somewhat underwhelming, and show updating with a Docker pull and docker compose up. Security and performance changes are only mentioned.",
+    "whatYouBuild": "An n8n instance updated to the 2.0 beta with Docker, then a tour of its interface changes on existing workflows.",
+    "toolsUsed": [
+      "n8n",
+      "Hostinger",
+      "Docker"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "See the refreshed interface and easier navigation between nodes."
+      },
+      {
+        "seconds": 80,
+        "step": "Watch executions with the new spinner, resize the sidebar and see the publish step that separates saving from going live."
+      },
+      {
+        "seconds": 200,
+        "step": "Update the Hostinger VPS by pulling the 2.0 beta image and restarting with docker compose up -d."
+      },
+      {
+        "seconds": 250,
+        "step": "Read the announcement's notes on secure-by-default execution and performance."
+      }
+    ],
+    "notCovered": [
+      "Breaking changes and how to migrate workflows safely, or taking a backup before updating.",
+      "A before and after comparison, since the instance was already updated.",
+      "Details of the security and speed improvements, which are mentioned but not tested.",
+      "Whether the beta is stable enough for production workflows."
+    ],
+    "qa": [
+      {
+        "q": "What is the biggest change?",
+        "a": "The presenter picks easier switching between nodes, and also mentions the publish step as a safer way to push changes live."
+      },
+      {
+        "q": "How do you update on a VPS?",
+        "a": "Pull the 2.0 beta image tag with Docker and restart the container with docker compose up -d."
+      },
+      {
+        "q": "Is it worth upgrading?",
+        "a": "The presenter calls it a positive step but a little underwhelming for new capabilities."
+      }
+    ]
+  },
+  "e73WvglCLW0": {
+    "summary": "A demo of VisiScan, the presenter's own AI search visibility tool. A free scan gives a readiness score and visibility across ChatGPT, Claude, Perplexity and Gemini, and a one-time $79 full report checks 30 or more signals and is generated through Codex. The presenter's own site scores 56 out of 100, and two other businesses' results are shown as examples. This is a product demo of the presenter's own tool, so the results are not independently validated.",
+    "whatYouBuild": "Nothing is built live. The video shows a domain scan, example audits and a full PDF report from the presenter's tool.",
+    "toolsUsed": [
+      "VisiScan",
+      "Codex"
+    ],
+    "keySteps": [
+      {
+        "seconds": 28,
+        "step": "Enter a domain for the free scan, with a full report available for a one-time $79."
+      },
+      {
+        "seconds": 65,
+        "step": "Read the readiness and visibility scores across the four AI models."
+      },
+      {
+        "seconds": 86,
+        "step": "Look at an example site with zero visibility despite a decent readiness score."
+      },
+      {
+        "seconds": 126,
+        "step": "Look at a hosting company's audit results as another example."
+      },
+      {
+        "seconds": 157,
+        "step": "See what is audited: localized buyer questions to the four AIs and 30 or more signals."
+      },
+      {
+        "seconds": 188,
+        "step": "Check llms.txt, AI crawler access, sitemap and robots.txt."
+      },
+      {
+        "seconds": 266,
+        "step": "Generate the full report in Codex, which runs 12 questions and 30 signal checks."
+      },
+      {
+        "seconds": 294,
+        "step": "Preview the PDF full report."
+      }
+    ],
+    "notCovered": [
+      "Proof that fixing the flagged items raises visibility.",
+      "How the scores compare with other tools or with the real answers people see.",
+      "The permission of businesses whose scan results are shown as examples.",
+      "The accuracy of results from only 12 questions per run."
+    ],
+    "qa": [
+      {
+        "q": "What does the free scan give?",
+        "a": "A readiness score and visibility across ChatGPT, Claude, Perplexity and Gemini for the domain you enter."
+      },
+      {
+        "q": "What is in the $79 report?",
+        "a": "A one-time full report with the signal checks and fixes, including entity presence, citations, schema, crawler access and technical health."
+      },
+      {
+        "q": "How did the presenter's site score?",
+        "a": "56 out of 100 on readiness, with room to improve."
+      }
+    ]
+  },
+  "dILjZszMZ5o": {
+    "summary": "A 98-second promotional pitch for the presenter's free Skool community, arguing that businesses should automate scheduling, invoicing, customer inquiries and data entry with AI before competitors do. It names no tools, shows no demo and gives no evidence for its claims about cost savings or error rates.",
+    "whatYouBuild": "Nothing is built. The video invites viewers to join a free community to learn automations.",
+    "toolsUsed": [
+      "Skool"
+    ],
+    "keySteps": [
+      {
+        "step": "Hear the problem: repetitive tasks that eat time and profit."
+      },
+      {
+        "step": "Hear the pitch that AI automations can cut costs and reliance on extra staff."
+      },
+      {
+        "step": "Hear the call to join the free community."
+      }
+    ],
+    "notCovered": [
+      "Any specific automation, tool or example.",
+      "Evidence for claims that AI agents rarely make mistakes or that competitors are already using them.",
+      "What members actually learn or get inside the community."
+    ],
+    "qa": [
+      {
+        "q": "Is there a tutorial here?",
+        "a": "No. It is a short advertisement for the free community."
+      },
+      {
+        "q": "Does it cost anything to join?",
+        "a": "The video says joining the community is free."
+      },
+      {
+        "q": "Which tools are covered?",
+        "a": "None are named."
+      }
+    ]
+  },
+  "OPQacEy41kM": {
+    "summary": "A walkthrough of the presenter's new Skool community about two weeks after launch, with almost 200 members and a classroom of free tutorials and paid products. The presenter says upsells earned about $500 against Skool's $99 a month fee and that it ranks on page six of the tech category. These figures are the presenter's own, and one spoken coaching price is unclear.",
+    "whatYouBuild": "Nothing is built. The video shows a community feed, a classroom with free guides and paid courses, templates and consultation offers.",
+    "toolsUsed": [
+      "Skool",
+      "Make.com"
+    ],
+    "keySteps": [
+      {
+        "seconds": 25,
+        "step": "See the free tutorials the community shares from the presenter's YouTube channel."
+      },
+      {
+        "seconds": 45,
+        "step": "Look at member introductions and how the presenter replies quickly to build engagement."
+      },
+      {
+        "seconds": 79,
+        "step": "Hear how members find the community through Skool's marketplace and how the presenter joins other communities."
+      },
+      {
+        "seconds": 137,
+        "step": "Tour the classroom: start here, free how-to guides and paid items such as a $39 beginner course, a $97 template pack and a $197 n8n agent pack."
+      },
+      {
+        "seconds": 235,
+        "step": "See the other offers: a book, mentorship calls, a $150 consultation and a high-ticket coaching program."
+      }
+    ],
+    "notCovered": [
+      "Verification of the roughly $500 in upsells or the page six ranking.",
+      "The coaching program's price, which is spoken unclearly.",
+      "Whether the community stayed profitable after the first weeks.",
+      "How the free-first model compares with other Skool setups."
+    ],
+    "qa": [
+      {
+        "q": "How big was it?",
+        "a": "Almost 200 members after about two weeks, according to the presenter."
+      },
+      {
+        "q": "How does it make money?",
+        "a": "Through paid items in the classroom, such as courses, templates, consultations and coaching."
+      },
+      {
+        "q": "What does Skool cost?",
+        "a": "The presenter says $99 a month, and that the upsells had already covered it."
+      }
+    ]
+  },
+  "-viL36QDF_8": {
+    "summary": "A first look at Google's Gemini 3 in Google AI Studio, shortly after its November 18, 2025 release. The presenter reads the benchmark charts, has it redesign their landing page, builds a merch mockup app from a client's logo and deploys it to Google Cloud, and browses a gallery game. The landing page misses some details, and the claim that these tools will replace software engineers is the presenter's opinion.",
+    "whatYouBuild": "A redesigned landing page and a logo-to-mockup web app made in Google AI Studio with Gemini 3, with the mockup app deployed to Google Cloud.",
+    "toolsUsed": [
+      "Gemini 3",
+      "Google AI Studio",
+      "Google Cloud",
+      "Lovable"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Read Google's benchmark charts against Claude Sonnet 4.5 and GPT 5.1."
+      },
+      {
+        "seconds": 80,
+        "step": "Ask Gemini 3 to rebuild an existing landing page with a new color scheme."
+      },
+      {
+        "seconds": 130,
+        "step": "Use a mockup app that puts an uploaded logo on products and signage."
+      },
+      {
+        "seconds": 190,
+        "step": "Deploy the app to Google Cloud and compare the new landing page with the earlier Lovable version."
+      },
+      {
+        "seconds": 250,
+        "step": "Hear the presenter's view that such tools will replace developers."
+      },
+      {
+        "seconds": 300,
+        "step": "Play a Voxel toy box demo from the AI Studio gallery."
+      }
+    ],
+    "notCovered": [
+      "A fair comparison with the Lovable site, which took 8 to 10 hours. The Gemini page needs button wiring and missed some details.",
+      "Independent benchmark checks. The charts come from Google's press release.",
+      "Evidence for the claim about layoffs and replacing engineers.",
+      "Cloud costs of the deployed mockup app."
+    ],
+    "qa": [
+      {
+        "q": "How fast was the landing page?",
+        "a": "Gemini 3 built a first version in about a minute, though it did not get everything right."
+      },
+      {
+        "q": "Can you deploy from AI Studio?",
+        "a": "Yes, the presenter creates a Google Cloud project and deploys the mockup app from AI Studio."
+      },
+      {
+        "q": "Does it beat ChatGPT?",
+        "a": "On the press release charts shown, it scores higher than Sonnet 4.5 and GPT 5.1, but those are Google's figures."
+      }
+    ]
+  },
+  "wZ76glbPIPc": {
+    "summary": "Set up n8n on a Hostinger VPS: choose a KVM plan, pick the n8n template with 100 included workflows, pay about $10.69 for one month, and open n8n from the control panel. The presenter prices Hostinger from $5 a month against about $24 for n8n's cloud, creates an account, claims a free license key and imports a template. Backups, updates, HTTPS and hardening are not covered, and whether the Hostinger link is an affiliate link is not stated.",
+    "whatYouBuild": "A Hostinger VPS running n8n on Ubuntu 24.04 in a Malaysia data center, with a bundled set of 100 workflows and an imported template.",
+    "toolsUsed": [
+      "Hostinger",
+      "n8n"
+    ],
+    "keySteps": [
+      {
+        "seconds": 32,
+        "step": "Compare Hostinger KVM plans, from $5 a month for one core and 4 GB of RAM to a $6.50 popular plan."
+      },
+      {
+        "seconds": 180,
+        "step": "Choose a one-month term, the Malaysia location for lower latency, and the n8n template with 100 workflows."
+      },
+      {
+        "seconds": 252,
+        "step": "Finish the VPS setup, set a root password, keep the free malware scanner on and open n8n with Manage App."
+      },
+      {
+        "seconds": 349,
+        "step": "Create the owner account, claim the free license key and import a template from n8n's site."
+      }
+    ],
+    "notCovered": [
+      "Backups, updates, a custom domain with HTTPS and securing the server.",
+      "Long-term prices. The video buys one month, and promotional rates may renew higher.",
+      "Connecting credentials to make the imported workflows run.",
+      "Whether the description link is an affiliate link."
+    ],
+    "qa": [
+      {
+        "q": "How much did it cost?",
+        "a": "The presenter was charged $10.69 for one month with the n8n and 100 workflows option."
+      },
+      {
+        "q": "Why not self-host locally?",
+        "a": "The presenter found local hosting with Coolify or Docker hard to set up with a custom domain."
+      },
+      {
+        "q": "How many templates are on n8n's site?",
+        "a": "The presenter says more than 6,400."
+      }
+    ]
+  },
+  "3RPEo7PB7ug": {
+    "summary": "A cautionary overview of Moltbook, a Reddit-style social network where AI agents post and upvote while humans only watch, launched about five days before the video. The presenter reads Gemini's description and press coverage, repeats reports of 1.6 million agents and an exposed pile of API keys, and says the site is full of crypto promotion. They advise against joining. The figures and the breach come from social posts and articles, not from tests in the video.",
+    "whatYouBuild": "Nothing is built. The video explains what Moltbook is, how agents join through OpenClaw and why the presenter considers it a security risk.",
+    "toolsUsed": [
+      "Moltbook",
+      "OpenClaw",
+      "Gemini"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Hear what Moltbook is and the headline numbers: 1.6 million agents, 15,000 submolds, 157,000 posts and 780,000 comments."
+      },
+      {
+        "seconds": 135,
+        "step": "Read a researcher's post that says thousands of API keys and email addresses were exposed within 30 minutes."
+      },
+      {
+        "seconds": 225,
+        "step": "Learn how an agent registers through the OpenClaw platform and gets claimed by its human owner."
+      },
+      {
+        "seconds": 270,
+        "step": "Hear about agents promoting crypto scams and inventing religions."
+      }
+    ],
+    "notCovered": [
+      "Independent verification of the user counts, which the presenter reads from the site and press.",
+      "How the reported key exposure happened or whether it was fixed.",
+      "The developer platform, which the presenter skips as insecure.",
+      "A hands-on test of Moltbook. The presenter does not join."
+    ],
+    "qa": [
+      {
+        "q": "What is Moltbook?",
+        "a": "A social network designed for AI agents to post and comment, with humans as observers."
+      },
+      {
+        "q": "What is the main risk?",
+        "a": "Reported exposure of API keys and email addresses, plus scams, according to posts and articles shown in the video."
+      },
+      {
+        "q": "What does the presenter suggest instead?",
+        "a": "Skip it, or run OpenClaw only on a separate VPS or hosted setup, as in their earlier tutorials."
+      }
+    ]
+  },
+  "mkm8cz6dp8w": {
+    "summary": "A personal story rather than a tutorial: the presenter explains moving to Bali in November 2019 on a one-way ticket, doing hotel collaborations in Singapore, settling in Phuket and then Koh Samui for about six years, and living on YouTube and Facebook income with a low cost of living. They also mention a remote AI strategist job interview and a Facebook group of 19,000 members. No AI tools or steps are covered, and income comparisons are the presenter's own.",
+    "whatYouBuild": "Nothing is built. The video tells a lifestyle story and invites viewers to ask questions.",
+    "toolsUsed": [
+      "YouTube",
+      "Facebook"
+    ],
+    "keySteps": [
+      {
+        "seconds": 21,
+        "step": "Hear about the one-way ticket to Bali in 2019."
+      },
+      {
+        "seconds": 53,
+        "step": "Hear how hotel collaborations in Singapore covered tight finances."
+      },
+      {
+        "seconds": 112,
+        "step": "Hear about arriving in Phuket and the culture shock."
+      },
+      {
+        "seconds": 171,
+        "step": "Hear why Koh Samui became the home base."
+      },
+      {
+        "seconds": 209,
+        "step": "Hear the case for leaving the nine to five commute cycle."
+      },
+      {
+        "seconds": 296,
+        "step": "Hear how a Western income goes further in Thailand."
+      },
+      {
+        "seconds": 328,
+        "step": "Hear about teaching AI skills and a pending remote job interview."
+      }
+    ],
+    "notCovered": [
+      "Any AI tutorial, tool or workflow.",
+      "Proof of income or of how much the YouTube and Facebook channels earn.",
+      "Visa, tax and legal requirements for living and working abroad.",
+      "The outcome of the job interview."
+    ],
+    "qa": [
+      {
+        "q": "Is this an AI video?",
+        "a": "Not really. It is a personal story, and the presenter says it is different from their usual format."
+      },
+      {
+        "q": "Where can viewers get more on moving abroad?",
+        "a": "The presenter points to their 19,000-member Facebook group on escaping the rat race."
+      },
+      {
+        "q": "Does it cover visas?",
+        "a": "No. It only mentions renewing a visa once in Bali."
+      }
+    ]
+  },
+  "9YueXsoNg80": {
+    "summary": "Add OpenAI's Sora 2 video generation to an n8n workflow. The presenter first updates a self-hosted n8n on a Hostinger VPS, because the Sora 2 option needs version 1.118.1, then builds a form that takes a prompt and product image and calls Sora 2 for an 8-second 1280 by 720 video. A bad request error turns out to be a negative OpenAI balance, fixed with a $6 top-up. The generated video does not match the product exactly.",
+    "whatYouBuild": "An n8n workflow with a form trigger, an image resize step and an OpenAI video generation node using Sora 2 for a short UGC-style ad.",
+    "toolsUsed": [
+      "n8n",
+      "Sora 2",
+      "OpenAI API",
+      "Hostinger",
+      "Docker"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Open the Hostinger terminal for the n8n VPS."
+      },
+      {
+        "seconds": 75,
+        "step": "Run docker compose pull and docker compose down, then restart to update n8n."
+      },
+      {
+        "seconds": 110,
+        "step": "Confirm the new version in profile settings."
+      },
+      {
+        "seconds": 150,
+        "step": "Add the OpenAI node and choose video generation with the Sora 2 model."
+      },
+      {
+        "seconds": 190,
+        "step": "Set an 8-second length and a 1280 by 720 size, with the prompt from the form."
+      },
+      {
+        "seconds": 230,
+        "step": "Upload a product photo through the form and resize it."
+      },
+      {
+        "seconds": 270,
+        "step": "Fix a bad request error by adding OpenAI credits."
+      },
+      {
+        "seconds": 370,
+        "step": "Review the finished video."
+      }
+    ],
+    "notCovered": [
+      "A faithful product video. The result does not look exactly like the uploaded bottle.",
+      "Posting the video to social media, which is described as a next step.",
+      "Cost per video, since only the account balance is checked.",
+      "Disclosure of AI-generated ads or rules for using real people's likeness."
+    ],
+    "qa": [
+      {
+        "q": "Which n8n version is needed?",
+        "a": "The presenter's instance showed 1.118.1 after the update, which gave access to the Sora 2 option."
+      },
+      {
+        "q": "Why did it return bad request?",
+        "a": "The OpenAI balance was negative. After adding about $6 the run worked."
+      },
+      {
+        "q": "How long did the video take?",
+        "a": "A couple of minutes for an 8-second clip."
+      }
+    ]
+  },
+  "Fw-RqLjArc8": {
+    "summary": "Use the Semrush MCP from OpenCode and Hermes Agent to pull AI visibility, keyword gap and backlink gap data, then have scripts act on it. The presenter's AI visibility score is 14 out of 100 with about 428 citations, and ChatGPT, Gemini and AI Mode mentions are shown. API exhaustion errors interrupt the backlink script. The video is an affiliate promotion, and the presenter is on a $300 a month Semrush plan despite the title.",
+    "whatYouBuild": "A Semrush MCP connected through an API key to coding agents that generate keyword gap plans, backlink gap scripts and a list of low-quality backlinks to consider disavowing.",
+    "toolsUsed": [
+      "Semrush",
+      "OpenCode",
+      "Hermes Agent",
+      "DeepSeek V4 Flash",
+      "Google Search Console"
+    ],
+    "keySteps": [
+      {
+        "seconds": 48,
+        "step": "Review the AI visibility dashboard: a score of 14 out of 100 and about 428 citations across ChatGPT, Claude, Gemini and Perplexity."
+      },
+      {
+        "seconds": 83,
+        "step": "Connect Semrush tools to the coding agents."
+      },
+      {
+        "seconds": 112,
+        "step": "Generate a Semrush API key and have the agent set up the MCP."
+      },
+      {
+        "seconds": 146,
+        "step": "Create a keyword gap implementation plan and implement it on a free DeepSeek V4 Flash model."
+      },
+      {
+        "seconds": 225,
+        "step": "Create a script to pull backlink gaps, which throttles on API credit limits."
+      },
+      {
+        "seconds": 328,
+        "step": "Send backlink outreach emails with an AI email agent."
+      },
+      {
+        "seconds": 352,
+        "step": "Identify weak backlinks to disavow and upload them to Google Search Console."
+      },
+      {
+        "seconds": 400,
+        "step": "Read LLM mention shares: about 29 percent of ChatGPT mentions, 35 percent in Gemini and 23 percent in AI Mode."
+      }
+    ],
+    "notCovered": [
+      "Ranking or traffic results from the keyword and backlink work.",
+      "Whether disavowing links is needed. Search engines often say it is rarely necessary.",
+      "Rules on cold outreach for backlinks and on automated email agents.",
+      "The cost of API credits against the $300 a month plan, since the presenter hits throttling."
+    ],
+    "qa": [
+      {
+        "q": "Is this video an affiliate promotion?",
+        "a": "Yes. The presenter says the Semrush link is an affiliate link that pays a small commission and may save you money."
+      },
+      {
+        "q": "Does the MCP need a paid plan?",
+        "a": "The presenter recommends a paid plan for MCP access, and uses a $300 a month plan. A 7-day free trial is mentioned."
+      },
+      {
+        "q": "What was the AI visibility score?",
+        "a": "14 out of 100, which the presenter says is lower than expected."
+      }
+    ]
+  },
+  "JJe2G17_eRU": {
+    "summary": "Build a thumbnail audit pipeline from 242 of the presenter's own thumbnails: Python scripts measure brightness, saturation, contrast, edge density, faces and keywords, join the data with YouTube Studio click-through rates, and find ranges that correlate with higher CTR. The result is a master prompt used in ChatGPT Images 2.0 to redesign weak thumbnails. The one before and after shown looks similar but sharper. Correlation is not proven causation, and no CTR change is shown.",
+    "whatYouBuild": "Four Python scripts, a CTR-enriched audit, a low-CTR optimization plan and a master designer prompt for redesigning thumbnails in ChatGPT Images 2.0.",
+    "toolsUsed": [
+      "ChatGPT Images 2.0",
+      "Python",
+      "YouTube Data API",
+      "YouTube Studio",
+      "KIE"
+    ],
+    "keySteps": [
+      {
+        "seconds": 48,
+        "step": "Review the pipeline: export Studio data, add YouTube API data, run correlation analysis and write a prompt."
+      },
+      {
+        "seconds": 60,
+        "step": "Analyze 242 thumbnails for brightness, saturation, contrast, edge density, dominant colors, faces and keywords."
+      },
+      {
+        "seconds": 109,
+        "step": "Find visual attributes that correlate with higher click-through rate."
+      },
+      {
+        "seconds": 146,
+        "step": "Read the target ranges, such as brightness of about 40 to 60."
+      },
+      {
+        "seconds": 220,
+        "step": "Look at the scripts that audit thumbnails and join Studio CTR data to each file."
+      },
+      {
+        "seconds": 271,
+        "step": "Consider piping prompts to an image API through KIE instead of using ChatGPT."
+      },
+      {
+        "seconds": 302,
+        "step": "Upload a thumbnail to ChatGPT with the master prompt."
+      },
+      {
+        "seconds": 432,
+        "step": "Compare the original and redesigned thumbnails."
+      }
+    ],
+    "notCovered": [
+      "Any measured CTR change after replacing thumbnails.",
+      "Whether 242 thumbnails and their correlations are enough to infer cause.",
+      "The claimed 3 percent lift and 1,000 extra views, which are projections.",
+      "The master prompt, which the presenter says only works with their own data."
+    ],
+    "qa": [
+      {
+        "q": "What did the analysis look at?",
+        "a": "Brightness, saturation, contrast, edge density, dominant colors, faces and keywords against CTR, impressions and views."
+      },
+      {
+        "q": "Did the new thumbnail beat the old one?",
+        "a": "Not shown. The redesign looked similar with higher resolution and a smoother background."
+      },
+      {
+        "q": "Can I use the same prompt?",
+        "a": "The presenter says it is trained on their data, so you would need to rebuild it from your own channel."
+      }
+    ]
+  },
+  "pDrMGahPnwc": {
+    "summary": "A tour of Otterly AI, a tracker for how often a brand appears in ChatGPT, Gemini, Perplexity and Microsoft Copilot answers. For the presenter's analytics site it shows about 43 percent brand coverage against 68 percent for VidIQ, about 20 mentions, a brand rank of four, citation share, a crawlability checker and a content readiness checker. The plan is a 2-week trial then about $29 a month, and the link is a referral link.",
+    "whatYouBuild": "An Otterly dashboard tracking prompts, brand coverage, citations and sentiment, with crawler and content checks and a backlink outreach idea.",
+    "toolsUsed": [
+      "Otterly AI",
+      "Claude Code",
+      "Claude SEO"
+    ],
+    "keySteps": [
+      {
+        "step": "Sign up for the trial and view tracked prompts and search volume."
+      },
+      {
+        "step": "Read the overview of brand coverage, mentions, position and brand ranking against competitors."
+      },
+      {
+        "step": "Check citation share and counts, where the presenter's blog is cited often."
+      },
+      {
+        "step": "Use the crawlability checker to confirm AI crawlers can reach the site."
+      },
+      {
+        "step": "Open the content checker for quick answer, how-to and structured data analysis."
+      },
+      {
+        "step": "Open individual prompts to see AI responses, sources and sentiment."
+      },
+      {
+        "step": "Spot a high authority article that omits the site and plan to ask for a link."
+      }
+    ],
+    "notCovered": [
+      "How the tracker measures coverage or the likelihood to buy figure of about 78 percent.",
+      "Any improvement in coverage after changes.",
+      "Whether asking for a link exchange breaks a publisher's rules.",
+      "Trial and plan terms beyond the quoted $29 a month."
+    ],
+    "qa": [
+      {
+        "q": "Which AI products does Otterly track?",
+        "a": "ChatGPT, Gemini, Perplexity and Microsoft Copilot, per the video."
+      },
+      {
+        "q": "How does the presenter's site compare?",
+        "a": "About 43 percent brand coverage against 68 percent for VidIQ, and fourth in brand ranking."
+      },
+      {
+        "q": "Is the link a referral link?",
+        "a": "Yes. The presenter says they earn a commission on sign-ups."
+      }
+    ]
+  },
+  "4f9WR0T3vKQ": {
+    "summary": "A February 2026 demo of the presenter's own YouTube analytics web app while it was still in development. It shows a dashboard, analytics, competitor analysis, trend and idea tools, a keyword and title tool and planned pricing from $19 a month with a 7-day trial. Several parts are broken or unfinished, including the behavior tab and AI thumbnail testing. The video describes a product that was planned for public release the following month, so check its current availability.",
+    "whatYouBuild": "A Node.js and Supabase web app built with Claude Code and OpenCode that reads YouTube Analytics and Data API data into dashboards, competitor comparison, ideas, keyword and title tools.",
+    "toolsUsed": [
+      "Claude Code",
+      "OpenCode",
+      "VS Code",
+      "Supabase",
+      "YouTube Analytics API"
+    ],
+    "keySteps": [
+      {
+        "step": "Watch VS Code and OpenCode build an audience and subscriber health feature with Claude Opus 4.6."
+      },
+      {
+        "step": "Tour the pricing page, planned at $19 a month with limits of one, three or five channels by plan."
+      },
+      {
+        "step": "View the dashboard with subscribers, views, engagement, retention and an optimization score."
+      },
+      {
+        "step": "Open analytics and audience breakdowns, noting the behavior tab does not work yet."
+      },
+      {
+        "step": "Add competitor channels and compare them, then see trends and AI-generated content ideas."
+      },
+      {
+        "step": "See a screenshot of AI thumbnail testing, which is down because of a bug."
+      },
+      {
+        "step": "Try the keyword search, title generator and tag optimizer."
+      }
+    ],
+    "notCovered": [
+      "A finished product. The presenter says it still needs debugging, testing and a contact form.",
+      "Current availability and prices, which may have changed since February 2026.",
+      "The accuracy of the keyword volumes, which the presenter calls a proof of concept.",
+      "Security and data handling for creators who connect their channels."
+    ],
+    "qa": [
+      {
+        "q": "Is the app live?",
+        "a": "The presenter says it is technically live but needs much more work, with a public launch planned about a month after the video. Check the current status."
+      },
+      {
+        "q": "What was the planned price?",
+        "a": "Most likely $19 a month, or $15 a month annually, with a 7-day free trial."
+      },
+      {
+        "q": "What is it built with?",
+        "a": "Node.js in VS Code with Claude Code and OpenCode, and Supabase for the database."
+      }
+    ]
+  },
+  "mKZHLQLaq2k": {
+    "summary": "Install Claude Code on Debian Linux from the terminal, add Visual Studio Code from Flathub with its Claude Code extension, and sign in through the Claude console. The first login attempts need authorizing again and a path fix before Claude Code runs inside VS Code on Sonnet 4.5. The presenter has not used Claude Code much before, and the pricing they quote is as of January 2026.",
+    "whatYouBuild": "Claude Code running in a terminal and inside VS Code on Linux, signed in through the console.",
+    "toolsUsed": [
+      "Claude Code",
+      "VS Code",
+      "Flathub"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Run the native installer for Claude Code in the terminal and add it to the path."
+      },
+      {
+        "seconds": 80,
+        "step": "Install VS Code from the Flathub software store after the apt command does not work."
+      },
+      {
+        "seconds": 120,
+        "step": "Install the Claude Code extension in VS Code."
+      },
+      {
+        "seconds": 200,
+        "step": "Log in with the Claude console and authorize, which needs a second attempt."
+      },
+      {
+        "seconds": 240,
+        "step": "Run Claude in VS Code's terminal and accept the trust and recommended settings prompts."
+      },
+      {
+        "seconds": 280,
+        "step": "Try a first prompt, fix type check errors, and look at shortcuts."
+      }
+    ],
+    "notCovered": [
+      "A real coding task. The first prompt only starts Claude searching the local folder.",
+      "Costs. The presenter says a Pro plan was about $17 a month and they have not paid for one yet.",
+      "Windows and Mac setup, which the presenter says is harder.",
+      "Troubleshooting beyond the path fix."
+    ],
+    "qa": [
+      {
+        "q": "Which model did it use?",
+        "a": "Sonnet 4.5 after login."
+      },
+      {
+        "q": "Why did the install seem to do nothing?",
+        "a": "The command was not on the path, so the presenter ran it with the full path and then fixed the setup."
+      },
+      {
+        "q": "Do I need a paid plan?",
+        "a": "The presenter expects to need a subscription or API credits for regular use."
+      }
+    ]
+  },
+  "PDfEWpyyRMI": {
+    "summary": "A hands-on trial of Syllaby on a free 7-day account: pick a style, voice and music, write a custom-topic script about low-cost countries for digital nomads, render a one-minute faceless video in about three minutes and publish it to YouTube from Syllaby. The recording appears nearly identical to another video on this channel about Syllaby, so one of them may be a re-upload. The link is an affiliate link, and results after publishing are not shown.",
+    "whatYouBuild": "A portrait faceless video with ambient music and karaoke subtitles, published directly to YouTube.",
+    "toolsUsed": [
+      "Syllaby",
+      "ChatGPT",
+      "YouTube"
+    ],
+    "keySteps": [
+      {
+        "seconds": 29,
+        "step": "Tour the dashboard: ideas, a clone of yourself and AI thumbnails."
+      },
+      {
+        "seconds": 113,
+        "step": "Start a faceless video and pick a style, subtitles and a voice."
+      },
+      {
+        "seconds": 210,
+        "step": "Choose portrait format and a short length because the trial has about 50 credits."
+      },
+      {
+        "seconds": 259,
+        "step": "Use the script assistant with a custom topic after the first script misses the point."
+      },
+      {
+        "seconds": 569,
+        "step": "Publish the finished video to a connected YouTube channel."
+      },
+      {
+        "seconds": 660,
+        "step": "Learn about the bulk scheduler for automatic posting."
+      }
+    ],
+    "notCovered": [
+      "How the video performs on YouTube, which the presenter says they will watch for a couple of weeks.",
+      "Fact checking the cost-of-living claims in the AI script.",
+      "YouTube's disclosure rules for AI-generated content.",
+      "Plan prices beyond the quoted $25 a month for 500 credits."
+    ],
+    "qa": [
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says they earn a commission if you buy a paid plan."
+      },
+      {
+        "q": "How many credits does the trial give?",
+        "a": "About 50, enough for roughly three minutes of video, per the presenter."
+      },
+      {
+        "q": "Is this the same as the other Syllaby video?",
+        "a": "The content is nearly identical, so it looks like the same recording uploaded twice."
+      }
+    ]
+  },
+  "CfbMWB0G99E": {
+    "summary": "Build a ten-card presentation in Gamma from a pasted four-day ChatGPT coaching plan for a beginner client: choose concise text, a light theme, auto-selected AI images in a line art style, and let Gamma generate the deck in about three minutes. The presenter edits a heading, changes one image with Gamma's AI agent and exports to Google Slides. Plan prices are quoted, and the link is an affiliate link.",
+    "whatYouBuild": "A ten-card Gamma presentation made from a pasted outline, with an edited image and an export to Google Slides.",
+    "toolsUsed": [
+      "Gamma",
+      "Google Slides",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 131,
+        "step": "Choose to paste text rather than use a one-line prompt, template or file import."
+      },
+      {
+        "seconds": 181,
+        "step": "Paste a detailed four-day coaching plan and choose the presentation format."
+      },
+      {
+        "seconds": 223,
+        "step": "Set the free plan's 10 cards, concise text, the audience, tone, language and a light theme."
+      },
+      {
+        "seconds": 287,
+        "step": "Let Gamma pick the image model and choose a line art style."
+      },
+      {
+        "seconds": 344,
+        "step": "Generate the deck, which takes about three minutes."
+      },
+      {
+        "seconds": 411,
+        "step": "Check plan prices: Plus at $12, Pro at $25 and Ultra at $100 a month."
+      },
+      {
+        "seconds": 580,
+        "step": "Edit an image with the built-in AI agent."
+      },
+      {
+        "seconds": 619,
+        "step": "Export to Google Slides, PowerPoint, PDF or PNG."
+      }
+    ],
+    "notCovered": [
+      "Whether the deck is accurate or well suited to the client, since the content was fed in as an outline.",
+      "Formatting problems after export, which the presenter says need some work.",
+      "Credit use per deck or per image model.",
+      "The claim that more than 80 percent of people have never paid for an AI service, which is the presenter's own."
+    ],
+    "qa": [
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says they earn a small commission on sign-ups and purchases."
+      },
+      {
+        "q": "How many cards does the free plan allow?",
+        "a": "10 cards per prompt, per the video."
+      },
+      {
+        "q": "How fast was it?",
+        "a": "About three minutes or less to generate the whole deck."
+      }
+    ]
+  },
+  "CGVALaueHeA": {
+    "summary": "A Make.com scenario that finds video ideas from other creators' popular videos: it scrapes chosen YouTube channels with an Apify actor, stores titles and view counts in Airtable, asks an OpenAI assistant for ten similar ideas in JSON and saves them to a second Airtable table. The run produces idea lists for a travel and Thailand niche. A faceless video step is unlinked, the template is pay what you want, and the Make.com link is an affiliate link.",
+    "whatYouBuild": "A Make.com scenario with a channel list, an Apify YouTube channel scraper, an array aggregator, an iterator, Airtable records, a text aggregator, an OpenAI assistant and a parsed JSON write to an ideas table.",
+    "toolsUsed": [
+      "Make.com",
+      "Apify",
+      "Airtable",
+      "OpenAI API"
+    ],
+    "keySteps": [
+      {
+        "seconds": 82,
+        "step": "Set up the channels to scrape and pick Apify's YouTube channel scraper."
+      },
+      {
+        "seconds": 111,
+        "step": "Connect Apify to Make.com with an API token and paste the actor's input JSON."
+      },
+      {
+        "seconds": 199,
+        "step": "Get the dataset items, limited to 100, and aggregate the date, title, duration, views and channel name into an array."
+      },
+      {
+        "seconds": 260,
+        "step": "Create Airtable tables for scraped videos and ideas."
+      },
+      {
+        "seconds": 322,
+        "step": "Iterate over the array and create Airtable records."
+      },
+      {
+        "seconds": 448,
+        "step": "Aggregate titles and view counts into a single text block."
+      },
+      {
+        "seconds": 472,
+        "step": "Ask a custom OpenAI assistant for ten original ideas with summaries in a JSON format."
+      },
+      {
+        "seconds": 609,
+        "step": "Parse the JSON and store the ideas in Airtable."
+      }
+    ],
+    "notCovered": [
+      "Whether the suggested ideas perform well. They are patterned on other creators' popular videos.",
+      "The faceless video posting step, which the presenter has unlinked.",
+      "Rules for scraping channels through Apify, and the cost beyond the quoted $5 per 1,000 videos.",
+      "Originality, since the prompt asks for ideas similar to other creators' hits."
+    ],
+    "qa": [
+      {
+        "q": "Where is the template?",
+        "a": "On the presenter's Gumroad page, free or pay what you want."
+      },
+      {
+        "q": "What does the assistant return?",
+        "a": "Ten video ideas with short summaries and steps, formatted as JSON."
+      },
+      {
+        "q": "Is the Make.com link an affiliate link?",
+        "a": "Yes, per the video."
+      }
+    ]
+  },
+  "AO8NoHPU3e0": {
+    "summary": "A first look at Claude Code Routines, announced April 14, 2026 in preview: saved prompts that run on a schedule, a GitHub event or an API call. The presenter keeps a daily email triage routine, adds a GitHub security audit on pull requests and a calendar update, then creates a daily site speed audit and a weekly blog strategy routine from the Claude Code command line. Routines use plan credits, with a Pro plan allowing five included runs a day, and the presenter reaches about 90 percent usage.",
+    "whatYouBuild": "Several Claude routines: a daily email triage, a GitHub pull request security review, a Google Calendar update, a daily site performance analysis and a weekly blog content strategy file committed to a repo.",
+    "toolsUsed": [
+      "Claude Code Routines",
+      "GitHub",
+      "Google Calendar",
+      "Claude Code"
+    ],
+    "keySteps": [
+      {
+        "seconds": 11,
+        "step": "Read the announcement: routines can work through a backlog, review pull requests and react to events in the cloud."
+      },
+      {
+        "seconds": 81,
+        "step": "Look at the daily email triage routine, which categorizes, summarizes and drafts replies."
+      },
+      {
+        "seconds": 117,
+        "step": "Create a routine triggered by GitHub events to review pull requests for security issues."
+      },
+      {
+        "seconds": 241,
+        "step": "Run it manually and see it start."
+      },
+      {
+        "seconds": 302,
+        "step": "Add a daily Google Calendar update using a connector."
+      },
+      {
+        "seconds": 374,
+        "step": "Read the security review of four open pull requests, rated medium concern."
+      },
+      {
+        "seconds": 425,
+        "step": "Create a routine from the Claude Code command line and fix a 401 error by logging in again."
+      },
+      {
+        "seconds": 649,
+        "step": "Create a weekly blog strategy routine that commits a strategy document."
+      },
+      {
+        "seconds": 714,
+        "step": "Notice credit use climbing and troubleshoot session tokens."
+      }
+    ],
+    "notCovered": [
+      "Whether the speed audit produces useful data, since the site returns 403 to the automated requests.",
+      "The strategy document produced by the weekly routine, which is still running at the end.",
+      "A YouTube connector, which is not available, so the comments report is dropped.",
+      "Costs. The presenter says creating routines in the command line burns many tokens and recommends the web interface."
+    ],
+    "qa": [
+      {
+        "q": "What triggers a routine?",
+        "a": "A schedule, a GitHub event or an API call, per the video."
+      },
+      {
+        "q": "How many runs does Pro include?",
+        "a": "The presenter says five included daily runs."
+      },
+      {
+        "q": "Which way is cheaper to create them?",
+        "a": "The web interface, according to the presenter, because doing it in Claude Code used a lot of tokens."
+      }
+    ]
+  },
+  "NoHkFvhbiuU": {
+    "summary": "A demo of LeadScope, the presenter's local lead generation and website audit tool built in phases with Claude Code on Sonnet 5, Codex and OpenCode. It searches Google Maps by category and place, audits sites with PageSpeed and Lighthouse, takes screenshots with Playwright, drafts a redesign preview and email copy, and exports leads to CSV. Contact extraction and the redesign preview are weak, rate limits slow the audits and the tool is not deployed.",
+    "whatYouBuild": "A local app with Google Places API search, a PageSpeed and Lighthouse audit, Playwright screenshots, template-based redesign previews, personalized email drafts, a usage cost dashboard and a CSV export.",
+    "toolsUsed": [
+      "Claude Code",
+      "Codex",
+      "OpenCode",
+      "Google Places API",
+      "Playwright",
+      "Postgres",
+      "Vercel AI Gateway"
+    ],
+    "keySteps": [
+      {
+        "seconds": 42,
+        "step": "Hear how the tool finds businesses, audits and screenshots their sites and builds a before and after redesign."
+      },
+      {
+        "seconds": 83,
+        "step": "Review the master prompt written in Claude for the six build phases."
+      },
+      {
+        "seconds": 134,
+        "step": "Look at example hotel leads in Los Angeles, including a hostel with no website."
+      },
+      {
+        "seconds": 212,
+        "step": "Run a live search for hotels in Koh Samui and watch audits and screenshots start."
+      },
+      {
+        "seconds": 284,
+        "step": "Open a lead with an HTTPS issue and see its redesign preview, which looks poor."
+      },
+      {
+        "seconds": 335,
+        "step": "Export the leads to CSV."
+      },
+      {
+        "seconds": 463,
+        "step": "Draft personalized email copy from audit data using DeepSeek V4 Pro in OpenCode."
+      },
+      {
+        "seconds": 494,
+        "step": "Finish phase six, a usage and cost dashboard for PageSpeed calls."
+      },
+      {
+        "seconds": 628,
+        "step": "Plan AI vision analysis of screenshots through the Vercel AI Gateway for better redesigns."
+      }
+    ],
+    "notCovered": [
+      "Reliable email discovery. Many leads show only phone numbers.",
+      "A good redesign preview. The presenter calls the current one ugly and plans to improve it.",
+      "Clients won with the tool.",
+      "The legal and platform terms on collecting business contact details, though the presenter says the Places API use is compliant."
+    ],
+    "qa": [
+      {
+        "q": "Does it actually find clients?",
+        "a": "The title says so, but the video only shows leads and audits. No outreach results or clients are shown."
+      },
+      {
+        "q": "Which models were used?",
+        "a": "Claude Sonnet 5 for most of the build, Codex for the redesign work and DeepSeek V4 Pro in OpenCode for emails."
+      },
+      {
+        "q": "Is it available?",
+        "a": "No. It runs on the presenter's computer, and a Prisma error blocks the Vercel deployment."
+      }
+    ]
+  },
+  "2G5klyFz61E": {
+    "summary": "A live build of Beacon, the presenter's early AI search visibility tracker, using OpenCode with GLM 5.2 and DeepSeek V4 Pro, Codex and Claude Code. Design and features are modeled on a paid tracker, live data comes from the DataForSEO MCP, and GLM 5.2 builds a three-tier pricing page, though Stripe is not configured. The OpenCode Go five-hour limit is reached mid-build. It is an unfinished minimum viable product, and the sign-up link is an affiliate link.",
+    "whatYouBuild": "A Next.js style dashboard with Clerk login, overview metrics, a task board, integrations and a pricing page, with DataForSEO data replacing mock data and Prisma for storage.",
+    "toolsUsed": [
+      "OpenCode",
+      "GLM 5.2",
+      "DeepSeek V4 Pro",
+      "Codex",
+      "Claude Code",
+      "DataForSEO",
+      "Clerk",
+      "Stripe"
+    ],
+    "keySteps": [
+      {
+        "seconds": 67,
+        "step": "Tour the landing page and Clerk sign-in of the early MVP."
+      },
+      {
+        "seconds": 91,
+        "step": "Walk through the dashboard's visibility score, presence, win rate and trend."
+      },
+      {
+        "seconds": 110,
+        "step": "Compare GLM 5.2 and DeepSeek V4 Pro costs in OpenCode, where DeepSeek is several times cheaper."
+      },
+      {
+        "seconds": 193,
+        "step": "Have Claude Desktop write a build prompt that mirrors a competitor's functionality."
+      },
+      {
+        "seconds": 274,
+        "step": "Connect the DataForSEO MCP and AI optimization data API for live data."
+      },
+      {
+        "seconds": 372,
+        "step": "Explain GEO and the robots, llms.txt and ai.txt files an AI crawler needs."
+      },
+      {
+        "seconds": 562,
+        "step": "Balance work across Claude Code, Codex and OpenCode as limits are reached."
+      },
+      {
+        "seconds": 612,
+        "step": "Ask GLM 5.2 to build a three-tier Stripe pricing page, which finishes after a usage reset."
+      }
+    ],
+    "notCovered": [
+      "Working billing. Stripe is not configured yet.",
+      "A verified live data flow, since localhost login and organization connection are not working.",
+      "Whether copying a paid competitor's layout and features raises design or intellectual property concerns.",
+      "Any users or a release date."
+    ],
+    "qa": [
+      {
+        "q": "Why build it instead of buying a tracker?",
+        "a": "The presenter did not want to pay $100 a month for the tracker they admire, which recently rose from $70."
+      },
+      {
+        "q": "How much did the build cost?",
+        "a": "About $12 on GLM 5.2 and $2.50 on DeepSeek V4 Pro inside the $10 a month Go plan, which was at 37 percent of its monthly usage."
+      },
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says a new user gets $5 in credits and they get $5."
+      }
+    ]
+  },
+  "ix3C2JBFII8": {
+    "summary": "Make YouTube thumbnails with Nano Banana Pro through KIE: ChatGPT writes a thumbnail prompt, KIE regenerates an existing thumbnail from it at 16:9 and 1K, and Gemini swaps in the presenter's face with a wide-open-mouth expression. Each run costs about 18 credits, roughly 30 images for $5. The thumbnails are replaced on three videos with starting click-through rates around 3.3 to 3.8 percent, but no new rates are shown, and one face swap fails.",
+    "whatYouBuild": "Regenerated YouTube thumbnails from a ChatGPT-written prompt in KIE's Nano Banana Pro, with face replacement in Gemini and manual uploads in YouTube Studio.",
+    "toolsUsed": [
+      "Nano Banana Pro",
+      "KIE",
+      "ChatGPT",
+      "Gemini",
+      "vidIQ"
+    ],
+    "keySteps": [
+      {
+        "seconds": 60,
+        "step": "Sign up for KIE, add credits and open Nano Banana Pro in the models market."
+      },
+      {
+        "seconds": 120,
+        "step": "Write a detailed thumbnail prompt in ChatGPT and paste it into KIE with an existing thumbnail."
+      },
+      {
+        "seconds": 180,
+        "step": "Replace the generated person with the presenter's face in Gemini, keeping the surprised expression."
+      },
+      {
+        "seconds": 300,
+        "step": "Set 16:9, 1K and PNG, then regenerate another low-CTR thumbnail."
+      },
+      {
+        "seconds": 360,
+        "step": "Mention automating the process in n8n in a later video."
+      },
+      {
+        "seconds": 420,
+        "step": "Check title, description and thumbnail scores in vidIQ."
+      }
+    ],
+    "notCovered": [
+      "Click-through rate after the changes. Only the old rates of about 3.3 to 3.8 percent are shown.",
+      "A reliable face swap. One attempt does not insert the presenter and Gemini's limit is reached.",
+      "Whether the wide-open-mouth style works for every audience, which is the presenter's belief.",
+      "Disclosure of AI-edited faces and thumbnails, and the cost beyond the quoted credits."
+    ],
+    "qa": [
+      {
+        "q": "How much does each thumbnail cost?",
+        "a": "About 18 credits per run, and the presenter estimates around 30 images for $5."
+      },
+      {
+        "q": "Why 1K resolution?",
+        "a": "The presenter says higher resolution makes files too large to upload to YouTube."
+      },
+      {
+        "q": "Do I need a designer?",
+        "a": "The presenter says no, but the video shows no CTR improvement yet."
+      }
+    ]
+  },
+  "quDDekuPQNI": {
+    "summary": "A sponsored walkthrough of BrowserAct's Skill Forge scraper skill, which the presenter installs with npx and uses in Codex to scrape remote job listings from We Work Remotely: category pages, filtered categories and each job's details into a 3,200-line JSON and a CSV. Claude Desktop then writes a React and Vite prompt and Codex builds a searchable remote job board in about 20 minutes. The salary field is wrong, and applying sends users back to the source site. The video says BrowserAct sponsored it.",
+    "whatYouBuild": "A BrowserAct-powered scraper in Python and a React and Vite remote jobs website with categories, search and job detail pages built from the scraped JSON.",
+    "toolsUsed": [
+      "BrowserAct",
+      "Codex",
+      "Claude Desktop",
+      "React",
+      "Vite"
+    ],
+    "keySteps": [
+      {
+        "seconds": 75,
+        "step": "Install the Skill Forge skill into the coding tools with the npx command."
+      },
+      {
+        "seconds": 131,
+        "step": "Ask Codex to scrape the job board, which writes a Python script and skill file."
+      },
+      {
+        "seconds": 213,
+        "step": "Batch scrape the category pages."
+      },
+      {
+        "seconds": 283,
+        "step": "Filter to frontend and sales categories and fetch each job's details."
+      },
+      {
+        "seconds": 350,
+        "step": "Hear about the stealth mode meant to avoid bot detection."
+      },
+      {
+        "seconds": 403,
+        "step": "Convert the output to JSON and CSV."
+      },
+      {
+        "seconds": 449,
+        "step": "Have Claude Desktop write a React and Vite prompt for the jobs site."
+      },
+      {
+        "seconds": 520,
+        "step": "Let Codex execute an implementation plan and build the site."
+      },
+      {
+        "seconds": 587,
+        "step": "Search and browse the finished site and notice the wrong salary data."
+      }
+    ],
+    "notCovered": [
+      "Whether copying and republishing another job board's listings is allowed by its terms or copyright.",
+      "The accuracy of the scraped data, since the salary is not scraped correctly.",
+      "Bot detection avoidance and its ethics. The presenter says the tool avoids detection and blocks.",
+      "A deployed site, which the presenter plans to put on Vercel."
+    ],
+    "qa": [
+      {
+        "q": "Is this video sponsored?",
+        "a": "Yes. The presenter says BrowserAct sponsored it and shares a discount link."
+      },
+      {
+        "q": "How long did the site take?",
+        "a": "About 20 minutes with Codex, or about an hour including scraping."
+      },
+      {
+        "q": "Where does the apply button go?",
+        "a": "To the original We Work Remotely listing, where users create an account to apply."
+      }
+    ]
+  },
+  "4sd4-9rC3As": {
+    "summary": "A Make.com scenario that makes faceless AI videos from Airtable topics and posts them: Airtable rows with status to-do, an OpenAI script, JSON2Video's toolbox to render a 720 by 1280 video, a wait for the render, an Airtable update with the video URL, and a router posting to a Facebook page and a YouTube channel. A test video on expat-friendly cities renders in about 60 to 70 seconds. The resolution is lowered to fit Make.com's 5 MB free plan file cap.",
+    "whatYouBuild": "A Make.com scenario with Airtable, ChatGPT, JSON2Video, an HTTP file download and Facebook and YouTube upload modules.",
+    "toolsUsed": [
+      "Make.com",
+      "Airtable",
+      "OpenAI API",
+      "JSON2Video",
+      "YouTube",
+      "Facebook"
+    ],
+    "keySteps": [
+      {
+        "seconds": 37,
+        "step": "Create a JSON2Video account for a free API key and build an Airtable table of titles, topics, language, voice and status."
+      },
+      {
+        "seconds": 64,
+        "step": "Search Airtable records with status to-do and update the record later."
+      },
+      {
+        "seconds": 112,
+        "step": "Write a script with an OpenAI chat completion using the topic, language and voice."
+      },
+      {
+        "seconds": 316,
+        "step": "Set the JSON2Video toolbox: 720 by 1280, the free voice, free image model, vertical ratio and subtitles."
+      },
+      {
+        "seconds": 391,
+        "step": "Wait for the movie to render and save its URL back to Airtable."
+      },
+      {
+        "seconds": 665,
+        "step": "Download the file and post it to a Facebook page and a YouTube channel through a router."
+      }
+    ],
+    "notCovered": [
+      "Quality of the videos. The presenter suggests better image models for improvement.",
+      "Engagement or growth from posting AI videos, and platform rules on automated and repetitive posting.",
+      "Costs after the 600 free JSON2Video credits, with paid plans mentioned around $50 a month.",
+      "Instagram and TikTok posting, which are only mentioned as possible additions."
+    ],
+    "qa": [
+      {
+        "q": "Why scale the video down?",
+        "a": "Make.com's free plan caps downloaded files at about 5 MB, so the presenter uses 720 by 1280."
+      },
+      {
+        "q": "How does the YouTube upload handle AI content?",
+        "a": "The presenter turns on the altered or synthetic media setting because the video is AI generated."
+      },
+      {
+        "q": "How fast does a video render?",
+        "a": "About 60 to 70 seconds for a roughly 35 second clip."
+      }
+    ]
+  },
+  "fjTn95391rg": {
+    "summary": "Connect a Fillout form to Airtable, first with a Make.com scenario that watches for new Fillout responses and creates an Airtable record, then with Fillout's built-in Airtable integration that needs no Make.com. The form collects name, email, phone, how members found the community, tools used and monthly online income, with an optional call booking. Both versions put a test submission into Airtable. The links are promotional, and the data collected is personal.",
+    "whatYouBuild": "A Fillout form for new community members, a Make.com webhook scenario into Airtable, and the same result using Fillout's native Airtable integration.",
+    "toolsUsed": [
+      "Fillout",
+      "Make.com",
+      "Airtable",
+      "Google Calendar"
+    ],
+    "keySteps": [
+      {
+        "seconds": 40,
+        "step": "Build the Fillout form with questions, a theme and a calendar booking step for people who want a call."
+      },
+      {
+        "seconds": 120,
+        "step": "Create a Make.com scenario with a Fillout watch-responses trigger and connect Fillout."
+      },
+      {
+        "seconds": 160,
+        "step": "Create an Airtable base with fields for name, email, phone, discovery, income and call interest."
+      },
+      {
+        "seconds": 200,
+        "step": "Map each Fillout answer to an Airtable field in a Create Record module."
+      },
+      {
+        "seconds": 250,
+        "step": "Submit a test form and see the record appear in Airtable."
+      },
+      {
+        "seconds": 300,
+        "step": "Use Fillout's built-in Airtable integration instead and test again without Make.com."
+      }
+    ],
+    "notCovered": [
+      "Consent and privacy notices for collecting phone numbers and income.",
+      "Sending follow-up emails, which is only suggested with a to-do status and a search step.",
+      "The claimed 25 percent conversion rate of the community, which is the presenter's figure.",
+      "Pricing details beyond the free 1,000 responses a month and paid plans from $19."
+    ],
+    "qa": [
+      {
+        "q": "Do I need Make.com to send form answers to Airtable?",
+        "a": "No. Fillout has its own Airtable integration, which also saves Make.com runs."
+      },
+      {
+        "q": "How much is Fillout?",
+        "a": "Free to start with 1,000 responses a month, and paid plans from $19 a month, per the presenter."
+      },
+      {
+        "q": "Why ask about income?",
+        "a": "The presenter uses it to judge how ready members are for AI automation."
+      }
+    ]
+  },
+  "tR7AYN5FiqA": {
+    "summary": "A tour of OpenAI's Codex coding tool in the terminal and in Codex Cloud after the presenter upgrades to ChatGPT Plus and drops Claude Code. They run a code review through Codex Cloud connected to GitHub, switch models and reasoning levels, use the superpowers skill for a review of their site, fix a newsletter form and push to GitHub for a Vercel deploy. The presenter launches it in a mode that skips approvals, which is a risk to know about.",
+    "whatYouBuild": "Codex set up with a ChatGPT Plus login, a cloud code review task, and a local review that results in fixes pushed to a repo.",
+    "toolsUsed": [
+      "Codex",
+      "ChatGPT",
+      "GitHub",
+      "Vercel",
+      "EmailJS"
+    ],
+    "keySteps": [
+      {
+        "step": "Compare the Codex plans and note ChatGPT Plus at $20 a month, with Pro around $100."
+      },
+      {
+        "step": "Open Codex Cloud, connect GitHub and start a code review on a repo."
+      },
+      {
+        "step": "Start Codex in the terminal with an approval-skipping flag and sign in with ChatGPT."
+      },
+      {
+        "step": "Pick GPT 5.4 mini and medium reasoning instead of the costlier GPT 5.5."
+      },
+      {
+        "step": "Use the superpowers skill for a full code review and read the ranked findings."
+      },
+      {
+        "step": "Ask Codex to fix the newsletter email form, then commit and push."
+      },
+      {
+        "step": "Resume an interrupted session with codex resume."
+      }
+    ],
+    "notCovered": [
+      "The risks of running with approvals skipped, where a coding agent can edit files and run commands without asking.",
+      "Whether the code review findings were all valid, since they are applied without a separate check.",
+      "Install steps, which the presenter has already done.",
+      "A cost comparison with Claude Code beyond the equal $20 plan price and the presenter's view that Codex is faster."
+    ],
+    "qa": [
+      {
+        "q": "Which model does the presenter use?",
+        "a": "GPT 5.4 mini at medium reasoning for most tasks, since GPT 5.5 uses more credits."
+      },
+      {
+        "q": "Can I run Codex without my computer?",
+        "a": "Yes, Codex Cloud runs tasks against a connected GitHub repo, which the presenter says helps on a slow laptop."
+      },
+      {
+        "q": "Why did the presenter switch?",
+        "a": "They found Claude Code slower and ran out of credits often, so they cancelled it for Codex and OpenCode."
+      }
+    ]
+  },
+  "limgGYHy6Jk": {
+    "summary": "A SendPulse walkthrough for a Facebook page with about 160,000 followers: comment triggers with randomized public replies, a direct message flow, ChatGPT-written replies in the commenter's language, a CRM and DM campaigns that show 70 to 77 percent read rates. The presenter pays $48 a month for the 5,000-subscriber plan. The CRM is not receiving contacts, ChatGPT replies are cut off on the free API model and the link is an affiliate link. They also offer to build chatbots as a service.",
+    "whatYouBuild": "A SendPulse bot with a standard reply flow that responds to page comments, an AI reply step using the OpenAI API, and DM campaigns to subscribers.",
+    "toolsUsed": [
+      "SendPulse",
+      "Facebook Messenger",
+      "ChatGPT",
+      "OpenAI API"
+    ],
+    "keySteps": [
+      {
+        "seconds": 90,
+        "step": "See what SendPulse chatbots do across Facebook, WhatsApp, Instagram, Telegram, Viber and live chat."
+      },
+      {
+        "seconds": 180,
+        "step": "Review pricing, where the presenter pays $48 a month for the 5,000 subscriber tier."
+      },
+      {
+        "seconds": 270,
+        "step": "Tour the dashboard with about 3,200 subscribers and conversations viewable without Messenger."
+      },
+      {
+        "seconds": 360,
+        "step": "Edit the comment trigger and add several different public replies to avoid looking repetitive."
+      },
+      {
+        "seconds": 450,
+        "step": "Edit the flow so a comment starts a DM with a quick reply, then passes responses to ChatGPT."
+      },
+      {
+        "seconds": 540,
+        "step": "See a German reply produced automatically."
+      },
+      {
+        "seconds": 630,
+        "step": "Read campaign results and the offer to build chatbots for others."
+      }
+    ],
+    "notCovered": [
+      "Meta's rules on automated replies and messages to people who commented.",
+      "CRM sync, which the presenter says is not adding contacts yet.",
+      "Long AI replies, which are cut off because of the API limits on the free plan.",
+      "Verification of the read rates and group growth the presenter quotes."
+    ],
+    "qa": [
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says they earn a small commission on sales."
+      },
+      {
+        "q": "How does the bot reply in other languages?",
+        "a": "It passes the message through ChatGPT, which answers in the sender's language."
+      },
+      {
+        "q": "What does the presenter charge to set one up?",
+        "a": "$150 as a one-time service, or $99 a month for up to two platforms, per the video."
+      }
+    ]
+  },
+  "oP11zRs6628": {
+    "summary": "Use Google Antigravity with Gemini 3 Pro to build a small web dashboard that sends a YouTube URL to an n8n workflow on a Hostinger VPS, which should return a LinkedIn post, blog article and tweets. The first attempts show failed to fetch and a 500 error, then the workflow runs for 3 minutes 39 seconds after a webhook fix and a Gemini billing setup. The app does not yet display the post or infographic, which only appear in Google Drive and KIE.",
+    "whatYouBuild": "A React dashboard on localhost calling an n8n webhook that transcribes a video with Apify, summarizes it with Gemini, writes content with Claude and makes an infographic through KIE.",
+    "toolsUsed": [
+      "Google Antigravity",
+      "Gemini 3 Pro",
+      "n8n",
+      "Hostinger",
+      "Apify",
+      "KIE",
+      "Claude"
+    ],
+    "keySteps": [
+      {
+        "step": "Ask Gemini for instructions, install the n8n MCP and put the n8n API key into an MCP config file."
+      },
+      {
+        "step": "Have Antigravity build the dashboard files and an implementation plan."
+      },
+      {
+        "step": "Switch from a local n8n to the Hostinger instance and install the Apify node."
+      },
+      {
+        "step": "Replace the form trigger with a webhook and set the path and response mode."
+      },
+      {
+        "step": "Debug the failed to fetch and 500 errors, passing the video URL into the next node."
+      },
+      {
+        "step": "Set up Google Cloud billing to clear a Gemini rate limit and top up Claude credits."
+      },
+      {
+        "step": "See the run complete, with the infographic created in KIE and uploaded to Google Drive."
+      }
+    ],
+    "notCovered": [
+      "Showing the LinkedIn post and infographic inside the app, which is not finished.",
+      "Security of exposing a webhook to a public web app that triggers paid API calls.",
+      "Costs per run for the transcription, Gemini, Claude and KIE steps.",
+      "A release. The presenter may host the app and charge a subscription later."
+    ],
+    "qa": [
+      {
+        "q": "Did the dashboard work?",
+        "a": "Partly. It triggered the n8n workflow, which completed, but it does not yet display the generated content."
+      },
+      {
+        "q": "Why did it say failed to fetch?",
+        "a": "The app could not reach the n8n instance or the right webhook path. It improved after switching to the remote instance and correcting the path."
+      },
+      {
+        "q": "How long did the workflow take?",
+        "a": "About 3 minutes 39 seconds for the full run."
+      }
+    ]
+  },
+  "yUibdYhO1ms": {
+    "summary": "An n8n workflow that runs every three days, scrapes remote digital marketing jobs from Indeed with Apify, has GPT-5 mini score each job against the presenter's resume out of 10, and for scores of 5 or more writes a cover letter. Every job goes into an Airtable tracker, and good matches also get a Google Doc cover letter. Applying stays manual, and some cover letter files are hard to match to their jobs because company names are missing.",
+    "whatYouBuild": "An n8n workflow with a schedule trigger, an Apify Indeed actor, dataset retrieval, an OpenAI fit score, an if branch, a cover letter generator, Airtable records and Google Docs creation.",
+    "toolsUsed": [
+      "n8n",
+      "Apify",
+      "OpenAI API",
+      "Airtable",
+      "Google Docs"
+    ],
+    "keySteps": [
+      {
+        "seconds": 45,
+        "step": "Run the Apify Indeed scraper every three days for 25 remote digital marketing jobs from the past week."
+      },
+      {
+        "seconds": 135,
+        "step": "Fetch the dataset items with description, company, location and salary."
+      },
+      {
+        "seconds": 180,
+        "step": "Score each job out of 10 with GPT-5 mini, giving points for resume fit, pay, remote work, benefits and full-time status."
+      },
+      {
+        "seconds": 225,
+        "step": "Branch on a score of 5 or more and add every job to Airtable with its rating."
+      },
+      {
+        "seconds": 270,
+        "step": "Generate a cover letter for good matches from the job listing and the resume."
+      },
+      {
+        "seconds": 315,
+        "step": "Create a Google Doc for each cover letter and update it with the text."
+      },
+      {
+        "seconds": 360,
+        "step": "Open a job link from Airtable and apply by hand."
+      }
+    ],
+    "notCovered": [
+      "How well the fit scoring matches a human judgment of the jobs.",
+      "Naming that makes cover letters easy to find. Jobs without a company name get a generic CV file name.",
+      "Truthfulness of AI-written cover letters and sending a full resume to a third-party model.",
+      "Google Cloud setup, which the presenter leaves for viewers to figure out."
+    ],
+    "qa": [
+      {
+        "q": "Does it apply for me?",
+        "a": "No. It finds, scores and drafts, and the presenter applies manually."
+      },
+      {
+        "q": "Why only write letters for good fits?",
+        "a": "To save OpenAI credits, using a threshold of a 5 out of 10 score."
+      },
+      {
+        "q": "Which scrapers can it use?",
+        "a": "The presenter says LinkedIn, Simply Hired, ZipRecruiter and others also work as Apify actors."
+      }
+    ]
+  },
+  "2pD_wqYHKlY": {
+    "summary": "A tour of Trakkr, a tool for tracking AI crawler visits, citations and visibility, using the presenter's own analytics site. It shows 1,700 AI crawler visits in seven days, prompt tests in ChatGPT and Perplexity where the site ranks third, and steps such as tracking code, llms.txt and ai.txt. The presenter credits GEO-optimized blog articles and a move from Hostinger to Vercel. These results are self-reported and causes are not proven.",
+    "whatYouBuild": "A Trakkr setup with tracking code on a site, plus scripts to submit URLs to Bing and Google and a blog post workflow driven by tracked prompts.",
+    "toolsUsed": [
+      "Trakkr",
+      "OpenCode",
+      "Vercel",
+      "Google Tag Manager",
+      "Index Guru"
+    ],
+    "keySteps": [
+      {
+        "seconds": 63,
+        "step": "Read the dashboard for visibility score, mentions, rank and competitor comparison."
+      },
+      {
+        "seconds": 104,
+        "step": "Check AI crawler visits by day, top pages and sources, mostly from ChatGPT."
+      },
+      {
+        "seconds": 147,
+        "step": "See how blog articles use quick answers, key takeaways and expanded FAQ sections so crawlers can read them."
+      },
+      {
+        "seconds": 212,
+        "step": "Install the tracking snippet directly or through Google Tag Manager."
+      },
+      {
+        "seconds": 253,
+        "step": "Test prompts in ChatGPT about the best YouTube analytics tools and see where the site appears."
+      },
+      {
+        "seconds": 364,
+        "step": "Test follow-up questions in Perplexity about pricing and features."
+      },
+      {
+        "seconds": 615,
+        "step": "Submit URLs to Bing and Google with custom scripts, with Index Guru as a paid option at about $9 a month."
+      },
+      {
+        "seconds": 878,
+        "step": "Look at llms.txt and ai.txt files that list pages and allow AI crawling."
+      }
+    ],
+    "notCovered": [
+      "Proof that the blog changes or the host switch caused more citations and crawler visits.",
+      "Statistics beyond a single site, a week of data and a handful of manual prompt tests.",
+      "Whether crawler visit counts are all real AI crawlers, since they come from the tracker's own snippet.",
+      "Trial terms for Trakkr, which differ between this video's 14-day mention and other videos."
+    ],
+    "qa": [
+      {
+        "q": "What does the tracker measure?",
+        "a": "AI crawler visits, citations, mentions and visibility across several AI models, per the dashboard shown."
+      },
+      {
+        "q": "Why are FAQs expanded by default?",
+        "a": "The presenter says crawlers cannot read collapsed content that needs JavaScript to open."
+      },
+      {
+        "q": "Why move to Vercel?",
+        "a": "The presenter says Vercel's built-in CDN, analytics and speed insights, at about $20 a month on Pro, beat their Hostinger setup."
+      }
+    ]
+  },
+  "Zza-S7YsLy0": {
+    "summary": "A Make.com scenario that watches a Google Sheet of new Skool community members, adds them to EmailOctopus and starts a three-email welcome sequence, with notes on a WhatsApp option and a Zapier route for paid members. Skool had no public API at the time, so Zapier writes members to the sheet. The presenter recently made the community paid and can no longer collect emails, so the automation now depends on paid-member rows. Scraping Skool members through Apify is mentioned and skipped over terms of service.",
+    "whatYouBuild": "A Make.com scenario that watches a members sheet, adds each person to EmailOctopus with first name and email, and a Zapier zap that appends new paid members to a Google Sheet.",
+    "toolsUsed": [
+      "Make.com",
+      "Zapier",
+      "Skool",
+      "EmailOctopus",
+      "Google Sheets",
+      "Apify"
+    ],
+    "keySteps": [
+      {
+        "seconds": 49,
+        "step": "Use Skool's Zapier integration to add each new member and their answers to a Google Sheet."
+      },
+      {
+        "seconds": 139,
+        "step": "Look at Apify actors for Skool, which the presenter skips because of terms of service."
+      },
+      {
+        "seconds": 200,
+        "step": "Watch the sheet for new rows in Make.com and add each person to EmailOctopus."
+      },
+      {
+        "seconds": 273,
+        "step": "See the optional WhatsApp Business Cloud module, unused because phone numbers are not collected."
+      },
+      {
+        "seconds": 437,
+        "step": "Invite people to Skool through a webhook with the email appended, or by importing a CSV."
+      },
+      {
+        "seconds": 580,
+        "step": "Build a Zap with a new paid member trigger that writes first name, last name and email to a new sheet."
+      },
+      {
+        "seconds": 670,
+        "step": "Review the welcome sequence: an intro email, a 12-hour wait, a second email, a 2-day wait and a last email."
+      }
+    ],
+    "notCovered": [
+      "Consent for emailing and WhatsApp messaging members, and for bulk-inviting about 8,000 pending contacts scraped from Apollo.",
+      "Whether the paid-member zap triggers, since no paid members exist yet and the test uses sample data.",
+      "Current Skool features, since the video says there is no public API yet.",
+      "Results of the sequence beyond 666 emails sent with open and click rates shown."
+    ],
+    "qa": [
+      {
+        "q": "Why use Zapier for Skool?",
+        "a": "Skool has a built-in Zapier integration and no public API, so Zapier is the way to get member data out, per the video."
+      },
+      {
+        "q": "Why can't the presenter collect emails now?",
+        "a": "The community became paid, which removed the membership questions that gathered emails."
+      },
+      {
+        "q": "How much does EmailOctopus cost?",
+        "a": "The presenter says there is a free plan for up to 1,000 contacts and paid plans from about $18 a month for 2,500 contacts."
+      }
+    ]
+  },
+  "kKiFzNW9fjw": {
+    "summary": "A Make.com scenario for AI avatar videos: it reads topics from Airtable, researches with Perplexity, writes a script with a custom ChatGPT assistant, creates a HeyGen avatar video with a voice clone, waits for rendering, uploads to a Facebook page and updates Airtable. The HeyGen API limits videos to 3 minutes and 720p with a watermark on lower plans, and a script over the limit fails. The presenter makes the video manually in HeyGen to finish the demo, and the upload to Facebook works.",
+    "whatYouBuild": "A Make.com scenario with Airtable, Perplexity, an OpenAI assistant, HeyGen, sleep steps, a Facebook video upload and an Airtable update.",
+    "toolsUsed": [
+      "Make.com",
+      "Airtable",
+      "Perplexity",
+      "OpenAI API",
+      "HeyGen",
+      "Facebook"
+    ],
+    "keySteps": [
+      {
+        "seconds": 39,
+        "step": "Search Airtable for the first topic with status to-do."
+      },
+      {
+        "seconds": 105,
+        "step": "Research the topic with Perplexity's Sonar model."
+      },
+      {
+        "seconds": 151,
+        "step": "Write a script with a custom assistant from the topic and research."
+      },
+      {
+        "seconds": 212,
+        "step": "Create a HeyGen avatar video with an avatar ID, a voice clone and the script."
+      },
+      {
+        "seconds": 281,
+        "step": "Find that the API limits videos to 3 minutes and lower resolution unless an expensive plan is used."
+      },
+      {
+        "seconds": 382,
+        "step": "Upload the finished video to a Facebook page from its URL."
+      },
+      {
+        "seconds": 447,
+        "step": "Update the Airtable record with the video URL and mark it done."
+      },
+      {
+        "seconds": 796,
+        "step": "Generate the video manually in HeyGen, then run the upload steps with its video ID."
+      }
+    ],
+    "notCovered": [
+      "A fully automatic run. The script exceeded 180 seconds and the render failed, so the video was made by hand.",
+      "HeyGen API pricing in detail. The presenter quotes Pro at about $99 a month and Scale at about $330.",
+      "Quality control before posting and disclosure of AI avatar videos on Facebook.",
+      "Consent and rights around voice and avatar clones."
+    ],
+    "qa": [
+      {
+        "q": "Why did the automatic run fail?",
+        "a": "HeyGen's API rejected a script that made a video over 180 seconds."
+      },
+      {
+        "q": "What does the API limit?",
+        "a": "Videos up to 3 minutes and 1280 by 720, with a watermark on lower plans, per the presenter."
+      },
+      {
+        "q": "Did the Facebook upload work?",
+        "a": "Yes, after a delay the manually made video appeared on the page."
+      }
+    ]
+  },
+  "J86tffN9nmg": {
+    "summary": "Build a ChatGPT-style web app in Rocket.new from a prompt written in ChatGPT. After about ten minutes it produces a chat interface and a settings panel with some broken controls. Prompts fix the color scheme and connect an OpenAI API key. The assistant still answers as a GPT-4 model, and a custom domain needs a $25 a month plan. The presenter prefers Lovable. The link is a promotion, and an API key is shown on screen and deleted afterwards.",
+    "whatYouBuild": "A chat web app with a main interface and settings panel generated by Rocket.new, connected to the OpenAI API through a prompt.",
+    "toolsUsed": [
+      "Rocket.new",
+      "ChatGPT",
+      "OpenAI API",
+      "Lovable"
+    ],
+    "keySteps": [
+      {
+        "seconds": 42,
+        "step": "Choose a web app in Rocket.new and have ChatGPT write the prompt."
+      },
+      {
+        "seconds": 132,
+        "step": "Select the main chat interface and settings screens and build them, with tokens charged per screen."
+      },
+      {
+        "seconds": 216,
+        "step": "Compare with an agency site previously built in Lovable in about two hours."
+      },
+      {
+        "seconds": 347,
+        "step": "Ask Rocket to fix the broken color scheme setting, which works after a prompt."
+      },
+      {
+        "seconds": 496,
+        "step": "Ask it to connect OpenAI, paste in an API key and see real responses."
+      },
+      {
+        "seconds": 677,
+        "step": "Publish the app and find that a custom domain needs the $25 a month plan with 5 million tokens."
+      }
+    ],
+    "notCovered": [
+      "Keeping the API key secret. Pasting it into a prompt of a hosted builder may expose it in the app's code, so the presenter says they delete it afterwards.",
+      "Why the app answers as GPT-4 after being asked to use GPT-5.",
+      "Remaining broken features such as font size and the profile page.",
+      "A fair comparison with Lovable, beyond the presenter's opinion that Lovable is better."
+    ],
+    "qa": [
+      {
+        "q": "How long did the first version take?",
+        "a": "About 10 to 12 minutes, using around 200,000 of the plan's tokens."
+      },
+      {
+        "q": "What does a paid plan cost?",
+        "a": "$25 a month for 5 million tokens and $50 for 10 million, according to the presenter."
+      },
+      {
+        "q": "Did the chat work with a real key?",
+        "a": "Yes, it returned real OpenAI answers, but slowly, and it reported a GPT-4 architecture."
+      }
+    ]
+  },
+  "0jzTOUv_B04": {
+    "summary": "A walkthrough of how the presenter tracks and improves their analytics site's visibility in AI answers with Trakkr: a rank of ninth out of 209 competitors, crawler visits from ChatGPT and Claude, and a Codex run that pulls fixes through the Trakkr MCP. The presenter notes AI search still sends few visitors compared with Google. The link is an affiliate link, and the Trakkr plan is $100 a month after a trial.",
+    "whatYouBuild": "A Trakkr MCP connection to Codex that lists crawler and citation actions, followed by fixes to llms.txt, sitemap and robots files.",
+    "toolsUsed": [
+      "Trakkr",
+      "Codex",
+      "skills.sh",
+      "Google Search Console"
+    ],
+    "keySteps": [
+      {
+        "step": "Test a ChatGPT prompt for the best apps for tracking YouTube competitors and see the presenter's site listed first."
+      },
+      {
+        "step": "Read the dashboard: rank nine of 209 competitors, visibility and win rate."
+      },
+      {
+        "step": "Check AI crawler visits by bot, including about 4,300 from Claude and 7,400 from ChatGPT on one day."
+      },
+      {
+        "step": "Review per-page citation readiness and the article structure that helps citations."
+      },
+      {
+        "step": "Use the Trakkr MCP in Codex to list actions ranked by crawlability and citation impact, and start the fixes."
+      },
+      {
+        "step": "Compare AI referrals with Google: 21 ChatGPT visitors and 18 Claude visitors in a week against 39,000 Google visitors over three months."
+      },
+      {
+        "step": "Review Trakkr's growth plan at $100 a month with eight models and MCP access."
+      }
+    ],
+    "notCovered": [
+      "Proof that the blog work caused the ranking, or that AI mentions bring paying users. The video shows few AI visitors.",
+      "The comparison with YouTube.com, which is about citations in AI answers and not search ranking.",
+      "Trial terms. The presenter mentions both a two-day and a 14-day trial.",
+      "Fixing the file issues Codex starts on, since the video ends as it begins."
+    ],
+    "qa": [
+      {
+        "q": "How much AI traffic does the site get?",
+        "a": "Little. The presenter says ChatGPT sent about 21 visitors in a week and about 700 over three months, against 39,000 from Google."
+      },
+      {
+        "q": "What does Trakkr cost?",
+        "a": "$100 a month for the growth plan after a free trial, per the video."
+      },
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes, according to the video description hints and the presenter's links, so treat it as promotional."
+      }
+    ]
+  },
+  "MIwd2pzmUf0": {
+    "summary": "Another n8n workflow that turns a YouTube video into a LinkedIn post, a newsletter and a detailed infographic: a form takes the URL, Apify fetches the transcript, Gemini summarizes it, KIE's Nano Banana Pro makes a 2K 16:9 infographic that is polled until ready and saved to Google Drive, and Claude Sonnet 4 writes the post and newsletter into a Google Doc. The presenter says it produced nearly 200,000 LinkedIn impressions in a month. That figure is self-reported, and posting stays manual.",
+    "whatYouBuild": "An n8n workflow with a form trigger, Apify transcript, split and aggregate steps, a Gemini summary, a KIE image task with a polling loop, a Drive upload, a base64 code step and Claude steps that write the post and newsletter.",
+    "toolsUsed": [
+      "n8n",
+      "Apify",
+      "Gemini",
+      "Nano Banana Pro",
+      "KIE",
+      "Claude",
+      "Google Drive"
+    ],
+    "keySteps": [
+      {
+        "seconds": 60,
+        "step": "Start with a form trigger that takes the YouTube URL."
+      },
+      {
+        "seconds": 120,
+        "step": "Run the Apify YouTube transcript actor, then split and aggregate the text to drop timestamps."
+      },
+      {
+        "seconds": 180,
+        "step": "Summarize the transcript with a Gemini node."
+      },
+      {
+        "seconds": 240,
+        "step": "Turn the summary into an infographic prompt and call KIE's Nano Banana Pro at 2K and 16:9."
+      },
+      {
+        "seconds": 300,
+        "step": "Poll the KIE task every five seconds until its state is success."
+      },
+      {
+        "seconds": 360,
+        "step": "Download the image, upload it to Google Drive and convert it to base64."
+      },
+      {
+        "seconds": 420,
+        "step": "Ask Claude for a LinkedIn post and a newsletter from the transcript and save both to a Google Doc."
+      }
+    ],
+    "notCovered": [
+      "Automatic posting to LinkedIn, which is manual.",
+      "Independent evidence for the quoted impressions or newsletter growth.",
+      "The accuracy of the summaries and whether repurposing other creators' videos needs permission.",
+      "Per-run credit costs, beyond the note that KIE is the main cost."
+    ],
+    "qa": [
+      {
+        "q": "Why 2K resolution?",
+        "a": "The presenter says 4K files reach about 20 MB, while 2K infographics are around 5 to 6 MB."
+      },
+      {
+        "q": "Why remove timestamps?",
+        "a": "So the prompts to Gemini and Claude contain clean text, which is why the transcript is split and aggregated first."
+      },
+      {
+        "q": "Where is the template?",
+        "a": "In the classroom of the presenter's Skool community, with a 7-day trial for paid tiers."
+      }
+    ]
+  },
+  "X9Bo29B_46k": {
+    "summary": "Tips for getting more from Claude Fable 5 on limited credits after its July 2026 return: lower the effort level, use plan mode with the superpowers skill, give clear briefs, set goals and loops, and add the Compound Engineering plugin to Claude Code and Codex. The presenter also installs a CLAUDE.md improver, a memory optimizer and the Caveman skill, and falls back to Opus 4.8 for routine work. Claims about savings and about Fable being nerfed are not measured.",
+    "whatYouBuild": "A Claude Code and Codex setup with the Compound Engineering plugin, an improved CLAUDE.md scoring 95 out of 100, a memory optimization skill and Caveman, plus habits for choosing effort and models.",
+    "toolsUsed": [
+      "Claude Fable 5",
+      "Claude Code",
+      "Codex",
+      "Compound Engineering",
+      "Caveman"
+    ],
+    "keySteps": [
+      {
+        "seconds": 84,
+        "step": "Meet the Compound Engineering plugin that spends most effort on planning and review."
+      },
+      {
+        "seconds": 156,
+        "step": "Lower effort from high to medium or low to save credits, with max and ultra code costing the most."
+      },
+      {
+        "seconds": 197,
+        "step": "Read Anthropic's prompting notes: short clear instructions, effort as the main dial, boundaries and memory."
+      },
+      {
+        "seconds": 283,
+        "step": "Work in plan mode with superpowers, then switch back to build mode."
+      },
+      {
+        "seconds": 372,
+        "step": "Use goal and loop commands and effective briefs for long unattended work."
+      },
+      {
+        "seconds": 458,
+        "step": "Install the Compound Engineering plugin in Claude Code and Codex."
+      },
+      {
+        "seconds": 637,
+        "step": "Run a CLAUDE.md improver skill and switch the model to Opus 4.8 for that routine job."
+      },
+      {
+        "seconds": 713,
+        "step": "Install a memory optimizer and the Caveman skill to cut text and credit use."
+      }
+    ],
+    "notCovered": [
+      "Measured credit savings from the plugin and skills.",
+      "Safety review of third-party plugins and skills before installing them.",
+      "Evidence for the claim that Fable 5 was nerfed after re-release, which rests on a chart the presenter reads.",
+      "The one-shot island game demo, which is shown rather than built."
+    ],
+    "qa": [
+      {
+        "q": "How do I use fewer credits?",
+        "a": "Use medium effort for most tasks, plan before building, and switch to Opus 4.8 for simple jobs, per the presenter."
+      },
+      {
+        "q": "What does the Compound Engineering plugin do?",
+        "a": "It guides a plan, work, review cycle, with about 80 percent of effort in planning and review, according to its description."
+      },
+      {
+        "q": "Did Fable 5 use many credits?",
+        "a": "Yes. The presenter was at their Fable 5 limit and says it uses credits faster than any other model they have tried."
+      }
+    ]
+  },
+  "3cP3DeBG5Q0": {
+    "summary": "Build and tune a Claude Code skill that edits long-form YouTube videos: it merges clips, transcribes with Whisper, picks a hook and the best segments, removes filler and dead pauses, normalizes audio, and exports a 1080p 30 fps MP4 with a chapters file. The presenter has Claude write a gap report and phased improvements until the skill's own confidence rating reaches 94 out of 100, with an 804-line Python script behind it. The skill is sold on Gumroad. The scores are the model's self-ratings, and the presenter says the final video was edited with it.",
+    "whatYouBuild": "A SKILL.md plus an editorial guide and a long-form Python editing script, shared across Claude Code, Codex and OpenCode by symlinks, with a changelog and project memory.",
+    "toolsUsed": [
+      "Claude Code",
+      "Codex",
+      "OpenCode",
+      "Whisper",
+      "FFmpeg"
+    ],
+    "keySteps": [
+      {
+        "seconds": 33,
+        "step": "See how the skill works: import clips, transcribe, select segments, clean filler and pauses, normalize audio, export with chapters."
+      },
+      {
+        "seconds": 189,
+        "step": "Answer Claude Desktop's questions to write an optimization prompt for the skill."
+      },
+      {
+        "seconds": 293,
+        "step": "Read a gap report scored against the phase two spec, with retention, call to action and natural feel missing or partial."
+      },
+      {
+        "seconds": 413,
+        "step": "Approve the rewrite of the editorial rules, including a cold-open hook and a mid-video re-hook."
+      },
+      {
+        "seconds": 547,
+        "step": "Add guardrails and failure handling, such as timestamp and low-confidence word checks, in the Python script."
+      },
+      {
+        "seconds": 671,
+        "step": "Reach a confidence rating of 88 out of 100, then 94 after later phases."
+      },
+      {
+        "seconds": 873,
+        "step": "Link the updated skill into Codex and OpenCode."
+      },
+      {
+        "seconds": 931,
+        "step": "Hear where to get the skill and run the edit command."
+      }
+    ],
+    "notCovered": [
+      "An independent quality check of the edited videos. The confidence ratings are produced by the model.",
+      "The previous day's rough result, which the presenter says was not completely correct.",
+      "What the Python script actually does, which the presenter says they cannot read.",
+      "Licensing and price of the Gumroad download."
+    ],
+    "qa": [
+      {
+        "q": "How long did an edit take?",
+        "a": "About 45 minutes for a 13-minute video the day before, which the presenter says would have taken at least an hour by hand."
+      },
+      {
+        "q": "What does it export?",
+        "a": "A 1080p, 30 fps MP4 and a separate YouTube chapters file."
+      },
+      {
+        "q": "Does it work outside Claude Code?",
+        "a": "Yes. The presenter links the same skill into Codex and OpenCode."
+      }
+    ]
+  },
+  "DtmxxnAbS00": {
+    "summary": "Create a custom OpenAI assistant for writing community posts: use the OpenAI platform's prompt generator, copy the developer message into a new assistant on GPT-4, test and improve it, then call it from Make.com with the Message an Assistant module. The presenter pastes the output into Skool by hand because Skool has no public API, and tops up API credits to $5.70. The first outputs miss the wanted format until the prompt is edited.",
+    "whatYouBuild": "An OpenAI assistant named school community post creator, tested in the platform and connected to a one-module Make.com scenario.",
+    "toolsUsed": [
+      "OpenAI Platform",
+      "Make.com",
+      "Skool",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 53,
+        "step": "Use the OpenAI platform's chat prompt tool to generate a detailed developer message for the assistant."
+      },
+      {
+        "seconds": 135,
+        "step": "Create an assistant, paste the prompt in as system instructions and pick GPT-4."
+      },
+      {
+        "seconds": 243,
+        "step": "Note the option to upload files as a knowledge base with file search."
+      },
+      {
+        "seconds": 307,
+        "step": "Test with a request, then edit the prompt to add reasoning and examples until posts improve."
+      },
+      {
+        "seconds": 434,
+        "step": "Mention free plan and API credit details."
+      },
+      {
+        "seconds": 546,
+        "step": "Add a Make.com scenario with the assistant module and a simple message, and read the post text."
+      },
+      {
+        "seconds": 673,
+        "step": "Post the text manually to Skool with a GIF and add thread-style comments."
+      }
+    ],
+    "notCovered": [
+      "Posting to Skool automatically, which is not possible without a public API. The Make.com Skool module can only invite members.",
+      "Output quality at scale. The presenter says the first posts are too broad and need prompt tuning.",
+      "Whether the platform's assistants feature remains available, since OpenAI changes these tools.",
+      "Costs beyond a $5.70 balance and the claim of about 30 cents spent over a few days."
+    ],
+    "qa": [
+      {
+        "q": "Why use the OpenAI platform to write the prompt?",
+        "a": "The presenter finds its prompt generator produces a prompt about ten times better than a plain ChatGPT one, though that is a personal view."
+      },
+      {
+        "q": "Can the post be published automatically?",
+        "a": "Not to Skool. The presenter pastes the result in by hand."
+      },
+      {
+        "q": "What do I need for the API?",
+        "a": "Credits in the OpenAI platform billing page, or the scenario errors with an insufficient credit message."
+      }
+    ]
+  },
+  "UkYoSNiqa6o": {
+    "summary": "A Make.com scenario that reads contacts from a Google Sheet, researches each person's organization niche with Perplexity, writes a short PR pitch with a ChatGPT model, and either emails it in HTML or saves it to Airtable for review. The presenter tests on one and then five editors, tightens the prompt to a seventh-grade reading level, and finds some pitches contain unfilled placeholders, which is why drafts go to Airtable before sending. A 60-second wait between sends is added. Targeting in the sample list was off.",
+    "whatYouBuild": "A Make.com scenario with Google Sheets rows, an array and iterator, a Perplexity niche lookup, a ChatGPT pitch, an HTML conversion, an email send and an Airtable record with first name, company, email, body and status.",
+    "toolsUsed": [
+      "Make.com",
+      "Google Sheets",
+      "Perplexity",
+      "ChatGPT",
+      "Airtable"
+    ],
+    "keySteps": [
+      {
+        "seconds": 26,
+        "step": "Search Google Sheets rows and limit to one contact for testing."
+      },
+      {
+        "seconds": 66,
+        "step": "Build an array of first name, email, organization, website and title."
+      },
+      {
+        "seconds": 101,
+        "step": "Step through each contact with an iterator."
+      },
+      {
+        "seconds": 124,
+        "step": "Ask Perplexity's Sonar reasoning model for the organization's niche."
+      },
+      {
+        "seconds": 148,
+        "step": "Write the pitch with a ChatGPT model, then shorten it by asking for simple language and no subject line."
+      },
+      {
+        "seconds": 250,
+        "step": "Convert the text to HTML for the email."
+      },
+      {
+        "seconds": 275,
+        "step": "Send by email with a subject line, a 60-second wait between sends and an optional attachment."
+      },
+      {
+        "seconds": 411,
+        "step": "Save drafts to Airtable with a to-do status instead of sending right away."
+      }
+    ],
+    "notCovered": [
+      "Anti-spam and consent rules for cold outreach, and whether unsolicited pitches to editors are welcome.",
+      "Deliverability, replies and results. No email is actually sent in the video.",
+      "Fixing the unfilled placeholder in one pitch, which is why review is suggested.",
+      "How the follow-up sending automation from Airtable would work."
+    ],
+    "qa": [
+      {
+        "q": "Why save to Airtable first?",
+        "a": "Some drafts came out with placeholders such as an unfilled topic idea, so the presenter reviews them before any send."
+      },
+      {
+        "q": "How is the pitch kept simple?",
+        "a": "The prompt asks for language a seventh grader could understand and no subject line or extra text."
+      },
+      {
+        "q": "Is the template free?",
+        "a": "The presenter says it is free or pay what you want, through a link in the description."
+      }
+    ]
+  },
+  "ffnMlBzcJOQ": {
+    "summary": "An unfinished attempt to build a stock dashboard with Alpaca's API using OpenCode's free models. A detailed prompt from Claude Desktop scaffolds a Node.js and Express app with a WebSocket bridge, then a 401 Unauthorized error persists until the presenter realizes the keys must come from the paper trading account and not the broker API. Prices then load, but the chart never renders by the end. Paper trading only, no real money, and the key is shown on screen and deleted later.",
+    "whatYouBuild": "A local Node.js dashboard at localhost:3000 with an Alpaca client, routes for account, positions and orders, a WebSocket stream, a symbol lookup and a chart that is still not displaying.",
+    "toolsUsed": [
+      "Alpaca",
+      "OpenCode",
+      "Claude Desktop",
+      "Node.js"
+    ],
+    "keySteps": [
+      {
+        "seconds": 44,
+        "step": "Write a detailed MVP prompt in Claude Desktop and paste it into OpenCode."
+      },
+      {
+        "seconds": 81,
+        "step": "Create a free Alpaca developer account."
+      },
+      {
+        "seconds": 138,
+        "step": "Let OpenCode scaffold the project with its free models."
+      },
+      {
+        "seconds": 335,
+        "step": "Generate API keys and enter them in the .env file."
+      },
+      {
+        "seconds": 427,
+        "step": "Run npm start and open the dashboard on localhost:3000."
+      },
+      {
+        "seconds": 480,
+        "step": "Chase the 401 error and let OpenCode read Alpaca's docs."
+      },
+      {
+        "seconds": 722,
+        "step": "Fix it by generating keys under the paper trading account, which gives a $100,000 test balance."
+      },
+      {
+        "seconds": 834,
+        "step": "Add console logging to debug the chart, which still does not render."
+      }
+    ],
+    "notCovered": [
+      "A working chart. The data arrives but nothing displays by the end of the video.",
+      "Trading or investment advice. Only paper trading is used.",
+      "Safe handling of API keys. A key is shown on screen and the presenter says they delete it later.",
+      "The accuracy of the displayed prices, which the presenter says they cannot confirm."
+    ],
+    "qa": [
+      {
+        "q": "Why did the API return 401?",
+        "a": "The presenter had keys from the broker API, and the market data worked only after creating keys under the paper trading account."
+      },
+      {
+        "q": "Was real money involved?",
+        "a": "No. The account is a sandbox or paper account with fake balances."
+      },
+      {
+        "q": "Which models did OpenCode use?",
+        "a": "Free ones such as MiniMax 2.5, with Qwen and Kimi also available, per the presenter."
+      }
+    ]
+  },
+  "a3TwomrR6pw": {
+    "summary": "A news-reading video from July 2025 on YouTube's announced update to Partner Program rules on inauthentic, mass-produced and repetitive content, taking effect July 15. The presenter reads several articles aloud (TechCrunch and others), adds opinions on AI avatar and faceless channels, and lists strategies the articles suggest: add human input, edit with care, transform reused material and disclose AI use. Exact policy wording had not been released at recording, and enforcement details are the articles' speculation. Nothing here is legal or policy advice.",
+    "whatYouBuild": "No build. A summary of reported policy changes and the presenter's reading of what they mean for AI avatar, faceless and reused content.",
+    "toolsUsed": [
+      "YouTube Studio",
+      "HeyGen",
+      "Synthesia",
+      "Syllaby",
+      "Perplexity",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "seconds": 60,
+        "step": "Read TechCrunch's report that YouTube is preparing a crackdown on mass-produced and repetitive videos from July 15."
+      },
+      {
+        "seconds": 131,
+        "step": "Hear that YouTube's Rene Ritchie described the change as a minor update to long-standing Partner Program rules."
+      },
+      {
+        "seconds": 206,
+        "step": "Consider what the update could mean for AI avatar videos made with tools such as HeyGen and Synthesia."
+      },
+      {
+        "seconds": 316,
+        "step": "Review the content types the articles say are at risk: aggregators, templated Shorts, low-effort AI and slideshow videos."
+      },
+      {
+        "seconds": 388,
+        "step": "Note that simply adding music, changing speed or cropping reused clips is described as not enough."
+      },
+      {
+        "seconds": 497,
+        "step": "Read the possible penalties: demonetized videos, removal from the program or suspension, with appeals."
+      },
+      {
+        "seconds": 621,
+        "step": "Go through suggested strategies: show your voice and face, edit thoughtfully, transform reused material and disclose AI use."
+      }
+    ],
+    "notCovered": [
+      "YouTube's own policy text, which the video says was not yet released. Check YouTube's help page for the current rules.",
+      "Whether avatar or faceless channels are actually affected. The presenter relays a tool founder's claim that they are not and says it is unofficial.",
+      "What happened after July 15.",
+      "Sources beyond news articles. The video mixes quotes with the presenter's opinions."
+    ],
+    "qa": [
+      {
+        "q": "When did the update start?",
+        "a": "July 15, 2025, according to the articles read in the video."
+      },
+      {
+        "q": "Does YouTube ban AI content?",
+        "a": "The articles say it does not explicitly ban AI, but low-effort, repetitive or unoriginal content risks losing monetization."
+      },
+      {
+        "q": "Do I need to disclose AI?",
+        "a": "The presenter recommends turning on YouTube's AI-generated label when uploading, as one of the articles advises."
+      },
+      {
+        "q": "Who needs to worry?",
+        "a": "Channels in the Partner Program, which requires 1,000 subscribers and 4,000 watch hours, according to the video."
+      }
+    ]
+  },
+  "kUbhr1QGYeU": {
+    "summary": "An experiment in building a personal AI operating system dashboard with Hermes Agent, ChatGPT and OpenCode. A generated prompt creates a React dashboard with pages for content, analytics, revenue and operations, then a 13-page extension plan runs on OpenCode with DeepSeek V4 Flash. It runs locally on mock data, and live YouTube data was not working by the end. The presenter says they are not sure yet why they need it, and mentions their own analytics product and an OpenCode sign-up link along the way.",
+    "whatYouBuild": "A local React dashboard served with npm run dev, with mock data for two YouTube channels, an analytics product and a Skool community, plus a Google Cloud project with the YouTube Data and Analytics APIs enabled.",
+    "toolsUsed": [
+      "Hermes Agent",
+      "OpenCode Go",
+      "MiniMax 2.7",
+      "DeepSeek V4 Flash",
+      "ChatGPT",
+      "Codex",
+      "Google Cloud Console"
+    ],
+    "keySteps": [
+      {
+        "seconds": 67,
+        "step": "Run the generated system prompt in Hermes Agent with MiniMax 2.7 through OpenCode Go."
+      },
+      {
+        "seconds": 120,
+        "step": "Switch to ChatGPT for the dashboard prompt after hitting a Claude Desktop usage limit."
+      },
+      {
+        "seconds": 249,
+        "step": "Fix a build error and a blank page by running npm run dev from the dashboard folder and having OpenCode fix a line in App.tsx."
+      },
+      {
+        "seconds": 308,
+        "step": "Open the first version of the dashboard in the browser."
+      },
+      {
+        "seconds": 413,
+        "step": "Run a 13-page extension plan in OpenCode with sub-agents on DeepSeek V4 Flash."
+      },
+      {
+        "seconds": 570,
+        "step": "Create a Google Cloud project and enable the YouTube Data API for live analytics."
+      },
+      {
+        "seconds": 852,
+        "step": "Add the community as a sidebar link and command center card, since Skool has no API."
+      },
+      {
+        "seconds": 954,
+        "step": "Debug the credentials in Codex and run a front-end design skill on the color scheme."
+      }
+    ],
+    "notCovered": [
+      "Live YouTube data. The connection was still failing at the end and all numbers shown are mock data.",
+      "A clear use for the dashboard. The presenter says they do not yet understand why they need it.",
+      "OAuth consent setup and key handling for the Google project.",
+      "Costs beyond the quoted $10 a month OpenCode Go plan and about $1.26 of MiniMax usage."
+    ],
+    "qa": [
+      {
+        "q": "Why switch from Hermes Agent to OpenCode?",
+        "a": "Hermes was slow and struggled with a rendering error, while OpenCode fixed it quickly, per the presenter."
+      },
+      {
+        "q": "Is the data real?",
+        "a": "No. It is mock data, and the live YouTube integration was unfinished."
+      },
+      {
+        "q": "Can it pull Skool data?",
+        "a": "No, Skool has no API, so it only links to the community."
+      }
+    ]
+  },
+  "KEXgl3vsVMI": {
+    "summary": "A July 2025 look at Skool's new $9 a month Hobby plan next to the $99 Pro plan. As the presenter describes them, Hobby has one admin, a 10 percent transaction fee against 2.9 percent, no custom URL, no plugins such as Zapier, no sidebar links, no Facebook pixel and no hiding suggested communities. The presenter downgraded two communities and shows their about page, email capture, discovery ranking and activity habits. The sign-up link is an affiliate link and plan details may have changed since.",
+    "whatYouBuild": "No build. A comparison of Skool plans with a tour of the presenter's free and paid communities and an EmailOctopus welcome sequence.",
+    "toolsUsed": [
+      "Skool",
+      "EmailOctopus",
+      "Zapier",
+      "Facebook Pixel"
+    ],
+    "keySteps": [
+      {
+        "seconds": 12,
+        "step": "Meet the new $9 Hobby plan beside the $99 Pro plan."
+      },
+      {
+        "seconds": 81,
+        "step": "Compare features: admins, 10 percent against 2.9 percent transaction fee, custom URL and suggested communities."
+      },
+      {
+        "seconds": 136,
+        "step": "See what only Pro includes: plugins and affiliates, sidebar links and the Facebook pixel."
+      },
+      {
+        "seconds": 216,
+        "step": "Start a free trial, which the presenter corrects to 14 days."
+      },
+      {
+        "seconds": 270,
+        "step": "Design the about page and classroom with a cover image, video and low-ticket courses."
+      },
+      {
+        "seconds": 381,
+        "step": "Collect emails with membership questions, now available on free and paid communities."
+      },
+      {
+        "seconds": 428,
+        "step": "Use Skool's affiliate program and an EmailOctopus sequence."
+      },
+      {
+        "seconds": 558,
+        "step": "Browse Discovery rankings, examples and activity levels."
+      }
+    ],
+    "notCovered": [
+      "Current Skool pricing and features. The video is from July 2025 and the plans may have changed.",
+      "Independent checks of the example earnings, such as $39,000 or $300,000 a month, which are the presenter's estimates from public member counts.",
+      "Full costs and tax. The 10 percent fee is Skool's, before payment processing.",
+      "Whether the 69 percent conversion rate holds, since the presenter says it reset after downgrading."
+    ],
+    "qa": [
+      {
+        "q": "What does the Hobby plan cost?",
+        "a": "$9 a month at the time of the video, with a 10 percent transaction fee, according to the presenter."
+      },
+      {
+        "q": "What do I lose compared with Pro?",
+        "a": "Multiple admins, a custom URL, plugins like Zapier, sidebar links and the Facebook pixel, per the video."
+      },
+      {
+        "q": "Is the link an affiliate link?",
+        "a": "Yes. The presenter says they earn a commission when you sign up through it."
+      }
+    ]
+  },
+  "YNpIRq7O3UE": {
+    "summary": "A tour of agents and scheduled jobs in Odysseus, an AI coding harness the presenter says PewDiePie announced. The main build is a sponsorship outreach agent in Node.js that lists sponsor targets, drafts pitch and follow-up emails, tracks a small CRM and runs weekly by cron, with sending set to go through the connected Gmail account. The $81,000 in the title is the agent's own estimated pipeline for 32 prospects, not deals won. Sponsor values and email addresses were generated by the model and unchecked, and the presenter starts sending live emails at the end.",
+    "whatYouBuild": "A sponsorship outreach project with agent.js, youtube.js, research.js, outreach.js, pipeline.js and sponsors.json, using OpenRouter with Gemini 2.5 Flash, plus a Monday 9 a.m. Bangkok-time cron job for pitches, follow-ups and a report.",
+    "toolsUsed": [
+      "Odysseus",
+      "OpenCode Go",
+      "DeepSeek V4 Pro",
+      "OpenRouter",
+      "Gemini 2.5 Flash",
+      "Gmail",
+      "Node.js"
+    ],
+    "keySteps": [
+      {
+        "step": "Ask Odysseus which agents to build and pick a sponsorship outreach agent and an end-to-end video pipeline agent."
+      },
+      {
+        "step": "Look at existing cron jobs, such as a daily LinkedIn newsletter, competitor checks, rank tracking and an evening email digest."
+      },
+      {
+        "step": "Build the sponsorship agent files and generate sponsor targets with estimated deal sizes."
+      },
+      {
+        "step": "Hit an OpenAI quota error and switch the model calls to an OpenCode key and then OpenRouter."
+      },
+      {
+        "step": "Run the agent commands for stats, dashboard, research, pitch and report, showing a pipeline of $29,000 across 12 deals."
+      },
+      {
+        "step": "Schedule the weekly cron job, then add 20 more prospects for 32 deals worth $81,000."
+      },
+      {
+        "step": "Send the first batch of pitch emails through the connected Gmail account."
+      }
+    ],
+    "notCovered": [
+      "Any deal won or any reply. The $81,000 is an estimate generated by the model.",
+      "Checking the sponsor values and contact emails, which the presenter says might need a verifier.",
+      "Consent, spam rules and reputation risk of automatic cold emails to brands.",
+      "How the video ends, since the sending is still in progress.",
+      "Timestamps, because the video's automatic chapters do not match the content."
+    ],
+    "qa": [
+      {
+        "q": "Did the agent really find $81,000 in deals?",
+        "a": "No. It is the total of estimated sponsorship values for 32 prospects it listed, none of which had replied."
+      },
+      {
+        "q": "What does it cost to run?",
+        "a": "The presenter shows about 51 cents of DeepSeek V4 Pro on one day inside a $10 a month OpenCode Go plan."
+      },
+      {
+        "q": "Will it send emails by itself?",
+        "a": "Yes. The cron job is set to send from the connected Gmail account each Monday, and the presenter also sends a batch right away."
+      }
+    ]
+  },
+  "vxH102ZvjUg": {
+    "summary": "Install Clawdbot, renamed Moltbot the same day and later Clawbot in the terminal, on a Hostinger VPS instead of a personal computer, to limit the risk of an agent that can act on files. The presenter runs the one-line installer over SSH, picks quick start, uses a Gemini API key with Gemini 3 Flash Preview, enables skills and hooks, names the agent Echo and links WhatsApp with a QR code. A morning briefing cron job gives no output and a skill install fails, so the setup is unfinished. The Hostinger link is an affiliate link.",
+    "whatYouBuild": "A Debian VPS with the assistant installed, a Gemini key, a WhatsApp link, an agent named Echo, soul and identity files and a morning-briefing cron job that does not yet work.",
+    "toolsUsed": [
+      "Moltbot",
+      "Hostinger VPS",
+      "Gemini",
+      "WhatsApp",
+      "Google AI Studio",
+      "ClawHub"
+    ],
+    "keySteps": [
+      {
+        "step": "Explain the security reason for installing on a VPS and not a personal machine."
+      },
+      {
+        "step": "Create a Hostinger KVM VPS with Debian and connect over SSH."
+      },
+      {
+        "step": "Run the installer command, which sets up Node.js and the assistant in about a minute."
+      },
+      {
+        "step": "Accept the security warning, choose quick start and add a Gemini API key from Google AI Studio."
+      },
+      {
+        "step": "Choose Gemini 3 Flash Preview, pick WhatsApp, enable skills and hooks and hatch the bot in the terminal."
+      },
+      {
+        "step": "Name the agent Echo and test a daily 8 a.m. morning briefing cron job, which returns no output."
+      },
+      {
+        "step": "Link WhatsApp with the channels login command, list and enable plugins, and try a ClawHub skill install that errors."
+      }
+    ],
+    "notCovered": [
+      "A working morning briefing, since no calendar, weather or email sources were connected.",
+      "A completed skill install. ClawHub returned an error.",
+      "Securing the VPS itself, such as non-root users and firewall rules. The presenter runs as root.",
+      "The project's current name, install command and security status. The video is from January 2026 and the rebrand was happening that day.",
+      "Costs beyond the VPS plan and Gemini usage."
+    ],
+    "qa": [
+      {
+        "q": "Why a VPS?",
+        "a": "The presenter says the agent could damage files on a personal computer, so a server limits the risk."
+      },
+      {
+        "q": "Did the WhatsApp link work?",
+        "a": "Yes, after the QR code failed during setup and the presenter ran the channels login command."
+      },
+      {
+        "q": "Is the Hostinger link an affiliate link?",
+        "a": "Yes. The presenter asks viewers to sign up through their affiliate link."
+      }
+    ]
+  },
+  "SLAnjvWK1Y4": {
+    "summary": "A long Make.com build of a YouTube Shorts pipeline: Apify scrapes the latest videos of three AI-automation creators, Airtable stores them, an OpenAI assistant turns the most viewed titles into video ideas, GPT-4.1 writes scene-by-scene scripts, JSON2Video renders a vertical video and the file uploads to YouTube with an AI-generated label. The final run fails because the free JSON2Video quota is used up, so the presenter hardcodes an older render to show the download. The template costs $15, and HeyGen is suggested as an avatar alternative.",
+    "whatYouBuild": "A Make.com scenario of about a dozen modules with Apify, an array aggregator and iterator, two Airtable tables, a text aggregator, an OpenAI assistant, a JSON parser, a GPT-4.1 script step, JSON2Video, a render wait, an HTTP download and a YouTube upload.",
+    "toolsUsed": [
+      "Make.com",
+      "Apify",
+      "Airtable",
+      "OpenAI Assistants",
+      "GPT-4.1",
+      "JSON2Video",
+      "YouTube",
+      "HeyGen"
+    ],
+    "keySteps": [
+      {
+        "seconds": 107,
+        "step": "Set channel URL variables and run Apify's fast YouTube channel scraper, then fetch the dataset items."
+      },
+      {
+        "seconds": 450,
+        "step": "Aggregate the results, iterate and save creator, title, link, duration and views into an Airtable table, then sort by views."
+      },
+      {
+        "seconds": 669,
+        "step": "Send the titles and views to a YouTube idea generator assistant and ask for JSON ideas with summaries."
+      },
+      {
+        "seconds": 749,
+        "step": "Parse the JSON and save the ideas to a second Airtable table."
+      },
+      {
+        "seconds": 942,
+        "step": "Ask GPT-4.1 for a script in scenes, each with voiceover text and an image prompt."
+      },
+      {
+        "seconds": 1121,
+        "step": "Render a vertical video with JSON2Video, wait, store the URL in Airtable, download the file and upload it to YouTube with the AI label."
+      }
+    ],
+    "notCovered": [
+      "A successful end-to-end run. JSON2Video's free quota ran out and the render step failed.",
+      "Terms of service for scraping YouTube, which the presenter flags as a risk.",
+      "Whether Shorts built from other creators' top topics and unedited stock imagery meet YouTube's rules on repetitive or mass-produced content.",
+      "Cleaning up duplicate Airtable rows created by repeated test runs.",
+      "Results from posting."
+    ],
+    "qa": [
+      {
+        "q": "Why did the final run fail?",
+        "a": "JSON2Video reported the free plan's time quota was exceeded and asked for a paid plan."
+      },
+      {
+        "q": "Is there a ready-made template?",
+        "a": "Yes, the presenter sells it for $15 on Gumroad and in their Skool community."
+      },
+      {
+        "q": "Can I use an avatar instead?",
+        "a": "The presenter suggests swapping JSON2Video for HeyGen with a 720 by 1280 vertical output."
+      }
+    ]
+  },
+  "R90zVHmoj7A": {
+    "summary": "An introductory Make.com course recorded as lessons: the dashboard and operation limits, a Gmail-from-Google-Sheet template, a scenario from scratch that chains OpenAI, Airtable, an image model and a Facebook post, and an Apify-based Apollo lead scraper that writes to Google Sheets. Errors are left in on purpose, such as an image model needing a verified organization and a Facebook upload needing an HTTP download step. The sign-up link is an affiliate link, and the lead-scraper template is sold in a bundle.",
+    "whatYouBuild": "A Google Sheets to Gmail scenario from a template, a scenario from scratch with OpenAI completion, Airtable record, image generation, HTTP download and a Facebook photo post, and a scraper scenario with Apify, array, iterator and Google Sheets.",
+    "toolsUsed": [
+      "Make.com",
+      "Google Sheets",
+      "Gmail",
+      "OpenAI",
+      "Airtable",
+      "Facebook",
+      "Apify",
+      "Apollo"
+    ],
+    "keySteps": [
+      {
+        "step": "Tour the dashboard: operations used, scenarios, templates, connections and webhooks."
+      },
+      {
+        "step": "Create a scenario from a template that sends a Gmail message for each new Google Sheet row, and send a test to your own address."
+      },
+      {
+        "step": "Build from scratch with an OpenAI chat completion, save the result to an Airtable record and generate an image."
+      },
+      {
+        "step": "Fix errors as they appear: a 400 from one image model, an organization verification requirement on another, and a Facebook upload that needs an HTTP file download first."
+      },
+      {
+        "step": "Post the generated image to a Facebook page."
+      },
+      {
+        "step": "Review the Apollo lead scraper: Airtable supplies search URLs, Apify scrapes 100 leads and Google Sheets stores them."
+      },
+      {
+        "step": "Run the scraper live for a head of growth search and watch 100 rows arrive."
+      }
+    ],
+    "notCovered": [
+      "Terms of service and privacy rules for scraping Apollo with Apify and contacting the people scraped.",
+      "Exact Make.com pricing. The presenter says paid plans start around $10 a month for about 10,000 operations.",
+      "A fix for the phone number field, which did not format correctly.",
+      "Timestamps, because the video's automatic chapters do not match the lessons."
+    ],
+    "qa": [
+      {
+        "q": "Is the Make.com link an affiliate link?",
+        "a": "Yes. The presenter says they earn a small commission."
+      },
+      {
+        "q": "How much does the lead scraping cost?",
+        "a": "The presenter quotes about $1.20 per 1,000 leads on Apify with $5 of free credit each month."
+      },
+      {
+        "q": "Why did the Facebook post fail at first?",
+        "a": "The image URL had to be downloaded with an HTTP request step before the photo upload, and the first image models returned errors."
+      }
+    ]
+  },
+  "mKsPxDi7uM0": {
+    "summary": "Build a Facebook thread generator with Replit's AI agent, modeled on a competing tool. The prompt creates a landing page and generator, an OpenAI key is added, and several errors follow, including max tokens, JSON object format and a 500, before posts generate in a numbered thread style. The presenter adds a demo popup, AI-made images, a thread history with copy and edit, and Postgres with Google sign-in, then hits the free plan limit. Deploying needs a paid plan, and the link is a referral link.",
+    "whatYouBuild": "A Replit web app called Viral Post Genie with a topic, style and call to action form, an OpenAI-backed generator that outputs numbered thread posts, a demo popup, generated images, a thread history and Google sign-in on a temporary Postgres database.",
+    "toolsUsed": [
+      "Replit",
+      "OpenAI API",
+      "ChatGPT",
+      "Postgres"
+    ],
+    "keySteps": [
+      {
+        "step": "Choose web app in Replit and paste a prompt written in ChatGPT."
+      },
+      {
+        "step": "Add an OpenAI API key when the agent asks."
+      },
+      {
+        "step": "Fix the generator after errors about max tokens and unsupported JSON object format by switching to GPT-4, then a 500 error."
+      },
+      {
+        "step": "Prompt for a thread format with two to four numbered connected posts."
+      },
+      {
+        "step": "Add a Watch demo popup and AI-generated feature images."
+      },
+      {
+        "step": "Add a thread history with copy and inline edit, though edits are not saved."
+      },
+      {
+        "step": "Add Google sign-in and a temporary Postgres database, then hit the starter plan usage limit."
+      }
+    ],
+    "notCovered": [
+      "A finished product. Saving posts, working sign-in and payments were not completed.",
+      "Deployment, which needs a paid plan of about $25 a month according to the presenter.",
+      "Facebook's rules on spammy or engagement-bait posts for generated viral content.",
+      "API key handling and costs, beyond the key being pasted into Replit.",
+      "Timestamps, because the video has no chapters."
+    ],
+    "qa": [
+      {
+        "q": "Why did the generator keep failing?",
+        "a": "Each fix exposed another API issue, starting with a max tokens parameter on a newer model, then JSON mode, then a 500 error."
+      },
+      {
+        "q": "Can it be deployed on the free plan?",
+        "a": "No. The presenter says deploying and the database need the paid plan."
+      },
+      {
+        "q": "Which tool is it copied from?",
+        "a": "Threadmaster, a thread generator the presenter shows as the model for the layout."
+      }
+    ]
+  },
+  "ZlD4Z6UKS8o": {
+    "summary": "The same landing-page prompt for an automation agency is run in Replit, Lovable and Orchids, and the presenter prefers Lovable's result. Over the rest of the video they add a Cal.com booking button and floating popup, connect Supabase and Stripe, buy a domain and email through Lovable, and publish a live site in under an hour. Stripe is only partly working at the end. The page prices differ from the Stripe products, and the buttons still send visitors to account creation. The Lovable link is an affiliate link.",
+    "whatYouBuild": "A landing page published at a custom domain, with a Cal.com booking link and popup, Supabase connected, Stripe products and payment links, and edited pricing text.",
+    "toolsUsed": [
+      "Replit",
+      "Lovable",
+      "Orchids",
+      "Cal.com",
+      "Supabase",
+      "Stripe",
+      "Namecheap",
+      "ChatGPT"
+    ],
+    "keySteps": [
+      {
+        "step": "Paste one ChatGPT-written prompt into Replit, Lovable and Orchids and compare the results."
+      },
+      {
+        "step": "Note the costs: Replit's $25 a month plan to deploy, Lovable's $25 a month plan for custom domains and Orchids publishing for free."
+      },
+      {
+        "step": "Prompt Lovable to connect the booking button to a Cal.com link and add a floating calendar popup."
+      },
+      {
+        "step": "Change the See our work button to Pricing and scroll to that section."
+      },
+      {
+        "step": "Upgrade Lovable, connect Supabase and add the Stripe secret key for recurring subscriptions."
+      },
+      {
+        "step": "Create Stripe products and payment links, then ask Lovable to attach them to the plan buttons."
+      },
+      {
+        "step": "Buy the domain and an email address through Lovable and publish."
+      }
+    ],
+    "notCovered": [
+      "Working payments. The plan buttons still opened an account creation page, and a test checkout was not completed.",
+      "Matching prices. The Stripe products were set to $4.99 and $9.99 a month while the page was edited to show $499 and $999.",
+      "Safe handling of the Stripe secret key, which was entered off camera.",
+      "A fair test of the three builders, since the presenter ran them live and judges by look.",
+      "Timestamps, because the video's automatic chapters do not match the order of the lessons."
+    ],
+    "qa": [
+      {
+        "q": "Which builder did the presenter choose?",
+        "a": "Lovable, over Replit and Orchids, mostly for the design and prompt-following."
+      },
+      {
+        "q": "What did the domain cost?",
+        "a": "The presenter says a Namecheap price of about $9 a year, versus about $0 for the first year plus $1 for email through Lovable's partner."
+      },
+      {
+        "q": "Is the Lovable link an affiliate link?",
+        "a": "Yes. The presenter says they get a commission if you upgrade."
+      }
+    ]
+  },
+  "gibc7oWLCn4": {
+    "summary": "A walkthrough of about ten of the presenter's own Make.com scenarios: an email auto-responder, Skool members into EmailOctopus, a Messenger bot, a social video poster, Instagram comment replies, a Google Sheets cold-email sender, an Apollo lead scraper, YouTube description and topic idea generators, and Make's template library. Each is shown running or described briefly, with some left unfinished. Templates are sold at $15 each or $150 for a bundle. Auto-reply and cold-email setups carry consent and quality caveats, and the Instagram scenario can only send a static reply.",
+    "whatYouBuild": "No single build. Each scenario is short, such as email, ChatGPT, Markdown to HTML and reply, or a webhook, ChatGPT and a Messenger response.",
+    "toolsUsed": [
+      "Make.com",
+      "OpenAI",
+      "Gmail",
+      "Airtable",
+      "EmailOctopus",
+      "Facebook Messenger",
+      "Instagram",
+      "Google Sheets",
+      "Apify",
+      "Apollo",
+      "Dumpling AI",
+      "Perplexity",
+      "JSON2Video"
+    ],
+    "keySteps": [
+      {
+        "step": "Auto-reply to unread sales emails with a ChatGPT draft, converted to HTML and sent every 30 minutes."
+      },
+      {
+        "step": "Add free Skool members from Airtable to EmailOctopus every hour, ignoring duplicates."
+      },
+      {
+        "step": "Reply to Facebook Messenger messages with a ChatGPT answer through a webhook, then turn it off as too impersonal."
+      },
+      {
+        "step": "Reply to Instagram comments with a fixed message, since the comment text is not available to the module."
+      },
+      {
+        "step": "Send cold emails one lead at a time from a Google Sheet every 15 minutes."
+      },
+      {
+        "step": "Scrape Apollo leads with Apify into a Google Sheet."
+      },
+      {
+        "step": "Generate YouTube descriptions from Dumpling AI transcripts with a custom assistant, and topic ideas with Perplexity."
+      },
+      {
+        "step": "Browse Make's template library for Google Sheets, ChatGPT and GoHighLevel."
+      }
+    ],
+    "notCovered": [
+      "Consent and spam rules for the cold-email and auto-reply scenarios.",
+      "How the cold-email sender marks leads as already emailed. The presenter says duplicates might happen.",
+      "Results from any scenario. They are shown running or described, with few outcomes.",
+      "Timestamps, because the video's automatic chapters do not match the scenarios shown."
+    ],
+    "qa": [
+      {
+        "q": "What do the templates cost?",
+        "a": "$15 each on Gumroad or about $150 for the bundle, per the presenter."
+      },
+      {
+        "q": "Can Make reply to Instagram comments with AI?",
+        "a": "Not in this setup. The module does not return the comment text, so the reply is a static message."
+      },
+      {
+        "q": "What does Make cost?",
+        "a": "The presenter says it is free to start and about $10 a month for a paid plan."
+      }
+    ]
+  },
+  "pMLyxz6Dyt4": {
+    "summary": "A course-style HeyGen tutorial: train an avatar from a short consented recording, add a voice clone from ElevenLabs through an API key, make a scripted video in the studio, then automate it in Make.com with Airtable topics, Perplexity research, a ChatGPT assistant script, HeyGen, a wait, a download, a YouTube upload with the AI label and a thumbnail. The automation fails twice because HeyGen's API rejects videos over 180 seconds on the presenter's plan, so the finished route is manual video creation. Links to HeyGen, ElevenLabs and Make.com include affiliate links, and the end pitches a coaching program.",
+    "whatYouBuild": "A HeyGen avatar and voice clone, a studio video from a script, and a Make.com scenario with Airtable, Perplexity, OpenAI assistant, HeyGen, sleep, HTTP downloads, YouTube upload, thumbnail upload and Airtable update.",
+    "toolsUsed": [
+      "HeyGen",
+      "ElevenLabs",
+      "Make.com",
+      "Airtable",
+      "Perplexity",
+      "ChatGPT",
+      "YouTube"
+    ],
+    "keySteps": [
+      {
+        "step": "Open the HeyGen dashboard and see avatar, translation and quick video options on the $29 a month Creator plan."
+      },
+      {
+        "step": "Train an avatar from about two and a half minutes of footage plus a recorded consent statement."
+      },
+      {
+        "step": "Create a professional voice clone in ElevenLabs, make an API key and import the voice into HeyGen."
+      },
+      {
+        "step": "Make a landscape video in the studio with the avatar, the imported voice and a script, at 30 fps."
+      },
+      {
+        "step": "Import a Make.com blueprint that researches a topic in Perplexity, writes a script and calls HeyGen with the avatar ID."
+      },
+      {
+        "step": "Fix an avatar ID error after retraining, then hit the 180-second API video limit twice."
+      },
+      {
+        "step": "Fall back to a separate scenario that writes scripts into a Google Doc, then paste them into HeyGen by hand."
+      }
+    ],
+    "notCovered": [
+      "A working automatic upload. The API limit blocked it, and the presenter says Pro API access is about $99 a month and Max about $330.",
+      "Consent and disclosure issues around cloning a likeness and voice, beyond the consent recording HeyGen requires.",
+      "YouTube's policies on AI-generated content, which the presenter says are tightening.",
+      "Coaching program terms, which are described briefly and not shown in detail.",
+      "Timestamps, because the video's automatic chapters are evenly spaced and do not match the lessons."
+    ],
+    "qa": [
+      {
+        "q": "Why did the automation fail?",
+        "a": "HeyGen's API rejected a video longer than 180 seconds, and the avatar ID also had to be updated after retraining."
+      },
+      {
+        "q": "How much footage trains the avatar?",
+        "a": "HeyGen asks for 2 to 5 minutes, and the presenter uploads about two and a half."
+      },
+      {
+        "q": "Are the links affiliate links?",
+        "a": "The presenter says the Make.com link is an affiliate link and the video's description hints indicate other affiliate links."
+      }
+    ]
+  },
+  "6iFA7ds2PU4": {
+    "summary": "A September 2025 tour of starting and running a Skool community, shown through the presenter's own free community of about 870 members. It covers the $9 Hobby and $99 Pro plans, the Discovery ranking, switching to a paid price, membership questions, settings, posts and polls, member management, the About page and a classroom that upsells courses and coaching. The presenter reports about $700 in one-time sales in three months, and the Skool sign-up link is an affiliate link. Income examples at the start are quoted from Skool pages and not verified.",
+    "whatYouBuild": "A Skool community with an About page, membership questions, categories, pinned posts, a classroom with free and paid modules, and a Discovery listing.",
+    "toolsUsed": [
+      "Skool",
+      "Gumroad",
+      "Cal.com",
+      "Airtable",
+      "Zapier"
+    ],
+    "keySteps": [
+      {
+        "seconds": 65,
+        "step": "Launch a community and choose between the $9 Hobby plan and the $99 Pro plan, with a 14-day free trial."
+      },
+      {
+        "seconds": 182,
+        "step": "Use the Discovery page as a marketplace and get the first three members to be listed."
+      },
+      {
+        "seconds": 271,
+        "step": "Set monthly or monthly and annual pricing, with an optional free trial."
+      },
+      {
+        "seconds": 552,
+        "step": "Go through settings: cover image, privacy, payouts, membership questions, plugins and categories."
+      },
+      {
+        "seconds": 1208,
+        "step": "Write posts, polls and pinned introductions, and send an email to all members at most every 72 hours."
+      },
+      {
+        "seconds": 1424,
+        "step": "Manage members, levels, the leaderboard and the map."
+      },
+      {
+        "seconds": 1654,
+        "step": "Build the About page with video, copy and testimonial."
+      },
+      {
+        "seconds": 1882,
+        "step": "Set up a classroom with free tutorials, templates on Gumroad, a $19 course and coaching sold by call."
+      }
+    ],
+    "notCovered": [
+      "Independent checks of the income examples shown at the start, such as monthly figures for other communities.",
+      "Current Skool pricing and features. The video is from September 2025 and details may have changed.",
+      "Consent for the 13,000 pending invites the presenter says they imported from CSV files.",
+      "How well the coaching program sells. It is described as $2,000 for six weeks with a $150 consultation, without results."
+    ],
+    "qa": [
+      {
+        "q": "Which plan should I start on?",
+        "a": "The presenter uses Hobby at $9 a month with a 10 percent transaction fee, and says Pro at $99 with 2.9 percent suits communities that earn more."
+      },
+      {
+        "q": "How does the presenter earn from a free community?",
+        "a": "Through paid classroom items, about $700 of one-time sales in three months, plus coaching sold by call."
+      },
+      {
+        "q": "Is the sign-up link an affiliate link?",
+        "a": "Yes. The presenter says they earn a small commission."
+      }
+    ]
+  },
+  "e6JXdMh5Qz0": {
+    "summary": "A live build of a luxury hotel listing site for Koh Samui with OpenCode and Apify agent skills: one prompt scrapes about 100 hotels from Booking.com through Apify's Voyager Booking Scraper, then generates an HTML, CSS and JavaScript site with filters and a detail popup. The first pages show no data, some images and links are wrong, and the scrape initially returns only a handful of hotels before a rerun gets 100. The plan is to earn Booking.com affiliate commissions, which the presenter has not yet been approved for. The presenter says Apify gave them $50 of credits to collaborate, and the links are affiliate links.",
+    "whatYouBuild": "A static site in a local folder with a hotel data file, a filter and sort interface, a detail modal with a gallery and booking links, produced by prompts in OpenCode.",
+    "toolsUsed": [
+      "OpenCode",
+      "Apify",
+      "Booking.com",
+      "Travelpayouts",
+      "Namecheap",
+      "Hostinger",
+      "Gemini"
+    ],
+    "keySteps": [
+      {
+        "step": "Prompt OpenCode to use Apify to list the top 100 luxury hotels in Koh Samui and build a site with images, prices, reviews and booking links."
+      },
+      {
+        "step": "Watch it pick the wrong Apify skill, switch to the ultimate scraper and run the Voyager Booking Scraper for about 20 to 50 cents a run."
+      },
+      {
+        "step": "Open the generated page, find that hotels do not display, and prompt for fixes until filtering by price and rating works."
+      },
+      {
+        "step": "Ask for a hotel detail popup with a gallery, and lose context when OpenCode is closed by accident."
+      },
+      {
+        "step": "Find that the first scrape had only sample data, supply the Apify token and rerun to get 100 hotels."
+      },
+      {
+        "step": "Look at Booking.com affiliate links by appending the affiliate ID, and check domain and hosting prices."
+      }
+    ],
+    "notCovered": [
+      "A finished site. Popups, galleries, link accuracy and the full 100 listings were still being fixed at the end.",
+      "Booking.com's terms for scraping, and the rights to reuse its images, descriptions and reviews.",
+      "Approval into the Booking.com affiliate program. The presenter was not yet a member and links stay unaffiliated.",
+      "Hosting and a published domain. The presenter compares about $12 a year at Namecheap with $44 to $79 at Hostinger and buys neither.",
+      "Timestamps, because the video has no chapters."
+    ],
+    "qa": [
+      {
+        "q": "How much did the scraping cost?",
+        "a": "About 20 to 50 cents per run and around $6 in total, paid from Apify credits."
+      },
+      {
+        "q": "Were the hotel images and links correct?",
+        "a": "Not all. The presenter spots wrong photos and some broken links and says they need checking."
+      },
+      {
+        "q": "Is this sponsored?",
+        "a": "The presenter says Apify gave them $50 of credits to collaborate, and the video hints at affiliate links."
+      }
+    ]
   }
 };
 
