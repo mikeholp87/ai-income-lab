@@ -22,10 +22,10 @@ export function guideMeta(html) {
 const videoItems = videos => videos.filter(video => video.public !== false)
   .map(video => ({ title: video.title, description: snippet(video.summary || '', 200), url: `${site}/watch/${video.id}`, published: video.published, kind: 'video' }));
 
-// Newest first: every guide plus the latest videos, capped so feed readers get a small file.
+// Newest first: every guide plus the latest videos, capped at 100 so feed readers get a small file.
 // A guide's date is its last update: Google reads an RSS pubDate as the modification time when the
 // feed is submitted as a sitemap, so an updated guide moves back to the top and gets recrawled.
-export function renderFeed(guides, videos, limit = 40) {
+export function renderFeed(guides, videos, limit = 100) {
   const items = [...guides.map(guide => ({ ...guide, date: guide.modified || guide.published, kind: 'guide' })), ...videoItems(videos).map(video => ({ ...video, date: video.published }))]
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date)).slice(0, limit);
   const built = items.length ? `\n<lastBuildDate>${new Date(items[0].date).toUTCString()}</lastBuildDate>` : '';
