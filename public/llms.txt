@@ -6,10 +6,13 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 
 ## Key facts
 
+- Product and membership facts reviewed November 8, 2026 against the published site. Check the linked official pages for subsequent changes.
 - New long-form videos most days; the full archive is at /videos.
-- TubeAnalytics: YouTube analytics for creators. 7-day free trial, plans from $19 a month.
-- VisiScan: checks whether AI assistants recommend a business. Free scan, full report $49 once.
+- TubeAnalytics: YouTube analytics for creators, currently temporarily unavailable. No active trial or subscription offer is advertised on this site.
+- VisiScan: checks whether AI assistants recommend a business. Free scan with no signup; full report $49 USD once; weekly monitoring from $29 USD a month.
 - AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, or $290, $490, $890 a year. VIP adds weekly coaching, software deals, and 6,400+ n8n templates.
+- AI Income Lab billing is in USD. Free written guides and videos are separate from the paid Skool membership; automation hosting, AI API usage, and other software can cost extra.
+- Standard includes the Runable course; Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both and the Complete AI Avatar Video Course.
 - Income is not guaranteed; results depend on the project, experience, and time invested.
 
 ## Official pages
@@ -18,9 +21,10 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [About Mike Holp](https://www.ai-automation-station.com/about.html): who runs the channel, how the guides and videos are made, and how to get in touch.
 - [Every video](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
-- [TubeAnalytics](https://www.tubeanalytics.net)
+- [TubeAnalytics status](https://www.ai-automation-station.com/#tools): Temporarily unavailable; see the product section for current status.
 - [VisiScan](https://www.visiscan.app)
 - [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
+- [AI Income Lab plans](https://www.skool.com/ai-automation-station-7346/plans): Official plan selection and checkout; current course access and billing details are also visible on the [homepage](https://www.ai-automation-station.com/#pricing).
 
 ## Video topics
 
