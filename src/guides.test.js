@@ -183,8 +183,8 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(ccvc, /<title>Codex vs Claude Code: /);
   assert.match(ccvc, /<h1>Codex vs Claude Code: /);
   assert.match(ccvc, /<h2 id="short-answer">The short answer \(October 2026\)<\/h2>/);
-  assert.match(ccvc, /"dateModified":"2026-11-07"/);
-  assert.match(ccvc, /Updated <time datetime="2026-11-07">November 7, 2026<\/time>/);
+  assert.match(ccvc, /"dateModified":"2026-11-08"/);
+  assert.match(ccvc, /Updated <time datetime="2026-11-08">November 8, 2026<\/time>/);
   const hermes = await read('public/guides/hermes-desktop.html');
   assert.match(hermes, /<title>Hermes Desktop: /);
   assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
@@ -192,7 +192,7 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(n8n, /<h3 id="docker">Run it in Docker<\/h3>/);
   // n8n's own docker run command, copied from its docs.
   assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
-  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-11-07</);
+  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-11-08</);
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
     ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
