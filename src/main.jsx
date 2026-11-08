@@ -737,6 +737,7 @@ function App({ page = 'home' }) {
           </>
         )}
         <p className="hero-text"><strong>Get step-by-step courses and practical help from 2,900+ members while you build.</strong></p>
+        <p className="hero-text">AI Income Lab is the paid Skool community for AI Automation Station. The guides and tested builds on this site are free to read.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {

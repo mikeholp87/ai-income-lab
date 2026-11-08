@@ -118,6 +118,7 @@ test('the sponsor strip is an orange-accented card with a primary button', () =>
 
 test('the hero relates the two brands without an announcement pill', () => {
   assert.match(jsx, /<strong>Get step-by-step courses and practical help from 2,900\+ members while you build\.<\/strong>/);
+  assert.match(jsx, /AI Income Lab is the paid Skool community for AI Automation Station\. The guides and tested builds on this site are free to read\./);
   assert.doesNotMatch(jsx, /hero-status/);
 });
 

@@ -119,3 +119,16 @@ test('the hub describes its full collection and shares complete social metadata'
     assert.equal(item?.name, decode(label), file);
   }
 });
+
+test('the title, heading, answer lead and llms.txt name are the same claim', async () => {
+  const llms = await read('llms.txt');
+  for (const { file, html } of pages) {
+    const title = decode(html.match(/<title>(.*?)<\/title>/)[1]).replace(/ \| Mike Holp$/, '');
+    const description = meta(html, 'description');
+    assert.equal(decode(html.match(/<h1>(.*?)<\/h1>/)[1]), title, file);
+    assert.ok(description.length <= 155, `${file} description is ${description.length}`);
+    assert.match(html, /<p><strong>Quick answer:<\/strong> /, file);
+    const pattern = `\\[${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\]\\(${site}/guides/${file}\\): ${description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`;
+    assert.match(llms, new RegExp(pattern), file);
+  }
+});
