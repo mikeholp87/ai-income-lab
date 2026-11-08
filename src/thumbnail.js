@@ -1,4 +1,5 @@
 import thumbnail from './thumbnail-snapshot.json' with { type: 'json' };
+import { watchThumbnails } from './watch-thumbnails.js';
 
 // YouTube's 16:9 sizes plus sddefault (640x480, letterboxed; object-fit: cover crops the bars). hqdefault is skipped:
 // it is a letterboxed 480px that still looks soft on 2x screens. maxresdefault stays last so dropMissingMaxres can cut it.
@@ -22,4 +23,11 @@ export function featuredThumbnail(id) {
     src: `https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp`,
     srcSet: `https://i.ytimg.com/vi_webp/${id}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp 1280w`,
   };
+}
+
+// Self-hosted 16:9 copies (320, 640, 1280 wide) of every video that scripts/watch-thumbnails.js has fetched.
+export function localThumbnail(id) {
+  if (!watchThumbnails.has(id)) return null;
+  const file = width => `/assets/watch/${id}-${width}.webp`;
+  return { src: file(640), srcSet: `${file(320)} 320w, ${file(640)} 640w, ${file(1280)} 1280w` };
 }

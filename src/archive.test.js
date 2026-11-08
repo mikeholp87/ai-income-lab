@@ -79,7 +79,9 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/9router-setup.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
-  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><picture data-thumbnail><source type="image\/webp" srcset="[^"]+maxresdefault\.webp 1280w"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/tzSGF7gu6EE\/sddefault\.jpg"[^>]*loading="lazy"[^>]*><\/picture><span>[^<]+<\/span><\/a><\/li>/);
+  // A video with self-hosted copies uses them; any other id falls back to YouTube (see the ccccccccccc test below).
+  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><img src="\/assets\/watch\/tzSGF7gu6EE-640\.webp" srcset="\/assets\/watch\/tzSGF7gu6EE-320\.webp 320w, \/assets\/watch\/tzSGF7gu6EE-640\.webp 640w, \/assets\/watch\/tzSGF7gu6EE-1280\.webp 1280w"[^>]*loading="lazy"[^>]*><span>[^<]+<\/span><\/a><\/li>/);
+  assert.doesNotMatch(html.match(/<ul class="related">.*?<\/ul>/s)[0], /i\.ytimg\.com/);
   assert.doesNotMatch(html, /lbBZ7uLJwbM/);
   const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
   assert.ok(description.length <= 160 && description.endsWith('costs.'), description);
@@ -725,4 +727,14 @@ test('topic pages link their written guides without a separate start-with list',
   const html = renderArchive(uploads, 1, topics.find(item => item.slug === 'n8n'));
   assert.match(html, /<p class="start">Written guides?: <a href="\/guides\//);
   assert.doesNotMatch(html, /Start with these videos/);
+});
+
+test('every self-hosted thumbnail listed in the manifest exists at all three widths', async () => {
+  const { watchThumbnails } = await import('./watch-thumbnails.js');
+  const { localThumbnail } = await import('./thumbnail.js');
+  assert.ok(watchThumbnails.size > 0);
+  for (const id of watchThumbnails) {
+    for (const width of [320, 640, 1280]) assert.ok(existsSync(new URL(`../public/assets/watch/${id}-${width}.webp`, import.meta.url)), `${id}-${width}`);
+  }
+  assert.equal(localThumbnail('zzzzzzzzzzz'), null);
 });

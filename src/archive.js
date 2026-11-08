@@ -12,7 +12,7 @@ import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
 import { topicFor, topics } from './topics.js';
-import { youtubeSrcSet } from './thumbnail.js';
+import { localThumbnail, youtubeSrcSet } from './thumbnail.js';
 
 export { curatedSummary };
 
@@ -121,7 +121,8 @@ const jsonLd = data => `<script type="application/ld+json">${JSON.stringify(data
 // One column below ~655px, otherwise columns of about 300-360px (see the grid rule in renderArchive).
 const thumbSizes = '(max-width: 655px) calc(100vw - 32px), 360px';
 // WebP with a JPEG fallback; reading.js drops the webp source on error and the missing-maxres candidate on load.
-const thumbPicture = (id, sizes, attrs) => `<picture data-thumbnail><source type="image/webp" srcset="${youtubeSrcSet(id)}" sizes="${sizes}"><img src="https://i.ytimg.com/vi/${id}/sddefault.jpg" srcset="${youtubeSrcSet(id, 'vi', 'jpg')}" sizes="${sizes}" alt="" ${attrs} decoding="async"></picture>`;
+// Our own copy when scripts/watch-thumbnails.js has fetched one; a video newer than the last build uses YouTube's.
+const thumbPicture = (id, sizes, attrs) => localThumbnail(id) ? `<img src="${localThumbnail(id).src}" srcset="${localThumbnail(id).srcSet}" sizes="${sizes}" alt="" ${attrs} decoding="async">` : `<picture data-thumbnail><source type="image/webp" srcset="${youtubeSrcSet(id)}" sizes="${sizes}"><img src="https://i.ytimg.com/vi/${id}/sddefault.jpg" srcset="${youtubeSrcSet(id, 'vi', 'jpg')}" sizes="${sizes}" alt="" ${attrs} decoding="async"></picture>`;
 const viewCount = video => Number.isFinite(video.views) ? `<span>${number.format(video.views)} ${video.views === 1 ? 'view' : 'views'}</span>` : '';
 const card = (video, eager) => {
   const id = escape(video.id);

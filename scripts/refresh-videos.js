@@ -4,6 +4,7 @@ import { fetchUploads, sponsoredVideos } from '../src/archive.js';
 import { curatedSummary, withSummaries } from '../src/curated-summary.js';
 import { validFeed } from '../src/youtube.js';
 import { refreshThumbnail } from './thumbnail.js';
+import { syncWatchThumbnails } from './watch-thumbnails.js';
 
 for (const file of ['.env.local', '.env']) {
   const path = `${import.meta.dirname}/../${file}`;
@@ -47,4 +48,15 @@ try {
   console.log('Updated the responsive hero thumbnail.');
 } catch (error) {
   console.warn(`Using the saved hero thumbnail or YouTube fallback: ${error.message}`);
+}
+
+// Watch and archive thumbnails served from our own domain. Downloads only what is missing; the committed
+// files are the cache, and a failure keeps the YouTube fallback for those videos.
+try {
+  const { uploads } = await import(`../src/uploads-snapshot.js?${Date.now()}`);
+  const result = await syncWatchThumbnails(uploads.map(video => video.id));
+  console.log(`Self-hosted thumbnails: ${result.total} videos, ${result.downloaded} new.`);
+  if (result.failed.length) console.warn(`Thumbnail download failed for ${result.failed.length}: ${result.failed.join('; ')}`);
+} catch (error) {
+  console.warn(`Using the saved self-hosted thumbnails: ${error.message}`);
 }
