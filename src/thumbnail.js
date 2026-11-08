@@ -25,9 +25,9 @@ export function featuredThumbnail(id) {
   };
 }
 
-// Self-hosted 16:9 copies (320, 640, 1280 wide) of every video that scripts/watch-thumbnails.js has fetched.
+// Self-hosted 16:9 copies (320, 640, 960, 1280 wide) of every video that scripts/watch-thumbnails.js has fetched.
 export function localThumbnail(id) {
   if (!watchThumbnails.has(id)) return null;
   const file = width => `/assets/watch/${id}-${width}.webp`;
-  return { src: file(640), srcSet: `${file(320)} 320w, ${file(640)} 640w, ${file(1280)} 1280w` };
+  return { src: file(640), srcSet: `${file(320)} 320w, ${file(640)} 640w, ${file(960)} 960w, ${file(1280)} 1280w` };
 }

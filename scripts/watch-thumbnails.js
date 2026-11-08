@@ -5,10 +5,11 @@ import sharp from 'sharp';
 // Self-hosted 16:9 thumbnails for the watch and archive pages, so the page's largest image comes from our own
 // cache instead of i.ytimg.com. Files are committed; a build only downloads the ones that are missing, then lists
 // every complete set in src/watch-thumbnails.js (the pages fall back to YouTube for ids not in that list).
-export const widths = [320, 640, 1280];
+export const widths = [320, 640, 960, 1280];
 const folder = new URL('../public/assets/watch/', import.meta.url);
 const manifest = new URL('../src/watch-thumbnails.js', import.meta.url);
-const complete = id => widths.every(width => existsSync(new URL(`${id}-${width}.webp`, folder)));
+const absent = id => widths.filter(width => !existsSync(new URL(`${id}-${width}.webp`, folder)));
+const complete = id => !absent(id).length;
 
 async function source(id) {
   // maxresdefault is missing for videos uploaded below 720p: YouTube answers 404, or a 120x90 grey image.
@@ -29,7 +30,8 @@ async function build(id) {
   const wide = Math.round(width * 9 / 16);
   const cropped = height > wide + 2 ? picture.extract({ left: 0, top: Math.round((height - wide) / 2), width, height: wide }) : picture;
   const base = await cropped.toBuffer();
-  await Promise.all(widths.map(async size => writeFile(new URL(`${id}-${size}.webp`, folder), await sharp(base).resize(size, Math.round(size * 9 / 16), { fit: 'cover' }).webp({ quality: 72 }).toBuffer())));
+  // Only the widths that are missing, so adding a size does not re-encode the files already committed.
+  await Promise.all(absent(id).map(async size => writeFile(new URL(`${id}-${size}.webp`, folder), await sharp(base).resize(size, Math.round(size * 9 / 16), { fit: 'cover' }).webp({ quality: 70 }).toBuffer())));
 }
 
 export async function syncWatchThumbnails(ids) {
