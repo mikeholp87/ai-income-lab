@@ -6,6 +6,13 @@ export const watchNotes = {
 <p>Read the <a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a> for current primary-source documentation alongside this live demo.</p>
 </section>`,
   },
+  '9WPazkEp7VU': {
+    html: `<section aria-labelledby="crowdreply-guide">
+<h2 id="crowdreply-guide">CrowdReply written guide</h2>
+<p>Read <a href="/guides/crowdreply-mcp-codex.html">CrowdReply MCP with Codex: turn citation records into a review plan</a> for the recorded MCP path, how to inspect a citation sample, and the limits on marketplace claims and measured uplift.</p>
+<p>The useful result is a traceable research-to-plan workflow. A dashboard sample is not proof that requested edits improved AI visibility.</p>
+</section>`,
+  },
   'qQVAnp4-EpI': {
     searchTitle: 'Runable tutorial: build an AI Growth Audit website',
     summary: 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.',
