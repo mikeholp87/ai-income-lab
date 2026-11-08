@@ -96,7 +96,7 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
     assert.doesNotMatch(html, /href="[^"]*\/watch\/[^"]*\?t=/);
     assert.deepEqual([...html.matchAll(/<ol class="chapters">(.*?)<\/ol>/gs)].flatMap(([, list]) => [...list.matchAll(/href="([^"]*)"/g)].map(match => match[1])), ['#t=0', '#t=98', '#t=400']);
     // The inline handler re-cues the nocookie player; it must parse and not close its own script tag early.
-    const script = html.match(/<script>(.*?)<\/script>/s)[1];
+    const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('searchParams'));
     assert.doesNotThrow(() => new Function(script));
     assert.match(script, /searchParams\.set\('start'/);
   }

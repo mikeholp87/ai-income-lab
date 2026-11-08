@@ -186,8 +186,9 @@ ${sorted ? '<meta name="robots" content="noindex,follow">' : `<link rel="canonic
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
-<link rel="stylesheet" href="${consentCss}">
-<script src="/theme.js"></script>
+<link rel="stylesheet" href="${consentCss}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${consentCss}"></noscript>
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<script src="/theme.js" defer></script>
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}
@@ -374,8 +375,9 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 ${fontPreloads}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${readingCss}">
-<link rel="stylesheet" href="${consentCss}">
-<script src="/theme.js"></script>
+<link rel="stylesheet" href="${consentCss}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${consentCss}"></noscript>
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<script src="/theme.js" defer></script>
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">
