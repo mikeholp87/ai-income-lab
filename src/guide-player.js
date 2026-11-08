@@ -34,12 +34,20 @@ export function openGuidePlayer(player, createElement) {
   return frame;
 }
 
+export function shouldOpenGuidePlayer(event) {
+  if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return false;
+  if (event.type === 'click') return event.button === 0;
+  return event.type === 'keydown' && event.key === ' ';
+}
+
 export function bindGuidePlayers(root) {
   for (const player of root.querySelectorAll('figure.video a.player[data-embed]')) {
-    player.addEventListener('click', event => {
-      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    const open = event => {
+      if (!shouldOpenGuidePlayer(event)) return;
       event.preventDefault();
       openGuidePlayer(player, tag => player.ownerDocument.createElement(tag));
-    });
+    };
+    player.addEventListener('click', open);
+    player.addEventListener('keydown', open);
   }
 }

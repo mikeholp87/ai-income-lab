@@ -228,6 +228,8 @@ const newGuides = [
   ['codex-seo-workflow', 'Codex for SEO'],
   ['treg-inside-grokbot', 'Treg inside GrokBot'],
   ['chatgpt-images-sketch-workflow', 'ChatGPT Images Sketch'],
+  ['crowdreply-mcp-codex', 'CrowdReply MCP'],
+  ['grokbot-for-seo', 'GrokBot for SEO'],
 ];
 
 function SectionHead({ title, children }) {
