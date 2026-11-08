@@ -1,5 +1,6 @@
 // The /guides.html search box and pager. Typing hides guide cards that don't match, along with any topic left
-// empty; with no search, 15 cards show per page (?page=N) like /videos. Every card stays in the HTML, so
+// empty; with no search, 15 cards show per page (?page=N) like /videos. A topic pill filters to that topic
+// (?topic=id), paged the same way. Every card stays in the HTML, so
 // crawlers and no-JS readers get the whole list, and without JavaScript the form submits to /search.html.
 import { afterTyping, searchInside } from '/inside-search.js';
 
@@ -16,11 +17,16 @@ const sections = [...document.querySelectorAll('ul.guide-list')].map(list => {
 });
 const all = sections.flatMap(section => section.cards);
 const perPage = 15;
-let page = Number(new URLSearchParams(location.search).get('page')) || 1;
+const params = new URLSearchParams(location.search);
+let page = Number(params.get('page')) || 1;
+// Topic id from ?topic= or an old #hash link; null shows every guide.
+const idOf = section => section.parts[0].id;
+let topic = [params.get('topic'), location.hash.slice(1)].find(id => sections.some(section => idOf(section) === id)) ?? null;
+topics.prepend(Object.assign(document.createElement('a'), { href: '?', textContent: 'All guides' }));
 const pager = Object.assign(document.createElement('nav'), { className: 'pager mono' });
 pager.setAttribute('aria-label', 'Guide pages');
 document.getElementById('next').before(pager);
-const pagerLink = (to, label) => `<a href="?page=${to}" data-page="${to}">${label}</a>`;
+const pagerLink = (to, label) => `<a href="?${new URLSearchParams({ ...(topic && { topic }), page: to })}" data-page="${to}">${label}</a>`;
 const esc = text => String(text).replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
 
 function run() {
@@ -52,12 +58,15 @@ const findInside = afterTyping(async typed => {
 // Show this page of the cards that match; a search shows every match on one page.
 function paint() {
   const typed = Boolean(input.value.trim());
-  const live = all.filter(entry => !entry.miss);
+  // A search covers every guide; otherwise only the chosen topic's.
+  const scope = typed || !topic ? all : sections.find(section => idOf(section) === topic).cards;
+  const live = scope.filter(entry => !entry.miss);
   const pages = typed ? 1 : Math.max(1, Math.ceil(live.length / perPage));
   page = Math.min(Math.max(page, 1), pages);
   const shown = new Set(typed ? live : live.slice((page - 1) * perPage, page * perPage));
   for (const entry of all) entry.card.hidden = !shown.has(entry);
   for (const { parts, cards } of sections) for (const part of parts) part.hidden = !cards.some(entry => shown.has(entry));
+  for (const link of topics.children) link.toggleAttribute('aria-current', (link.hash.slice(1) || null) === topic);
   pager.hidden = pages < 2;
   pager.innerHTML = pages < 2 ? '' : [
     page > 1 ? pagerLink(page - 1, '← Previous') : '',
@@ -67,6 +76,8 @@ function paint() {
   const url = new URL(location.href);
   if (typed) url.searchParams.set('q', input.value.trim()); else url.searchParams.delete('q');
   if (page > 1) url.searchParams.set('page', page); else url.searchParams.delete('page');
+  if (topic) url.searchParams.set('topic', topic); else url.searchParams.delete('topic');
+  url.hash = '';
   history.replaceState(null, '', url);
 }
 
@@ -79,22 +90,18 @@ pager.addEventListener('click', event => {
   form.scrollIntoView();
 });
 
-// A topic pill or #hash lands on the page that holds that topic's first guide.
-function jumpTo(id) {
-  const index = all.indexOf(sections.find(section => section.parts[0].id === id)?.cards[0]);
-  if (index < 0) return false;
-  page = Math.floor(index / perPage) + 1;
-  paint();
-  document.getElementById(id).scrollIntoView();
-  return true;
-}
+// A topic pill shows that topic's guides from page 1 ("All guides" clears it).
 topics.addEventListener('click', event => {
   const link = event.target.closest('a');
-  if (link?.hash && link.pathname === location.pathname && jumpTo(link.hash.slice(1))) event.preventDefault();
+  if (!link || link.pathname !== location.pathname) return;
+  event.preventDefault();
+  topic = link.hash.slice(1) || null;
+  page = 1;
+  paint();
+  form.scrollIntoView();
 });
 
 input.value = new URLSearchParams(location.search).get('q') ?? '';
 input.addEventListener('input', () => { page = 1; run(); });
 form.addEventListener('submit', event => { event.preventDefault(); run(); });
 if (input.value) run(); else paint();
-if (location.hash) jumpTo(location.hash.slice(1));
