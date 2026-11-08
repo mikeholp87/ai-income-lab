@@ -82,13 +82,12 @@ test('the guides section follows videos in the header and page, with one start l
   assert.match(media('(max-width: 640px)'), /\.build-guides \.guide-cards \{ grid-template-columns: 1fr; gap: 24px; \}/);
 });
 
-test('the latest videos section links existing topic hubs', () => {
+test('the latest videos section links every shared video topic', () => {
   const start = jsx.indexOf('id="latest"');
   const latest = jsx.slice(start, jsx.indexOf('</section>', start));
   assert.match(latest, /<nav className="topic-row" aria-label="Browse videos by topic">/);
-  for (const slug of ['claude-code', 'n8n', 'codex-opencode', 'ai-agents', 'ai-seo', 'make-money']) {
-    assert.match(latest, new RegExp(`href="/videos/${slug}"`), slug);
-  }
+  assert.match(jsx, /import \{ topics \} from '\.\/topics\.js';/);
+  assert.match(latest, /topics\.map\(topic => <a key=\{topic\.slug\} href=\{`\/videos\/\$\{topic\.slug\}`\}>\{topic\.name\}<\/a>\)/);
   assert.match(css, /\.topic-row \{ display: flex; flex-wrap: wrap;/);
   assert.match(css, /\.topic-row a \{ display: inline-flex; align-items: center; min-height: 44px;/);
 });

@@ -3,6 +3,7 @@ import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { build } from 'vite';
 import { uploads } from '../src/uploads-snapshot.js';
+import { topics } from '../src/topics.js';
 import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
@@ -13,7 +14,7 @@ await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: fa
 try {
   const { Root } = await import('../dist/.ssr/main.js');
   const pages = [
-    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'id="work-together"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/', 'aria-label="Browse videos by topic"', 'href="/videos/n8n"']],
+    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'id="work-together"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/', 'aria-label="Browse videos by topic"', ...topics.map(topic => `href="/videos/${topic.slug}">${topic.name}</a>`)]],
     ['sponsors.html', 'sponsors', ['id="media-kit"', 'id="services"', 'id="work-together"']],
   ];
   for (const [file, page, required] of pages) {

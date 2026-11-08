@@ -6,6 +6,7 @@ import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, validFeed } from './youtube.js';
+import { topics } from './topics.js';
 import { validGithubRepositories } from './github-repositories.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
@@ -794,12 +795,7 @@ function App({ page = 'home' }) {
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
               <nav className="topic-row" aria-label="Browse videos by topic">
-                <a href="/videos/claude-code">Claude Code</a>
-                <a href="/videos/n8n">n8n</a>
-                <a href="/videos/codex-opencode">Codex and OpenCode</a>
-                <a href="/videos/ai-agents">AI agents</a>
-                <a href="/videos/ai-seo">AI SEO</a>
-                <a href="/videos/make-money">Earn with AI</a>
+                {topics.map(topic => <a key={topic.slug} href={`/videos/${topic.slug}`}>{topic.name}</a>)}
               </nav>
             </div>
           </div>
