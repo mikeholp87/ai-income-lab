@@ -107,7 +107,7 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
 test('watch and subscribe actions follow the player before metadata and chapters', () => {
   for (const chapters of [[], [{ seconds: 0, label: 'Intro' }, { seconds: 30, label: 'Build' }, { seconds: 60, label: 'Check' }]]) {
     const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-20T00:00:00Z', duration: 'PT2M', chapters });
-    const playerEnd = html.indexOf('<span class="play"');
+    const playerEnd = html.indexOf('</iframe>');
     const action = html.indexOf('data-placement="watch_player"');
     assert.ok(action > playerEnd && action < html.indexOf('<p class="meta">By'), 'the YouTube action immediately follows the player');
     assert.equal((html.match(/>Watch on YouTube ↗<\/a>/g) ?? []).length, 1);
@@ -136,13 +136,13 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
-  assert.match(html, new RegExp(`<a class="player" href="https://www.youtube.com/watch\\?v=aaaaaaaaaaa" data-embed="${schema.embedUrl}"`));
+  assert.ok(html.includes(`<iframe class="player" src="${schema.embedUrl}"`));
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
-  // One click-to-load player near the top: no YouTube frame loads until the visitor presses play.
+  // The primary player is discoverable without a click or JavaScript, and does not autoplay.
   assert.equal((html.match(/class="player"/g) ?? []).length, 1);
-  assert.doesNotMatch(html, /<iframe/);
-  assert.match(html, /<a class="player"[^>]*data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*><picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i\.ytimg\.com\/vi_webp\/aaaaaaaaaaa\/mqdefault\.webp 320w, [^"]+sddefault\.webp 640w, [^"]+maxresdefault\.webp 1280w"[^>]*><img src="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/sddefault\.jpg"[^>]*fetchpriority="high"[^>]*><\/picture><span class="play">/);
+  assert.match(html, /<iframe class="player"[^>]*src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*title="Keys &amp; &lt;API&gt;"[^>]*width="960" height="540"[^>]*allowfullscreen><\/iframe>/);
+  assert.doesNotMatch(html.match(/<iframe[^>]+>/)[0], /autoplay=|loading="lazy"|srcdoc=|data-embed=/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
@@ -312,7 +312,7 @@ test('guide discovery includes title-only notes and avoids repeated companion li
   assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
   assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
   assert.match(companion, /<link rel="preconnect" href="https:\/\/i.ytimg.com">/);
-  assert.match(companion, /<a class="player"[^>]*data-embed="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.match(companion, /<iframe class="player"[^>]*src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
   assert.doesNotMatch(companion, /loading="lazy"/);
 });
 

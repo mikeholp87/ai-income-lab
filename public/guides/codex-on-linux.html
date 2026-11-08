@@ -78,6 +78,7 @@ sudo apt install ./chatgpt_amd64.deb</code></pre>
 <h3>Download a Linux binary</h3>
 <p>The README links releases and identifies <code>codex-x86_64-unknown-linux-musl.tar.gz</code> for x86_64 and <code>codex-aarch64-unknown-linux-musl.tar.gz</code> for ARM64. Extract the matching archive and rename its executable to <code>codex</code>, as the README suggests. Source: binary installation.</p>
 <p>Keep a note of where you put that executable. A downloaded file and a command your terminal can find are two separate checkpoints; verify both before investigating account access.</p>
+<p>If you use Ghostty as your terminal, the <a href="/guides/ghostty-debian-configuration.html">Ghostty config guide for Debian</a> covers where settings live, changing themes and checking a reload. Terminal appearance is a separate setup step from installing or signing in to your coding agent.</p>
 <h2 id="signin">Run Codex and sign in with ChatGPT</h2>
 <p>Open your project directory and run <code>codex</code>. On first launch, choose Sign in with ChatGPT and finish the sign-in flow. The CLI quickstart documents this sequence. Begin in the repository you intend to inspect, rather than starting in a folder containing unrelated work.</p>
 <p>OpenAI’s help center says Codex is included across ChatGPT plans, including Free and Go, with limits varying by plan. That does not mean every account has the same allowance or cloud access. Check the account you actually signed into before treating an access message as an installation failure. Source: account access and usage.</p>

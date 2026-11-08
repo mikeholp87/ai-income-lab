@@ -262,6 +262,7 @@ export function relatedVideos(video, videos, count = 4) {
 
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
+  [/^3 open source projects i built/i, '/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents: a safe first workflow'],
   [/new herdr desktop|herdr desktop app/i, '/guides/herdr-desktop-app.html', 'Herdr Desktop Guide: Setup, Workspaces and Limits'],
   [/herdr lets you run|herdr/i, '/guides/herdr-guide.html', 'Herdr Terminal Guide: Workspaces and Coding-Agent Sessions'],
   [/cleanyourtv|android tv with claude/i, '/guides/cleanyourtv-claude-code.html', 'CleanYourTV with Claude Code: TCL Setup and Risks'],
@@ -321,9 +322,10 @@ export const guides = [
   [/\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b/i, '/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'],
 ];
 
-// The player starts as a thumbnail link (no YouTube scripts until someone presses play; without JS it opens YouTube).
-// Chapter links are #t=<sec> fragments so they add no crawlable URLs; they cue the thumbnail or re-cue the playing video.
-const playerScript = `(()=>{let player=document.querySelector('.player');const open=url=>{if(player.tagName==='IFRAME'){player.src=url;return;}const frame=document.createElement('iframe');frame.className='player';frame.title=document.querySelector('h1').textContent;frame.width=960;frame.height=540;frame.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.referrerPolicy='strict-origin-when-cross-origin';frame.allowFullscreen=true;frame.src=url;player.replaceWith(frame);player=frame;frame.focus();};const cue=(start,autoplay)=>{const url=new URL(player.dataset.embed||player.src);if(start)url.searchParams.set('start',start);if(!autoplay){player.dataset.embed=url.href;return;}url.searchParams.set('autoplay','1');open(url.href);};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};player.addEventListener('click',event=>{if(!plain(event))return;event.preventDefault();cue(0,true);});seek(location.hash,false);document.querySelector('.chapters')?.addEventListener('click',event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
+// Watch pages expose the primary player in the initial HTML, without autoplay or a click gate.
+// Chapter fragments add no crawlable URLs. Opening a shared fragment cues without autoplay;
+// choosing a chapter re-cues the same privacy-enhanced player, including the zero-second chapter.
+const playerScript = `(()=>{const player=document.querySelector('iframe.player');const cue=(start,autoplay)=>{const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');else url.searchParams.delete('autoplay');player.src=url.href;if(autoplay)player.focus();};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};seek(location.hash,false);document.querySelector('.chapters')?.addEventListener('click',event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
@@ -383,13 +385,13 @@ ${fontPreloads}
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">
 <meta property="og:url" content="${watchUrl(video)}">
-<meta property="og:title" content="${escape(video.title)}">
+<meta property="og:title" content="${escape(heading)}">
 <meta property="og:description" content="${escape(snippet(description))}">
 <meta property="og:image" content="${thumbnailUrl(video)}">
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
-<style>header,main,footer{width:min(1120px,calc(100% - 32px))}main{padding-top:20px}h1{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}a.player{position:relative;overflow:hidden}a.player img{width:100%;height:100%;aspect-ratio:16/9;object-fit:cover}.play{position:absolute;inset:0;display:grid;place-items:center;width:72px;height:72px;margin:auto;border-radius:50%;background:#ff6846;box-shadow:0 8px 30px #ff684659;transition:transform .2s ease}.play svg{width:28px;height:28px;margin-left:4px;fill:#1a0a04}a.player:hover .play{transform:scale(1.06)}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{columns:300px 3;column-gap:48px;padding:0;list-style:none}.chapters li{margin:0;padding:2px 0;break-inside:avoid}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}main{font-size:19px}main .meta,main small{font-size:15px}.next-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 0;padding:0;list-style:none}.next-links li{margin:0}.next-links a{display:grid;gap:6px;height:100%;padding:18px 22px;border:1px solid #333;border-radius:12px;background:#111;color:#f5f5f0;font-weight:600;line-height:1.4;text-decoration:none}.next-links a:hover,.next-links a:focus-visible{border-color:#ff6846}.next-links small{color:#a5a59e;font-weight:400}.transcript{margin:8px 0 48px}.transcript summary{display:inline-flex;min-height:44px;align-items:center;padding:0 20px;border:1px solid #333;border-radius:999px;font-size:16px;font-weight:600}.transcript summary:hover{border-color:#ff6846}.transcript[open] summary{margin-bottom:16px}@media(max-width:640px){main{font-size:18px}}</style>
+<style>header,main,footer{width:min(1120px,calc(100% - 32px))}main{padding-top:20px}h1{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{columns:300px 3;column-gap:48px;padding:0;list-style:none}.chapters li{margin:0;padding:2px 0;break-inside:avoid}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}main{font-size:19px}main .meta,main small{font-size:15px}.next-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 0;padding:0;list-style:none}.next-links li{margin:0}.next-links a{display:grid;gap:6px;height:100%;padding:18px 22px;border:1px solid #333;border-radius:12px;background:#111;color:#f5f5f0;font-weight:600;line-height:1.4;text-decoration:none}.next-links a:hover,.next-links a:focus-visible{border-color:#ff6846}.next-links small{color:#a5a59e;font-weight:400}.transcript{margin:8px 0 48px}.transcript summary{display:inline-flex;min-height:44px;align-items:center;padding:0 20px;border:1px solid #333;border-radius:999px;font-size:16px;font-weight:600}.transcript summary:hover{border-color:#ff6846}.transcript[open] summary{margin-bottom:16px}@media(max-width:640px){main{font-size:18px}}</style>
 <style>section[aria-labelledby="related-guides"]{margin-bottom:48px}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
@@ -397,7 +399,7 @@ ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(heading)}</span></nav>
 <h1>${escape(heading)}</h1>
-<a class="player" href="https://www.youtube.com/watch?v=${video.id}" data-embed="${playerUrl(video)}${start ? `?start=${start}` : ''}" aria-label="Play ${escape(video.title)}">${thumbPicture(video.id, 'min(1120px, 100vw - 32px)', 'width="960" height="540" fetchpriority="high"')}<span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>
+<iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(heading)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ${chapters.length ? `<p class="meta"><a href="#chapters">Jump to video chapters</a></p>` : ''}
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
@@ -431,7 +433,7 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <ul>${brief.notCovered.map(item => `<li>${escape(item)}</li>`).join('')}</ul>` : ''}${brief.qa?.length ? `
 <h3>Questions and answers</h3>
 ${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join('\n')}` : ''}
-<p class="meta">Summary written from the video's transcript and chapters.</p>
+<p class="meta">${escape(brief.sourceNote || "Summary written from the video's transcript and chapters.")}</p>
 </section>` : ''}${tools?.length ? `
 <section aria-labelledby="tools-used">
 <h2 id="tools-used">Tools used</h2>

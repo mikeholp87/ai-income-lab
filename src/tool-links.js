@@ -41,7 +41,7 @@ const links = [
   [['Gemini Code Assist', 'Google Cloud Code Assist'], 'https://codeassist.google'],
   [['Google Antigravity'], 'https://antigravity.google'],
   [['Hermes Agent', 'Hermes'], 'https://hermes-agent.nousresearch.com/'],
-  [['Herdr'], 'https://www.herdr.dev/'],
+  [['Herdr', 'Herdr Desktop'], 'https://www.herdr.dev/'],
   [['Runable'], 'https://runable.com/?utm_source=courses&utm_medium=mike', true],
   [['REA'], 'https://rea.tools/'],
   [['Muse Wonder'], 'https://research.meta.ai/blog/muse-wonder'],

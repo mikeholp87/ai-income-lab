@@ -1,0 +1,226 @@
+[
+  {
+    "url": "https://www.ai-automation-station.com/search.html",
+    "finalUrl": "https://www.ai-automation-station.com/search.html",
+    "status": 200,
+    "ms": 299,
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": null,
+      "cache-control": "public, max-age=0, must-revalidate",
+      "location": null,
+      "strict-transport-security": "max-age=63072000",
+      "content-encoding": "br"
+    },
+    "bytes": 7196,
+    "title": "Search guides and videos | Mike Holp",
+    "description": "Search every AI automation guide and tested build video on AI Automation Station.",
+    "robots": [
+      "noindex,follow"
+    ],
+    "canonical": [
+      "https://www.ai-automation-station.com/search.html"
+    ],
+    "lang": "en",
+    "viewport": "width=device-width,initial-scale=1",
+    "headings": [
+      {
+        "level": 1,
+        "text": "Search guides and videos."
+      },
+      {
+        "level": 2,
+        "text": "Mentioned inside videos and guides"
+      }
+    ],
+    "words": 17,
+    "excerpt": "Search guides and videos. Search Search Loading the index. Show more results Mentioned inside videos and guides",
+    "images": [],
+    "internal": [
+      {
+        "class": "skip",
+        "href": "#content",
+        "text": "Skip to content",
+        "path": "/search.html",
+        "hash": "#content",
+        "query": ""
+      },
+      {
+        "href": "/",
+        "text": "AI Income Lab",
+        "path": "/",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/start-here.html",
+        "text": "Start here",
+        "path": "/start-here.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/guides.html",
+        "text": "Guides",
+        "path": "/guides.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/videos",
+        "text": "All videos",
+        "path": "/videos",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/search.html",
+        "aria-current": "page",
+        "text": "Search",
+        "path": "/search.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/start-here.html",
+        "text": "Start here",
+        "path": "/start-here.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/guides.html",
+        "text": "Guides",
+        "path": "/guides.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/videos",
+        "text": "All videos",
+        "path": "/videos",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/search.html",
+        "aria-current": "page",
+        "text": "Search",
+        "path": "/search.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "${html(url)}",
+        "text": "${html(title)}",
+        "path": "/$%7Bhtml(url)%7D",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/",
+        "text": "Home",
+        "path": "/",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/privacy.html",
+        "text": "Privacy",
+        "path": "/privacy.html",
+        "hash": "",
+        "query": ""
+      },
+      {
+        "href": "/terms.html",
+        "text": "Terms",
+        "path": "/terms.html",
+        "hash": "",
+        "query": ""
+      }
+    ],
+    "external": [
+      {
+        "href": "https://www.skool.com/ai-automation-station-7346/plans",
+        "text": "Join AI Income Lab ↗"
+      }
+    ],
+    "schemas": [],
+    "schemaErrors": [],
+    "iframeCount": 0,
+    "clickPlayer": false,
+    "ids": [
+      "content",
+      "q",
+      "search-status",
+      "search-results",
+      "search-more",
+      "search-inside",
+      "inside-heading",
+      "inside-results"
+    ],
+    "mixedContent": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/examples/first-api-request.mjs",
+    "finalUrl": "https://www.ai-automation-station.com/examples/first-api-request.mjs",
+    "status": 200,
+    "ms": 292,
+    "headers": {
+      "content-type": "application/javascript; charset=utf-8",
+      "x-robots-tag": null,
+      "cache-control": "public, max-age=0, must-revalidate",
+      "location": null,
+      "strict-transport-security": "max-age=63072000",
+      "content-encoding": "br"
+    },
+    "bytes": 2485,
+    "title": "",
+    "description": "",
+    "robots": [],
+    "canonical": [],
+    "headings": [],
+    "words": 283,
+    "excerpt": "// Local teaching example: no real model, provider credentials, or paid requests. import assert from 'node:assert/strict'; import { createServer } from 'node:http'; const server = createServer(async (request, response) => { response.setHeader('Content-Type', 'application/json'); const reply = (status, body) => { response.writeHead(status); response.end(JSON.stringify(body)); }; if (request.method !== 'POST' || request.url !== '/v1/chat/completions') return reply(404, { error: 'Use POST /v1/chat/completions' }); if (request.headers.authorization !== 'Bearer demo-only') return reply(401, { error: 'Use the demo key' }); let body = ''; for await (const chunk of request) { body += chunk; if (body",
+    "images": [],
+    "internal": [],
+    "external": [],
+    "schemas": [],
+    "schemaErrors": [],
+    "iframeCount": 0,
+    "clickPlayer": false,
+    "ids": [],
+    "mixedContent": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/downloads/make-approved-requests/README.md",
+    "finalUrl": "https://www.ai-automation-station.com/downloads/make-approved-requests/README.md",
+    "status": 200,
+    "ms": 304,
+    "headers": {
+      "content-type": "text/markdown; charset=utf-8",
+      "x-robots-tag": null,
+      "cache-control": "public, max-age=0, must-revalidate",
+      "location": null,
+      "strict-transport-security": "max-age=63072000",
+      "content-encoding": "br"
+    },
+    "bytes": 5082,
+    "title": "",
+    "description": "",
+    "robots": [],
+    "canonical": [],
+    "headings": [],
+    "words": 823,
+    "excerpt": "# Make.com starter kit: approved requests By Mike Holp · AI Automation Station · Version 1 · November 5, 2026 Move newly added, approved sample requests from an Intake tab to a Work queue tab in Google Sheets. Learn a polling trigger, a filter, and field mapping. Full guide: https://www.ai-automation-station.com/guides/make-first-automation.html ## What you need - Make.com and Google Sheets accounts. - A new test spreadsheet. The data in this kit is fictional. - Scenario runs use your Make account allowance; check your plan before scheduling. ## Files - approved-requests.blueprint.json — the two connected Make modules and filter. - intake.csv — headers and two sample requests for the Intake ",
+    "images": [],
+    "internal": [],
+    "external": [],
+    "schemas": [],
+    "schemaErrors": [],
+    "iframeCount": 0,
+    "clickPlayer": false,
+    "ids": [],
+    "mixedContent": []
+  }
+]

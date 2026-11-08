@@ -1,7 +1,58 @@
-// Transcript-checked summaries for recent uploads, written by hand from each video's transcript and chapters.
-// Precedence in archive.js: watchNotes > videoNotes > videoSummaries > listingSummaries > YouTube description > fallback.
+// Reviewed summaries for recent uploads. Entries without a saved transcript identify their sources in sourceNote.
+// Summary precedence: watchNotes > watchSeo > videoNotes > videoSummaries > listingSummaries > YouTube description > fallback.
 // keySteps seconds are chapter starts, so they link to the same #t= cues as the chapter list.
 export const videoSummaries = {
+  IV6q81wRay4: {
+    searchTitle: 'Herdr Desktop Setup: Workspaces, Themes and Claude Code',
+    summary: 'Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.',
+    whatYouBuild: 'A desktop workspace for terminal coding agents that are already installed and authenticated. The written companion records a resumed Claude Code session, changes appearing in the file panel, and responses from several agent panes. Existing terminal workspaces did not migrate automatically, and Kimi was not authenticated.',
+    toolsUsed: ['Herdr Desktop', 'Claude Code', 'Codex', 'OpenCode', 'Hermes'],
+    keySteps: [
+      { seconds: 73, step: 'Choose a theme and panels, then open a workspace in the desktop app.' },
+      { seconds: 147, step: 'Launch Claude Code in a terminal pane and resume its own session.' },
+      { seconds: 432, step: 'Open agent panes side by side and check which agents actually respond.' },
+    ],
+    notCovered: ['Installing or authenticating every coding agent.', 'Migrating all Herdr terminal workspaces or setting up a remote machine.', 'A controlled memory benchmark or proof that several agents can safely edit the same files.'],
+    qa: [],
+    sourceNote: "Summary based on the saved video description, chapters and the Herdr Desktop written guide. No separate transcript review was performed for this summary.",
+  },
+  V0PoYhOprBI: {
+    searchTitle: 'Tasky, Restic-Studio and Luma-Launcher: Project Demos',
+    summary: 'Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.',
+    whatYouBuild: 'This is a tour of three existing projects rather than a complete build-along. It introduces a task manager, a backup interface built with Rust, and a Linux application launcher, then returns to project details and the coding-agent prompting workflow. Check each project for current source availability, supported platforms and build instructions.',
+    toolsUsed: ['Tasky', 'Restic-Studio', 'Luma-Launcher', 'Rust', 'Claude Code', 'Codex'],
+    keySteps: [],
+    notCovered: ['A complete installation or source build for all three projects on a clean machine.', 'Independent verification of backup recovery, operating-system compatibility or performance.'],
+    qa: [],
+    sourceNote: "Summary based on the saved video description and chapter list. No transcript or independent project test was reviewed for this summary.",
+  },
+  phVQuQMojA8: {
+    searchTitle: 'Claude Code Task-Manager Demo: Processes and Packaging',
+    summary: 'Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.',
+    whatYouBuild: 'A process and performance-monitoring app is the subject of this project walkthrough. The companion guide describes CPU and memory views, expandable process details and a paused history display. Start with a small brief and checks against the operating system. The recording explains the prompting approach but does not supply the complete original prompt or confirm every installer on a clean machine.',
+    toolsUsed: ['Claude Code', 'ChatGPT', 'Rust', 'Tauri', 'React'],
+    keySteps: [
+      { seconds: 59, step: 'Inspect the process list and performance-monitoring views.' },
+      { seconds: 96, step: 'Review how a short task-manager brief becomes a more detailed coding prompt.' },
+      { seconds: 135, step: 'Separate the request for Debian and AppImage packages from the development demo.' },
+    ],
+    notCovered: ['Feature parity across Linux and Windows. The guide records that benchmarking was not yet available on Linux.', 'A complete source build or verified installation of every generated package.'],
+    qa: [],
+    sourceNote: "Summary based on the saved video description, chapters and the Claude Code task-manager written guide. No separate transcript review was performed for this summary.",
+  },
+  '0iTOlQjNdhs': {
+    summary: 'Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.',
+    whatYouBuild: 'A replacement Android TV home screen is built and tried on the recorded device. The companion guide describes backing up settings, selecting apps and building a launcher through Docker when the local Android SDK is missing. The launcher opens retained apps and accepts a theme, but Settings and other remote-button problems remain. Check the exact device, supported project instructions and a recovery path before following the workflow.',
+    toolsUsed: ['CleanYourTV', 'Claude Code', 'Android TV', 'Docker'],
+    keySteps: [
+      { seconds: 250, step: 'Review the settings backup before changing the TV configuration.' },
+      { seconds: 462, step: 'Follow the recorded Docker launcher build and its environment limits.' },
+      { seconds: 565, step: 'Inspect the new home screen and distinguish working apps from unresolved physical remote controls.' },
+    ],
+    notCovered: ['A universal fix for every TV, advertisement or physical remote button.', 'A complete reproducible Docker build command or independently tested restore procedure.'],
+    qa: [],
+    sourceNote: "Summary based on the saved video description, chapters and the CleanYourTV written guide. No separate transcript review was performed for this summary.",
+  },
   "wLIiTkra7uM": {
     "summary": "Connect GrokBot to WordPress with its plugin, then let an agent turn YouTube transcripts into scheduled blog posts that also go out to email subscribers. The recording hits GrokBot's weekly usage limit, so most of the demo reviews posts that were already drafted and scheduled.",
     "whatYouBuild": "A GrokBot blog-writer agent that reads a YouTube video's transcript, writes a WordPress article with the video embedded, adds excerpt, categories and tags, and schedules one post a day with a subscriber email.",

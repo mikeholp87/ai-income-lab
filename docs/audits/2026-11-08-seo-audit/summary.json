@@ -1,0 +1,591 @@
+{
+  "checkedAt": "2026-11-08T10:04:49.300Z",
+  "sitemapPages": 322,
+  "extraPages": 3,
+  "statuses": {
+    "200": 322
+  },
+  "errors": [],
+  "noindex": [],
+  "canonicalMismatch": [],
+  "badH1": [],
+  "missingTitle": [],
+  "missingDescription": [],
+  "duplicateTitles": [],
+  "duplicateDescriptions": [],
+  "schemaErrors": [],
+  "imagesMissingAlt": [],
+  "lazyGuideHeroes": [],
+  "deep": [],
+  "brokenFragments": [],
+  "guides": [
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-content-creation-workflows.html",
+      "title": "AI content creation workflow: images, video and audio",
+      "titleLength": 53,
+      "descriptionLength": 139,
+      "words": 1902,
+      "h1": "AI content creation workflow: images, video and audio",
+      "inboundGuidePages": 7
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/youtube-channel-growth-workflow.html",
+      "title": "YouTube channel growth workflow: research, publish, learn",
+      "titleLength": 57,
+      "descriptionLength": 135,
+      "words": 1124,
+      "h1": "YouTube channel growth workflow: research, publish, learn",
+      "inboundGuidePages": 6
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html",
+      "title": "Build apps with AI coding agents: a safe first workflow",
+      "titleLength": 55,
+      "descriptionLength": 135,
+      "words": 1117,
+      "h1": "Build apps with AI coding agents: a safe first workflow",
+      "inboundGuidePages": 12
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-agent-workflow.html",
+      "title": "AI agent workflow: choose tools, add checks, keep control",
+      "titleLength": 57,
+      "descriptionLength": 137,
+      "words": 1076,
+      "h1": "AI agent workflow: choose tools, add checks, keep control",
+      "inboundGuidePages": 9
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/choosing-ai-models-for-a-task.html",
+      "title": "How to choose an AI model for a task",
+      "titleLength": 36,
+      "descriptionLength": 139,
+      "words": 1063,
+      "h1": "How to choose an AI model for a task",
+      "inboundGuidePages": 10
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/chatgpt-linux.html",
+      "title": "How to use ChatGPT on Linux: web and desktop options",
+      "titleLength": 52,
+      "descriptionLength": 138,
+      "words": 941,
+      "h1": "How to use ChatGPT on Linux: web and desktop options",
+      "inboundGuidePages": 4
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/youtube-feed.html",
+      "title": "React YouTube feed tutorial: API, caching and fallbacks",
+      "titleLength": 55,
+      "descriptionLength": 135,
+      "words": 1719,
+      "h1": "React YouTube feed tutorial: API, caching and fallbacks",
+      "inboundGuidePages": 8
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/consent-tracking.html",
+      "title": "React consent tracking: Google Analytics and Meta",
+      "titleLength": 49,
+      "descriptionLength": 137,
+      "words": 1121,
+      "h1": "React consent tracking: Google Analytics and Meta",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/claude-code-vs-codex.html",
+      "title": "Codex vs Claude Code: how I use both and route tasks",
+      "titleLength": 52,
+      "descriptionLength": 149,
+      "words": 2445,
+      "h1": "Codex vs Claude Code: how I use both and route tasks",
+      "inboundGuidePages": 17
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/first-api-request.html",
+      "title": "Test your first AI API request locally",
+      "titleLength": 38,
+      "descriptionLength": 142,
+      "words": 1163,
+      "h1": "Test your first AI API request locally",
+      "inboundGuidePages": 19
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/codex-workflow.html",
+      "title": "Codex tutorial: make and verify a small code change",
+      "titleLength": 51,
+      "descriptionLength": 151,
+      "words": 1148,
+      "h1": "Codex tutorial: make and verify a small code change",
+      "inboundGuidePages": 19
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/make-first-automation.html",
+      "title": "Make.com Google Sheets tutorial: filter approved requests",
+      "titleLength": 57,
+      "descriptionLength": 143,
+      "words": 1387,
+      "h1": "Make.com Google Sheets tutorial: filter approved requests",
+      "inboundGuidePages": 13
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/self-host-n8n.html",
+      "title": "Self-host n8n on Ubuntu: Docker and Node.js setup",
+      "titleLength": 49,
+      "descriptionLength": 152,
+      "words": 1605,
+      "h1": "Self-host n8n on Ubuntu: Docker and Node.js setup",
+      "inboundGuidePages": 11
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/hermes-desktop.html",
+      "title": "Hermes Desktop: install on Mac, Windows or Linux",
+      "titleLength": 48,
+      "descriptionLength": 153,
+      "words": 1518,
+      "h1": "Hermes Desktop: install on Mac, Windows or Linux",
+      "inboundGuidePages": 10
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html",
+      "title": "DataForSEO MCP: connect Claude Code to real SEO data",
+      "titleLength": 52,
+      "descriptionLength": 139,
+      "words": 1305,
+      "h1": "DataForSEO MCP: connect Claude Code to real SEO data",
+      "inboundGuidePages": 10
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/make-money-with-ai-no-experience.html",
+      "title": "Make money with AI with no experience",
+      "titleLength": 37,
+      "descriptionLength": 137,
+      "words": 2264,
+      "h1": "Make money with AI with no experience",
+      "inboundGuidePages": 6
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/make-money-with-ai-fast.html",
+      "title": "How to make money with AI fast: the honest path",
+      "titleLength": 47,
+      "descriptionLength": 135,
+      "words": 2413,
+      "h1": "How to make money with AI fast: the honest path",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-side-hustles.html",
+      "title": "AI side hustles for beginners: 7 services to test",
+      "titleLength": 49,
+      "descriptionLength": 147,
+      "words": 2918,
+      "h1": "AI side hustles for beginners: 7 services to test",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html",
+      "title": "How to sell AI automation services to small businesses",
+      "titleLength": 54,
+      "descriptionLength": 149,
+      "words": 2669,
+      "h1": "How to sell AI automation services to small businesses",
+      "inboundGuidePages": 8
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html",
+      "title": "Make money with ChatGPT: 4 client services",
+      "titleLength": 42,
+      "descriptionLength": 149,
+      "words": 2076,
+      "h1": "Make money with ChatGPT: 4 client services",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html",
+      "title": "ChatGPT Pro 20x vs 5x vs Plus: Limits, Pause & Codex (2026)",
+      "titleLength": 59,
+      "descriptionLength": 145,
+      "words": 3494,
+      "h1": "ChatGPT Pro 20x vs 5x vs Plus: Limits, Pause & Codex (2026)",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html",
+      "title": "OpenCode vs Claude Code: pricing, setup and limits",
+      "titleLength": 50,
+      "descriptionLength": 143,
+      "words": 1626,
+      "h1": "OpenCode vs Claude Code: pricing, setup and limits",
+      "inboundGuidePages": 15
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/9router-setup.html",
+      "title": "9Router setup: install, port 20128, updates and providers",
+      "titleLength": 57,
+      "descriptionLength": 154,
+      "words": 2009,
+      "h1": "9Router setup: install, port 20128, updates and providers",
+      "inboundGuidePages": 11
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/opencode-go.html",
+      "title": "OpenCode Go: pricing, models, limits and setup",
+      "titleLength": 46,
+      "descriptionLength": 152,
+      "words": 2354,
+      "h1": "OpenCode Go: pricing, models, limits and setup",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/openrouter-setup.html",
+      "title": "OpenRouter: API key, free models, pricing and setup",
+      "titleLength": 51,
+      "descriptionLength": 152,
+      "words": 2112,
+      "h1": "OpenRouter: API key, free models, pricing and setup",
+      "inboundGuidePages": 9
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/kilo-code-tutorial.html",
+      "title": "Kilo Code tutorial: install, free models and first task",
+      "titleLength": 55,
+      "descriptionLength": 154,
+      "words": 1927,
+      "h1": "Kilo Code tutorial: install, free models and first task",
+      "inboundGuidePages": 6
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/claude-models-compared.html",
+      "title": "Claude Opus vs Sonnet vs Haiku vs Fable: which to use",
+      "titleLength": 53,
+      "descriptionLength": 146,
+      "words": 2064,
+      "h1": "Claude Opus vs Sonnet vs Haiku vs Fable: which to use",
+      "inboundGuidePages": 6
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html",
+      "title": "Lovable vs Base44 vs Replit: pricing and which to pick",
+      "titleLength": 54,
+      "descriptionLength": 145,
+      "words": 1897,
+      "h1": "Lovable vs Base44 vs Replit: pricing and which to pick",
+      "inboundGuidePages": 4
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/install-openclaw.html",
+      "title": "How to install OpenClaw: local, VPS or hosted, safely",
+      "titleLength": 53,
+      "descriptionLength": 151,
+      "words": 2010,
+      "h1": "How to install OpenClaw: local, VPS or hosted, safely",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/codex-on-linux.html",
+      "title": "Codex desktop app for Linux: download Codex and the CLI",
+      "titleLength": 55,
+      "descriptionLength": 131,
+      "words": 2007,
+      "h1": "Codex desktop app for Linux: download Codex and the CLI",
+      "inboundGuidePages": 11
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/openseo-review.html",
+      "title": "OpenSEO review: setup, data costs and practical limits",
+      "titleLength": 54,
+      "descriptionLength": 138,
+      "words": 1698,
+      "h1": "OpenSEO review: setup, data costs and practical limits",
+      "inboundGuidePages": 8
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+      "title": "Claude Code tutorial for beginners: install and use it",
+      "titleLength": 54,
+      "descriptionLength": 152,
+      "words": 1839,
+      "h1": "Claude Code tutorial for beginners: install and use it",
+      "inboundGuidePages": 28
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html",
+      "title": "Vapi AI tutorial: build a voice agent, test calls, webhooks",
+      "titleLength": 59,
+      "descriptionLength": 155,
+      "words": 1744,
+      "h1": "Vapi AI tutorial: build a voice agent, test calls, webhooks",
+      "inboundGuidePages": 4
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html",
+      "title": "HeyGen AI avatar tutorial: create your first video",
+      "titleLength": 50,
+      "descriptionLength": 148,
+      "words": 1911,
+      "h1": "HeyGen AI avatar tutorial: create your first video",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-automation.html",
+      "title": "What Is AI Automation? Examples, Tools and a First Build",
+      "titleLength": 56,
+      "descriptionLength": 148,
+      "words": 2754,
+      "h1": "What Is AI Automation? Examples, Tools and a First Build",
+      "inboundGuidePages": 13
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/codex-usage-limits.html",
+      "title": "Codex usage limits: check usage, plans and reset times",
+      "titleLength": 54,
+      "descriptionLength": 121,
+      "words": 2266,
+      "h1": "Codex usage limits: check usage, plans and reset times",
+      "inboundGuidePages": 9
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html",
+      "title": "What is n8n used for? Real uses and a first workflow",
+      "titleLength": 52,
+      "descriptionLength": 143,
+      "words": 1790,
+      "h1": "What is n8n used for? Real uses and a first workflow",
+      "inboundGuidePages": 7
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/agentic-ai-vs-traditional-automation.html",
+      "title": "How does agentic AI differ from traditional automation?",
+      "titleLength": 55,
+      "descriptionLength": 154,
+      "words": 1646,
+      "h1": "How does agentic AI differ from traditional automation?",
+      "inboundGuidePages": 12
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/n8n-vs-zapier-vs-make.html",
+      "title": "n8n vs Zapier vs Make: billing, builders and AI agents",
+      "titleLength": 54,
+      "descriptionLength": 141,
+      "words": 2024,
+      "h1": "n8n vs Zapier vs Make: billing, builders and AI agents",
+      "inboundGuidePages": 9
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/n8n-alternatives-open-source.html",
+      "title": "n8n alternatives open source: 5 tools and their licenses",
+      "titleLength": 56,
+      "descriptionLength": 138,
+      "words": 1394,
+      "h1": "n8n alternatives open source: 5 tools and their licenses",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/no-code-ai-agent-builder.html",
+      "title": "No-code AI agent builder: compare n8n, Make, Zapier and more",
+      "titleLength": 60,
+      "descriptionLength": 145,
+      "words": 1850,
+      "h1": "No-code AI agent builder: compare n8n, Make, Zapier and more",
+      "inboundGuidePages": 12
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ai-threejs-rocket-demo.html",
+      "title": "AI Rocket Demo: Three.js Scene and Camera Controls",
+      "titleLength": 50,
+      "descriptionLength": 155,
+      "words": 889,
+      "h1": "AI Rocket Demo: Three.js Scene and Camera Controls",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html",
+      "title": "ChatGPT Image Editing: Sketch-to-Scene and Local Edits",
+      "titleLength": 54,
+      "descriptionLength": 148,
+      "words": 776,
+      "h1": "ChatGPT Image Editing: Sketch-to-Scene and Local Edits",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/claude-code-task-manager.html",
+      "title": "Claude Code Task Manager: Scope, Checks and Packaging",
+      "titleLength": 53,
+      "descriptionLength": 138,
+      "words": 957,
+      "h1": "Claude Code Task Manager: Scope, Checks and Packaging",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/cleanyourtv-claude-code.html",
+      "title": "CleanYourTV with Claude Code: TCL Setup and Risks",
+      "titleLength": 49,
+      "descriptionLength": 154,
+      "words": 1167,
+      "h1": "CleanYourTV with Claude Code: TCL Setup and Risks",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/codex-seo-workflow.html",
+      "title": "Internal Link Audit with Codex: A Reviewed SEO Workflow",
+      "titleLength": 55,
+      "descriptionLength": 154,
+      "words": 1451,
+      "h1": "Internal Link Audit with Codex: A Reviewed SEO Workflow",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/crowdreply-mcp-codex.html",
+      "title": "CrowdReply MCP with Codex: Citation Data to Review Plans",
+      "titleLength": 56,
+      "descriptionLength": 139,
+      "words": 909,
+      "h1": "CrowdReply MCP with Codex: Citation Data to Review Plans",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html",
+      "title": "DeepSeek Harness First Test: Setup Errors and Demo Limits",
+      "titleLength": 57,
+      "descriptionLength": 145,
+      "words": 902,
+      "h1": "DeepSeek Harness First Test: Setup Errors and Demo Limits",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html",
+      "title": "Ghostty Config on Debian: Themes and Reload Checks",
+      "titleLength": 50,
+      "descriptionLength": 154,
+      "words": 870,
+      "h1": "Ghostty Config on Debian: Themes and Reload Checks",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/grokbot-for-beginners.html",
+      "title": "GrokBot for Beginners: First Bot, Access and Approvals",
+      "titleLength": 54,
+      "descriptionLength": 153,
+      "words": 1632,
+      "h1": "GrokBot for Beginners: First Bot, Access and Approvals",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/grokbot-for-seo.html",
+      "title": "GrokBot for SEO: Audit Bots, Data and Reviewed Fixes",
+      "titleLength": 52,
+      "descriptionLength": 155,
+      "words": 1225,
+      "h1": "GrokBot for SEO: Audit Bots, Data and Reviewed Fixes",
+      "inboundGuidePages": 5
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/grokbot-virtual-office.html",
+      "title": "GrokBot Virtual Office: Build a Custom Agent Dashboard",
+      "titleLength": 54,
+      "descriptionLength": 155,
+      "words": 1356,
+      "h1": "GrokBot Virtual Office: Build a Custom Agent Dashboard",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/grokbot-vs-dots.html",
+      "title": "GrokBot vs Dots: Onboarding, Job Drafts and Permissions",
+      "titleLength": 55,
+      "descriptionLength": 150,
+      "words": 1359,
+      "h1": "GrokBot vs Dots: Onboarding, Job Drafts and Permissions",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/herdr-desktop-app.html",
+      "title": "Herdr Desktop Guide: Setup, Workspaces and Limits",
+      "titleLength": 49,
+      "descriptionLength": 153,
+      "words": 2214,
+      "h1": "Herdr Desktop Guide: Setup, Workspaces and Limits",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/herdr-guide.html",
+      "title": "Herdr Terminal Guide: Workspaces and Coding-Agent Sessions",
+      "titleLength": 58,
+      "descriptionLength": 137,
+      "words": 1061,
+      "h1": "Herdr Terminal Guide: Workspaces and Coding-Agent Sessions",
+      "inboundGuidePages": 4
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/jev-skills-router-setup.html",
+      "title": "Jev AI with Coding Agents: Skills, Access and Routed Tests",
+      "titleLength": 58,
+      "descriptionLength": 144,
+      "words": 907,
+      "h1": "Jev AI with Coding Agents: Skills, Access and Routed Tests",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/muse-code-setup.html",
+      "title": "Meta Muse Code Setup: API Failure and a Working CLI",
+      "titleLength": 51,
+      "descriptionLength": 151,
+      "words": 895,
+      "h1": "Meta Muse Code Setup: API Failure and a Working CLI",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/opendesign-linux-slides.html",
+      "title": "OpenDesign (Open Design) on Linux: Source Setup and Slides",
+      "titleLength": 58,
+      "descriptionLength": 147,
+      "words": 992,
+      "h1": "OpenDesign (Open Design) on Linux: Source Setup and Slides",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html",
+      "title": "REA Coding-Agent Case: A Video-Editor Prototype",
+      "titleLength": 47,
+      "descriptionLength": 154,
+      "words": 922,
+      "h1": "REA Coding-Agent Case: A Video-Editor Prototype",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/run-a-blog-with-grokbot.html",
+      "title": "GrokBot WordPress Workflow: Long-Form Videos to Drafts",
+      "titleLength": 54,
+      "descriptionLength": 154,
+      "words": 1342,
+      "h1": "GrokBot WordPress Workflow: Long-Form Videos to Drafts",
+      "inboundGuidePages": 3
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/runable-audit-website.html",
+      "title": "Runable AI Audit-Service Website: Research to an MVP",
+      "titleLength": 52,
+      "descriptionLength": 154,
+      "words": 940,
+      "h1": "Runable AI Audit-Service Website: Research to an MVP",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/trakkr-codex-visibility-workflow.html",
+      "title": "Trakkr and Codex: AI Visibility, Crawlers and Visits",
+      "titleLength": 52,
+      "descriptionLength": 155,
+      "words": 916,
+      "h1": "Trakkr and Codex: AI Visibility, Crawlers and Visits",
+      "inboundGuidePages": 2
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/treg-inside-grokbot.html",
+      "title": "Treg in GrokBot: Connect Data Tools and Control Costs",
+      "titleLength": 53,
+      "descriptionLength": 131,
+      "words": 1528,
+      "h1": "Treg in GrokBot: Connect Data Tools and Control Costs",
+      "inboundGuidePages": 3
+    }
+  ],
+  "clickOnlyWatchPages": 226
+}
