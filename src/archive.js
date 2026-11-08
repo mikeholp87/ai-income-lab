@@ -201,7 +201,7 @@ ${jsonLd(breadcrumbs)}
 <main class="shell" id="content">
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
-${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}<div class="toolbar"><form class="search-box" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><input id="video-q" name="q" type="search" placeholder="Search all ${videos.length} videos" autocomplete="off"></form>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}</div>
+${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's' : ''}: ${listFormat.format(topic.guides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}${topic?.supportingGuides ? `<p class="start">Supporting setup: ${listFormat.format(topic.supportingGuides.map(([href, title]) => `<a href="${href}">${escape(title)}</a>`))}</p>\n` : ''}<div class="toolbar"><form class="search-box" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${videos.length} videos</label><input id="video-q" name="q" type="search" placeholder="Search all ${videos.length} videos" autocomplete="off"></form>${sortNav(topic ? `/videos/${topic.slug}` : '/videos', sort)}</div>
 <section id="video-results" aria-live="polite" hidden><p class="search-status mono"></p><ul></ul></section>
 <div data-archive>${groups.map(([year, group]) => `<h2>${year}</h2>\n<ul>\n${group.map(video => card(video, video === items[0])).join('\n')}\n</ul>`).join('\n')}</div>
 <aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><ul class="cta-list"><li>Step-by-step courses</li><li>Copy-ready templates</li><li>Help when you get stuck</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime. 2,900+ members.</span></div></aside>
@@ -327,6 +327,15 @@ export const guides = [
 // choosing a chapter re-cues the same privacy-enhanced player, including the zero-second chapter.
 const playerScript = `(()=>{const player=document.querySelector('iframe.player');const cue=(start,autoplay)=>{const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');else url.searchParams.delete('autoplay');player.src=url.href;if(autoplay)player.focus();};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};seek(location.hash,false);document.querySelector('.chapters')?.addEventListener('click',event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
+// Reviewed follow-up reading for recordings whose titles do not identify the written guide.
+// IDs keep these links stable when a video's title changes.
+const watchGuideLinks = {
+  bCsSqZp0yVg: ['/guides/youtube-channel-growth-workflow.html', 'Use the YouTube channel growth workflow'],
+  ncg6F27PYt0: ['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task'],
+  Ip8KBwDixJs: ['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access'],
+  FBlN3qWR9kg: ['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)'],
+};
+
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const description = videoDescription(video);
@@ -334,7 +343,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const seconds = durationSeconds(video.duration);
   const chapters = validChapters(video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
   const related = relatedVideos(video, videos);
-  const guide = guides.find(([pattern]) => pattern.test(video.title));
+  const guide = watchGuideLinks[video.id] ?? guides.find(([pattern]) => pattern.test(video.title))?.slice(1);
   const topic = topicFor(video.title);
   const notes = videoNotes[video.id];
   const transcript = transcripts[video.id] ? transcriptParagraphs(transcripts[video.id]) : [];
@@ -443,7 +452,7 @@ ${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join(
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide || topic ? `
 <section aria-labelledby="related-guides">
 <h2 id="related-guides">Keep learning</h2>
-<ul class="next-links">${guide ? `<li><a href="${guide[1]}"><small>Written guide</small>${guide[2]}</a></li>` : ''}${topic ? `<li><a href="/videos/${topic.slug}"><small>More on this topic</small>${escape(topic.heading)}</a></li>` : ''}</ul>
+<ul class="next-links">${guide ? `<li><a href="${escape(guide[0])}"><small>${escape(guide[2] ?? 'Written guide')}</small>${escape(guide[1])}</a></li>` : ''}${topic ? `<li><a href="/videos/${topic.slug}"><small>More on this topic</small>${escape(topic.heading)}</a></li>` : ''}</ul>
 </section>` : ''}
 ${watchNotes[video.id]?.html ?? ''}${transcript.length ? `
 <section aria-labelledby="transcript">

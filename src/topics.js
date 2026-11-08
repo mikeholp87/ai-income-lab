@@ -11,6 +11,7 @@ export const topics = [
     about: 'Each video here uses Claude Code on a real project rather than a toy prompt: installing it, adding skills and routines, wiring it to outside data, and checking what it gets wrong. Start with the beginner walkthrough if you have never run a coding agent, then use the comparison guide to decide when Claude Code is the right tool and when Codex or OpenCode fits the task better. Most builds show the full session, including the fixes, so you can judge how much supervision the agent needed.',
     pattern: /claude code|claude (skills?|routines)/i,
     guides: [['/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'], ['/guides/claude-code-task-manager.html', 'Claude Code Task Manager: Scope, Checks and Packaging'], ['/guides/cleanyourtv-claude-code.html', 'CleanYourTV with Claude Code: TCL Setup and Risks'], ['/guides/claude-code-vs-codex.html', 'Codex vs Claude Code: how I use both and route tasks']],
+    supportingGuides: [['/guides/ghostty-debian-configuration.html', 'Optional terminal setup: Ghostty on Debian']],
   },
   {
     slug: 'codex-opencode', name: 'Codex and OpenCode',
@@ -20,6 +21,7 @@ export const topics = [
     about: 'These videos cover OpenAI Codex and the open-source OpenCode agent: installing them on macOS and Linux, choosing providers and models, working within plan usage limits, and running the same task through different agents to compare the results. The written guides turn the recurring questions into checklists you can follow without rewatching: making and verifying a small code change, installing Codex on Linux, checking usage limits and reset times before a long session, and setting up OpenCode Go or an OpenRouter key.',
     pattern: /\bcodex\b|open ?code/i,
     guides: [['/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'], ['/guides/codex-seo-workflow.html', 'Internal Link Audit with Codex: A Reviewed SEO Workflow'], ['/guides/herdr-guide.html', 'Herdr Terminal Guide: Workspaces and Coding-Agent Sessions'], ['/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'], ['/guides/codex-usage-limits.html', 'Codex usage limits: check usage, plans and reset times'], ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'], ['/guides/opencode-go.html', 'OpenCode Go: pricing, models, limits and setup'], ['/guides/openrouter-setup.html', 'OpenRouter: API key, free models, pricing and setup']],
+    supportingGuides: [['/guides/9router-setup.html', '9Router setup and provider routing']],
   },
   {
     slug: 'n8n', name: 'n8n',
