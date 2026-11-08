@@ -214,6 +214,9 @@ ${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's'
 const watchUrl = video => `${site}/watch/${video.id}`;
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
+// YouTube serves maxresdefault (true 16:9) only for some uploads; these returned 404 when checked on 2026-11-08.
+const noMaxresThumbnail = new Set(['0jzTOUv_B04', 'F5PwcTwtEos', 'w_MoA8lpWTg', 'HlPdlZh0AHM', 'UnnN2i90ALg', 'rZh4zVT2LKY', '1TPm7B5oStw']);
+const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`]), thumbnailUrl(video)];
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
 const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle || watchSeo[video.id]?.title;
 const videoHeading = video => searchTitle(video) || watchHeading(video.title);
@@ -341,7 +344,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
-    name: video.title, description, thumbnailUrl: thumbnailUrl(video),
+    name: video.title, description, thumbnailUrl: schemaThumbnails(video),
     uploadDate: video.published, embedUrl: playerUrl(video), url: watchUrl(video),
     ...(seconds && { duration: video.duration }),
     ...(video.views > 0 && { interactionStatistic: { '@type': 'InteractionCounter', interactionType: { '@type': 'WatchAction' }, userInteractionCount: video.views } }),

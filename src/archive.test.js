@@ -147,7 +147,9 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   const sitemap = renderVideoSitemap([video, { ...video, id: 'lbBZ7uLJwbM', embeddable: false }]);
   assert.match(sitemap, /<video:title>Keys &amp; &lt;API&gt;<\/video:title>/);
   assert.ok(sitemap.includes(`<video:player_loc>${schema.embedUrl}</video:player_loc>`));
-  assert.ok(sitemap.includes(`<video:thumbnail_loc>${schema.thumbnailUrl}</video:thumbnail_loc>`));
+  assert.deepEqual(schema.thumbnailUrl, ['https://i.ytimg.com/vi/aaaaaaaaaaa/maxresdefault.jpg', 'https://i.ytimg.com/vi/aaaaaaaaaaa/hqdefault.jpg']);
+  assert.ok(sitemap.includes(`<video:thumbnail_loc>${schema.thumbnailUrl.at(-1)}</video:thumbnail_loc>`));
+  assert.deepEqual(JSON.parse(renderWatch({ ...video, id: 'F5PwcTwtEos' }, { videos: [] }).match(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema.org","@type":"VideoObject".*?)<\/script>/s)[1]).thumbnailUrl, ['https://i.ytimg.com/vi/F5PwcTwtEos/hqdefault.jpg']);
   assert.doesNotMatch(sitemap, /lbBZ7uLJwbM/);
 });
 
