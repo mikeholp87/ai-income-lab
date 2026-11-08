@@ -96,8 +96,8 @@ async function finishConfirmation(token) {
   const claim = await verifyConfirmation(token);
   if (!claim) return Response.redirect(`${site}/start-here.html?subscribe=expired`, 303);
   if (!process.env.RESEND_API_KEY) return Response.redirect(`${site}/start-here.html?subscribe=failed`, 303);
-  const result = await addSubscriber(claim.email, claim.page);
-  return Response.redirect(`${site}/start-here.html?subscribe=${result.ok ? "confirmed" : "failed"}`, 303);
+  const result = await addSubscriber(claim.email, claim.page, claim.issuedAt);
+  return Response.redirect(`${site}/start-here.html?subscribe=${result.stale ? "expired" : result.ok ? "confirmed" : "failed"}`, 303);
 }
 
 const escape = text => String(text).replace(/[&<>"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char]));
@@ -132,6 +132,9 @@ AI Automation Station`,
 });
 
 const CONFIRM_TTL_MS = 48 * 60 * 60 * 1000;
+// A link older than this cannot turn an unsubscribed address back on. Resend does not record when someone
+// unsubscribed, so an old link could otherwise undo a later opt-out; a fresh link always shows the person's intent.
+const RESUBSCRIBE_WINDOW_MS = 15 * 60 * 1000;
 const b64url = bytes => Buffer.from(bytes).toString("base64url");
 
 async function hmac(data) {
@@ -156,11 +159,11 @@ export async function verifyConfirmation(token, now = Date.now()) {
   try {
     const { e, p, x } = JSON.parse(Buffer.from(payload, "base64url").toString());
     if (typeof e !== "string" || !isEmail(e) || !(x > now)) return null;
-    return { email: e, page: p || null };
+    return { email: e, page: p || null, issuedAt: x - CONFIRM_TTL_MS };
   } catch { return null; }
 }
 
-async function addSubscriber(email, page) {
+export async function addSubscriber(email, page, issuedAt = Date.now()) {
   const headers = { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" };
   const contact = `https://api.resend.com/contacts/${encodeURIComponent(email)}`;
   // Already subscribed: they were welcomed before, so no second welcome or owner alert, but the
@@ -174,6 +177,10 @@ async function addSubscriber(email, page) {
     const found = await fetch(contact, { signal: AbortSignal.timeout(8000), headers });
     if (found.ok) {
       if (!(await found.json().catch(() => ({}))).unsubscribed) return alreadySubscribed();
+      if (Date.now() - issuedAt > RESUBSCRIBE_WINDOW_MS) {
+        console.log("subscribe: stale link for an unsubscribed address, left unsubscribed");
+        return { ok: false, stale: true };
+      }
       const res = await fetch(contact, {
         method: "PATCH",
         signal: AbortSignal.timeout(8000),

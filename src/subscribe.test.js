@@ -114,6 +114,39 @@ test('an address that unsubscribed earlier is resubscribed and welcomed', async 
   assert.equal(calls[3][2].subject, welcome.subject);
 });
 
+test('an old confirmation link cannot resubscribe someone who unsubscribed after it was sent', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push(init.method ?? 'GET');
+    return new Response('{"object":"contact","unsubscribed":true}', { status: 200 });
+  };
+  const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
+  const res = await confirm(await signConfirmation('ada@example.com', null, twoHoursAgo));
+  assert.match(res.headers.get('location'), /subscribe=expired/);
+  assert.deepEqual(calls, ['GET']);
+});
+
+test('an old link still adds a new address and leaves a subscribed one alone', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const twoHoursAgo = Date.now() - 2 * 60 * 60 * 1000;
+  const token = await signConfirmation('ada@example.com', null, twoHoursAgo);
+  let calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push(init.method ?? 'GET');
+    return new Response('{}', { status: init.method ? 200 : 404 });
+  };
+  assert.match((await confirm(token)).headers.get('location'), /subscribe=confirmed/);
+  assert.equal(calls[1], 'POST');
+  calls = [];
+  globalThis.fetch = async (url, init = {}) => {
+    calls.push(init.method ?? 'GET');
+    return new Response('{"object":"contact","unsubscribed":false}', { status: 200 });
+  };
+  assert.match((await confirm(token)).headers.get('location'), /subscribe=confirmed/);
+  assert.deepEqual(calls, ['GET']);
+});
+
 test('a failed contact lookup adds nobody and sends nothing', async () => {
   process.env.RESEND_API_KEY = 're_full';
   const calls = [];
