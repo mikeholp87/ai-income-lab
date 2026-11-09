@@ -96,9 +96,9 @@ test('the homepage lists GitHub projects in a separate section', () => {
   const start = jsx.indexOf('id="code"');
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
   for (const name of ['Tasky', 'Luma[- ]Launcher', 'Restic[- ]Studio']) assert.match(jsx, new RegExp(name));
-  assert.match(section, /projects\.map\(repo/);
+  assert.match(section, /projects\.slice\(0, 9\)\.map\(repo/);
   assert.doesNotMatch(section, /DoStuff-Media/);
-  assert.match(section, /View all on GitHub/);
+  assert.match(section, /<\/ul>\s*<a className="repo-profile"[^>]+>View all on GitHub/);
   assert.match(css, /\.repo-list \{ display: grid;/);
   assert.match(css, /\.open-source\.section \{[^}]*background: var\(--raised\);/);
   assert.match(media('(max-width: 640px)'), /\.open-source-head \{ display: grid;/);

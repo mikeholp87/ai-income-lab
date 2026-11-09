@@ -853,14 +853,14 @@ function App({ page = 'home' }) {
         <div className="shell">
           <div className="open-source-head">
             <SectionHead title="Open source projects">Free projects I&rsquo;ve built and shared for anyone to use.</SectionHead>
-            <a className="repo-profile" href={githubUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
           </div>
           <ul className="repo-list">
-            {projects.map(repo => <li key={repo.name}>
+            {projects.slice(0, 9).map(repo => <li key={repo.name}>
               <h3><a href={repo.url} target="_blank" rel="noreferrer">{repo.name} ↗</a></h3>
               <p>{repo.description}</p>
             </li>)}
           </ul>
+          <a className="repo-profile" href={githubUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
         </div>
       </section>
 
