@@ -243,8 +243,8 @@ function SectionHead({ title, children }) {
 }
 
 const navLinks = {
-  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
-  sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/search.html', 'Search'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
+  sponsors: [['/', 'Home'], ['/search.html', 'Search'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
 // These sections lived on the homepage before /sponsors.html; old links to them still arrive there.
@@ -914,7 +914,7 @@ function App({ page = 'home' }) {
         <div className="footer-directory">
           <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p><NotesSignup /></div>
           <nav className="footer-columns" aria-label="Footer">
-            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a><a href="/llms.txt">Site overview</a></div>
+            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a><a href="/llms.txt">Site overview</a></div>
             <div><h2>Products</h2><span>TubeAnalytics (temporarily unavailable)</span><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
             <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
             <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>

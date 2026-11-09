@@ -28,6 +28,7 @@ test('video guide links favor directly relevant material', () => {
 
 test('recent watch pages expose useful summaries and correctly attribute their sources', () => {
   const recent = [
+    { id: 'YYZSR1p32EQ', title: 'Herdr On Windows Is Better Than I Expected!' },
     { id: 'IV6q81wRay4', title: 'New HERDR Desktop App Is A Game Changer!' },
     { id: 'V0PoYhOprBI', title: '3 Open Source Projects I Built That You Need to Try!' },
     { id: 'phVQuQMojA8', title: "I Built My Own Task Manager In Claude Code (It's Free!)" },
@@ -48,4 +49,14 @@ test('recent watch pages expose useful summaries and correctly attribute their s
     assert.doesNotMatch(html, /Summary written from the video&#39;s transcript and chapters/);
     assert.match(html, /<a href="\/guides\/[^"]+"><small>Written guide<\/small>/);
   }
+});
+
+test('project demonstrations link directly to their repositories and Windows Herdr links its desktop guide', () => {
+  const projects = renderWatch({ id: 'V0PoYhOprBI', title: '3 Open Source Projects I Built That You Need to Try!', published: '2026-11-05T00:00:00Z' });
+  for (const name of ['Tasky', 'Restic-Studio', 'Luma-Launcher']) {
+    assert.ok(projects.includes(`href="https://github.com/mikeholp87/${name}"`), name);
+  }
+  const windows = renderWatch({ id: 'YYZSR1p32EQ', title: 'Herdr On Windows Is Better Than I Expected!', published: '2026-11-09T00:00:00Z' });
+  assert.match(windows, /href="\/guides\/herdr-desktop-app.html"/);
+  assert.match(windows, /href="https:\/\/github.com\/mikeholp87\/update-forge"/);
 });

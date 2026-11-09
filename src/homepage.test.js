@@ -230,7 +230,7 @@ test('every rate card format has a service card with its price', () => {
 });
 
 test('the homepage header links FAQ, the sponsors page and Contact; old sponsor anchors forward there', () => {
-  assert.match(jsx, /\['#guides', 'Guides'\], \['#code', 'Projects'\], \['#about', 'About'\]/);
+  assert.match(jsx, /\['#guides', 'Guides'\], \['\/search.html', 'Search'\], \['#code', 'Projects'\], \['#about', 'About'\]/);
   assert.match(jsx, /\['#about', 'About'\], \['#faq', 'FAQ'\], \['\/sponsors\.html', 'Sponsors'\], \['#work-together', 'Contact'\]\]/);
   assert.match(jsx, /<section className="section" id="services">/);
   assert.match(jsx, /const sponsorAnchors = \['#media-kit', '#services', '#sponsored'\];/);

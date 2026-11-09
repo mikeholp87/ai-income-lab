@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
-import { GET, POST, signConfirmation, verifyConfirmation, welcome } from '../api/subscribe.js';
+import { GET, POST, addSubscriber, sendWelcome, signConfirmation, verifyConfirmation, welcome } from '../api/subscribe.js';
 
 const savedKey = process.env.RESEND_API_KEY;
 process.env.SUBSCRIBE_SECRET = 'test-secret';
@@ -68,9 +68,10 @@ test('the confirmation link adds the contact, tells Mike and sends the unchanged
   assert.match(res.headers.get('location'), /subscribe=confirmed/);
   assert.deepEqual(calls[0], ['GET', 'https://api.resend.com/contacts/ada%40example.com', undefined]);
   assert.deepEqual(calls[1], ['POST', 'https://api.resend.com/contacts', { email: 'ada@example.com', unsubscribed: false }]);
-  assert.deepEqual(calls[2][2].to, ['automojic@proton.me']);
-  assert.match(calls[2][2].text, /Page: https:\/\/www\.ai-automation-station\.com\//);
-  const mail = calls[3][2];
+  assert.deepEqual(calls[3][2].to, ['automojic@proton.me']);
+  assert.match(calls[3][2].text, /Page: https:\/\/www\.ai-automation-station\.com\//);
+  assert.match(calls[3][2].text, /Welcome accepted by Resend: yes/);
+  const mail = calls[2][2];
   assert.deepEqual(mail.to, ['ada@example.com']);
   assert.equal(mail.subject, welcome.subject);
   assert.equal(mail.text, welcome.text);
@@ -110,8 +111,8 @@ test('an address that unsubscribed earlier is resubscribed and welcomed', async 
   const res = await confirm(await signConfirmation('ada@example.com'));
   assert.match(res.headers.get('location'), /subscribe=confirmed/);
   assert.deepEqual(calls[1], ['PATCH', 'https://api.resend.com/contacts/ada%40example.com', { unsubscribed: false }]);
-  assert.deepEqual(calls[2][2].to, ['automojic@proton.me']);
-  assert.equal(calls[3][2].subject, welcome.subject);
+  assert.deepEqual(calls[3][2].to, ['automojic@proton.me']);
+  assert.equal(calls[2][2].subject, welcome.subject);
 });
 
 test('an old confirmation link cannot resubscribe someone who unsubscribed after it was sent', async () => {
@@ -200,4 +201,106 @@ test('one address that keeps posting gets 429 with Retry-After, and the trap sti
   assert.equal(res.status, 429);
   assert.ok(Number(res.headers.get('retry-after')) > 0);
   assert.equal((await post({ email: 'nope' }, { 'x-forwarded-for': '203.0.113.78' })).status, 400);
+});
+
+test('temporary welcome failures retry the identical message with a private idempotency key', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  for (const failure of ['server', 'network']) {
+    const calls = [];
+    globalThis.fetch = async (url, init) => {
+      calls.push(init);
+      if (calls.length === 1) {
+        if (failure === 'network') throw new Error('connection lost');
+        return new Response('{}', { status: 503 });
+      }
+      return Response.json({ id: 'welcome-id' });
+    };
+    assert.equal(await sendWelcome('ada@example.com'), true);
+    assert.equal(calls.length, 2);
+    assert.equal(calls[0].headers['Idempotency-Key'], calls[1].headers['Idempotency-Key']);
+    assert.doesNotMatch(calls[0].headers['Idempotency-Key'], /ada|example/);
+    assert.equal(calls[0].body, calls[1].body);
+  }
+});
+
+test('a persistent welcome failure keeps the signup active and alerts the owner', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const mails = [];
+  globalThis.fetch = async (url, init = {}) => {
+    if (!init.method) return new Response('{}', { status: 404 });
+    if (url.endsWith('/contacts')) return Response.json({ id: 'contact-id' });
+    const body = JSON.parse(init.body);
+    mails.push(body);
+    return new Response('{}', { status: body.to[0] === 'ada@example.com' ? 503 : 200 });
+  };
+  const logged = console.error;
+  console.error = () => {};
+  try {
+    const response = await confirm(await signConfirmation('ada@example.com'));
+    assert.match(response.headers.get('location'), /subscribe=confirmed/);
+    assert.equal(mails.length, 3);
+    assert.match(mails[2].subject, /Welcome delivery needs attention/);
+    assert.match(mails[2].text, /newsletter-recovery\.md/);
+  } finally { console.error = logged; }
+});
+
+test('welcome validation and rate-limit errors are not retried immediately', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const logged = console.error;
+  console.error = () => {};
+  try {
+    for (const status of [400, 401, 409, 422, 429]) {
+      let calls = 0;
+      globalThis.fetch = async () => { calls += 1; return new Response('{}', { status }); };
+      assert.equal(await sendWelcome('ada@example.com'), false);
+      assert.equal(calls, 1);
+    }
+  } finally { console.error = logged; }
+});
+
+test('two successful concurrent contact creates reuse one welcome idempotency key', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const deliveries = new Map();
+  let createCalls = 0;
+  globalThis.fetch = async (url, init = {}) => {
+    if (!init.method) return new Response('{}', { status: 404 });
+    if (url.endsWith('/contacts')) { createCalls += 1; return Response.json({ id: 'same-contact' }); }
+    const key = init.headers['Idempotency-Key'];
+    assert.ok(key);
+    if (deliveries.has(key)) assert.equal(deliveries.get(key), init.body);
+    deliveries.set(key, init.body);
+    return Response.json({ id: key });
+  };
+  const token = await signConfirmation('ada@example.com', 'https://www.ai-automation-station.com/');
+  const responses = await Promise.all([confirm(token), confirm(token)]);
+  assert.equal(createCalls, 2);
+  assert.ok(responses.every(response => response.headers.get('location').endsWith('subscribe=confirmed')));
+  assert.equal(deliveries.size, 2, 'one welcome and one owner notification');
+});
+
+
+test('an owner delivery alert cannot collide with a concurrent success notification', async () => {
+  process.env.RESEND_API_KEY = 're_full';
+  const notices = [];
+  let welcomeAttempts = 0;
+  globalThis.fetch = async (url, init = {}) => {
+    if (!init.method) return new Response('{}', { status: 404 });
+    if (url.endsWith('/contacts')) return Response.json({ id: 'contact-id' });
+    const mail = JSON.parse(init.body);
+    if (mail.to[0] === 'ada@example.com') {
+      welcomeAttempts += 1;
+      return new Response('{}', { status: welcomeAttempts <= 2 ? 503 : 200 });
+    }
+    notices.push([init.headers['Idempotency-Key'], mail]);
+    return Response.json({ id: 'notice-id' });
+  };
+  const logged = console.error;
+  console.error = () => {};
+  try {
+    assert.equal((await addSubscriber('ada@example.com', '/first')).welcomeSent, false);
+    assert.equal((await addSubscriber('ada@example.com', '/first')).welcomeSent, true);
+    assert.notEqual(notices[0][0], notices[1][0]);
+    assert.match(notices[0][1].subject, /needs attention/);
+    assert.match(notices[1][1].subject, /New build notes signup/);
+  } finally { console.error = logged; }
 });

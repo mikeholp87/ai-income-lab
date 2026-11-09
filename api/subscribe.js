@@ -35,7 +35,8 @@ Hit reply and tell me what you're trying to build. I read every reply, and it sh
 Mike Holp
 AI Automation Station
 
-You're getting this because this address signed up for the build notes on ${site.replace("https://", "")}. Not you, or changed your mind? Reply "unsubscribe" and I'll take you off the list.`,
+You're getting this because this address signed up for the build notes on ${site.replace("https://", "")}. Not you, or changed your mind? Reply "unsubscribe" or use this email link and I'll take you off the list:
+mailto:automojic@proton.me?subject=Unsubscribe%20from%20weekly%20build%20notes`,
 };
 
 // 5 signups per IP per 10 minutes, per warm instance (see src/rate-limit.js for its limits).
@@ -206,38 +207,51 @@ export async function addSubscriber(email, page, issuedAt = Date.now()) {
     console.error("subscribe", err);
     return { ok: false };
   }
-  await notifyOwner(email, page);
   // The contact already exists even when the welcome email fails.
-  try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      signal: AbortSignal.timeout(8000),
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: FROM, to: [email], reply_to: REPLY_TO, ...welcome }),
-    });
-    if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);
-    console.log("subscribe: welcome sent", (await res.json().catch(() => ({}))).id ?? "");
-  } catch (err) {
-    console.error("subscribe welcome", err);
-    return { ok: true, welcomeSent: false };
+  const welcomeSent = await sendWelcome(email);
+  await notifyOwner(email, page, welcomeSent);
+  return { ok: true, welcomeSent };
+}
+
+export async function sendWelcome(email) {
+  // shortcut: Resend deduplicates for 24 hours; a later manual replay needs a delivery-log check.
+  const key = `welcome/${await hmac(email)}`;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        signal: AbortSignal.timeout(8000),
+        headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": key },
+        body: JSON.stringify({ from: FROM, to: [email], reply_to: REPLY_TO, ...welcome }),
+      });
+      if (!res.ok) {
+        if (attempt === 0 && res.status >= 500) continue;
+        console.error("subscribe welcome: delivery failed", res.status);
+        return false;
+      }
+      console.log("subscribe: welcome sent", (await res.json().catch(() => ({}))).id ?? "");
+      return true;
+    } catch {
+      if (attempt === 1) console.error("subscribe welcome: delivery failed after retry");
+    }
   }
-  return { ok: true, welcomeSent: true };
+  return false;
 }
 
 
 // Tells Mike about each new signup. A failure here never fails the signup.
-async function notifyOwner(email, page) {
+async function notifyOwner(email, page, welcomeSent) {
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       signal: AbortSignal.timeout(8000),
-      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `signup-notice/${await hmac(JSON.stringify([email, page, welcomeSent]))}` },
       body: JSON.stringify({
         from: FROM,
         to: [OWNER],
         reply_to: email,
-        subject: `New build notes signup: ${email}`,
-        text: `${email} signed up for the weekly build notes.\nPage: ${page ? String(page).slice(0, 300) : "unknown"}`,
+        subject: `${welcomeSent ? 'New build notes signup' : 'Welcome delivery needs attention'}: ${email}`,
+        text: `${email} signed up for the weekly build notes.\nPage: ${page ? String(page).slice(0, 300) : "unknown"}\nWelcome accepted by Resend: ${welcomeSent ? 'yes' : 'no — check delivery logs and follow docs/newsletter-recovery.md before replaying.'}`,
       }),
     });
     if (!res.ok) throw new Error(`Resend ${res.status} ${await res.text()}`);

@@ -401,6 +401,11 @@ a.video-card:hover h3 { color: var(--signal); }
 .consent-actions button { min-height: 44px; padding: 0 18px; border: 1.5px solid var(--line-strong); border-radius: 999px; color: var(--text); background: transparent; font: 500 12px var(--sans); cursor: pointer; }
 .consent-actions .consent-accept { border-color: var(--signal); color: var(--on-signal); background: var(--signal); }
 
+@media (max-width: 1168px) {
+  .nav-links { display: none; }
+  .nav-mobile { display: block; }
+}
+
 @media (max-width: 960px) {
   .build-guides .guide-cards { gap: 28px 16px; }
   .build-guides .guide-card h3 { font-size: 16px; }

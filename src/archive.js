@@ -263,7 +263,7 @@ export function relatedVideos(video, videos, count = 4) {
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
   [/^3 open source projects i built/i, '/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents: a safe first workflow'],
-  [/new herdr desktop|herdr desktop app/i, '/guides/herdr-desktop-app.html', 'Herdr Desktop Guide: Setup, Workspaces and Limits'],
+  [/new herdr desktop|herdr desktop app|herdr on windows/i, '/guides/herdr-desktop-app.html', 'Herdr Desktop Guide: Setup, Workspaces and Limits'],
   [/herdr lets you run|herdr/i, '/guides/herdr-guide.html', 'Herdr Terminal Guide: Workspaces and Coding-Agent Sessions'],
   [/cleanyourtv|android tv with claude/i, '/guides/cleanyourtv-claude-code.html', 'CleanYourTV with Claude Code: TCL Setup and Risks'],
   [/task manager in claude code/i, '/guides/claude-code-task-manager.html', 'Claude Code Task Manager: Scope, Checks and Packaging'],

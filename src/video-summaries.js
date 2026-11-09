@@ -2,6 +2,21 @@
 // Summary precedence: watchNotes > watchSeo > videoNotes > videoSummaries > listingSummaries > YouTube description > fallback.
 // keySteps seconds are chapter starts, so they link to the same #t= cues as the chapter list.
 export const videoSummaries = {
+  YYZSR1p32EQ: {
+    searchTitle: 'Herdr on Windows: Installation, Themes, Mods and Usage',
+    summary: 'Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.',
+    whatYouBuild: 'The recording demonstrates a Windows workspace for coding agents, theme changes and custom mods, then turns to an Update Forge application. Use the desktop companion for workspace setup and check each mod against your installed version. This walkthrough is not a controlled comparison of agent performance or credit savings.',
+    toolsUsed: ['Herdr Desktop', 'Update Forge'],
+    keySteps: [
+      { seconds: 36, step: 'Review the PowerShell installation and Windows setup.' },
+      { seconds: 104, step: 'Inspect the custom credit-usage mod, then browse themes and plugins.' },
+      { seconds: 197, step: 'Follow the Insights mod demonstration and inspect the usage dashboard.' },
+      { seconds: 453, step: 'Tour the Update Forge project and its update workflow.' },
+    ],
+    notCovered: ['Independent testing of every mod or Windows installation.', 'A controlled benchmark of credit savings or a verified production update rollout.'],
+    qa: [],
+    sourceNote: 'Summary based on the saved video description and the published chapter list. No separate transcript review or independent Windows test was performed for this summary.',
+  },
   IV6q81wRay4: {
     searchTitle: 'Herdr Desktop Setup: Workspaces, Themes and Claude Code',
     summary: 'Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.',

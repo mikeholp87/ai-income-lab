@@ -2,6 +2,10 @@
 // "(…)" note removed, so "Claude Code (Opus 5.5)" uses the Claude Code link.
 // `affiliate: true` marks referral links copied from the YouTube descriptions; they render with rel="sponsored".
 const links = [
+  [['Tasky'], 'https://github.com/mikeholp87/Tasky'],
+  [['Restic-Studio'], 'https://github.com/mikeholp87/Restic-Studio'],
+  [['Luma-Launcher'], 'https://github.com/mikeholp87/Luma-Launcher'],
+  [['Update Forge', 'update-forge'], 'https://github.com/mikeholp87/update-forge'],
   [['Make.com'], 'https://www.make.com/en/register?pc=mikeholp', true],
   [['HeyGen'], 'https://www.heygen.com/?sid=rewardful&via=mike-holp', true],
   [['Vapi'], 'https://vapi.ai/?aff=mike9c', true],
