@@ -356,15 +356,18 @@ function Services({ channel }) {
   return (
     <section className="section" id="services">
       <div className="shell">
-        <SectionHead title="Sponsorship packages">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
-        <article className="service service-featured">
+        <SectionHead title="Choose how your product gets seen">Start with one format, or save $300 by bringing the same build to YouTube, Shorts, AI Income Lab and LinkedIn.</SectionHead>
+        <article className="service service-featured" id="campaign">
           <div>
             <p className="service-channels">YouTube · Shorts · AI Income Lab · LinkedIn</p>
             <h3>Multi-platform campaign</h3>
-            <p className="service-price">$2,250 <span>value $2,550</span></p>
-            <p>A dedicated video, a Short, an AI Income Lab post and a LinkedIn post, with the description link and pinned comment. One launch, four audiences, the same week.</p>
+            <p className="service-price">$2,250 <span>$2,550 separately</span></p>
+            <p className="campaign-saving">Save $300 with the complete campaign</p>
+            <p>One product story, adapted for four placements. A practical build gives people a reason to explore your product.</p>
+            <ul className="campaign-includes"><li>One 8–12 minute dedicated YouTube video</li><li>One 30–60 second YouTube Short</li><li>One AI Income Lab community post</li><li>One LinkedIn post</li><li>Description link, pinned comment and coordinated messaging</li></ul>
+            <p className="fine-print">Organic publication and one reasonable revision round included. Scope and timing agreed before booking.</p>
             <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
-            <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign', 'Multi-platform campaign')}>Book the campaign</a>
+            <a className="button button-primary" href="#work-together" onClick={ask('Plan my campaign', 'Multi-platform campaign')}>Plan my campaign</a>
           </div>
           <img className="service-image" src="/services/campaign.webp" alt="" width="1152" height="864" loading="lazy" decoding="async" />
         </article>
@@ -372,6 +375,7 @@ function Services({ channel }) {
           <article className="service">
             <h3>Dedicated video</h3>
             <p className="service-price">$1,500</p>
+            <p className="service-saving">In the four-format campaign: <strong>$1,350</strong> — save $150 on this placement.</p>
             <p>An 8 to 12 minute video built around your product on a real project, with description links and a pinned comment.</p>
             <img className="service-image" src="/services/dedicated-video.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video', 'Dedicated video')}>Ask about a dedicated video</a>
@@ -379,6 +383,7 @@ function Services({ channel }) {
           <article className="service">
             <h3>YouTube Short</h3>
             <p className="service-price">$400</p>
+            <p className="service-saving">In the four-format campaign: <strong>$350</strong> — save $50 on this placement.</p>
             <p>A 30 to 60 second vertical demo or result, with a direct call to action and a link where YouTube allows one.</p>
             <img className="service-image service-short" src="/services/short.webp" alt="" width="720" height="1280" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short', 'YouTube Short')}>Ask about a Short</a>
@@ -386,6 +391,7 @@ function Services({ channel }) {
           <article className="service">
             <h3>AI Income Lab post</h3>
             <p className="service-price">$300</p>
+            <p className="service-saving">In the four-format campaign: <strong>$250</strong> — save $50 on this placement.</p>
             <p>A sponsored post in the Skool community for 2,900+ members, with a product overview, key benefits and your link.</p>
             <MockPost network="AI Income Lab" byline="Community post">New in the toolbox: {yourProduct}. I used it on this week&rsquo;s build. Here&rsquo;s the setup, and what it saved me.</MockPost>
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post', 'AI Income Lab post')}>Ask about a community post</a>
@@ -393,13 +399,14 @@ function Services({ channel }) {
           <article className="service">
             <h3>LinkedIn post</h3>
             <p className="service-price">$350</p>
+            <p className="service-saving">In the four-format campaign: <strong>$300</strong> — save $50 on this placement.</p>
             <p>A professional post for an AI and business audience, written for LinkedIn with its own message and call to action.</p>
             <MockPost network="LinkedIn" byline="AI automation creator">I spent a week building with {yourProduct}. Three things it does better than the tools I was using.</MockPost>
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post', 'LinkedIn post')}>Ask about a LinkedIn post</a>
           </article>
         </div>
         <div className="services-custom">
-          <p>Need something custom? Extra Shorts, category exclusivity, paid usage rights and longer partnerships are on the rate card.</p>
+          <p>All prices are in USD. Campaign allocations apply when booking all four formats together. Need extra Shorts, category exclusivity, paid usage rights or a longer partnership? Ask for a tailored scope.</p>
           <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
         </div>
       </div>
@@ -501,7 +508,7 @@ function BookingCalendar({ campaign }) {
 const packages = [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350'], ['Custom package'], ['Collab or something else']];
 
 // Posts to /api/contact; if that fails, the visitor still gets a mailto link with their message in it.
-function ContactForm({ topic, setTopic }) {
+function ContactForm({ topic, setTopic, sponsors = false }) {
   const [status, setStatus] = useState('idle');
   const [mailto, setMailto] = useState('mailto:automojic@proton.me');
   const started = useRef(false);
@@ -529,17 +536,17 @@ function ContactForm({ topic, setTopic }) {
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
-      <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
+      <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder={sponsors ? 'Your product URL, who it helps, and your preferred launch date. Add a budget if you have one.' : 'Your product or idea, timeline, and budget if you have one.'} /></label>
       <label className="contact-trap" aria-hidden="true">Leave this empty<input name="hp" tabIndex="-1" autoComplete="off" /></label>
-      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : 'Send message'}</button>
+      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : sponsors ? 'Request my proposal' : 'Send message'}</button>
       {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
     </form>
   );
 }
 
-function ContactOptions({ campaign }) {
-  const [mode, setMode] = useState('call');
-  const [topic, setTopic] = useState('');
+function ContactOptions({ campaign, sponsors = false }) {
+  const [mode, setMode] = useState(sponsors ? 'message' : 'call');
+  const [topic, setTopic] = useState(sponsors ? 'Custom package' : '');
   useEffect(() => {
     const choose = event => { setMode('message'); setTopic(event.detail); };
     window.addEventListener('choose-package', choose);
@@ -547,9 +554,9 @@ function ContactOptions({ campaign }) {
   }, []);
   return (
     <>
-      <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{[['call', 'Book a call'], ['message', 'Send a message']].map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
+      <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{(sponsors ? [['message', 'Request a proposal'], ['call', 'Book a call']] : [['call', 'Book a call'], ['message', 'Send a message']]).map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
       <div hidden={mode !== 'call'}><BookingCalendar campaign={campaign} /></div>
-      <div hidden={mode !== 'message'}><ContactForm topic={topic} setTopic={setTopic} /></div>
+      <div hidden={mode !== 'message'}><ContactForm topic={topic} setTopic={setTopic} sponsors={sponsors} /></div>
     </>
   );
 }
@@ -599,12 +606,12 @@ function NotesSignup({ placement = 'footer' }) {
   );
 }
 
-function WorkTogether({ campaign }) {
+function WorkTogether({ campaign, sponsors = false }) {
   return (
     <section className="section" id="work-together">
       <div className="shell">
-        <SectionHead title="Book an intro call">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
-        <ContactOptions campaign={campaign} />
+        <SectionHead title={sponsors ? 'Let’s plan your sponsored build' : 'Book an intro call'}>{sponsors ? 'Share your product, audience and launch window. I’ll reply with a proposed scope and price. Prefer to talk first? Choose a free 10-minute intro call. No payment is needed to enquire.' : 'Make an AI model, agent, or automation tool? I’ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.'}</SectionHead>
+        <ContactOptions campaign={campaign} sponsors={sponsors} />
         <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
       </div>
     </section>
@@ -616,8 +623,11 @@ function SponsorsMain({ channel, campaign }) {
   return (
     <>
       <section className="sponsors-intro shell" id="main-content" tabIndex="-1">
-        <h1>Sponsor a build on AI Automation Station</h1>
-        <p className="lede">I test AI models, agents and automation tools on real projects for the channel and the AI Income Lab community. Here are the audience numbers, the packages, past sponsored videos, and a way to book an intro call.</p>
+        <h1>Show what your AI product can actually do.</h1>
+        <p className="lede">Sponsor a practical build on AI Automation Station. Reach developers, founders and automation builders through YouTube and the AI Income Lab community, with a product demo they can follow.</p>
+        <div className="button-row"><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_hero', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Request a sponsorship proposal</a><a className="button button-quiet" href="#services">Explore packages</a></div>
+        <p className="sponsor-proof">Sponsored builds for <a href="#sponsored">Treg, DataForSEO, Bluehost, BrowserAct and Apify</a>.</p>
+        <p className="fine-print">Formats from $300. Four-format campaign: $2,250, saving $300 on separate bookings.</p>
       </section>
 
       <MediaKit />
@@ -625,18 +635,23 @@ function SponsorsMain({ channel, campaign }) {
       <div className="divider" aria-hidden="true" />
       <Services channel={channel} />
 
+      <section className="sponsor-process shell" aria-labelledby="sponsor-process-heading">
+        <h2 id="sponsor-process-heading">From product brief to published build</h2>
+        <ol><li><strong>Share the use case</strong><p>Send your product URL, ideal customer and launch window.</p></li><li><strong>Agree the approach</strong><p>We choose the format, build idea, deliverables and timing before you book.</p></li><li><strong>Publish the practical demo</strong><p>Your product appears in a clearly disclosed sponsored build, with the agreed links and placements.</p></li></ol>
+      </section>
+
       {sponsoredVideos.length > 0 && <>
         <div className="divider" aria-hidden="true" />
         <section className="section" id="sponsored">
           <div className="shell">
-            <SectionHead title="Sponsored builds">Videos a brand paid for. Same rules as every build: a real project, the mistakes left in, and a plain verdict.</SectionHead>
+            <SectionHead title="Sponsored builds">Disclosed brand collaborations, demonstrated through practical builds. Watch the workflow, the troubleshooting and the verdict.</SectionHead>
             <ul className="video-grid sponsored-grid">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
           </div>
         </section>
       </>}
 
       <div className="divider" aria-hidden="true" />
-      <WorkTogether campaign={campaign} />
+      <WorkTogether campaign={campaign} sponsors />
     </>
   );
 }
@@ -707,10 +722,10 @@ function App({ page = 'home' }) {
     <header className="site-header">
       <div className="nav shell">
       <a className="brand" href={sponsorsPage ? '/' : '#top'} aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
-      <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
+      <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={href.startsWith('#') && active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
         <button className="theme-toggle" type="button" data-theme-toggle="" aria-label="Switch to light mode" title="Switch to light mode"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" /></svg></button>
-        <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
+        {sponsorsPage ? <a className="button button-primary nav-join" aria-label="Request a sponsorship proposal" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Send <span className="nav-join-name">a sponsor brief</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
         }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
@@ -900,14 +915,13 @@ function App({ page = 'home' }) {
     <footer className="footer">
       <div className="shell">
         <div className="footer-cta">
-          <p>Build your next automation.</p>
+          <p>{sponsorsPage ? 'Make your product the next build.' : 'Build your next automation.'}</p>
           <div className="button-row">
-            <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-            <a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
+            {sponsorsPage ? <><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_footer', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Request a sponsorship proposal</a><a className="footer-subscribe" href="#services">Compare packages</a></> : <><a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a><a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a></>}
           </div>
         </div>
         <div className="footer-directory">
-          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p><NotesSignup /></div>
+          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p>{!sponsorsPage && <NotesSignup />}</div>
           <nav className="footer-columns" aria-label="Footer">
             <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a><a href="/llms.txt">Site overview</a></div>
             <div><h2>Products</h2><span>TubeAnalytics (temporarily unavailable)</span><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>

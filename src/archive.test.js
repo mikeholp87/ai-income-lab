@@ -592,12 +592,29 @@ test('topic pages link the written guides on the same subject', () => {
   }
 });
 
-test('only videos with the paid promotion box ticked reach the sponsored section', () => {
+test('paid-promotion flags select sponsored builds without including ordinary videos', () => {
   const videos = [
     { id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: 'PT18M3S', embeddable: true, sponsored: true, chapters: [] },
     { id: 'bbbbbbbbbbb', title: 'Unpaid', published: '2026-10-19T00:00:00Z', views: 9, duration: 'PT1M', embeddable: true, sponsored: false },
   ];
   assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+});
+
+test('reviewed spoken disclosures add public sponsored builds without treating affiliate tutorials as paid', async () => {
+  const { sponsorDisclosures } = await import('./sponsor-disclosures.js');
+  const transcripts = JSON.parse(await readFile(new URL('./transcripts.json', import.meta.url), 'utf8'));
+  const { uploads } = await import('./uploads-snapshot.js');
+  for (const [id, { quote }] of Object.entries(sponsorDisclosures)) {
+    assert.ok(transcripts[id].toLowerCase().includes(quote.toLowerCase()), id);
+    assert.ok(uploads.some(video => video.id === id && video.public), id);
+  }
+  const eligible = sponsoredVideos(uploads);
+  for (const id of Object.keys(sponsorDisclosures)) assert.ok(eligible.some(video => video.id === id), id);
+  assert.ok(!eligible.some(video => video.id === 'bCsSqZp0yVg'), 'vidIQ recording explicitly says it is not sponsored');
+  const hidden = { ...uploads.find(video => video.id === 'quDDekuPQNI'), public: false };
+  assert.deepEqual(sponsoredVideos([hidden]), [], 'a historical disclosure cannot republish a private upload');
+  const snapshot = JSON.parse(await readFile(new URL('./sponsored-snapshot.json', import.meta.url), 'utf8'));
+  assert.deepEqual(snapshot.map(video => video.id), eligible.map(video => video.id));
 });
 
 test('watch page titles never reuse a written guide title or its lead phrase', async () => {

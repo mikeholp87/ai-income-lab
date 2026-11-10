@@ -222,6 +222,9 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .service > p:not(.service-price), .service-featured > div > p:not(.service-price, .service-channels), .services-custom p { color: var(--body); font-family: var(--sans); }
 .service-price { font: 400 30px/1 var(--display); color: var(--signal); }
 .service-price span { margin-left: 8px; color: var(--muted); font: 500 12px var(--mono); text-decoration: line-through; }
+.service .service-saving { padding: 12px 16px; border-left: 2px solid var(--signal); background: var(--ink); font-size: 14px; }
+.service-saving strong, .service-featured > div > p.campaign-saving { color: var(--signal); }
+.campaign-includes { display: grid; gap: 8px; padding-left: 20px; color: var(--body); }
 .service .button { margin-top: auto; }
 .service-featured { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; margin-top: 64px; padding: 48px; }
 .service-featured > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
@@ -364,6 +367,16 @@ a.video-card:hover h3 { color: var(--signal); }
 .sponsors-intro { padding: 72px 0 0; }
 .sponsors-intro + .section { padding-top: 72px; }
 .sponsors-intro h1 { max-width: 20ch; font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
+.sponsors-intro .button-row { margin-top: 28px; }
+.sponsor-proof { margin-top: 28px; color: var(--body); }
+.sponsor-proof a { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+.sponsors-intro > .fine-print { margin-top: 12px; }
+.sponsor-process { padding-bottom: 64px; }
+.sponsor-process h2 { margin: 40px 0 24px; font: 600 clamp(24px, 3vw, 32px)/1.2 var(--sans); }
+.sponsor-process ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px; padding-left: 24px; }
+.sponsor-process li { padding-left: 8px; color: var(--signal); }
+.sponsor-process strong { color: var(--text); }
+.sponsor-process p { margin-top: 8px; color: var(--body); }
 .brands-strip.section { padding: 64px 0; }
 .brands-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px; padding: 48px 56px; border: 1px solid color-mix(in srgb,var(--signal) 35%,transparent); border-radius: 24px; background: radial-gradient(700px 320px at 90% -20%, color-mix(in srgb,var(--signal) 18%,transparent), transparent 60%), linear-gradient(180deg, var(--raised), var(--panel)); box-shadow: 0 30px 80px -40px color-mix(in srgb,var(--signal) 35%,transparent), inset 0 1px 0 rgb(255 255 255 / .04); }
 .brands-row::before { content: ''; position: absolute; top: -1px; left: 56px; width: 120px; height: 3px; border-radius: 0 0 3px 3px; background: var(--signal); }

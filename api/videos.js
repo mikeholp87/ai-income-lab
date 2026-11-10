@@ -79,7 +79,7 @@ export async function GET(request) {
   }
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
   const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
-  // The homepage swaps in this list, so a newly ticked paid-promotion box shows within a day, no rebuild needed.
+  // The sponsors page swaps in this list; shared selection also retains reviewed spoken disclosures.
   if (sponsored) return Response.json(sponsoredVideos(memo.videos), { headers: { 'Cache-Control': cache } });
   if (index) return Response.json(videoIndex(memo.videos), { headers: { 'Cache-Control': cache } });
   if (sitemap) return new Response(renderVideoSitemap(memo.videos), { headers: { 'Content-Type': 'application/xml; charset=utf-8', 'Cache-Control': cache } });

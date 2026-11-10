@@ -211,7 +211,7 @@ test('the homepage shows six featured guide cards and links the full guides page
 test('the sponsors page holds the media kit, services, sponsored videos and booking, in that order', () => {
   const start = jsx.indexOf('function SponsorsMain(');
   const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
-  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', '<WorkTogether campaign={campaign} />'].map(text => page.indexOf(text));
+  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', '<WorkTogether campaign={campaign} sponsors />'].map(text => page.indexOf(text));
   assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
   assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
@@ -229,6 +229,20 @@ test('every rate card format has a service card with its price', () => {
   for (const [name, price] of [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350']]) {
     assert.match(services, new RegExp(`<h3>${name}</h3>\\s*<p className="service-price">\\${price}`), name);
   }
+});
+
+test('campaign allocations total the actual bundle price and preserve the published standalone rates', () => {
+  const services = jsx.slice(jsx.indexOf('function Services('), jsx.indexOf('function MediaKit('));
+  const money = value => Number(value.replace(/,/g, ''));
+  const allocations = [...services.matchAll(/className="service-saving">In the four-format campaign: <strong>\$([\d,]+)<\/strong> — save \$([\d,]+)/g)];
+  assert.equal(allocations.length, 4);
+  const allocated = allocations.reduce((sum, match) => sum + money(match[1]), 0);
+  const savings = allocations.reduce((sum, match) => sum + money(match[2]), 0);
+  const bundle = services.match(/className="service-price">\$([\d,]+) <span>\$([\d,]+) separately/);
+  assert.equal(allocated, money(bundle[1]));
+  assert.equal(savings, 300);
+  assert.equal(allocated + savings, money(bundle[2]));
+  assert.match(services, /Campaign allocations apply when booking all four formats together/);
 });
 
 test('the homepage header links FAQ, the sponsors page and Contact; old sponsor anchors forward there', () => {

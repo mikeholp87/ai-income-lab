@@ -6,6 +6,7 @@ import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchHeading } from './watch-title.js';
 import { toolLink } from './tool-links.js';
+import { sponsorDisclosures } from './sponsor-disclosures.js';
 import { videoTools } from './video-tools.js';
 import { curatedSummary } from './curated-summary.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
@@ -71,8 +72,8 @@ export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
   return videos.filter(video => video.public);
 }
 
-// Videos with YouTube Studio's "Includes paid promotion" box ticked, as the homepage's sponsored section shows them.
-export const sponsoredVideos = videos => videos.filter(video => video.sponsored)
+// Include reviewed spoken disclosures as well as YouTube's paid-promotion flag; only public uploads are eligible.
+export const sponsoredVideos = videos => videos.filter(video => video.public !== false && (video.sponsored || Object.hasOwn(sponsorDisclosures, video.id)))
   .map(({ id, title, published, views, duration, embeddable }) => ({ id, title, published, views, duration: formatDuration(duration), embeddable }));
 
 export const perPage = 15;
