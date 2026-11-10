@@ -5,11 +5,6 @@
     "url": "https://github.com/mikeholp87/apt"
   },
   {
-    "name": "mikeholp87.github.io",
-    "description": "Personal site, generated from my public repositories",
-    "url": "https://github.com/mikeholp87/mikeholp87.github.io"
-  },
-  {
     "name": "update-forge",
     "description": "Auto Updater App For Windows",
     "url": "https://github.com/mikeholp87/update-forge"

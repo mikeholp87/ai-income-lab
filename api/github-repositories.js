@@ -3,7 +3,7 @@ const cache = { 'Cache-Control': 'public, max-age=300, s-maxage=3600, stale-whil
 const noStore = { 'Cache-Control': 'no-store' };
 const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2026-03-10' };
 const projectCutoff = '2026-01-01T00:00:00Z';
-const hidden = new Set(['solar-business-directory', 'seo-tool']);
+const hidden = new Set(['solar-business-directory', 'seo-tool', 'mikeholp87.github.io']);
 
 export async function GET() {
   try {

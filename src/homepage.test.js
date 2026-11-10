@@ -97,7 +97,7 @@ test('the homepage lists GitHub projects in a separate section', () => {
   const start = jsx.indexOf('id="code"');
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
   for (const name of ['Tasky', 'Luma-Launcher', 'Restic-Studio']) assert.match(snapshot, new RegExp(name));
-  for (const name of ['solar-business-directory', 'seo-tool']) assert.doesNotMatch(snapshot, new RegExp(name));
+  for (const name of ['solar-business-directory', 'seo-tool', 'mikeholp87.github.io']) assert.doesNotMatch(snapshot, new RegExp(name));
   assert.match(section, /projects\.slice\(0, 9\)\.map\(repo/);
   assert.doesNotMatch(section, /DoStuff-Media/);
   assert.match(section, /<\/ul>\s*<a className="repo-profile"[^>]+>View all on GitHub/);
