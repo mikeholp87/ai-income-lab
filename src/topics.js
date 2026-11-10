@@ -5,7 +5,7 @@
 export const topics = [
   {
     slug: 'claude-code', name: 'Claude Code',
-    title: 'Claude Code tutorials: builds, skills and workflows | Mike Holp',
+    title: 'Claude Code tutorials: builds, skills, workflows | Mike Holp',
     heading: 'Claude Code tutorials and builds',
     intro: 'Builds, skills and workflows with Anthropic’s Claude Code in the terminal.',
     about: 'Each video here uses Claude Code on a real project rather than a toy prompt: installing it, adding skills and routines, wiring it to outside data, and checking what it gets wrong. Start with the beginner walkthrough if you have never run a coding agent, then use the comparison guide to decide when Claude Code is the right tool and when Codex or OpenCode fits the task better. Most builds show the full session, including the fixes, so you can judge how much supervision the agent needed.',
@@ -25,7 +25,7 @@ export const topics = [
   },
   {
     slug: 'n8n', name: 'n8n',
-    title: 'n8n tutorials: AI workflows, agents and self-hosting | Mike Holp',
+    title: 'n8n tutorials: AI workflows and self-hosting | Mike Holp',
     heading: 'n8n tutorials: AI workflows and agents',
     intro: 'Workflows and AI automations in n8n, from a first build to self-hosted agents.',
     about: 'n8n is the source-available workflow tool I use when an automation needs custom logic, AI steps or self-hosting. Its fair-code licenses differ from OSI open-source licenses; the alternatives guide explains that distinction. The videos build complete workflows node by node, from content and LinkedIn automations to AI agents that call outside tools, and show where each one needed manual checks. The written guides cover what n8n is used for, how it compares with Zapier and Make on billing and hosting, open-source alternatives, and a Docker or Node.js install on Ubuntu.',
@@ -61,7 +61,7 @@ export const topics = [
   },
   {
     slug: 'make-money', name: 'Earn with AI',
-    title: 'Make money with AI: client services and honest tests | Mike Holp',
+    title: 'Make money with AI: client work and honest tests | Mike Holp',
     heading: 'Make money with AI: client work, leads and services',
     intro: 'Client services, lead generation and monetization with AI, tested without income promises.',
     about: 'These videos cover the business side of AI skills: finding clients, generating and qualifying leads, running a small automation agency, and meeting platform monetization rules. None of them promise income. The written guides start with the honest version of fast AI income, then compare beginner side hustles and the client services you can sell with ChatGPT or automation tools. Results depend on your skills, your market and the time you put in.',
@@ -79,7 +79,7 @@ export const topics = [
   },
   {
     slug: 'ai-video', name: 'AI video and YouTube',
-    title: 'AI video tutorials: avatars, Shorts and YouTube tools | Mike Holp',
+    title: 'AI video tutorials: avatars, Shorts, YouTube | Mike Holp',
     heading: 'AI video and YouTube tutorials',
     intro: 'AI video editing, Shorts, thumbnails and avatar workflows for creators.',
     about: 'Tools for making and growing video with AI: avatar presenters, faceless channels, Shorts automation, thumbnails and YouTube analytics. The videos test each tool on real uploads and show the limits, from credit costs to voice quality and platform rules on AI content. The written guides cover a first HeyGen avatar video, a YouTube channel growth workflow, and an AI content creation path for images, video and audio.',

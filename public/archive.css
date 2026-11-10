@@ -24,6 +24,7 @@ h2 { margin: 56px 0 24px; font: 400 28px 'Archivo Black', sans-serif; }
 ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 40px 24px; margin: 0; padding: 0; list-style: none; }
 li a { display: grid; gap: 10px; }
 li img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--line); background: var(--panel); }
+nav[aria-label="Breadcrumb"] a { display: inline-block; min-height: 24px; line-height: 24px; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font: 400 12px 'DM Mono', monospace; }
 .thumb { position: relative; display: block; }
 .duration { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; color: #fff; background: rgb(0 0 0 / .8); font: 500 12px/1.4 'DM Mono', monospace; }

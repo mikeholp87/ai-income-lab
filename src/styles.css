@@ -327,7 +327,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .timeline li { display: grid; grid-template-columns: 72px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
 .timeline span { color: var(--signal); }
 .about-links { display: flex; gap: 28px; margin-top: 32px; font-size: 13px; }
-.about-links a { color: var(--muted); }
+.about-links a { display: inline-flex; align-items: center; min-width: 24px; min-height: 24px; color: var(--muted); }
 .about-links a:hover { color: var(--text); }
 
 /* Booking */

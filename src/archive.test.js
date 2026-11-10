@@ -545,7 +545,7 @@ test('topic pages list only matching videos on one page with their own canonical
     { id: 'bbbbbbbbbbb', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: '', embeddable: true },
   ];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<title>Claude Code tutorials: builds, skills and workflows \| Mike Holp<\/title>/);
+  assert.match(html, /<title>Claude Code tutorials: builds, skills, workflows \| Mike Holp<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/claude-code">/);
   assert.match(html, /<meta property="og:title" content="Claude Code tutorials and builds">/);
   assert.match(html, /<h1>Claude Code tutorials and builds<\/h1><p>1 videos?, newest first\. Builds, skills and workflows[^<]*<\/p><p>Each video here uses Claude Code/);

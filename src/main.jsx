@@ -293,7 +293,7 @@ function FeaturedVideo({ video, playButtonRef }) {
             </button>}
       </div>
       <div className="player-meta">
-        <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
+        <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time>{video.views >= 1000 && <span>{formatViews(video.views)}</span>}</p>
         <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
       </div>
