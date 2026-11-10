@@ -19,7 +19,7 @@ export const topics = [
     heading: 'Codex and OpenCode tutorials',
     intro: 'Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.',
     about: 'These videos cover OpenAI Codex and the open-source OpenCode agent: installing them on macOS and Linux, choosing providers and models, working within plan usage limits, and running the same task through different agents to compare the results. The written guides turn the recurring questions into checklists you can follow without rewatching: making and verifying a small code change, installing Codex on Linux, checking usage limits and reset times before a long session, and setting up OpenCode Go or an OpenRouter key.',
-    pattern: /\bcodex\b|open ?code/i,
+    pattern: /\bcodex\b|open ?code|herdr|9 ?router|track token usage/i,
     guides: [['/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'], ['/guides/codex-seo-workflow.html', 'Internal Link Audit with Codex: A Reviewed SEO Workflow'], ['/guides/herdr-guide.html', 'Herdr Terminal Guide: Workspaces and Coding-Agent Sessions'], ['/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'], ['/guides/codex-usage-limits.html', 'Codex usage limits: check usage, plans and reset times'], ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code: pricing, setup and limits'], ['/guides/opencode-go.html', 'OpenCode Go: pricing, models, limits and setup'], ['/guides/openrouter-setup.html', 'OpenRouter: API key, free models, pricing and setup']],
     supportingGuides: [['/guides/9router-setup.html', '9Router setup and provider routing']],
   },
@@ -47,7 +47,7 @@ export const topics = [
     heading: 'AI agent tutorials and tests',
     intro: 'Personal assistants, research agents and agent tools tested on real tasks.',
     about: 'This is the largest topic on the channel: personal AI assistants, research and job-search agents, voice agents and desktop agent apps, each given a real task instead of a demo prompt. The videos show the setup, what the agent finished on its own, and what still needed a person. The written guides cover installing Hermes and OpenClaw, building a Vapi voice agent, comparing no-code agent builders, and when agentic AI differs from a fixed workflow.',
-    pattern: /\bagents?\b|grok ?bot|hermes|openclaw|second brain|chief of staff|personal ai assistant|\bvapi\b/i,
+    pattern: /\bagents?\b|grok ?bot|hermes|openclaw|second brain|chief of staff|personal ai assistant|\bvapi\b|odysseus|kiloclaw|moltbook|clawdbot|ai assistant|ai operating system|\bjev\b/i,
     guides: [['/guides/hermes-desktop.html', 'Hermes Desktop: install on Mac, Windows or Linux'], ['/guides/grokbot-for-beginners.html', 'GrokBot for Beginners: First Bot, Access and Approvals'], ['/guides/grokbot-vs-dots.html', 'GrokBot vs Dots: Onboarding, Job Drafts and Permissions'], ['/guides/herdr-desktop-app.html', 'Herdr Desktop Guide: Setup, Workspaces and Limits'], ['/guides/grokbot-virtual-office.html', 'GrokBot Virtual Office: Build a Custom Agent Dashboard'], ['/guides/run-a-blog-with-grokbot.html', 'GrokBot WordPress Workflow: Long-Form Videos to Drafts'], ['/guides/install-openclaw.html', 'How to install OpenClaw: local, VPS or hosted, safely'], ['/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'], ['/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'], ['/guides/agentic-ai-vs-traditional-automation.html', 'How does agentic AI differ from traditional automation?'], ['/guides/ai-agent-workflow.html', 'AI agent workflow: choose tools, add checks, keep control']],
   },
   {
@@ -65,7 +65,7 @@ export const topics = [
     heading: 'Make money with AI: client work, leads and services',
     intro: 'Client services, lead generation and monetization with AI, tested without income promises.',
     about: 'These videos cover the business side of AI skills: finding clients, generating and qualifying leads, running a small automation agency, and meeting platform monetization rules. None of them promise income. The written guides start with the honest version of fast AI income, then compare beginner side hustles and the client services you can sell with ChatGPT or automation tools. Results depend on your skills, your market and the time you put in.',
-    pattern: /\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b|\bleads?\b|agency|brand deals|profitable|rat race|scaling businesses|online business/i,
+    pattern: /\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b|\bleads?\b|agency|brand deals|profitable|rat race|scaling businesses|online business|\bskool\b/i,
     guides: [['/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'], ['/guides/make-money-with-ai-no-experience.html', 'How to make money with AI with no experience'], ['/guides/make-money-with-chatgpt.html', 'How to make money with ChatGPT: 4 client services'], ['/guides/ai-side-hustles.html', 'AI side hustles for beginners: 7 services to test'], ['/guides/ai-automation-services-small-business.html', 'How to sell AI automation services to small businesses']],
   },
   {
@@ -74,7 +74,7 @@ export const topics = [
     heading: 'AI website and app builder tutorials',
     intro: 'Websites, landing pages and web apps built with AI builders, start to finish.',
     about: 'Each video builds a real site or app with an AI builder, from Lovable, Replit and Base44 to Google AI Studio, Antigravity and KiloCode, then checks what shipped. You see the prompts, the fixes and the deployment, so you can compare how much each tool did on its own. The written guides cover installing Kilo Code and running a first task you can check, and adding a YouTube feed to a React site with caching and a fallback when the API is down.',
-    pattern: /website|landing pages?|web apps?|\bsaas\b|lovable|replit|base44|ai studio|antigravity|kilocode|runable|bluehost|rocket ai/i,
+    pattern: /website|landing pages?|web apps?|\bsaas\b|lovable|replit|base44|ai studio|antigravity|kilocode|runable|bluehost|rocket ai|claude design|design alternative/i,
     guides: [['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit: pricing and which to pick'], ['/guides/runable-audit-website.html', 'Runable AI Audit-Service Website: Research to an MVP'], ['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks']],
   },
   {
@@ -83,7 +83,7 @@ export const topics = [
     heading: 'AI video and YouTube tutorials',
     intro: 'AI video editing, Shorts, thumbnails and avatar workflows for creators.',
     about: 'Tools for making and growing video with AI: avatar presenters, faceless channels, Shorts automation, thumbnails and YouTube analytics. The videos test each tool on real uploads and show the limits, from credit costs to voice quality and platform rules on AI content. The written guides cover a first HeyGen avatar video, a YouTube channel growth workflow, and an AI content creation path for images, video and audio.',
-    pattern: /\bvideos?\b|shorts|thumbnails?|youtube|opusclip|vidiq|tube ?analytics|heygen|avatar/i,
+    pattern: /\bvideos?\b|shorts|thumbnails?|youtube|opusclip|vidiq|tube ?analytics|heygen|avatar|faceless|syllaby/i,
     guides: [['/guides/heygen-ai-avatar-tutorial.html', 'HeyGen AI avatar tutorial: create your first video'], ['/guides/chatgpt-images-sketch-workflow.html', 'ChatGPT Image Editing: Sketch-to-Scene and Local Edits'], ['/guides/opendesign-linux-slides.html', 'OpenDesign (Open Design) on Linux: Source Setup and Slides'], ['/guides/rea-video-editor-prototype.html', 'REA Coding-Agent Case: A Video-Editor Prototype'], ['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow: research, publish, learn'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow: images, video and audio']],
   },
   {
@@ -94,6 +94,24 @@ export const topics = [
     about: 'When a new model ships, these videos cover what changed, what it costs, and how it handles a real build compared with the model it replaces. They include Claude, GPT, Gemini, Grok and open-weight releases such as Qwen, DeepSeek and GLM. Launch details change quickly, so check the provider’s own pricing and limits before you switch a production workload to a model you saw here. The written guides compare Claude models and show how to choose a model with a small test set.',
     pattern: /claude (opus|sonnet|haiku|fable|mythos)|\bgpt[- ]?\d|chatgpt (\d|images)|gemini \d|grok \d|deepseek|\bglm\b|qwen|kimi|\bllama\b|meta muse|mistral|openai just released/i,
     guides: [['/guides/claude-models-compared.html', 'Claude Opus vs Sonnet vs Haiku vs Fable: which to use'], ['/guides/muse-code-setup.html', 'Meta Muse Code Setup: API Failure and a Working CLI'], ['/guides/deepseek-harness-first-test.html', 'DeepSeek Harness First Test: Setup Errors and Demo Limits'], ['/guides/choosing-ai-models-for-a-task.html', 'How to choose an AI model for a task']],
+  },
+  {
+    slug: 'ai-content', name: 'AI content and social media',
+    title: 'AI content tutorials: posts, images and chatbots | Mike Holp',
+    heading: 'AI content and social media tutorials',
+    intro: 'Social posts, images, presentations and page chatbots made with AI tools.',
+    about: 'These videos use AI for the content side of a business: LinkedIn and social posts, repurposing one piece into many, images with Nano Banana, presentations with Gamma, an ebook, and chatbots that answer on a Facebook page or in Messenger. Each one shows the tool on a real task, what it produced and where it still needed editing, so you can judge the time it saves before relying on it for a client or your own channel.',
+    pattern: /linkedin|facebook|messenger|social media|\bcontent\b|ebook|presentations?|\bgamma\b|nano ?banana|infographics|notebooklm|chatbot/i,
+    guides: [['/guides/ai-content-creation-workflows.html', 'AI content creation workflow: images, video and audio'], ['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow: research, publish, learn'], ['/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more']],
+  },
+  {
+    slug: 'ai-automation', name: 'AI automation ideas',
+    title: 'AI automation ideas: no-code workflows to copy | Mike Holp',
+    heading: 'AI automation ideas and no-code workflows',
+    intro: 'Practical automations for email, leads, content and admin, with the tools named.',
+    about: 'Start here if you know a task is repetitive but not which automation to build. These videos run through automation ideas for small businesses and creators, from form-to-database workflows and inbox handling to lead lists and content pipelines, and name the tool each one uses, usually Make.com, n8n or an AI agent. The written guides explain what AI automation is, how the main builders differ on billing, and how to sell the work as a service.',
+    pattern: /\bai automations?\b|airtable|fillout|zapier|automate (your|my)|automating/i,
+    guides: [['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'], ['/guides/n8n-vs-zapier-vs-make.html', 'n8n vs Zapier vs Make: billing, builders and AI agents'], ['/guides/agentic-ai-vs-traditional-automation.html', 'How does agentic AI differ from traditional automation?'], ['/guides/ai-automation-services-small-business.html', 'How to sell AI automation services to small businesses']],
   },
 ];
 

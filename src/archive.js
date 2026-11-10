@@ -4,6 +4,8 @@ import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
+import { watchPageCopy } from './watch-page-copy.js';
+import { videoChapters } from './video-chapters.js';
 import { watchHeading } from './watch-title.js';
 import { toolLink } from './tool-links.js';
 import { sponsorDisclosures } from './sponsor-disclosures.js';
@@ -221,7 +223,7 @@ const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`
 const noMaxresThumbnail = new Set(['0jzTOUv_B04', 'F5PwcTwtEos', 'w_MoA8lpWTg', 'HlPdlZh0AHM', 'UnnN2i90ALg', 'rZh4zVT2LKY', '1TPm7B5oStw']);
 const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`]), thumbnailUrl(video)];
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
-const searchTitle = video => watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle || watchSeo[video.id]?.title;
+const searchTitle = video => watchPageCopy[video.id]?.title || watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle || watchSeo[video.id]?.title;
 const videoHeading = video => searchTitle(video) || watchHeading(video.title);
 const toolItem = tool => {
   const link = toolLink(tool);
@@ -245,7 +247,7 @@ export function snippet(text, max = 160) {
   if (text.length <= max) return text;
   const cut = text.slice(0, max);
   const sentence = cut.match(/^[\s\S]*[.!?](?=\s)/)?.[0];
-  return sentence?.length > 80 ? sentence : `${cut.replace(/\s+\S*$/, '')}…`;
+  return sentence?.length > 60 ? sentence : `${cut.replace(/\s+\S*$/, '')}…`;
 }
 
 // ponytail: title-word overlap with a hand-kept stop list; switch to tags or embeddings if matches get noisy.
@@ -317,6 +319,15 @@ export const guides = [
   [/ollama|private ai/i, '/guides/first-api-request.html', 'Make your first AI API request with a local test'],
   [/claude.*\bseo\b|\bseo\b.*claude/i, '/guides/dataforseo-mcp-claude.html', 'DataForSEO MCP: give Claude Code real SEO data'],
   [/\bseo\b|ai visibility|ai search|answer engines|invisible to ai/i, '/guides/openseo-review.html', 'OpenSEO review: setup, data costs and practical limits'],
+  [/grok ?bot/i, '/guides/grokbot-for-beginners.html', 'GrokBot for Beginners: First Bot, Access and Approvals'],
+  [/grok \d|kimi|\bglm\b|gemini \d|deepseek v\d/i, '/guides/choosing-ai-models-for-a-task.html', 'How to choose an AI model for a task'],
+  [/thumbnails?|shorts|opusclip|video editor|edits your videos|tube ?analytics|youtube (automation|transcript|topics|creators)|grow on youtube/i, '/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow: research, publish, learn'],
+  [/facebook|messenger|chatbot/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
+  [/sora|linkedin|social media|repurpos|ebook|infographics|notebooklm|nano ?banana|\bgamma\b|on content/i, '/guides/ai-content-creation-workflows.html', 'AI content creation workflow: images, video and audio'],
+  [/coding agent|ai skills you need to install|claude design|antigravity|rocket ai|booking website|\bsaas\b|browseract|operating system|trading bot/i, '/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents: a safe first workflow'],
+  [/claude routines|second brain|odysseus|ai assistant|apify/i, '/guides/ai-agent-workflow.html', 'AI agent workflow: choose tools, add checks, keep control'],
+  [/fillout|airtable/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
+  [/\bskool\b|rat race|ai skills you need to master/i, '/guides/make-money-with-ai-no-experience.html', 'Make money with AI with no experience'],
   [/\bleads?\b|agency/i, '/guides/ai-automation-services-small-business.html', 'How to sell AI automation services to small businesses'],
   [/ai automations?\b|automation tools/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
   [/\bai agents?\b/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
@@ -340,9 +351,10 @@ const watchGuideLinks = {
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
 export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const description = videoDescription(video);
+  const metaDescription = watchPageCopy[video.id]?.description || snippet(description);
   const offer = videoOffer(video.title);
   const seconds = durationSeconds(video.duration);
-  const chapters = validChapters(video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
+  const chapters = validChapters(videoChapters[video.id] ?? video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
   const related = relatedVideos(video, videos);
   const guide = watchGuideLinks[video.id] ?? guides.find(([pattern]) => pattern.test(video.title))?.slice(1);
   const topic = topicFor(video.title);
@@ -386,7 +398,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(searchTitle(video) || video.title)}</title>
-<meta name="description" content="${escape(snippet(description))}">
+<meta name="description" content="${escape(metaDescription)}">
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
@@ -400,7 +412,7 @@ ${fontPreloads}
 <meta property="og:site_name" content="AI Automation Station">
 <meta property="og:url" content="${watchUrl(video)}">
 <meta property="og:title" content="${escape(heading)}">
-<meta property="og:description" content="${escape(snippet(description))}">
+<meta property="og:description" content="${escape(metaDescription)}">
 <meta property="og:image" content="${thumbnailUrl(video)}">
 <meta name="twitter:card" content="summary_large_image">
 ${jsonLd(schema)}
@@ -445,7 +457,8 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <ol>${brief.keySteps.map(step => `<li>${Number.isFinite(step.seconds) ? `<a href="#t=${step.seconds}">${clock(step.seconds)}</a> ` : ''}${escape(step.step)}</li>`).join('')}</ol>` : ''}${brief.notCovered?.length ? `
 <h3>Not covered</h3>
 <ul>${brief.notCovered.map(item => `<li>${escape(item)}</li>`).join('')}</ul>` : ''}
-<p class="meta">${escape(brief.sourceNote || "Summary written from the video's transcript and chapters.")}</p>
+${watchPageCopy[video.id]?.disclosure ? `<p class="meta">${escape(watchPageCopy[video.id].disclosure)}</p>
+` : ''}<p class="meta">${escape(brief.sourceNote || "Summary written from the video's transcript and chapters.")}</p>
 </section>` : ''}${tools?.length ? `
 <section aria-labelledby="tools-used">
 <h2 id="tools-used">Tools used</h2>

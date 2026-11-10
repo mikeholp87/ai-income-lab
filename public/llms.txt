@@ -39,6 +39,8 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Make money with AI: client work, leads and services](https://www.ai-automation-station.com/videos/make-money): Client services, lead generation and monetization with AI, tested without income promises.
 - [AI website and app builder tutorials](https://www.ai-automation-station.com/videos/ai-website-builders): Websites, landing pages and web apps built with AI builders, start to finish.
 - [AI video and YouTube tutorials](https://www.ai-automation-station.com/videos/ai-video): AI video editing, Shorts, thumbnails and avatar workflows for creators.
+- [AI content and social media tutorials](https://www.ai-automation-station.com/videos/ai-content): Social posts, images, presentations and page chatbots made with AI tools.
+- [AI automation ideas and no-code workflows](https://www.ai-automation-station.com/videos/ai-automation): Practical automations for email, leads, content and admin, with the tools named.
 - [New AI model launches, tested](https://www.ai-automation-station.com/videos/new-models): Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.
 
 ## Start building

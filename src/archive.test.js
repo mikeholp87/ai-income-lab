@@ -8,7 +8,7 @@ import { uploads } from './uploads-snapshot.js';
 import { videoTools } from './video-tools.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
-import { durationSeconds } from './youtube.js';
+import { durationSeconds, validChapters } from './youtube.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
 import { topicBySlug, topics } from './topics.js';
@@ -60,7 +60,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.deepEqual(schema.hasPart.map(clip => [clip.startOffset, clip.endOffset]), [[0, 98], [98, 400], [400, 675]]);
   assert.equal(schema.hasPart[1].url, 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa?t=98');
   assert.equal(schema.author['@id'], 'https://www.ai-automation-station.com/#mike');
-  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
+  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', 'Codex and OpenCode', video.title]);
   assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
   assert.match(html, /<a href="#t=98">1:38<\/a> Providers/);
   const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('.chapters'));
@@ -340,7 +340,9 @@ test('saved chapter lists produce only valid Clips within video duration', () =>
   }
   const broken = uploads.find(video => video.id === 'oDAKXkIyOHE');
   assert.ok(broken);
-  assert.doesNotMatch(renderWatch(broken), /"hasPart"|id="chapters"/);
+  assert.deepEqual(validChapters(broken.chapters, durationSeconds(broken.duration)), []);
+  assert.match(renderWatch(broken), /id="chapters"/);
+  assert.doesNotMatch(renderWatch({ ...broken, id: 'zzzzzzzzzzz' }), /"hasPart"|id="chapters"/);
 });
 
 test('priority titles and historical offers stay consistent without renaming recordings', () => {

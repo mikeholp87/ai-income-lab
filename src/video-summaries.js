@@ -125,7 +125,7 @@ export const videoSummaries = {
       },
       {
         "q": "What happens when you hit the usage limit?",
-        "a": "The agent stops until the weekly limit resets. In the recording that was about four days away."
+        "a": "The agent stops until the weekly limit resets. For Mike, that was about four days away at the time."
       }
     ]
   },
@@ -177,7 +177,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Which agents can Herdr run?",
-        "a": "The video runs Codex, Claude Code, OpenCode and Hermes in separate tabs of the same workspace."
+        "a": "Codex, Claude Code, OpenCode and Hermes, which Mike runs in separate tabs of the same workspace."
       },
       {
         "q": "Does Herdr keep sessions after you close it?",
@@ -185,7 +185,7 @@ export const videoSummaries = {
       },
       {
         "q": "Is it heavy on memory?",
-        "a": "In the recording it used about 8 GB with several agents running."
+        "a": "It used about 8 GB with several agents running in Mike's test."
       }
     ]
   },
@@ -292,7 +292,7 @@ export const videoSummaries = {
         "a": "It is a skill for coding agents that inspects an existing application and helps recreate its features in your own project."
       },
       {
-        "q": "How long did the rebuild take?",
+        "q": "How long did the REA Kdenlive rebuild take?",
         "a": "About four to five hours with Claude Code."
       },
       {
@@ -349,7 +349,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Can you use Muse Wonder in OpenCode?",
-        "a": "Not in this recording. The API key kept failing, so the working route was Muse Code."
+        "a": "Mike could not get it working there. The API key kept failing, so the working route was Muse Code."
       },
       {
         "q": "Are the benchmark results independent?",
@@ -469,10 +469,10 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Haiku 5.5 tested in the video?",
-        "a": "No. The video reviews the announcement and says hands-on testing will come later."
+        "a": "No. Mike reviews the announcement and says hands-on testing will come later."
       },
       {
-        "q": "What does it cost?",
+        "q": "How much does Claude Haiku 5.5 cost?",
         "a": "As announced, 10 cents per million input tokens and 50 cents per million output tokens."
       },
       {
@@ -680,7 +680,7 @@ export const videoSummaries = {
       },
       {
         "q": "What does GrokBot cost?",
-        "a": "As stated in the video: a free trial, then $20, $60 or $200 a month."
+        "a": "A free trial, then $20, $60 or $200 a month, as Mike states."
       }
     ]
   },
@@ -742,7 +742,7 @@ export const videoSummaries = {
       },
       {
         "q": "Which AI model does the Manus email autoresponder use?",
-        "a": "The script Manus wrote used OpenAI at first. After adding a Gemini API key, the presenter asked Manus to switch it to Gemini."
+        "a": "The script Manus wrote used OpenAI at first. After adding a Gemini API key, Mike asked Manus to switch it to Gemini."
       }
     ]
   },
@@ -790,14 +790,14 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Do you need a paid plan to use GLM 5.2 in OpenCode?",
-        "a": "In the video, the free Zen option returned an insufficient balance error, and GLM 5.2 worked after switching to the OpenCode Go plan, stated as $10 per month in the recording."
+        "a": "The free Zen option returned an insufficient balance error, and GLM 5.2 worked after switching to the OpenCode Go plan, which Mike states costs $10 per month."
       },
       {
         "q": "Can Hermes Agent use GLM 5.2?",
         "a": "Yes. After connecting the OpenCode Go plan, the model command in Hermes Agent lets you pick GLM 5.2, and it works in both the terminal and the Hermes desktop app."
       },
       {
-        "q": "How much did the tests cost?",
+        "q": "How much did the GLM 5.2 tests cost in OpenCode?",
         "a": "The OpenCode usage page showed about 34 cents spent on GLM 5.2 by the end of the video, as stated in the recording, covered by the Go plan."
       }
     ]
@@ -856,7 +856,7 @@ export const videoSummaries = {
       },
       {
         "q": "Which ElevenLabs plan does the video use?",
-        "a": "It uses the Starter plan, about $5 a month as stated in the recording, for an instant voice clone. The Creator plan, $22 a month as stated, is recommended for a professional clone."
+        "a": "It uses the Starter plan, about $5 a month as Mike states, for an instant voice clone. Mike recommends the Creator plan, $22 a month as stated, for a professional clone."
       },
       {
         "q": "Where does the assistant get its knowledge?",
@@ -914,18 +914,18 @@ export const videoSummaries = {
       },
       {
         "q": "Does the workflow need paid accounts?",
-        "a": "The video says Perplexity will likely need money added to billing. JSON2Video gives a free API key on signup, but the test ran out of credits on the current plan."
+        "a": "Perplexity will likely need money added to billing, Mike says. JSON2Video gives a free API key on signup, but the test ran out of credits on the current plan."
       },
       {
-        "q": "Where can I get the template?",
-        "a": "The template is on the presenter's Gumroad page as free or pay what you want. It is also linked from his Skool community, where templates need the premium plan, as stated in the recording."
+        "q": "Where can I get the Make.com RSS to AI video template?",
+        "a": "The template is on Mike's Gumroad page as free or pay what you want. It is also linked from his Skool community, where templates need the premium plan, Mike says."
       }
     ]
   },
   "4uNxh9FW6Ho": {
     "searchTitle": "Vapi voice agent walkthrough: Twilio and Make.com calls",
-    "summary": "Build an outbound AI voice agent in Vapi with an ElevenLabs voice clone, a Twilio number and a Make.com scenario that calls leads from Google Sheets. The live test books a calendar slot, but the Vapi outbound campaign feature did not work for the creator.",
-    "whatYouBuild": "You build a Vapi appointment scheduler assistant that a Make.com scenario uses to call leads from a Google Sheet, mark them as called and book consultations on Google Calendar.",
+    "summary": "Build an outbound AI voice agent in Vapi with an ElevenLabs voice clone, a Twilio number and a Make.com scenario that calls leads from Google Sheets. The live test books a calendar slot, but the Vapi outbound campaign feature did not work for Mike.",
+    "whatYouBuild": "Mike builds a Vapi appointment scheduler assistant that a Make.com scenario uses to call leads from a Google Sheet, mark them as called and book consultations on Google Calendar.",
     "toolsUsed": [
       "Vapi",
       "ElevenLabs",
@@ -956,13 +956,13 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "The full system prompt and Make.com template are sold separately for $15, as stated in the recording, so the exact prompt is not shown.",
-      "Setting up outbound call campaigns inside Vapi is skipped, and the creator says it did not work for him.",
+      "Setting up outbound call campaigns inside Vapi is skipped, and Mike says it did not work for him.",
       "The Make.com webhook for call status messages is mentioned but never configured."
     ],
     "qa": [
       {
         "q": "Do you need coding to build a Vapi voice agent?",
-        "a": "No. The video builds it with Vapi's assistant settings, a Twilio number and a Make.com scenario, without writing code."
+        "a": "No. Mike builds it with Vapi's assistant settings, a Twilio number and a Make.com scenario, without writing code."
       },
       {
         "q": "Why use Twilio instead of a free Vapi number?",
@@ -1016,7 +1016,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A real message and automated reply are never shown, since business verification was still pending.",
-      "Replying to Facebook comments is not covered, and the video says it is unsure whether that is possible.",
+      "Replying to Facebook comments is not covered, and Mike says he is unsure whether that is possible.",
       "Prompt design for safe or on brand replies is not tested beyond a one line instruction."
     ],
     "qa": [
@@ -1026,7 +1026,7 @@ export const videoSummaries = {
       },
       {
         "q": "Which ChatGPT model is used for replies?",
-        "a": "The video selects a GPT-4 model in the OpenAI Create a Completion module and asks it to create a reply to the Facebook message."
+        "a": "A GPT-4 model is selected in the OpenAI Create a Completion module and asked to create a reply to the Facebook message."
       },
       {
         "q": "What is needed before the bot can go live?",
@@ -1082,15 +1082,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Gamma free to use?",
-        "a": "Gamma is free to start, and the recording shows 400 credits on the free plan. As stated in the recording, paid plans are about $10 per month."
+        "a": "Gamma is free to start, and the free plan shows 400 credits. Mike says paid plans are about $10 per month."
       },
       {
         "q": "Can Gamma export to PowerPoint or Google Slides?",
-        "a": "The share menu offers PDF, PowerPoint, Google Slides and images. In the video the Google Slides export did not work, so a PDF was used."
+        "a": "The share menu offers PDF, PowerPoint, Google Slides and images. In Mike's test the Google Slides export did not work, so a PDF was used."
       },
       {
         "q": "Can Gamma turn a presentation into a website?",
-        "a": "Yes. The video converts the deck to a site and publishes it, but publishing to a custom domain needs a paid plan."
+        "a": "Yes. Mike converts the deck to a site and publishes it, but publishing to a custom domain needs a paid plan."
       }
     ]
   },
@@ -1151,7 +1151,7 @@ export const videoSummaries = {
       },
       {
         "q": "Does Pi work with free models on OpenRouter?",
-        "a": "The video selects a free Gemma 4 model and it starts running, but it later returns a temporarily rate limited error, so the creator switches to a paid low-cost model."
+        "a": "A free Gemma 4 model starts running, but it later returns a temporarily rate limited error, so Mike switches to a paid low-cost model."
       }
     ]
   },
@@ -1209,7 +1209,7 @@ export const videoSummaries = {
       },
       {
         "q": "How long did the first version take to build?",
-        "a": "The video says the minimal viable product took about 15 minutes to build in OpenCode. More time followed fixing build and database errors."
+        "a": "The minimal viable product took about 15 minutes to build in OpenCode, Mike says. More time followed fixing build and database errors."
       },
       {
         "q": "Why did the YouTube import stall?",
@@ -1271,7 +1271,7 @@ export const videoSummaries = {
       },
       {
         "q": "What if there is no Apify actor for the site I want to scrape?",
-        "a": "In the video, Claude Code wrote its own Playwright scraper that intercepted Klook's API responses when no suitable actor worked."
+        "a": "Claude Code wrote its own Playwright scraper that intercepted Klook's API responses when no suitable actor worked."
       },
       {
         "q": "Why were hotel prices missing from the Klook scrape?",
@@ -1327,7 +1327,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Kimi K2.7 Code cheaper to use than DeepSeek V4 Pro?",
-        "a": "Not in this test. The site audit alone cost nearly half of a full day of DeepSeek V4 Pro use, and the presenter says he rarely hits limits with DeepSeek."
+        "a": "Not in this test. The site audit alone cost nearly half of a full day of DeepSeek V4 Pro use, and Mike says he rarely hits limits with DeepSeek."
       },
       {
         "q": "How do I use Kimi K2.7 Code in OpenCode?",
@@ -1335,7 +1335,7 @@ export const videoSummaries = {
       },
       {
         "q": "What did Kimi K2.7 Code do well in the test?",
-        "a": "The audit returned high impact and critical findings that the presenter called good. It also made about 1,700 URL replacements across blog JSON files quickly."
+        "a": "The audit returned high impact and critical findings that Mike called good. It also made about 1,700 URL replacements across blog JSON files quickly."
       }
     ]
   },
@@ -1387,15 +1387,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "How much footage does a HeyGen avatar and voice clone need?",
-        "a": "About 2 minutes of video for the avatar and about 2 minutes of audio for the voice clone, as stated in the recording."
+        "a": "About 2 minutes of video for the avatar and about 2 minutes of audio for the voice clone, as Mike states."
       },
       {
         "q": "Can Make.com create 1080p HeyGen videos?",
-        "a": "In the recording, Make.com could only create 720p videos, even on a paid HeyGen plan."
+        "a": "Make.com could only create 720p videos in Mike's test, even on a paid HeyGen plan."
       },
       {
         "q": "Is the YouTube upload fully automatic?",
-        "a": "The video is uploaded as unlisted, and the title and description still need manual edits. Feeding topics from Airtable is suggested as a next step but not built."
+        "a": "Uploads go to YouTube as unlisted, and the title and description still need manual edits. Feeding topics from Airtable is suggested as a next step but not built."
       }
     ]
   },
@@ -1569,11 +1569,11 @@ export const videoSummaries = {
       },
       {
         "q": "Which apps work with the vidIQ MCP?",
-        "a": "The video says it works with Claude in the browser or desktop app, plus Cursor, ChatGPT, Codex and other MCP clients. Only Claude Desktop is shown."
+        "a": "It works with Claude in the browser or desktop app, plus Cursor, ChatGPT, Codex and other MCP clients, Mike says. Only Claude Desktop is shown."
       },
       {
         "q": "How much does vidIQ cost?",
-        "a": "As stated in the recording, vidIQ paid plans start at $19 per month. The video does not say which plan the MCP requires."
+        "a": "vidIQ paid plans start at $19 per month, Mike says. The video does not say which plan the MCP requires."
       }
     ]
   },
@@ -1695,7 +1695,7 @@ export const videoSummaries = {
       },
       {
         "q": "Should I use the Hermes desktop app or the terminal?",
-        "a": "The video uses the desktop app for ease, but notes it maxed out the CPU and used a lot of memory. The presenter recommends the terminal in most cases."
+        "a": "Mike uses the desktop app for ease, but notes it maxed out the CPU and used a lot of memory. He recommends the terminal in most cases."
       }
     ]
   },
@@ -1755,7 +1755,7 @@ export const videoSummaries = {
       },
       {
         "q": "Why use ZCode instead of GLM 5.2 in OpenCode?",
-        "a": "The video says the desktop app makes GLM 5.2 easier for people who are not comfortable in the terminal. It also shows sub-agents and file edits in a side panel."
+        "a": "The desktop app makes GLM 5.2 easier for people who are not comfortable in the terminal, Mike says. It also shows sub-agents and file edits in a side panel."
       }
     ]
   },
@@ -1878,7 +1878,7 @@ export const videoSummaries = {
       },
       {
         "q": "What commands does Claude SEO include?",
-        "a": "The video uses the audit, plan, image and GEO commands, and the GitHub page also lists sitemap generation among others."
+        "a": "The audit, plan, image and GEO commands are used here, and the GitHub page also lists sitemap generation among others."
       }
     ]
   },
@@ -1982,7 +1982,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is OpenCode free?",
-        "a": "The recording says it seems essentially free because no API keys had to be connected. It is used here while Claude Code credits are waiting to reset."
+        "a": "It seems essentially free because no API keys had to be connected, Mike says. He uses it here while Claude Code credits are waiting to reset."
       },
       {
         "q": "How do you install OpenCode?",
@@ -2047,7 +2047,7 @@ export const videoSummaries = {
       },
       {
         "q": "Can you connect WhatsApp to OpenClaw on Emergent?",
-        "a": "The video tries but does not finish. The channels page showed a channel config schema unavailable error, and the QR code login was left to figure out later."
+        "a": "Not in this test. The channels page showed a channel config schema unavailable error, and the QR code login was left to figure out later."
       }
     ]
   },
@@ -2099,7 +2099,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Does this OpenCode video skill cost anything to build?",
-        "a": "The recording uses a free model in OpenCode Zen and says the build cost zero credits."
+        "a": "The build used a free model in OpenCode Zen and cost zero credits, Mike says."
       },
       {
         "q": "How long does the trimming take?",
@@ -2144,7 +2144,7 @@ export const videoSummaries = {
         "a": "No. It is a separate GitHub project that runs a local proxy so the Claude Code command line can use models from NVIDIA NIM, OpenRouter and other providers."
       },
       {
-        "q": "What did the build cost?",
+        "q": "What did the Free Claude Code build cost?",
         "a": "The OpenRouter balance stayed at $1.68 while the app files were being created. The video suggests Step 3.5 Flash, priced at $0.10 per million tokens, or any of the free models."
       },
       {
@@ -2196,7 +2196,7 @@ export const videoSummaries = {
     ]
   },
   "dQ_gnts0JCE": {
-    "summary": "A live walkthrough of OpenSEO, an open-source SEO platform with a free tier. It connects Google Search Console, links the MCP to Claude Code, and runs keyword research, a site audit and backlink checks on a competitor and on the presenter's own sites. Prices and star counts are quoted from the presenter, not checked here.",
+    "summary": "A live walkthrough of OpenSEO, an open-source SEO platform with a free tier. It connects Google Search Console, links the MCP to Claude Code, and runs keyword research, a site audit and backlink checks on a competitor and on Mike's own sites. Prices and star counts are quoted from Mike, not checked here.",
     "whatYouBuild": "An OpenSEO account connected to Google Search Console and to Claude Code through MCP, used to pull keyword data, run an SEO audit and generate an HTML report of fixes.",
     "toolsUsed": [
       "OpenSEO",
@@ -2204,39 +2204,39 @@ export const videoSummaries = {
       "Google Search Console"
     ],
     "keySteps": [
-      { "seconds": 27, "step": "Compare OpenSEO's free tier and plans from $10 a month with Semrush, which the presenter says starts at $149." },
+      { "seconds": 27, "step": "Compare OpenSEO's free tier and plans from $10 a month with Semrush, which Mike says starts at $149." },
       { "seconds": 56, "step": "Find the MCP install instructions for Claude Code or Codex." },
       { "seconds": 81, "step": "Connect Google Search Console so site data comes in without a custom skill." },
       { "seconds": 105, "step": "Paste the setup prompt into Claude Code to link the MCP." },
       { "seconds": 145, "step": "Run keyword research for a seed term and sort long-tail results by competition." },
       { "seconds": 231, "step": "Run the recommended SEO audit command through the MCP and authorize read access." },
       { "seconds": 260, "step": "Check a large competitor's backlinks, referring domains and domain rating." },
-      { "seconds": 316, "step": "Review the backlink profile of the presenter's own domain." },
+      { "seconds": 316, "step": "Review the backlink profile of Mike's own domain." },
       { "seconds": 448, "step": "Read the generated report, which finds few inbound links as the main gap, and start the fixes." }
     ],
     "notCovered": [
       "The brand lookup for AI citations, which needs a paid plan and is not shown.",
-      "A full-site audit. The test crawl covers 50 pages of a site the presenter says has about 5,000.",
+      "A full-site audit. The test crawl covers 50 pages of a site Mike says has about 5,000.",
       "Independent checks of the pricing, star counts and backlink figures quoted in the video.",
       "A side-by-side accuracy comparison with paid tools such as Semrush or Ahrefs."
     ],
     "qa": [
       {
         "q": "Is OpenSEO free?",
-        "a": "The video shows a free tier and says paid plans start at $10 a month. Check the current pricing page before relying on that."
+        "a": "OpenSEO has a free tier, and Mike says paid plans start at $10 a month. Check the current pricing page before relying on that."
       },
       {
-        "q": "What does the MCP add?",
+        "q": "What does the OpenSEO MCP add?",
         "a": "It lets Claude Code or Codex read OpenSEO data directly, so an audit command can pull the data and produce a written report without leaving the coding tool."
       },
       {
-        "q": "What did the audit find?",
+        "q": "What did the OpenSEO audit find?",
         "a": "On one site the report said pages load and are set up correctly and the main gap is that almost no other sites link to it, plus six smaller fixes. Another test showed slow server responses and long titles and meta descriptions."
       }
     ]
   },
   "t0nQSyryTPg": {
-    "summary": "A tour of demos that other people made with GPT-6 Astra, shown from posts and the product site: exploded 3D models, a V8 engine, a Zillow-style house, browser racing games and a Counter-Strike recreation. The presenter does not build or test any of them in this video.",
+    "summary": "A tour of demos that other people made with GPT-6 Astra, shown from posts and the product site: exploded 3D models, a V8 engine, a Zillow-style house, browser racing games and a Counter-Strike recreation. Mike does not build or test any of them in this video.",
     "whatYouBuild": "Nothing is built in this video. It reviews finished community demos so you can see what GPT-6 Astra is being used for.",
     "toolsUsed": [
       "GPT-6 Astra",
@@ -2256,14 +2256,14 @@ export const videoSummaries = {
       { "seconds": 720, "step": "A BMX downhill game with physics, rain and cinematic cameras." }
     ],
     "notCovered": [
-      "Any build or test by the presenter. Every demo comes from other creators.",
+      "Any build or test by Mike. Every demo comes from other creators.",
       "Prompts, build times and costs for most demos, which the video says it does not know.",
       "Independent checks of claims such as one-shot builds and view counts, which come from the original posts.",
       "How well these demos run on average hardware."
     ],
     "qa": [
       {
-        "q": "Did the presenter make these demos?",
+        "q": "Did Mike make these GPT-6 Astra demos?",
         "a": "No. They are shared by other creators and the product site, and the video walks through them."
       },
       {
@@ -2271,8 +2271,8 @@ export const videoSummaries = {
         "a": "No. The video repeats what creators say about how a demo was made, and it does not reproduce any of them."
       },
       {
-        "q": "What plan does the presenter suggest for building games like these?",
-        "a": "The $200 a month max plan, since the presenter expects this kind of build to use credits quickly. That is an opinion, and the presenter does not run a build to show the usage."
+        "q": "What plan does Mike suggest for building games like these?",
+        "a": "The $200 a month max plan, since Mike expects this kind of build to use credits quickly. That is an opinion, and he does not run a build to show the usage."
       }
     ]
   },
@@ -2294,10 +2294,10 @@ export const videoSummaries = {
       { "seconds": 445, "step": "Press approve in chat, which copies an approval line to paste into the conversation." }
     ],
     "notCovered": [
-      "Automatic updates of the office after a task is approved. The presenter asks for this at the end.",
+      "Automatic updates of the office after a task is approved. Mike asks for this at the end.",
       "The agent avatar update, which has not been done when the video ends.",
       "How the 35 agents were built, beyond what the office shows.",
-      "Usage limits in detail. The presenter mentions being on a $60 a month plan and a base plan from $20."
+      "Usage limits in detail. Mike mentions being on a $60 a month plan and a base plan from $20."
     ],
     "qa": [
       {
@@ -2335,28 +2335,28 @@ export const videoSummaries = {
       { "seconds": 504, "step": "Request an AI citation plan built from keyword data." }
     ],
     "notCovered": [
-      "The fixes being made. Cloud agents are not on the free trial, so the presenter files GitHub issues instead.",
+      "The fixes being made. Cloud agents are not on the free trial, so Mike files GitHub issues instead.",
       "The contents of the AI citation plan briefs.",
       "Getting the three bots to pass work to one another, which is planned but not done.",
       "Independent checks of the traffic and keyword estimates shown."
     ],
     "qa": [
       {
-        "q": "What did the audit find?",
+        "q": "What did the GrokBot SEO audit find?",
         "a": "A score of 83 out of 100 across 30 public pages. The top actions include fixing the HTML language attribute on localized routes, hreflang, and desktop homepage performance."
       },
       {
-        "q": "What does it cost?",
-        "a": "The video uses a free trial and mentions a Pro plan at $20 a month. Treg data is billed from a credit balance, shown as 77 cents at the time."
+        "q": "What does the GrokBot SEO setup cost?",
+        "a": "Mike uses a free trial and mentions a Pro plan at $20 a month. Treg data is billed from a credit balance, shown as 77 cents at the time."
       },
       {
         "q": "Could it open a pull request with the fixes?",
-        "a": "Not on the free trial. The cloud agent that does that needs the paid plan, so the presenter files issues and plans to fix them with another coding tool."
+        "a": "Not on the free trial. The cloud agent that does that needs the paid plan, so Mike files issues and plans to fix them with another coding tool."
       }
     ]
   },
   "QMqe2ubsn0g": {
-    "summary": "A walkthrough of DextroLab, a tool for giving agency clients a branded portal to run Make.com or n8n automations, with usage billing through Stripe. The presenter connects Make.com, delivers a voice agent workflow to a client and sets example pricing. A custom-variable step fails with an invalid API key error and is dropped. The link in the description is an affiliate link.",
+    "summary": "A walkthrough of DextroLab, a tool for giving agency clients a branded portal to run Make.com or n8n automations, with usage billing through Stripe. Mike connects Make.com, delivers a voice agent workflow to a client and sets example pricing. A custom-variable step fails with an invalid API key error and is dropped. The link in the description is an affiliate link.",
     "whatYouBuild": "A white-label client setup in DextroLab: a Make.com connection, a workflow delivered to a client for approval, and example pricing with a per-run fee, a monthly base fee and a one-time setup fee.",
     "toolsUsed": [
       "DextroLab",
@@ -2383,20 +2383,16 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Which platforms does DextroLab connect to?",
-        "a": "The video shows two connection options, n8n and Make.com, each using an API key and a base URL."
+        "a": "Two connection options are shown, n8n and Make.com, each using an API key and a base URL."
       },
       {
         "q": "How do clients pay?",
-        "a": "Through Stripe. The presenter shows a per-run fee, a recurring monthly fee and a one-time setup fee that DextroLab bills automatically."
+        "a": "Through Stripe. Mike shows a per-run fee, a recurring monthly fee and a one-time setup fee that DextroLab bills automatically."
       },
-      {
-        "q": "Is the link in the description an affiliate link?",
-        "a": "Yes. The presenter says they earn a recurring commission if you sign up through it."
-      }
     ]
   },
   "dVvazfQHhW4": {
-    "summary": "Build a Python script with an AI agent that fetches your latest YouTube video and writes a LinkedIn post and a 1,500-word newsletter from it, then schedule it as a daily Hermes cron job. The first Hermes output is weak, so the presenter moves the edits to OpenCode and the OpenAI API. The results still need editing, and posting is done by hand.",
+    "summary": "Build a Python script with an AI agent that fetches your latest YouTube video and writes a LinkedIn post and a 1,500-word newsletter from it, then schedule it as a daily Hermes cron job. The first Hermes output is weak, so Mike moves the edits to OpenCode and the OpenAI API. The results still need editing, and posting is done by hand.",
     "whatYouBuild": "A Python script and a daily Hermes cron job that find the newest video, then write two LinkedIn post versions (one for reach, one for engagement) and a long newsletter into date-stamped files.",
     "toolsUsed": [
       "Hermes Agent",
@@ -2418,7 +2414,7 @@ export const videoSummaries = {
       { "seconds": 607, "step": "Add dates to the output file names so each run keeps its own files." }
     ],
     "notCovered": [
-      "Automatic posting to LinkedIn. The presenter pastes the newsletter in by hand.",
+      "Automatic posting to LinkedIn. Mike pastes the newsletter in by hand.",
       "A successful scheduled run. The cron job shows an error because the API limit was exceeded.",
       "Measured results from the posts, and the cost of each run.",
       "A fair model comparison. Hermes and OpenCode are run on different prompts and models."
@@ -2426,20 +2422,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Do I need a YouTube API key?",
-        "a": "Not in this build. The presenter says the script found the latest video without a key from Google Cloud Console."
+        "a": "Not in this build. Mike says the script found the latest video without a key from Google Cloud Console."
       },
       {
         "q": "Why switch from Hermes to OpenCode?",
-        "a": "The presenter did not like the Hermes drafts and found OpenCode edited the script faster. This is a personal view from one run."
+        "a": "Mike did not like the Hermes drafts and found OpenCode edited the script faster. This is a personal view from one run."
       },
       {
         "q": "Is the output ready to post?",
-        "a": "No. The presenter says the newsletter needs editing and formatting before it goes to subscribers."
+        "a": "No. Mike says the newsletter needs editing and formatting before it goes to subscribers."
       }
     ]
   },
   "9A2StjrxOms": {
-    "summary": "A sponsored demo of Treg, a pay-per-call catalog of agent tools, connected to Codex and GrokBot. The presenter calls DataForSEO through Treg for keyword and backlink data, and builds an SEO auditor in GrokBot that reports a total spend of 13 cents. The video states that Treg sponsored it and that the sign-up link is an affiliate link.",
+    "summary": "A sponsored demo of Treg, a pay-per-call catalog of agent tools, connected to Codex and GrokBot. Mike calls DataForSEO through Treg for keyword and backlink data, and builds an SEO auditor in GrokBot that reports a total spend of 13 cents. The video states that Treg sponsored it and that the sign-up link is an affiliate link.",
     "whatYouBuild": "Treg installed in Codex and as a GrokBot plugin, a DataForSEO connection, example keyword and backlink calls with their costs, and a GrokBot SEO auditor that creates a report and next actions.",
     "toolsUsed": [
       "Treg",
@@ -2455,20 +2451,16 @@ export const videoSummaries = {
       { "seconds": 134, "step": "Watch live API calls, request JSON and responses in the Treg dashboard." },
       { "seconds": 230, "step": "See how pay-per-call billing works against a topped-up balance." },
       { "seconds": 295, "step": "Fetch keyword data through DataForSEO, where a prompt left the example keyword as coffee." },
-      { "seconds": 457, "step": "Run a DataForSEO backlink summary on the presenter's domain at a quoted per-call price." },
+      { "seconds": 457, "step": "Run a DataForSEO backlink summary on Mike's domain at a quoted per-call price." },
       { "seconds": 576, "step": "Build the GrokBot SEO auditor and read its report, which starts a Cursor cloud agent for fixes." }
     ],
     "notCovered": [
       "A comparison of providers on real accuracy or reliability. Prices are shown but quality is not tested.",
-      "Costs without the presenter's balance. The presenter says a paid collaboration funded a $100 balance.",
+      "Costs without Mike's balance. Mike says a paid collaboration funded a $100 balance.",
       "The fixes the cloud agent makes after the audit.",
       "Independent checks of the traffic, keyword and backlink figures returned."
     ],
     "qa": [
-      {
-        "q": "Is this video sponsored?",
-        "a": "Yes. The presenter says Treg sponsored it and asked for a practical workflow. The link is also an affiliate link that gives a $5 credit after a $10 deposit, and the presenter earns $5."
-      },
       {
         "q": "How does Treg charge?",
         "a": "Per call from a prepaid balance, rather than a monthly subscription. Each endpoint shows its price, and the dashboard shows the calls made."
@@ -2490,14 +2482,14 @@ export const videoSummaries = {
     "keySteps": [
       { "seconds": 59, "step": "See the AI avatar and voice clone options." },
       { "seconds": 121, "step": "Tour the dashboard and analytics." },
-      { "seconds": 157, "step": "Start a faceless video and choose a style, subtitles, voice and aspect ratio. The presenter quotes 13 credits per minute and 500 credits a month on the paid plan." },
+      { "seconds": 157, "step": "Start a faceless video and choose a style, subtitles, voice and aspect ratio. Mike quotes 13 credits per minute and 500 credits a month on the paid plan." },
       { "seconds": 195, "step": "Adjust animation, sound effects, background music and subtitle position." },
       { "seconds": 270, "step": "Use the AI script assistant, which returns not found errors at first." },
       { "seconds": 560, "step": "Schedule a post from the content calendar." },
       { "seconds": 866, "step": "Set up the bulk scheduler for 7 to 30 days of videos with up to five posts a day." }
     ],
     "notCovered": [
-      "Results from the presenter's own videos. The claim of good results after three months is not shown.",
+      "Results from Mike's own videos. The claim of good results after three months is not shown.",
       "The cause of the not found script errors.",
       "The finished bulk-scheduled videos, which were still rendering at the end.",
       "Current pricing. Paid plans were quoted from $25 a month in August 2025."
@@ -2505,15 +2497,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Syllaby free?",
-        "a": "It offers some free credits to start. The presenter says most people will need a paid plan, quoted from $25 a month when recorded."
+        "a": "It offers some free credits to start. Mike says most people will need a paid plan, quoted from $25 a month when recorded."
       },
       {
         "q": "Can I use my own ElevenLabs voice?",
-        "a": "The presenter could not find a direct ElevenLabs integration. Syllaby makes voice clones itself and the presenter says it uses ElevenLabs behind the scenes."
+        "a": "Mike could not find a direct ElevenLabs integration. Syllaby makes voice clones itself and he says it uses ElevenLabs behind the scenes."
       },
       {
-        "q": "Does the presenter recommend Shorts for income?",
-        "a": "Not for direct income. The presenter says Shorts pay little without millions of views and favors long-form videos for monetization."
+        "q": "Does Mike recommend Shorts for income?",
+        "a": "Not for direct income. Mike says Shorts pay little without millions of views and favors long-form videos for monetization."
       }
     ]
   },
@@ -2540,7 +2532,7 @@ export const videoSummaries = {
       { "step": "Ask the agent to create an evening email digest task, enable two-factor sign-in and connect Gmail with an app password." }
     ],
     "notCovered": [
-      "Running a local model. The presenter says the hardware cannot handle one.",
+      "Running a local model. Mike says his hardware cannot handle one.",
       "Setting up the agent's shell, so it could not run local skills.",
       "A finished model comparison. The Pong test failed for one model.",
       "Proof that the scheduled email digest arrives. The video ends after an inbox summary of 30 emails.",
@@ -2549,15 +2541,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Odysseus free?",
-        "a": "The video says it is free and open source with no subscription. Model usage is billed by whichever provider you connect, such as OpenRouter."
+        "a": "It is free and open source with no subscription, Mike says. Model usage is billed by whichever provider you connect, such as OpenRouter."
       },
       {
-        "q": "How long does installing it take?",
+        "q": "How long does installing Odysseus take?",
         "a": "About five minutes on Debian Linux in this video, using a Python virtual environment and pip."
       },
       {
-        "q": "What did the demo cost?",
-        "a": "Using DeepSeek V4 Flash through OpenCode, the presenter reports about two cents early on and about five cents by the end."
+        "q": "What did the Odysseus test cost in credits?",
+        "a": "Using DeepSeek V4 Flash through OpenCode, Mike reports about two cents early on and about five cents by the end."
       },
       {
         "q": "Did the email connection work?",
@@ -2566,7 +2558,7 @@ export const videoSummaries = {
     ]
   },
   "Zi_PG07mDxo": {
-    "summary": "Wrap Odysseus in an Electron desktop app. The presenter asks Odysseus with DeepSeek V4 Pro to build it, the run stalls on an npm install, and Codex plus the terminal finish the job. The app crashes once, then runs in its own window using about 2.3 GB of memory. Credits used in OpenCode: 31 cents.",
+    "summary": "Wrap Odysseus in an Electron desktop app. Mike asks Odysseus with DeepSeek V4 Pro to build it, the run stalls on an npm install, and Codex plus the terminal finish the job. The app crashes once, then runs in its own window using about 2.3 GB of memory. Credits used in OpenCode: 31 cents.",
     "whatYouBuild": "A standalone Electron desktop app for Odysseus that opens the local web interface in its own window, with a launch script and a README.",
     "toolsUsed": [
       "Odysseus",
@@ -2586,8 +2578,8 @@ export const videoSummaries = {
     "notCovered": [
       "Odysseus completing the job on its own. The install stalled and the finish used Codex and the terminal.",
       "Packaging an installer or testing on Windows and Mac. The wrapper is described for all three but only run on Debian Linux.",
-      "How to share the app. The presenter has not merged it into the main repository.",
-      "A speed measurement. The faster feel is the presenter's impression."
+      "How to share the app. Mike has not merged it into the main repository.",
+      "A speed measurement. The faster feel is Mike's impression."
     ],
     "qa": [
       {
@@ -2595,12 +2587,12 @@ export const videoSummaries = {
         "a": "It created the wrapper structure, but its npm install stalled. Codex and terminal commands finished the setup."
       },
       {
-        "q": "What did it cost?",
-        "a": "The presenter reports 31 cents in total on DeepSeek V4 Pro through OpenCode."
+        "q": "What did the Odysseus app cost to build?",
+        "a": "Mike reports 31 cents in total on DeepSeek V4 Pro through OpenCode."
       },
       {
-        "q": "Where can I get the app?",
-        "a": "It is not published. The presenter says they may suggest it to the Odysseus project."
+        "q": "Where can I get the Odysseus desktop app?",
+        "a": "It is not published. Mike says he may suggest it to the Odysseus project."
       }
     ]
   },
@@ -2631,17 +2623,17 @@ export const videoSummaries = {
     "notCovered": [
       "Measured savings from the token savers. The dashboard shows none yet because only OpenCode is routed.",
       "A working Kilo Code connection.",
-      "A comparison of the dashboard estimate with actual provider bills, beyond the presenter's remark that it is an estimate.",
-      "Claude Code or Codex routed through the proxy, which the presenter avoids."
+      "A comparison of the dashboard estimate with actual provider bills, beyond Mike's remark that it is an estimate.",
+      "Claude Code or Codex routed through the proxy, which Mike avoids."
     ],
     "qa": [
       {
         "q": "Is the cost shown in 9Router what I will pay?",
-        "a": "No. The presenter says it is an estimate, and compares it with the actual spend shown in the OpenCode account."
+        "a": "No. Mike says it is an estimate, and compares it with the actual spend shown in the OpenCode account."
       },
       {
         "q": "Why not route Claude Code or Codex through 9Router?",
-        "a": "9Router warns that these connections use a subscription login that is not officially licensed for proxy use and the account may be restricted or banned. The presenter avoids it to protect the accounts."
+        "a": "9Router warns that these connections use a subscription login that is not officially licensed for proxy use and the account may be restricted or banned. Mike avoids it to protect the accounts."
       },
       {
         "q": "What do the token savers claim?",
@@ -2650,7 +2642,7 @@ export const videoSummaries = {
     ]
   },
   "kXw2yntdmo4": {
-    "summary": "A Make.com scenario that runs an Apify scraper on an Apollo search, takes 100 leads and writes their names, emails and other fields into a new Google Sheet. The run works after a sheet-name clash is fixed, but the phone number column comes back wrong. The presenter offers the template on Gumroad as pay what you want.",
+    "summary": "A Make.com scenario that runs an Apify scraper on an Apollo search, takes 100 leads and writes their names, emails and other fields into a new Google Sheet. The run works after a sheet-name clash is fixed, but the phone number column comes back wrong. Mike offers the template on Gumroad as pay what you want.",
     "whatYouBuild": "A Make.com scenario that creates a Google Sheet, runs an Apify Apollo actor with a search URL and a 100-lead limit, reads the dataset items and adds one row per lead.",
     "toolsUsed": [
       "Make.com",
@@ -2666,27 +2658,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Sending any emails. The leads are only collected and the next step is left to you.",
-      "Fixing the phone number column, which the presenter says is not working.",
+      "Fixing the phone number column, which Mike says is not working.",
       "Apollo's and Apify's terms of use, or the privacy rules and consent that apply to cold email in your country.",
       "A clear cost per lead. The spoken price in this video is garbled. A companion Apollo video quotes $1.20 per 1,000 leads for the same actor."
     ],
     "qa": [
       {
         "q": "Why use Apify instead of Apollo directly?",
-        "a": "The presenter was nearly out of Apollo credits, which are spent per lead, and says Apify's free monthly credit meant their usage did not rise in the demo."
+        "a": "Mike was nearly out of Apollo credits, which are spent per lead, and says Apify's free monthly credit meant his usage did not rise in the demo."
       },
       {
         "q": "How many leads did it collect?",
-        "a": "100 in the demo. The actor can scrape far more, but the presenter limited the test."
+        "a": "100 in the demo. The actor can scrape far more, but Mike limited the test."
       },
       {
-        "q": "Where is the template?",
-        "a": "On the presenter's Gumroad page as pay what you want, according to the video."
+        "q": "Where can I get the Apollo lead scraper Make.com template?",
+        "a": "On Mike's Gumroad page as pay what you want, according to the video."
       }
     ]
   },
   "ztEj6zCJh5k": {
-    "summary": "Install an open-source Video Use skill and ask Claude Code to cut a long tutorial into a 9:16 YouTube Short with the screen share on top and the webcam below. The first result repeats the webcam in both halves. A second, more exact prompt produces a roughly 17-second clip with burned-in subtitles. The presenter calls the result a work in progress.",
+    "summary": "Install an open-source Video Use skill and ask Claude Code to cut a long tutorial into a 9:16 YouTube Short with the screen share on top and the webcam below. The first result repeats the webcam in both halves. A second, more exact prompt produces a roughly 17-second clip with burned-in subtitles. Mike calls the result a work in progress.",
     "whatYouBuild": "A Claude Code skill setup that transcribes a long video with Faster Whisper, picks a clip, crops the layout with FFmpeg and renders a vertical Short with captions.",
     "toolsUsed": [
       "Video Use",
@@ -2706,8 +2698,8 @@ export const videoSummaries = {
       { "seconds": 518, "step": "Review the finished Short." }
     ],
     "notCovered": [
-      "A polished result. The presenter says the subtitles could sit better and the output could be improved.",
-      "A fair comparison with Opus Clip. The presenter says the free plan results were poor but does not run the same clip through both.",
+      "A polished result. Mike says the subtitles could sit better and the output could be improved.",
+      "A fair comparison with Opus Clip. Mike says the free plan results were poor but does not run the same clip through both.",
       "Which model ran the work and its cost beyond a remark that it was cheap through OpenRouter.",
       "Automating the process with a scheduled job, which is only suggested."
     ],
@@ -2727,7 +2719,7 @@ export const videoSummaries = {
     ]
   },
   "1LN7TqmW--w": {
-    "summary": "Run an SEO audit skill in OpenCode on the presenter's own AI search visibility site, then let the agent fix blog articles and work on llms.txt, ai.txt and sitemap.xml before a commit and redeploy on Vercel. The presenter hits 98 percent of the OpenCode Go monthly limit and switches to a free model. No ranking result is shown, so the video does not answer its own title question.",
+    "summary": "Run an SEO audit skill in OpenCode on Mike's own AI search visibility site, then let the agent fix blog articles and work on llms.txt, ai.txt and sitemap.xml before a commit and redeploy on Vercel. Mike hits 98 percent of the OpenCode Go monthly limit and switches to a free model. No ranking result is shown, so the video does not answer its own title question.",
     "whatYouBuild": "An OpenCode session that runs an SEO audit skill on a live site and applies fixes to blog posts and discovery files, followed by a commit and push for a Vercel deploy.",
     "toolsUsed": [
       "OpenCode",
@@ -2740,7 +2732,7 @@ export const videoSummaries = {
     "keySteps": [
       { "seconds": 48, "step": "Look at the OpenCode Go plan and the desktop app for Linux, Windows and Mac." },
       { "seconds": 97, "step": "List installed skills with the skills command and start the SEO audit skill." },
-      { "seconds": 135, "step": "Run the audit on the presenter's own site and read the issues found." },
+      { "seconds": 135, "step": "Run the audit on Mike's own site and read the issues found." },
       { "seconds": 180, "step": "Check DeepSeek V4 Pro usage, which is at 98 percent of the month's limit." },
       { "seconds": 211, "step": "Switch to a free OpenCode Zen model to keep working." },
       { "seconds": 344, "step": "Look at the existing llms.txt, the missing ai.txt and the sitemap.xml the agent is working on." },
@@ -2756,20 +2748,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Can OpenCode replace an SEO team?",
-        "a": "The video shows one audit and one round of fixes on one site, without ranking results. It does not show that, and the presenter does not claim a measured gain."
+        "a": "Not on this evidence. One audit and one round of fixes on one site are shown, without ranking results, and Mike does not claim a measured gain."
       },
       {
         "q": "What does OpenCode Go cost?",
-        "a": "The video says $10 a month. The description link is an affiliate link that gives $5 in credits to a new user and $5 to the presenter."
+        "a": "$10 a month, according to Mike. The description link is an affiliate link that gives $5 in credits to a new user and $5 to Mike."
       },
       {
         "q": "What happens when the Go limit runs out?",
-        "a": "The presenter switches to a free model under OpenCode Zen, such as DeepSeek V4 Flash Free, and keeps going."
+        "a": "Mike switches to a free model under OpenCode Zen, such as DeepSeek V4 Flash Free, and keeps going."
       }
     ]
   },
   "wRqpZ9F3rmI": {
-    "summary": "A sponsored walkthrough of connecting the DataForSEO MCP server to Claude, then using plain-language prompts for an SEO audit, a seven-day action plan, a competitor and keyword-gap report, and an AI search visibility check on the presenter's own site. The video says DataForSEO sponsored it and that the sign-up link gives $5 in trial credits instead of the usual $1.",
+    "summary": "A sponsored walkthrough of connecting the DataForSEO MCP server to Claude, then using plain-language prompts for an SEO audit, a seven-day action plan, a competitor and keyword-gap report, and an AI search visibility check on Mike's own site. The video says DataForSEO sponsored it and that the sign-up link gives $5 in trial credits instead of the usual $1.",
     "whatYouBuild": "Claude connected to DataForSEO through MCP, with three reusable prompts: a domain audit, a competitor and keyword-gap report, and an AI search visibility review.",
     "toolsUsed": [
       "DataForSEO",
@@ -2792,12 +2784,8 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "Is this video sponsored?",
-        "a": "Yes. The presenter thanks DataForSEO for sponsoring it and shares a referral link that gives $5 in trial credits instead of the usual $1."
-      },
-      {
         "q": "How long does the setup take?",
-        "a": "The presenter says under five minutes: create the account, add the MCP connection in Claude and restart it."
+        "a": "Under five minutes, Mike says: create the account, add the MCP connection in Claude and restart it."
       },
       {
         "q": "How does DataForSEO charge?",
@@ -2806,7 +2794,7 @@ export const videoSummaries = {
     ]
   },
   "ga22WZgoj9M": {
-    "summary": "A tour of an AI search visibility app built with OpenCode, Codex and Free Claude Code, followed by the reasons the presenter moves away from Free Claude Code: repeated API request errors, slow replies and a 401 error tied to startup order. OpenCode answers quickly on free models and Codex on a $20 plan is preferred over Claude Pro. The app is only on a local server.",
+    "summary": "A tour of an AI search visibility app built with OpenCode, Codex and Free Claude Code, followed by the reasons Mike moves away from Free Claude Code: repeated API request errors, slow replies and a 401 error tied to startup order. OpenCode answers quickly on free models and Codex on a $20 plan is preferred over Claude Pro. The app is only on a local server.",
     "whatYouBuild": "A local Next.js app that scores a site's AI visibility, with a crawler-tracking mock-up and a new meta tag optimizer feature started in OpenCode.",
     "toolsUsed": [
       "OpenCode",
@@ -2828,28 +2816,28 @@ export const videoSummaries = {
       { "seconds": 628, "step": "Switch between free models in OpenCode and run the audit on a blog article." }
     ],
     "notCovered": [
-      "The cause of the API request failed errors, which the presenter asks viewers to help with.",
+      "The cause of the API request failed errors, which Mike asks viewers to help with.",
       "A timed comparison. Statements that OpenCode is quicker than Claude Code are impressions.",
-      "Checking that the app's AI visibility score is accurate. The presenter says this still needs work.",
+      "Checking that the app's AI visibility score is accurate. Mike says this still needs work.",
       "A finished meta tag optimizer, or a public release of the app."
     ],
     "qa": [
       {
         "q": "Is OpenCode better than Free Claude Code?",
-        "a": "For this presenter, yes. Free Claude Code was slow and kept failing with API errors, while OpenCode responded quickly on free models. This is one person's experience on one setup."
+        "a": "For Mike, yes. Free Claude Code was slow and kept failing with API errors, while OpenCode responded quickly on free models. This is one person's experience on one setup."
       },
       {
-        "q": "Why did the presenter move to Codex?",
+        "q": "Why did Mike move to Codex?",
         "a": "They say Codex at about $20 a month used credits more slowly than Claude Code and was more reliable."
       },
       {
-        "q": "Where can I use the app?",
-        "a": "It only runs on the presenter's local machine. The presenter offers to share a link on request."
+        "q": "Where can I use Mike's AI visibility app?",
+        "a": "It only runs on Mike's local machine. He offers to share a link on request."
       }
     ]
   },
   "UnnN2i90ALg": {
-    "summary": "Install Hermes Agent on Linux with the one-line installer, run the full setup, and try it on a code review, sub-agents and a research task. The first model attempts fail with 401 and balance errors until a free OpenCode Zen model works. The title says Hermes beats OpenClaw, but the video never runs OpenClaw, so that is the presenter's opinion.",
+    "summary": "Install Hermes Agent on Linux with the one-line installer, run the full setup, and try it on a code review, sub-agents and a research task. The first model attempts fail with 401 and balance errors until a free OpenCode Zen model works. The title says Hermes beats OpenClaw, but the video never runs OpenClaw, so that is Mike's opinion.",
     "whatYouBuild": "A local Hermes Agent install with OpenRouter, Codex and Gemini keys set up, switched to a free OpenCode Zen model, then used for a code review of a Next.js app and a sub-agent research task.",
     "toolsUsed": [
       "Hermes Agent",
@@ -2867,15 +2855,15 @@ export const videoSummaries = {
       { "seconds": 1042, "step": "Fix a candlestick chart problem that had defeated OpenCode in an earlier video by updating a package." }
     ],
     "notCovered": [
-      "A side-by-side run with OpenClaw. The presenter says OpenClaw did not impress them but shows no comparison.",
+      "A side-by-side run with OpenClaw. Mike says OpenClaw did not impress him but shows no comparison.",
       "The cause of the OpenRouter 401 error, which was bypassed by changing provider.",
-      "The research result the presenter wanted. The agent returned a list of AI YouTube channels instead.",
+      "The research result Mike wanted. The agent returned a list of AI YouTube channels instead.",
       "Messaging gateways such as Telegram or WhatsApp, which are skipped."
     ],
     "qa": [
       {
         "q": "Is Hermes Agent better than OpenClaw?",
-        "a": "The presenter says they like it more, but the video does not test OpenClaw, so there is no evidence for a comparison here."
+        "a": "Mike says he likes it more, but the video does not test OpenClaw, so there is no evidence for a comparison here."
       },
       {
         "q": "Why did the first models fail?",
@@ -2888,7 +2876,7 @@ export const videoSummaries = {
     ]
   },
   "b0Izj5Pv0sQ": {
-    "summary": "A sponsored hands-on test of Bluehost's all-in-one AI assistant, a $20 a month bundle that puts ChatGPT, Gemini, Claude and Grok models in one dashboard. The video tries auto model routing, web search, image generation and editing, a research report, a 1,500-word SEO article and a five-slide PowerPoint. The video says Bluehost sponsored it. The price comparison is the presenter's own arithmetic.",
+    "summary": "A sponsored hands-on test of Bluehost's all-in-one AI assistant, a $20 a month bundle that puts ChatGPT, Gemini, Claude and Grok models in one dashboard. The video tries auto model routing, web search, image generation and editing, a research report, a 1,500-word SEO article and a five-slide PowerPoint. The video says Bluehost sponsored it. The price comparison is Mike's own arithmetic.",
     "whatYouBuild": "A Bluehost AI assistant account used to chat with several models, search the web, make and edit an image, and run the research, article writer and presentation builder agents.",
     "toolsUsed": [
       "Bluehost AI Assistant",
@@ -2941,20 +2929,16 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "Is this video sponsored?",
-        "a": "Yes. The presenter says Bluehost sponsored it and thanks them for reaching out."
-      },
-      {
-        "q": "How much does it cost?",
-        "a": "The video quotes $20 a month for the all-access pack and $25 for the privacy version. Check Bluehost for current pricing."
+        "q": "How much does the Bluehost AI assistant cost?",
+        "a": "The all-access pack is quoted at $20 a month and the privacy version at $25. Check Bluehost for current pricing."
       },
       {
         "q": "Is the $70 a month saving real?",
-        "a": "It is the presenter's sum of separate subscriptions at the prices quoted in the video. It does not account for usage limits."
+        "a": "It is Mike's sum of separate subscriptions at the prices quoted in the video. It does not account for usage limits."
       },
       {
         "q": "How good was the presentation?",
-        "a": "The presenter calls it simplistic but impressive for under two minutes, and says the slides could be improved."
+        "a": "Mike calls it simplistic but impressive for under two minutes, and says the slides could be improved."
       }
     ]
   },
@@ -2988,16 +2972,16 @@ export const videoSummaries = {
       },
       {
         "q": "What do I need?",
-        "a": "A Vapi account with credits to run the agent. The video says you can start for free, and Make.com handles the calling automation."
+        "a": "A Vapi account with credits to run the agent. Mike says you can start for free, and Make.com handles the calling automation."
       },
       {
         "q": "Which apps can Vapi connect to?",
-        "a": "The video lists OpenAI, Anthropic Claude, ElevenLabs, Google Sheets and calendars, and says it connects with 40 or more apps."
+        "a": "Vapi connects with 40 or more apps, Mike says, including OpenAI, Anthropic Claude, ElevenLabs, Google Sheets and calendars."
       }
     ]
   },
   "nJtbBB0JBYY": {
-    "summary": "A walkthrough of Skool's membership tiers, announced on October 29, 2025, using the presenter's own community: a free tier, a $29 a month premium tier and an $89 a month VIP tier, with classroom modules unlocked by tier. It also compares Skool's $9 Hobby and $99 Pro plans. All prices and fees are as stated in October 2025. The link in the description is an affiliate link.",
+    "summary": "A walkthrough of Skool's membership tiers, announced on October 29, 2025, using Mike's own community: a free tier, a $29 a month premium tier and an $89 a month VIP tier, with classroom modules unlocked by tier. It also compares Skool's $9 Hobby and $99 Pro plans. All prices and fees are as stated in October 2025. The link in the description is an affiliate link.",
     "whatYouBuild": "A tiered membership on Skool with free, premium and VIP levels, annual discounts, tier-locked classroom modules and tier-locked live calls.",
     "toolsUsed": [
       "Skool"
@@ -3031,21 +3015,17 @@ export const videoSummaries = {
     "notCovered": [
       "Whether the tiers raised revenue. The video is recorded the day after launch.",
       "Skool's current prices and fees, which may have changed since October 2025.",
-      "A fair comparison with other community platforms. The reasons for choosing Skool are the presenter's opinion."
+      "A fair comparison with other community platforms. The reasons for choosing Skool are Mike's opinion."
     ],
     "qa": [
       {
-        "q": "What tiers does the presenter set up?",
+        "q": "What Skool membership tiers does Mike set up?",
         "a": "Free with community access and beginner training, premium at $29 a month or $280 a year, and VIP at $89 a month or $850 a year."
       },
       {
         "q": "What are Skool's platform fees?",
-        "a": "The video says the $9 Hobby plan has a 10 percent transaction fee and the $99 Pro plan 2.9 percent. Confirm on Skool before deciding."
+        "a": "The $9 Hobby plan has a 10 percent transaction fee and the $99 Pro plan 2.9 percent, Mike says. Confirm on Skool before deciding."
       },
-      {
-        "q": "Is the Skool link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission on new sign-ups."
-      }
     ]
   },
   "pDbRjYYUjRI": {
@@ -3091,9 +3071,9 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working Creatomate render. The presenter says that part is not working yet and the run errors there.",
+      "A working Creatomate render. Mike says that part is not working yet and the run errors there.",
       "Costs for Suno, KIE and Creatomate credits per video.",
-      "Automatic YouTube upload. The presenter advises uploading manually because YouTube can detect automated uploads.",
+      "Automatic YouTube upload. Mike advises uploading manually because YouTube can detect automated uploads.",
       "Music quality beyond one short sample, and any rights questions around publishing AI-generated music."
     ],
     "qa": [
@@ -3103,11 +3083,11 @@ export const videoSummaries = {
       },
       {
         "q": "Why does the Suno prompt have a length limit?",
-        "a": "The presenter says prompts must be under 500 characters or Suno will not generate the track."
+        "a": "Suno prompts must be under 500 characters or Suno will not generate the track, Mike says."
       },
       {
         "q": "Is there a manual option?",
-        "a": "Yes. Generate tracks in Suno and put them together in a video editor such as Kdenlive or CapCut, which the presenter says is easier in the long run."
+        "a": "Yes. Generate tracks in Suno and put them together in a video editor such as Kdenlive or CapCut, which Mike says is easier in the long run."
       }
     ]
   },
@@ -3138,10 +3118,10 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A running app. There is no index page to preview yet and the presenter plans ten phases.",
+      "A running app. There is no index page to preview yet and Mike plans ten phases.",
       "The final cost and the planned $19 a month price, which are only floated.",
-      "How well the generated code works, since the presenter does not read it.",
-      "Rate limits in detail. The presenter says they are hitting them on Claude Pro and may switch to API credits."
+      "How well the generated code works, since Mike does not read it.",
+      "Rate limits in detail. Mike says he is hitting them on Claude Pro and may switch to API credits."
     ],
     "qa": [
       {
@@ -3149,12 +3129,12 @@ export const videoSummaries = {
         "a": "Opus 4.6 writes a master prompt split into numbered phases, and each phase is pasted into Claude Code in order."
       },
       {
-        "q": "Did the presenter write any code?",
-        "a": "The presenter says no, and approves each step in Claude Code instead."
+        "q": "Did Mike write any code?",
+        "a": "No. Mike approves each step in Claude Code instead, he says."
       },
       {
         "q": "Is the app available?",
-        "a": "Not yet. The presenter was still building it and waiting on a domain name."
+        "a": "Not yet. Mike was still building it and waiting on a domain name."
       }
     ]
   },
@@ -3204,14 +3184,14 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "An installer or packaged build. The app runs from npm run electron.",
-      "Fixing the modify-order bug the presenter spots.",
-      "How the cron jobs are created, which the presenter saves for another video.",
+      "Fixing the modify-order bug Mike spots.",
+      "How the cron jobs are created, which Mike saves for another video.",
       "Real trading, security of the API keys, or a speed test. The desktop Hermes app feeling slower is an impression."
     ],
     "qa": [
       {
         "q": "Is the trading real?",
-        "a": "No. The presenter says the orders use sandboxed test data and are not real money."
+        "a": "No. Mike says the orders use sandboxed test data and are not real money."
       },
       {
         "q": "Which tool fixed the chart bug?",
@@ -3219,12 +3199,12 @@ export const videoSummaries = {
       },
       {
         "q": "How long did the desktop app take?",
-        "a": "About ten minutes for the wrapper. The presenter says the original web app took roughly three hours."
+        "a": "About ten minutes for the wrapper. Mike says the original web app took roughly three hours."
       }
     ]
   },
   "_ikohuukGE4": {
-    "summary": "Build a landing page for a Skool community in Google Antigravity with Gemini 3.1 Pro, using a master prompt that Claude writes from screenshots of a reference site. The first version appears in about five minutes, the presenter edits names and links by hand, and OpenCode finishes all 16 sections after Gemini credits run low. Placeholder testimonials and the pricing still need fixing, and no conversion results are shown.",
+    "summary": "Build a landing page for a Skool community in Google Antigravity with Gemini 3.1 Pro, using a master prompt that Claude writes from screenshots of a reference site. The first version appears in about five minutes, Mike edits names and links by hand, and OpenCode finishes all 16 sections after Gemini credits run low. Placeholder testimonials and the pricing still need fixing, and no conversion results are shown.",
     "whatYouBuild": "A single-file HTML landing page with inline CSS and JavaScript, built section by section from prompts, with plans, FAQs and links to the Skool community.",
     "toolsUsed": [
       "Google Antigravity",
@@ -3267,28 +3247,28 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Replacing the generated placeholder testimonials with real ones, which the presenter says still has to be done.",
-      "Correct pricing. The page shows wrong prices the presenter plans to fix.",
+      "Replacing the generated placeholder testimonials with real ones, which Mike says still has to be done.",
+      "Correct pricing. The page shows wrong prices Mike plans to fix.",
       "Any conversion data or the Facebook pixel for ads, which are only planned.",
       "Whether copying a reference site's look and layout raises design or copyright concerns."
     ],
     "qa": [
       {
         "q": "Why build a landing page at all?",
-        "a": "The presenter says the Skool about page for a free community shows only the free plan, so visitors never see the paid plans."
+        "a": "The Skool about page for a free community shows only the free plan, so visitors never see the paid plans, Mike says."
       },
       {
-        "q": "How long did it take?",
+        "q": "How long did the Antigravity landing page take to build?",
         "a": "About five minutes for the first draft and about ten more minutes in OpenCode to build all 16 sections."
       },
       {
         "q": "Which tools cost money?",
-        "a": "The presenter quotes about $10 a month for Gemini and $20 a month for Claude Code, with OpenCode used as a mostly free fallback."
+        "a": "Gemini costs about $10 a month and Claude Code $20 a month, Mike says, with OpenCode used as a mostly free fallback."
       }
     ]
   },
   "wakl0ayO_fk": {
-    "summary": "An introduction to Jev, a fast decision model from Typesafe AI that returns structured answers with probabilities instead of text, plus a hands-on install in Claude Code and Codex. The speed and cost figures come from the vendor and its demos. The presenter tests a site slop checker, routes Codex through the Jev router and runs an SEO and GEO orchestrator that reports a citation gap.",
+    "summary": "An introduction to Jev, a fast decision model from Typesafe AI that returns structured answers with probabilities instead of text, plus a hands-on install in Claude Code and Codex. The speed and cost figures come from the vendor and its demos. Mike tests a site slop checker, routes Codex through the Jev router and runs an SEO and GEO orchestrator that reports a citation gap.",
     "whatYouBuild": "Jev set up in Claude Code and Codex with the Typesafe skill, the Jev Browser Use skill and the Jev router, followed by an SEO and GEO audit bundle.",
     "toolsUsed": [
       "Jev",
@@ -3307,7 +3287,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 212,
-        "step": "Run the Made with Jev slop detector on the presenter's site, which scores about 50 percent."
+        "step": "Run the Made with Jev slop detector on Mike's site, which scores about 50 percent."
       },
       {
         "seconds": 278,
@@ -3332,9 +3312,9 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Independent checks of the quoted 20 to 200 times faster and 40 to 400 times cheaper claims, or of the cost of the demos.",
-      "How Jev decisions compare with a general model on the presenter's own tasks.",
+      "How Jev decisions compare with a general model on Mike's own tasks.",
       "Fixing the citation gaps the report found.",
-      "Access beyond the waitlist, which the presenter already had."
+      "Access beyond the waitlist, which Mike already had."
     ],
     "qa": [
       {
@@ -3343,11 +3323,11 @@ export const videoSummaries = {
       },
       {
         "q": "Are the speed and price claims verified?",
-        "a": "No. They come from the founder's post, the Jev site and its demos. The video does not test them independently."
+        "a": "No. They come from the founder's post, the Jev site and its demos. Mike does not test them independently."
       },
       {
         "q": "What did the test spend show?",
-        "a": "After the API key was set, the presenter saw three requests and about 4,200 tokens, at a cost of roughly two cents."
+        "a": "After the API key was set, Mike saw three requests and about 4,200 tokens, at a total of less than a fraction of a cent."
       }
     ]
   },
@@ -3398,7 +3378,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working transcript step. It fails in the demo and the presenter does not know why.",
+      "A working transcript step. It fails in the demo and Mike does not know why.",
       "YouTube API quota or any platform rules on automated uploads.",
       "Quality control before a video goes public, since the final step publishes automatically.",
       "Costs for the OpenAI, Gemini and Apify calls."
@@ -3406,15 +3386,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Where do the short clips come from?",
-        "a": "The presenter makes them with Opus Clip, downloads them and drops them into the Google Drive folder."
+        "a": "Mike makes them with Opus Clip, downloads them and drops them into the Google Drive folder."
       },
       {
         "q": "Why upload as unlisted first?",
         "a": "The workflow uploads unlisted, adds the metadata, and only then switches the video to public."
       },
       {
-        "q": "Where is the template?",
-        "a": "The presenter says it is on Gumroad and in their Skool community."
+        "q": "Where can I get the n8n YouTube Shorts uploader template?",
+        "a": "Mike says it is on Gumroad and in his Skool community."
       }
     ]
   },
@@ -3466,15 +3446,15 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Connecting WhatsApp, Telegram or other gateways, which the presenter skips.",
+      "Connecting WhatsApp, Telegram or other gateways, which Mike skips.",
       "Whether the suggested health watchdog cron job was created or ran.",
       "What the paid plans add beyond the free plan, or current prices, which are quoted from the video.",
       "Data handling and privacy for the memory feature."
     ],
     "qa": [
       {
-        "q": "Is this the official app?",
-        "a": "Yes. The presenter contrasts it with an unofficial desktop app covered in an earlier video."
+        "q": "Is this the official Hermes Agent desktop app?",
+        "a": "Yes. Mike contrasts it with an unofficial desktop app covered in an earlier video."
       },
       {
         "q": "Which systems does it support?",
@@ -3482,12 +3462,12 @@ export const videoSummaries = {
       },
       {
         "q": "Do I need the terminal afterwards?",
-        "a": "Mostly no. The presenter says provider keys, models, skills and cron jobs can all be handled inside the app."
+        "a": "Mostly no. Mike says provider keys, models, skills and cron jobs can all be handled inside the app."
       }
     ]
   },
   "YCjvrNI1pa4": {
-    "summary": "A beginner walkthrough of Apollo for B2B lead generation: filter people by job title, location, industry, keywords and company size, save a list, and review a cold email sequence. The presenter then shows an Apify actor that scrapes Apollo searches for about $1.20 per 1,000 leads and exports a CSV. Free plan limits apply, and no cold email law or terms of use are covered.",
+    "summary": "A beginner walkthrough of Apollo for B2B lead generation: filter people by job title, location, industry, keywords and company size, save a list, and review a cold email sequence. Mike then shows an Apify actor that scrapes Apollo searches for about $1.20 per 1,000 leads and exports a CSV. Free plan limits apply, and no cold email law or terms of use are covered.",
     "whatYouBuild": "An Apollo search narrowed from about 2 million people to about 3,700, a saved list of 25 contacts at a time, and an Apify export of leads to CSV for an email tool.",
     "toolsUsed": [
       "Apollo",
@@ -3530,20 +3510,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "What are the free plan limits?",
-        "a": "The presenter says five pages of search results, about 100 contacts, and two email sequences."
+        "a": "Five pages of search results, about 100 contacts, and two email sequences, Mike says."
       },
       {
         "q": "How much does the Apify Apollo scraper cost?",
-        "a": "The presenter quotes $1.20 per 1,000 leads and says the monthly free credit could cover around 3,000 leads."
+        "a": "About $1.20 per 1,000 leads, according to Mike, who says the monthly free credit could cover around 3,000 leads."
       },
       {
         "q": "Can Make.com automate the scraping?",
-        "a": "The presenter says automating through the API needs a paid Apify plan."
+        "a": "Automating through the API needs a paid Apify plan, Mike says."
       }
     ]
   },
   "bBGqWXXIw44": {
-    "summary": "A backlink outreach pipeline built in Hermes Agent for two of the presenter's sites. Cron jobs search for articles that mention competitors, use Firecrawl, Playwright and Hunter to find author contact details, write personalized pitches into a markdown file and send them through Mailgun with warm-up, follow-ups and bounce checks. Delivery rate is about 78 percent, and no replies or backlinks are shown.",
+    "summary": "A backlink outreach pipeline built in Hermes Agent for two of Mike's sites. Cron jobs search for articles that mention competitors, use Firecrawl, Playwright and Hunter to find author contact details, write personalized pitches into a markdown file and send them through Mailgun with warm-up, follow-ups and bounce checks. Delivery rate is about 78 percent, and no replies or backlinks are shown.",
     "whatYouBuild": "Two Hermes cron jobs that find articles, extract author emails, draft pitches into a markdown log and send emails through Mailgun with safety limits and follow-ups.",
     "toolsUsed": [
       "Hermes Agent",
@@ -3585,7 +3565,7 @@ export const videoSummaries = {
     "notCovered": [
       "Replies, accepted pitches or new backlinks. The video shows sending, not outcomes.",
       "Anti-spam and data protection rules for emailing people whose addresses were scraped.",
-      "Website terms that restrict scraping, and the accuracy of found emails, which the presenter says is not always right.",
+      "Website terms that restrict scraping, and the accuracy of found emails, which Mike says is not always right.",
       "How often a blocked or failing step stops the job."
     ],
     "qa": [
@@ -3652,15 +3632,15 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is this the same as the cloud version?",
-        "a": "The presenter says it looks and works like the standard n8n, running on a local machine instead of a paid cloud plan."
+        "a": "It looks and works like the standard n8n, Mike says, running on a local machine instead of a paid cloud plan."
       },
       {
         "q": "Do the templates work right away?",
-        "a": "Not always. Some need credentials, API keys or nodes that are missing, and the presenter shows several that stop for that reason."
+        "a": "Not always. Some need credentials, API keys or nodes that are missing, and Mike shows several that stop for that reason."
       },
       {
         "q": "Why Linux?",
-        "a": "The presenter finds it faster than Windows and simpler than setting up Docker on Windows. This is a personal view."
+        "a": "Mike finds it faster than Windows and simpler than setting up Docker on Windows. This is a personal view."
       }
     ]
   },
@@ -3704,28 +3684,24 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Connecting KiloClaw to WhatsApp, Discord or Slack. Those channels are shown as options only.",
-      "A polished app. The presenter says the styling needs work and the local analyzer cannot fetch the site yet.",
-      "A fair test against OpenCode or Cursor. The comparison is the presenter's impression.",
+      "A polished app. Mike says the styling needs work and the local analyzer cannot fetch the site yet.",
+      "A fair test against OpenCode or Cursor. The comparison is Mike's impression.",
       "Paid plan details, which are mentioned only briefly."
     ],
     "qa": [
       {
-        "q": "What did the app cost to build?",
-        "a": "The presenter's credit balance went from about $2.50 to $2.46, using the free auto model."
+        "q": "What did the Kilo Code SEO checker cost to build?",
+        "a": "Roughly four cents. Mike's credit balance went from about $2.50 to $2.46 on the free auto model."
       },
       {
         "q": "Is the SEO score trustworthy?",
         "a": "The checker gave 69 percent with a breakdown, but the video does not verify its accuracy."
       },
-      {
-        "q": "Is the sign-up link a referral link?",
-        "a": "Yes. The description link is a referral link that the presenter says adds credits on a first top-up."
-      }
     ]
   },
   "xB0ChiVjWu4": {
     "summary": "Deploy the Morphic AI answer engine template on Vercel from a GitHub clone, using OpenAI and Tavily keys, then look at Vercel's subscription starter and SaaS landing page templates that connect to Stripe. The deploy works and the app answers questions, but one model provider errors. The Stripe and custom domain steps are shown as demos, not completed.",
-    "whatYouBuild": "A deployed Morphic app on Vercel linked to the presenter's GitHub, plus cloned subscription starter and landing page templates.",
+    "whatYouBuild": "A deployed Morphic app on Vercel linked to Mike's GitHub, plus cloned subscription starter and landing page templates.",
     "toolsUsed": [
       "Vercel",
       "GitHub",
@@ -3766,7 +3742,7 @@ export const videoSummaries = {
     "notCovered": [
       "A real Stripe connection or a paid sign-up. Only the demo templates are shown.",
       "Abuse and cost control for a public app that spends your OpenAI and Tavily keys.",
-      "Actually adding a custom domain. The presenter says they would buy one later.",
+      "Actually adding a custom domain. Mike says he would buy one later.",
       "Template licenses and whether the template's features match what is claimed."
     ],
     "qa": [
@@ -3779,8 +3755,8 @@ export const videoSummaries = {
         "a": "No. The DeepSeek option returned a provider not available error, and switching to GPT 4.1 worked."
       },
       {
-        "q": "How much was the domain?",
-        "a": "The presenter says a morphic.dev domain is about $9 a year through Vercel. Check current prices."
+        "q": "How much is a morphic.dev domain through Vercel?",
+        "a": "Mike says a morphic.dev domain is about $9 a year through Vercel. Check current prices."
       }
     ]
   },
@@ -3821,7 +3797,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A working reply. Sending fails while Meta business verification and number registration are pending.",
-      "The cause of the n8n error. The presenter guesses it is the unverified number and asks viewers for help.",
+      "The cause of the n8n error. Mike guesses it is the unverified number and asks viewers for help.",
       "Cost of messages or model calls, and WhatsApp business messaging policies.",
       "Handling of private customer messages by a third-party model."
     ],
@@ -3832,11 +3808,11 @@ export const videoSummaries = {
       },
       {
         "q": "Why OpenRouter?",
-        "a": "The presenter wants to avoid burning ChatGPT or Claude credits on a high volume of messages and can pick cheaper models."
+        "a": "Mike wants to avoid burning ChatGPT or Claude credits on a high volume of messages and can pick cheaper models."
       },
       {
         "q": "How long does Meta verification take?",
-        "a": "The presenter expects two or three days after submitting the business information."
+        "a": "Mike expects two or three days after submitting the business information."
       }
     ]
   },
@@ -3881,27 +3857,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "How the 45 to 55 second segment is chosen from a longer video.",
-      "Subtitles, which the presenter leaves off.",
+      "Subtitles, which Mike leaves off.",
       "Results across different recordings or webcam positions. The prompt tells the skill the webcam is bottom right.",
-      "A fair timing comparison. The 20 seconds versus five to eight minutes for another skill is the presenter's own observation."
+      "A fair timing comparison. The 20 seconds versus five to eight minutes for another skill is Mike's own observation."
     ],
     "qa": [
       {
-        "q": "Which model did the presenter use?",
+        "q": "Which model did Mike use to build the skill?",
         "a": "A free Qwen 3.6 Plus model in OpenCode, so the build cost essentially nothing."
       },
       {
-        "q": "Is the skill available?",
-        "a": "Not yet. The presenter says they may put it on Gumroad."
+        "q": "Is the OpenCode Shorts layout skill available?",
+        "a": "Not yet. Mike says he may put it on Gumroad."
       },
       {
         "q": "Why not use the earlier Video Use skill?",
-        "a": "The presenter found that skill had problems producing the Shorts layout and took much longer."
+        "a": "Mike found that skill had problems producing the Shorts layout and took much longer."
       }
     ]
   },
   "4hwdzAiaybI": {
-    "summary": "Install the free Claude SEO skill in Claude Code and run a full audit on a WordPress consulting site. The report is 561 lines with an action plan, health scores and top issues such as no schema markup, missing meta descriptions on 93 pages and no llms.txt. The presenter cannot apply fixes because the WordPress plan has no SSH or SFTP, and the GEO run only starts.",
+    "summary": "Install the free Claude SEO skill in Claude Code and run a full audit on a WordPress consulting site. The report is 561 lines with an action plan, health scores and top issues such as no schema markup, missing meta descriptions on 93 pages and no llms.txt. Mike cannot apply fixes because the WordPress plan has no SSH or SFTP, and the GEO run only starts.",
     "whatYouBuild": "A Claude SEO skill install and a full-site audit that writes a markdown report and an action plan for a WordPress site.",
     "toolsUsed": [
       "Claude SEO",
@@ -3934,11 +3910,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Claude SEO free?",
-        "a": "The presenter says it is free and installs from GitHub as a Claude Code skill."
+        "a": "It is free and installs from GitHub as a Claude Code skill, Mike says."
       },
       {
         "q": "What does it check?",
-        "a": "Full site audits, single pages, sitemaps and generative engine optimization, per the presenter."
+        "a": "Full site audits, single pages, sitemaps and generative engine optimization, per Mike."
       },
       {
         "q": "What were the biggest issues?",
@@ -3947,7 +3923,7 @@ export const videoSummaries = {
     ]
   },
   "uTYZC3Kxwjo": {
-    "summary": "A first-impression tour of MindStudio, a no-code AI agent builder, recorded by someone who has never used it. The presenter explores the free plan, templates, launch variables and the pricing page, does not get an agent running, and concludes that Make.com is easier for their needs. API access needs the business plan. The MindStudio and Make.com links are affiliate links.",
+    "summary": "A first-impression tour of MindStudio, a no-code AI agent builder, recorded by Mike, who had never used it before. He explores the free plan, templates, launch variables and the pricing page, does not get an agent running, and concludes that Make.com is easier for his needs. API access needs the business plan. The MindStudio and Make.com links are affiliate links.",
     "whatYouBuild": "Nothing working. The video starts an agent in MindStudio, hits launch variable errors and a publishing paywall, and compares the tool with Make.com.",
     "toolsUsed": [
       "MindStudio",
@@ -3976,28 +3952,24 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working agent. The presenter says they do not know what they are doing and stops before finishing one.",
-      "What launch variables do in practice, which the documentation does not make clear to the presenter.",
+      "A working agent. Mike says he does not know what he is doing and stops before finishing one.",
+      "What launch variables do in practice, which the documentation does not make clear to Mike.",
       "Publishing, which needs a paid plan, or any fair comparison of results with Make.com or Zapier.",
       "Whether the learning curve claim holds up. It rests on one short session."
     ],
     "qa": [
       {
         "q": "Is this a tutorial?",
-        "a": "Not really. The presenter says so at the end and apologizes that it is not the complete tutorial they hoped for."
+        "a": "Not really. Mike says so at the end and apologizes that it is not the complete tutorial they hoped for."
       },
       {
-        "q": "Can I use the free plan to publish an agent?",
-        "a": "The presenter could not publish on the free plan and was asked to upgrade."
+        "q": "Can MindStudio's free plan publish an agent?",
+        "a": "Mike could not publish on the free plan and was asked to upgrade."
       },
-      {
-        "q": "Are the links affiliate links?",
-        "a": "Yes, for both MindStudio and Make.com, according to the video."
-      }
     ]
   },
   "P7lbzDAb-qk": {
-    "summary": "A look at ways to try OpenAI's Sora 2 in October 2025. The presenter checks the official iOS app, Higgsfield, Sora2.run, Artlist and HeyGen and finds each needs a paid plan. No finished video is shown, and the one HeyGen attempt is blocked by Sora's content policy. The HeyGen link is an affiliate link, so the title's promise of professional videos in minutes is not delivered.",
+    "summary": "A look at ways to try OpenAI's Sora 2 in October 2025. Mike checks the official iOS app, Higgsfield, Sora2.run, Artlist and HeyGen and finds each needs a paid plan. No finished video is shown, and the one HeyGen attempt is blocked by Sora's content policy. The HeyGen link is an affiliate link, so the title's promise of professional videos in minutes is not delivered.",
     "whatYouBuild": "Nothing is finished. The video compares access routes and prices for Sora 2 and attempts one HeyGen UGC-style ad video.",
     "toolsUsed": [
       "Sora 2",
@@ -4037,23 +4009,19 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Any finished Sora 2 video. The only attempt fails with a content moderation block.",
-      "Free access. The presenter does not find a free route and suggests an invite code from a friend.",
+      "Free access. Mike does not find a free route and suggests an invite code from a friend.",
       "Current prices, which are quoted as seen in October 2025.",
       "Why the photo was blocked, and consent and likeness rules for AI video of real people."
     ],
     "qa": [
       {
         "q": "Can I use Sora 2 for free?",
-        "a": "Not in this video. Every platform tried asks for a paid plan, and the presenter points to an invite code on the official app as the other route."
+        "a": "Not in this video. Every platform tried asks for a paid plan, and Mike points to an invite code on the official app as the other route."
       },
       {
         "q": "Did the HeyGen test work?",
         "a": "No. The request was blocked by Sora's content policy before a video was made."
       },
-      {
-        "q": "Is the HeyGen link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission, which they put at 20 to 30 percent."
-      }
     ]
   },
   "MABL6XZgy4g": {
@@ -4096,19 +4064,19 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The results of the code review, which the presenter requests but does not read out.",
+      "The results of the code review, which Mike requests but does not read out.",
       "Connecting the custom domain. The site runs on a Vercel domain and the DNS step is left for later.",
       "A measured comparison with the old Lovable site. The claim it would be slower is not tested.",
       "Accessibility, SEO and real visitor performance, since PageSpeed here is a single lab run."
     ],
     "qa": [
       {
-        "q": "How long did the rebuild take?",
-        "a": "About ten minutes for the first version and about thirty minutes of work in total, according to the presenter."
+        "q": "How long did the Codex rebuild of the Lovable site take?",
+        "a": "About ten minutes for the first version and about thirty minutes of work in total, according to Mike."
       },
       {
         "q": "Why leave Lovable?",
-        "a": "The presenter found the old site clearly vibe coded and wanted a better design on their own hosting."
+        "a": "Mike found the old site clearly vibe coded and wanted a better design on his own hosting."
       },
       {
         "q": "What were the speed scores?",
@@ -4117,7 +4085,7 @@ export const videoSummaries = {
     ]
   },
   "SplwScUztfM": {
-    "summary": "The presenter shows their own Facebook dashboard and bank payments to explain how they earn from Facebook content monetization, then gives the general steps: post original content, wait for a personal invite from Facebook, and get paid monthly. The earnings, reach and requirement figures are the presenter's own statements and are not verified here. The video also promotes the presenter's paid Facebook monetization guides.",
+    "summary": "Mike shows his own Facebook dashboard and bank payments to explain how he earns from Facebook content monetization, then gives the general steps: post original content, wait for a personal invite from Facebook, and get paid monthly. The earnings, reach and requirement figures are Mike's own statements and are not verified here. The video also promotes Mike's paid Facebook monetization guides.",
     "whatYouBuild": "Nothing is built. The video explains how Facebook's content monetization program works from one creator's account and what to do to become eligible.",
     "toolsUsed": [
       "Meta Business Suite",
@@ -4126,7 +4094,7 @@ export const videoSummaries = {
     "keySteps": [
       {
         "seconds": 26,
-        "step": "See the presenter's claimed monthly payments of roughly $700 to $1,000 and their reach this month."
+        "step": "See Mike's claimed monthly payments of roughly $700 to $1,000 and his reach this month."
       },
       {
         "seconds": 107,
@@ -4138,7 +4106,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 340,
-        "step": "Hear the requirements the presenter lists, including follower and watch time thresholds that may have changed."
+        "step": "Hear the requirements Mike lists, including follower and watch time thresholds that may have changed."
       },
       {
         "seconds": 441,
@@ -4158,20 +4126,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Can anyone start earning?",
-        "a": "No. The presenter says you need a personal invite from Facebook, and original content that meets its standards."
+        "a": "No. Mike says you need a personal invite from Facebook, and original content that meets its standards."
       },
       {
-        "q": "How much does the presenter earn?",
-        "a": "They show payments of $700 to $1,000 in several months and call themselves a top earner. These are their own claims."
+        "q": "How much does Mike earn from Facebook monetization?",
+        "a": "He shows payments of $700 to $1,000 in several months and calls himself a top earner. These are his own claims."
       },
       {
         "q": "Is the video selling something?",
-        "a": "Yes. It points to the presenter's Facebook monetization training, priced from $19 to $49."
+        "a": "Yes. It points to Mike's Facebook monetization training, priced from $19 to $49."
       }
     ]
   },
   "GK7zjPm7G4A": {
-    "summary": "A walkthrough of OpenAI's announcement of GPT-6 Sol and GPT-6 Luna on September 23, 2026. Sol is priced at $2 per million input tokens, half its predecessor, and Luna at 10 cents. The presenter reads OpenAI's own benchmark charts against Opus 5 and Fable 5.1 and says Sol used 2 percent of a weekly limit. Benchmark and price figures are from the announcement and were not tested here.",
+    "summary": "A walkthrough of OpenAI's announcement of GPT-6 Sol and GPT-6 Luna on September 23, 2026. Sol is priced at $2 per million input tokens, half its predecessor, and Luna at 10 cents. Mike reads OpenAI's own benchmark charts against Opus 5 and Fable 5.1 and says Sol used 2 percent of a weekly limit. Benchmark and price figures are from the announcement and were not tested here.",
     "whatYouBuild": "Nothing is built. The video summarizes the release, prices, benchmarks and availability of two new models.",
     "toolsUsed": [
       "GPT-6 Sol",
@@ -4186,7 +4154,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 81,
-        "step": "Hear the presenter's early use of Sol in the terminal and the lower weekly limit use."
+        "step": "Hear Mike's early use of Sol in the terminal and the lower weekly limit use."
       },
       {
         "seconds": 133,
@@ -4207,7 +4175,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Independent tests. The benchmark charts come from OpenAI's announcement.",
-      "Side-by-side coding results on the presenter's own projects.",
+      "Side-by-side coding results on Mike's own projects.",
       "Long-term limits or price changes after the launch date.",
       "A comparison with the competing models beyond the charts shown."
     ],
@@ -4222,12 +4190,12 @@ export const videoSummaries = {
       },
       {
         "q": "Is Sol better than Astra?",
-        "a": "The presenter says Astra still leads on computer use at 73 percent against Sol's 64 percent, but Sol is about five times cheaper."
+        "a": "Astra still leads on computer use at 73 percent against Sol's 64 percent, Mike says, but Sol is about five times cheaper."
       }
     ]
   },
   "K2UeJZ_7mS0": {
-    "summary": "Build a single-file Three.js rocket launch simulator in GPT-6 Astra on medium mode from one 10,000-character prompt taken from Bridgebench. The first build takes about 23 minutes and runs with audio and quality settings. A follow-up prompt adds mouse zoom and rotation. The presenter says it looks decent but not very realistic, and wants clouds.",
+    "summary": "Build a single-file Three.js rocket launch simulator in GPT-6 Astra on medium mode from one 10,000-character prompt taken from Bridgebench. The first build takes about 23 minutes and runs with audio and quality settings. A follow-up prompt adds mouse zoom and rotation. Mike says it looks decent but not very realistic, and wants clouds.",
     "whatYouBuild": "A single index.html rocket launch scene in Three.js with a booster liftoff, staging, audio, a frame rate readout, quality and debug modes, and mouse controls added afterwards.",
     "toolsUsed": [
       "GPT-6 Astra",
@@ -4265,8 +4233,8 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The exact usage cost. The presenter only guesses it is under about 5 percent of a Pro plan.",
-      "A review of the generated code, which the presenter says they cannot follow.",
+      "The exact usage cost. Mike only guesses it is under about 5 percent of a Pro plan.",
+      "A review of the generated code, which Mike says he does not need to know how to write.",
       "Realism improvements such as clouds, which are only wished for.",
       "Performance on other hardware. It ran on a laptop at 1920 by 1080 with a visible frame rate."
     ],
@@ -4276,12 +4244,12 @@ export const videoSummaries = {
         "a": "Bridgebench, which also lists prompts for a Minecraft clone and a Mario Kart style game."
       },
       {
-        "q": "How long did it take?",
+        "q": "How long did GPT-6 Astra take to build the rocket simulator?",
         "a": "About 23 minutes for the first scene and 5 to 10 minutes for the zoom and rotate controls."
       },
       {
         "q": "Is it realistic?",
-        "a": "The presenter calls it impressive for the time but not very realistic."
+        "a": "Impressive for the time but not very realistic, Mike says."
       }
     ]
   },
@@ -4329,7 +4297,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A large visual change. The presenter says the live site does not look much different and needs more work.",
+      "A large visual change. Mike says the live site does not look much different and needs more work.",
       "Why Claude Code found nothing to change after the handoff.",
       "The cost of the work. Usage limits were hit and extra usage of $5 was added, with Haiku used for the retry.",
       "Dashboard pages in production, which are private and not shown."
@@ -4337,11 +4305,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "How does the design get from Claude Design into code?",
-        "a": "The video uses a command that fetches the design file into Claude Code. It also offers a zip download and a web handoff that would create a new app."
+        "a": "A command fetches the design file into Claude Code. Claude Design also offers a zip download and a web handoff that would create a new app."
       },
       {
         "q": "Did Claude Code implement it?",
-        "a": "Not visibly. It reported the design was already implemented, so the presenter used Codex to apply the changes."
+        "a": "Not visibly. It reported the design was already implemented, so Mike used Codex to apply the changes."
       },
       {
         "q": "What is a design.md?",
@@ -4350,7 +4318,7 @@ export const videoSummaries = {
     ]
   },
   "CD2mLFgjiT8": {
-    "summary": "Build a Facebook page chatbot in SendPulse that replies to comments, sends a direct message with a YouTube link, tags and logs interested people, and hands later replies to an AI agent. The presenter says it saves time on a page with about 180,000 followers. The AI agent step needs a paid plan, and the link is an affiliate link.",
+    "summary": "Build a Facebook page chatbot in SendPulse that replies to comments, sends a direct message with a YouTube link, tags and logs interested people, and hands later replies to an AI agent. Mike says it saves time on his page with about 180,000 followers. The AI agent step needs a paid plan, and the link is an affiliate link.",
     "whatYouBuild": "A SendPulse flow with a comment trigger on any post, public reply variants, a yes or no direct message, a tag and Google Sheets row, an unsubscribe path and an AI agent step.",
     "toolsUsed": [
       "SendPulse",
@@ -4392,21 +4360,17 @@ export const videoSummaries = {
       "Meta's rules on automated comment replies and messages, or on consent before messaging people.",
       "Results such as clicks, subscribers gained or reply quality from the AI agent.",
       "Costs beyond the quoted plan prices, including OpenAI usage.",
-      "The claim that the page has never been restricted, which is the presenter's experience."
+      "The claim that the page has never been restricted, which is Mike's own experience."
     ],
     "qa": [
       {
         "q": "Is SendPulse free?",
-        "a": "There is a free start. The presenter quotes paid plans from about $8 a month for 500 subscribers and about $10 a month for the AI agent feature."
+        "a": "There is a free start. Mike quotes paid plans from about $8 a month for 500 subscribers and about $10 a month for the AI agent feature."
       },
       {
         "q": "Why randomize the public replies?",
-        "a": "The presenter uses several variations to avoid looking repetitive to Facebook."
+        "a": "Mike uses several variations to avoid looking repetitive to Facebook."
       },
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission on sign-ups."
-      }
     ]
   },
   "dVC1Or0Tbo8": {
@@ -4450,7 +4414,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A working YouTube template. The transcript step keeps failing.",
-      "A real comparison with competitors. The presenter only says Relay has fewer apps than Make.com.",
+      "A real comparison with competitors. Mike only says Relay has fewer apps than Make.com.",
       "Pricing and credit limits, which are mentioned in passing.",
       "Whether the meeting briefing template ran."
     ],
@@ -4461,7 +4425,7 @@ export const videoSummaries = {
       },
       {
         "q": "How does it compare with Make.com?",
-        "a": "The presenter says it has quite a few apps but not nearly as many as Make.com."
+        "a": "Relay has quite a few apps but not nearly as many as Make.com, Mike says."
       },
       {
         "q": "What did the custom workflow do?",
@@ -4470,7 +4434,7 @@ export const videoSummaries = {
     ]
   },
   "kxp_dF6NEbg": {
-    "summary": "A tour of ten third-party skills the presenter installs with npx skills add from the skills.sh registry and runs in Codex, OpenCode and VS Code: front-end design, Vercel React and Next.js best practices, web design guidelines, SEO audit, AI SEO, page speed and Lighthouse, and GEO content tools. The front-end design skill fixes a light theme on the presenter's landing page. Install counts, citation numbers and traffic figures are the presenter's own and are not verified.",
+    "summary": "A tour of ten third-party skills Mike installs with npx skills add from the skills.sh registry and runs in Codex, OpenCode and VS Code: front-end design, Vercel React and Next.js best practices, web design guidelines, SEO audit, AI SEO, page speed and Lighthouse, and GEO content tools. The front-end design skill fixes a light theme on Mike's landing page. Install counts, citation numbers and traffic figures are Mike's own and are not verified.",
     "whatYouBuild": "A set of installed agent skills, each run with a full site audit prompt, with the front-end design skill used to repair the light theme of a landing page.",
     "toolsUsed": [
       "skills.sh",
@@ -4526,11 +4490,11 @@ export const videoSummaries = {
       },
       {
         "q": "Which agents can use them?",
-        "a": "The video installs into Codex, Gemini, OpenCode and Antigravity, and says Claude Code and OpenClaw are supported too."
+        "a": "Mike installs them into Codex, Gemini, OpenCode and Antigravity, and says Claude Code and OpenClaw are supported too."
       },
       {
         "q": "What did the front-end design skill change?",
-        "a": "It rewrote the CSS so the landing page's light theme has dark text and a visible dashboard sample, though the presenter says it still needs work."
+        "a": "It rewrote the CSS so the landing page's light theme has dark text and a visible dashboard sample, though Mike says it still needs work."
       }
     ]
   },
@@ -4574,28 +4538,28 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working Make.com image automation. The presenter skips setting up Google Cloud billing.",
-      "Generating video, which the presenter says they have not figured out.",
+      "A working Make.com image automation. Mike skips setting up Google Cloud billing.",
+      "Generating video, which Mike says he has not figured out.",
       "Current Gemini plan prices, quoted as about $10 for two months then $20.",
       "Free tier limits and rate limits over time."
     ],
     "qa": [
       {
         "q": "Is Nano Banana free?",
-        "a": "The presenter uses it free in AI Studio and the Gemini app. API use from Make.com hit a quota limit and needs billing."
+        "a": "Mike uses it free in AI Studio and the Gemini app. API use from Make.com hit a quota limit and needs billing."
       },
       {
         "q": "Why did Make.com fail?",
-        "a": "It returned a quota exceeded error. The presenter says billing through Google Cloud would be needed."
+        "a": "It returned a quota exceeded error. Mike says billing through Google Cloud would be needed."
       },
       {
         "q": "Which gives better images, AI Studio or Gemini?",
-        "a": "The presenter liked the Gemini app output more and noted a larger file, but this is a quick impression."
+        "a": "Mike liked the Gemini app output more and noted a larger file, but this is a quick impression."
       }
     ]
   },
   "p_qQNolHR-c": {
-    "summary": "A comparison of free ways to try Nano Banana, Google's Gemini 2.5 Flash Image model, three days after its launch. The presenter tries several third-party sites, finds LMArena direct chat the fastest with no account, and edits a photo by replacing the background and a statue with other subjects. One site fails, and an OpenRouter test errors. The incognito tip for getting past free credit limits is the presenter's, not an official method.",
+    "summary": "A comparison of free ways to try Nano Banana, Google's Gemini 2.5 Flash Image model, three days after its launch. Mike tries several third-party sites, finds LMArena direct chat the fastest with no account, and edits a photo by replacing the background and a statue with other subjects. One site fails, and an OpenRouter test errors. The incognito tip for getting past free credit limits is Mike's, not an official method.",
     "whatYouBuild": "Images made with Nano Banana on third-party sites, including edits of a reference photo, with no automation built.",
     "toolsUsed": [
       "Nano Banana",
@@ -4636,26 +4600,26 @@ export const videoSummaries = {
     "notCovered": [
       "Privacy of photos uploaded to third-party sites, which are not Google products.",
       "Whether using an incognito window to continue past free credit limits fits each site's terms.",
-      "The Make.com automation the presenter promises for a later video.",
-      "A reliable swap of the presenter into the photo. The robot was added beside them instead."
+      "The Make.com automation Mike promises for a later video.",
+      "A reliable swap of Mike into the photo. The robot was added beside him instead."
     ],
     "qa": [
       {
         "q": "Which tool was best?",
-        "a": "LMArena in direct chat mode, according to the presenter. It was quick, needed no account and produced larger files."
+        "a": "LMArena in direct chat mode, according to Mike. It was quick, needed no account and produced larger files."
       },
       {
         "q": "Is nanobanana.ai free?",
-        "a": "No. The presenter says downloading needs a subscription of about $8 to $10 a month for 100 credits."
+        "a": "No. Mike says downloading needs a subscription of about $8 to $10 a month for 100 credits."
       },
       {
         "q": "Why did OpenRouter fail?",
-        "a": "It returned a user not found error twice, and the presenter did not resolve it."
+        "a": "It returned a user not found error twice, and Mike did not resolve it."
       }
     ]
   },
   "tzUhKKzwgyE": {
-    "summary": "Try Base44 by building a ChatGPT-style web app from a prompt written in ChatGPT. The app is generated in about ten minutes and previews well, but adding an OpenAI API connection runs into the free plan's daily credit limit, so the build stops. The presenter then names Lovable, Replit, Bolt and Emergent as better options. Despite the title, no Lovable build is shown side by side.",
+    "summary": "Try Base44 by building a ChatGPT-style web app from a prompt written in ChatGPT. The app is generated in about ten minutes and previews well, but adding an OpenAI API connection runs into the free plan's daily credit limit, so the build stops. Mike then names Lovable, Replit, Bolt and Emergent as better options. Despite the title, no Lovable build is shown side by side.",
     "whatYouBuild": "A ChatGPT-like chat interface generated by Base44 from a single prompt, without a connected AI model.",
     "toolsUsed": [
       "Base44",
@@ -4696,21 +4660,21 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "What does the free plan include?",
-        "a": "The presenter says 25 message credits a month with a daily allowance of five, and 100 integration credits."
+        "q": "What does the Base44 free plan include?",
+        "a": "Mike says 25 message credits a month with a daily allowance of five, and 100 integration credits."
       },
       {
-        "q": "Why did the presenter move on?",
-        "a": "They ran out of daily credits right when they asked for the API connection, and prefer Lovable or Replit for building."
+        "q": "Why did Mike move on from Base44?",
+        "a": "He ran out of daily credits right when he asked for the API connection, and prefers Lovable or Replit for building."
       },
       {
-        "q": "How long did the app take?",
+        "q": "How long did Base44 take to generate the app?",
         "a": "About ten minutes to generate."
       }
     ]
   },
   "bt-zM7QuKkU": {
-    "summary": "A short demonstration of repurposing a YouTube video into an infographic and a LinkedIn post. Gemini 3 summarizes the transcript, Nano Banana Pro in Google AI Studio draws an infographic with correct text, and Gemini 3 Pro writes the post, which the presenter pastes into LinkedIn by hand. An n8n version works for the summary but not the image, because n8n lacks Nano Banana Pro.",
+    "summary": "A short demonstration of repurposing a YouTube video into an infographic and a LinkedIn post. Gemini 3 summarizes the transcript, Nano Banana Pro in Google AI Studio draws an infographic with correct text, and Gemini 3 Pro writes the post, which Mike pastes into LinkedIn by hand. An n8n version works for the summary but not the image, because n8n lacks Nano Banana Pro.",
     "whatYouBuild": "A manual workflow in Google AI Studio from video summary to infographic to LinkedIn post, and an n8n flow that extracts and summarizes the transcript.",
     "toolsUsed": [
       "Gemini 3",
@@ -4753,8 +4717,8 @@ export const videoSummaries = {
         "a": "AI Studio offers Nano Banana Pro, while the n8n version used only has the earlier Nano Banana model."
       },
       {
-        "q": "Do I need a paid plan?",
-        "a": "The presenter recommends the paid plan to get Gemini 3 and Nano Banana Pro."
+        "q": "Do Gemini 3 and Nano Banana Pro need a paid plan?",
+        "a": "Mike recommends the paid plan to get Gemini 3 and Nano Banana Pro."
       },
       {
         "q": "What is still manual?",
@@ -4763,7 +4727,7 @@ export const videoSummaries = {
     ]
   },
   "jB9hYQJGAuM": {
-    "summary": "Install RTK, a free open-source tool that compresses command output before it reaches a coding agent's context, and connect it to Claude Code, Codex and OpenCode. The presenter's own readings show about 57 to 65 percent token savings, with 120,000 tokens saved in one session and 169,000 in OpenCode. The 60 to 95 percent in the intro is RTK's claim. Headroom, a proxy dashboard, was removed after connection problems.",
+    "summary": "Install RTK, a free open-source tool that compresses command output before it reaches a coding agent's context, and connect it to Claude Code, Codex and OpenCode. Mike's own readings show about 57 to 65 percent token savings, with 120,000 tokens saved in one session and 169,000 in OpenCode. The 60 to 95 percent in the intro is RTK's claim. Headroom, a proxy dashboard, was removed after connection problems.",
     "whatYouBuild": "An RTK install with hooks in Claude Code and Codex and an RTK plugin in OpenCode, checked with the rtk gain command.",
     "toolsUsed": [
       "RTK",
@@ -4787,7 +4751,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 160,
-        "step": "Compare RTK with Headroom, a proxy on port 8787 with a dashboard that the presenter dropped."
+        "step": "Compare RTK with Headroom, a proxy on port 8787 with a dashboard that Mike dropped."
       },
       {
         "seconds": 232,
@@ -4795,7 +4759,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 262,
-        "step": "Compare RTK with the Caveman skill, which the presenter has used less."
+        "step": "Compare RTK with the Caveman skill, which Mike has used less."
       },
       {
         "seconds": 346,
@@ -4808,18 +4772,18 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Whether compressed command output changes the quality of the agent's answers.",
-      "Independent measurement. The figures come from RTK's own report on the presenter's machine.",
+      "Independent measurement. The figures come from RTK's own report on Mike's machine.",
       "Windows setup in detail, which is mentioned only in passing.",
       "How much of the saving is usage credit and how much is context length."
     ],
     "qa": [
       {
         "q": "How much does RTK save?",
-        "a": "The tool claims 60 to 95 percent. The presenter's own readings in the video are around 57 to 65 percent."
+        "a": "The tool claims 60 to 95 percent. Mike's own readings in the video are around 57 to 65 percent."
       },
       {
         "q": "Do I need Headroom too?",
-        "a": "No. The presenter removed it because Claude Code had trouble connecting and calls RTK alone enough."
+        "a": "No. Mike removed it because Claude Code had trouble connecting and calls RTK alone enough."
       },
       {
         "q": "How do I check it is working?",
@@ -4828,7 +4792,7 @@ export const videoSummaries = {
     ]
   },
   "pRnJdlMSSqM": {
-    "summary": "An overview of Z.AI's GLM 5.2 model and where to use it, mostly through OpenCode Go. The presenter reads benchmark pages and side-by-side demos made by another creator against Opus 4.8, and notes lower costs. The presenter had hit the OpenCode Go usage limit and does not run GLM 5.2 live, so the comparison rests on other people's results.",
+    "summary": "An overview of Z.AI's GLM 5.2 model and where to use it, mostly through OpenCode Go. Mike reads benchmark pages and side-by-side demos made by another creator against Opus 4.8, and notes lower costs. Mike had hit the OpenCode Go usage limit and does not run GLM 5.2 live, so the comparison rests on other people's results.",
     "whatYouBuild": "Nothing is built. The video shows how to select GLM 5.2 in OpenCode and the desktop app and reviews third-party benchmark and demo comparisons.",
     "toolsUsed": [
       "GLM 5.2",
@@ -4867,9 +4831,9 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A live run of GLM 5.2 by the presenter, who has hit the Go credit limit.",
+      "A live run of GLM 5.2 by Mike, who has hit the Go credit limit.",
       "Independent verification of the benchmark rankings and demo costs.",
-      "Which design wins overall. The presenter prefers Opus 4.8 in some demos and GLM 5.2 in others.",
+      "Which design wins overall. Mike prefers Opus 4.8 in some demos and GLM 5.2 in others.",
       "Current prices. The video quotes $1.40 per million input tokens and $4.40 per million output tokens."
     ],
     "qa": [
@@ -4883,12 +4847,12 @@ export const videoSummaries = {
       },
       {
         "q": "What does OpenCode Go cost?",
-        "a": "The video says $5 for the first month, then $10 a month."
+        "a": "$5 for the first month, then $10 a month, Mike says."
       }
     ]
   },
   "jhmTXc5ZyJk": {
-    "summary": "A beginner attempt at running local models with Ollama on Debian Linux. The 20B GPT model downloads but cannot run on 13 GB of memory, Open WebUI will not install because Docker and pip fail, and AnythingLLM is used instead. A DeepSeek R1 8B model finally runs on the laptop, slowly. The presenter ends by recommending cloud models for most people.",
+    "summary": "A beginner attempt at running local models with Ollama on Debian Linux. The 20B GPT model downloads but cannot run on 13 GB of memory, Open WebUI will not install because Docker and pip fail, and AnythingLLM is used instead. A DeepSeek R1 8B model finally runs on the laptop, slowly. Mike ends by recommending cloud models for most people.",
     "whatYouBuild": "Ollama installed with a curl command, and a DeepSeek R1 8B model running locally and queried through a chat interface.",
     "toolsUsed": [
       "Ollama",
@@ -4924,22 +4888,22 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A working Open WebUI install.",
-      "GPU use, which the presenter says helps but does not test.",
+      "GPU use, which Mike says helps but does not test.",
       "Measured speed or quality, beyond the remark that local replies are slow.",
       "A check of the privacy claim in the title, since the video does not audit what leaves the machine."
     ],
     "qa": [
       {
         "q": "How big are the GPT models?",
-        "a": "The presenter shows about 14 GB for the 20B model and 65 GB for the 120B model."
+        "a": "Mike shows about 14 GB for the 20B model and 65 GB for the 120B model."
       },
       {
         "q": "What hardware is needed?",
-        "a": "More memory than the 13 GB laptop had for the 20B model. The presenter suggests 32 GB or more and says a good graphics card helps."
+        "a": "More memory than the 13 GB laptop had for the 20B model. Mike suggests 32 GB or more and says a good graphics card helps."
       },
       {
-        "q": "Does the presenter recommend running models locally?",
-        "a": "Not for most people. They recommend using cloud models in the browser unless you have the hardware."
+        "q": "Does Mike recommend running models locally with Ollama?",
+        "a": "Not for most people. He recommends using cloud models in the browser unless you have the hardware."
       }
     ]
   },
@@ -5002,12 +4966,12 @@ export const videoSummaries = {
       },
       {
         "q": "Do I have to use the terminal?",
-        "a": "No. The desktop app can create, pause and trigger jobs, although the presenter also shows the CLI."
+        "a": "No. The desktop app can create, pause and trigger jobs, although Mike also shows the CLI."
       }
     ]
   },
   "wL6bjqaUcd8": {
-    "summary": "Add Supermemory, a hosted long-term memory service, to Hermes Agent and OpenCode, with notes on its Codex plugin. The setup uses an API key, the hermes memory setup command and an npm package. The dashboard shows a memory graph and app connections. The presenter does not test recall, and the Codex login is left unfinished because credits ran out.",
+    "summary": "Add Supermemory, a hosted long-term memory service, to Hermes Agent and OpenCode, with notes on its Codex plugin. The setup uses an API key, the hermes memory setup command and an npm package. The dashboard shows a memory graph and app connections. Mike does not test recall, and the Codex login is left unfinished because credits ran out.",
     "whatYouBuild": "Supermemory selected as Hermes Agent's memory provider with an API key, the Supermemory SDK added to OpenCode, and a look at the dashboard and Codex plugin.",
     "toolsUsed": [
       "Supermemory",
@@ -5048,7 +5012,7 @@ export const videoSummaries = {
     "notCovered": [
       "A test that the agent actually recalls earlier work in a new session.",
       "Where memories are stored and what data is sent to the service, which matters for private projects.",
-      "Finishing the Codex plugin login, which the presenter expects to fail without credits.",
+      "Finishing the Codex plugin login, which Mike expects to fail without credits.",
       "Independent checks of the quoted 40 percent figure. Paid plans are quoted from $19 a month."
     ],
     "qa": [
@@ -5058,16 +5022,16 @@ export const videoSummaries = {
       },
       {
         "q": "Which tools does it connect to?",
-        "a": "The video shows Hermes, OpenCode and Codex, and mentions Claude Code, Cursor, Notion, GitHub and Slack."
+        "a": "Hermes, OpenCode and Codex are shown, and Claude Code, Cursor, Notion, GitHub and Slack are mentioned."
       },
       {
-        "q": "Is it free?",
-        "a": "There is a free start. The presenter quotes paid plans from $19 a month."
+        "q": "Is Supermemory free?",
+        "a": "There is a free start. Mike quotes paid plans from $19 a month."
       }
     ]
   },
   "c3AtpUbpXNA": {
-    "summary": "A first test of ChatGPT Images 2.5, announced September 8, 2026, which OpenAI says is up to 50 percent faster than Images 2.0 and adds a Sketch feature. The presenter turns a rough drawing into a scene in about 25 seconds, makes an 80s photo, a caricature and a 3D toy avatar from a personal photo, and iterates on a YouTube thumbnail. Fetching a thumbnail by URL fails, and the final image is a little blurry.",
+    "summary": "A first test of ChatGPT Images 2.5, announced September 8, 2026, which OpenAI says is up to 50 percent faster than Images 2.0 and adds a Sketch feature. Mike turns a rough drawing into a scene in about 25 seconds, makes an 80s photo, a caricature and a 3D toy avatar from a personal photo, and iterates on a YouTube thumbnail. Fetching a thumbnail by URL fails, and the final image is a little blurry.",
     "whatYouBuild": "Images made with ChatGPT Images 2.5, including a sketch-to-image scene, stylized portraits and a before and after YouTube thumbnail.",
     "toolsUsed": [
       "ChatGPT Images 2.5",
@@ -5106,7 +5070,7 @@ export const videoSummaries = {
     "notCovered": [
       "A timed comparison with Images 2.0. The 50 percent claim comes from OpenAI.",
       "Privacy of uploading personal photos.",
-      "Reproducing another creator's thumbnail. The presenter says they would not copy it and makes their own.",
+      "Reproducing another creator's thumbnail. Mike says he would not copy it and makes his own.",
       "Fetching a thumbnail from a URL, which fails in this session."
     ],
     "qa": [
@@ -5120,12 +5084,12 @@ export const videoSummaries = {
       },
       {
         "q": "How did the thumbnail turn out?",
-        "a": "The presenter liked the final before and after version but noted it was a little blurry when zoomed in."
+        "a": "Mike liked the final before and after version but noted it was a little blurry when zoomed in."
       }
     ]
   },
   "p7kV1iHSP54": {
-    "summary": "A walkthrough of xAI's Grok 4.7 launch on September 22, 2026: benchmarks and prices from the announcement, demos by other users, and the presenter's attempt to use it through OpenRouter in Hermes Agent. The announced price is $2 per million input tokens and $6 for output. The presenter cannot see 4.7 in the Grok command line tool, only 4.6, and does not test coding quality.",
+    "summary": "A walkthrough of xAI's Grok 4.7 launch on September 22, 2026: benchmarks and prices from the announcement, demos by other users, and Mike's attempt to use it through OpenRouter in Hermes Agent. The announced price is $2 per million input tokens and $6 for output. Mike cannot see 4.7 in the Grok command line tool, only 4.6, and does not test coding quality.",
     "whatYouBuild": "Nothing is built. The video reviews the release and sets Grok 4.7 as the model in Hermes Agent through OpenRouter, using it to repair the Grok CLI's API key setup.",
     "toolsUsed": [
       "Grok 4.7",
@@ -5172,9 +5136,9 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The presenter's own coding tests of Grok 4.7.",
+      "Mike's own coding tests of Grok 4.7.",
       "Independent verification of the benchmark scores and per-task costs quoted from the announcement.",
-      "The Grok CLI running 4.7. The presenter only sees 4.6 there.",
+      "The Grok CLI running 4.7. Mike only sees 4.6 there.",
       "Speed. The video says 4.7 is among the slowest models on the speed chart shown."
     ],
     "qa": [
@@ -5187,13 +5151,13 @@ export const videoSummaries = {
         "a": "In Cursor, Grok Build, the Grok API and through OpenRouter and other model routers, according to the video."
       },
       {
-        "q": "Did the presenter run it on a real task?",
+        "q": "Did Mike run Grok 4.7 on a real task?",
         "a": "Only a short fix of the Grok CLI configuration in Hermes, costing a few cents in tokens."
       }
     ]
   },
   "ghjmULTSj2Q": {
-    "summary": "A look at Moonshot AI's Kimi K3 on release, mostly through benchmark pages and OpenCode Go. The presenter notes it is cheaper per token than Fable 5 but, in another creator's test, used about 21 million tokens against 3.5 million and ran three to four times longer. A site audit hits a priority queue limit, and signing in to the Kimi Code CLI fails.",
+    "summary": "A look at Moonshot AI's Kimi K3 on release, mostly through benchmark pages and OpenCode Go. Mike notes it is cheaper per token than Fable 5 but, in another creator's test, used about 21 million tokens against 3.5 million and ran three to four times longer. A site audit hits a priority queue limit, and signing in to the Kimi Code CLI fails.",
     "whatYouBuild": "Nothing complete. The video selects Kimi K3 in OpenCode Go, starts a site audit, and tries and fails to log in to Kimi Code.",
     "toolsUsed": [
       "Kimi K3",
@@ -5232,7 +5196,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A finished audit or any comparison run by the presenter. The Chase AI test is another creator's.",
+      "A finished audit or any comparison run by Mike. The Chase AI test is another creator's.",
       "Independent verification of the benchmark rankings and the token counts quoted.",
       "Getting the Kimi Code CLI working.",
       "Whether the Moonshot subscription limits have eased."
@@ -5240,11 +5204,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is Kimi K3 cheaper than Fable 5?",
-        "a": "Per token, yes. In the test the presenter cites, it used far more tokens and time, so the savings were small."
+        "a": "Per token, yes. In the test Mike cites, it used far more tokens and time, so the savings were small."
       },
       {
         "q": "Where is the easiest place to try it?",
-        "a": "OpenCode Go at $10 a month, according to the presenter, because it is built in and avoids a Moonshot subscription."
+        "a": "OpenCode Go at $10 a month, according to Mike, because it is built in and avoids a Moonshot subscription."
       },
       {
         "q": "What went wrong with the audit?",
@@ -5284,21 +5248,17 @@ export const videoSummaries = {
     "notCovered": [
       "Testing the fixes, or confirming the vulnerabilities in the audit were real and are gone.",
       "A finished cloud-built app. The habit tracker build does not complete.",
-      "KiloClaw, which the presenter skips because of the price.",
+      "KiloClaw, which Mike skips because of the price.",
       "A fair comparison with OpenCode. Both are open-source agents with many models."
     ],
     "qa": [
       {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission and that new users get some free credits."
-      },
-      {
-        "q": "What does it cost?",
+        "q": "What does Kilo Code cost?",
         "a": "Kilo Code is free and open source. The video quotes a Kilo Pass from $19 a month and KiloClaw hosting at $55 a month."
       },
       {
-        "q": "Can I use it with Hermes Agent?",
-        "a": "Yes. The presenter adds the Kilo gateway in Hermes setup with an API key and a base URL, and a test message returns."
+        "q": "Can I use Kilo Code with Hermes Agent?",
+        "a": "Yes. Mike adds the Kilo gateway in Hermes setup with an API key and a base URL, and a test message returns."
       }
     ]
   },
@@ -5343,28 +5303,28 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working Perplexity step. The credentials fail and the presenter asks viewers for help.",
+      "A working Perplexity step. The credentials fail and Mike asks viewers for help.",
       "Posting to any platform, since none of the accounts are authenticated.",
-      "Automated posting on LinkedIn, which the presenter avoids after a past account suspension.",
+      "Automated posting on LinkedIn, which Mike avoids after a past account suspension.",
       "Costs of SerpApi, Perplexity and OpenAI calls for a daily run."
     ],
     "qa": [
       {
         "q": "Does the workflow run?",
-        "a": "No. The presenter says it has issues that must be fixed first and calls it a proof of concept."
+        "a": "No. Mike says it has issues that must be fixed first and calls it a proof of concept."
       },
       {
         "q": "Where do the templates come from?",
-        "a": "The n8n templates site, which the presenter says has about 5,900 free workflows, plus a local folder of roughly 2,000 workflows from GitHub."
+        "a": "The n8n templates site, which Mike says has about 5,900 free workflows, plus a local folder of roughly 2,000 workflows from GitHub."
       },
       {
         "q": "Why skip LinkedIn?",
-        "a": "The presenter's earlier account was suspended and they do not want to use automation tools there again."
+        "a": "Mike's earlier account was suspended and he does not want to use automation tools there again."
       }
     ]
   },
   "M_4KgrWyycI": {
-    "summary": "An n8n workflow that turns a YouTube video into an infographic, a LinkedIn post and a newsletter. It pulls the transcript with Apify, summarizes it with Gemini, makes a 4K infographic with Nano Banana Pro through KIE, writes the post with Gemini Flash from the infographic and a newsletter with Claude, and saves them to Google Drive and Docs. The presenter posts to LinkedIn by hand, and the results quoted are their own.",
+    "summary": "An n8n workflow that turns a YouTube video into an infographic, a LinkedIn post and a newsletter. It pulls the transcript with Apify, summarizes it with Gemini, makes a 4K infographic with Nano Banana Pro through KIE, writes the post with Gemini Flash from the infographic and a newsletter with Claude, and saves them to Google Drive and Docs. Mike posts to LinkedIn by hand, and the results quoted are his own.",
     "whatYouBuild": "An n8n workflow with an Apify transcript step, a Gemini summary, a KIE image task with a polling loop, a Google Drive upload, a base64 code node, and Gemini and Claude steps that write a post and a newsletter into Google Docs.",
     "toolsUsed": [
       "n8n",
@@ -5401,12 +5361,12 @@ export const videoSummaries = {
       "Posting to LinkedIn, which is done manually.",
       "Checking the AI summary against the video for accuracy.",
       "Per-run costs for Apify, KIE and the AI models.",
-      "Independent checks of the presenter's quoted 19 percent open rate and 47,000 weekly impressions."
+      "Independent checks of Mike's quoted 19 percent open rate and 47,000 weekly impressions."
     ],
     "qa": [
       {
-        "q": "Where is the template?",
-        "a": "On the presenter's Gumroad page as pay what you want, and in their Skool community's paid plans, according to the video."
+        "q": "Where can I get the n8n LinkedIn infographic workflow template?",
+        "a": "On Mike's Gumroad page as pay what you want, and in the paid plans of his Skool community, according to Mike."
       },
       {
         "q": "Why use KIE for the image?",
@@ -5414,7 +5374,7 @@ export const videoSummaries = {
       },
       {
         "q": "Does it run automatically?",
-        "a": "Not yet. It starts with a manual trigger, and the presenter plans an RSS trigger for new uploads."
+        "a": "Not yet. It starts with a manual trigger, and Mike plans an RSS trigger for new uploads."
       }
     ]
   },
@@ -5474,11 +5434,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is the harness ready for daily use?",
-        "a": "Not yet by its own notice. It is a developer preview and the presenter's first test produced buggy output."
+        "a": "Not yet by its own notice. It is a developer preview and Mike's first test produced buggy output."
       },
       {
-        "q": "What does it cost?",
-        "a": "The presenter's run used about 196,000 tokens and roughly 18 cents on DeepSeek V4 Pro through OpenRouter."
+        "q": "How much did the DeepSeek harness test run cost?",
+        "a": "Mike's run used about 196,000 tokens and roughly 18 cents on DeepSeek V4 Pro through OpenRouter."
       },
       {
         "q": "Why did the first keys fail?",
@@ -5524,9 +5484,9 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A finished ebook. The run is still on chapter three when the video ends.",
-      "Quality. The presenter says the first chapter is long, headings repeat and formatting needs editing.",
+      "Quality. Mike says the first chapter is long, headings repeat and formatting needs editing.",
       "The total API cost for a full book.",
-      "Rights and quality issues in selling an AI-written ebook, which the presenter plans to list in a shop."
+      "Rights and quality issues in selling an AI-written ebook, which Mike plans to list in a shop."
     ],
     "qa": [
       {
@@ -5534,17 +5494,17 @@ export const videoSummaries = {
         "a": "It reported a credit balance too low even after adding funds. Creating a new API key fixed it."
       },
       {
-        "q": "Is the template available?",
-        "a": "Yes, on the presenter's Gumroad page as pay what you want."
+        "q": "Is the Make.com ebook template available?",
+        "a": "Yes, on Mike's Gumroad page as pay what you want."
       },
       {
-        "q": "How long does it take?",
-        "a": "The presenter claims 15 to 30 minutes for a full ebook, but the video does not run it to the end."
+        "q": "How long does the Make.com ebook automation take?",
+        "a": "Mike claims 15 to 30 minutes for a full ebook, but the video does not run it to the end."
       }
     ]
   },
   "cfYpzY-o3fQ": {
-    "summary": "Set up OpenCode, the open-source coding agent, on Linux, start with its three free models, then upgrade to the OpenCode Go plan at $5 for the first month and $10 after. The presenter runs several terminals on MiniMax 2.7, Kimi 2.6 and Qwen 3.5 Plus, fixes an animation bug, and runs a PageSpeed skill from skills.sh that lists performance issues. The sign-up link is an affiliate link.",
+    "summary": "Set up OpenCode, the open-source coding agent, on Linux, start with its three free models, then upgrade to the OpenCode Go plan at $5 for the first month and $10 after. Mike runs several terminals on MiniMax 2.7, Kimi 2.6 and Qwen 3.5 Plus, fixes an animation bug, and runs a PageSpeed skill from skills.sh that lists performance issues. The sign-up link is an affiliate link.",
     "whatYouBuild": "An OpenCode install with Go plan models connected by API key, used for a website fix and a performance audit across several terminal tabs.",
     "toolsUsed": [
       "OpenCode",
@@ -5563,7 +5523,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 160,
-        "step": "Subscribe to OpenCode Go, which the presenter prefers to topping up Zen credits."
+        "step": "Subscribe to OpenCode Go, which Mike prefers to topping up Zen credits."
       },
       {
         "seconds": 265,
@@ -5598,17 +5558,13 @@ export const videoSummaries = {
         "a": "The agent is free and open source, and three Zen models are free. The Go plan is $5 the first month, then $10."
       },
       {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says new sign-ups and the presenter each get $5."
-      },
-      {
-        "q": "Why use it alongside Codex?",
-        "a": "The presenter says they run out of Codex credits often and switch to OpenCode to keep working."
+        "q": "Why use OpenCode alongside Codex?",
+        "a": "Mike says he runs out of Codex credits often and switches to OpenCode to keep working."
       }
     ]
   },
   "avgG3VtN2C4": {
-    "summary": "A hands-on session with Claude Fable 5 after its return, used in Claude Code at high effort for a security review and for a trial conversion and checkout review of the presenter's own web app. Sonnet writes the prompts, Fable 5 reports no critical, high or medium security findings in pending changes, then plans fixes for payment bugs. Fable 5 uses credits very quickly, reaching 95 to 98 percent of a session limit.",
+    "summary": "A hands-on session with Claude Fable 5 after its return, used in Claude Code at high effort for a security review and for a trial conversion and checkout review of Mike's own web app. Sonnet writes the prompts, Fable 5 reports no critical, high or medium security findings in pending changes, then plans fixes for payment bugs. Fable 5 uses credits very quickly, reaching 95 to 98 percent of a session limit.",
     "whatYouBuild": "Two Claude Code plans on a SaaS project: a security audit with a fix plan, and a funnel review that finds payment and trial bugs and closes them in auto mode.",
     "toolsUsed": [
       "Claude Fable 5",
@@ -5649,7 +5605,7 @@ export const videoSummaries = {
     "notCovered": [
       "Proof that the fixes work in production or improve trial conversions.",
       "Whether the issues found are real. The video relies on the model's report.",
-      "A comparison with other models on the same audit. The presenter has already used Codex and OpenCode on this site.",
+      "A comparison with other models on the same audit. Mike has already used Codex and OpenCode on this site.",
       "Cost. Usage reached 51 percent of a session in about ten minutes and 98 percent shortly after."
     ],
     "qa": [
@@ -5663,12 +5619,12 @@ export const videoSummaries = {
       },
       {
         "q": "Is Fable 5 expensive to use?",
-        "a": "On the Pro plan it used credits faster than any other model the presenter has tried, per the video."
+        "a": "On the Pro plan it used credits faster than any other model Mike has tried, he says."
       }
     ]
   },
   "yHaBYtUnzBg": {
-    "summary": "A first test of Claude Design, an Anthropic Labs product launched on April 17, 2026 in research preview for paid Claude plans. The presenter uploads one screenshot of their app and gets a ten-slide investor pitch deck from a few qualifying questions. The deck needs work and one slide overflows before it is fixed. The presenter does not yet see it as a Canva competitor.",
+    "summary": "A first test of Claude Design, an Anthropic Labs product launched on April 17, 2026 in research preview for paid Claude plans. Mike uploads one screenshot of his app and gets a ten-slide investor pitch deck from a few qualifying questions. The deck needs work and one slide overflows before it is fixed. Mike does not yet see it as a Canva competitor.",
     "whatYouBuild": "A ten-slide investor pitch deck in Claude Design, built from an app screenshot and short answers on round size, audience, tone and competitors, then exported or presented full screen.",
     "toolsUsed": [
       "Claude Design",
@@ -5706,9 +5662,9 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A finished deck. The presenter gave a minimal prompt and says it needs a lot of work.",
+      "A finished deck. Mike gave a minimal prompt and says it needs a lot of work.",
       "Accuracy of the competitor comparisons shown in the slides.",
-      "Credit use over a full project, since the presenter was already out of Claude Pro credits.",
+      "Credit use over a full project, since Mike was already out of Claude Pro credits.",
       "The Figma stock reaction mentioned at the start, which comes from a news article."
     ],
     "qa": [
@@ -5718,11 +5674,11 @@ export const videoSummaries = {
       },
       {
         "q": "What can it export?",
-        "a": "The video shows PowerPoint, PDF, HTML and sending the design to Canva."
+        "a": "PowerPoint, PDF, HTML and sending the design to Canva are all shown."
       },
       {
         "q": "Does it replace Canva?",
-        "a": "Not yet in the presenter's view, though they think it could become a serious competitor."
+        "a": "Not yet in Mike's view, though he thinks it could become a serious competitor."
       }
     ]
   },
@@ -5765,7 +5721,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Pricing in detail. The presenter says free plans go up to about $8 a month, which is not checked here.",
+      "Pricing in detail. Mike says free plans go up to about $8 a month, which is not checked here.",
       "Design systems, which are shown only as a menu option.",
       "Accuracy of the slide content drawn from the video transcript.",
       "Independent checks of the 100,000 GitHub stars quoted."
@@ -5773,7 +5729,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Does it run on Linux?",
-        "a": "Not as a download. The presenter builds it from source after installing the missing Node dependencies and corepack."
+        "a": "Not as a download. Mike builds it from source after installing the missing Node dependencies and corepack."
       },
       {
         "q": "What did the tests cost?",
@@ -5781,12 +5737,12 @@ export const videoSummaries = {
       },
       {
         "q": "Which models can it use?",
-        "a": "The presenter lists Claude, DeepSeek, GPT and Gemini options, some of which need your own API key."
+        "a": "Mike lists Claude, DeepSeek, GPT and Gemini options, some of which need your own API key."
       }
     ]
   },
   "UoMuiKjDu4A": {
-    "summary": "A walkthrough of OpenAI's GPT-6 Astra launch, using the announcement page, OpenAI's demos and third-party benchmark charts. The presenter has not used the model yet because it has not rolled out to Codex or ChatGPT. Claims such as 99.9 percent on ARC-AGI-3 and the intelligence and cost rankings come from OpenAI and the charts shown.",
+    "summary": "A walkthrough of OpenAI's GPT-6 Astra launch, using the announcement page, OpenAI's demos and third-party benchmark charts. Mike has not used the model yet because it has not rolled out to Codex or ChatGPT. Claims such as 99.9 percent on ARC-AGI-3 and the intelligence and cost rankings come from OpenAI and the charts shown.",
     "whatYouBuild": "Nothing is built. The video reviews launch claims, demos, availability and benchmark comparisons for GPT-6 Astra.",
     "toolsUsed": [
       "GPT-6 Astra",
@@ -5825,10 +5781,10 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The presenter's own tests of the model.",
+      "Mike's own tests of the model.",
       "Independent verification of the benchmark claims. One chart in the video puts Astra at 61 against 66 for Fable 5.1 on an intelligence index.",
       "How soon each plan actually gets access.",
-      "The presenter's remark that this is near AGI, which is an opinion."
+      "Mike's remark that this is near AGI, which is an opinion."
     ],
     "qa": [
       {
@@ -5841,12 +5797,12 @@ export const videoSummaries = {
       },
       {
         "q": "Do I need API credits?",
-        "a": "The presenter says it is included in subscription plans, unlike Fable 5.1 which they say needs usage credits."
+        "a": "Mike says it is included in subscription plans, unlike Fable 5.1, which he says needs usage credits."
       }
     ]
   },
   "GhHYtL5pQXU": {
-    "summary": "An n8n workflow that watches a YouTube channel's RSS feed, pulls the new video's transcript with Apify, and has Claude write a 400-word LinkedIn newsletter that is saved to Google Docs. The run works in the demo. Posting to LinkedIn stays manual because the presenter cannot verify their account and prefers not to automate LinkedIn.",
+    "summary": "An n8n workflow that watches a YouTube channel's RSS feed, pulls the new video's transcript with Apify, and has Claude write a 400-word LinkedIn newsletter that is saved to Google Docs. The run works in the demo. Posting to LinkedIn stays manual because Mike cannot verify his account and prefers not to automate LinkedIn.",
     "whatYouBuild": "An n8n workflow with an RSS trigger every 10 minutes, an Apify transcript actor, split and aggregate steps, a Claude newsletter prompt, and Google Docs create and update nodes.",
     "toolsUsed": [
       "n8n",
@@ -5893,25 +5849,25 @@ export const videoSummaries = {
       "Posting to LinkedIn automatically, which fails because the account is not verified.",
       "Checking the newsletter against the video for accuracy.",
       "Costs of Apify and Claude per run.",
-      "Whether a 10-minute poll is the right interval, which the presenter suggests could be 30 or 60 minutes."
+      "Whether a 10-minute poll is the right interval, which Mike suggests could be 30 or 60 minutes."
     ],
     "qa": [
       {
         "q": "Why not post to LinkedIn automatically?",
-        "a": "The presenter cannot get the credentials verified and also worries that LinkedIn may detect automation."
+        "a": "Mike cannot get the credentials verified and also worries that LinkedIn may detect automation."
       },
       {
         "q": "Why remove the timestamps?",
         "a": "The transcript actor returns lines with timestamps, so the workflow splits and aggregates them into plain text for the prompt."
       },
       {
-        "q": "What does it need set up?",
+        "q": "What does the n8n LinkedIn newsletter workflow need?",
         "a": "An Apify account and actor, an Anthropic API key, and Google Cloud OAuth credentials for Docs and Drive."
       }
     ]
   },
   "lumzbY6QV4Y": {
-    "summary": "A first look at OpenAI's Agent Builder one day after its announcement. The presenter creates a customer service workflow, picks GPT-5, adds tool options and reviews two templates, but cannot run any of it. Preview is blocked for unverified organizations, and verification with a passport had not cleared by the end. The title promises a test, which does not happen.",
+    "summary": "A first look at OpenAI's Agent Builder one day after its announcement. Mike creates a customer service workflow, picks GPT-5, adds tool options and reviews two templates, but cannot run any of it. Preview is blocked for unverified organizations, and verification with a passport had not cleared by the end. The title promises a test, which does not happen.",
     "whatYouBuild": "Nothing runs. The video builds a workflow with an agent node, a vector store file search and guardrails, and walks through the customer service and data enrichment templates.",
     "toolsUsed": [
       "OpenAI Agent Builder",
@@ -5960,21 +5916,21 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "Why couldn't the presenter run the agent?",
-        "a": "The preview needs a verified organization. The presenter submitted a passport and selfies, but the page still showed it as unverified."
+        "q": "Why couldn't Mike run the agent?",
+        "a": "The preview needs a verified organization. Mike submitted a passport and selfies, but the page still showed it as unverified."
       },
       {
         "q": "What does the customer service template do?",
         "a": "It checks input with a guardrail, classifies the request as a return, a cancellation or a question, then sends it down the matching branch."
       },
       {
-        "q": "Does the presenter recommend it?",
-        "a": "For something simple, yes, but for most automations they recommend n8n."
+        "q": "Does Mike recommend OpenAI Agent Builder?",
+        "a": "For something simple, yes, but for most automations he recommends n8n."
       }
     ]
   },
   "dIZ7xNyWu3M": {
-    "summary": "A Make.com scenario that reads YouTube links from Google Sheets, extracts transcripts with Dumpling AI, saves them to Google Drive and uploads them to an OpenAI vector store as a knowledge base. The goal is an ElevenLabs voice clone that answers WhatsApp messages, but the voice clone and WhatsApp parts are not built in this video. The template is offered in the presenter's free community.",
+    "summary": "A Make.com scenario that reads YouTube links from Google Sheets, extracts transcripts with Dumpling AI, saves them to Google Drive and uploads them to an OpenAI vector store as a knowledge base. The goal is an ElevenLabs voice clone that answers WhatsApp messages, but the voice clone and WhatsApp parts are not built in this video. Mike offers the template in his free community.",
     "whatYouBuild": "A Make.com loop that fetches transcripts without timestamps, writes each to a Drive file, downloads it and adds it to an OpenAI assistant's vector store.",
     "toolsUsed": [
       "Make.com",
@@ -6014,21 +5970,21 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "What is the knowledge base for?",
-        "a": "It trains a custom assistant on the presenter's own videos so a later voice clone can answer messages."
+        "a": "It trains a custom assistant on Mike's own videos so a later voice clone can answer messages."
       },
       {
         "q": "Does the scenario run?",
         "a": "It runs once in the demo: it gets a transcript, saves it to Drive, downloads it and uploads it to the vector store, then moves to the next link."
       },
       {
-        "q": "Where is the template?",
-        "a": "In the presenter's free school community, according to the video."
+        "q": "Where can I get the YouTube transcript Make.com template?",
+        "a": "In Mike's free Skool community, according to the video."
       }
     ]
   },
   "uTcTJd5JaZU": {
-    "summary": "A recap of OpenAI's September 29, 2026 dev day announcements and a first try of Dots, an always-on agent inside ChatGPT with its own cloud computer. The presenter customizes a dot, gets task suggestions drawn from past chats and email, and prepares a podcast application, though a site is blocked in the cloud browser. Prices, benchmarks and model claims are from OpenAI's recap. The presenter plans more videos before judging it.",
-    "whatYouBuild": "A Dots agent named by the presenter, connected to ChatGPT history and plugins, used to prepare a podcast guest application and explore the cloud computer's terminal and file explorer.",
+    "summary": "A recap of OpenAI's September 29, 2026 dev day announcements and a first try of Dots, an always-on agent inside ChatGPT with its own cloud computer. Mike customizes a dot, gets task suggestions drawn from past chats and email, and prepares a podcast application, though a site is blocked in the cloud browser. Prices, benchmarks and model claims are from OpenAI's recap. Mike plans more videos before judging it.",
+    "whatYouBuild": "A Dots agent named by Mike, connected to ChatGPT history and plugins, used to prepare a podcast guest application and explore the cloud computer's terminal and file explorer.",
     "toolsUsed": [
       "OpenAI Dots",
       "GPT-6 Astra",
@@ -6065,7 +6021,7 @@ export const videoSummaries = {
       },
       {
         "q": "What does Ultra fast mode cost?",
-        "a": "The presenter says it needs a new $500 a month plan, and that a $200 plan returned with about half the usage. These are quoted from the recap."
+        "a": "A new $500 a month plan, Mike says, and a $200 plan returned with about half the usage. These are quoted from the recap."
       },
       {
         "q": "Did the podcast application get submitted?",
@@ -6104,10 +6060,10 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Fable 5 actually back online. The presenter is still waiting for it.",
+      "Fable 5 actually back online. Mike is still waiting for it.",
       "Independent confirmation of the export control details, which come from the announcement and press coverage.",
       "How often the classifiers fall back to Opus 4.8 in real coding work.",
-      "A quality comparison with GLM 5.2. The presenter only compares prices and recommends cheaper models."
+      "A quality comparison with GLM 5.2. Mike only compares prices and recommends cheaper models."
     ],
     "qa": [
       {
@@ -6115,17 +6071,17 @@ export const videoSummaries = {
         "a": "Pro, Max, Team and select Enterprise plans, for up to 50 percent of weekly usage limits through July 7, and then through usage credits."
       },
       {
-        "q": "Why was it paused?",
-        "a": "The video says US export controls triggered a suspension days after its June 9 release."
+        "q": "Why was Claude Fable 5 paused?",
+        "a": "US export controls triggered a suspension days after its June 9 release, Mike explains."
       },
       {
-        "q": "What does it cost?",
+        "q": "What does Claude Fable 5 cost?",
         "a": "$10 per million input tokens and $50 per million output tokens, according to the video."
       }
     ]
   },
   "i2na8YZI7KM": {
-    "summary": "Use Claude Code in the terminal to write SEO blog articles for the presenter's own site, first with a general skill and then with a custom project-local skill file. An article takes about 10 to 15 minutes and includes a slug, excerpt, internal links and an FAQ. The video also covers llms.txt and ai.txt files. No ranking results are shown, so the title's claim that the articles rank is not demonstrated.",
+    "summary": "Use Claude Code in the terminal to write SEO blog articles for Mike's own site, first with a general skill and then with a custom project-local skill file. An article takes about 10 to 15 minutes and includes a slug, excerpt, internal links and an FAQ. The video also covers llms.txt and ai.txt files. No ranking results are shown, so the title's claim that the articles rank is not demonstrated.",
     "whatYouBuild": "A Claude Code SKILL.md for writing blog articles with format, SEO link target, E-E-A-T and citation rules, plus llms.txt, ai.txt and llms-full.txt files for AI crawlers.",
     "toolsUsed": [
       "Claude Code",
@@ -6171,7 +6127,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "How long does an article take?",
-        "a": "About 10 to 15 minutes, according to the presenter."
+        "a": "About 10 to 15 minutes, according to Mike."
       },
       {
         "q": "What is in the skill file?",
@@ -6179,7 +6135,7 @@ export const videoSummaries = {
       },
       {
         "q": "Do these articles rank?",
-        "a": "The video does not show it. The presenter only says the aim is to help them rank in search and AI answers."
+        "a": "Rankings are not shown. Mike only says the aim is to help them rank in search and AI answers."
       }
     ]
   },
@@ -6227,17 +6183,13 @@ export const videoSummaries = {
     "notCovered": [
       "Automatic posting to LinkedIn, which is manual.",
       "Which variant performs best, since no engagement results are shown.",
-      "Total cost. The spoken spend figure is unclear, and the presenter reports 6 percent of the day's and 19 percent of the month's OpenCode Go usage.",
-      "The lost earlier output files, which the presenter notes were deleted by a script change."
+      "Total cost. The spoken spend figure is unclear, and Mike reports 6 percent of the day's and 19 percent of the month's OpenCode Go usage.",
+      "The lost earlier output files, which Mike notes were deleted by a script change."
     ],
     "qa": [
       {
-        "q": "Is the OpenCode link an affiliate link?",
-        "a": "Yes. The presenter says sign-ups get $5 in credits and the presenter gets $5."
-      },
-      {
         "q": "Why Node.js instead of Python?",
-        "a": "OpenCode chose Node.js on its own. The presenter would have preferred Python but kept it."
+        "a": "OpenCode chose Node.js on its own. Mike would have preferred Python but kept it."
       },
       {
         "q": "Which post styles does it make?",
@@ -6246,7 +6198,7 @@ export const videoSummaries = {
     ]
   },
   "pwLLS6zFpKs": {
-    "summary": "A build-in-public look at Cortex, the presenter's business second brain made in Claude Code and Codex. It tracks 26 project notes and the channel transcripts, has a capture inbox, a theme graph and a planned radar for what to build and film next. The vidIQ MCP is connected and a LeadScope CRM integration is prompted. The presenter says they are not yet sure the tool helps earn more.",
+    "summary": "A build-in-public look at Cortex, Mike's business second brain made in Claude Code and Codex. It tracks 26 project notes and the channel transcripts, has a capture inbox, a theme graph and a planned radar for what to build and film next. The vidIQ MCP is connected and a LeadScope CRM integration is prompted. Mike says he is not yet sure the tool helps earn more.",
     "whatYouBuild": "A local dashboard with project spaces, transcripts, an inbox, a theme graph and a radar recommendation page, with Claude Haiku summarizing items in a queue.",
     "toolsUsed": [
       "Claude Code",
@@ -6292,12 +6244,12 @@ export const videoSummaries = {
       "Whether the radar gives useful recommendations, since it is only started.",
       "The second YouTube channel's 1,200 video transcripts, which are still to be collected.",
       "How the retrieval system works or how business data is protected.",
-      "Any measured business benefit. The presenter says it is not obvious that it will make more money."
+      "Any measured business benefit. Mike says it is not obvious that it will make more money."
     ],
     "qa": [
       {
         "q": "What is Cortex for?",
-        "a": "A single place that tracks the presenter's projects and channels and, eventually, suggests what to do next."
+        "a": "A single place that tracks Mike's projects and channels and, eventually, suggests what to do next."
       },
       {
         "q": "What does it connect to?",
@@ -6305,7 +6257,7 @@ export const videoSummaries = {
       },
       {
         "q": "Why switch to Codex?",
-        "a": "Claude usage was exhausted and about 45 minutes from resetting, so the presenter continued in Codex."
+        "a": "Claude usage was exhausted and about 45 minutes from resetting, so Mike continued in Codex."
       }
     ]
   },
@@ -6341,25 +6293,21 @@ export const videoSummaries = {
       "Terms of service for scraping YouTube through Apify.",
       "Accuracy of the topic analysis and the channel list that Claude chose.",
       "A match between the numbers shown: the scrape reports 305 videos while the dashboard shows 74, with 175 million views in total.",
-      "Links from the dashboard to each video, which the presenter says could be added."
+      "Links from the dashboard to each video, which Mike says could be added."
     ],
     "qa": [
       {
-        "q": "Is this video sponsored?",
-        "a": "Yes. The presenter says Apify sponsored it and gave $50 in free credits for the demo."
+        "q": "How long did the competitor dashboard take to build?",
+        "a": "About 15 to 20 minutes, plus a ten-minute scrape, Mike says."
       },
       {
-        "q": "How long did the build take?",
-        "a": "The presenter says about 15 to 20 minutes, plus a ten-minute scrape."
-      },
-      {
-        "q": "What does Apify cost?",
-        "a": "The video says a free plan with $5 of credits a month and paid plans from $29 a month."
+        "q": "How much does Apify cost for YouTube scraping?",
+        "a": "Apify has a free plan with $5 of credits a month and paid plans from $29 a month, Mike says."
       }
     ]
   },
   "wniZpV6LZsE": {
-    "summary": "Set up a SendPulse chatbot that replies to comments on any post of a Facebook page and sends each commenter one direct message with buttons to the presenter's Facebook group, YouTube channel and Skool community. The presenter has used it for about two years on a page with roughly 175,000 followers. The ChatGPT agent step needs the paid plan, and the contact limit on the free plan has already been exceeded.",
+    "summary": "Set up a SendPulse chatbot that replies to comments on any post of a Facebook page and sends each commenter one direct message with buttons to Mike's Facebook group, YouTube channel and Skool community. Mike has used it for about two years on a page with roughly 175,000 followers. The ChatGPT agent step needs the paid plan, and the contact limit on the free plan has already been exceeded.",
     "whatYouBuild": "A SendPulse comment trigger on any post with randomized replies, a repeat-trigger delay, and a direct message with three link buttons that then closes the chat.",
     "toolsUsed": [
       "SendPulse",
@@ -6390,7 +6338,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 260,
-        "step": "Compare with ManyChat, which the presenter says starts at $15 a month."
+        "step": "Compare with ManyChat, which Mike says starts at $15 a month."
       },
       {
         "seconds": 310,
@@ -6401,25 +6349,25 @@ export const videoSummaries = {
       "Meta's rules on automated replies and direct messages to people who commented.",
       "Results such as clicks to the group, channel or community.",
       "A working ChatGPT reply, which needs a paid plan.",
-      "The claim that Make.com cannot reply to comments and send DMs, which is the presenter's understanding."
+      "The claim that Make.com cannot reply to comments and send DMs, which is Mike's understanding."
     ],
     "qa": [
       {
         "q": "How much does SendPulse cost?",
-        "a": "The video says there is a free start and paid plans from about $10 a month, scaling with the number of subscribers."
+        "a": "SendPulse has a free start and paid plans from about $10 a month that scale with the number of subscribers, Mike says."
       },
       {
         "q": "Why close the chat after one message?",
-        "a": "To avoid messaging the same person every time they comment, which the presenter says would bother them."
+        "a": "To avoid messaging the same person every time they comment, which Mike says would bother them."
       },
       {
         "q": "Can it use ChatGPT?",
-        "a": "Yes, through an AI agent node, but the presenter says that now needs the paid plan."
+        "a": "Yes, through an AI agent node, but Mike says that now needs the paid plan."
       }
     ]
   },
   "9hs6n1enosI": {
-    "summary": "A news summary of Anthropic's June 9, 2026 launch of Claude Fable 5, which Anthropic calls a Mythos-class model with safeguards for general use. The presenter reads the press release and benchmark pages: it is included on paid plans until June 22, then needs usage credits, and costs $10 per million input tokens and $50 for output. The presenter had not used it yet. The title mentions Mythos, but the video is about Fable 5.",
+    "summary": "A news summary of Anthropic's June 9, 2026 launch of Claude Fable 5, which Anthropic calls a Mythos-class model with safeguards for general use. Mike reads the press release and benchmark pages: it is included on paid plans until June 22, then needs usage credits, and costs $10 per million input tokens and $50 for output. Mike had not used it yet. The title mentions Mythos, but the video is about Fable 5.",
     "whatYouBuild": "Nothing is built. The video reviews the release, the Glass Wing partner rollout, the plan access dates and benchmark charts for Fable 5.",
     "toolsUsed": [
       "Claude Fable 5",
@@ -6436,7 +6384,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The presenter's own tests, which are planned after upgrading to Pro.",
+      "Mike's own tests, which are planned after upgrading to Pro.",
       "Independent checks of the benchmark claims. A separate index in the video ranks it first on intelligence but near the bottom on input price and mid-tier on speed.",
       "How the Glass Wing partner rollout affects individual users.",
       "Whether the included-plan window was extended."
@@ -6457,7 +6405,7 @@ export const videoSummaries = {
     ]
   },
   "woyme-rVDGw": {
-    "summary": "A news explainer on OpenAI's GPT 5.6, which is reported to be limited to about 20 pre-approved organizations through the API and Codex, with no paid ChatGPT tier unlocking it. The presenter attributes the staggered rollout to a US government request, based on reports and OpenAI's statements. Benchmark numbers and rollout rumors are repeated, not tested. The presenter advises staying with existing models and distrusting early access offers.",
+    "summary": "A news explainer on OpenAI's GPT 5.6, which is reported to be limited to about 20 pre-approved organizations through the API and Codex, with no paid ChatGPT tier unlocking it. Mike attributes the staggered rollout to a US government request, based on reports and OpenAI's statements. Benchmark numbers and rollout rumors are repeated, not tested. Mike advises staying with existing models and distrusting early access offers.",
     "whatYouBuild": "Nothing is built. The video summarizes who can use GPT 5.6, what the Sol, Terra and Luna models are, and how to tell when it reaches ChatGPT.",
     "toolsUsed": [
       "GPT 5.6",
@@ -6490,7 +6438,7 @@ export const videoSummaries = {
       "Independent confirmation of the government request, which is reported in the video from news coverage.",
       "Independent benchmark results, since the model is not public. The scores quoted are from OpenAI's materials.",
       "A release date. The video says only that wider availability is promised in coming weeks, and cites betting market rumors.",
-      "Whether the identity checks the presenter mentions as a rumor will apply."
+      "Whether the identity checks Mike mentions as a rumor will apply."
     ],
     "qa": [
       {
@@ -6502,7 +6450,7 @@ export const videoSummaries = {
         "a": "Sol is the flagship model, Terra is for everyday work and Luna is the minimal, lower-cost one."
       },
       {
-        "q": "What does the presenter suggest?",
+        "q": "What does Mike suggest while GPT 5.6 is restricted?",
         "a": "Keep using the models you already have, such as GPT 5.4 mini for coding, and be skeptical of sites offering early access."
       }
     ]
@@ -6547,25 +6495,25 @@ export const videoSummaries = {
       "A successful run. The Google Docs authentication error is not resolved in the video.",
       "Checking that tailored resumes stay truthful, since an AI model can overstate or invent qualifications.",
       "The sharing setting that makes each resume document readable by anyone with the link, which matters for personal data.",
-      "Applying, which the presenter says cannot be easily automated."
+      "Applying, which Mike says cannot be easily automated."
     ],
     "qa": [
       {
         "q": "Does the workflow apply for jobs?",
-        "a": "No. It finds jobs, scores fit, writes tailored resumes and logs them. The presenter says applying still has to be done by hand."
+        "a": "No. It finds jobs, scores fit, writes tailored resumes and logs them. Mike says applying still has to be done by hand."
       },
       {
-        "q": "Where is the template?",
-        "a": "On the presenter's Gumroad page as pay what you want."
+        "q": "Where can I get the n8n job search resume template?",
+        "a": "On Mike's Gumroad page as pay what you want."
       },
       {
         "q": "Why did the demo fail?",
-        "a": "Google Docs returned a client authentication error that the presenter could not resolve during recording."
+        "a": "Google Docs returned a client authentication error that Mike could not resolve during recording."
       }
     ]
   },
   "X0X8kJTK7vA": {
-    "summary": "A Make.com scenario that finds businesses on Google Maps, creates a Google Sheet, fetches each business website and uses a pattern from ChatGPT to extract email addresses into a column. A run for marketing agencies in Bangkok fills the sheet automatically, though some emails are wrong or missing. The presenter plans to send the leads cold email. Terms of use and cold email rules are not covered.",
+    "summary": "A Make.com scenario that finds businesses on Google Maps, creates a Google Sheet, fetches each business website and uses a pattern from ChatGPT to extract email addresses into a column. A run for marketing agencies in Bangkok fills the sheet automatically, though some emails are wrong or missing. Mike plans to send the leads cold email. Terms of use and cold email rules are not covered.",
     "whatYouBuild": "A Make.com scenario with a Google Maps text search, HTTP requests for place details and website HTML, a regular expression for emails, and rows added to Google Sheets.",
     "toolsUsed": [
       "Make.com",
@@ -6601,7 +6549,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Accuracy of the emails. The presenter says some are image file names or are missing and need a tool such as Hunter.",
+      "Accuracy of the emails. Mike says some are image file names or are missing and need a tool such as Hunter.",
       "Google Maps Platform terms on storing business data, and anti-spam and data protection rules for cold email.",
       "A count that matches the 50 requested. The sheet shows 72 rows added.",
       "Results from emailing the leads."
@@ -6609,7 +6557,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Can I use it for any city or industry?",
-        "a": "The presenter says any location and industry works as long as the business is on Google Maps."
+        "a": "Any location and industry works as long as the business is on Google Maps, Mike says."
       },
       {
         "q": "What do you need besides Make.com?",
@@ -6617,12 +6565,12 @@ export const videoSummaries = {
       },
       {
         "q": "Are the emails reliable?",
-        "a": "No. The presenter says it does not always get the right address and sometimes finds none."
+        "a": "No. Mike says it does not always get the right address and sometimes finds none."
       }
     ]
   },
   "is7JIUfHsng": {
-    "summary": "An attempt to set up an OpenClaw assistant on KiloClaw, Kilo's hosted version, on a 21-day free trial. The dashboard, soul.md personality file, skills and update settings are shown, but a LinkedIn post generator fails to submit approval, WhatsApp and Telegram channels cannot be linked and an error message is unexplained. The presenter says they prefer Claude Code and finds OpenClaw hard to get working.",
+    "summary": "An attempt to set up an OpenClaw assistant on KiloClaw, Kilo's hosted version, on a 21-day free trial. The dashboard, soul.md personality file, skills and update settings are shown, but a LinkedIn post generator fails to submit approval, WhatsApp and Telegram channels cannot be linked and an error message is unexplained. Mike says he prefers Claude Code and finds OpenClaw hard to get working.",
     "whatYouBuild": "A KiloClaw instance on its free trial, with a LinkedIn post generator request that errors and unfinished channel connections.",
     "toolsUsed": [
       "KiloClaw",
@@ -6666,26 +6614,26 @@ export const videoSummaries = {
     "notCovered": [
       "A working assistant or LinkedIn generator. The approval and send errors are not resolved.",
       "Connecting WhatsApp or Telegram.",
-      "Security of giving an assistant API keys, which the presenter says they do not trust OpenClaw with.",
-      "Current KiloClaw price. The video quotes $8 a month, while a later video by the same presenter quotes $55."
+      "Security of giving an assistant API keys, which Mike says he does not trust OpenClaw with.",
+      "Current KiloClaw price. The video quotes $8 a month, while a later video by Mike quotes $55."
     ],
     "qa": [
       {
         "q": "Did it work?",
-        "a": "Not in this video. The presenter hits several errors and ends with a negative view of OpenClaw."
+        "a": "Not in this video. Mike hits several errors and ends with a negative view of OpenClaw."
       },
       {
         "q": "What does KiloClaw offer?",
         "a": "A hosted OpenClaw instance on a private virtual server, so you do not install it yourself."
       },
       {
-        "q": "Why does the presenter prefer Claude Code?",
-        "a": "They find it faster and more secure for what they want, which is a personal view."
+        "q": "Why does Mike prefer Claude Code?",
+        "a": "He finds it faster and more secure for what he wants, which is a personal view."
       }
     ]
   },
   "KKw2Q9-Ge_0": {
-    "summary": "Use Gemini 3 Pro Preview in Google AI Studio to build single-file HTML versions of Tetris, Snake, Asteroids and Pac-Man from prompts written in ChatGPT. Tetris, Snake and Asteroids each take a couple of minutes and play, though the snake looks like a Tetris block and Asteroids runs slowly. The Pac-Man version does not work. The presenter may host the games online.",
+    "summary": "Use Gemini 3 Pro Preview in Google AI Studio to build single-file HTML versions of Tetris, Snake, Asteroids and Pac-Man from prompts written in ChatGPT. Tetris, Snake and Asteroids each take a couple of minutes and play, though the snake looks like a Tetris block and Asteroids runs slowly. The Pac-Man version does not work. Mike may host the games online.",
     "whatYouBuild": "Four browser games as single HTML files, previewed in AI Studio and downloaded to run locally.",
     "toolsUsed": [
       "Gemini 3 Pro",
@@ -6719,14 +6667,14 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A fix for Pac-Man, which the presenter says needs more prompting.",
+      "A fix for Pac-Man, which Mike says needs more prompting.",
       "Code quality or how Gemini's output compares with other models on the same prompts.",
       "Rights questions around publishing copies of well-known games.",
-      "Graphics polish. The presenter calls the Asteroids graphics not great."
+      "Graphics polish. Mike calls the Asteroids graphics not great."
     ],
     "qa": [
       {
-        "q": "How long did each game take?",
+        "q": "How long did Gemini 3 take to build each game?",
         "a": "About one and a half to two minutes for Tetris and a few minutes for the others."
       },
       {
@@ -6734,13 +6682,13 @@ export const videoSummaries = {
         "a": "No. Tetris, Snake and Asteroids ran, while the Pac-Man file was broken."
       },
       {
-        "q": "Do you need a paid plan?",
-        "a": "The presenter used the free version of AI Studio, and says upgrading would probably help."
+        "q": "Do you need a paid plan to build games in AI Studio?",
+        "a": "Mike used the free version of AI Studio, and says upgrading would probably help."
       }
     ]
   },
   "pYHt2qWvAr8": {
-    "summary": "A tour of LeadScope, a lead generation tool the presenter built in about four hours with Codex and GPT 5.6. It searches businesses by category and place through the Google Places API, audits their websites with PageSpeed, writes pitch emails, keeps a CRM and sends through Gmail or Mailgun. Mailgun and the automations page are not working reliably, and redesign mockups are weak. Spending so far is $1.73 on Places.",
+    "summary": "A tour of LeadScope, a lead generation tool Mike built in about four hours with Codex and GPT 5.6. It searches businesses by category and place through the Google Places API, audits their websites with PageSpeed, writes pitch emails, keeps a CRM and sends through Gmail or Mailgun. Mailgun and the automations page are not working reliably, and redesign mockups are weak. Spending so far is $1.73 on Places.",
     "whatYouBuild": "A web app with lead search, Playwright contact discovery, website audits, drafted emails, a built-in CRM, sequences and an insights page.",
     "toolsUsed": [
       "Codex",
@@ -6797,21 +6745,21 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "How much has it cost to run?",
-        "a": "The presenter says $1.73 on the Places API and nothing for PageSpeed, which was called about 1,300 times."
+        "q": "How much has LeadScope cost to run?",
+        "a": "Mike says $1.73 on the Places API and nothing for PageSpeed, which was called about 1,300 times."
       },
       {
         "q": "What does the audit look for?",
         "a": "Things like missing HTTPS, meta descriptions, structured data, Open Graph tags and image alt text."
       },
       {
-        "q": "Is it available?",
-        "a": "Not yet. The presenter asks viewers to comment if they would use it, and the landing page and pricing are unfinished."
+        "q": "Is LeadScope available to use?",
+        "a": "Not yet. Mike asks viewers to comment if they would use it, and the landing page and pricing are unfinished."
       }
     ]
   },
   "ZNuGmX1HpxM": {
-    "summary": "An update on Cortex, the presenter's business second brain built with Claude Code and Codex. It now maps 27 projects with Graphify, imports Claude chat history into a retrieval library, answers questions through a Claude managed agent, stores contacts and campaigns, and has a content kanban and radar. The title's $25,000 figure is the presenter's idea of what it could be sold for to clients, not a measured value. The Tube Analytics connector is planned.",
+    "summary": "An update on Cortex, Mike's business second brain built with Claude Code and Codex. It now maps 27 projects with Graphify, imports Claude chat history into a retrieval library, answers questions through a Claude managed agent, stores contacts and campaigns, and has a content kanban and radar. The title's $25,000 figure is Mike's idea of what it could be sold for to clients, not a measured value. The Tube Analytics connector is planned.",
     "whatYouBuild": "A local knowledge system with a project map, a library of imported chats and transcripts, an Ask Cortex page backed by a Claude managed agent, contact and campaign tabs, a content studio board and a signals radar.",
     "toolsUsed": [
       "Claude Code",
@@ -6851,12 +6799,12 @@ export const videoSummaries = {
       },
       {
         "seconds": 480,
-        "step": "Plan an MCP connector from the presenter's analytics app into Cortex."
+        "step": "Plan an MCP connector from Mike's analytics app into Cortex."
       }
     ],
     "notCovered": [
-      "Any customer or sale. The $25,000 to $35,000 figures are what the presenter says they could charge.",
-      "The accuracy of the radar's recommendations, which the presenter has not yet tested.",
+      "Any customer or sale. The $25,000 to $35,000 figures are what Mike says he could charge.",
+      "The accuracy of the radar's recommendations, which Mike has not yet tested.",
       "Privacy of importing full chat histories and contact lists into a new system.",
       "The finished analytics connector, which is still being planned."
     ],
@@ -6867,16 +6815,16 @@ export const videoSummaries = {
       },
       {
         "q": "Is the project map useful?",
-        "a": "The presenter calls it pretty but not particularly useful."
+        "a": "Mike calls it pretty but not particularly useful."
       },
       {
         "q": "Why can't it verify emails yet?",
-        "a": "Mailgun's email verification is only available on paid accounts, and the presenter is still on the free plan."
+        "a": "Mailgun's email verification is only available on paid accounts, and Mike is still on the free plan."
       }
     ]
   },
   "_1bZhPHcsm4": {
-    "summary": "An n8n workflow that watches an Airtable table for new community members and adds them to an email marketing platform, then marks each record done so it is not added again. A separate automation in the email tool sends the welcome message. Tests run in batches of ten before a full import of about 770 people, and everyone is re-sent the welcome email. The presenter cancelled Make.com after running out of free credits.",
+    "summary": "An n8n workflow that watches an Airtable table for new community members and adds them to an email marketing platform, then marks each record done so it is not added again. A separate automation in the email tool sends the welcome message. Tests run in batches of ten before a full import of about 770 people, and everyone is re-sent the welcome email. Mike cancelled Make.com after running out of free credits.",
     "whatYouBuild": "An n8n workflow with an Airtable trigger every hour, a filter on status equal to new, a limit node for testing, a contact add step with first name, and an Airtable update that sets status to done.",
     "toolsUsed": [
       "n8n",
@@ -6914,7 +6862,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Consent and unsubscribe handling for emailing existing community members. The presenter re-sends the welcome email to everyone.",
+      "Consent and unsubscribe handling for emailing existing community members. Mike re-sends the welcome email to everyone.",
       "Adding members to Airtable, which stays manual.",
       "Delivery results beyond the first test sends.",
       "Limits beyond the quoted cap of 500 emails a day on the platform's free plan."
@@ -6926,7 +6874,7 @@ export const videoSummaries = {
       },
       {
         "q": "Why move from Make.com?",
-        "a": "The presenter ran out of free credits on Make.com and switched to n8n, cancelling their Make.com plan."
+        "a": "Mike ran out of free credits on Make.com and switched to n8n, cancelling his Make.com plan."
       },
       {
         "q": "What bug came up?",
@@ -6935,7 +6883,7 @@ export const videoSummaries = {
     ]
   },
   "NH6t9M2vFrk": {
-    "summary": "A look at Claude Opus 5.5 two days after its announcement, using Anthropic's benchmark charts and pricing, then a live design audit of the presenter's homepage in the Claude desktop app with $100 of free cloud session credits. The quoted benchmarks come from Anthropic. The audit finds layout and copy bugs, and the fix plan is approved, but the results are not shown.",
+    "summary": "A look at Claude Opus 5.5 two days after its announcement, using Anthropic's benchmark charts and pricing, then a live design audit of Mike's homepage in the Claude desktop app with $100 of free cloud session credits. The quoted benchmarks come from Anthropic. The audit finds layout and copy bugs, and the fix plan is approved, but the results are not shown.",
     "whatYouBuild": "A Claude cloud session that runs a design audit on a site, writes an implementation plan in plan mode and starts applying fixes on a branch.",
     "toolsUsed": [
       "Claude Opus 5.5",
@@ -6976,7 +6924,7 @@ export const videoSummaries = {
       "The fixes landing or improving the site. The video ends as implementation starts, with about $5 of the $100 credit used.",
       "Independent verification of Anthropic's benchmarks and the 40 percent cost reduction.",
       "How the free credits and reset are limited.",
-      "Whether Opus 5.5 beats Fable 5.1 on the presenter's own work."
+      "Whether Opus 5.5 beats Fable 5.1 on Mike's own work."
     ],
     "qa": [
       {
@@ -6988,7 +6936,7 @@ export const videoSummaries = {
         "a": "Claude runs the task in the cloud on a copy of your GitHub project instead of on your machine."
       },
       {
-        "q": "What did the audit find?",
+        "q": "What did the Opus 5.5 design audit find?",
         "a": "Two bugs and layout issues on the homepage, including doubled dollar signs and an oversized hero, plus a suggested reorder of the affiliate pitch."
       }
     ]
@@ -7032,28 +6980,24 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "How the video performs on YouTube, which the presenter says they will watch for a couple of weeks.",
+      "How the video performs on YouTube, which Mike says he will watch for a couple of weeks.",
       "Checking the facts in the script, such as the countries and costs listed.",
       "YouTube's disclosure rules for AI-generated or synthetic content.",
-      "Avatars, thumbnails and analytics, which the presenter says they may explore later."
+      "Avatars, thumbnails and analytics, which Mike says he may explore later."
     ],
     "qa": [
       {
         "q": "Is Syllaby free?",
-        "a": "There is a 7-day free trial with limited credits. The presenter quotes about $25 a month afterwards."
+        "a": "There is a 7-day free trial with limited credits. Mike quotes about $25 a month afterwards."
       },
       {
-        "q": "How long did the video take?",
+        "q": "How long does Syllaby take to render a video?",
         "a": "About three minutes to render a video of roughly one minute."
       },
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission if you sign up for a paid plan."
-      }
     ]
   },
   "PS31s8REvlw": {
-    "summary": "A walkthrough of Anthropic's Claude Sonnet 5.5, announced as over 30 percent faster than Sonnet 5 and up to 30 percent cheaper for most work at the same $2 and $10 per million token price. The presenter reads Anthropic's benchmark charts, runs a side-by-side HTML game speed test against Sonnet 5, and recommends high effort for coding. The benchmark claims come from Anthropic's announcement.",
+    "summary": "A walkthrough of Anthropic's Claude Sonnet 5.5, announced as over 30 percent faster than Sonnet 5 and up to 30 percent cheaper for most work at the same $2 and $10 per million token price. Mike reads Anthropic's benchmark charts, runs a side-by-side HTML game speed test against Sonnet 5, and recommends high effort for coding. The benchmark claims come from Anthropic's announcement.",
     "whatYouBuild": "Nothing is built beyond a short speed test of a sand dune game and a starling flock page generated by Sonnet 5.5 and Sonnet 5 side by side.",
     "toolsUsed": [
       "Claude Sonnet 5.5",
@@ -7093,7 +7037,7 @@ export const videoSummaries = {
     "notCovered": [
       "Independent benchmarks. The charts and percentages come from Anthropic.",
       "A quality comparison of the two models' games beyond speed and token use.",
-      "Real project results from the presenter, who is only starting to use the model.",
+      "Real project results from Mike, who is only starting to use the model.",
       "How often the cyber safeguards trigger a fallback during normal coding."
     ],
     "qa": [
@@ -7112,7 +7056,7 @@ export const videoSummaries = {
     ]
   },
   "lKqe0r0zoGY": {
-    "summary": "A first test of Lindy, a platform that builds AI agents from prompts. On a free account with 400 credits, the presenter finds software engineers in Hong Kong, tries the contact finder, lead outreacher and lead generator templates, and gets a Google Sheet of profiles, emails and phone numbers. Several agents need app permissions the presenter skips. The referral link pays $50 to each side, according to the video.",
+    "summary": "A first test of Lindy, a platform that builds AI agents from prompts. On a free account with 400 credits, Mike finds software engineers in Hong Kong, tries the contact finder, lead outreacher and lead generator templates, and gets a Google Sheet of profiles, emails and phone numbers. Several agents need app permissions he skips. The referral link pays $50 to each side, according to the video.",
     "whatYouBuild": "Lindy agents from templates: a contact finder, a lead generator that fills a Google Sheet, and an unfinished lead outreach flow and WhatsApp support agent.",
     "toolsUsed": [
       "Lindy",
@@ -7161,17 +7105,13 @@ export const videoSummaries = {
         "a": "There is a free account with 400 credits in the video. Paid plans are quoted from about $49 a month, up to $300 or more for 5,000 credits."
       },
       {
-        "q": "What data does it return?",
+        "q": "What data does the Lindy lead generator return?",
         "a": "Names, LinkedIn and other profiles, work emails, phone numbers, job titles and company details, saved to a Google Sheet."
       },
-      {
-        "q": "Is the link a referral link?",
-        "a": "Yes. The presenter says they earn a commission and both the presenter and a new user get $50."
-      }
     ]
   },
   "qzIaEA0wBCw": {
-    "summary": "Use Trakkr, an AI search visibility tracker with a new MCP server, from Codex to find content gaps and write articles with a GEO blog writer skill. Trakkr shows citations, AI crawler visits and prompt coverage for the presenter's site, and the MCP returns citation trends, top-cited pages and competitor gaps. Codex then drafts a 16-article cluster and a competitor gap plan. Whether the articles earn more citations is not shown.",
+    "summary": "Use Trakkr, an AI search visibility tracker with a new MCP server, from Codex to find content gaps and write articles with a GEO blog writer skill. Trakkr shows citations, AI crawler visits and prompt coverage for Mike's site, and the MCP returns citation trends, top-cited pages and competitor gaps. Codex then drafts a 16-article cluster and a competitor gap plan. Whether the articles earn more citations is not shown.",
     "whatYouBuild": "Trakkr's MCP connected to Codex, a GEO content skill installed from skills.sh, and batches of blog articles with quick answers, key takeaways, tables, sources and schema.",
     "toolsUsed": [
       "Trakkr",
@@ -7194,7 +7134,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 221,
-        "step": "Find citation gaps where competitors appear and the presenter's site does not."
+        "step": "Find citation gaps where competitors appear and Mike's site does not."
       },
       {
         "seconds": 242,
@@ -7211,7 +7151,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Any change in citations after the new articles go live.",
-      "Whether the crawler visit counts quoted, such as 10,000 and 15,000 a day, reflect real readers. They come from the presenter's tracker.",
+      "Whether the crawler visit counts quoted, such as 10,000 and 15,000 a day, reflect real readers. They come from Mike's tracker.",
       "A review of the articles' accuracy and sources.",
       "Trial terms and prices for Trakkr, which are not stated clearly in the video."
     ],
@@ -7231,7 +7171,7 @@ export const videoSummaries = {
     ]
   },
   "enKnxKJJFZw": {
-    "summary": "The presenter explains why they launched a free Skool community two weeks earlier, how it grew to 160 members and how they plan to earn from it with templates, a course and consultation calls. The earnings and ranking claims are the presenter's own. The Skool link is an affiliate link, and the video encourages viewers to start their own community.",
+    "summary": "Mike explains why he launched a free Skool community two weeks earlier, how it grew to 160 members and how he plans to earn from it with templates, a course and consultation calls. The earnings and ranking claims are Mike's own. The Skool link is an affiliate link, and the video encourages viewers to start their own community.",
     "whatYouBuild": "Nothing is built. The video describes a free community with paid upsells and a welcome email automation made in Make.com.",
     "toolsUsed": [
       "Skool",
@@ -7261,27 +7201,23 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Proof of the roughly $300 earned in two weeks or of the page six ranking.",
-      "How the free-first model compares with a paid community, beyond the presenter's view that a free one lets them collect emails.",
+      "How the free-first model compares with a paid community, beyond Mike's view that a free one lets him collect emails.",
       "Skool's rules on member emails and marketing to them.",
       "Whether the community stayed profitable. The video is from the first two weeks."
     ],
     "qa": [
       {
-        "q": "Is the Skool link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission when you create an account."
-      },
-      {
         "q": "How does the community earn money?",
-        "a": "Through paid templates, a Make.com course, consultation calls and affiliate links, per the presenter."
+        "a": "Through paid templates, a Make.com course, consultation calls and affiliate links, per Mike."
       },
       {
-        "q": "How big was it?",
-        "a": "About 160 members after two weeks, according to the presenter."
+        "q": "How big was Mike's Skool community after two weeks?",
+        "a": "About 160 members after two weeks, according to Mike."
       }
     ]
   },
   "h8KLzYPMjjE": {
-    "summary": "A news summary of Claude Fable 5.1, released on September 2, 2026, read from Anthropic's press release and benchmark pages. Anthropic says it costs about 25 percent less than Fable 5, with larger savings on agentic work, and it needs usage credits rather than Pro or Max plans. The presenter's chart shows only a small intelligence lead over Opus 5, and they will mostly keep using cheaper models.",
+    "summary": "A news summary of Claude Fable 5.1, released on September 2, 2026, read from Anthropic's press release and benchmark pages. Anthropic says it costs about 25 percent less than Fable 5, with larger savings on agentic work, and it needs usage credits rather than Pro or Max plans. The chart Mike shows has only a small intelligence lead over Opus 5, and he will mostly keep using cheaper models.",
     "whatYouBuild": "Nothing is built. The video reviews pricing, access, safeguards and benchmarks and shows the model picker in Claude Code.",
     "toolsUsed": [
       "Claude Fable 5.1",
@@ -7314,7 +7250,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The presenter's own tests, since they will not use usage credits.",
+      "Mike's own tests, since he will not use usage credits.",
       "Independent checks of the benchmark and discount claims, which come from Anthropic's materials.",
       "Exact prices per token, which are not read out clearly.",
       "How the safeguards change day-to-day coding."
@@ -7335,7 +7271,7 @@ export const videoSummaries = {
     ]
   },
   "s6004nmWG9g": {
-    "summary": "Pull B2B lead lists without spending Apollo credits: filter people in Apollo for owners and founders of small US marketing companies in the AI space, then scrape the search with an Apify actor and export to CSV. A Make.com version reads search URLs from Airtable, runs the actor and writes leads to Google Sheets, but hits Apify's free daily run limit. The presenter's view that this is safe under the terms of service is an opinion.",
+    "summary": "Pull B2B lead lists without spending Apollo credits: filter people in Apollo for owners and founders of small US marketing companies in the AI space, then scrape the search with an Apify actor and export to CSV. A Make.com version reads search URLs from Airtable, runs the actor and writes leads to Google Sheets, but hits Apify's free daily run limit. Mike's view that this is safe under the terms of service is an opinion.",
     "whatYouBuild": "An Apollo search narrowed to about 1,200 people, an Apify scrape of that search to CSV, and a paid Make.com template that automates it with Airtable and Google Sheets.",
     "toolsUsed": [
       "Apollo",
@@ -7371,28 +7307,28 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Whether scraping is allowed by Apollo's and Apify's terms. The presenter says it is safe if you do not scrape huge numbers, which is not verified here.",
+      "Whether scraping is allowed by Apollo's and Apify's terms. Mike says it is safe if you do not scrape huge numbers, which is not verified here.",
       "Laws on cold email and on using scraped personal data.",
-      "Lead quality or what happens after the leads are exported. The presenter imports them into their Skool community.",
+      "Lead quality or what happens after the leads are exported. Mike imports them into their Skool community.",
       "A clean automation run, since the free Apify limit interrupts it."
     ],
     "qa": [
       {
         "q": "Why scrape instead of using Apollo credits?",
-        "a": "Apollo gives a limited number of credits a month and caps the free plan at five pages, while Apify gives $5 of monthly credit and the presenter used $3."
+        "a": "Apollo gives a limited number of credits a month and caps the free plan at five pages, while Apify gives $5 of monthly credit and Mike used $3."
       },
       {
         "q": "How much does the Make.com template cost?",
-        "a": "The presenter says it is $15 on Gumroad."
+        "a": "It is $15 on Gumroad, Mike says."
       },
       {
         "q": "What do paid plans cost?",
-        "a": "The presenter quotes Apify from $39 a month and Apollo from about $60 a month."
+        "a": "Apify starts at $39 a month and Apollo at about $60 a month, Mike says."
       }
     ]
   },
   "LoNsDme0XQI": {
-    "summary": "Build a Kilo Code skill that scores a blog article against a 23-point AI visibility checklist taken from a LinkedIn guide, then run it on the presenter's own articles. One article scores 91 out of 100 and 98 after the skill's fixes. The score and the 80 to 90 percent citation probability come from the skill itself and are not checked against real AI citations. The presenter has about 350 articles to go.",
+    "summary": "Build a Kilo Code skill that scores a blog article against a 23-point AI visibility checklist taken from a LinkedIn guide, then run it on Mike's own articles. One article scores 91 out of 100 and 98 after the skill's fixes. The score and the 80 to 90 percent citation probability come from the skill itself and are not checked against real AI citations. Mike has about 350 articles to go.",
     "whatYouBuild": "A custom AI Visibility Optimizer skill with TypeScript scripts that audit a page against 23 elements and apply fixes such as a direct answer, FAQ, freshness and meta description changes.",
     "toolsUsed": [
       "Kilo Code",
@@ -7441,20 +7377,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Where do the 23 criteria come from?",
-        "a": "From a LinkedIn playbook by another author, which the presenter credits and turns into a skill."
+        "a": "From a LinkedIn playbook by another author, which Mike credits and turns into a skill."
       },
       {
         "q": "Is the 98 percent score proof of citations?",
         "a": "No. It is the skill's own rating of the page against the checklist."
       },
       {
-        "q": "Is the skill available?",
-        "a": "The presenter says they may put it on Gumroad if viewers ask."
+        "q": "Is the AI Visibility Optimizer skill available?",
+        "a": "Mike says he may put it on Gumroad if viewers ask."
       }
     ]
   },
   "VYx1wZ0Ct38": {
-    "summary": "A look at OpenAI's GPT 5.6 release of July 9, 2026 with its Sol, Terra and Luna models, ChatGPT Work and the GPT Live voice model, from the news page and the Codex model picker. The presenter says they built a Chrome extension for their analytics app with GPT 5.6 in about an hour and a half and found credits last longer than with Fable 5. Benchmark and price figures come from OpenAI's materials.",
+    "summary": "A look at OpenAI's GPT 5.6 release of July 9, 2026 with its Sol, Terra and Luna models, ChatGPT Work and the GPT Live voice model, from the news page and the Codex model picker. Mike says he built a Chrome extension for his analytics app with GPT 5.6 in about an hour and a half and found credits last longer than with Fable 5. Benchmark and price figures come from OpenAI's materials.",
     "whatYouBuild": "Nothing in the video is built live. It shows a previously built Chrome extension with a creator score sidebar and title analysis.",
     "toolsUsed": [
       "GPT 5.6",
@@ -7494,7 +7430,7 @@ export const videoSummaries = {
     "notCovered": [
       "Independent benchmark checks. The 88.8 against 84 Terminal Bench figure is quoted from the release.",
       "The extension's accuracy or its code quality.",
-      "Exact limits of the plan the presenter recommends, which they describe as $20 a month.",
+      "Exact limits of the plan Mike recommends, which he describes as $20 a month.",
       "A side-by-side build with another model."
     ],
     "qa": [
@@ -7504,16 +7440,16 @@ export const videoSummaries = {
       },
       {
         "q": "How does Sol compare on price?",
-        "a": "The presenter quotes $5 per million input and $30 per million output tokens, against $10 and $50 for Fable 5."
+        "a": "Mike quotes $5 per million input and $30 per million output tokens, against $10 and $50 for Fable 5."
       },
       {
-        "q": "What did the presenter build?",
-        "a": "A Chrome extension for their own SaaS that adds a sidebar with research, keyword and title analysis on YouTube pages."
+        "q": "What did Mike build with GPT 5.6?",
+        "a": "A Chrome extension for his own SaaS that adds a sidebar with research, keyword and title analysis on YouTube pages."
       }
     ]
   },
   "w_MoA8lpWTg": {
-    "summary": "A live demo of ShortForge, the presenter's own Opus Clip alternative, built in about four hours with Codex and OpenCode. It imports a YouTube link or a file, transcribes with Whisper, finds about nine clips in a ten-minute video, renders them with FFmpeg and scores each for virality. Exports work, but subtitles are not burned in, the webcam-over-screen layout from the presenter's skill is not integrated and the app is not live.",
+    "summary": "A live demo of ShortForge, Mike's own Opus Clip alternative, built in about four hours with Codex and OpenCode. It imports a YouTube link or a file, transcribes with Whisper, finds about nine clips in a ten-minute video, renders them with FFmpeg and scores each for virality. Exports work, but subtitles are not burned in, the webcam-over-screen layout from Mike's skill is not integrated and the app is not live.",
     "whatYouBuild": "A local web app with video import, Whisper transcripts, AI clip detection, FFmpeg rendering, a virality score per clip, a simple editor, local export and batch export.",
     "toolsUsed": [
       "Codex",
@@ -7545,7 +7481,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 255,
-        "step": "Start integrating the presenter's own webcam and subtitle skill so clips match the target layout."
+        "step": "Start integrating Mike's own webcam and subtitle skill so clips match the target layout."
       },
       {
         "seconds": 390,
@@ -7558,27 +7494,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Burned-in animated subtitles and the webcam and screen layout, which are still unfinished.",
-      "How the virality score is calculated. The presenter says it is probably ChatGPT.",
+      "How the virality score is calculated. Mike says it is probably ChatGPT.",
       "A public release. The app runs locally and would need cloud storage such as S3.",
       "Pricing in practice. The plan is free up to $49 a month, and the YouTube publishing feature is not built."
     ],
     "qa": [
       {
         "q": "Is ShortForge available?",
-        "a": "Not yet. It runs on the presenter's computer, and they ask viewers to comment if they would use it."
+        "a": "Not yet. It runs on Mike's computer, and he asks viewers to comment if they would use it."
       },
       {
-        "q": "How long did it take to build?",
-        "a": "About four hours so far with Codex and OpenCode, according to the presenter."
+        "q": "How long did ShortForge take to build?",
+        "a": "About four hours so far with Codex and OpenCode, according to Mike."
       },
       {
         "q": "Why not use Opus Clip?",
-        "a": "The presenter found its clips show only the webcam and hide the screen share."
+        "a": "Mike found its clips show only the webcam and hide the screen share."
       }
     ]
   },
   "3X2VU7EyaEU": {
-    "summary": "Set up a free self-hosted GEO and AEO tracker from GitHub that queries six AI models through Bright Data scrapers, then run an audit, add competitors and schedule checks every 12 hours. The audit gives readiness scores around 75 to 80 percent and lists fixes. Bright Data's free trial is used, and one run costs about two cents. The presenter points to Trakkr as another tool.",
+    "summary": "Set up a free self-hosted GEO and AEO tracker from GitHub that queries six AI models through Bright Data scrapers, then run an audit, add competitors and schedule checks every 12 hours. The audit gives readiness scores around 75 to 80 percent and lists fixes. Bright Data's free trial is used, and one run costs about two cents. Mike points to Trakkr as another tool.",
     "whatYouBuild": "A local dashboard from a GitHub repo with Bright Data keys, the Bright Data CLI and MCP in Claude Code, an AEO readiness audit, citation tracking, competitor tracking and a 12-hour auto-run schedule.",
     "toolsUsed": [
       "GEO AEO Tracker",
@@ -7624,7 +7560,7 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "Is the tracker free?",
+        "q": "Is the GEO AEO Tracker free?",
         "a": "The software is free and self-hosted, but it needs Bright Data credits for scraping, covered by a trial in the video."
       },
       {
@@ -7638,8 +7574,8 @@ export const videoSummaries = {
     ]
   },
   "508QvEHI5n0": {
-    "summary": "An opinion and pitch video arguing that AI automation, faceless video tools and no-code app builders are the skills to learn. The presenter shares their background, says they built their agency site in Lovable in six to eight hours, and promotes Make.com, Syllaby and their community and consultation. No steps are taught and the claims about leverage and job loss are the presenter's own.",
-    "whatYouBuild": "Nothing is built. The video describes tools the presenter uses and why they recommend learning them.",
+    "summary": "An opinion and pitch video arguing that AI automation, faceless video tools and no-code app builders are the skills to learn. Mike shares his background, says he built his agency site in Lovable in six to eight hours, and promotes Make.com, Syllaby and his community and consultation. No steps are taught and the claims about leverage and job loss are Mike's own.",
+    "whatYouBuild": "Nothing is built. The video describes tools Mike uses and why he recommends learning them.",
     "toolsUsed": [
       "Make.com",
       "n8n",
@@ -7649,11 +7585,11 @@ export const videoSummaries = {
     "keySteps": [
       {
         "seconds": 40,
-        "step": "Hear why the presenter teaches Make.com rather than n8n: a gentler learning curve for beginners."
+        "step": "Hear why Mike teaches Make.com rather than n8n: a gentler learning curve for beginners."
       },
       {
         "seconds": 130,
-        "step": "Hear how faceless video tools could have helped the presenter monetize their channel sooner."
+        "step": "Hear how faceless video tools could have helped Mike monetize their channel sooner."
       },
       {
         "seconds": 185,
@@ -7671,7 +7607,7 @@ export const videoSummaries = {
     "notCovered": [
       "Any build or demo. The video is explanation and persuasion.",
       "Evidence for the claims that automation makes people irreplaceable or that AI is replacing jobs across every sector.",
-      "Costs of hiring a virtual assistant versus automation, which the presenter mentions without a clear figure.",
+      "Costs of hiring a virtual assistant versus automation, which Mike mentions without a clear figure.",
       "Limits of no-code builders for larger projects."
     ],
     "qa": [
@@ -7681,16 +7617,16 @@ export const videoSummaries = {
       },
       {
         "q": "Why Make.com instead of n8n?",
-        "a": "The presenter says Make.com has a less steep learning curve for the beginners watching their channel."
+        "a": "Make.com has a less steep learning curve for the beginners watching his channel, Mike says."
       },
       {
         "q": "How long did the agency site take?",
-        "a": "About six to eight hours in total, with a first version in 10 to 15 minutes, per the presenter."
+        "a": "About six to eight hours in total, with a first version in 10 to 15 minutes, per Mike."
       }
     ]
   },
   "DbYip6KaNHo": {
-    "summary": "Connect the free DataForSEO MCP server from GitHub to Claude Code, pull keyword and AI mention data, and have Claude write an SEO audit report, implementation summary, keyword map and priority list for the presenter's site. Codex then carries out the fixes, including less DOM bloat, product schema and render-blocking resources, and a Lighthouse run shows better desktop performance. Rankings are not shown, and the AI mention check returns a result the presenter says is wrong.",
+    "summary": "Connect the free DataForSEO MCP server from GitHub to Claude Code, pull keyword and AI mention data, and have Claude write an SEO audit report, implementation summary, keyword map and priority list for Mike's site. Codex then carries out the fixes, including less DOM bloat, product schema and render-blocking resources, and a Lighthouse run shows better desktop performance. Rankings are not shown, and the AI mention check returns a result Mike says is wrong.",
     "whatYouBuild": "A DataForSEO MCP install in Claude Code with generated audit files, followed by a Codex run of the fixes and a Lighthouse before and after check.",
     "toolsUsed": [
       "DataForSEO",
@@ -7735,13 +7671,13 @@ export const videoSummaries = {
     "notCovered": [
       "Search ranking or traffic changes. Only Lighthouse performance is rechecked.",
       "Mobile results, which are not read out.",
-      "Why the AI mention check says nothing is tracked when the presenter knows otherwise.",
+      "Why the AI mention check says nothing is tracked when Mike knows otherwise.",
       "DataForSEO costs beyond the free MCP and the trial."
     ],
     "qa": [
       {
         "q": "Is the MCP free?",
-        "a": "The presenter says the MCP server on GitHub is free. The data itself needs a DataForSEO account, and the LLM mention module needed a 14-day trial."
+        "a": "Mike says the MCP server on GitHub is free. The data itself needs a DataForSEO account, and the LLM mention module needed a 14-day trial."
       },
       {
         "q": "What files does Claude write?",
@@ -7754,7 +7690,7 @@ export const videoSummaries = {
     ]
   },
   "LD2ef2uUauo": {
-    "summary": "A first try of Grok 4.5 and the Grok command line tool, using a documentation prompt to build a single-file solar system app with satellites and asteroids from real-time data. Prices of $2 and $6 per million tokens and benchmark rankings are from xAI's article. The app works with some visual glitches, and the free daily usage limit is reached before the presenter can finish.",
+    "summary": "A first try of Grok 4.5 and the Grok command line tool, using a documentation prompt to build a single-file solar system app with satellites and asteroids from real-time data. Prices of $2 and $6 per million tokens and benchmark rankings are from xAI's article. The app works with some visual glitches, and the free daily usage limit is reached before Mike can finish.",
     "whatYouBuild": "A single index.html solar system with zoom, orbit and label controls, plus satellites and asteroids pulled from public catalog data such as CelesTrak.",
     "toolsUsed": [
       "Grok 4.5",
@@ -7795,7 +7731,7 @@ export const videoSummaries = {
       "Independent checks of xAI's benchmark and token efficiency claims.",
       "Labels for satellites, and fixes for glitches such as labels showing through the sun.",
       "The voice and image APIs beyond a quick look.",
-      "A fair comparison with other coding agents. This is the presenter's first use of Grok."
+      "A fair comparison with other coding agents. This is Mike's first use of Grok."
     ],
     "qa": [
       {
@@ -7808,12 +7744,12 @@ export const videoSummaries = {
       },
       {
         "q": "Why did the demo stop?",
-        "a": "The presenter reached the free daily usage limit, and upgrading would cost about $30 a month."
+        "a": "Mike reached the free daily usage limit, and upgrading would cost about $30 a month."
       }
     ]
   },
   "bAgP_0uW0dY": {
-    "summary": "Improve the title and description of a YouTube video with a popular ChatGPT custom GPT for YouTube SEO, then recreate the same format with the OpenAI API when free usage runs out. The presenter edits the description, tests a title with a vidIQ score, tries Nano Banana on the thumbnail and advises changing one thing at a time. No view results are shown. The links in the description include affiliate links.",
+    "summary": "Improve the title and description of a YouTube video with a popular ChatGPT custom GPT for YouTube SEO, then recreate the same format with the OpenAI API when free usage runs out. Mike edits the description, tests a title with a vidIQ score, tries Nano Banana on the thumbnail and advises changing one thing at a time. No view results are shown. The links in the description include affiliate links.",
     "whatYouBuild": "An SEO description and title for one video, made with a custom GPT and a custom assistant that keeps the same format, then pasted into YouTube Studio.",
     "toolsUsed": [
       "ChatGPT",
@@ -7857,7 +7793,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Whether views or ranking improved. The presenter says to check back in a week or two.",
+      "Whether views or ranking improved. Mike says to check back in a week or two.",
       "How reliable the vidIQ score is for predicting performance.",
       "Fact checking the description text the GPT writes.",
       "A controlled test, since only one video is changed and without a comparison."
@@ -7869,16 +7805,12 @@ export const videoSummaries = {
       },
       {
         "q": "What if free ChatGPT usage runs out?",
-        "a": "The presenter builds a custom assistant with the OpenAI API and the same prompt format."
+        "a": "Mike builds a custom assistant with the OpenAI API and the same prompt format."
       },
-      {
-        "q": "Are the links affiliate links?",
-        "a": "The presenter says their description includes affiliate links that earn a commission."
-      }
     ]
   },
   "3j4YyYFRQKU": {
-    "summary": "A Make.com scenario that posts a daily AI-generated image and caption to a Facebook page: ChatGPT writes a visual post of under 150 words, DALL-E 3 makes the image, an HTTP step fetches the file and a Facebook step publishes a photo post, scheduled for 10 am. The presenter built it in about 20 minutes. The first run errors and a retry works. The engagement benefit is the presenter's expectation. The Make.com link is an affiliate link.",
+    "summary": "A Make.com scenario that posts a daily AI-generated image and caption to a Facebook page: ChatGPT writes a visual post of under 150 words, DALL-E 3 makes the image, an HTTP step fetches the file and a Facebook step publishes a photo post, scheduled for 10 am. Mike built it in about 20 minutes. The first run errors and a retry works. The engagement benefit is Mike's expectation. The Make.com link is an affiliate link.",
     "whatYouBuild": "A Make.com scenario with an OpenAI chat completion, a DALL-E 3 image, a set variable step, an HTTP get-file step and a Facebook Pages post with photos, set to run daily.",
     "toolsUsed": [
       "Make.com",
@@ -7917,29 +7849,25 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Evidence that engagement rises over time. The presenter only says it will.",
+      "Evidence that engagement rises over time. Mike only says it will.",
       "Facebook's rules on automated or AI-generated content, and labeling of AI images.",
       "Costs of the OpenAI calls and images per day.",
       "Quality control, since posts are published without review."
     ],
     "qa": [
       {
-        "q": "How long did it take to build?",
-        "a": "About 20 minutes, according to the presenter."
+        "q": "How long did the Make.com Facebook posting scenario take to build?",
+        "a": "About 20 minutes, according to Mike."
       },
       {
         "q": "Why use the Facebook with-photos module?",
-        "a": "The plain post module does not upload an image, so the presenter swaps it for Create a Post with Photos."
+        "a": "The plain post module does not upload an image, so Mike swaps it for Create a Post with Photos."
       },
-      {
-        "q": "Is the Make.com link an affiliate link?",
-        "a": "Yes. The presenter says they earn a small commission."
-      }
     ]
   },
   "1aG1XbAQj-k": {
-    "summary": "A rundown of Anthropic's Claude Opus 5 from the company's press release and benchmark pages. Anthropic says it comes close to Fable 5 on coding and knowledge work at about half the price, $5 per million input tokens and $25 for output, with a 1 million token context window. The presenter has not yet tested it. All performance and safety claims are Anthropic's.",
-    "whatYouBuild": "Nothing is built. The video reviews price, benchmarks and examples from the launch post, and the presenter's RTK token savings.",
+    "summary": "A rundown of Anthropic's Claude Opus 5 from the company's press release and benchmark pages. Anthropic says it comes close to Fable 5 on coding and knowledge work at about half the price, $5 per million input tokens and $25 for output, with a 1 million token context window. Mike has not yet tested it. All performance and safety claims are Anthropic's.",
+    "whatYouBuild": "Nothing is built. The video reviews price, benchmarks and examples from the launch post, and Mike's RTK token savings.",
     "toolsUsed": [
       "Claude Opus 5",
       "Claude Code",
@@ -7976,7 +7904,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The presenter's own tests. They are waiting for usage credits to reset.",
+      "Mike's own tests. He is waiting for usage credits to reset.",
       "Independent verification of the benchmark scores and example stories, which come from Anthropic.",
       "Cyber security tasks, where Anthropic says Opus 5 stays behind Mythos 5.",
       "How much quota Opus 5 uses in practice, other than the remark that it uses about twice as much as Sonnet."
@@ -7997,7 +7925,7 @@ export const videoSummaries = {
     ]
   },
   "F5PwcTwtEos": {
-    "summary": "A news reaction to Anthropic's report that a US export control directive forced it to suspend access to Fable 5 and Mythos 5 for all foreign nationals, inside or outside the US. The presenter reads Anthropic's statement, which complies but disagrees, and adds speculation about causes that is not supported in the video. The title says banned, but the report describes a suspension for foreign nationals. A later video covers its return.",
+    "summary": "A news reaction to Anthropic's report that a US export control directive forced it to suspend access to Fable 5 and Mythos 5 for all foreign nationals, inside or outside the US. Mike reads Anthropic's statement, which complies but disagrees, and adds speculation about causes that is not supported in the video. The title says banned, but the report describes a suspension for foreign nationals. A later video covers its return.",
     "whatYouBuild": "Nothing is built. The video summarizes the directive, Anthropic's response, the earlier call for a pause on frontier AI development and reactions.",
     "toolsUsed": [
       "Claude Fable 5",
@@ -8032,7 +7960,7 @@ export const videoSummaries = {
     "notCovered": [
       "Independent confirmation of the directive's details or the existence of the jailbreak.",
       "How the restriction is checked or enforced for individual users.",
-      "The presenter's suggestion that politics or the Pentagon played a part, which is speculation.",
+      "Mike's suggestion that politics or the Pentagon played a part, which is speculation.",
       "What happened next. Another video covers Fable 5's return after the controls were lifted."
     ],
     "qa": [
@@ -8046,7 +7974,7 @@ export const videoSummaries = {
       },
       {
         "q": "Is the share price claim verified?",
-        "a": "No. It comes from news coverage quoted in the video, not from the presenter's own check."
+        "a": "No. It comes from news coverage quoted in the video, not from Mike's own check."
       }
     ]
   },
@@ -8097,7 +8025,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Independent confirmation of the leaderboard scores.",
-      "The accuracy of the house blueprint, since the presenter says they are not an architect.",
+      "The accuracy of the house blueprint, since Mike says he is not an architect.",
       "Privacy of uploading selfies and photos, and rights questions around reproducing a book cover or copyrighted characters.",
       "A repeatable test. OpenAI's sample prompts do not reproduce its gallery images."
     ],
@@ -8161,7 +8089,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Review before publishing. The scenario overwrites live descriptions automatically and the presenter still edits some by hand.",
+      "Review before publishing. The scenario overwrites live descriptions automatically and Mike still edits some by hand.",
       "Changes to titles, which are left manual.",
       "Results from the new descriptions, such as views or subscribers.",
       "YouTube API quota or per-run costs for the AI and transcript calls."
@@ -8176,8 +8104,8 @@ export const videoSummaries = {
         "a": "OpenAI reported an exceeded quota because the account balance was negative. Adding $6 fixed it."
       },
       {
-        "q": "Where is the template?",
-        "a": "The presenter sells it for $15, per the video."
+        "q": "Where can I get the Make.com YouTube description template?",
+        "a": "Mike sells it for $15, he says in the video."
       }
     ]
   },
@@ -8237,8 +8165,8 @@ export const videoSummaries = {
         "a": "Yes. It is a free command line tool, run with npx."
       },
       {
-        "q": "Did the presenter really spend $4,000?",
-        "a": "No. The presenter says it is not the real cost, because they use subscription plans and no API credits."
+        "q": "Did Mike really spend $4,000 on tokens?",
+        "a": "No. Mike says it is not the real cost, because he uses subscription plans and no API credits."
       },
       {
         "q": "How much have the savings tools saved?",
@@ -8247,7 +8175,7 @@ export const videoSummaries = {
     ]
   },
   "9WPazkEp7VU": {
-    "summary": "Use CrowdReply, an AI search visibility platform with an MCP server, to see where the presenter's site is cited by ChatGPT, Gemini, Claude and Perplexity and to feed that data into Codex. The dashboard and MCP show citation records, competitor visibility, sentiment and tracked keywords, and Codex writes reports and applies fixes before a push to Vercel. The video shows a 7-day trial and plans from $99 a month. The paid backlink marketplace is described but not used.",
+    "summary": "Use CrowdReply, an AI search visibility platform with an MCP server, to see where Mike's site is cited by ChatGPT, Gemini, Claude and Perplexity and to feed that data into Codex. The dashboard and MCP show citation records, competitor visibility, sentiment and tracked keywords, and Codex writes reports and applies fixes before a push to Vercel. The video shows a 7-day trial and plans from $99 a month. The paid backlink marketplace is described but not used.",
     "whatYouBuild": "CrowdReply's MCP connected to Codex to pull 178 citation records, competitor data and keyword reports, followed by fixes committed to GitHub and deployed on Vercel.",
     "toolsUsed": [
       "CrowdReply",
@@ -8294,8 +8222,8 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Whether the fixes raise citations over the following weeks.",
-      "Buying backlinks. The presenter browses the marketplace but does not purchase, and paid links can conflict with search engine guidelines.",
-      "Consistent figures. The presenter's visibility rank is shown as both fifth of eleven and third, and sentiment is early data.",
+      "Buying backlinks. Mike browses the marketplace but does not purchase, and paid links can conflict with search engine guidelines.",
+      "Consistent figures. Mike's visibility rank is shown as both fifth of eleven and third, and sentiment is early data.",
       "Pricing beyond the quoted 7-day trial and $99 a month starting plan."
     ],
     "qa": [
@@ -8304,18 +8232,18 @@ export const videoSummaries = {
         "a": "Live citation records, competitor visibility, sentiment and keyword reports from CrowdReply, so fixes can be planned from real data."
       },
       {
-        "q": "Did the presenter buy backlinks?",
+        "q": "Did Mike buy backlinks?",
         "a": "No. They looked at the marketplace's prices and domain data and said few sites fit their niche."
       },
       {
-        "q": "How is the presenter's site doing?",
+        "q": "How is Mike's site doing?",
         "a": "Second in citations behind YouTube, with 25 percent visibility against 65 and 75 percent for two competitors, per the dashboard."
       }
     ]
   },
   "TZxNymn9msU": {
     "summary": "A scripted-style overview of five AI automation tools for business in 2025: ChatGPT, Google Gemini, Lindy, Microsoft Power Automate and a fifth enterprise platform whose name is garbled in the transcript. Each gets a general description and use cases, followed by advice on choosing by company size and tech stack. There are no demos, prices or evidence for the savings claims.",
-    "whatYouBuild": "Nothing is built. The video is a narrated list of tools and use cases.",
+    "whatYouBuild": "Nothing is built. It is a narrated list of tools and use cases.",
     "toolsUsed": [
       "ChatGPT",
       "Google Gemini",
@@ -8365,13 +8293,13 @@ export const videoSummaries = {
       },
       {
         "q": "Is anything shown working?",
-        "a": "No. The video describes the tools and does not run any of them."
+        "a": "No. The tools are described, but none of them is run."
       }
     ]
   },
   "zWM4AjUto2A": {
     "summary": "A three-minute list of five AI automation ideas for a business: customer service chatbots, email triage, invoice processing, content and social media automation, and no-code workflow automation. It names no tools and shows no demos. The claim that chatbots can resolve up to 80 percent of routine questions is stated without a source.",
-    "whatYouBuild": "Nothing is built. The video lists automation ideas.",
+    "whatYouBuild": "Nothing is built. It only lists automation ideas.",
     "toolsUsed": [
       "No-code automation platforms"
     ],
@@ -8414,12 +8342,12 @@ export const videoSummaries = {
       },
       {
         "q": "Who is it for?",
-        "a": "Small businesses wanting to save time, per the presenter."
+        "a": "Small businesses wanting to save time, as the video frames it."
       }
     ]
   },
   "KDZ7yefRv54": {
-    "summary": "Make an infographic from a YouTube video with Google's NotebookLM in about a minute or two, then compare it with the presenter's own n8n workflow that calls Nano Banana Pro through KIE. The presenter finds the n8n version more detailed with cleaner text, but NotebookLM is quicker for a one-off. The n8n template is in the presenter's paid community tiers.",
+    "summary": "Make an infographic from a YouTube video with Google's NotebookLM in about a minute or two, then compare it with Mike's own n8n workflow that calls Nano Banana Pro through KIE. Mike finds the n8n version more detailed with cleaner text, but NotebookLM is quicker for a one-off. The n8n template is in Mike's paid community tiers.",
     "whatYouBuild": "A NotebookLM notebook from a YouTube URL with a generated infographic, compared against an n8n workflow that writes an infographic, a LinkedIn post and a newsletter.",
     "toolsUsed": [
       "NotebookLM",
@@ -8451,32 +8379,32 @@ export const videoSummaries = {
       },
       {
         "seconds": 315,
-        "step": "Hear where the template is offered in the presenter's community."
+        "step": "Hear where the template is offered in Mike's community."
       }
     ],
     "notCovered": [
-      "Which model NotebookLM uses, which the presenter does not know.",
-      "A timed, side-by-side test. The comparison is the presenter's impression from one video.",
+      "Which model NotebookLM uses, which Mike does not know.",
+      "A timed, side-by-side test. The comparison is Mike's impression from one video.",
       "Checking that either infographic matches the video's content.",
       "The cost of KIE credits per image."
     ],
     "qa": [
       {
         "q": "Which is better, NotebookLM or the n8n workflow?",
-        "a": "The presenter prefers their own workflow for detail, and NotebookLM for quick one-off infographics."
+        "a": "Mike prefers his own workflow for detail, and NotebookLM for quick one-off infographics."
       },
       {
         "q": "Is NotebookLM free?",
-        "a": "The presenter says it is free to get started."
+        "a": "It is free to get started, Mike says."
       },
       {
-        "q": "Where is the n8n template?",
-        "a": "In the templates section of the presenter's Skool community, for paid members."
+        "q": "Where is the n8n infographic workflow template?",
+        "a": "In the templates section of Mike's Skool community, for paid members."
       }
     ]
   },
   "rPhyYNMuDT4": {
-    "summary": "A look at the n8n 2.0 beta announced on December 8, 2025, after updating a self-hosted instance on a Hostinger VPS. The presenter notes a cleaner look, easier movement between nodes, a new execution spinner, a resizable sidebar and a separate publish step. They find the new features somewhat underwhelming, and show updating with a Docker pull and docker compose up. Security and performance changes are only mentioned.",
+    "summary": "A look at the n8n 2.0 beta announced on December 8, 2025, after updating a self-hosted instance on a Hostinger VPS. Mike notes a cleaner look, easier movement between nodes, a new execution spinner, a resizable sidebar and a separate publish step. He finds the new features somewhat underwhelming, and shows updating with a Docker pull and docker compose up. Security and performance changes are only mentioned.",
     "whatYouBuild": "An n8n instance updated to the 2.0 beta with Docker, then a tour of its interface changes on existing workflows.",
     "toolsUsed": [
       "n8n",
@@ -8510,7 +8438,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "What is the biggest change?",
-        "a": "The presenter picks easier switching between nodes, and also mentions the publish step as a safer way to push changes live."
+        "a": "Mike picks easier switching between nodes, and also mentions the publish step as a safer way to push changes live."
       },
       {
         "q": "How do you update on a VPS?",
@@ -8518,13 +8446,13 @@ export const videoSummaries = {
       },
       {
         "q": "Is it worth upgrading?",
-        "a": "The presenter calls it a positive step but a little underwhelming for new capabilities."
+        "a": "Mike calls it a positive step but a little underwhelming for new capabilities."
       }
     ]
   },
   "e73WvglCLW0": {
-    "summary": "A demo of VisiScan, the presenter's own AI search visibility tool. A free scan gives a readiness score and visibility across ChatGPT, Claude, Perplexity and Gemini, and a one-time $79 full report checks 30 or more signals and is generated through Codex. The presenter's own site scores 56 out of 100, and two other businesses' results are shown as examples. This is a product demo of the presenter's own tool, so the results are not independently validated.",
-    "whatYouBuild": "Nothing is built live. The video shows a domain scan, example audits and a full PDF report from the presenter's tool.",
+    "summary": "A demo of VisiScan, Mike's own AI search visibility tool. A free scan gives a readiness score and visibility across ChatGPT, Claude, Perplexity and Gemini, and a one-time $79 full report checks 30 or more signals and is generated through Codex. Mike's own site scores 56 out of 100, and two other businesses' results are shown as examples. This is a product demo of his own tool, so the results are not independently validated.",
+    "whatYouBuild": "Nothing is built live. The video shows a domain scan, example audits and a full PDF report from Mike's tool.",
     "toolsUsed": [
       "VisiScan",
       "Codex"
@@ -8579,13 +8507,13 @@ export const videoSummaries = {
         "a": "A one-time full report with the signal checks and fixes, including entity presence, citations, schema, crawler access and technical health."
       },
       {
-        "q": "How did the presenter's site score?",
+        "q": "How did Mike's own site score in VisiScan?",
         "a": "56 out of 100 on readiness, with room to improve."
       }
     ]
   },
   "dILjZszMZ5o": {
-    "summary": "A 98-second promotional pitch for the presenter's free Skool community, arguing that businesses should automate scheduling, invoicing, customer inquiries and data entry with AI before competitors do. It names no tools, shows no demo and gives no evidence for its claims about cost savings or error rates.",
+    "summary": "A 98-second promotional pitch for Mike's free Skool community, arguing that businesses should automate scheduling, invoicing, customer inquiries and data entry with AI before competitors do. It names no tools, shows no demo and gives no evidence for its claims about cost savings or error rates.",
     "whatYouBuild": "Nothing is built. The video invites viewers to join a free community to learn automations.",
     "toolsUsed": [
       "Skool"
@@ -8612,8 +8540,8 @@ export const videoSummaries = {
         "a": "No. It is a short advertisement for the free community."
       },
       {
-        "q": "Does it cost anything to join?",
-        "a": "The video says joining the community is free."
+        "q": "Did the Skool community cost anything to join?",
+        "a": "Joining the community is free, according to the video."
       },
       {
         "q": "Which tools are covered?",
@@ -8622,7 +8550,7 @@ export const videoSummaries = {
     ]
   },
   "OPQacEy41kM": {
-    "summary": "A walkthrough of the presenter's new Skool community about two weeks after launch, with almost 200 members and a classroom of free tutorials and paid products. The presenter says upsells earned about $500 against Skool's $99 a month fee and that it ranks on page six of the tech category. These figures are the presenter's own, and one spoken coaching price is unclear.",
+    "summary": "A walkthrough of Mike's new Skool community about two weeks after launch, with almost 200 members and a classroom of free tutorials and paid products. Mike says upsells earned about $500 against Skool's $99 a month fee and that it ranks on page six of the tech category. These figures are Mike's own, and one spoken coaching price is unclear.",
     "whatYouBuild": "Nothing is built. The video shows a community feed, a classroom with free guides and paid courses, templates and consultation offers.",
     "toolsUsed": [
       "Skool",
@@ -8631,15 +8559,15 @@ export const videoSummaries = {
     "keySteps": [
       {
         "seconds": 25,
-        "step": "See the free tutorials the community shares from the presenter's YouTube channel."
+        "step": "See the free tutorials the community shares from Mike's YouTube channel."
       },
       {
         "seconds": 45,
-        "step": "Look at member introductions and how the presenter replies quickly to build engagement."
+        "step": "Look at member introductions and how Mike replies quickly to build engagement."
       },
       {
         "seconds": 79,
-        "step": "Hear how members find the community through Skool's marketplace and how the presenter joins other communities."
+        "step": "Hear how members find the community through Skool's marketplace and how Mike joins other communities."
       },
       {
         "seconds": 137,
@@ -8658,8 +8586,8 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "How big was it?",
-        "a": "Almost 200 members after about two weeks, according to the presenter."
+        "q": "How big was the AI Automation Station Skool community?",
+        "a": "Almost 200 members after about two weeks, according to Mike."
       },
       {
         "q": "How does it make money?",
@@ -8667,12 +8595,12 @@ export const videoSummaries = {
       },
       {
         "q": "What does Skool cost?",
-        "a": "The presenter says $99 a month, and that the upsells had already covered it."
+        "a": "$99 a month, Mike says, and the upsells had already covered it."
       }
     ]
   },
   "-viL36QDF_8": {
-    "summary": "A first look at Google's Gemini 3 in Google AI Studio, shortly after its November 18, 2025 release. The presenter reads the benchmark charts, has it redesign their landing page, builds a merch mockup app from a client's logo and deploys it to Google Cloud, and browses a gallery game. The landing page misses some details, and the claim that these tools will replace software engineers is the presenter's opinion.",
+    "summary": "A first look at Google's Gemini 3 in Google AI Studio, shortly after its November 18, 2025 release. Mike reads the benchmark charts, has it redesign his landing page, builds a merch mockup app from a client's logo and deploys it to Google Cloud, and browses a gallery game. The landing page misses some details, and the claim that these tools will replace software engineers is Mike's opinion.",
     "whatYouBuild": "A redesigned landing page and a logo-to-mockup web app made in Google AI Studio with Gemini 3, with the mockup app deployed to Google Cloud.",
     "toolsUsed": [
       "Gemini 3",
@@ -8699,7 +8627,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 250,
-        "step": "Hear the presenter's view that such tools will replace developers."
+        "step": "Hear Mike's view that such tools will replace developers."
       },
       {
         "seconds": 300,
@@ -8719,7 +8647,7 @@ export const videoSummaries = {
       },
       {
         "q": "Can you deploy from AI Studio?",
-        "a": "Yes, the presenter creates a Google Cloud project and deploys the mockup app from AI Studio."
+        "a": "Yes, Mike creates a Google Cloud project and deploys the mockup app from AI Studio."
       },
       {
         "q": "Does it beat ChatGPT?",
@@ -8728,7 +8656,7 @@ export const videoSummaries = {
     ]
   },
   "wZ76glbPIPc": {
-    "summary": "Set up n8n on a Hostinger VPS: choose a KVM plan, pick the n8n template with 100 included workflows, pay about $10.69 for one month, and open n8n from the control panel. The presenter prices Hostinger from $5 a month against about $24 for n8n's cloud, creates an account, claims a free license key and imports a template. Backups, updates, HTTPS and hardening are not covered, and whether the Hostinger link is an affiliate link is not stated.",
+    "summary": "Set up n8n on a Hostinger VPS: choose a KVM plan, pick the n8n template with 100 included workflows, pay about $10.69 for one month, and open n8n from the control panel. Mike prices Hostinger from $5 a month against about $24 for n8n's cloud, creates an account, claims a free license key and imports a template. Backups, updates, HTTPS and hardening are not covered, and whether the Hostinger link is an affiliate link is not stated.",
     "whatYouBuild": "A Hostinger VPS running n8n on Ubuntu 24.04 in a Malaysia data center, with a bundled set of 100 workflows and an imported template.",
     "toolsUsed": [
       "Hostinger",
@@ -8760,22 +8688,22 @@ export const videoSummaries = {
     ],
     "qa": [
       {
-        "q": "How much did it cost?",
-        "a": "The presenter was charged $10.69 for one month with the n8n and 100 workflows option."
+        "q": "How much did the Hostinger n8n VPS cost?",
+        "a": "Mike was charged $10.69 for one month with the n8n and 100 workflows option."
       },
       {
         "q": "Why not self-host locally?",
-        "a": "The presenter found local hosting with Coolify or Docker hard to set up with a custom domain."
+        "a": "Mike found local hosting with Coolify or Docker hard to set up with a custom domain."
       },
       {
         "q": "How many templates are on n8n's site?",
-        "a": "The presenter says more than 6,400."
+        "a": "More than 6,400, Mike says."
       }
     ]
   },
   "3RPEo7PB7ug": {
-    "summary": "A cautionary overview of Moltbook, a Reddit-style social network where AI agents post and upvote while humans only watch, launched about five days before the video. The presenter reads Gemini's description and press coverage, repeats reports of 1.6 million agents and an exposed pile of API keys, and says the site is full of crypto promotion. They advise against joining. The figures and the breach come from social posts and articles, not from tests in the video.",
-    "whatYouBuild": "Nothing is built. The video explains what Moltbook is, how agents join through OpenClaw and why the presenter considers it a security risk.",
+    "summary": "A cautionary overview of Moltbook, a Reddit-style social network where AI agents post and upvote while humans only watch, launched about five days before the video. Mike reads Gemini's description and press coverage, repeats reports of 1.6 million agents and an exposed pile of API keys, and says the site is full of crypto promotion. He advises against joining. The figures and the breach come from social posts and articles, not from tests in the video.",
+    "whatYouBuild": "Nothing is built. The video explains what Moltbook is, how agents join through OpenClaw and why Mike considers it a security risk.",
     "toolsUsed": [
       "Moltbook",
       "OpenClaw",
@@ -8800,10 +8728,10 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Independent verification of the user counts, which the presenter reads from the site and press.",
+      "Independent verification of the user counts, which Mike reads from the site and press.",
       "How the reported key exposure happened or whether it was fixed.",
-      "The developer platform, which the presenter skips as insecure.",
-      "A hands-on test of Moltbook. The presenter does not join."
+      "The developer platform, which Mike skips as insecure.",
+      "A hands-on test of Moltbook. Mike does not join."
     ],
     "qa": [
       {
@@ -8815,13 +8743,13 @@ export const videoSummaries = {
         "a": "Reported exposure of API keys and email addresses, plus scams, according to posts and articles shown in the video."
       },
       {
-        "q": "What does the presenter suggest instead?",
-        "a": "Skip it, or run OpenClaw only on a separate VPS or hosted setup, as in their earlier tutorials."
+        "q": "What does Mike suggest instead of Moltbook?",
+        "a": "Skip it, or run OpenClaw only on a separate VPS or hosted setup, as in his earlier tutorials."
       }
     ]
   },
   "mkm8cz6dp8w": {
-    "summary": "A personal story rather than a tutorial: the presenter explains moving to Bali in November 2019 on a one-way ticket, doing hotel collaborations in Singapore, settling in Phuket and then Koh Samui for about six years, and living on YouTube and Facebook income with a low cost of living. They also mention a remote AI strategist job interview and a Facebook group of 19,000 members. No AI tools or steps are covered, and income comparisons are the presenter's own.",
+    "summary": "A personal story rather than a tutorial: Mike explains moving to Bali in November 2019 on a one-way ticket, doing hotel collaborations in Singapore, settling in Phuket and then Koh Samui for about six years, and living on YouTube and Facebook income with a low cost of living. He also mentions a remote AI strategist job interview and a Facebook group of 19,000 members. No AI tools or steps are covered, and income comparisons are Mike's own.",
     "whatYouBuild": "Nothing is built. The video tells a lifestyle story and invites viewers to ask questions.",
     "toolsUsed": [
       "YouTube",
@@ -8866,11 +8794,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is this an AI video?",
-        "a": "Not really. It is a personal story, and the presenter says it is different from their usual format."
+        "a": "Not really. It is a personal story, and Mike says it is different from his usual format."
       },
       {
         "q": "Where can viewers get more on moving abroad?",
-        "a": "The presenter points to their 19,000-member Facebook group on escaping the rat race."
+        "a": "Mike points to his 19,000-member Facebook group on escaping the rat race."
       },
       {
         "q": "Does it cover visas?",
@@ -8879,7 +8807,7 @@ export const videoSummaries = {
     ]
   },
   "9YueXsoNg80": {
-    "summary": "Add OpenAI's Sora 2 video generation to an n8n workflow. The presenter first updates a self-hosted n8n on a Hostinger VPS, because the Sora 2 option needs version 1.118.1, then builds a form that takes a prompt and product image and calls Sora 2 for an 8-second 1280 by 720 video. A bad request error turns out to be a negative OpenAI balance, fixed with a $6 top-up. The generated video does not match the product exactly.",
+    "summary": "Add OpenAI's Sora 2 video generation to an n8n workflow. Mike first updates a self-hosted n8n on a Hostinger VPS, because the Sora 2 option needs version 1.118.1, then builds a form that takes a prompt and product image and calls Sora 2 for an 8-second 1280 by 720 video. A bad request error turns out to be a negative OpenAI balance, fixed with a $6 top-up. The generated video does not match the product exactly.",
     "whatYouBuild": "An n8n workflow with a form trigger, an image resize step and an OpenAI video generation node using Sora 2 for a short UGC-style ad.",
     "toolsUsed": [
       "n8n",
@@ -8931,20 +8859,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Which n8n version is needed?",
-        "a": "The presenter's instance showed 1.118.1 after the update, which gave access to the Sora 2 option."
+        "a": "Mike's instance showed 1.118.1 after the update, which gave access to the Sora 2 option."
       },
       {
         "q": "Why did it return bad request?",
         "a": "The OpenAI balance was negative. After adding about $6 the run worked."
       },
       {
-        "q": "How long did the video take?",
+        "q": "How long does Sora 2 take to generate a clip in n8n?",
         "a": "A couple of minutes for an 8-second clip."
       }
     ]
   },
   "Fw-RqLjArc8": {
-    "summary": "Use the Semrush MCP from OpenCode and Hermes Agent to pull AI visibility, keyword gap and backlink gap data, then have scripts act on it. The presenter's AI visibility score is 14 out of 100 with about 428 citations, and ChatGPT, Gemini and AI Mode mentions are shown. API exhaustion errors interrupt the backlink script. The video is an affiliate promotion, and the presenter is on a $300 a month Semrush plan despite the title.",
+    "summary": "Use the Semrush MCP from OpenCode and Hermes Agent to pull AI visibility, keyword gap and backlink gap data, then have scripts act on it. Mike's AI visibility score is 14 out of 100 with about 428 citations, and ChatGPT, Gemini and AI Mode mentions are shown. API exhaustion errors interrupt the backlink script. The video is an affiliate promotion, and Mike is on a $300 a month Semrush plan despite the title.",
     "whatYouBuild": "A Semrush MCP connected through an API key to coding agents that generate keyword gap plans, backlink gap scripts and a list of low-quality backlinks to consider disavowing.",
     "toolsUsed": [
       "Semrush",
@@ -8991,25 +8919,21 @@ export const videoSummaries = {
       "Ranking or traffic results from the keyword and backlink work.",
       "Whether disavowing links is needed. Search engines often say it is rarely necessary.",
       "Rules on cold outreach for backlinks and on automated email agents.",
-      "The cost of API credits against the $300 a month plan, since the presenter hits throttling."
+      "The cost of API credits against the $300 a month plan, since Mike hits throttling."
     ],
     "qa": [
       {
-        "q": "Is this video an affiliate promotion?",
-        "a": "Yes. The presenter says the Semrush link is an affiliate link that pays a small commission and may save you money."
-      },
-      {
-        "q": "Does the MCP need a paid plan?",
-        "a": "The presenter recommends a paid plan for MCP access, and uses a $300 a month plan. A 7-day free trial is mentioned."
+        "q": "Does the Semrush MCP need a paid plan?",
+        "a": "Mike recommends a paid plan for MCP access, and uses a $300 a month plan. A 7-day free trial is mentioned."
       },
       {
         "q": "What was the AI visibility score?",
-        "a": "14 out of 100, which the presenter says is lower than expected."
+        "a": "14 out of 100, which Mike says is lower than expected."
       }
     ]
   },
   "JJe2G17_eRU": {
-    "summary": "Build a thumbnail audit pipeline from 242 of the presenter's own thumbnails: Python scripts measure brightness, saturation, contrast, edge density, faces and keywords, join the data with YouTube Studio click-through rates, and find ranges that correlate with higher CTR. The result is a master prompt used in ChatGPT Images 2.0 to redesign weak thumbnails. The one before and after shown looks similar but sharper. Correlation is not proven causation, and no CTR change is shown.",
+    "summary": "Build a thumbnail audit pipeline from 242 of Mike's own thumbnails: Python scripts measure brightness, saturation, contrast, edge density, faces and keywords, join the data with YouTube Studio click-through rates, and find ranges that correlate with higher CTR. The result is a master prompt used in ChatGPT Images 2.0 to redesign weak thumbnails. The one before and after shown looks similar but sharper. Correlation is not proven causation, and no CTR change is shown.",
     "whatYouBuild": "Four Python scripts, a CTR-enriched audit, a low-CTR optimization plan and a master designer prompt for redesigning thumbnails in ChatGPT Images 2.0.",
     "toolsUsed": [
       "ChatGPT Images 2.0",
@@ -9056,7 +8980,7 @@ export const videoSummaries = {
       "Any measured CTR change after replacing thumbnails.",
       "Whether 242 thumbnails and their correlations are enough to infer cause.",
       "The claimed 3 percent lift and 1,000 extra views, which are projections.",
-      "The master prompt, which the presenter says only works with their own data."
+      "The master prompt, which Mike says only works with his own data."
     ],
     "qa": [
       {
@@ -9069,12 +8993,12 @@ export const videoSummaries = {
       },
       {
         "q": "Can I use the same prompt?",
-        "a": "The presenter says it is trained on their data, so you would need to rebuild it from your own channel."
+        "a": "Mike says it is trained on his data, so you would need to rebuild it from your own channel."
       }
     ]
   },
   "pDrMGahPnwc": {
-    "summary": "A tour of Otterly AI, a tracker for how often a brand appears in ChatGPT, Gemini, Perplexity and Microsoft Copilot answers. For the presenter's analytics site it shows about 43 percent brand coverage against 68 percent for VidIQ, about 20 mentions, a brand rank of four, citation share, a crawlability checker and a content readiness checker. The plan is a 2-week trial then about $29 a month, and the link is a referral link.",
+    "summary": "A tour of Otterly AI, a tracker for how often a brand appears in ChatGPT, Gemini, Perplexity and Microsoft Copilot answers. For Mike's analytics site it shows about 43 percent brand coverage against 68 percent for VidIQ, about 20 mentions, a brand rank of four, citation share, a crawlability checker and a content readiness checker. The plan is a 2-week trial then about $29 a month, and the link is a referral link.",
     "whatYouBuild": "An Otterly dashboard tracking prompts, brand coverage, citations and sentiment, with crawler and content checks and a backlink outreach idea.",
     "toolsUsed": [
       "Otterly AI",
@@ -9089,7 +9013,7 @@ export const videoSummaries = {
         "step": "Read the overview of brand coverage, mentions, position and brand ranking against competitors."
       },
       {
-        "step": "Check citation share and counts, where the presenter's blog is cited often."
+        "step": "Check citation share and counts, where Mike's blog is cited often."
       },
       {
         "step": "Use the crawlability checker to confirm AI crawlers can reach the site."
@@ -9116,17 +9040,13 @@ export const videoSummaries = {
         "a": "ChatGPT, Gemini, Perplexity and Microsoft Copilot, per the video."
       },
       {
-        "q": "How does the presenter's site compare?",
+        "q": "How does Mike's site compare with VidIQ in Otterly?",
         "a": "About 43 percent brand coverage against 68 percent for VidIQ, and fourth in brand ranking."
       },
-      {
-        "q": "Is the link a referral link?",
-        "a": "Yes. The presenter says they earn a commission on sign-ups."
-      }
     ]
   },
   "4f9WR0T3vKQ": {
-    "summary": "A February 2026 demo of the presenter's own YouTube analytics web app while it was still in development. It shows a dashboard, analytics, competitor analysis, trend and idea tools, a keyword and title tool and planned pricing from $19 a month with a 7-day trial. Several parts are broken or unfinished, including the behavior tab and AI thumbnail testing. The video describes a product that was planned for public release the following month, so check its current availability.",
+    "summary": "A February 2026 demo of Mike's own YouTube analytics web app while it was still in development. It shows a dashboard, analytics, competitor analysis, trend and idea tools, a keyword and title tool and planned pricing from $19 a month with a 7-day trial. Several parts are broken or unfinished, including the behavior tab and AI thumbnail testing. The video describes a product that was planned for public release the following month, so check its current availability.",
     "whatYouBuild": "A Node.js and Supabase web app built with Claude Code and OpenCode that reads YouTube Analytics and Data API data into dashboards, competitor comparison, ideas, keyword and title tools.",
     "toolsUsed": [
       "Claude Code",
@@ -9159,15 +9079,15 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A finished product. The presenter says it still needs debugging, testing and a contact form.",
+      "A finished product. Mike says it still needs debugging, testing and a contact form.",
       "Current availability and prices, which may have changed since February 2026.",
-      "The accuracy of the keyword volumes, which the presenter calls a proof of concept.",
+      "The accuracy of the keyword volumes, which Mike calls a proof of concept.",
       "Security and data handling for creators who connect their channels."
     ],
     "qa": [
       {
-        "q": "Is the app live?",
-        "a": "The presenter says it is technically live but needs much more work, with a public launch planned about a month after the video. Check the current status."
+        "q": "Is TubeAnalytics live?",
+        "a": "It is technically live but needs much more work, Mike says, with a public launch planned about a month after the video. Check the current status."
       },
       {
         "q": "What was the planned price?",
@@ -9180,7 +9100,7 @@ export const videoSummaries = {
     ]
   },
   "mKZHLQLaq2k": {
-    "summary": "Install Claude Code on Debian Linux from the terminal, add Visual Studio Code from Flathub with its Claude Code extension, and sign in through the Claude console. The first login attempts need authorizing again and a path fix before Claude Code runs inside VS Code on Sonnet 4.5. The presenter has not used Claude Code much before, and the pricing they quote is as of January 2026.",
+    "summary": "Install Claude Code on Debian Linux from the terminal, add Visual Studio Code from Flathub with its Claude Code extension, and sign in through the Claude console. The first login attempts need authorizing again and a path fix before Claude Code runs inside VS Code on Sonnet 4.5. Mike has not used Claude Code much before, and the pricing he quotes is as of January 2026.",
     "whatYouBuild": "Claude Code running in a terminal and inside VS Code on Linux, signed in through the console.",
     "toolsUsed": [
       "Claude Code",
@@ -9215,22 +9135,22 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A real coding task. The first prompt only starts Claude searching the local folder.",
-      "Costs. The presenter says a Pro plan was about $17 a month and they have not paid for one yet.",
-      "Windows and Mac setup, which the presenter says is harder.",
+      "Costs. Mike says a Pro plan was about $17 a month and he has not paid for one yet.",
+      "Windows and Mac setup, which Mike says is harder.",
       "Troubleshooting beyond the path fix."
     ],
     "qa": [
       {
-        "q": "Which model did it use?",
+        "q": "Which model did Claude Code use?",
         "a": "Sonnet 4.5 after login."
       },
       {
         "q": "Why did the install seem to do nothing?",
-        "a": "The command was not on the path, so the presenter ran it with the full path and then fixed the setup."
+        "a": "The command was not on the path, so Mike ran it with the full path and then fixed the setup."
       },
       {
-        "q": "Do I need a paid plan?",
-        "a": "The presenter expects to need a subscription or API credits for regular use."
+        "q": "Do I need a paid plan for Claude Code?",
+        "a": "Regular use will likely need a subscription or API credits, Mike expects."
       }
     ]
   },
@@ -9269,19 +9189,15 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "How the video performs on YouTube, which the presenter says they will watch for a couple of weeks.",
+      "How the video performs on YouTube, which Mike says he will watch for a couple of weeks.",
       "Fact checking the cost-of-living claims in the AI script.",
       "YouTube's disclosure rules for AI-generated content.",
       "Plan prices beyond the quoted $25 a month for 500 credits."
     ],
     "qa": [
       {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission if you buy a paid plan."
-      },
-      {
-        "q": "How many credits does the trial give?",
-        "a": "About 50, enough for roughly three minutes of video, per the presenter."
+        "q": "How many credits does the Syllaby free trial give?",
+        "a": "About 50, enough for roughly three minutes of video, per Mike."
       },
       {
         "q": "Is this the same as the other Syllaby video?",
@@ -9290,7 +9206,7 @@ export const videoSummaries = {
     ]
   },
   "CfbMWB0G99E": {
-    "summary": "Build a ten-card presentation in Gamma from a pasted four-day ChatGPT coaching plan for a beginner client: choose concise text, a light theme, auto-selected AI images in a line art style, and let Gamma generate the deck in about three minutes. The presenter edits a heading, changes one image with Gamma's AI agent and exports to Google Slides. Plan prices are quoted, and the link is an affiliate link.",
+    "summary": "Build a ten-card presentation in Gamma from a pasted four-day ChatGPT coaching plan for a beginner client: choose concise text, a light theme, auto-selected AI images in a line art style, and let Gamma generate the deck in about three minutes. Mike edits a heading, changes one image with Gamma's AI agent and exports to Google Slides. Plan prices are quoted, and the link is an affiliate link.",
     "whatYouBuild": "A ten-card Gamma presentation made from a pasted outline, with an edited image and an export to Google Slides.",
     "toolsUsed": [
       "Gamma",
@@ -9333,21 +9249,17 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Whether the deck is accurate or well suited to the client, since the content was fed in as an outline.",
-      "Formatting problems after export, which the presenter says need some work.",
+      "Formatting problems after export, which Mike says need some work.",
       "Credit use per deck or per image model.",
-      "The claim that more than 80 percent of people have never paid for an AI service, which is the presenter's own."
+      "The claim that more than 80 percent of people have never paid for an AI service, which is Mike's own."
     ],
     "qa": [
       {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a small commission on sign-ups and purchases."
-      },
-      {
-        "q": "How many cards does the free plan allow?",
+        "q": "How many cards does the Gamma free plan allow?",
         "a": "10 cards per prompt, per the video."
       },
       {
-        "q": "How fast was it?",
+        "q": "How fast did Gamma generate the deck?",
         "a": "About three minutes or less to generate the whole deck."
       }
     ]
@@ -9397,27 +9309,23 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Whether the suggested ideas perform well. They are patterned on other creators' popular videos.",
-      "The faceless video posting step, which the presenter has unlinked.",
+      "The faceless video posting step, which Mike has unlinked.",
       "Rules for scraping channels through Apify, and the cost beyond the quoted $5 per 1,000 videos.",
       "Originality, since the prompt asks for ideas similar to other creators' hits."
     ],
     "qa": [
       {
-        "q": "Where is the template?",
-        "a": "On the presenter's Gumroad page, free or pay what you want."
+        "q": "Where can I get the YouTube topic finder Make.com template?",
+        "a": "On Mike's Gumroad page, free or pay what you want."
       },
       {
         "q": "What does the assistant return?",
         "a": "Ten video ideas with short summaries and steps, formatted as JSON."
       },
-      {
-        "q": "Is the Make.com link an affiliate link?",
-        "a": "Yes, per the video."
-      }
     ]
   },
   "AO8NoHPU3e0": {
-    "summary": "A first look at Claude Code Routines, announced April 14, 2026 in preview: saved prompts that run on a schedule, a GitHub event or an API call. The presenter keeps a daily email triage routine, adds a GitHub security audit on pull requests and a calendar update, then creates a daily site speed audit and a weekly blog strategy routine from the Claude Code command line. Routines use plan credits, with a Pro plan allowing five included runs a day, and the presenter reaches about 90 percent usage.",
+    "summary": "A first look at Claude Code Routines, announced April 14, 2026 in preview: saved prompts that run on a schedule, a GitHub event or an API call. Mike keeps a daily email triage routine, adds a GitHub security audit on pull requests and a calendar update, then creates a daily site speed audit and a weekly blog strategy routine from the Claude Code command line. Routines use plan credits, with a Pro plan allowing five included runs a day, and Mike reaches about 90 percent usage.",
     "whatYouBuild": "Several Claude routines: a daily email triage, a GitHub pull request security review, a Google Calendar update, a daily site performance analysis and a weekly blog content strategy file committed to a repo.",
     "toolsUsed": [
       "Claude Code Routines",
@@ -9467,7 +9375,7 @@ export const videoSummaries = {
       "Whether the speed audit produces useful data, since the site returns 403 to the automated requests.",
       "The strategy document produced by the weekly routine, which is still running at the end.",
       "A YouTube connector, which is not available, so the comments report is dropped.",
-      "Costs. The presenter says creating routines in the command line burns many tokens and recommends the web interface."
+      "Costs. Mike says creating routines in the command line burns many tokens and recommends the web interface."
     ],
     "qa": [
       {
@@ -9476,16 +9384,16 @@ export const videoSummaries = {
       },
       {
         "q": "How many runs does Pro include?",
-        "a": "The presenter says five included daily runs."
+        "a": "Mike says five included daily runs."
       },
       {
         "q": "Which way is cheaper to create them?",
-        "a": "The web interface, according to the presenter, because doing it in Claude Code used a lot of tokens."
+        "a": "The web interface, according to Mike, because doing it in Claude Code used a lot of tokens."
       }
     ]
   },
   "NoHkFvhbiuU": {
-    "summary": "A demo of LeadScope, the presenter's local lead generation and website audit tool built in phases with Claude Code on Sonnet 5, Codex and OpenCode. It searches Google Maps by category and place, audits sites with PageSpeed and Lighthouse, takes screenshots with Playwright, drafts a redesign preview and email copy, and exports leads to CSV. Contact extraction and the redesign preview are weak, rate limits slow the audits and the tool is not deployed.",
+    "summary": "A demo of LeadScope, Mike's local lead generation and website audit tool built in phases with Claude Code on Sonnet 5, Codex and OpenCode. It searches Google Maps by category and place, audits sites with PageSpeed and Lighthouse, takes screenshots with Playwright, drafts a redesign preview and email copy, and exports leads to CSV. Contact extraction and the redesign preview are weak, rate limits slow the audits and the tool is not deployed.",
     "whatYouBuild": "A local app with Google Places API search, a PageSpeed and Lighthouse audit, Playwright screenshots, template-based redesign previews, personalized email drafts, a usage cost dashboard and a CSV export.",
     "toolsUsed": [
       "Claude Code",
@@ -9536,9 +9444,9 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Reliable email discovery. Many leads show only phone numbers.",
-      "A good redesign preview. The presenter calls the current one ugly and plans to improve it.",
+      "A good redesign preview. Mike calls the current one ugly and plans to improve it.",
       "Clients won with the tool.",
-      "The legal and platform terms on collecting business contact details, though the presenter says the Places API use is compliant."
+      "The legal and platform terms on collecting business contact details, though Mike says the Places API use is compliant."
     ],
     "qa": [
       {
@@ -9546,17 +9454,17 @@ export const videoSummaries = {
         "a": "The title says so, but the video only shows leads and audits. No outreach results or clients are shown."
       },
       {
-        "q": "Which models were used?",
+        "q": "Which AI models were used to build LeadScope?",
         "a": "Claude Sonnet 5 for most of the build, Codex for the redesign work and DeepSeek V4 Pro in OpenCode for emails."
       },
       {
-        "q": "Is it available?",
-        "a": "No. It runs on the presenter's computer, and a Prisma error blocks the Vercel deployment."
+        "q": "Can people use LeadScope yet?",
+        "a": "No. It runs on Mike's computer, and a Prisma error blocks the Vercel deployment."
       }
     ]
   },
   "2G5klyFz61E": {
-    "summary": "A live build of Beacon, the presenter's early AI search visibility tracker, using OpenCode with GLM 5.2 and DeepSeek V4 Pro, Codex and Claude Code. Design and features are modeled on a paid tracker, live data comes from the DataForSEO MCP, and GLM 5.2 builds a three-tier pricing page, though Stripe is not configured. The OpenCode Go five-hour limit is reached mid-build. It is an unfinished minimum viable product, and the sign-up link is an affiliate link.",
+    "summary": "A live build of Beacon, Mike's early AI search visibility tracker, using OpenCode with GLM 5.2 and DeepSeek V4 Pro, Codex and Claude Code. Design and features are modeled on a paid tracker, live data comes from the DataForSEO MCP, and GLM 5.2 builds a three-tier pricing page, though Stripe is not configured. The OpenCode Go five-hour limit is reached mid-build. It is an unfinished minimum viable product, and the sign-up link is an affiliate link.",
     "whatYouBuild": "A Next.js style dashboard with Clerk login, overview metrics, a task board, integrations and a pricing page, with DataForSEO data replacing mock data and Prisma for storage.",
     "toolsUsed": [
       "OpenCode",
@@ -9611,20 +9519,16 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Why build it instead of buying a tracker?",
-        "a": "The presenter did not want to pay $100 a month for the tracker they admire, which recently rose from $70."
+        "a": "Mike did not want to pay $100 a month for the tracker he admires, which recently rose from $70."
       },
       {
-        "q": "How much did the build cost?",
+        "q": "How much did the Beacon build cost in OpenCode Go?",
         "a": "About $12 on GLM 5.2 and $2.50 on DeepSeek V4 Pro inside the $10 a month Go plan, which was at 37 percent of its monthly usage."
       },
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says a new user gets $5 in credits and they get $5."
-      }
     ]
   },
   "ix3C2JBFII8": {
-    "summary": "Make YouTube thumbnails with Nano Banana Pro through KIE: ChatGPT writes a thumbnail prompt, KIE regenerates an existing thumbnail from it at 16:9 and 1K, and Gemini swaps in the presenter's face with a wide-open-mouth expression. Each run costs about 18 credits, roughly 30 images for $5. The thumbnails are replaced on three videos with starting click-through rates around 3.3 to 3.8 percent, but no new rates are shown, and one face swap fails.",
+    "summary": "Make YouTube thumbnails with Nano Banana Pro through KIE: ChatGPT writes a thumbnail prompt, KIE regenerates an existing thumbnail from it at 16:9 and 1K, and Gemini swaps in Mike's face with a wide-open-mouth expression. Each run costs about 18 credits, roughly 30 images for $5. The thumbnails are replaced on three videos with starting click-through rates around 3.3 to 3.8 percent, but no new rates are shown, and one face swap fails.",
     "whatYouBuild": "Regenerated YouTube thumbnails from a ChatGPT-written prompt in KIE's Nano Banana Pro, with face replacement in Gemini and manual uploads in YouTube Studio.",
     "toolsUsed": [
       "Nano Banana Pro",
@@ -9644,7 +9548,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 180,
-        "step": "Replace the generated person with the presenter's face in Gemini, keeping the surprised expression."
+        "step": "Replace the generated person with Mike's face in Gemini, keeping the surprised expression."
       },
       {
         "seconds": 300,
@@ -9661,27 +9565,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Click-through rate after the changes. Only the old rates of about 3.3 to 3.8 percent are shown.",
-      "A reliable face swap. One attempt does not insert the presenter and Gemini's limit is reached.",
-      "Whether the wide-open-mouth style works for every audience, which is the presenter's belief.",
+      "A reliable face swap. One attempt does not insert Mike and Gemini's limit is reached.",
+      "Whether the wide-open-mouth style works for every audience, which is Mike's belief.",
       "Disclosure of AI-edited faces and thumbnails, and the cost beyond the quoted credits."
     ],
     "qa": [
       {
         "q": "How much does each thumbnail cost?",
-        "a": "About 18 credits per run, and the presenter estimates around 30 images for $5."
+        "a": "About 18 credits per run, and Mike estimates around 30 images for $5."
       },
       {
         "q": "Why 1K resolution?",
-        "a": "The presenter says higher resolution makes files too large to upload to YouTube."
+        "a": "Higher resolution makes files too large to upload to YouTube, Mike says."
       },
       {
         "q": "Do I need a designer?",
-        "a": "The presenter says no, but the video shows no CTR improvement yet."
+        "a": "Not according to Mike, but no CTR improvement is shown yet."
       }
     ]
   },
   "quDDekuPQNI": {
-    "summary": "A sponsored walkthrough of BrowserAct's Skill Forge scraper skill, which the presenter installs with npx and uses in Codex to scrape remote job listings from We Work Remotely: category pages, filtered categories and each job's details into a 3,200-line JSON and a CSV. Claude Desktop then writes a React and Vite prompt and Codex builds a searchable remote job board in about 20 minutes. The salary field is wrong, and applying sends users back to the source site. The video says BrowserAct sponsored it.",
+    "summary": "A sponsored walkthrough of BrowserAct's Skill Forge scraper skill, which Mike installs with npx and uses in Codex to scrape remote job listings from We Work Remotely: category pages, filtered categories and each job's details into a 3,200-line JSON and a CSV. Claude Desktop then writes a React and Vite prompt and Codex builds a searchable remote job board in about 20 minutes. The salary field is wrong, and applying sends users back to the source site. The video says BrowserAct sponsored it.",
     "whatYouBuild": "A BrowserAct-powered scraper in Python and a React and Vite remote jobs website with categories, search and job detail pages built from the scraped JSON.",
     "toolsUsed": [
       "BrowserAct",
@@ -9731,16 +9635,12 @@ export const videoSummaries = {
     "notCovered": [
       "Whether copying and republishing another job board's listings is allowed by its terms or copyright.",
       "The accuracy of the scraped data, since the salary is not scraped correctly.",
-      "Bot detection avoidance and its ethics. The presenter says the tool avoids detection and blocks.",
-      "A deployed site, which the presenter plans to put on Vercel."
+      "Bot detection avoidance and its ethics. Mike says the tool avoids detection and blocks.",
+      "A deployed site, which Mike plans to put on Vercel."
     ],
     "qa": [
       {
-        "q": "Is this video sponsored?",
-        "a": "Yes. The presenter says BrowserAct sponsored it and shares a discount link."
-      },
-      {
-        "q": "How long did the site take?",
+        "q": "How long did the remote job board take to build?",
         "a": "About 20 minutes with Codex, or about an hour including scraping."
       },
       {
@@ -9787,7 +9687,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Quality of the videos. The presenter suggests better image models for improvement.",
+      "Quality of the videos. Mike suggests better image models for improvement.",
       "Engagement or growth from posting AI videos, and platform rules on automated and repetitive posting.",
       "Costs after the 600 free JSON2Video credits, with paid plans mentioned around $50 a month.",
       "Instagram and TikTok posting, which are only mentioned as possible additions."
@@ -9795,11 +9695,11 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Why scale the video down?",
-        "a": "Make.com's free plan caps downloaded files at about 5 MB, so the presenter uses 720 by 1280."
+        "a": "Make.com's free plan caps downloaded files at about 5 MB, so Mike uses 720 by 1280."
       },
       {
         "q": "How does the YouTube upload handle AI content?",
-        "a": "The presenter turns on the altered or synthetic media setting because the video is AI generated."
+        "a": "Mike turns on the altered or synthetic media setting because the video is AI generated."
       },
       {
         "q": "How fast does a video render?",
@@ -9845,7 +9745,7 @@ export const videoSummaries = {
     "notCovered": [
       "Consent and privacy notices for collecting phone numbers and income.",
       "Sending follow-up emails, which is only suggested with a to-do status and a search step.",
-      "The claimed 25 percent conversion rate of the community, which is the presenter's figure.",
+      "The claimed 25 percent conversion rate of the community, which is Mike's own figure.",
       "Pricing details beyond the free 1,000 responses a month and paid plans from $19."
     ],
     "qa": [
@@ -9854,17 +9754,17 @@ export const videoSummaries = {
         "a": "No. Fillout has its own Airtable integration, which also saves Make.com runs."
       },
       {
-        "q": "How much is Fillout?",
-        "a": "Free to start with 1,000 responses a month, and paid plans from $19 a month, per the presenter."
+        "q": "How much does Fillout cost?",
+        "a": "Free to start with 1,000 responses a month, and paid plans from $19 a month, per Mike."
       },
       {
         "q": "Why ask about income?",
-        "a": "The presenter uses it to judge how ready members are for AI automation."
+        "a": "Mike uses it to judge how ready members are for AI automation."
       }
     ]
   },
   "tR7AYN5FiqA": {
-    "summary": "A tour of OpenAI's Codex coding tool in the terminal and in Codex Cloud after the presenter upgrades to ChatGPT Plus and drops Claude Code. They run a code review through Codex Cloud connected to GitHub, switch models and reasoning levels, use the superpowers skill for a review of their site, fix a newsletter form and push to GitHub for a Vercel deploy. The presenter launches it in a mode that skips approvals, which is a risk to know about.",
+    "summary": "A tour of OpenAI's Codex coding tool in the terminal and in Codex Cloud after Mike upgrades to ChatGPT Plus and drops Claude Code. He runs a code review through Codex Cloud connected to GitHub, switch models and reasoning levels, use the superpowers skill for a review of his site, fix a newsletter form and push to GitHub for a Vercel deploy. Mike launches it in a mode that skips approvals, which is a risk to know about.",
     "whatYouBuild": "Codex set up with a ChatGPT Plus login, a cloud code review task, and a local review that results in fixes pushed to a repo.",
     "toolsUsed": [
       "Codex",
@@ -9899,26 +9799,26 @@ export const videoSummaries = {
     "notCovered": [
       "The risks of running with approvals skipped, where a coding agent can edit files and run commands without asking.",
       "Whether the code review findings were all valid, since they are applied without a separate check.",
-      "Install steps, which the presenter has already done.",
-      "A cost comparison with Claude Code beyond the equal $20 plan price and the presenter's view that Codex is faster."
+      "Install steps, which Mike has already done.",
+      "A cost comparison with Claude Code beyond the equal $20 plan price and Mike's view that Codex is faster."
     ],
     "qa": [
       {
-        "q": "Which model does the presenter use?",
+        "q": "Which Codex model does Mike use?",
         "a": "GPT 5.4 mini at medium reasoning for most tasks, since GPT 5.5 uses more credits."
       },
       {
         "q": "Can I run Codex without my computer?",
-        "a": "Yes, Codex Cloud runs tasks against a connected GitHub repo, which the presenter says helps on a slow laptop."
+        "a": "Yes, Codex Cloud runs tasks against a connected GitHub repo, which Mike says helps on a slow laptop."
       },
       {
-        "q": "Why did the presenter switch?",
-        "a": "They found Claude Code slower and ran out of credits often, so they cancelled it for Codex and OpenCode."
+        "q": "Why did Mike switch to Codex?",
+        "a": "He found Claude Code slower and ran out of credits often, so he cancelled it for Codex and OpenCode."
       }
     ]
   },
   "limgGYHy6Jk": {
-    "summary": "A SendPulse walkthrough for a Facebook page with about 160,000 followers: comment triggers with randomized public replies, a direct message flow, ChatGPT-written replies in the commenter's language, a CRM and DM campaigns that show 70 to 77 percent read rates. The presenter pays $48 a month for the 5,000-subscriber plan. The CRM is not receiving contacts, ChatGPT replies are cut off on the free API model and the link is an affiliate link. They also offer to build chatbots as a service.",
+    "summary": "A SendPulse walkthrough for a Facebook page with about 160,000 followers: comment triggers with randomized public replies, a direct message flow, ChatGPT-written replies in the commenter's language, a CRM and DM campaigns that show 70 to 77 percent read rates. Mike pays $48 a month for the 5,000-subscriber plan. The CRM is not receiving contacts, ChatGPT replies are cut off on the free API model and the link is an affiliate link. He also offers to build chatbots as a service.",
     "whatYouBuild": "A SendPulse bot with a standard reply flow that responds to page comments, an AI reply step using the OpenAI API, and DM campaigns to subscribers.",
     "toolsUsed": [
       "SendPulse",
@@ -9933,7 +9833,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 180,
-        "step": "Review pricing, where the presenter pays $48 a month for the 5,000 subscriber tier."
+        "step": "Review pricing, where Mike pays $48 a month for the 5,000 subscriber tier."
       },
       {
         "seconds": 270,
@@ -9958,21 +9858,17 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Meta's rules on automated replies and messages to people who commented.",
-      "CRM sync, which the presenter says is not adding contacts yet.",
+      "CRM sync, which Mike says is not adding contacts yet.",
       "Long AI replies, which are cut off because of the API limits on the free plan.",
-      "Verification of the read rates and group growth the presenter quotes."
+      "Verification of the read rates and group growth Mike quotes."
     ],
     "qa": [
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a small commission on sales."
-      },
       {
         "q": "How does the bot reply in other languages?",
         "a": "It passes the message through ChatGPT, which answers in the sender's language."
       },
       {
-        "q": "What does the presenter charge to set one up?",
+        "q": "What does Mike charge to set up a Facebook chatbot?",
         "a": "$150 as a one-time service, or $99 a month for up to two platforms, per the video."
       }
     ]
@@ -10016,7 +9912,7 @@ export const videoSummaries = {
       "Showing the LinkedIn post and infographic inside the app, which is not finished.",
       "Security of exposing a webhook to a public web app that triggers paid API calls.",
       "Costs per run for the transcription, Gemini, Claude and KIE steps.",
-      "A release. The presenter may host the app and charge a subscription later."
+      "A release. Mike may host the app and charge a subscription later."
     ],
     "qa": [
       {
@@ -10034,7 +9930,7 @@ export const videoSummaries = {
     ]
   },
   "yUibdYhO1ms": {
-    "summary": "An n8n workflow that runs every three days, scrapes remote digital marketing jobs from Indeed with Apify, has GPT-5 mini score each job against the presenter's resume out of 10, and for scores of 5 or more writes a cover letter. Every job goes into an Airtable tracker, and good matches also get a Google Doc cover letter. Applying stays manual, and some cover letter files are hard to match to their jobs because company names are missing.",
+    "summary": "An n8n workflow that runs every three days, scrapes remote digital marketing jobs from Indeed with Apify, has GPT-5 mini score each job against Mike's resume out of 10, and for scores of 5 or more writes a cover letter. Every job goes into an Airtable tracker, and good matches also get a Google Doc cover letter. Applying stays manual, and some cover letter files are hard to match to their jobs because company names are missing.",
     "whatYouBuild": "An n8n workflow with a schedule trigger, an Apify Indeed actor, dataset retrieval, an OpenAI fit score, an if branch, a cover letter generator, Airtable records and Google Docs creation.",
     "toolsUsed": [
       "n8n",
@@ -10077,12 +9973,12 @@ export const videoSummaries = {
       "How well the fit scoring matches a human judgment of the jobs.",
       "Naming that makes cover letters easy to find. Jobs without a company name get a generic CV file name.",
       "Truthfulness of AI-written cover letters and sending a full resume to a third-party model.",
-      "Google Cloud setup, which the presenter leaves for viewers to figure out."
+      "Google Cloud setup, which Mike leaves for viewers to figure out."
     ],
     "qa": [
       {
-        "q": "Does it apply for me?",
-        "a": "No. It finds, scores and drafts, and the presenter applies manually."
+        "q": "Does the n8n job workflow apply for me?",
+        "a": "No. It finds, scores and drafts, and Mike applies manually."
       },
       {
         "q": "Why only write letters for good fits?",
@@ -10090,12 +9986,12 @@ export const videoSummaries = {
       },
       {
         "q": "Which scrapers can it use?",
-        "a": "The presenter says LinkedIn, Simply Hired, ZipRecruiter and others also work as Apify actors."
+        "a": "LinkedIn, Simply Hired, ZipRecruiter and others also work as Apify actors, Mike says."
       }
     ]
   },
   "2pD_wqYHKlY": {
-    "summary": "A tour of Trakkr, a tool for tracking AI crawler visits, citations and visibility, using the presenter's own analytics site. It shows 1,700 AI crawler visits in seven days, prompt tests in ChatGPT and Perplexity where the site ranks third, and steps such as tracking code, llms.txt and ai.txt. The presenter credits GEO-optimized blog articles and a move from Hostinger to Vercel. These results are self-reported and causes are not proven.",
+    "summary": "A tour of Trakkr, a tool for tracking AI crawler visits, citations and visibility, using Mike's own analytics site. It shows 1,700 AI crawler visits in seven days, prompt tests in ChatGPT and Perplexity where the site ranks third, and steps such as tracking code, llms.txt and ai.txt. Mike credits GEO-optimized blog articles and a move from Hostinger to Vercel. These results are self-reported and causes are not proven.",
     "whatYouBuild": "A Trakkr setup with tracking code on a site, plus scripts to submit URLs to Bing and Google and a blog post workflow driven by tracked prompts.",
     "toolsUsed": [
       "Trakkr",
@@ -10151,16 +10047,16 @@ export const videoSummaries = {
       },
       {
         "q": "Why are FAQs expanded by default?",
-        "a": "The presenter says crawlers cannot read collapsed content that needs JavaScript to open."
+        "a": "Crawlers cannot read collapsed content that needs JavaScript to open, Mike says."
       },
       {
         "q": "Why move to Vercel?",
-        "a": "The presenter says Vercel's built-in CDN, analytics and speed insights, at about $20 a month on Pro, beat their Hostinger setup."
+        "a": "Vercel's built-in CDN, analytics and speed insights, at about $20 a month on Pro, beat his Hostinger setup, Mike says."
       }
     ]
   },
   "Zza-S7YsLy0": {
-    "summary": "A Make.com scenario that watches a Google Sheet of new Skool community members, adds them to EmailOctopus and starts a three-email welcome sequence, with notes on a WhatsApp option and a Zapier route for paid members. Skool had no public API at the time, so Zapier writes members to the sheet. The presenter recently made the community paid and can no longer collect emails, so the automation now depends on paid-member rows. Scraping Skool members through Apify is mentioned and skipped over terms of service.",
+    "summary": "A Make.com scenario that watches a Google Sheet of new Skool community members, adds them to EmailOctopus and starts a three-email welcome sequence, with notes on a WhatsApp option and a Zapier route for paid members. Skool had no public API at the time, so Zapier writes members to the sheet. Mike recently made the community paid and can no longer collect emails, so the automation now depends on paid-member rows. Scraping Skool members through Apify is mentioned and skipped over terms of service.",
     "whatYouBuild": "A Make.com scenario that watches a members sheet, adds each person to EmailOctopus with first name and email, and a Zapier zap that appends new paid members to a Google Sheet.",
     "toolsUsed": [
       "Make.com",
@@ -10177,7 +10073,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 139,
-        "step": "Look at Apify actors for Skool, which the presenter skips because of terms of service."
+        "step": "Look at Apify actors for Skool, which Mike skips because of terms of service."
       },
       {
         "seconds": 200,
@@ -10212,17 +10108,17 @@ export const videoSummaries = {
         "a": "Skool has a built-in Zapier integration and no public API, so Zapier is the way to get member data out, per the video."
       },
       {
-        "q": "Why can't the presenter collect emails now?",
+        "q": "Why can't Mike collect Skool member emails now?",
         "a": "The community became paid, which removed the membership questions that gathered emails."
       },
       {
         "q": "How much does EmailOctopus cost?",
-        "a": "The presenter says there is a free plan for up to 1,000 contacts and paid plans from about $18 a month for 2,500 contacts."
+        "a": "Mike says there is a free plan for up to 1,000 contacts and paid plans from about $18 a month for 2,500 contacts."
       }
     ]
   },
   "kKiFzNW9fjw": {
-    "summary": "A Make.com scenario for AI avatar videos: it reads topics from Airtable, researches with Perplexity, writes a script with a custom ChatGPT assistant, creates a HeyGen avatar video with a voice clone, waits for rendering, uploads to a Facebook page and updates Airtable. The HeyGen API limits videos to 3 minutes and 720p with a watermark on lower plans, and a script over the limit fails. The presenter makes the video manually in HeyGen to finish the demo, and the upload to Facebook works.",
+    "summary": "A Make.com scenario for AI avatar videos: it reads topics from Airtable, researches with Perplexity, writes a script with a custom ChatGPT assistant, creates a HeyGen avatar video with a voice clone, waits for rendering, uploads to a Facebook page and updates Airtable. The HeyGen API limits videos to 3 minutes and 720p with a watermark on lower plans, and a script over the limit fails. Mike makes the video manually in HeyGen to finish the demo, and the upload to Facebook works.",
     "whatYouBuild": "A Make.com scenario with Airtable, Perplexity, an OpenAI assistant, HeyGen, sleep steps, a Facebook video upload and an Airtable update.",
     "toolsUsed": [
       "Make.com",
@@ -10268,7 +10164,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A fully automatic run. The script exceeded 180 seconds and the render failed, so the video was made by hand.",
-      "HeyGen API pricing in detail. The presenter quotes Pro at about $99 a month and Scale at about $330.",
+      "HeyGen API pricing in detail. Mike quotes Pro at about $99 a month and Scale at about $330.",
       "Quality control before posting and disclosure of AI avatar videos on Facebook.",
       "Consent and rights around voice and avatar clones."
     ],
@@ -10279,7 +10175,7 @@ export const videoSummaries = {
       },
       {
         "q": "What does the API limit?",
-        "a": "Videos up to 3 minutes and 1280 by 720, with a watermark on lower plans, per the presenter."
+        "a": "Videos up to 3 minutes and 1280 by 720, with a watermark on lower plans, per Mike."
       },
       {
         "q": "Did the Facebook upload work?",
@@ -10288,7 +10184,7 @@ export const videoSummaries = {
     ]
   },
   "J86tffN9nmg": {
-    "summary": "Build a ChatGPT-style web app in Rocket.new from a prompt written in ChatGPT. After about ten minutes it produces a chat interface and a settings panel with some broken controls. Prompts fix the color scheme and connect an OpenAI API key. The assistant still answers as a GPT-4 model, and a custom domain needs a $25 a month plan. The presenter prefers Lovable. The link is a promotion, and an API key is shown on screen and deleted afterwards.",
+    "summary": "Build a ChatGPT-style web app in Rocket.new from a prompt written in ChatGPT. After about ten minutes it produces a chat interface and a settings panel with some broken controls. Prompts fix the color scheme and connect an OpenAI API key. The assistant still answers as a GPT-4 model, and a custom domain needs a $25 a month plan. Mike prefers Lovable. The link is a promotion, and an API key is shown on screen and deleted afterwards.",
     "whatYouBuild": "A chat web app with a main interface and settings panel generated by Rocket.new, connected to the OpenAI API through a prompt.",
     "toolsUsed": [
       "Rocket.new",
@@ -10323,10 +10219,10 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "Keeping the API key secret. Pasting it into a prompt of a hosted builder may expose it in the app's code, so the presenter says they delete it afterwards.",
+      "Keeping the API key secret. Pasting it into a prompt of a hosted builder may expose it in the app's code, so Mike says he deletes it afterwards.",
       "Why the app answers as GPT-4 after being asked to use GPT-5.",
       "Remaining broken features such as font size and the profile page.",
-      "A fair comparison with Lovable, beyond the presenter's opinion that Lovable is better."
+      "A fair comparison with Lovable, beyond Mike's opinion that Lovable is better."
     ],
     "qa": [
       {
@@ -10335,7 +10231,7 @@ export const videoSummaries = {
       },
       {
         "q": "What does a paid plan cost?",
-        "a": "$25 a month for 5 million tokens and $50 for 10 million, according to the presenter."
+        "a": "$25 a month for 5 million tokens and $50 for 10 million, according to Mike."
       },
       {
         "q": "Did the chat work with a real key?",
@@ -10344,7 +10240,7 @@ export const videoSummaries = {
     ]
   },
   "0jzTOUv_B04": {
-    "summary": "A walkthrough of how the presenter tracks and improves their analytics site's visibility in AI answers with Trakkr: a rank of ninth out of 209 competitors, crawler visits from ChatGPT and Claude, and a Codex run that pulls fixes through the Trakkr MCP. The presenter notes AI search still sends few visitors compared with Google. The link is an affiliate link, and the Trakkr plan is $100 a month after a trial.",
+    "summary": "A walkthrough of how Mike tracks and improves his analytics site's visibility in AI answers with Trakkr: a rank of ninth out of 209 competitors, crawler visits from ChatGPT and Claude, and a Codex run that pulls fixes through the Trakkr MCP. Mike notes AI search still sends few visitors compared with Google. The link is an affiliate link, and the Trakkr plan is $100 a month after a trial.",
     "whatYouBuild": "A Trakkr MCP connection to Codex that lists crawler and citation actions, followed by fixes to llms.txt, sitemap and robots files.",
     "toolsUsed": [
       "Trakkr",
@@ -10354,7 +10250,7 @@ export const videoSummaries = {
     ],
     "keySteps": [
       {
-        "step": "Test a ChatGPT prompt for the best apps for tracking YouTube competitors and see the presenter's site listed first."
+        "step": "Test a ChatGPT prompt for the best apps for tracking YouTube competitors and see Mike's site listed first."
       },
       {
         "step": "Read the dashboard: rank nine of 209 competitors, visibility and win rate."
@@ -10378,26 +10274,22 @@ export const videoSummaries = {
     "notCovered": [
       "Proof that the blog work caused the ranking, or that AI mentions bring paying users. The video shows few AI visitors.",
       "The comparison with YouTube.com, which is about citations in AI answers and not search ranking.",
-      "Trial terms. The presenter mentions both a two-day and a 14-day trial.",
+      "Trial terms. Mike mentions both a two-day and a 14-day trial.",
       "Fixing the file issues Codex starts on, since the video ends as it begins."
     ],
     "qa": [
       {
         "q": "How much AI traffic does the site get?",
-        "a": "Little. The presenter says ChatGPT sent about 21 visitors in a week and about 700 over three months, against 39,000 from Google."
+        "a": "Little. Mike says ChatGPT sent about 21 visitors in a week and about 700 over three months, against 39,000 from Google."
       },
       {
-        "q": "What does Trakkr cost?",
+        "q": "How much does Trakkr cost?",
         "a": "$100 a month for the growth plan after a free trial, per the video."
       },
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes, according to the video description hints and the presenter's links, so treat it as promotional."
-      }
     ]
   },
   "MIwd2pzmUf0": {
-    "summary": "Another n8n workflow that turns a YouTube video into a LinkedIn post, a newsletter and a detailed infographic: a form takes the URL, Apify fetches the transcript, Gemini summarizes it, KIE's Nano Banana Pro makes a 2K 16:9 infographic that is polled until ready and saved to Google Drive, and Claude Sonnet 4 writes the post and newsletter into a Google Doc. The presenter says it produced nearly 200,000 LinkedIn impressions in a month. That figure is self-reported, and posting stays manual.",
+    "summary": "Another n8n workflow that turns a YouTube video into a LinkedIn post, a newsletter and a detailed infographic: a form takes the URL, Apify fetches the transcript, Gemini summarizes it, KIE's Nano Banana Pro makes a 2K 16:9 infographic that is polled until ready and saved to Google Drive, and Claude Sonnet 4 writes the post and newsletter into a Google Doc. Mike says it produced nearly 200,000 LinkedIn impressions in a month. That figure is self-reported, and posting stays manual.",
     "whatYouBuild": "An n8n workflow with a form trigger, Apify transcript, split and aggregate steps, a Gemini summary, a KIE image task with a polling loop, a Drive upload, a base64 code step and Claude steps that write the post and newsletter.",
     "toolsUsed": [
       "n8n",
@@ -10447,20 +10339,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Why 2K resolution?",
-        "a": "The presenter says 4K files reach about 20 MB, while 2K infographics are around 5 to 6 MB."
+        "a": "4K files reach about 20 MB, while 2K infographics are around 5 to 6 MB, Mike says."
       },
       {
         "q": "Why remove timestamps?",
         "a": "So the prompts to Gemini and Claude contain clean text, which is why the transcript is split and aggregated first."
       },
       {
-        "q": "Where is the template?",
-        "a": "In the classroom of the presenter's Skool community, with a 7-day trial for paid tiers."
+        "q": "Where can I get the n8n YouTube to LinkedIn workflow template?",
+        "a": "In the classroom of Mike's Skool community, with a 7-day trial for paid tiers."
       }
     ]
   },
   "X9Bo29B_46k": {
-    "summary": "Tips for getting more from Claude Fable 5 on limited credits after its July 2026 return: lower the effort level, use plan mode with the superpowers skill, give clear briefs, set goals and loops, and add the Compound Engineering plugin to Claude Code and Codex. The presenter also installs a CLAUDE.md improver, a memory optimizer and the Caveman skill, and falls back to Opus 4.8 for routine work. Claims about savings and about Fable being nerfed are not measured.",
+    "summary": "Tips for getting more from Claude Fable 5 on limited credits after its July 2026 return: lower the effort level, use plan mode with the superpowers skill, give clear briefs, set goals and loops, and add the Compound Engineering plugin to Claude Code and Codex. Mike also installs a CLAUDE.md improver, a memory optimizer and the Caveman skill, and falls back to Opus 4.8 for routine work. Claims about savings and about Fable being nerfed are not measured.",
     "whatYouBuild": "A Claude Code and Codex setup with the Compound Engineering plugin, an improved CLAUDE.md scoring 95 out of 100, a memory optimization skill and Caveman, plus habits for choosing effort and models.",
     "toolsUsed": [
       "Claude Fable 5",
@@ -10506,13 +10398,13 @@ export const videoSummaries = {
     "notCovered": [
       "Measured credit savings from the plugin and skills.",
       "Safety review of third-party plugins and skills before installing them.",
-      "Evidence for the claim that Fable 5 was nerfed after re-release, which rests on a chart the presenter reads.",
+      "Evidence for the claim that Fable 5 was nerfed after re-release, which rests on a chart Mike reads.",
       "The one-shot island game demo, which is shown rather than built."
     ],
     "qa": [
       {
-        "q": "How do I use fewer credits?",
-        "a": "Use medium effort for most tasks, plan before building, and switch to Opus 4.8 for simple jobs, per the presenter."
+        "q": "How do I use fewer Claude Fable 5 credits?",
+        "a": "Use medium effort for most tasks, plan before building, and switch to Opus 4.8 for simple jobs, Mike advises."
       },
       {
         "q": "What does the Compound Engineering plugin do?",
@@ -10520,12 +10412,12 @@ export const videoSummaries = {
       },
       {
         "q": "Did Fable 5 use many credits?",
-        "a": "Yes. The presenter was at their Fable 5 limit and says it uses credits faster than any other model they have tried."
+        "a": "Yes. Mike was at his Fable 5 limit and says it uses credits faster than any other model he has tried."
       }
     ]
   },
   "3cP3DeBG5Q0": {
-    "summary": "Build and tune a Claude Code skill that edits long-form YouTube videos: it merges clips, transcribes with Whisper, picks a hook and the best segments, removes filler and dead pauses, normalizes audio, and exports a 1080p 30 fps MP4 with a chapters file. The presenter has Claude write a gap report and phased improvements until the skill's own confidence rating reaches 94 out of 100, with an 804-line Python script behind it. The skill is sold on Gumroad. The scores are the model's self-ratings, and the presenter says the final video was edited with it.",
+    "summary": "Build and tune a Claude Code skill that edits long-form YouTube videos: it merges clips, transcribes with Whisper, picks a hook and the best segments, removes filler and dead pauses, normalizes audio, and exports a 1080p 30 fps MP4 with a chapters file. Mike has Claude write a gap report and phased improvements until the skill's own confidence rating reaches 94 out of 100, with an 804-line Python script behind it. The skill is sold on Gumroad. The scores are the model's self-ratings, and Mike says the final video was edited with it.",
     "whatYouBuild": "A SKILL.md plus an editorial guide and a long-form Python editing script, shared across Claude Code, Codex and OpenCode by symlinks, with a changelog and project memory.",
     "toolsUsed": [
       "Claude Code",
@@ -10570,27 +10462,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "An independent quality check of the edited videos. The confidence ratings are produced by the model.",
-      "The previous day's rough result, which the presenter says was not completely correct.",
-      "What the Python script actually does, which the presenter says they cannot read.",
+      "The previous day's rough result, which Mike says was not completely correct.",
+      "What the Python script actually does, which Mike says he cannot read.",
       "Licensing and price of the Gumroad download."
     ],
     "qa": [
       {
-        "q": "How long did an edit take?",
-        "a": "About 45 minutes for a 13-minute video the day before, which the presenter says would have taken at least an hour by hand."
+        "q": "How long did a Claude Code skill edit take?",
+        "a": "About 45 minutes for a 13-minute video the day before, which Mike says would have taken at least an hour by hand."
       },
       {
-        "q": "What does it export?",
+        "q": "What does the Claude Code video editing skill export?",
         "a": "A 1080p, 30 fps MP4 and a separate YouTube chapters file."
       },
       {
         "q": "Does it work outside Claude Code?",
-        "a": "Yes. The presenter links the same skill into Codex and OpenCode."
+        "a": "Yes. Mike links the same skill into Codex and OpenCode."
       }
     ]
   },
   "DtmxxnAbS00": {
-    "summary": "Create a custom OpenAI assistant for writing community posts: use the OpenAI platform's prompt generator, copy the developer message into a new assistant on GPT-4, test and improve it, then call it from Make.com with the Message an Assistant module. The presenter pastes the output into Skool by hand because Skool has no public API, and tops up API credits to $5.70. The first outputs miss the wanted format until the prompt is edited.",
+    "summary": "Create a custom OpenAI assistant for writing community posts: use the OpenAI platform's prompt generator, copy the developer message into a new assistant on GPT-4, test and improve it, then call it from Make.com with the Message an Assistant module. Mike pastes the output into Skool by hand because Skool has no public API, and tops up API credits to $5.70. The first outputs miss the wanted format until the prompt is edited.",
     "whatYouBuild": "An OpenAI assistant named school community post creator, tested in the platform and connected to a one-module Make.com scenario.",
     "toolsUsed": [
       "OpenAI Platform",
@@ -10630,18 +10522,18 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Posting to Skool automatically, which is not possible without a public API. The Make.com Skool module can only invite members.",
-      "Output quality at scale. The presenter says the first posts are too broad and need prompt tuning.",
+      "Output quality at scale. Mike says the first posts are too broad and need prompt tuning.",
       "Whether the platform's assistants feature remains available, since OpenAI changes these tools.",
       "Costs beyond a $5.70 balance and the claim of about 30 cents spent over a few days."
     ],
     "qa": [
       {
         "q": "Why use the OpenAI platform to write the prompt?",
-        "a": "The presenter finds its prompt generator produces a prompt about ten times better than a plain ChatGPT one, though that is a personal view."
+        "a": "Its prompt generator produces a prompt about ten times better than a plain ChatGPT one, Mike finds, though that is a personal view."
       },
       {
         "q": "Can the post be published automatically?",
-        "a": "Not to Skool. The presenter pastes the result in by hand."
+        "a": "Not to Skool. Mike pastes the result in by hand."
       },
       {
         "q": "What do I need for the API?",
@@ -10650,7 +10542,7 @@ export const videoSummaries = {
     ]
   },
   "UkYoSNiqa6o": {
-    "summary": "A Make.com scenario that reads contacts from a Google Sheet, researches each person's organization niche with Perplexity, writes a short PR pitch with a ChatGPT model, and either emails it in HTML or saves it to Airtable for review. The presenter tests on one and then five editors, tightens the prompt to a seventh-grade reading level, and finds some pitches contain unfilled placeholders, which is why drafts go to Airtable before sending. A 60-second wait between sends is added. Targeting in the sample list was off.",
+    "summary": "A Make.com scenario that reads contacts from a Google Sheet, researches each person's organization niche with Perplexity, writes a short PR pitch with a ChatGPT model, and either emails it in HTML or saves it to Airtable for review. Mike tests on one and then five editors, tightens the prompt to a seventh-grade reading level, and finds some pitches contain unfilled placeholders, which is why drafts go to Airtable before sending. A 60-second wait between sends is added. Targeting in the sample list was off.",
     "whatYouBuild": "A Make.com scenario with Google Sheets rows, an array and iterator, a Perplexity niche lookup, a ChatGPT pitch, an HTML conversion, an email send and an Airtable record with first name, company, email, body and status.",
     "toolsUsed": [
       "Make.com",
@@ -10702,20 +10594,20 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Why save to Airtable first?",
-        "a": "Some drafts came out with placeholders such as an unfilled topic idea, so the presenter reviews them before any send."
+        "a": "Some drafts came out with placeholders such as an unfilled topic idea, so Mike reviews them before any send."
       },
       {
         "q": "How is the pitch kept simple?",
         "a": "The prompt asks for language a seventh grader could understand and no subject line or extra text."
       },
       {
-        "q": "Is the template free?",
-        "a": "The presenter says it is free or pay what you want, through a link in the description."
+        "q": "Is the Make.com PR pitch template free?",
+        "a": "It is free or pay what you want, through a link in the description, Mike says."
       }
     ]
   },
   "ffnMlBzcJOQ": {
-    "summary": "An unfinished attempt to build a stock dashboard with Alpaca's API using OpenCode's free models. A detailed prompt from Claude Desktop scaffolds a Node.js and Express app with a WebSocket bridge, then a 401 Unauthorized error persists until the presenter realizes the keys must come from the paper trading account and not the broker API. Prices then load, but the chart never renders by the end. Paper trading only, no real money, and the key is shown on screen and deleted later.",
+    "summary": "An unfinished attempt to build a stock dashboard with Alpaca's API using OpenCode's free models. A detailed prompt from Claude Desktop scaffolds a Node.js and Express app with a WebSocket bridge, then a 401 Unauthorized error persists until Mike realizes the keys must come from the paper trading account and not the broker API. Prices then load, but the chart never renders by the end. Paper trading only, no real money, and the key is shown on screen and deleted later.",
     "whatYouBuild": "A local Node.js dashboard at localhost:3000 with an Alpaca client, routes for account, positions and orders, a WebSocket stream, a symbol lookup and a chart that is still not displaying.",
     "toolsUsed": [
       "Alpaca",
@@ -10760,13 +10652,13 @@ export const videoSummaries = {
     "notCovered": [
       "A working chart. The data arrives but nothing displays by the end of the video.",
       "Trading or investment advice. Only paper trading is used.",
-      "Safe handling of API keys. A key is shown on screen and the presenter says they delete it later.",
-      "The accuracy of the displayed prices, which the presenter says they cannot confirm."
+      "Safe handling of API keys. A key is shown on screen and Mike says he deletes it later.",
+      "The accuracy of the displayed prices, which Mike says he cannot confirm."
     ],
     "qa": [
       {
         "q": "Why did the API return 401?",
-        "a": "The presenter had keys from the broker API, and the market data worked only after creating keys under the paper trading account."
+        "a": "Mike had keys from the broker API, and the market data worked only after creating keys under the paper trading account."
       },
       {
         "q": "Was real money involved?",
@@ -10774,13 +10666,13 @@ export const videoSummaries = {
       },
       {
         "q": "Which models did OpenCode use?",
-        "a": "Free ones such as MiniMax 2.5, with Qwen and Kimi also available, per the presenter."
+        "a": "Free ones such as MiniMax 2.5, with Qwen and Kimi also available, per Mike."
       }
     ]
   },
   "a3TwomrR6pw": {
-    "summary": "A news-reading video from July 2025 on YouTube's announced update to Partner Program rules on inauthentic, mass-produced and repetitive content, taking effect July 15. The presenter reads several articles aloud (TechCrunch and others), adds opinions on AI avatar and faceless channels, and lists strategies the articles suggest: add human input, edit with care, transform reused material and disclose AI use. Exact policy wording had not been released at recording, and enforcement details are the articles' speculation. Nothing here is legal or policy advice.",
-    "whatYouBuild": "No build. A summary of reported policy changes and the presenter's reading of what they mean for AI avatar, faceless and reused content.",
+    "summary": "A news-reading video from July 2025 on YouTube's announced update to Partner Program rules on inauthentic, mass-produced and repetitive content, taking effect July 15. Mike reads several articles aloud (TechCrunch and others), adds opinions on AI avatar and faceless channels, and lists strategies the articles suggest: add human input, edit with care, transform reused material and disclose AI use. Exact policy wording had not been released at recording, and enforcement details are the articles' speculation. Nothing here is legal or policy advice.",
+    "whatYouBuild": "No build. A summary of reported policy changes and Mike's reading of what they mean for AI avatar, faceless and reused content.",
     "toolsUsed": [
       "YouTube Studio",
       "HeyGen",
@@ -10821,13 +10713,13 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "YouTube's own policy text, which the video says was not yet released. Check YouTube's help page for the current rules.",
-      "Whether avatar or faceless channels are actually affected. The presenter relays a tool founder's claim that they are not and says it is unofficial.",
+      "Whether avatar or faceless channels are actually affected. Mike relays a tool founder's claim that they are not and says it is unofficial.",
       "What happened after July 15.",
-      "Sources beyond news articles. The video mixes quotes with the presenter's opinions."
+      "Sources beyond news articles. Mike mixes quotes from the articles with his own opinions."
     ],
     "qa": [
       {
-        "q": "When did the update start?",
+        "q": "When did YouTube's monetization update start?",
         "a": "July 15, 2025, according to the articles read in the video."
       },
       {
@@ -10836,7 +10728,7 @@ export const videoSummaries = {
       },
       {
         "q": "Do I need to disclose AI?",
-        "a": "The presenter recommends turning on YouTube's AI-generated label when uploading, as one of the articles advises."
+        "a": "Mike recommends turning on YouTube's AI-generated label when uploading, as one of the articles advises."
       },
       {
         "q": "Who needs to worry?",
@@ -10845,7 +10737,7 @@ export const videoSummaries = {
     ]
   },
   "kUbhr1QGYeU": {
-    "summary": "An experiment in building a personal AI operating system dashboard with Hermes Agent, ChatGPT and OpenCode. A generated prompt creates a React dashboard with pages for content, analytics, revenue and operations, then a 13-page extension plan runs on OpenCode with DeepSeek V4 Flash. It runs locally on mock data, and live YouTube data was not working by the end. The presenter says they are not sure yet why they need it, and mentions their own analytics product and an OpenCode sign-up link along the way.",
+    "summary": "An experiment in building a personal AI operating system dashboard with Hermes Agent, ChatGPT and OpenCode. A generated prompt creates a React dashboard with pages for content, analytics, revenue and operations, then a 13-page extension plan runs on OpenCode with DeepSeek V4 Flash. It runs locally on mock data, and live YouTube data was not working by the end. Mike says he is not sure yet why he needs it, and mentions his own analytics product and an OpenCode sign-up link along the way.",
     "whatYouBuild": "A local React dashboard served with npm run dev, with mock data for two YouTube channels, an analytics product and a Skool community, plus a Google Cloud project with the YouTube Data and Analytics APIs enabled.",
     "toolsUsed": [
       "Hermes Agent",
@@ -10892,14 +10784,14 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Live YouTube data. The connection was still failing at the end and all numbers shown are mock data.",
-      "A clear use for the dashboard. The presenter says they do not yet understand why they need it.",
+      "A clear use for the dashboard. Mike says he does not yet understand why he needs it.",
       "OAuth consent setup and key handling for the Google project.",
       "Costs beyond the quoted $10 a month OpenCode Go plan and about $1.26 of MiniMax usage."
     ],
     "qa": [
       {
         "q": "Why switch from Hermes Agent to OpenCode?",
-        "a": "Hermes was slow and struggled with a rendering error, while OpenCode fixed it quickly, per the presenter."
+        "a": "Hermes was slow and struggled with a rendering error, while OpenCode fixed it quickly, Mike says."
       },
       {
         "q": "Is the data real?",
@@ -10912,8 +10804,8 @@ export const videoSummaries = {
     ]
   },
   "KEXgl3vsVMI": {
-    "summary": "A July 2025 look at Skool's new $9 a month Hobby plan next to the $99 Pro plan. As the presenter describes them, Hobby has one admin, a 10 percent transaction fee against 2.9 percent, no custom URL, no plugins such as Zapier, no sidebar links, no Facebook pixel and no hiding suggested communities. The presenter downgraded two communities and shows their about page, email capture, discovery ranking and activity habits. The sign-up link is an affiliate link and plan details may have changed since.",
-    "whatYouBuild": "No build. A comparison of Skool plans with a tour of the presenter's free and paid communities and an EmailOctopus welcome sequence.",
+    "summary": "A July 2025 look at Skool's new $9 a month Hobby plan next to the $99 Pro plan. As Mike describes them, Hobby has one admin, a 10 percent transaction fee against 2.9 percent, no custom URL, no plugins such as Zapier, no sidebar links, no Facebook pixel and no hiding suggested communities. Mike downgraded two communities and shows their about page, email capture, discovery ranking and activity habits. The sign-up link is an affiliate link and plan details may have changed since.",
+    "whatYouBuild": "No build. A comparison of Skool plans with a tour of Mike's free and paid communities and an EmailOctopus welcome sequence.",
     "toolsUsed": [
       "Skool",
       "EmailOctopus",
@@ -10935,7 +10827,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 216,
-        "step": "Start a free trial, which the presenter corrects to 14 days."
+        "step": "Start a free trial, which Mike corrects to 14 days."
       },
       {
         "seconds": 270,
@@ -10956,27 +10848,23 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Current Skool pricing and features. The video is from July 2025 and the plans may have changed.",
-      "Independent checks of the example earnings, such as $39,000 or $300,000 a month, which are the presenter's estimates from public member counts.",
+      "Independent checks of the example earnings, such as $39,000 or $300,000 a month, which are Mike's estimates from public member counts.",
       "Full costs and tax. The 10 percent fee is Skool's, before payment processing.",
-      "Whether the 69 percent conversion rate holds, since the presenter says it reset after downgrading."
+      "Whether the 69 percent conversion rate holds, since Mike says it reset after downgrading."
     ],
     "qa": [
       {
-        "q": "What does the Hobby plan cost?",
-        "a": "$9 a month at the time of the video, with a 10 percent transaction fee, according to the presenter."
+        "q": "What does Skool's Hobby plan cost?",
+        "a": "$9 a month at the time of the video, with a 10 percent transaction fee, according to Mike."
       },
       {
-        "q": "What do I lose compared with Pro?",
+        "q": "What does Skool's Hobby plan lack compared with Pro?",
         "a": "Multiple admins, a custom URL, plugins like Zapier, sidebar links and the Facebook pixel, per the video."
       },
-      {
-        "q": "Is the link an affiliate link?",
-        "a": "Yes. The presenter says they earn a commission when you sign up through it."
-      }
     ]
   },
   "YNpIRq7O3UE": {
-    "summary": "A tour of agents and scheduled jobs in Odysseus, an AI coding harness the presenter says PewDiePie announced. The main build is a sponsorship outreach agent in Node.js that lists sponsor targets, drafts pitch and follow-up emails, tracks a small CRM and runs weekly by cron, with sending set to go through the connected Gmail account. The $81,000 in the title is the agent's own estimated pipeline for 32 prospects, not deals won. Sponsor values and email addresses were generated by the model and unchecked, and the presenter starts sending live emails at the end.",
+    "summary": "A tour of agents and scheduled jobs in Odysseus, an AI coding harness Mike says PewDiePie announced. The main build is a sponsorship outreach agent in Node.js that lists sponsor targets, drafts pitch and follow-up emails, tracks a small CRM and runs weekly by cron, with sending set to go through the connected Gmail account. The $81,000 in the title is the agent's own estimated pipeline for 32 prospects, not deals won. Sponsor values and email addresses were generated by the model and unchecked, and Mike starts sending live emails at the end.",
     "whatYouBuild": "A sponsorship outreach project with agent.js, youtube.js, research.js, outreach.js, pipeline.js and sponsors.json, using OpenRouter with Gemini 2.5 Flash, plus a Monday 9 a.m. Bangkok-time cron job for pitches, follow-ups and a report.",
     "toolsUsed": [
       "Odysseus",
@@ -11012,7 +10900,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Any deal won or any reply. The $81,000 is an estimate generated by the model.",
-      "Checking the sponsor values and contact emails, which the presenter says might need a verifier.",
+      "Checking the sponsor values and contact emails, which Mike says might need a verifier.",
       "Consent, spam rules and reputation risk of automatic cold emails to brands.",
       "How the video ends, since the sending is still in progress.",
       "Timestamps, because the video's automatic chapters do not match the content."
@@ -11023,17 +10911,17 @@ export const videoSummaries = {
         "a": "No. It is the total of estimated sponsorship values for 32 prospects it listed, none of which had replied."
       },
       {
-        "q": "What does it cost to run?",
-        "a": "The presenter shows about 51 cents of DeepSeek V4 Pro on one day inside a $10 a month OpenCode Go plan."
+        "q": "What does the Odysseus outreach agent cost to run?",
+        "a": "Mike shows about 51 cents of DeepSeek V4 Pro on one day inside a $10 a month OpenCode Go plan."
       },
       {
         "q": "Will it send emails by itself?",
-        "a": "Yes. The cron job is set to send from the connected Gmail account each Monday, and the presenter also sends a batch right away."
+        "a": "Yes. The cron job is set to send from the connected Gmail account each Monday, and Mike also sends a batch right away."
       }
     ]
   },
   "vxH102ZvjUg": {
-    "summary": "Install Clawdbot, renamed Moltbot the same day and later Clawbot in the terminal, on a Hostinger VPS instead of a personal computer, to limit the risk of an agent that can act on files. The presenter runs the one-line installer over SSH, picks quick start, uses a Gemini API key with Gemini 3 Flash Preview, enables skills and hooks, names the agent Echo and links WhatsApp with a QR code. A morning briefing cron job gives no output and a skill install fails, so the setup is unfinished. The Hostinger link is an affiliate link.",
+    "summary": "Install Clawdbot, renamed Moltbot the same day and later Clawbot in the terminal, on a Hostinger VPS instead of a personal computer, to limit the risk of an agent that can act on files. Mike runs the one-line installer over SSH, picks quick start, uses a Gemini API key with Gemini 3 Flash Preview, enables skills and hooks, names the agent Echo and links WhatsApp with a QR code. A morning briefing cron job gives no output and a skill install fails, so the setup is unfinished. The Hostinger link is an affiliate link.",
     "whatYouBuild": "A Debian VPS with the assistant installed, a Gemini key, a WhatsApp link, an agent named Echo, soul and identity files and a morning-briefing cron job that does not yet work.",
     "toolsUsed": [
       "Moltbot",
@@ -11069,27 +10957,23 @@ export const videoSummaries = {
     "notCovered": [
       "A working morning briefing, since no calendar, weather or email sources were connected.",
       "A completed skill install. ClawHub returned an error.",
-      "Securing the VPS itself, such as non-root users and firewall rules. The presenter runs as root.",
+      "Securing the VPS itself, such as non-root users and firewall rules. Mike runs as root.",
       "The project's current name, install command and security status. The video is from January 2026 and the rebrand was happening that day.",
       "Costs beyond the VPS plan and Gemini usage."
     ],
     "qa": [
       {
-        "q": "Why a VPS?",
-        "a": "The presenter says the agent could damage files on a personal computer, so a server limits the risk."
+        "q": "Why install Clawdbot on a VPS?",
+        "a": "The agent could damage files on a personal computer, so a server limits the risk, Mike says."
       },
       {
         "q": "Did the WhatsApp link work?",
-        "a": "Yes, after the QR code failed during setup and the presenter ran the channels login command."
+        "a": "Yes, after the QR code failed during setup and Mike ran the channels login command."
       },
-      {
-        "q": "Is the Hostinger link an affiliate link?",
-        "a": "Yes. The presenter asks viewers to sign up through their affiliate link."
-      }
     ]
   },
   "SLAnjvWK1Y4": {
-    "summary": "A long Make.com build of a YouTube Shorts pipeline: Apify scrapes the latest videos of three AI-automation creators, Airtable stores them, an OpenAI assistant turns the most viewed titles into video ideas, GPT-4.1 writes scene-by-scene scripts, JSON2Video renders a vertical video and the file uploads to YouTube with an AI-generated label. The final run fails because the free JSON2Video quota is used up, so the presenter hardcodes an older render to show the download. The template costs $15, and HeyGen is suggested as an avatar alternative.",
+    "summary": "A long Make.com build of a YouTube Shorts pipeline: Apify scrapes the latest videos of three AI-automation creators, Airtable stores them, an OpenAI assistant turns the most viewed titles into video ideas, GPT-4.1 writes scene-by-scene scripts, JSON2Video renders a vertical video and the file uploads to YouTube with an AI-generated label. The final run fails because the free JSON2Video quota is used up, so Mike hardcodes an older render to show the download. The template costs $15, and HeyGen is suggested as an avatar alternative.",
     "whatYouBuild": "A Make.com scenario of about a dozen modules with Apify, an array aggregator and iterator, two Airtable tables, a text aggregator, an OpenAI assistant, a JSON parser, a GPT-4.1 script step, JSON2Video, a render wait, an HTTP download and a YouTube upload.",
     "toolsUsed": [
       "Make.com",
@@ -11129,7 +11013,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A successful end-to-end run. JSON2Video's free quota ran out and the render step failed.",
-      "Terms of service for scraping YouTube, which the presenter flags as a risk.",
+      "Terms of service for scraping YouTube, which Mike flags as a risk.",
       "Whether Shorts built from other creators' top topics and unedited stock imagery meet YouTube's rules on repetitive or mass-produced content.",
       "Cleaning up duplicate Airtable rows created by repeated test runs.",
       "Results from posting."
@@ -11140,12 +11024,12 @@ export const videoSummaries = {
         "a": "JSON2Video reported the free plan's time quota was exceeded and asked for a paid plan."
       },
       {
-        "q": "Is there a ready-made template?",
-        "a": "Yes, the presenter sells it for $15 on Gumroad and in their Skool community."
+        "q": "Is there a ready-made template for the Shorts automation?",
+        "a": "Yes, Mike sells it for $15 on Gumroad and in his Skool community."
       },
       {
         "q": "Can I use an avatar instead?",
-        "a": "The presenter suggests swapping JSON2Video for HeyGen with a 720 by 1280 vertical output."
+        "a": "Mike suggests swapping JSON2Video for HeyGen with a 720 by 1280 vertical output."
       }
     ]
   },
@@ -11187,18 +11071,14 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Terms of service and privacy rules for scraping Apollo with Apify and contacting the people scraped.",
-      "Exact Make.com pricing. The presenter says paid plans start around $10 a month for about 10,000 operations.",
+      "Exact Make.com pricing. Mike says paid plans start around $10 a month for about 10,000 operations.",
       "A fix for the phone number field, which did not format correctly.",
       "Timestamps, because the video's automatic chapters do not match the lessons."
     ],
     "qa": [
       {
-        "q": "Is the Make.com link an affiliate link?",
-        "a": "Yes. The presenter says they earn a small commission."
-      },
-      {
-        "q": "How much does the lead scraping cost?",
-        "a": "The presenter quotes about $1.20 per 1,000 leads on Apify with $5 of free credit each month."
+        "q": "How much does the Apify Apollo lead scraping cost?",
+        "a": "About $1.20 per 1,000 leads on Apify, with $5 of free credit each month, Mike says."
       },
       {
         "q": "Why did the Facebook post fail at first?",
@@ -11207,7 +11087,7 @@ export const videoSummaries = {
     ]
   },
   "mKsPxDi7uM0": {
-    "summary": "Build a Facebook thread generator with Replit's AI agent, modeled on a competing tool. The prompt creates a landing page and generator, an OpenAI key is added, and several errors follow, including max tokens, JSON object format and a 500, before posts generate in a numbered thread style. The presenter adds a demo popup, AI-made images, a thread history with copy and edit, and Postgres with Google sign-in, then hits the free plan limit. Deploying needs a paid plan, and the link is a referral link.",
+    "summary": "Build a Facebook thread generator with Replit's AI agent, modeled on a competing tool. The prompt creates a landing page and generator, an OpenAI key is added, and several errors follow, including max tokens, JSON object format and a 500, before posts generate in a numbered thread style. Mike adds a demo popup, AI-made images, a thread history with copy and edit, and Postgres with Google sign-in, then hits the free plan limit. Deploying needs a paid plan, and the link is a referral link.",
     "whatYouBuild": "A Replit web app called Viral Post Genie with a topic, style and call to action form, an OpenAI-backed generator that outputs numbered thread posts, a demo popup, generated images, a thread history and Google sign-in on a temporary Postgres database.",
     "toolsUsed": [
       "Replit",
@@ -11240,7 +11120,7 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "A finished product. Saving posts, working sign-in and payments were not completed.",
-      "Deployment, which needs a paid plan of about $25 a month according to the presenter.",
+      "Deployment, which needs a paid plan of about $25 a month according to Mike.",
       "Facebook's rules on spammy or engagement-bait posts for generated viral content.",
       "API key handling and costs, beyond the key being pasted into Replit.",
       "Timestamps, because the video has no chapters."
@@ -11252,16 +11132,16 @@ export const videoSummaries = {
       },
       {
         "q": "Can it be deployed on the free plan?",
-        "a": "No. The presenter says deploying and the database need the paid plan."
+        "a": "No. Mike says deploying and the database need the paid plan."
       },
       {
         "q": "Which tool is it copied from?",
-        "a": "Threadmaster, a thread generator the presenter shows as the model for the layout."
+        "a": "Threadmaster, a thread generator Mike shows as the model for the layout."
       }
     ]
   },
   "ZlD4Z6UKS8o": {
-    "summary": "The same landing-page prompt for an automation agency is run in Replit, Lovable and Orchids, and the presenter prefers Lovable's result. Over the rest of the video they add a Cal.com booking button and floating popup, connect Supabase and Stripe, buy a domain and email through Lovable, and publish a live site in under an hour. Stripe is only partly working at the end. The page prices differ from the Stripe products, and the buttons still send visitors to account creation. The Lovable link is an affiliate link.",
+    "summary": "The same landing-page prompt for an automation agency is run in Replit, Lovable and Orchids, and Mike prefers Lovable's result. Over the rest of the video he adds a Cal.com booking button and floating popup, connect Supabase and Stripe, buy a domain and email through Lovable, and publish a live site in under an hour. Stripe is only partly working at the end. The page prices differ from the Stripe products, and the buttons still send visitors to account creation. The Lovable link is an affiliate link.",
     "whatYouBuild": "A landing page published at a custom domain, with a Cal.com booking link and popup, Supabase connected, Stripe products and payment links, and edited pricing text.",
     "toolsUsed": [
       "Replit",
@@ -11300,26 +11180,22 @@ export const videoSummaries = {
       "Working payments. The plan buttons still opened an account creation page, and a test checkout was not completed.",
       "Matching prices. The Stripe products were set to $4.99 and $9.99 a month while the page was edited to show $499 and $999.",
       "Safe handling of the Stripe secret key, which was entered off camera.",
-      "A fair test of the three builders, since the presenter ran them live and judges by look.",
+      "A fair test of the three builders, since Mike ran them live and judges by look.",
       "Timestamps, because the video's automatic chapters do not match the order of the lessons."
     ],
     "qa": [
       {
-        "q": "Which builder did the presenter choose?",
+        "q": "Which AI website builder did Mike choose?",
         "a": "Lovable, over Replit and Orchids, mostly for the design and prompt-following."
       },
       {
-        "q": "What did the domain cost?",
-        "a": "The presenter says a Namecheap price of about $9 a year, versus about $0 for the first year plus $1 for email through Lovable's partner."
+        "q": "What did the website's custom domain cost?",
+        "a": "About $9 a year at Namecheap, Mike says, versus about $0 for the first year plus $1 for email through Lovable's partner."
       },
-      {
-        "q": "Is the Lovable link an affiliate link?",
-        "a": "Yes. The presenter says they get a commission if you upgrade."
-      }
     ]
   },
   "gibc7oWLCn4": {
-    "summary": "A walkthrough of about ten of the presenter's own Make.com scenarios: an email auto-responder, Skool members into EmailOctopus, a Messenger bot, a social video poster, Instagram comment replies, a Google Sheets cold-email sender, an Apollo lead scraper, YouTube description and topic idea generators, and Make's template library. Each is shown running or described briefly, with some left unfinished. Templates are sold at $15 each or $150 for a bundle. Auto-reply and cold-email setups carry consent and quality caveats, and the Instagram scenario can only send a static reply.",
+    "summary": "A walkthrough of about ten of Mike's own Make.com scenarios: an email auto-responder, Skool members into EmailOctopus, a Messenger bot, a social video poster, Instagram comment replies, a Google Sheets cold-email sender, an Apollo lead scraper, YouTube description and topic idea generators, and Make's template library. Each is shown running or described briefly, with some left unfinished. Templates are sold at $15 each or $150 for a bundle. Auto-reply and cold-email setups carry consent and quality caveats, and the Instagram scenario can only send a static reply.",
     "whatYouBuild": "No single build. Each scenario is short, such as email, ChatGPT, Markdown to HTML and reply, or a webhook, ChatGPT and a Messenger response.",
     "toolsUsed": [
       "Make.com",
@@ -11364,27 +11240,27 @@ export const videoSummaries = {
     ],
     "notCovered": [
       "Consent and spam rules for the cold-email and auto-reply scenarios.",
-      "How the cold-email sender marks leads as already emailed. The presenter says duplicates might happen.",
+      "How the cold-email sender marks leads as already emailed. Mike says duplicates might happen.",
       "Results from any scenario. They are shown running or described, with few outcomes.",
       "Timestamps, because the video's automatic chapters do not match the scenarios shown."
     ],
     "qa": [
       {
-        "q": "What do the templates cost?",
-        "a": "$15 each on Gumroad or about $150 for the bundle, per the presenter."
+        "q": "What do Mike's Make.com templates cost?",
+        "a": "$15 each on Gumroad or about $150 for the bundle, per Mike."
       },
       {
         "q": "Can Make reply to Instagram comments with AI?",
         "a": "Not in this setup. The module does not return the comment text, so the reply is a static message."
       },
       {
-        "q": "What does Make cost?",
-        "a": "The presenter says it is free to start and about $10 a month for a paid plan."
+        "q": "What does Make.com cost?",
+        "a": "It is free to start and about $10 a month for a paid plan, Mike says."
       }
     ]
   },
   "pMLyxz6Dyt4": {
-    "summary": "A course-style HeyGen tutorial: train an avatar from a short consented recording, add a voice clone from ElevenLabs through an API key, make a scripted video in the studio, then automate it in Make.com with Airtable topics, Perplexity research, a ChatGPT assistant script, HeyGen, a wait, a download, a YouTube upload with the AI label and a thumbnail. The automation fails twice because HeyGen's API rejects videos over 180 seconds on the presenter's plan, so the finished route is manual video creation. Links to HeyGen, ElevenLabs and Make.com include affiliate links, and the end pitches a coaching program.",
+    "summary": "A course-style HeyGen tutorial: train an avatar from a short consented recording, add a voice clone from ElevenLabs through an API key, make a scripted video in the studio, then automate it in Make.com with Airtable topics, Perplexity research, a ChatGPT assistant script, HeyGen, a wait, a download, a YouTube upload with the AI label and a thumbnail. The automation fails twice because HeyGen's API rejects videos over 180 seconds on Mike's plan, so the finished route is manual video creation. Links to HeyGen, ElevenLabs and Make.com include affiliate links, and the end pitches a coaching program.",
     "whatYouBuild": "A HeyGen avatar and voice clone, a studio video from a script, and a Make.com scenario with Airtable, Perplexity, OpenAI assistant, HeyGen, sleep, HTTP downloads, YouTube upload, thumbnail upload and Airtable update.",
     "toolsUsed": [
       "HeyGen",
@@ -11419,9 +11295,9 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "A working automatic upload. The API limit blocked it, and the presenter says Pro API access is about $99 a month and Max about $330.",
+      "A working automatic upload. The API limit blocked it, and Mike says Pro API access is about $99 a month and Max about $330.",
       "Consent and disclosure issues around cloning a likeness and voice, beyond the consent recording HeyGen requires.",
-      "YouTube's policies on AI-generated content, which the presenter says are tightening.",
+      "YouTube's policies on AI-generated content, which Mike says are tightening.",
       "Coaching program terms, which are described briefly and not shown in detail.",
       "Timestamps, because the video's automatic chapters are evenly spaced and do not match the lessons."
     ],
@@ -11432,16 +11308,12 @@ export const videoSummaries = {
       },
       {
         "q": "How much footage trains the avatar?",
-        "a": "HeyGen asks for 2 to 5 minutes, and the presenter uploads about two and a half."
+        "a": "HeyGen asks for 2 to 5 minutes, and Mike uploads about two and a half."
       },
-      {
-        "q": "Are the links affiliate links?",
-        "a": "The presenter says the Make.com link is an affiliate link and the video's description hints indicate other affiliate links."
-      }
     ]
   },
   "6iFA7ds2PU4": {
-    "summary": "A September 2025 tour of starting and running a Skool community, shown through the presenter's own free community of about 870 members. It covers the $9 Hobby and $99 Pro plans, the Discovery ranking, switching to a paid price, membership questions, settings, posts and polls, member management, the About page and a classroom that upsells courses and coaching. The presenter reports about $700 in one-time sales in three months, and the Skool sign-up link is an affiliate link. Income examples at the start are quoted from Skool pages and not verified.",
+    "summary": "A September 2025 tour of starting and running a Skool community, shown through Mike's own free community of about 870 members. It covers the $9 Hobby and $99 Pro plans, the Discovery ranking, switching to a paid price, membership questions, settings, posts and polls, member management, the About page and a classroom that upsells courses and coaching. Mike reports about $700 in one-time sales in three months, and the Skool sign-up link is an affiliate link. Income examples at the start are quoted from Skool pages and not verified.",
     "whatYouBuild": "A Skool community with an About page, membership questions, categories, pinned posts, a classroom with free and paid modules, and a Discovery listing.",
     "toolsUsed": [
       "Skool",
@@ -11487,26 +11359,22 @@ export const videoSummaries = {
     "notCovered": [
       "Independent checks of the income examples shown at the start, such as monthly figures for other communities.",
       "Current Skool pricing and features. The video is from September 2025 and details may have changed.",
-      "Consent for the 13,000 pending invites the presenter says they imported from CSV files.",
+      "Consent for the 13,000 pending invites Mike says he imported from CSV files.",
       "How well the coaching program sells. It is described as $2,000 for six weeks with a $150 consultation, without results."
     ],
     "qa": [
       {
-        "q": "Which plan should I start on?",
-        "a": "The presenter uses Hobby at $9 a month with a 10 percent transaction fee, and says Pro at $99 with 2.9 percent suits communities that earn more."
+        "q": "Which Skool plan should I start on?",
+        "a": "Mike uses Hobby at $9 a month with a 10 percent transaction fee, and says Pro at $99 with 2.9 percent suits communities that earn more."
       },
       {
-        "q": "How does the presenter earn from a free community?",
+        "q": "How does Mike earn from a free Skool community?",
         "a": "Through paid classroom items, about $700 of one-time sales in three months, plus coaching sold by call."
       },
-      {
-        "q": "Is the sign-up link an affiliate link?",
-        "a": "Yes. The presenter says they earn a small commission."
-      }
     ]
   },
   "e6JXdMh5Qz0": {
-    "summary": "A live build of a luxury hotel listing site for Koh Samui with OpenCode and Apify agent skills: one prompt scrapes about 100 hotels from Booking.com through Apify's Voyager Booking Scraper, then generates an HTML, CSS and JavaScript site with filters and a detail popup. The first pages show no data, some images and links are wrong, and the scrape initially returns only a handful of hotels before a rerun gets 100. The plan is to earn Booking.com affiliate commissions, which the presenter has not yet been approved for. The presenter says Apify gave them $50 of credits to collaborate, and the links are affiliate links.",
+    "summary": "A live build of a luxury hotel listing site for Koh Samui with OpenCode and Apify agent skills: one prompt scrapes about 100 hotels from Booking.com through Apify's Voyager Booking Scraper, then generates an HTML, CSS and JavaScript site with filters and a detail popup. The first pages show no data, some images and links are wrong, and the scrape initially returns only a handful of hotels before a rerun gets 100. The plan is to earn Booking.com affiliate commissions, which Mike has not yet been approved for. Mike says Apify gave him $50 of credits to collaborate, and the links are affiliate links.",
     "whatYouBuild": "A static site in a local folder with a hotel data file, a filter and sort interface, a detail modal with a gallery and booking links, produced by prompts in OpenCode.",
     "toolsUsed": [
       "OpenCode",
@@ -11540,23 +11408,19 @@ export const videoSummaries = {
     "notCovered": [
       "A finished site. Popups, galleries, link accuracy and the full 100 listings were still being fixed at the end.",
       "Booking.com's terms for scraping, and the rights to reuse its images, descriptions and reviews.",
-      "Approval into the Booking.com affiliate program. The presenter was not yet a member and links stay unaffiliated.",
-      "Hosting and a published domain. The presenter compares about $12 a year at Namecheap with $44 to $79 at Hostinger and buys neither.",
+      "Approval into the Booking.com affiliate program. Mike was not yet a member and links stay unaffiliated.",
+      "Hosting and a published domain. Mike compares about $12 a year at Namecheap with $44 to $79 at Hostinger and buys neither.",
       "Timestamps, because the video has no chapters."
     ],
     "qa": [
       {
-        "q": "How much did the scraping cost?",
+        "q": "How much did the Apify Booking.com scraping cost?",
         "a": "About 20 to 50 cents per run and around $6 in total, paid from Apify credits."
       },
       {
         "q": "Were the hotel images and links correct?",
-        "a": "Not all. The presenter spots wrong photos and some broken links and says they need checking."
+        "a": "Not all. Mike spots wrong photos and some broken links and says they need checking."
       },
-      {
-        "q": "Is this sponsored?",
-        "a": "The presenter says Apify gave them $50 of credits to collaborate, and the video hints at affiliate links."
-      }
     ]
   }
 };
