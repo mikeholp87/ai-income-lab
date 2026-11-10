@@ -638,7 +638,7 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   assert.match(html, /<a href="\/videos">Videos<\/a> \/ <a href="\/videos\/n8n">n8n<\/a> \/ <span aria-current="page">/);
   assert.match(html, /Keep learning<\/h2>\n<ul class="next-links"><li><a href="\/guides\/what-is-n8n-used-for.html"><small>Written guide<\/small>/);
   assert.match(html, /<li><a href="\/videos\/n8n"><small>More on this topic<\/small>/);
-  assert.match(html, /<form class="notes" data-subscribe data-placement="watch_end">/);
+  assert.match(html, /<form class="notes" method="post" data-subscribe data-placement="watch_end">/);
 });
 
 test('guide routing keeps specific tools ahead of broad coding-agent matches', () => {

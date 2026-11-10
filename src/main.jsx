@@ -530,7 +530,7 @@ function ContactForm({ topic, setTopic, sponsors = false }) {
 
   if (status === 'sent') return <p className="contact-sent" role="status">Message sent. I&rsquo;ll reply to the email you gave.</p>;
   return (
-    <form className="contact-form" onSubmit={send} onFocusCapture={event => {
+    <form className="contact-form" method="post" onSubmit={send} onFocusCapture={event => {
       if (!started.current && ['name', 'email', 'topic', 'message'].includes(event.target.name)) { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
     }}>
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
@@ -589,7 +589,7 @@ function NotesSignup({ placement = 'footer' }) {
   </>;
   if (!isHero && complete) return message;
   return (
-    <form className={`notes-signup${isHero ? ' notes-signup--hero' : ''}`} onSubmit={subscribe} onFocusCapture={event => {
+    <form className={`notes-signup${isHero ? ' notes-signup--hero' : ''}`} method="post" onSubmit={subscribe} onFocusCapture={event => {
       if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: `${placement}_notes` }); }
     }}>
       <label htmlFor={emailId}>{isHero ? 'Weekly build notes, free' : 'Weekly build notes: new guides and tested builds in one short email.'}</label>
@@ -725,7 +725,7 @@ function App({ page = 'home' }) {
       <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={href.startsWith('#') && active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
         <button className="theme-toggle" type="button" data-theme-toggle="" aria-label="Switch to light mode" title="Switch to light mode"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" /></svg></button>
-        {sponsorsPage ? <a className="button button-primary nav-join" aria-label="Request a sponsorship proposal" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Send <span className="nav-join-name">a sponsor brief</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
+        {sponsorsPage ? <a className="button button-primary nav-join" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Send <span className="nav-join-name">a sponsor brief</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
         }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>

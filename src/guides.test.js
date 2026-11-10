@@ -115,7 +115,7 @@ test('guides end with the standard next steps and every plans link says Join', a
   }
   for (const file of guides) {
     // The join card stands on its own after "Keep going", ending the article.
-    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n<form class="notes" data-subscribe>[^\n]*<\/form>\n?<\/main>/, file);
+    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n<form class="notes" method="post" data-subscribe>[^\n]*<\/form>\n?<\/main>/, file);
   }
   for (const path of ['public/start-here.html', ...guides.map(file => `public/guides/${file}`)]) {
     const html = await read(path);

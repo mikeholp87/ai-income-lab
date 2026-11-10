@@ -117,6 +117,24 @@ test('the sponsor strip is an orange-accented card with a primary button', () =>
   assert.match(css, /\.brands-row::before \{[^}]*background: var\(--signal\)/);
 });
 
+test('forms post if submitted before hydration, so emails and messages never land in the URL', async () => {
+  assert.match(jsx, /<form className="contact-form" method="post" onSubmit=\{send\}/);
+  assert.match(jsx, /<form className=\{`notes-signup[^`]*`\} method="post" onSubmit=\{subscribe\}/);
+  assert.equal((jsx.match(/<form /g) || []).length, 2);
+  const { readdir } = await import('node:fs/promises');
+  const pages = ['start-here.html', ...(await readdir(new URL('../public/guides/', import.meta.url))).map(file => `guides/${file}`)];
+  for (const page of pages) {
+    const html = await readFile(new URL(`../public/${page}`, import.meta.url), 'utf8');
+    for (const [form] of html.matchAll(/<form [^>]*data-subscribe[^>]*>/g)) assert.match(form, /method="post"/, page);
+  }
+});
+
+test('the sponsors header CTA is named by its visible text', () => {
+  const link = jsx.match(/\{sponsorsPage \? (<a className="button button-primary nav-join"[^]*?<\/a>)/)[1];
+  assert.doesNotMatch(link, /aria-label/);
+  assert.match(link, />Send <span className="nav-join-name">a sponsor brief<\/span><\/a>$/);
+});
+
 test('the hero relates the two brands without an announcement pill', () => {
   assert.match(jsx, /<strong>Get step-by-step courses and practical help from 2,900\+ members while you build\.<\/strong>/);
   assert.match(jsx, /AI Income Lab is the paid Skool community for AI Automation Station\. The guides and tested builds on this site are free to read\./);

@@ -14,11 +14,13 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - AI Income Lab billing is in USD. Free written guides and videos are separate from the paid Skool membership; automation hosting, AI API usage, and other software can cost extra.
 - Standard includes the Runable course; Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both and the Complete AI Avatar Video Course.
 - Income is not guaranteed; results depend on the project, experience, and time invested.
+- Sponsorship: brands can sponsor a build shown on the channel. Dedicated video $1,500, YouTube Short $400, LinkedIn post $350, AI Income Lab post $300, or all four as a campaign for $2,250 ($2,550 separately). Past sponsored builds include Treg, DataForSEO, BrowserAct, Bluehost and Apify.
 
 ## Official pages
 
 - [Home](https://www.ai-automation-station.com/)
 - [About Mike Holp](https://www.ai-automation-station.com/about.html): who runs the channel, how the guides and videos are made, and how to get in touch.
+- [Sponsor a build](https://www.ai-automation-station.com/sponsors.html): audience numbers, packages and rates, past sponsored videos, and a proposal form. The [media kit](https://www.ai-automation-station.com/media-kit/ai-automation-station-media-kit-2026.pdf) and [rate card](https://www.ai-automation-station.com/media-kit/ai-automation-station-rate-card-2026.pdf) are PDFs.
 - [Every video](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
 - [TubeAnalytics status](https://www.ai-automation-station.com/#tools): Temporarily unavailable; see the product section for current status.
