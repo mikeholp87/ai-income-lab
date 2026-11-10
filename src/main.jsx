@@ -23,6 +23,7 @@ const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
 const skoolPlansUrl = 'https://www.skool.com/ai-automation-station-7346/plans';
 const subscribeUrl = `${channelUrl}?sub_confirmation=1`;
 const githubUrl = 'https://github.com/mikeholp87';
+const githubPagesUrl = 'https://mikeholp87.github.io/';
 const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
 const xUrl = 'https://x.com/mikeholp';
 const emailIcon = 'M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217L8 8.5 0 4.217zm0 1.383v6.817l4.928-3.48zM5.711 9.847 0 13.883A2 2 0 0 0 2 14h12a2 2 0 0 0 2-.117l-5.711-4.036L8 11.5zM16 5.383l-4.928 3.48L16 12.2z';
@@ -860,7 +861,7 @@ function App({ page = 'home' }) {
               <p>{repo.description}</p>
             </li>)}
           </ul>
-          <a className="repo-profile" href={githubUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
+          <a className="repo-profile" href={githubPagesUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
         </div>
       </section>
 
