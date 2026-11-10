@@ -1,72 +1,72 @@
 {
   "videos": [
     {
+      "id": "V3ETwJAR5-I",
+      "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
+      "published": "2026-11-10T04:36:16Z",
+      "views": 34,
+      "duration": "14:05",
+      "summary": "Many users are burning through their monthly allowance in a single day. This video explains why your GrokBot setup is consuming credits so quickly and provides actionable steps to optimize your token efficiency.",
+      "embeddable": true
+    },
+    {
+      "id": "YYZSR1p32EQ",
+      "title": "Herdr On Windows Is Better Than I Expected!",
+      "published": "2026-11-09T04:13:12Z",
+      "views": 691,
+      "duration": "11:03",
+      "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.",
+      "embeddable": true
+    },
+    {
+      "id": "IV6q81wRay4",
+      "title": "New HERDR Desktop App Is A Game Changer!",
+      "published": "2026-11-07T07:05:11Z",
+      "views": 11434,
+      "duration": "11:17",
+      "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
+      "embeddable": true
+    },
+    {
+      "id": "V0PoYhOprBI",
+      "title": "3 Open Source Projects I Built That You Need to Try!",
+      "published": "2026-11-05T08:47:59Z",
+      "views": 275,
+      "duration": "10:36",
+      "summary": "Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.",
+      "embeddable": true
+    },
+    {
       "id": "phVQuQMojA8",
       "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
       "published": "2026-11-03T07:48:25Z",
-      "views": 286,
+      "views": 422,
       "duration": "4:17",
-      "summary": "I built a custom task manager using Claude Code to monitor CPU and memory usage on Linux and Windows systems. It's free and opensource available on GitHub.",
+      "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
       "embeddable": true
     },
     {
       "id": "0iTOlQjNdhs",
       "title": "I Fixed My Android TV With Claude Code + CleanYourTV",
       "published": "2026-11-02T02:42:16Z",
-      "views": 1589,
+      "views": 3765,
       "duration": "15:01",
-      "summary": "Clean your Android TV home screen by removing unwanted bloatware and ads using the CleanYourTV available as a free GitHub repository. Enjoy watching and please subscribe!",
+      "summary": "Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.",
       "embeddable": true
     },
     {
       "id": "rMRsVyIsZCU",
       "title": "I Tested This FREE Claude Design Alternative (It's Good!)",
       "published": "2026-10-30T09:57:49Z",
-      "views": 377,
+      "views": 570,
       "duration": "6:54",
-      "summary": "Mike installs Open Design, a free Claude Design alternative, on Linux from source, fixes its Node and Corepack setup, connects a model with an API key, then uses it to make a motion design clip, a visual design system and an HTML slide deck from a YouTube link. The last chapter covers its pricing and credit use.",
-      "embeddable": true
-    },
-    {
-      "id": "wzC2r426KWs",
-      "title": "I Built a Virtual Office for My AI Agents in GrokBot",
-      "published": "2026-10-29T14:52:59Z",
-      "views": 2255,
-      "duration": "9:43",
-      "summary": "In this video, I build a 2D Virtual Office for 35+ AI agents running inside GrokBot using the new Pages feature!",
-      "embeddable": true
-    },
-    {
-      "id": "wLIiTkra7uM",
-      "title": "I Let GrokBot Run My Blog for 30 Days (Here's What Happened)",
-      "published": "2026-10-27T14:00:36Z",
-      "views": 220,
-      "duration": "7:06",
-      "summary": "Connect GrokBot to WordPress with its plugin, then let an agent turn YouTube transcripts into scheduled blog posts that also go out to email subscribers. The recording hits GrokBot's weekly usage limit, so most of the demo reviews posts that were already drafted and scheduled.",
-      "embeddable": true
-    },
-    {
-      "id": "VE66JDHoS6Y",
-      "title": "Herdr Lets You Run Claude Code And Codex In One Place",
-      "published": "2026-10-26T10:58:24Z",
-      "views": 628,
-      "duration": "7:52",
-      "summary": "Install Herdr and run Codex, Claude Code, OpenCode and Hermes from one terminal workspace that saves every session. Covers installing on Mac, Linux and Windows, then a hands-on review.",
-      "embeddable": true
-    },
-    {
-      "id": "qQVAnp4-EpI",
-      "title": "I Let Runable Build My Entire Online Business!",
-      "published": "2026-10-20T15:43:31Z",
-      "views": 198,
-      "duration": "18:03",
-      "summary": "Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.",
+      "summary": "Build Open Design, a free open-source alternative to Claude Design, from source on Linux and use it with DeepSeek V4 Flash. A 20-second paper cutout motion video takes about a minute for roughly a cent, and a slide deck built from a YouTube transcript takes three to four minutes for about 16 cents and exports to HTML. Mac and Windows have downloads, while Linux needs a source build with Node and corepack fixes.",
       "embeddable": true
     }
   ],
   "channel": {
-    "subscribers": 5310,
-    "views": 549088,
-    "videos": 356
+    "subscribers": 5380,
+    "views": 575712,
+    "videos": 363
   }
 }

@@ -1,3 +1,5 @@
+import { lateQa, lateSummaries } from './video-summaries-late.js';
+
 // Reviewed summaries for recent uploads. Entries without a saved transcript identify their sources in sourceNote.
 // Summary precedence: watchNotes > watchSeo > videoNotes > videoSummaries > listingSummaries > YouTube description > fallback.
 // keySteps seconds are chapter starts, so they link to the same #t= cues as the chapter list.
@@ -11558,6 +11560,11 @@ export const videoSummaries = {
     ]
   }
 };
+
+// Transcript-based Q&A for entries first written from the description, then entries added later.
+for (const [id, extra] of Object.entries(lateQa)) videoSummaries[id] = { ...videoSummaries[id], ...extra };
+Object.assign(videoSummaries, lateSummaries);
+
 
 // Third-person rewrites of first-person YouTube description openers, for listing cards and meta descriptions.
 export const listingSummaries = {

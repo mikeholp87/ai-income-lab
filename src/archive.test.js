@@ -738,3 +738,10 @@ test('every self-hosted thumbnail listed in the manifest exists at all four widt
   }
   assert.equal(localThumbnail('zzzzzzzzzzz'), null);
 });
+
+test('watch pages declare their language and keywords in VideoObject data', () => {
+  const html = renderWatch({ id: 'abcdefghijk', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: 'Build an n8n agent.', embeddable: true });
+  const video = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(item => item['@type'] === 'VideoObject');
+  assert.equal(video.inLanguage, 'en');
+  assert.match(video.keywords, /^n8n/);
+});

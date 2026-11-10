@@ -355,10 +355,14 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   // A written summary lists its own tools inside "What this video covers".
   const tools = brief?.toolsUsed?.length ? null : videoTools[video.id];
   const chapterUrl = chapter => `${watchUrl(video)}?t=${chapter.seconds}`;
+  // The topic hub name plus the tools the page lists, which are the terms people search for.
+  const keywords = [...new Set([topic?.name, ...(brief?.toolsUsed ?? videoTools[video.id] ?? [])].filter(Boolean).map(name => name.replace(/\s*\(.*\)$/, '')))].slice(0, 8);
   const schema = {
     '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
     name: video.title, description, thumbnailUrl: schemaThumbnails(video),
     uploadDate: video.published, embedUrl: playerUrl(video), url: watchUrl(video),
+    inLanguage: 'en',
+    ...(keywords.length && { keywords: keywords.join(', ') }),
     ...(seconds && { duration: video.duration }),
     ...(video.views > 0 && { interactionStatistic: { '@type': 'InteractionCounter', interactionType: { '@type': 'WatchAction' }, userInteractionCount: video.views } }),
     // Key moments: a clip ends where the next starts, so this needs the video's length.
