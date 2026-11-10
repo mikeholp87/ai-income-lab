@@ -718,6 +718,14 @@ test('transcript summaries render a build section and valid FAQPage data', async
   const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(data => data['@type'] === 'FAQPage');
   assert.equal(faq.mainEntity.length, brief.qa.length);
   assert.ok(faq.mainEntity.every(item => item.name && item.acceptedAnswer.text));
+  assert.equal(faq['@id'], `${html.match(/<link rel="canonical" href="([^"]+)"/)[1]}#faq-schema`);
+  assert.equal(faq.url, html.match(/<link rel="canonical" href="([^"]+)"/)[1]);
+  assert.match(html, /<section aria-labelledby="faq">\n<h2 id="faq">Questions and answers<\/h2>\n<div class="faq-list">\n<details class="faq-item">/);
+  assert.doesNotMatch(html, /<h4>/);
+  const unescape = text => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  const items = [...html.matchAll(/<details class="faq-item"><summary><h3>([^<]*)<\/h3><\/summary>\n<p>([^<]*)<\/p>\n<\/details>/g)];
+  assert.deepEqual(faq.mainEntity, items.map(([, q, a]) => ({ '@type': 'Question', name: unescape(q), acceptedAnswer: { '@type': 'Answer', text: unescape(a) } })));
+  assert.ok(html.indexOf('id="faq"') > html.indexOf('id="build-summary"') && html.indexOf('id="faq"') < html.indexOf('id="related-guides"'));
   for (const text of [...Object.values(videoSummaries).flatMap(entry => [entry.summary, entry.whatYouBuild, ...entry.toolsUsed, ...entry.keySteps.map(step => step.step), ...entry.notCovered, ...entry.qa.flatMap(({ q, a }) => [q, a])]), ...Object.values(listingSummaries)]) {
     assert.doesNotMatch(text, /[—;…]/, text);
   }

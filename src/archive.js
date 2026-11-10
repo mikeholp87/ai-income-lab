@@ -377,7 +377,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
     itemListElement: trail.map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
   };
   const faq = brief?.qa?.length && {
-    '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${watchUrl(video)}#faq`,
+    '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${watchUrl(video)}#faq-schema`, url: watchUrl(video),
     mainEntity: brief.qa.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   };
   const heading = videoHeading(video);
@@ -444,9 +444,7 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <h3>Key steps</h3>
 <ol>${brief.keySteps.map(step => `<li>${Number.isFinite(step.seconds) ? `<a href="#t=${step.seconds}">${clock(step.seconds)}</a> ` : ''}${escape(step.step)}</li>`).join('')}</ol>` : ''}${brief.notCovered?.length ? `
 <h3>Not covered</h3>
-<ul>${brief.notCovered.map(item => `<li>${escape(item)}</li>`).join('')}</ul>` : ''}${brief.qa?.length ? `
-<h3>Questions and answers</h3>
-${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join('\n')}` : ''}
+<ul>${brief.notCovered.map(item => `<li>${escape(item)}</li>`).join('')}</ul>` : ''}
 <p class="meta">${escape(brief.sourceNote || "Summary written from the video's transcript and chapters.")}</p>
 </section>` : ''}${tools?.length ? `
 <section aria-labelledby="tools-used">
@@ -454,7 +452,13 @@ ${brief.qa.map(({ q, a }) => `<h4>${escape(q)}</h4>\n<p>${escape(a)}</p>`).join(
 <ul>${tools.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>
 </section>` : ''}${chapters.length ? `
 <h2 id="chapters">In this video</h2>
-<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${guide || topic ? `
+<ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${faq ? `
+<section aria-labelledby="faq">
+<h2 id="faq">Questions and answers</h2>
+<div class="faq-list">
+${brief.qa.map(({ q, a }) => `<details class="faq-item"><summary><h3>${escape(q)}</h3></summary>\n<p>${escape(a)}</p>\n</details>`).join('\n')}
+</div>
+</section>` : ''}${guide || topic ? `
 <section aria-labelledby="related-guides">
 <h2 id="related-guides">Keep learning</h2>
 <ul class="next-links">${guide ? `<li><a href="${escape(guide[0])}"><small>${escape(guide[2] ?? 'Written guide')}</small>${escape(guide[1])}</a></li>` : ''}${topic ? `<li><a href="/videos/${topic.slug}"><small>More on this topic</small>${escape(topic.heading)}</a></li>` : ''}</ul>
