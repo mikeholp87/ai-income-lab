@@ -5,6 +5,7 @@ import test from 'node:test';
 // Source checks for the landing page; scripts/prerender.js checks the rendered output.
 const jsx = await readFile(new URL('./main.jsx', import.meta.url), 'utf8');
 const css = await readFile(new URL('./styles.css', import.meta.url), 'utf8');
+const snapshot = await readFile(new URL('./repositories-snapshot.json', import.meta.url), 'utf8');
 
 function media(query) {
   const start = css.indexOf(`@media ${query} {`);
@@ -95,7 +96,8 @@ test('the latest videos section links every shared video topic', () => {
 test('the homepage lists GitHub projects in a separate section', () => {
   const start = jsx.indexOf('id="code"');
   const section = jsx.slice(start, jsx.indexOf('</section>', start));
-  for (const name of ['Tasky', 'Luma[- ]Launcher', 'Restic[- ]Studio']) assert.match(jsx, new RegExp(name));
+  for (const name of ['Tasky', 'Luma-Launcher', 'Restic-Studio']) assert.match(snapshot, new RegExp(name));
+  for (const name of ['solar-business-directory', 'seo-tool']) assert.doesNotMatch(snapshot, new RegExp(name));
   assert.match(section, /projects\.slice\(0, 9\)\.map\(repo/);
   assert.doesNotMatch(section, /DoStuff-Media/);
   assert.match(section, /<\/ul>\s*<a className="repo-profile"[^>]+>View all on GitHub/);

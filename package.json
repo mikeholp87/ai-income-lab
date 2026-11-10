@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/refresh-videos.js && vite build && node scripts/prerender.js",
+    "build": "node scripts/refresh-videos.js && node scripts/refresh-repositories.js && vite build && node scripts/prerender.js",
     "test": "node --test src/*.test.js",
     "lint": "eslint .",
     "preview": "vite preview"

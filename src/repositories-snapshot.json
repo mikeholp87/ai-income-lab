@@ -1,0 +1,62 @@
+[
+  {
+    "name": "apt",
+    "description": "Signed apt repository for mikeholp87's projects",
+    "url": "https://github.com/mikeholp87/apt"
+  },
+  {
+    "name": "mikeholp87.github.io",
+    "description": "Personal site, generated from my public repositories",
+    "url": "https://github.com/mikeholp87/mikeholp87.github.io"
+  },
+  {
+    "name": "update-forge",
+    "description": "Auto Updater App For Windows",
+    "url": "https://github.com/mikeholp87/update-forge"
+  },
+  {
+    "name": "herdr-mods",
+    "description": "Custom mods for Herdr GUI",
+    "url": "https://github.com/mikeholp87/herdr-mods"
+  },
+  {
+    "name": "defrag-hdd-linux",
+    "description": "Disk drive analysis and defragmenter for Linux",
+    "url": "https://github.com/mikeholp87/defrag-hdd-linux"
+  },
+  {
+    "name": "disk-atlas",
+    "description": "A Linux disk usage analyzer written in Rust with egui/eframe and wgpu",
+    "url": "https://github.com/mikeholp87/disk-atlas"
+  },
+  {
+    "name": "msi-control-linux",
+    "description": "MSI NUC Software Monitor",
+    "url": "https://github.com/mikeholp87/msi-control-linux"
+  },
+  {
+    "name": "Restic-Studio",
+    "description": "Backup studio for Linux using Restic",
+    "url": "https://github.com/mikeholp87/Restic-Studio"
+  },
+  {
+    "name": "Luma-Launcher",
+    "description": "A native, lightweight, keyboard-driven application launcher for Windows and Linux",
+    "url": "https://github.com/mikeholp87/Luma-Launcher"
+  },
+  {
+    "name": "Tasky",
+    "description": "Fast, private task manager and system monitor for Windows and Linux (KDE Plasma and GNOME). Built with Tauri, Rust and React.",
+    "url": "https://github.com/mikeholp87/Tasky"
+  },
+  {
+    "name": "ai-income-lab",
+    "description": "Source for ai-automation-station.com: Mike Holp's AI build videos, guides, and the AI Income Lab community",
+    "url": "https://github.com/mikeholp87/ai-income-lab"
+  },
+  {
+    "name": "trading-app",
+    "description": "Alpaca Trading App",
+    "url": "https://github.com/mikeholp87/trading-app"
+  }
+]

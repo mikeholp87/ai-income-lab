@@ -12,6 +12,7 @@ import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail
 import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import sponsoredSnapshot from './sponsored-snapshot.json';
+import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
 
@@ -128,13 +129,6 @@ const tools = [
     cta: 'Run a free scan',
   },
 ];
-
-const repositories = [
-  ['Restic-Studio', 'A development preview of a Rust backup and recovery app with a GTK desktop client.', 2026],
-  ['Luma-Launcher', 'A native, keyboard-driven Linux application launcher built with Rust and GTK4.', 2026],
-  ['Tasky', 'A private, cross-platform task manager and system monitor for Windows and Linux.', 2026],
-].filter(([, , createdYear]) => createdYear >= 2026)
-  .map(([name, description]) => ({ name, description, url: `${githubUrl}/${name}` }));
 
 const plans = [
   { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
