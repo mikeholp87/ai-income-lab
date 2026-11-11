@@ -17,7 +17,7 @@ export const watchPageCopy = {
     title: 'GrokBot blog agent: WordPress posts with daily emails',
   },
   VE66JDHoS6Y: {
-    title: 'Herdr first test: Codex, Claude Code, OpenCode and Hermes',
+    title: 'Herdr getting started: Codex, Claude Code, OpenCode, Hermes',
   },
   'UAPaM6KrC-M': {
     title: 'REA skill with Claude Code: rebuilding Kdenlive as Cutline',
@@ -74,7 +74,7 @@ export const watchPageCopy = {
     disclosure: 'DataForSEO sponsored this video. The DataForSEO sign-up link is a referral link that gives $5 in trial credits instead of the usual $1.',
   },
   K2UeJZ_7mS0: {
-    title: 'GPT-6 Astra test: Three.js rocket simulator in 23 minutes',
+    title: 'GPT-6 Astra test: Three.js rocket launch simulator',
   },
   uSx_lW4oppY: {
     title: 'ChatGPT Pro $200 plan paused: GPT-6 Astra demand explained',
@@ -231,7 +231,7 @@ export const watchPageCopy = {
     disclosure: 'BrowserAct sponsored this video, and Mike shares a discount link for it in the description.',
   },
   qzIaEA0wBCw: {
-    title: 'Trakkr MCP in Codex: AI citation gaps to GEO articles',
+    title: 'Trakkr AI visibility MCP in Codex: citation gaps to articles',
   },
   tR7AYN5FiqA: {
     title: 'Codex CLI and Codex Cloud: code review, fixes and deploy',
@@ -327,6 +327,7 @@ export const watchPageCopy = {
     description: 'Mike installs Cline with npm and in Google Antigravity, then uses a free Xiaomi model to run GEO and schema updates on a live blog without using credits.',
   },
   ncg6F27PYt0: {
+    title: 'Build web apps with Kilo Code: a Cursor alternative',
     description: 'Mike tests Kilo Code in the terminal, VS Code and its browser app builder, building a one-page SEO checker on a free model for about four cents of credit.',
     disclosure: 'The Kilo Code sign-up link in the video description is a referral link, which Mike says adds credits on a first top-up.',
   },
@@ -390,7 +391,7 @@ export const watchPageCopy = {
     description: 'Mike makes an infographic from a YouTube video in NotebookLM in a minute or two, then compares it with his n8n workflow using Nano Banana Pro via KIE.',
   },
   mKZHLQLaq2k: {
-    title: 'Claude Code on Debian Linux: terminal and VS Code setup',
+    title: 'Install Claude Code on Debian Linux: terminal and VS Code',
     description: 'Mike installs Claude Code on Debian Linux, adds VS Code from Flathub with the Claude Code extension, and fixes login and path issues to run Sonnet 4.5.',
   },
   '-cLECY10Tzg': {
@@ -519,7 +520,7 @@ export const watchPageCopy = {
     description: 'Mike builds a customer service workflow in OpenAI\'s Agent Builder a day after launch, but preview stays blocked until his organization is verified.',
   },
   '1klc_1MxBdM': {
-    title: 'n8n social media agent template: Google Trends research',
+    title: 'n8n social media AI agent template: Google Trends research',
     description: 'Mike imports an n8n social media template and tests its Google Trends and keyword steps. The Perplexity credentials fail, so nothing is posted yet.',
   },
   dVC1Or0Tbo8: {
@@ -621,7 +622,7 @@ export const watchPageCopy = {
     description: 'Mike builds a Make.com scenario that turns Airtable topics into HeyGen avatar videos with Perplexity and ChatGPT, then hits HeyGen\'s 3 minute API limit.',
   },
   zWM4AjUto2A: {
-    title: '5 business AI automations: chatbots, email triage, invoices',
+    title: '5 AI automation solutions for business: chatbots and email',
     description: 'A three-minute list of five AI automation ideas for small businesses, from customer service chatbots and email triage to invoices and social posts.',
   },
   QMcaBMjZSMA: {
@@ -635,6 +636,7 @@ export const watchPageCopy = {
     title: 'Make.com AI email auto-reply: watch, write and send',
   },
   R90zVHmoj7A: {
+    title: 'Make.com automation tutorial: build a business workflow',
     description: 'Mike\'s intro Make.com course covers a Sheets to Gmail template, an OpenAI to Facebook post scenario and an Apify lead scraper, errors included.',
     disclosure: 'The Make.com sign-up link is an affiliate link, and Mike earns a small commission from it.',
   },
@@ -658,7 +660,7 @@ export const watchPageCopy = {
     disclosure: 'The Syllaby link in the video description is an affiliate link, and Mike earns a commission if someone buys a paid plan through it.',
   },
   '4sd4-9rC3As': {
-    title: 'Make.com JSON2Video faceless videos to Facebook and YouTube',
+    title: 'Make.com video automation: JSON2Video faceless videos',
     description: 'Mike builds a Make.com scenario that turns Airtable topics into faceless videos with OpenAI and JSON2Video, then posts them to Facebook and YouTube.',
   },
   '3j4YyYFRQKU': {
@@ -682,5 +684,14 @@ export const watchPageCopy = {
   },
   '-L0CVvJMzZI': {
     title: 'Building TubeAnalytics in public: debugging and SEO fixes',
+  },
+  '5zBHLxXw3tI': {
+    title: 'Hermes Agent desktop on Debian: setup and provider checks',
+  },
+  '9hs6n1enosI': {
+    title: 'Anthropic Claude Mythos Preview: first look and review',
+  },
+  TuVL2x6IfDk: {
+    title: 'Codex website audit: fixing internal SEO links',
   },
 };
