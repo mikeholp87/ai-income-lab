@@ -373,7 +373,7 @@ function Services({ channel }) {
             <p className="service-price">$2,250 <span>$2,550 separately</span></p>
             <p className="campaign-saving">Save $300 with the complete campaign</p>
             <p>One product story, adapted for four placements. A practical build gives people a reason to explore your product.</p>
-            <ul className="campaign-includes"><li>One 8–12 minute dedicated YouTube video</li><li>One 30–60 second YouTube Short</li><li>One AI Income Lab community post</li><li>One LinkedIn post</li><li>Description link, pinned comment and coordinated messaging</li></ul>
+            <ul className="campaign-includes"><li>One 8–12 minute dedicated YouTube video</li><li>One 30–60 second YouTube Short</li><li>One AI Income Lab community post</li><li>One LinkedIn post</li><li>A written guide on this site, built from the video</li><li>Description link, pinned comment and coordinated messaging</li></ul>
             <p className="fine-print">Organic publication and one reasonable revision round included. Scope and timing agreed before booking.</p>
             <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
             <a className="button button-primary" href="#work-together" onClick={ask('Plan my campaign', 'Multi-platform campaign')}>Plan my campaign</a>
@@ -638,7 +638,10 @@ const topCountries = audienceTab('Country').rows.filter(([name]) => name !== 'Ot
 
 const sponsorFaqs = [
   ['What does a sponsorship cost?', 'Formats start at $300 for an AI Income Lab post. A dedicated video is $1,500, and the four-format campaign is $2,250, saving $300 on separate bookings. All prices are in USD.'],
+  ['How long does it take?', 'One to two weeks from an agreed brief to the published video. The launch date is agreed before you book, so the build can line up with your release.'],
+  ['How does payment work?', 'Half when you book and half on publication.'],
   ['Do I see the video before it goes live?', 'Yes. One reasonable revision round is included before publication. The format, build idea, deliverables and timing are agreed before you book.'],
+  ['What does the multi-platform campaign add beyond the videos?', 'A written guide on this site, built from the video, alongside the description link and pinned comment. Earlier builds became guides like Treg inside GrokBot and the DataForSEO MCP guide.'],
   ['What if my product doesn’t work perfectly in the build?', 'I test it on a real project with the mistakes left in, so the video shows the troubleshooting and the verdict. In the Apify Klook build, for example, hotel prices came back empty until check-in dates were added.'],
   ['How is the sponsorship disclosed?', 'Every sponsored build is clearly disclosed as sponsored, and it is listed on this page with the other sponsored builds.'],
   ['Can we run the video as an ad or get category exclusivity?', 'Yes, as add-ons. Standard prices cover organic publication. Paid usage rights cost $500 for 3 months, $900 for 6 or $1,500 for 12. Category exclusivity adds 20% for 30 days or 40% for 90 days.'],

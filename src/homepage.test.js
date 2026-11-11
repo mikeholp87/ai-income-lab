@@ -269,6 +269,9 @@ test('the sponsors page structured data offers the same formats and prices as th
   assert.equal(cards.length, 5);
   assert.deepEqual(offers.map(offer => [offer.name, offer.price]), cards);
   assert.match(html, /og:image" content="https:\/\/www\.ai-automation-station\.com\/og-sponsors\.jpg/);
+  // The campaign's written guide is promised in the card and the markup alike.
+  assert.match(services, /<li>A written guide on this site, built from the video<\/li>/);
+  assert.match(offers[0].description, /a written guide on the site built from the video/);
 });
 
 test('the sponsor FAQ is marked up as an FAQPage, and its add-on prices match the add-ons list', () => {
