@@ -148,8 +148,8 @@ export const cards = {
     note: 'Zapier, Make, n8n or a coding agent: pick by the job.',
   },
   'chatgpt-pro-20x': {
-    title: 'ChatGPT Pro 20x: paused, then back with less',
-    steps: [['Sept 2026', 'OpenAI paused the $200 plan'], ['Now', 'Back with a lower allowance'], ['Codex', 'Medium effort makes credits last']],
+    title: 'ChatGPT Pro 20x is open again',
+    steps: [['Sept 2026', 'OpenAI paused the $200 plan'], ['Oct 2026', 'Reopened, higher allowance'], ['Codex', 'Medium effort makes credits last']],
     note: 'Plus, 5x and 20x limits compared side by side.',
   },
   'claude-code-for-beginners': {
@@ -192,32 +192,33 @@ export const cards = {
     steps: [['Discover', 'Ask the owner and the operator'], ['Scope', 'One fixed deliverable you can test'], ['Accept', 'Agree example outcomes first']],
     note: 'Build the record flow before adding the AI step.',
   },
-  'ai-threejs-rocket-demo': {"title":"An AI-generated Three.js rocket scene, then camera controls","steps":[["Source","Use a prompt you can read"],["Inspect","Open the generated HTML"],["Follow up","Add one camera control"]],"note":"A recorded demo, not a physics-validated simulator."},
+  'ai-threejs-rocket-demo': {"title":"An AI-generated Three.js rocket scene, then camera controls","steps":[["Source","Use a prompt you can read"],["Inspect","Open the generated HTML"],["Follow up","Add one camera control"]],"note":"My demo build, not a physics-validated simulator."},
   'chatgpt-images-sketch-workflow': {"title":"ChatGPT Images Sketch: compose, then edit locally","steps":[["Compose","Place objects in the scene"],["Generate","Check the whole image"],["Edit","Make one local change"]],"note":"Check placement, references and unintended changes."},
-  'claude-code-task-manager': {"title":"A Claude Code task manager: scope, checks, packaging","steps":[["Scope","Name the checks first"],["Build","Follow the recorded project"],["Package","Note platform limits"]],"note":"A project walkthrough, not a complete installer test."},
-  'cleanyourtv-claude-code': {"title":"CleanYourTV on a TCL set, including remaining failures","steps":[["Access","Enable debugging carefully"],["Backup","Save settings first"],["Check","Test every remote button"]],"note":"Recorded remote-button failures remain in the outcome."},
+  'claude-code-task-manager': {"title":"A Claude Code task manager: scope, checks, packaging","steps":[["Scope","Name the checks first"],["Build","Follow my build"],["Package","Note platform limits"]],"note":"A project walkthrough, not a complete installer test."},
+  'cleanyourtv-claude-code': {"title":"CleanYourTV on a TCL set, including remaining failures","steps":[["Access","Enable debugging carefully"],["Backup","Save settings first"],["Check","Test every remote button"]],"note":"Some remote buttons still failed after my changes."},
   'codex-seo-workflow': {"title":"Codex internal-link audits with reviewed changes","steps":[["Research","Choose the source with care"],["Plan","Write a phased edit plan"],["Review","Check the diff before deploy"]],"note":"An anecdotal link count is not a ranking rule."},
-  'crowdreply-mcp-codex': {"title":"CrowdReply MCP: citation records into a review plan","steps":[["Connect","Use the recorded MCP path"],["Sample","Inspect citation records"],["Plan","Turn findings into reviews"]],"note":"Samples are not measured ranking uplift."},
-  'deepseek-harness-first-test': {"title":"DeepSeek Harness: provider errors and a buggy demo","steps":[["Build","Follow the recorded preview"],["Route","Note which provider worked"],["Inspect","Keep the buggy HTML visible"]],"note":"Recorded failures stay in the case study."},
+  'crowdreply-mcp-codex': {"title":"CrowdReply MCP: citation records into a review plan","steps":[["Connect","Connect the MCP server"],["Sample","Inspect citation records"],["Plan","Turn findings into reviews"]],"note":"Samples are not measured ranking uplift."},
+  'deepseek-harness-first-test': {"title":"DeepSeek Harness: provider errors and a buggy demo","steps":[["Build","Run the preview build"],["Route","Note which provider worked"],["Inspect","Keep the buggy HTML visible"]],"note":"The failures I hit stay in the case study."},
   'ghostty-debian-configuration': {"title":"Ghostty on Debian: config files and reloads","steps":[["Install","Use current distro docs"],["Config","Edit key = value files"],["Reload","Open a fresh terminal"]],"note":"No universal package or RAM-saving claim."},
   'grokbot-for-beginners': {"title":"GrokBot for beginners: first bot and approvals","steps":[["Create","Give one bot a narrow job"],["Connect","Add only needed apps"],["Approve","Review outbound actions"]],"note":"Shared box, separate desktops, explicit approval."},
-  'grokbot-for-seo': {"title":"GrokBot SEO bots: audits, data and reviewed fixes","steps":[["Bot","Scope the audit job"],["Data","Separate estimates from provider data"],["Fix","Review before changing the site"]],"note":"Recorded costs and trials are examples, not entitlements."},
+  'grokbot-for-seo': {"title":"GrokBot SEO bots: audits, data and reviewed fixes","steps":[["Bot","Scope the audit job"],["Data","Separate estimates from provider data"],["Fix","Review before changing the site"]],"note":"Costs and trials in my video are examples, not entitlements."},
   'grokbot-virtual-office': {"title":"A custom GrokBot office page for agent status","steps":[["Layout","Build the office Page"],["Handoff","Copy approvals into chat"],["Limits","Status sync stayed unfinished"]],"note":"A visual overview, not a native approval API."},
   'grokbot-vs-dots': {"title":"GrokBot vs Dots: onboarding, drafts and permissions","steps":[["Onboard","Follow each product’s docs"],["Draft","Compare one job-search task"],["Bound","Do not claim applications were sent"]],"note":"Two long-form videos, one comparison page."},
   'herdr-desktop-app': {"title":"Herdr desktop: workspaces, resume and limits","steps":[["Install","Use the current official app"],["Space","One repo, separate tabs"],["Review","Check diffs and lifecycle docs"]],"note":"Closing the window is not the same as stopping herdr-core."},
   'herdr-guide': {"title":"Herdr TUI: one terminal for existing coding agents","steps":[["Install","Use the documented installer"],["Space","Open the project folder"],["Session","Distinguish TUI from desktop"]],"note":"It organizes agents; it does not replace them."},
-  'jev-skills-router-setup': {"title":"Jev with coding agents: skills, access and routed tests","steps":[["Install","Add the recorded skills"],["Access","Configure provider credentials"],["Inspect","Read the returned request"]],"note":"Confidence is not proof of a correct route."},
+  'jev-skills-router-setup': {"title":"Jev with coding agents: skills, access and routed tests","steps":[["Install","Add the Jev skills"],["Access","Configure provider credentials"],["Inspect","Read the returned request"]],"note":"Confidence is not proof of a correct route."},
   'muse-code-setup': {"title":"Muse Code: an API failure and a working CLI","steps":[["Attempt","Record the failed API route"],["CLI","Use the path that responded"],["Stop","Leave the unfinished audit"]],"note":"Installer details are omitted rather than guessed."},
-  'opendesign-linux-slides': {"title":"OpenDesign on Linux: source setup and HTML slides","steps":[["Source","Follow recorded setup checks"],["Design","Make one first design"],["Export","Use the HTML deck path"]],"note":"Model charges stay separate from software access."},
-  'rea-video-editor-prototype': {"title":"REA with a coding agent: a limited editor prototype","steps":[["Setup","Use the documented command"],["Build","Follow the recorded prototype"],["Limits","Keep playback bugs visible"]],"note":"A prototype, not a rights-cleared editor."},
+  'opendesign-linux-slides': {"title":"OpenDesign on Linux: source setup and HTML slides","steps":[["Source","Set up from source"],["Design","Make one first design"],["Export","Use the HTML deck path"]],"note":"Model charges stay separate from software access."},
+  'rea-video-editor-prototype': {"title":"REA with a coding agent: a limited editor prototype","steps":[["Setup","Use the documented command"],["Build","Build the prototype"],["Limits","Keep playback bugs visible"]],"note":"A prototype, not a rights-cleared editor."},
   'run-a-blog-with-grokbot': {"title":"GrokBot WordPress drafts from long-form videos","steps":[["Connect","Use the supported WordPress flow"],["Draft","Ask for reviewable posts"],["Separate","Publishing is a later approval"]],"note":"Drafts, schedules and emails are distinct actions."},
   'runable-audit-website': {"title":"A Runable audit-service site from brief to MVP","steps":[["Brief","Write the business request"],["Build","Review the generated MVP"],["Check","Payments still need work"]],"note":"Inquiry delivery and fulfillment were unfinished."},
-  'trakkr-codex-visibility-workflow': {"title":"Trakkr and Codex: visibility, crawlers and visits","steps":[["Track","Inspect recorded questions"],["Distinguish","Visibility is not visits"],["Review","Do not auto-publish fixes"]],"note":"llms.txt is not treated as a ranking lever."},
+  'trakkr-codex-visibility-workflow': {"title":"Trakkr and Codex: visibility, crawlers and visits","steps":[["Track","Inspect tracked questions"],["Distinguish","Visibility is not visits"],["Review","Do not auto-publish fixes"]],"note":"llms.txt is not treated as a ranking lever."},
   'treg-inside-grokbot': {"title":"Treg in GrokBot: data tools with a spending check","steps":[["Connect","Add the Treg plugin"],["Price","Inspect the endpoint first"],["Approve","Paid calls are a separate decision"]],"note":"Provider billing is not the same as catalog access."},
 };
 
 const escape = text => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+// The byline is pinned to the bottom edge, so the headline shrinks until it fits in two lines and the note clears it.
 export function cardHtml({ title, steps, note }) {
   return `<!doctype html><meta charset="utf-8">
 <style>
@@ -232,7 +233,8 @@ h1{margin-top:28px;font-size:60px;line-height:1.1;font-weight:700;max-width:820p
 <h1>${escape(title)}</h1>
 <div class="row">${steps.map(([label, text]) => `<p class="box"><b>${escape(label)}</b><span>${escape(text)}</span></p>`).join('')}</div>
 <p class="note">${escape(note)}</p>
-<p class="by">Mike Holp · ai-automation-station.com</p>`;
+<p class="by">Mike Holp · ai-automation-station.com</p>
+<script>const h = document.querySelector('h1'); let size = 60; while (h.offsetHeight > 2 * size * 1.1 + 1 && size > 42) h.style.fontSize = \`\${--size}px\`;</script>`;
 }
 
 // Laid out at 600×315 and captured at 2x; the headline shrinks until it fits in four lines.
