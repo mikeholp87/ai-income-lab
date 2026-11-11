@@ -2,6 +2,8 @@
   {
     "id": "9A2StjrxOms",
     "title": "Treg.to Inside Grok Bot Is A Game Changer!",
+    "heading": "Treg and GrokBot tutorial: API tools for SEO workflows",
+    "summary": "Connect Treg to Codex and GrokBot, inspect API calls, and explore keyword research and backlink outreach workflows.",
     "published": "2026-09-27T12:28:47Z",
     "views": 2039,
     "duration": "11:08",
@@ -10,6 +12,8 @@
   {
     "id": "wRqpZ9F3rmI",
     "title": "Build Your Own AI SEO Agent (DataForSEO + Claude)",
+    "heading": "DataForSEO and Claude: SEO audit, keyword gaps and AI search",
+    "summary": "A sponsored walkthrough of connecting the DataForSEO MCP server to Claude, then using plain-language prompts for an SEO audit, a seven-day action plan, a competitor and keyword-gap report, and an AI search visibility check on Mike's own site. The video says DataForSEO sponsored it and that the sign-up link gives $5 in trial credits instead of the usual $1.",
     "published": "2026-09-16T20:59:32Z",
     "views": 1226,
     "duration": "10:09",
@@ -18,6 +22,8 @@
   {
     "id": "quDDekuPQNI",
     "title": "BrowserAct Changed How I Build Websites!",
+    "heading": "BrowserAct scraper in Codex: build a remote job board",
+    "summary": "A sponsored walkthrough of BrowserAct's Skill Forge scraper skill, which Mike installs with npx and uses in Codex to scrape remote job listings from We Work Remotely: category pages, filtered categories and each job's details into a 3,200-line JSON and a CSV. Claude Desktop then writes a React and Vite prompt and Codex builds a searchable remote job board in about 20 minutes. The salary field is wrong, and applying sends users back to the source site. The video says BrowserAct sponsored it.",
     "published": "2026-05-26T07:01:13Z",
     "views": 270,
     "duration": "13:59",
@@ -26,6 +32,8 @@
   {
     "id": "b0Izj5Pv0sQ",
     "title": "I Tested the Bluehost AI Assistant: Here’s My Verdict",
+    "heading": "Bluehost AI assistant demo: models, research and writing",
+    "summary": "Explore the Bluehost AI assistant dashboard, model selection, web search, research reports, image generation and writing tools.",
     "published": "2026-05-14T08:41:04Z",
     "views": 1512,
     "duration": "15:01",
@@ -34,6 +42,8 @@
   {
     "id": "KLuU0Yxu9g4",
     "title": "Apify Agent Skills Makes It Easy To Scrape Websites!",
+    "heading": "Scrape Klook hotels with Apify Agent Skills in Claude Code",
+    "summary": "Install Apify Agent Skills into Claude Code and use them to scrape Klook for luxury hotels in Koh Samui for a travel website. The first run returned unrelated Walt Disney World results, and prices came back empty until check-in dates were added.",
     "published": "2026-02-24T08:06:20Z",
     "views": 1072,
     "duration": "14:23",
@@ -42,6 +52,8 @@
   {
     "id": "IlOJWfmlpGg",
     "title": "I Built a YouTube Competitor Spy Tool Using Claude Code",
+    "heading": "Claude Code and Apify: YouTube competitor analysis dashboard",
+    "summary": "A sponsored build of a YouTube competitor analysis dashboard in Claude Code using Apify agent skills to scrape channels. Claude writes scraper, topic analysis and HTML dashboard files, the scrape takes about ten minutes, and the dashboard loads after fixes and a top-up of Anthropic credits. The video says Apify sponsored it and gave $50 in credits. The numbers on screen do not match each other.",
     "published": "2026-02-06T08:12:44Z",
     "views": 345,
     "duration": "12:52",
@@ -50,6 +62,8 @@
   {
     "id": "mtpX58dNfCE",
     "title": "Apify Agent Skills In Claude Code - 10x More Power!",
+    "heading": "Apify agent skills tutorial: scrape leads in Cursor",
+    "summary": "Install the Apify agent skills globally with npm, add an Apify token to a .env file, and run them through OpenCode in Cursor to scrape AI startups in San Francisco and then pull their emails. The first Google Maps run returned no email addresses, so a second contact info scraper skill was needed.",
     "published": "2026-02-05T06:49:17Z",
     "views": 3775,
     "duration": "12:57",

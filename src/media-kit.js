@@ -13,12 +13,13 @@ export const mediaKit = {
   // Long-form videos only, as in the first screenshot.
   stats: [['138.5K', 'Thumbnail impressions'], ['6.4%', 'Click-through rate'], ['40.6K', 'Views'], ['2:26', 'Average view']],
   // Shares in percent. Age and gender are YouTube's share of signed-in viewers; the rest are shares of views.
+  // The first tab shows on load, so lead with how viewers find the videos.
   tabs: [
-    { label: 'Gender', unit: 'viewers', headline: '99 of every 100 viewers are men.', rows: [['Men', 98.9], ['Women', 1.1]] },
-    { label: 'Age', unit: 'viewers', headline: '68 of every 100 viewers are 25 to 44.', rows: [['25–34', 38.7], ['35–44', 29.5], ['45–54', 14], ['18–24', 13.7], ['55–64', 4.1], ['13–17', 0.1]] },
-    { label: 'Country', unit: 'views', headline: '19 of every 100 views come from the US.', rows: [['United States', 18.5], ['India', 10.2], ['Indonesia', 5.8], ['Brazil', 4], ['Germany', 3.4], ['Other countries', 58.1]] },
-    { label: 'Device', unit: 'views', headline: '58 of every 100 views are on a computer.', rows: [['Computer', 58.2], ['Phone', 38.4], ['TV', 2.1], ['Tablet', 1.3]] },
     { label: 'Discovery', unit: 'views', headline: '47 of every 100 views start with a YouTube search.', rows: [['YouTube search', 47.5], ['Home feed and subscriptions', 22.6], ['Other websites', 12.1], ['Direct or unknown', 6.7], ['Shorts feed', 5.6], ['Other YouTube pages', 5.5]] },
+    { label: 'Device', unit: 'views', headline: '58 of every 100 views are on a computer.', rows: [['Computer', 58.2], ['Phone', 38.4], ['TV', 2.1], ['Tablet', 1.3]] },
+    { label: 'Country', unit: 'views', headline: '19 of every 100 views come from the US.', rows: [['United States', 18.5], ['India', 10.2], ['Indonesia', 5.8], ['Brazil', 4], ['Germany', 3.4], ['Other countries', 58.1]] },
+    { label: 'Age', unit: 'viewers', headline: '68 of every 100 viewers are 25 to 44.', rows: [['25–34', 38.7], ['35–44', 29.5], ['45–54', 14], ['18–24', 13.7], ['55–64', 4.1], ['13–17', 0.1]] },
+    { label: 'Gender', unit: 'viewers', headline: '99 of every 100 viewers are men.', rows: [['Men', 98.9], ['Women', 1.1]] },
   ],
 };
 

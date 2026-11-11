@@ -5,13 +5,14 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
 import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
-import { channelUrl, validFeed } from './youtube.js';
+import { channelUrl, median, validFeed } from './youtube.js';
 import { topics } from './topics.js';
 import { validGithubRepositories } from './github-repositories.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import sponsoredSnapshot from './sponsored-snapshot.json';
+import sponsorBenchmark from './sponsor-benchmark.json';
 import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
@@ -238,7 +239,7 @@ function SectionHead({ title, children }) {
 
 const navLinks = {
   home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/search.html', 'Search'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
-  sponsors: [['/', 'Home'], ['/search.html', 'Search'], ['#media-kit', 'Audience'], ['#services', 'Packages'], ['#sponsored', 'Sponsored builds'], ['#work-together', 'Contact']],
+  sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#sponsored', 'Sponsored builds'], ['#services', 'Packages'], ['#faq', 'FAQ'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
 // These sections lived on the homepage before /sponsors.html; old links to them still arrive there.
@@ -346,13 +347,21 @@ function MockPost({ network, byline, children }) {
   );
 }
 
+const subscriberCount = channel => viewFormat.format(Number.isFinite(channel?.subscribers) ? channel.subscribers : youtubeSnapshot.channel.subscribers);
+
+// Rate card add-ons, priced on top of the formats above.
+const addOns = [
+  ['Extra YouTube Short', '$300'], ['Extra LinkedIn post', '$250'], ['Extra AI Income Lab post', '$200'], ['YouTube community post', '$200'], ['Raw video footage', '$500'],
+  ['Category exclusivity, 30 days', '+20%'], ['Category exclusivity, 90 days', '+40%'], ['Paid usage rights, 3 months', '$500'], ['Paid usage rights, 6 months', '$900'], ['Paid usage rights, 12 months', '$1,500'],
+];
+
 function Services({ channel }) {
   const ask = (label, choice) => () => {
     trackClick('services', label, '#work-together', 'ask_service')();
     window.dispatchEvent(new CustomEvent('choose-package', { detail: choice }));
   };
   const yourProduct = <span className="your-product">your product</span>;
-  const subscribers = Number.isFinite(channel?.subscribers) ? viewFormat.format(channel.subscribers) : '5.2K';
+  const subscribers = subscriberCount(channel);
   return (
     <section className="section" id="services">
       <div className="shell">
@@ -405,8 +414,13 @@ function Services({ channel }) {
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post', 'LinkedIn post')}>Ask about a LinkedIn post</a>
           </article>
         </div>
+        <div className="add-ons" id="add-ons">
+          <h3>Add-ons</h3>
+          <p>Standard prices cover organic publication. Running the content as a paid ad or through whitelisting needs paid usage rights.</p>
+          <dl>{addOns.map(([name, price]) => <div key={name}><dt>{name}</dt><dd>{price}</dd></div>)}</dl>
+        </div>
         <div className="services-custom">
-          <p>All prices are in USD. Campaign allocations apply when booking all four formats together. Need extra Shorts, category exclusivity, paid usage rights or a longer partnership? Ask for a tailored scope.</p>
+          <p>All prices are in USD. Campaign allocations apply when booking all four formats together. Want a longer partnership or a mix not listed here? Ask for a tailored scope.</p>
           <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
         </div>
       </div>
@@ -538,7 +552,7 @@ function ContactForm({ topic, setTopic, sponsors = false }) {
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
       <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder={sponsors ? 'Your product URL, who it helps, and your preferred launch date. Add a budget if you have one.' : 'Your product or idea, timeline, and budget if you have one.'} /></label>
       <label className="contact-trap" aria-hidden="true">Leave this empty<input name="hp" tabIndex="-1" autoComplete="off" /></label>
-      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : sponsors ? 'Request my proposal' : 'Send message'}</button>
+      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : sponsors ? 'Request a proposal' : 'Send message'}</button>
       {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
     </form>
   );
@@ -618,37 +632,84 @@ function WorkTogether({ campaign, sponsors = false }) {
   );
 }
 
+const audienceTab = label => mediaKit.tabs.find(tab => tab.label === label);
+const percent = share => `${share}%`;
+const topCountries = audienceTab('Country').rows.filter(([name]) => name !== 'Other countries');
+
+const sponsorFaqs = [
+  ['What does a sponsorship cost?', 'Formats start at $300 for an AI Income Lab post. A dedicated video is $1,500, and the four-format campaign is $2,250, saving $300 on separate bookings. All prices are in USD.'],
+  ['Do I see the video before it goes live?', 'Yes. One reasonable revision round is included before publication. The format, build idea, deliverables and timing are agreed before you book.'],
+  ['What if my product doesn’t work perfectly in the build?', 'I test it on a real project with the mistakes left in, so the video shows the troubleshooting and the verdict. In the Apify Klook build, for example, hotel prices came back empty until check-in dates were added.'],
+  ['How is the sponsorship disclosed?', 'Every sponsored build is clearly disclosed as sponsored, and it is listed on this page with the other sponsored builds.'],
+  ['Can we run the video as an ad or get category exclusivity?', 'Yes, as add-ons. Standard prices cover organic publication. Paid usage rights cost $500 for 3 months, $900 for 6 or $1,500 for 12. Category exclusivity adds 20% for 30 days or 40% for 90 days.'],
+  ['Where does the audience watch from?', `The top countries by views are ${topCountries.map(([name, share]) => `${name} (${percent(share)})`).join(', ')}. ${audienceTab('Device').headline} ${audienceTab('Age').headline}`],
+  ['Which products are a good fit?', 'AI software, developer tools, automation platforms, B2B SaaS and creator tech. It works best when there is something to build or test on camera.'],
+  ['Does it cost anything to ask?', 'No. Request a proposal or book a free 10-minute intro call. No payment is needed to enquire.'],
+];
+
+const sponsorFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.ai-automation-station.com/sponsors.html#faq',
+  mainEntity: sponsorFaqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+}).replace(/</g, '\\u003c');
+
+const multiples = ['twice', 'three times', 'four times', 'five times'];
+
+function SponsoredResults({ videos }) {
+  const typical = sponsorBenchmark.medianViews;
+  const sponsored = median(videos.map(video => video.views ?? 0));
+  const multiple = typical > 0 ? multiples[Math.min(Math.floor(sponsored / typical), 5) - 2] : undefined;
+  return (
+    <p className="sponsored-results">
+      The {videos.length} sponsored builds have a median of <strong>{formatViews(sponsored)}</strong> so far
+      {multiple ? <>, more than {multiple} the {viewFormat.format(typical)} median for the {sponsorBenchmark.videos} other videos published over the same months.</> : '.'}
+    </p>
+  );
+}
+
 function SponsorsMain({ channel, campaign }) {
   const sponsoredVideos = useSponsoredVideos();
   return (
     <>
       <section className="sponsors-intro shell" id="main-content" tabIndex="-1">
         <h1>Show what your AI product can actually do.</h1>
-        <p className="lede">Sponsor a practical build on AI Automation Station. Reach developers, founders and automation builders through YouTube and the AI Income Lab community, with a product demo they can follow.</p>
-        <div className="button-row"><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_hero', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Request a sponsorship proposal</a><a className="button button-quiet" href="#services">Explore packages</a></div>
+        <p className="lede">Sponsor a practical build on AI Automation Station. Your product gets a hands-on demo for {subscriberCount(channel)} YouTube subscribers and 2,900+ AI Income Lab members: developers, founders and automation builders.</p>
+        <div className="button-row"><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_hero', 'Request a proposal', '#work-together', 'request_proposal')}>Request a proposal</a><a className="button button-quiet" href="#services">Explore packages</a></div>
         <p className="sponsor-proof">Sponsored builds for <a href="#sponsored">Treg, DataForSEO, Bluehost, BrowserAct and Apify</a>.</p>
         <p className="fine-print">Formats from $300. Four-format campaign: $2,250, saving $300 on separate bookings.</p>
       </section>
 
       <MediaKit />
 
-      <div className="divider" aria-hidden="true" />
-      <Services channel={channel} />
-
-      <section className="sponsor-process shell" aria-labelledby="sponsor-process-heading">
-        <h2 id="sponsor-process-heading">From product brief to published build</h2>
-        <ol><li><strong>Share the use case</strong><p>Send your product URL, ideal customer and launch window.</p></li><li><strong>Agree the approach</strong><p>We choose the format, build idea, deliverables and timing before you book.</p></li><li><strong>Publish the practical demo</strong><p>Your product appears in a clearly disclosed sponsored build, with the agreed links and placements.</p></li></ol>
-      </section>
-
       {sponsoredVideos.length > 0 && <>
         <div className="divider" aria-hidden="true" />
         <section className="section" id="sponsored">
           <div className="shell">
             <SectionHead title="Sponsored builds">Disclosed brand collaborations, demonstrated through practical builds. Watch the workflow, the troubleshooting and the verdict.</SectionHead>
+            <SponsoredResults videos={sponsoredVideos} />
             <ul className="video-grid sponsored-grid">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+            <p className="sponsored-reach">Builds keep finding viewers after launch day. {audienceTab('Discovery').headline} Each video also gets its own page on this site with a summary and answers to common questions, and some became written guides, like <a href="/guides/treg-inside-grokbot.html">Treg inside GrokBot</a> and <a href="/guides/dataforseo-mcp-claude.html">the DataForSEO MCP guide</a>.</p>
           </div>
         </section>
       </>}
+
+      <div className="divider" aria-hidden="true" />
+      <Services channel={channel} />
+
+      <section className="sponsor-process shell" aria-labelledby="sponsor-process-heading">
+        <h2 id="sponsor-process-heading">From product brief to published build</h2>
+        <ol><li><strong>Share the use case</strong><p>Send your product URL, ideal customer and launch window.</p></li><li><strong>Agree the approach</strong><p>We choose the format, build idea, deliverables and timing before you book.</p></li><li><strong>Review, then publish</strong><p>You get one revision round before it goes live. Your product appears in a clearly disclosed sponsored build, with the agreed links and placements.</p></li></ol>
+      </section>
+
+      <div className="divider" aria-hidden="true" />
+      <section className="section" id="faq">
+        <div className="shell faq-grid">
+          <SectionHead title="Sponsor questions" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: sponsorFaqSchema }} />
+          <div className="faq-list">{sponsorFaqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question, placement: 'sponsors' })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+        </div>
+      </section>
 
       <div className="divider" aria-hidden="true" />
       <WorkTogether campaign={campaign} sponsors />
@@ -725,7 +786,7 @@ function App({ page = 'home' }) {
       <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={href.startsWith('#') && active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
         <button className="theme-toggle" type="button" data-theme-toggle="" aria-label="Switch to light mode" title="Switch to light mode"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" /></svg></button>
-        {sponsorsPage ? <a className="button button-primary nav-join" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Send <span className="nav-join-name">a sponsor brief</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
+        {sponsorsPage ? <a className="button button-primary nav-join" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a proposal', '#work-together', 'request_proposal')}><span className="nav-join-name">Request a proposal</span><span className="nav-join-short">Proposal</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
         }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
@@ -919,7 +980,7 @@ function App({ page = 'home' }) {
         <div className="footer-cta">
           <p>{sponsorsPage ? 'Make your product the next build.' : 'Build your next automation.'}</p>
           <div className="button-row">
-            {sponsorsPage ? <><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_footer', 'Request a sponsorship proposal', '#work-together', 'request_proposal')}>Request a sponsorship proposal</a><a className="footer-subscribe" href="#services">Compare packages</a></> : <><a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a><a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a></>}
+            {sponsorsPage ? <><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_footer', 'Request a proposal', '#work-together', 'request_proposal')}>Request a proposal</a><a className="footer-subscribe" href="#services">Compare packages</a></> : <><a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a><a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a></>}
           </div>
         </div>
         <div className="footer-directory">

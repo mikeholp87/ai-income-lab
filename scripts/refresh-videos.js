@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
-import { fetchUploads, sponsoredVideos } from '../src/archive.js';
+import { fetchUploads, sponsoredBenchmark, sponsoredVideos } from '../src/archive.js';
 import { curatedSummary, withSummaries } from '../src/curated-summary.js';
 import { validFeed } from '../src/youtube.js';
 import { refreshThumbnail } from './thumbnail.js';
@@ -38,7 +38,8 @@ try {
   // The homepage's prerendered sponsored section; /api/videos?sponsored keeps it current between builds.
   const sponsored = sponsoredVideos(uploads);
   await writeFile(new URL('../src/sponsored-snapshot.json', import.meta.url), `${JSON.stringify(sponsored, null, 2)}\n`);
-  console.log(`Updated the sponsored snapshot (${sponsored.length} videos).`);
+  await writeFile(new URL('../src/sponsor-benchmark.json', import.meta.url), `${JSON.stringify(sponsoredBenchmark(uploads), null, 2)}\n`);
+  console.log(`Updated the sponsored snapshot (${sponsored.length} videos) and its views benchmark.`);
 } catch (error) {
   console.warn(`Using the saved uploads snapshot: ${error.message}`);
 }

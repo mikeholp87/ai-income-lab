@@ -135,7 +135,15 @@ test('forms post if submitted before hydration, so emails and messages never lan
 test('the sponsors header CTA is named by its visible text', () => {
   const link = jsx.match(/\{sponsorsPage \? (<a className="button button-primary nav-join"[^]*?<\/a>)/)[1];
   assert.doesNotMatch(link, /aria-label/);
-  assert.match(link, />Send <span className="nav-join-name">a sponsor brief<\/span><\/a>$/);
+  assert.match(link, />Request a proposal<\/span><span className="nav-join-short">Proposal<\/span><\/a>$/);
+  // Only one label is displayed at a time, so the accessible name never reads both.
+  assert.match(css, /\.nav-join-short \{ display: none; \}/);
+  assert.match(media('(max-width: 640px)'), /\.nav-join-name \{ display: none; \}\s*\.nav-join-short \{ display: inline; \}/);
+});
+
+test('every sponsors-page proposal button uses the same label', () => {
+  assert.doesNotMatch(jsx, /sponsorship proposal|Request my proposal|sponsor brief/);
+  for (const placement of ['sponsors_navigation', 'sponsors_hero', 'sponsors_footer']) assert.match(jsx, new RegExp(`trackClick\\('${placement}', 'Request a proposal'`), placement);
 });
 
 test('the hero relates the two brands without an announcement pill', () => {
@@ -229,10 +237,10 @@ test('the homepage shows six featured guide cards and links the full guides page
   }
 });
 
-test('the sponsors page holds the media kit, services, sponsored videos and booking, in that order', () => {
+test('the sponsors page shows proof before price: media kit, sponsored videos, services, FAQ, then booking', () => {
   const start = jsx.indexOf('function SponsorsMain(');
   const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
-  const order = ['<h1>', '<MediaKit />', '<Services channel={channel} />', 'id="sponsored"', '<WorkTogether campaign={campaign} sponsors />'].map(text => page.indexOf(text));
+  const order = ['<h1>', '<MediaKit />', 'id="sponsored"', '<Services channel={channel} />', 'id="faq"', '<WorkTogether campaign={campaign} sponsors />'].map(text => page.indexOf(text));
   assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
   assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
@@ -250,6 +258,28 @@ test('every rate card format has a service card with its price', () => {
   for (const [name, price] of [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350']]) {
     assert.match(services, new RegExp(`<h3>${name}</h3>\\s*<p className="service-price">\\${price}`), name);
   }
+});
+
+test('the sponsors page structured data offers the same formats and prices as the service cards', async () => {
+  const html = await readFile(new URL('../sponsors.html', import.meta.url), 'utf8');
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([^]*?)<\/script>/)[1])['@graph'];
+  const offers = graph.find(node => node['@type'] === 'Service').hasOfferCatalog.itemListElement;
+  const services = jsx.slice(jsx.indexOf('function Services('), jsx.indexOf('function MediaKit('));
+  const cards = [...services.matchAll(/<h3>([^<]+)<\/h3>\s*<p className="service-price">\$([\d,]+)/g)].map(([, name, price]) => [name, price.replace(/,/g, '')]);
+  assert.equal(cards.length, 5);
+  assert.deepEqual(offers.map(offer => [offer.name, offer.price]), cards);
+  assert.match(html, /og:image" content="https:\/\/www\.ai-automation-station\.com\/og-sponsors\.jpg/);
+});
+
+test('the sponsor FAQ is marked up as an FAQPage, and its add-on prices match the add-ons list', () => {
+  assert.match(jsx, /'@id': 'https:\/\/www\.ai-automation-station\.com\/sponsors\.html#faq'/);
+  assert.match(jsx, /dangerouslySetInnerHTML=\{\{ __html: sponsorFaqSchema \}\}/);
+  const faq = jsx.slice(jsx.indexOf('const sponsorFaqs = ['), jsx.indexOf('const sponsorFaqSchema'));
+  assert.doesNotMatch(faq, /—/);
+  const addOns = jsx.slice(jsx.indexOf('const addOns = ['), jsx.indexOf('function Services('));
+  for (const [months, price] of [['3', '$500'], ['6', '$900'], ['12', '$1,500']]) assert.ok(addOns.includes(`['Paid usage rights, ${months} months', '${price}']`), months);
+  for (const [days, share] of [['30', '20%'], ['90', '40%']]) assert.ok(addOns.includes(`['Category exclusivity, ${days} days', '+${share}']`), days);
+  assert.match(faq, /Paid usage rights cost \$500 for 3 months, \$900 for 6 or \$1,500 for 12\. Category exclusivity adds 20% for 30 days or 40% for 90 days\./);
 });
 
 test('campaign allocations total the actual bundle price and preserve the published standalone rates', () => {

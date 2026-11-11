@@ -249,6 +249,18 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .your-product { padding: 1px 8px; border: 1px dashed var(--muted); border-radius: 6px; color: var(--signal); white-space: nowrap; }
 .mock-actions { display: flex; gap: 28px; color: var(--muted); }
 .mock-actions svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.add-ons { display: grid; gap: 12px; margin-top: 48px; padding: 36px; border: 1px solid var(--line-strong); border-radius: 14px; }
+.add-ons h3 { font: 600 26px/1.15 var(--sans); letter-spacing: -.01em; }
+.add-ons p { color: var(--body); }
+.add-ons dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 0 32px; margin-top: 8px; }
+.add-ons dl div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.add-ons dd { color: var(--signal); font: 500 15px var(--mono); white-space: nowrap; }
+.sponsored-results { max-width: 72ch; margin-top: 20px; padding: 12px 16px; border-left: 2px solid var(--signal); background: var(--panel); color: var(--body); }
+.sponsored-results + .video-grid { margin-top: 40px; }
+.sponsored-results strong { color: var(--text); }
+.sponsored-reach { max-width: 72ch; margin-top: 32px; color: var(--body); }
+.sponsored-reach a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.nav-join-short { display: none; }
 .services-custom { display: grid; justify-items: center; gap: 4px; margin-top: 64px; text-align: center; }
 .services-custom .button-row { justify-content: center; margin-top: 24px; }
 /* Four sponsored videos fill one row; tablets and phones fall back to the .video-grid rules below. */
@@ -500,6 +512,8 @@ a.video-card:hover h3 { color: var(--signal); }
   .site-header .brand { font-size: 17px; text-transform: none; letter-spacing: normal; }
   .site-header .brand span { display: none; }
   .nav-join-name { display: none; }
+  .nav-join-short { display: inline; }
+  .add-ons { padding: 24px; }
   .nav-actions { gap: 6px; }
   .nav-mobile summary { padding-inline: 14px; }
   .consent-banner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 8px 12px; }
@@ -550,6 +564,8 @@ a.video-card:hover h3 { color: var(--signal); }
 .notes-signup--hero .notes-signup-privacy { margin-top: 10px; color: var(--muted); font: 400 12px/1.5 var(--sans); }
 .notes-signup--hero a { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 359px) {
+  .nav-actions .nav-join { padding-inline: 10px; }
+  .nav-mobile summary { padding-inline: 10px; }
   .notes-signup--hero > .notes-signup-pill { flex-direction: column; border-radius: 24px; }
   .notes-signup--hero .button { justify-content: center; }
 }

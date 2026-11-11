@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos, videoIndex } from './archive.js';
+import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredBenchmark, sponsoredVideos, videoIndex } from './archive.js';
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
 import { videoTools } from './video-tools.js';
@@ -12,6 +12,7 @@ import { durationSeconds, validChapters } from './youtube.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
 import { topicBySlug, topics } from './topics.js';
+import { curatedSummary, videoHeading } from './curated-summary.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
@@ -599,7 +600,29 @@ test('paid-promotion flags select sponsored builds without including ordinary vi
     { id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: 'PT18M3S', embeddable: true, sponsored: true, chapters: [] },
     { id: 'bbbbbbbbbbb', title: 'Unpaid', published: '2026-10-19T00:00:00Z', views: 9, duration: 'PT1M', embeddable: true, sponsored: false },
   ];
-  assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+  assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', heading: 'Paid', summary: '', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+});
+
+test('sponsored cards carry the same heading and written summary as the homepage cards', async () => {
+  const snapshot = JSON.parse(await readFile(new URL('./sponsored-snapshot.json', import.meta.url), 'utf8'));
+  for (const video of snapshot) {
+    assert.equal(video.heading, videoHeading(video), video.id);
+    assert.ok(video.summary && video.summary === curatedSummary(video), `${video.id} needs a written summary`);
+  }
+});
+
+test('the sponsored views benchmark only counts other public uploads from the same span', () => {
+  const day = n => `2026-0${n}-01T00:00:00Z`;
+  const videos = [
+    { id: 'sponsored01', title: 'A', published: day(2), views: 900, sponsored: true },
+    { id: 'sponsored02', title: 'B', published: day(6), views: 1500, sponsored: true },
+    { id: 'ordinary001', title: 'C', published: day(3), views: 100 },
+    { id: 'ordinary002', title: 'D', published: day(4), views: 300 },
+    { id: 'ordinary003', title: 'E', published: day(5), views: 500 },
+    { id: 'tooearly001', title: 'F', published: day(1), views: 99999 },
+    { id: 'privatevid1', title: 'G', published: day(4), views: 99999, public: false },
+  ];
+  assert.deepEqual(sponsoredBenchmark(videos), { medianViews: 300, videos: 3 });
 });
 
 test('reviewed spoken disclosures add public sponsored builds without treating affiliate tutorials as paid', async () => {

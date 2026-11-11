@@ -67,6 +67,12 @@ export function clock(total) {
 // "PT1H2M3S" → "1:02:03". Empty for missing or zero lengths.
 export const formatDuration = iso => durationSeconds(iso) ? clock(durationSeconds(iso)) : '';
 
+export function median(values) {
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = sorted.length >> 1;
+  return sorted.length % 2 ? sorted[middle] : Math.round((sorted[middle - 1] + sorted[middle]) / 2);
+}
+
 // Description lines like "01:38 - Speaker Pitch Emails" → [{ seconds: 98, label }]. Same rule YouTube
 // uses to show chapters: at least three, starting at 0:00; anything else is just a time in the text.
 export function parseChapters(description) {

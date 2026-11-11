@@ -1,10 +1,20 @@
 {
   "videos": [
     {
+      "id": "tv_A-CN76Cg",
+      "title": "I Gave GrokBot My Resume and Let It Do the Work",
+      "published": "2026-11-11T12:25:05Z",
+      "views": 6,
+      "duration": "10:06",
+      "summary": "Mike builds a GrokBot job search agent with the Treg plugin. It rewrites his resume for ATS checks and queues remote job emails for his approval.",
+      "embeddable": true,
+      "heading": "I Gave GrokBot my Resume and let it do the Work"
+    },
+    {
       "id": "V3ETwJAR5-I",
       "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
       "published": "2026-11-10T04:36:16Z",
-      "views": 141,
+      "views": 140,
       "duration": "14:05",
       "summary": "See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.",
       "embeddable": true,
@@ -24,7 +34,7 @@
       "id": "IV6q81wRay4",
       "title": "New HERDR Desktop App Is A Game Changer!",
       "published": "2026-11-07T07:05:11Z",
-      "views": 13572,
+      "views": 13596,
       "duration": "11:17",
       "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
       "embeddable": true,
@@ -44,7 +54,7 @@
       "id": "phVQuQMojA8",
       "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
       "published": "2026-11-03T07:48:25Z",
-      "views": 443,
+      "views": 444,
       "duration": "4:17",
       "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
       "embeddable": true,
@@ -54,26 +64,16 @@
       "id": "0iTOlQjNdhs",
       "title": "I Fixed My Android TV With Claude Code + CleanYourTV",
       "published": "2026-11-02T02:42:16Z",
-      "views": 3919,
+      "views": 3925,
       "duration": "15:01",
       "summary": "Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.",
       "embeddable": true,
       "heading": "CleanYourTV and Claude Code: customize Android TV"
-    },
-    {
-      "id": "rMRsVyIsZCU",
-      "title": "I Tested This FREE Claude Design Alternative (It's Good!)",
-      "published": "2026-10-30T09:57:49Z",
-      "views": 665,
-      "duration": "6:54",
-      "summary": "Build Open Design, a free open-source alternative to Claude Design, from source on Linux and use it with DeepSeek V4 Flash. A 20-second paper cutout motion video takes about a minute for roughly a cent, and a slide deck built from a YouTube transcript takes three to four minutes for about 16 cents and exports to HTML. Mac and Windows have downloads, while Linux needs a source build with Node and corepack fixes.",
-      "embeddable": true,
-      "heading": "Open Design with DeepSeek V4 Flash: motion video and slides"
     }
   ],
   "channel": {
     "subscribers": 5400,
     "views": 581114,
-    "videos": 363
+    "videos": 364
   }
 }

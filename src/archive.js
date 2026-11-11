@@ -1,4 +1,4 @@
-import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
+import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, median, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
 import { listingSummaries, videoSummaries } from './video-summaries.js';
@@ -74,7 +74,16 @@ export async function fetchUploads(key, signal = AbortSignal.timeout(8000)) {
 
 // Include reviewed spoken disclosures as well as YouTube's paid-promotion flag; only public uploads are eligible.
 export const sponsoredVideos = videos => videos.filter(video => video.public !== false && (video.sponsored || Object.hasOwn(sponsorDisclosures, video.id)))
-  .map(({ id, title, published, views, duration, embeddable }) => ({ id, title, published, views, duration: formatDuration(duration), embeddable }));
+  .map(video => ({ id: video.id, title: video.title, heading: videoHeading(video), summary: curatedSummary(video) || video.summary || '', published: video.published, views: video.views, duration: formatDuration(video.duration), embeddable: video.embeddable }));
+
+// The sponsors page compares sponsored builds with the other uploads published over the same span, so both have had similar time to collect views.
+export function sponsoredBenchmark(videos) {
+  const sponsored = sponsoredVideos(videos);
+  const ids = new Set(sponsored.map(video => video.id));
+  const times = sponsored.map(video => Date.parse(video.published));
+  const others = videos.filter(video => video.public !== false && !ids.has(video.id) && Date.parse(video.published) >= Math.min(...times) && Date.parse(video.published) <= Math.max(...times));
+  return { medianViews: others.length ? median(others.map(video => video.views ?? 0)) : 0, videos: others.length };
+}
 
 export const perPage = 15;
 export const pageCount = videos => Math.max(1, Math.ceil(videos.length / perPage));
