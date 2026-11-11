@@ -346,3 +346,27 @@ test('site page titles end in the same brand as the guides', async () => {
   }
   assert.match(await read('api/videos.js'), /<title>\$\{title\} \| Mike Holp<\/title>/);
 });
+
+test('the MCP and AI agent explainers are listed everywhere a guide should be', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  const topics = await read('src/topics.js');
+  for (const slug of ['what-is-mcp', 'what-is-an-ai-agent']) {
+    const html = await read(`public/guides/${slug}.html`);
+    assert.match(hub, new RegExp(`<a href="/guides/${slug}.html">`), slug);
+    assert.match(sitemap, new RegExp(`<loc>https://www.ai-automation-station.com/guides/${slug}.html</loc>`), slug);
+    assert.match(llms, new RegExp(`/guides/${slug}\\.html\\)`), slug);
+    assert.match(topics, new RegExp(`'/guides/${slug}.html'`), slug);
+    assert.match(html, /<p class="meta">Explainer · [^<]*<a href="\/about.html" rel="author">Mike Holp<\/a> · Published <time datetime="2026-11-11">/, slug);
+    assert.ok(html.match(/<title>([^<]*)<\/title>/)[1].length <= 60, slug);
+    assert.match(html, /<h2 id="sources">Sources<\/h2>/, slug);
+  }
+  // Search terms with demand and no page before November 11, 2026 (Serpstat, US).
+  assert.match(await read('public/guides/what-is-mcp.html'), /<h1>What is MCP\? /);
+  assert.match(await read('public/guides/what-is-an-ai-agent.html'), /<h1>What is an AI agent\? /);
+  assert.match(await read('public/guides/dataforseo-mcp-claude.html'), /<h1>DataForSEO MCP: build an AI SEO agent in Claude Code<\/h1>/);
+  const agency = await read('public/guides/ai-automation-services-small-business.html');
+  assert.match(agency, /<title>AI automation agency: /);
+  assert.match(agency, /<h2 id="agency">Starting an AI automation agency/);
+});

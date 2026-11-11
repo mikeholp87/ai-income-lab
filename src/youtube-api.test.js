@@ -6,12 +6,12 @@ const playlist = { items: [{ snippet: { resourceId: { videoId: 'aaaaaaaaaaa' }, 
 const details = { items: [{ id: 'aaaaaaaaaaa', statistics: { viewCount: '9191' }, contentDetails: { duration: 'PT12M4S' }, status: { embeddable: true } }] };
 const channel = { items: [{ statistics: { subscriberCount: '5120', viewCount: '498055', videoCount: '336' } }] };
 const feed = {
-  videos: [{ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-05T12:37:47Z', views: 9191, duration: '12:04', summary: 'Build an agent.', embeddable: true }],
+  videos: [{ id: 'aaaaaaaaaaa', title: 'A build', heading: 'A build', published: '2026-10-05T12:37:47Z', views: 9191, duration: '12:04', summary: 'Build an agent.', embeddable: true }],
   channel: { subscribers: 5120, views: 498055, videos: 336 },
 };
 const upstream = input => Response.json(new URL(input).pathname.endsWith('/playlistItems') ? playlist : new URL(input).pathname.endsWith('/channels') ? channel : details);
 const rss = '<feed><entry><yt:videoId>aaaaaaaaaaa</yt:videoId><title>A build</title><published>2026-10-05T12:37:47Z</published><media:description>Build an agent.</media:description><media:statistics views="9191"/></entry></feed>';
-const rssFeed = { videos: [{ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-05T12:37:47Z', views: 9191, summary: 'Build an agent.' }], channel: null };
+const rssFeed = { videos: [{ id: 'aaaaaaaaaaa', title: 'A build', heading: 'A build', published: '2026-10-05T12:37:47Z', views: 9191, summary: 'Build an agent.' }], channel: null };
 
 function hangUntilAbort(signal) {
   signal.throwIfAborted();

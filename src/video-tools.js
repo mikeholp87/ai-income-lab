@@ -3,6 +3,7 @@
 export const videoTools = {
   "phVQuQMojA8": ["Claude Code", "Tasky", "GitHub"],
   "0iTOlQjNdhs": ["Claude Code", "CleanYourTV", "Docker"],
+  "tv_A-CN76Cg": ["GrokBot", "Treg", "ChatGPT"],
   "-L0CVvJMzZI": ["OpenCode","OpenCode Zen","Vercel","skills.sh","Codex","Google Search Console","IndexNow","ChatGPT"],
   "-viL36QDF_8": ["Gemini 3","Google AI Studio","Google Cloud Console"],
   "0jzTOUv_B04": ["Trakkr","Codex","ChatGPT","IndexNow"],

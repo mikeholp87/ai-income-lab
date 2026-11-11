@@ -1,4 +1,3 @@
-import { watchSeo } from './watch-seo.js';
 import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
@@ -6,11 +5,10 @@ import { listingSummaries, videoSummaries } from './video-summaries.js';
 import { watchNotes } from './watch-notes.js';
 import { watchPageCopy } from './watch-page-copy.js';
 import { videoChapters } from './video-chapters.js';
-import { watchHeading } from './watch-title.js';
 import { toolLink } from './tool-links.js';
 import { sponsorDisclosures } from './sponsor-disclosures.js';
 import { videoTools } from './video-tools.js';
-import { curatedSummary } from './curated-summary.js';
+import { curatedSummary, searchTitle, videoHeading } from './curated-summary.js';
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
@@ -223,8 +221,6 @@ const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`
 const noMaxresThumbnail = new Set(['0jzTOUv_B04', 'F5PwcTwtEos', 'w_MoA8lpWTg', 'HlPdlZh0AHM', 'UnnN2i90ALg', 'rZh4zVT2LKY', '1TPm7B5oStw']);
 const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`]), thumbnailUrl(video)];
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
-const searchTitle = video => watchPageCopy[video.id]?.title || watchNotes[video.id]?.searchTitle || videoNotes[video.id]?.searchTitle || videoSummaries[video.id]?.searchTitle || watchSeo[video.id]?.title;
-const videoHeading = video => searchTitle(video) || watchHeading(video.title);
 const toolItem = tool => {
   const link = toolLink(tool);
   return link ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
@@ -328,7 +324,7 @@ export const guides = [
   [/claude routines|second brain|odysseus|ai assistant|apify/i, '/guides/ai-agent-workflow.html', 'AI agent workflow: choose tools, add checks, keep control'],
   [/fillout|airtable/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
   [/\bskool\b|rat race|ai skills you need to master/i, '/guides/make-money-with-ai-no-experience.html', 'Make money with AI with no experience'],
-  [/\bleads?\b|agency/i, '/guides/ai-automation-services-small-business.html', 'How to sell AI automation services to small businesses'],
+  [/\bleads?\b|agency/i, '/guides/ai-automation-services-small-business.html', 'AI automation agency: sell services to small businesses'],
   [/ai automations?\b|automation tools/i, '/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
   [/\bai agents?\b/i, '/guides/no-code-ai-agent-builder.html', 'No-code AI agent builder: compare n8n, Make, Zapier and more'],
   [/\bmoney\b|\bincome\b|side hustle|monetiz|\bclients?\b/i, '/guides/make-money-with-ai-fast.html', 'How to make money with AI fast: the honest path'],
@@ -578,6 +574,8 @@ const guideVideoTopics = {
   '/guides/runable-audit-website.html': /lovable|base44|replit|deploy a saas with vercel/i,
   '/guides/trakkr-codex-visibility-workflow.html': /dataforseo|grok bot for seo|codex to fix my seo|openseo/i,
   '/guides/treg-inside-grokbot.html': /grok bot for seo|5 ai agents you need to build with grok|dataforseo|virtual office for my ai agents/i,
+  '/guides/what-is-an-ai-agent.html': /5 ai agents you need to build|openai's new agent builder|lindy ai agent tutorial|mindstudio ai agents/i,
+  '/guides/what-is-mcp.html': /vidiq claude mcp|ai visibility tool nobody|build your own ai seo agent|apify agent skills/i,
 };
 
 export function guideVideos(html, path, videos, count = 4) {

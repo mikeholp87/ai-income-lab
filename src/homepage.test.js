@@ -27,8 +27,10 @@ test('plans are three equal cards on desktop and stack on tablets and phones, pr
 
 test('product card links align at the bottom of each card without competing with Join buttons', () => {
   assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*\{tool\.url && <a className="button button-primary" href=\{tool\.url\}/);
-  assert.match(jsx, /name: 'TubeAnalytics',\s*url: null/);
-  assert.match(jsx, /TubeAnalytics is temporarily unavailable/);
+  // TubeAnalytics is unavailable, so it gets one line in the intro rather than a card.
+  assert.doesNotMatch(jsx, /name: 'TubeAnalytics'/);
+  assert.match(jsx, /TubeAnalytics, is temporarily unavailable/);
+  assert.match(css, /\.tool:only-child \{ grid-column: 1 \/ -1;/);
   assert.match(jsx, /<summary aria-label="Site menu">Menu<\/summary>/);
   assert.doesNotMatch(jsx, /\['#tools',/);
   assert.match(css, /\.tool ul \{[^}]*margin: 4px 0 0;/);
@@ -316,9 +318,34 @@ test('every homepage video shows a description, preferring the written summary',
   // A video whose only curated text is its listing summary; videos with a fuller written summary use that instead.
   const listingOnly = Object.keys(listingSummaries).find(id => !videoSummaries[id]?.summary && !videoNotes[id]?.summary && !watchNotes[id]?.summary && !watchSeo[id]?.summary);
   // Every video may now have a fuller summary, so there may be none left to check.
-  if (listingOnly) assert.equal(withSummaries({ videos: [{ id: listingOnly, summary: '' }] }).videos[0].summary, listingSummaries[listingOnly]);
-  const [full] = withSummaries({ videos: [{ id: 'rMRsVyIsZCU', summary: '' }] }).videos;
+  if (listingOnly) assert.equal(withSummaries({ videos: [{ id: listingOnly, title: 'A video', summary: '' }] }).videos[0].summary, listingSummaries[listingOnly]);
+  const [full] = withSummaries({ videos: [{ id: 'rMRsVyIsZCU', title: 'A video', summary: '' }] }).videos;
   assert.equal(full.summary, videoSummaries.rMRsVyIsZCU.summary);
   assert.match(jsx, /\{video\.summary && <p className="player-summary">\{video\.summary\}<\/p>\}/);
   assert.match(await readFile(new URL('../api/youtube.js', import.meta.url), 'utf8'), /feed: withSummaries\(feed\)/);
+});
+
+test('homepage video cards use the watch-page heading and show a two-line description', async () => {
+  const card = jsx.slice(jsx.indexOf('function VideoCard'), jsx.indexOf('function VideoGrid'));
+  assert.match(card, /<h3>\{video\.heading \|\| video\.title\}<\/h3>\s*\{video\.summary && <p className="card-summary">\{video\.summary\}<\/p>\}/);
+  assert.match(jsx, /'watch_video'\)\}>\{video\.heading \|\| video\.title\}<\/a><\/h2>/);
+  assert.match(css, /\.card-summary \{[^}]*-webkit-line-clamp: 2;/);
+  assert.match(media('(max-width: 640px)'), /\.video-card \.card-summary \{ grid-row: 3; grid-column: 1 \/ -1;/);
+  const feed = JSON.parse(await readFile(new URL('./youtube-snapshot.json', import.meta.url), 'utf8'));
+  for (const video of feed.videos) assert.equal(typeof video.heading, 'string', video.id);
+});
+
+test('the homepage FAQPage data is built from the visible questions and answers', async () => {
+  const { readFile: read } = await import('node:fs/promises');
+  const html = await read(new URL('../dist/index.html', import.meta.url), 'utf8').catch(() => null);
+  if (!html) return;
+  const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(data => data['@type'] === 'FAQPage');
+  assert.ok(faq, 'FAQPage JSON-LD missing from the prerendered homepage');
+  const visible = [...html.matchAll(/<details[^>]*><summary>(.*?)<span/g)].map(match => match[1].replace(/&#x27;|&#39;/g, "'").replace(/&amp;/g, '&'));
+  assert.deepEqual(faq.mainEntity.map(item => item.name), visible);
+});
+
+test('the member count says when it was taken', () => {
+  assert.match(jsx, /const membersAsOf = '[A-Z][a-z]+ \d{4}';/);
+  assert.match(jsx, /<p className="stats-note shell">Member count from Skool as of \{membersAsOf\}/);
 });

@@ -214,6 +214,16 @@ export const cards = {
   'runable-audit-website': {"title":"A Runable audit-service site from brief to MVP","steps":[["Brief","Write the business request"],["Build","Review the generated MVP"],["Check","Payments still need work"]],"note":"Inquiry delivery and fulfillment were unfinished."},
   'trakkr-codex-visibility-workflow': {"title":"Trakkr and Codex: visibility, crawlers and visits","steps":[["Track","Inspect tracked questions"],["Distinguish","Visibility is not visits"],["Review","Do not auto-publish fixes"]],"note":"llms.txt is not treated as a ranking lever."},
   'treg-inside-grokbot': {"title":"Treg in GrokBot: data tools with a spending check","steps":[["Connect","Add the Treg plugin"],["Price","Inspect the endpoint first"],["Approve","Paid calls are a separate decision"]],"note":"Provider billing is not the same as catalog access."},
+  'what-is-mcp': {
+    title: 'What is MCP? One standard plug for AI tools',
+    steps: [['Host', 'Claude Code, Codex or ChatGPT'], ['Server', 'Offers tools, data and prompts'], ['Check', 'Start read-only, approve writes']],
+    note: 'Try it: the official filesystem server in a test folder.',
+  },
+  'what-is-an-ai-agent': {
+    title: 'What is an AI agent? A model using tools in a loop',
+    steps: [['Goal', 'Instructions and allowed tools'], ['Loop', 'Pick a tool, read the result'], ['Stop', 'Done, ask a person or hit a limit']],
+    note: 'Use one when the steps cannot be planned in advance.',
+  },
 };
 
 const escape = text => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');

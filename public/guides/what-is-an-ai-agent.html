@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>What is an AI agent? Definition, examples and first build</title><meta name="description" content="An AI agent uses a language model and tools to choose its own steps toward a goal. How agents work, real examples, when not to use one and how to start."><link rel="canonical" href="https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="article"><meta property="og:title" content="What is an AI agent? Definition, examples and first build"><meta property="og:description" content="An AI agent uses a language model and tools to choose its own steps toward a goal. How agents work, real examples, when not to use one and how to start."><meta property="og:url" content="https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html"><meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/what-is-an-ai-agent.webp"><meta name="twitter:card" content="summary_large_image"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script><script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script><meta property="og:site_name" content="AI Automation Station">
+<meta property="article:published_time" content="2026-11-11">
+<meta property="article:modified_time" content="2026-11-11">
+<meta name="twitter:title" content="What is an AI agent? Definition, examples and first build">
+<meta name="twitter:description" content="An AI agent uses a language model and tools to choose its own steps toward a goal. How agents work, real examples, when not to use one and how to start.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/what-is-an-ai-agent.webp">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is an AI agent? Definition, examples and first build","description":"An AI agent uses a language model and tools to choose its own steps toward a goal. How agents work, real examples, when not to use one and how to start.","url":"https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html","image":"https://www.ai-automation-station.com/assets/guides/what-is-an-ai-agent.webp","datePublished":"2026-11-11","dateModified":"2026-11-11","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html","sameAs":["https://www.youtube.com/@ai-automation-station","https://github.com/mikeholp87","https://www.linkedin.com/in/mikeholp","https://x.com/mikeholp"]},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"inLanguage":"en","about":[{"@type":"Thing","name":"AI agent"},{"@type":"Thing","name":"Agentic AI"}],"mentions":[{"@type":"Thing","name":"Claude Code","sameAs":"https://code.claude.com/"},{"@type":"Thing","name":"n8n","sameAs":"https://n8n.io/"},{"@type":"Thing","name":"Make","sameAs":"https://www.make.com/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"What is an AI agent? Definition, examples and first build","item":"https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html#faq-schema","url":"https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html","mainEntity":[{"@type":"Question","name":"What is an AI agent in simple terms?","acceptedAnswer":{"@type":"Answer","text":"An AI agent is a program that uses a language model to reach a goal by deciding its own steps. It picks a tool, checks the result and repeats until the task is done."}},{"@type":"Question","name":"Is ChatGPT an AI agent?","acceptedAnswer":{"@type":"Answer","text":"A plain chat answer is not an agent. When ChatGPT or Codex uses tools in a loop to finish a task, such as editing files and rerunning tests until they pass, it is acting as an agent."}},{"@type":"Question","name":"What is the difference between an AI agent and an AI workflow?","acceptedAnswer":{"@type":"Answer","text":"A workflow follows steps written in advance, even if some steps use AI. An agent decides its steps while it runs. Many useful systems combine both."}},{"@type":"Question","name":"What are examples of AI agents?","acceptedAnswer":{"@type":"Answer","text":"Coding agents such as Claude Code and Codex, research and scheduling agents such as Hermes Agent, phone agents built in Vapi, and agents made in builders such as Make, n8n and Lindy."}},{"@type":"Question","name":"Do I need to code to build an AI agent?","acceptedAnswer":{"@type":"Answer","text":"No. Builders such as n8n, Make and Zapier let you create an agent with a model, tools and instructions. Coding helps when you need custom tools or tighter control."}},{"@type":"Question","name":"Are AI agents safe to run on their own?","acceptedAnswer":{"@type":"Answer","text":"Only within limits you set. Give an agent the fewest tools it needs, validate its output, and require approval for anything that sends, deletes or spends."}}]}</script>
+</head>
+<body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav></details></header><main id="content">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides.html">Guides</a></li><li><span aria-current="page">What is an AI agent? Definition, examples and first build</span></li></ol></nav>
+<p class="meta">Explainer · By <a href="/about.html" rel="author">Mike Holp</a> · Published <time datetime="2026-11-11">November 11, 2026</time> · Updated <time datetime="2026-11-11">November 11, 2026</time> · Sources checked November 11, 2026</p>
+<h1>What is an AI agent? Definition, examples and first build</h1>
+<p>"Agent" gets stuck on everything from chatbots to fully automated businesses. The useful definition is narrower, and it tells you when an agent will help and when it will just cost more.</p>
+<p>This guide gives that definition, the parts every agent shares, examples I have tested, and a safe first build.</p>
+<figure><img src="/assets/guides/what-is-an-ai-agent.webp" srcset="/assets/guides/sizes/what-is-an-ai-agent-640.webp 640w, /assets/guides/what-is-an-ai-agent.webp 1200w" sizes="(max-width: 1160px) calc(100vw - 40px), 1120px" alt="What is an AI agent card: a goal with instructions and allowed tools, a loop that picks a tool and reads the result, and a stop when done, when a person is needed or at a limit." width="1200" height="630" loading="eager" fetchpriority="high"><figcaption>An agent is a model using tools in a loop until the job is done.</figcaption></figure>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#definition">What an AI agent is</a></li><li><a href="#parts">The four parts of every agent</a></li><li><a href="#compare">Agent vs chatbot vs automation</a></li><li><a href="#examples">Examples I have tested</a></li><li><a href="#when">When an agent is the wrong tool</a></li><li><a href="#build">How to build your first agent</a></li><li><a href="#risks">Costs and risks</a></li><li><a href="#limits">What this guide does not cover</a></li></ul></nav>
+<p><strong>Quick answer:</strong> An AI agent is software that uses a language model and a set of tools to work toward a goal, choosing its own next step after each result. A workflow follows steps you wrote in advance. Use an agent when the steps cannot be planned ahead, and add checks before it acts.</p>
+<h2 id="definition">What an AI agent is</h2>
+<p>An AI agent is software that uses a language model to work toward a goal by choosing its own steps. It reads the task, picks a tool, looks at the result and decides what to do next, until the task is done or it hits a limit.</p>
+<p>Anthropic draws the line clearly. In a <strong>workflow</strong>, the model and tools follow paths written in advance. In an <strong>agent</strong>, the model directs its own process and tool use. OpenAI describes agents the same way: they plan and complete tasks using tools, and keep context across steps.</p>
+<p>So the test is simple. If you could draw every step before it runs, it is a workflow with AI in it. If the model decides the steps while it runs, it is an agent.</p>
+<h2 id="parts">The four parts of every agent</h2>
+<ol>
+<li><strong>Instructions.</strong> What the agent is for, and the rules it must follow.</li>
+<li><strong>A model.</strong> The language model that reads the input and picks the next action.</li>
+<li><strong>Tools.</strong> The actions it may take, such as searching, reading files, calling an API or sending a message. Many tools now connect through <a href="/guides/what-is-mcp.html">MCP servers</a>.</li>
+<li><strong>A loop with a stop.</strong> The agent checks each tool result and repeats until it finishes, needs a person, or reaches a limit such as a maximum number of steps.</li>
+</ol>
+<p>Anthropic's summary is that agents are typically just models using tools based on feedback in a loop. Most of the work in a good agent goes into clear tools and clear stopping points.</p>
+<h2 id="compare">AI agent vs chatbot vs automation</h2>
+<table>
+<thead>
+<tr><th>Compare</th><th>Chatbot</th><th>Automation workflow</th><th>AI agent</th></tr>
+</thead>
+<tbody>
+<tr><td>What it does</td><td>Answers a message</td><td>Runs fixed steps on a trigger</td><td>Chooses steps toward a goal</td></tr>
+<tr><td>Uses tools</td><td>Sometimes</td><td>Yes, in a fixed order</td><td>Yes, picked at run time</td></tr>
+<tr><td>Same input, same path</td><td>Not applicable</td><td>Yes</td><td>Not guaranteed</td></tr>
+<tr><td>How you check it</td><td>Read the answer</td><td>Run each branch once</td><td>Run many sample tasks and review the steps</td></tr>
+</tbody>
+</table>
+<p>The same product can be all three. ChatGPT answering a question is a chatbot. Codex editing files, running tests and fixing what failed is acting as an agent.</p>
+<h2 id="examples">Examples of AI agents I have tested</h2>
+<p>These are agents I gave real tasks on the channel. Each link goes to the recording.</p>
+<ul>
+<li><strong>Coding agents.</strong> Claude Code, Codex and OpenCode read a project, edit files and run commands until a change works. <a href="/guides/claude-code-for-beginners.html">Claude Code for beginners</a></li>
+<li><strong>Personal and research agents.</strong> Hermes Agent and GrokBot run scheduled jobs and research tasks, such as outreach lists and sponsor research. <a href="/watch/ByncCPWeGNY">Hermes Agent desktop setup</a></li>
+<li><strong>Voice agents.</strong> A Vapi assistant answers a phone number and hands results to a Make.com scenario. <a href="/guides/vapi-voice-agent-tutorial.html">Vapi voice agent tutorial</a></li>
+<li><strong>No-code agent builders.</strong> Make.com's AI agent, Lindy and OpenAI's Agent Builder build agents from prompts and settings instead of code. <a href="/watch/G_XWYIwjhKY">Make.com AI agent tutorial</a></li>
+</ul>
+<p>Give an agent a task with a finish line you can check, such as tests passing or a list of named contacts. That makes its work easy to judge.</p>
+<h2 id="when">When an agent is the wrong tool</h2>
+<p>Anthropic's advice is to find the simplest solution first, and only add complexity when it clearly helps. Agents trade speed and cost for flexibility.</p>
+<ul>
+<li><strong>The steps never change.</strong> Build a fixed workflow. It is cheaper and easier to debug. <a href="/guides/agentic-ai-vs-traditional-automation.html">Agentic AI vs traditional automation</a></li>
+<li><strong>One good prompt does the job.</strong> A single model call with the right context is often enough.</li>
+<li><strong>A wrong action is expensive.</strong> If a mistake sends money or emails a customer, keep that step behind a person or a fixed rule.</li>
+</ul>
+<h2 id="build">How to build your first AI agent</h2>
+<p>Pick the route that matches how you like to work.</p>
+<h3>Without code</h3>
+<p>Start in a builder such as n8n, Make or Zapier. Give the agent one or two tools, a required output format and a test chat. The <a href="/guides/no-code-ai-agent-builder.html">no-code AI agent builder comparison</a> walks through the same agent in each tool.</p>
+<h3>With a coding agent</h3>
+<p>Install Claude Code or Codex and give it one small, checkable change in a real project. <a href="/guides/build-apps-with-ai-coding-agents.html">Build apps with AI coding agents</a> has a practice task.</p>
+<h3>Either way, add checks</h3>
+<p>Validate the agent's output before it acts, log every run, and keep a person between the agent and anything external. <a href="/guides/ai-agent-workflow.html">The AI agent workflow guide</a> shows where each check goes.</p>
+<h2 id="risks">Costs and risks to plan for</h2>
+<ul>
+<li><strong>Cost varies per run.</strong> An agent decides how many steps and tool calls to make, so usage is harder to predict than a fixed workflow.</li>
+<li><strong>Errors can compound.</strong> One wrong tool result can send the next steps the wrong way. Anthropic recommends testing in a sandbox with guardrails.</li>
+<li><strong>Quiet failures.</strong> An agent can return a confident answer that is wrong. Read its steps on a sample of runs, not just the final output.</li>
+</ul>
+<h2 id="limits">What this guide does not cover</h2>
+<p>This is an explainer. It makes no claims about which model or platform is best, because that depends on your task, your data and your budget. To compare models on your own task, see <a href="/guides/choosing-ai-models-for-a-task.html">choosing AI models for a task</a>.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic: Building effective agents</a></li>
+<li><a href="https://developers.openai.com/api/docs/guides/agents">OpenAI docs: Agents</a></li>
+<li><a href="https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/">n8n docs: AI Agent node</a></li>
+<li><a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP docs: What is the Model Context Protocol?</a></li>
+</ul>
+<section class="faq" id="faq-section" aria-labelledby="faq-title"><h2 id="faq-title">Frequently asked questions</h2>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>What is an AI agent in simple terms?</h3></summary>
+<p>An AI agent is a program that uses a language model to reach a goal by deciding its own steps. It picks a tool, checks the result and repeats until the task is done.</p>
+</details>
+<details class="faq-item"><summary><h3>Is ChatGPT an AI agent?</h3></summary>
+<p>A plain chat answer is not an agent. When ChatGPT or Codex uses tools in a loop to finish a task, such as editing files and rerunning tests until they pass, it is acting as an agent.</p>
+</details>
+<details class="faq-item"><summary><h3>What is the difference between an AI agent and an AI workflow?</h3></summary>
+<p>A workflow follows steps written in advance, even if some steps use AI. An agent decides its steps while it runs. Many useful systems combine both.</p>
+</details>
+<details class="faq-item"><summary><h3>What are examples of AI agents?</h3></summary>
+<p>Coding agents such as Claude Code and Codex, research and scheduling agents such as Hermes Agent, phone agents built in Vapi, and agents made in builders such as Make, n8n and Lindy.</p>
+</details>
+<details class="faq-item"><summary><h3>Do I need to code to build an AI agent?</h3></summary>
+<p>No. Builders such as n8n, Make and Zapier let you create an agent with a model, tools and instructions. Coding helps when you need custom tools or tighter control.</p>
+</details>
+<details class="faq-item"><summary><h3>Are AI agents safe to run on their own?</h3></summary>
+<p>Only within limits you set. Give an agent the fewest tools it needs, validate its output, and require approval for anything that sends, deletes or spends.</p>
+</details>
+</div>
+</section>
+<p class="related-guides">Related guides: <a href="/guides/agentic-ai-vs-traditional-automation.html">agentic AI vs traditional automation</a>, <a href="/guides/what-is-mcp.html">what MCP is</a>, <a href="/guides/no-code-ai-agent-builder.html">no-code AI agent builders</a>, <a href="/guides/ai-agent-workflow.html">AI agent workflow</a>, <a href="/guides/claude-code-for-beginners.html">Claude Code for beginners</a>.</p>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/no-code-ai-agent-builder.html">No-code AI agent builder: compare n8n, Make, Zapier and more</a></li><li>More on this topic: <a href="/videos/ai-agents">AI agent videos and written guides</a></li><li>All guides: <a href="/guides.html">Free build guides</a></li></ul></aside>
+<section class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><p>Step-by-step courses, reusable templates, and a community that answers when you get stuck.</p><p class="cta-fit">Members get the <strong>Claude Code &amp; Skills</strong> and <strong>Codex Tutorials &amp; Courses</strong> lessons.</p><ul class="cta-list"><li>Courses for builds like this one</li><li>Copy-ready templates</li><li>Ask questions while you build</li><li>Weekly coaching on VIP</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="guide_end">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime.</span></div><div class="cta-members"><span class="cta-faces" aria-hidden="true"><img src="/members/member-0.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-1.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-2.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-3.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-4.png" alt="" width="30" height="30" loading="lazy"></span><span>Join 2,900+ members building with AI</span></div></section>
+<form class="notes" method="post" data-subscribe><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

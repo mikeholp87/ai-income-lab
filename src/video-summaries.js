@@ -11432,6 +11432,7 @@ Object.assign(videoSummaries, lateSummaries);
 
 // Third-person rewrites of first-person YouTube description openers, for listing cards and meta descriptions.
 export const listingSummaries = {
+  "tv_A-CN76Cg": "Mike builds a GrokBot job search agent with the Treg plugin. It rewrites his resume for ATS checks and queues remote job emails for his approval.",
   "p_qQNolHR-c": "Generate and edit images with Google's Nano Banana in Gemini: text-to-image, reference image edits, free access options and a speed comparison.",
   "t0nQSyryTPg": "A tour of community demos made with GPT-6 Astra: exploding 3D models, a working V8 engine, browser racing games and a Counter-Strike 2 recreation.",
   "rMRsVyIsZCU": "Mike installs Open Design, a free Claude Design alternative, on Linux from source, fixes its Node and Corepack setup, connects a model with an API key, then uses it to make a motion design clip, a visual design system and an HTML slide deck from a YouTube link. The last chapter covers its pricing and credit use.",

@@ -99,7 +99,8 @@ function ConsentBanner({ campaign, campaignReady }) {
 }
 
 // Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
-// The member count comes from Skool, so it has no key and stays static.
+// The member count comes from Skool, so it has no key and stays static: update membersAsOf with it.
+const membersAsOf = 'November 2026';
 const stats = [
   ['2,900+', 'community members'],
   ['5.1K', 'YouTube subscribers', 'subscribers'],
@@ -108,16 +109,6 @@ const stats = [
 ];
 
 const tools = [
-  {
-    name: 'TubeAnalytics',
-    url: null,
-    image: '/tools/tubeanalytics.webp',
-    size: [1600, 1000],
-    tagline: 'YouTube analytics for creators.',
-    copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
-    facts: ['Real CPM and RPM for connected channels', '180+ registered creators'],
-    note: 'TubeAnalytics is temporarily unavailable.',
-  },
   {
     name: 'VisiScan',
     url: 'https://www.visiscan.app',
@@ -146,6 +137,7 @@ const timeline = [
 
 const faqs = [
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
+  ['What is free without joining?', 'Every video and written guide on this site is free, with no Skool login. AI Income Lab adds the step-by-step courses, templates and a community to ask while you build. The tools in each build may need their own accounts or charge for usage.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
   ['What happens when I click Join?', 'Skool’s plan page opens in a new tab. You choose Standard, Premium, or VIP and monthly or yearly billing, then sign in or create a Skool account and pay on Skool. This site never sees your payment details.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
@@ -154,6 +146,13 @@ const faqs = [
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
 ];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.ai-automation-station.com/#faq',
+  mainEntity: faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+}).replace(/</g, '\\u003c');
 
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const viewFormat = new Intl.NumberFormat('en', { notation: 'compact' });
@@ -294,7 +293,7 @@ function FeaturedVideo({ video, playButtonRef }) {
       </div>
       <div className="player-meta">
         <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time>{video.views >= 1000 && <span>{formatViews(video.views)}</span>}</p>
-        <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
+        <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.heading || video.title}</a></h2>
         {video.summary && <p className="player-summary">{video.summary}</p>}
       </div>
     </article>
@@ -309,7 +308,8 @@ function VideoCard({ video, placement }) {
         {video.duration && <span className="duration">{video.duration}</span>}
       </span>
       <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-      <h3>{video.title}</h3>
+      <h3>{video.heading || video.title}</h3>
+      {video.summary && <p className="card-summary">{video.summary}</p>}
     </a>
   );
 }
@@ -610,7 +610,7 @@ function WorkTogether({ campaign, sponsors = false }) {
   return (
     <section className="section" id="work-together">
       <div className="shell">
-        <SectionHead title={sponsors ? 'Let’s plan your sponsored build' : 'Book an intro call'}>{sponsors ? 'Share your product, audience and launch window. I’ll reply with a proposed scope and price. Prefer to talk first? Choose a free 10-minute intro call. No payment is needed to enquire.' : 'Make an AI model, agent, or automation tool? I’ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.'}</SectionHead>
+        <SectionHead title={sponsors ? 'Let’s plan your sponsored build' : 'Book an intro call'}>{sponsors ? 'Share your product, audience and launch window. I’ll reply with a proposed scope and price. Prefer to talk first? Choose a free 10-minute intro call. No payment is needed to enquire.' : 'Prefer to talk it through? Book a free 10-minute intro call or send a message. It works for a sponsored build or a creator collab.'}</SectionHead>
         <ContactOptions campaign={campaign} sponsors={sponsors} />
         <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
       </div>
@@ -766,11 +766,12 @@ function App({ page = 'home' }) {
 
       <section className="stats" aria-label="Community and channel numbers">
         <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+        <p className="stats-note shell">Member count from Skool as of {membersAsOf}. YouTube numbers update daily.</p>
       </section>
 
       <section className="section band" id="community">
         <div className="shell">
-          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in AI Income Lab. Choose the courses, templates, and support that fit your next project.</SectionHead>
           <div className="members">
             <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
             <p>Some of the members building AI workflows on Skool</p>
@@ -838,7 +839,7 @@ function App({ page = 'home' }) {
       <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. VisiScan is available to try. TubeAnalytics is temporarily unavailable.</SectionHead>
+          <SectionHead title="Products I built and run">VisiScan started as a problem I kept hitting while growing a channel, and it is free to try. My other app, TubeAnalytics, is temporarily unavailable.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -905,6 +906,7 @@ function App({ page = 'home' }) {
       <section className="section" id="faq">
         <div className="shell faq-grid">
           <SectionHead title="Questions people ask" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
           <div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>

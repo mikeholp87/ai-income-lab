@@ -4,69 +4,76 @@
       "id": "V3ETwJAR5-I",
       "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
       "published": "2026-11-10T04:36:16Z",
-      "views": 74,
+      "views": 141,
       "duration": "14:05",
       "summary": "See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "GrokBot credit usage: why it drains and how to save"
     },
     {
       "id": "YYZSR1p32EQ",
       "title": "Herdr On Windows Is Better Than I Expected!",
       "published": "2026-11-09T04:13:12Z",
-      "views": 709,
+      "views": 817,
       "duration": "11:03",
       "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "Herdr on Windows: Installation, Themes, Mods and Usage"
     },
     {
       "id": "IV6q81wRay4",
       "title": "New HERDR Desktop App Is A Game Changer!",
       "published": "2026-11-07T07:05:11Z",
-      "views": 12192,
+      "views": 13572,
       "duration": "11:17",
       "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "Herdr Desktop Setup: Workspaces, Themes and Claude Code"
     },
     {
       "id": "V0PoYhOprBI",
       "title": "3 Open Source Projects I Built That You Need to Try!",
       "published": "2026-11-05T08:47:59Z",
-      "views": 275,
+      "views": 278,
       "duration": "10:36",
       "summary": "Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "Tasky, Restic-Studio and Luma-Launcher: Project Demos"
     },
     {
       "id": "phVQuQMojA8",
       "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
       "published": "2026-11-03T07:48:25Z",
-      "views": 429,
+      "views": 443,
       "duration": "4:17",
       "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "Claude Code Task-Manager Demo: Processes and Packaging"
     },
     {
       "id": "0iTOlQjNdhs",
       "title": "I Fixed My Android TV With Claude Code + CleanYourTV",
       "published": "2026-11-02T02:42:16Z",
-      "views": 3811,
+      "views": 3919,
       "duration": "15:01",
       "summary": "Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "CleanYourTV and Claude Code: customize Android TV"
     },
     {
       "id": "rMRsVyIsZCU",
       "title": "I Tested This FREE Claude Design Alternative (It's Good!)",
       "published": "2026-10-30T09:57:49Z",
-      "views": 592,
+      "views": 665,
       "duration": "6:54",
       "summary": "Build Open Design, a free open-source alternative to Claude Design, from source on Linux and use it with DeepSeek V4 Flash. A 20-second paper cutout motion video takes about a minute for roughly a cent, and a slide deck built from a YouTube transcript takes three to four minutes for about 16 cents and exports to HTML. Mac and Windows have downloads, while Linux needs a source build with Node and corepack fixes.",
-      "embeddable": true
+      "embeddable": true,
+      "heading": "Open Design with DeepSeek V4 Flash: motion video and slides"
     }
   ],
   "channel": {
-    "subscribers": 5390,
-    "views": 575712,
+    "subscribers": 5400,
+    "views": 581114,
     "videos": 363
   }
 }

@@ -135,6 +135,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 /* Four columns are 280px wide in the 1120px shell: stack the number over its label. */
 .stats div { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 40px 16px; border-left: 1px solid var(--line); }
 .stats div:first-child { border-left: 0; }
+.stats-note { padding: 0 0 14px; color: var(--muted); font-size: 12px; text-align: center; }
 .stats dd { order: -1; font: 400 clamp(30px, 3.4vw, 42px)/1 var(--display); }
 .stats dt { color: var(--muted); font-size: 14px; font-weight: 500; }
 
@@ -258,6 +259,7 @@ section[id], main [id] { scroll-margin-top: 88px; }
 .duration { position: absolute; right: 8px; bottom: 8px; padding: 2px 6px; color: #fff; background: rgb(0 0 0 / .8); font: 500 12px/1.4 var(--mono); }
 .video-card h3 { font: 600 18px/1.3 var(--sans); text-wrap: pretty; transition: color .2s ease; }
 a.video-card:hover h3 { color: var(--signal); }
+.card-summary { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; color: var(--body); font-size: 14px; line-height: 1.5; }
 .skeleton-line { display: block; height: 14px; width: 90%; background: var(--panel); }
 .skeleton-line.short { width: 55%; }
 .is-loading .skeleton-line, .is-loading .thumb, .player-screen.is-loading { background: linear-gradient(90deg, var(--panel), var(--line), var(--panel)) 0 0 / 200% 100%; }
@@ -279,6 +281,9 @@ a.video-card:hover h3 { color: var(--signal); }
 /* The action block takes the free space, so both cards' buttons land on the same line. */
 .tool-action { margin-top: auto; padding-top: 24px; }
 .tool-action .fine-print { margin: 0 0 14px; }
+/* A lone product spans the grid with its screenshot beside the copy. */
+.tool:only-child { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+.tool:only-child > img { height: 100%; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); }
 
 /* GitHub projects */
 .open-source.section { padding: 88px 0 96px; background: var(--raised); }
@@ -461,6 +466,8 @@ a.video-card:hover h3 { color: var(--signal); }
   .open-source.section { padding: 64px 0; }
   .open-source-head { display: grid; justify-items: start; gap: 18px; }
   .tool-grid { grid-template-columns: 1fr; }
+  .tool:only-child { grid-template-columns: minmax(0, 1fr); }
+  .tool:only-child > img { height: auto; aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--line); }
   .repo-list { grid-template-columns: 1fr; }
   .repo-list li { min-height: 0; padding: 24px; }
   /* Phones: the six recent videos become a compact list, thumbnail left, title and date right. */
@@ -469,6 +476,7 @@ a.video-card:hover h3 { color: var(--signal); }
   .video-card > :first-child { grid-row: 1 / 3; }
   .video-card h3 { grid-row: 1; grid-column: 2; font-size: 15px; }
   .video-card .meta-row { grid-row: 2; grid-column: 2; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; }
+  .video-card .card-summary { grid-row: 3; grid-column: 1 / -1; font-size: 13px; }
   .video-card .duration { right: 4px; bottom: 4px; padding: 1px 4px; font-size: 12px; }
   .build-guides .guide-cards { grid-template-columns: 1fr; gap: 24px; }
   .build-guides .guide-cards > li:last-child:nth-child(3n+1) { grid-column: auto; }
