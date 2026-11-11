@@ -63,6 +63,19 @@ test('GitHub endpoint follows pagination beyond the first 100 repositories', asy
   assert.ok(validGithubRepositories(projects));
 });
 
+test('GitHub endpoint links a project to its GitHub Pages site when it has one', async t => {
+  t.mock.method(AbortSignal, 'timeout', () => new AbortController().signal);
+  t.mock.method(globalThis, 'fetch', async () => Response.json([
+    publicRepo('Tasky', { has_pages: true }),
+    publicRepo('disk-atlas', { has_pages: false }),
+  ]));
+  const { GET } = await import(`../api/github-repositories.js?test=${encodeURIComponent(t.name)}`);
+  const projects = await (await GET()).json();
+  assert.deepEqual(projects.map(project => project.url), ['https://mikeholp87.github.io/Tasky/', 'https://github.com/mikeholp87/disk-atlas']);
+  assert.ok(validGithubRepositories(projects));
+  assert.equal(validGithubRepositories([{ name: 'Tasky', description: 'x', url: 'https://mikeholp87.github.io/other/' }]), false);
+});
+
 test('GitHub outage returns an uncached error so the page keeps its static list', async t => {
   t.mock.method(globalThis, 'fetch', async () => new Response(null, { status: 503 }));
   const { GET } = await import(`../api/github-repositories.js?test=${encodeURIComponent(t.name)}`);
