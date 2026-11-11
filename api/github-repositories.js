@@ -18,7 +18,7 @@ export async function GET() {
         .map(repo => ({
           name: repo.name,
           description: typeof repo.description === 'string' ? repo.description : 'No description provided on GitHub.',
-          url: `https://github.com/mikeholp87/${repo.name}`,
+          url: repo.has_pages === true ? `https://mikeholp87.github.io/${repo.name}/` : `https://github.com/mikeholp87/${repo.name}`,
         })));
       if (data.length < 100) break;
     }

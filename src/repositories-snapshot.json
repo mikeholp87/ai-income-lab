@@ -2,7 +2,7 @@
   {
     "name": "apt",
     "description": "Signed apt repository for mikeholp87's projects",
-    "url": "https://github.com/mikeholp87/apt"
+    "url": "https://mikeholp87.github.io/apt/"
   },
   {
     "name": "update-forge",
@@ -32,17 +32,17 @@
   {
     "name": "Restic-Studio",
     "description": "Backup studio for Linux using Restic",
-    "url": "https://github.com/mikeholp87/Restic-Studio"
+    "url": "https://mikeholp87.github.io/Restic-Studio/"
   },
   {
     "name": "Luma-Launcher",
     "description": "A native, lightweight, keyboard-driven application launcher for Windows and Linux",
-    "url": "https://github.com/mikeholp87/Luma-Launcher"
+    "url": "https://mikeholp87.github.io/Luma-Launcher/"
   },
   {
     "name": "Tasky",
     "description": "Fast, private task manager and system monitor for Windows and Linux (KDE Plasma and GNOME). Built with Tauri, Rust and React.",
-    "url": "https://github.com/mikeholp87/Tasky"
+    "url": "https://mikeholp87.github.io/Tasky/"
   },
   {
     "name": "ai-income-lab",
