@@ -10,7 +10,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - New long-form videos most days; the full archive is at /videos.
 - TubeAnalytics: YouTube analytics for creators, currently temporarily unavailable. No active trial or subscription offer is advertised on this site.
 - VisiScan: checks whether AI assistants recommend a business. Free scan with no signup; full report $49 USD once; weekly monitoring from $29 USD a month.
-- AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, or $290, $490, $890 a year. VIP adds weekly coaching, software deals, and 6,400+ n8n templates.
+- AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, or $290, $490, $890 a year. VIP adds weekly live group coaching and Q&A, software deals, and 6,400+ n8n templates. Coaching is group learning support. Custom business implementation is separate and is not included in membership. Ask about project scope before joining.
 - AI Income Lab billing is in USD. Free written guides and videos are separate from the paid Skool membership; automation hosting, AI API usage, and other software can cost extra.
 - Standard includes the Runable course; Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both and the Complete AI Avatar Video Course.
 - Income is not guaranteed; results depend on the project, experience, and time invested.
