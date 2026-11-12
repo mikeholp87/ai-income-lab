@@ -1,10 +1,10 @@
 // Where each "Tools used" entry on a watch page links. Names are matched case-insensitively with any
 // "(…)" note removed, so "Claude Code (Opus 5.5)" uses the Claude Code link.
 // Affiliate links come from affiliates.js (copied from the YouTube descriptions) and render with rel="sponsored".
-import { affiliates } from './affiliates.js';
+import { affiliates, logoSlug } from './affiliates.js';
 
 const links = [
-  ...affiliates.filter(affiliate => affiliate.tools.length).map(affiliate => [affiliate.tools, affiliate.url, true]),
+  ...affiliates.filter(affiliate => affiliate.tools.length).map(affiliate => [affiliate.tools, affiliate.url, { name: affiliate.name, slug: logoSlug(affiliate) }]),
   [['Tasky'], 'https://github.com/mikeholp87/Tasky'],
   [['Restic-Studio'], 'https://github.com/mikeholp87/Restic-Studio'],
   [['Luma-Launcher'], 'https://github.com/mikeholp87/Luma-Launcher'],
@@ -186,6 +186,7 @@ const links = [
 ];
 
 const key = name => name.replace(/\s*\(.*\)\s*$/, '').trim().toLowerCase();
-const byName = new Map(links.flatMap(([names, url, affiliate = false]) => names.map(name => [key(name), { url, affiliate }])));
+// `card` names the affiliate's card on the tools page; Runable is a referral link without one.
+const byName = new Map(links.flatMap(([names, url, affiliate = false]) => names.map(name => [key(name), typeof affiliate === 'object' ? { url, affiliate: true, card: affiliate } : { url, affiliate }])));
 
 export const toolLink = name => byName.get(key(name)) ?? null;

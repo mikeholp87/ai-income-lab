@@ -235,7 +235,14 @@ const toolItem = tool => {
   const link = toolLink(tool);
   return link ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
 };
-const toolsPageLink = tools => tools.some(tool => toolLink(tool)?.affiliate) ? '\n<p class="meta"><a href="/tools.html" data-placement="watch_tools_all">See every tool I recommend →</a></p>' : '';
+// Under a watch page's tool list: each affiliate tool's tools-page card, and the affiliate disclosure.
+const toolsPageLink = tools => {
+  const links = tools.map(tool => toolLink(tool)).filter(link => link?.affiliate);
+  if (!links.length) return '';
+  const cards = [...new Map(links.filter(link => link.card).map(link => [link.card.slug, link.card])).values()];
+  const compare = cards.length ? `Compare pricing: ${cards.map(card => `<a href="/tools.html#${card.slug}" data-placement="watch_tool_card">${escape(card.name)}</a>`).join(', ')}. ` : '';
+  return `\n<p class="meta">${compare}Some ↗ links are affiliate links, so I may earn a commission or credit. <a href="/tools.html" data-placement="watch_tools_all">See every tool I recommend →</a></p>`;
+};
 const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
 // Used only when a video has no summary anywhere: length, topic and date, plus the first chapters after the intro.

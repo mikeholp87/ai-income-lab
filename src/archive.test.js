@@ -412,6 +412,8 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   const html = renderWatch(video, { videos: uploads });
   assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
+  assert.match(html, /<p class="meta">Compare pricing: [^<]*<a href="\/tools\.html#make-com" data-placement="watch_tool_card">Make\.com<\/a>[^]*?Some ↗ links are affiliate links, so I may earn a commission or credit\. <a href="\/tools\.html" data-placement="watch_tools_all">/);
+  assert.equal(html.match(/href="\/tools\.html#make-com"/g).length, 1);
   assert.match(renderWatch(uploads.find(upload => upload.id === 'QMqe2ubsn0g'), { videos: uploads }), /<li>DextroLab<\/li>/);
   const tubeAnalytics = renderWatch(uploads.find(upload => upload.id === 'gebtJAsMioo'), { videos: uploads });
   assert.match(tubeAnalytics, /<li>TubeAnalytics<\/li>/);

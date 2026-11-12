@@ -41,17 +41,38 @@ export function guidesAbout(affiliate, guides) {
 // A tools page line at the end of a guide, before its closing next steps. It points at the card of the tool the
 // guide links most (links to the AI Income Lab community on Skool don't count), or at the whole page.
 // Guides that promise no affiliate or referral links (the sponsored ones) are left alone.
+const pattern = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const shownGuideTools = 4;
+const allToolsLink = '<a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a>';
+
+// Affiliate tools a guide is about: named in its title, linked from it, or mentioned at least three times
+// in the text. Claude Code and model versions such as Gemini 4 don't count as the Claude or Gemini apps. The AI Income Lab community link and
+// mentions don't count as Skool. Strongest first.
+export function guideTools(html) {
+  const main = html.slice(Math.max(0, html.indexOf('<main')), html.includes('</main>') ? html.indexOf('</main>') : undefined);
+  const title = main.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, '') ?? '';
+  const links = main.replaceAll(/href="https:\/\/www\.skool\.com\/ai-automation-station[^"]*"/g, '');
+  const text = main.replace(/<(script|style|pre|code)\b[^]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
+  return affiliates.map(affiliate => {
+    const inTitle = guidesAbout(affiliate, [{ title }]).length > 0;
+    const linked = links.match(new RegExp(`href="https?://([a-z0-9-]+\\.)*${pattern(affiliate.site)}[/"?]`, 'g'))?.length ?? 0;
+    const names = [...new Set([affiliate.name, ...affiliate.tools])].sort((a, b) => b.length - a.length);
+    const mentions = text.match(new RegExp(`(?<![\\w.-])(?:${names.map(pattern).join('|')})(?![\\w-]|\\.\\w|\\s+Code\\b|\\s+\\d)`, 'g'))?.length ?? 0;
+    const counts = inTitle || linked || (mentions >= 3 && affiliate.name !== 'Skool');
+    return [affiliate, counts ? (inTitle ? 1000 : 0) + linked * 10 + mentions : 0];
+  }).filter(([, score]) => score).sort((a, b) => b[1] - a[1]).map(([affiliate]) => affiliate);
+}
+
+// Before a guide's closing next steps: the tools it covers, each linking its tools-page card and its
+// affiliate link, or just a link to the tools page when it covers none.
 export function addToolsLink(html) {
   if (html.includes('data-placement="guide_tools_all"') || /no (affiliate|referral) (links|codes)/i.test(html)) return html;
-  const title = html.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, '') ?? '';
-  const links = html.replaceAll(/href="https:\/\/www\.skool\.com\/ai-automation-station[^"]*"/g, '');
-  const linked = affiliates.map(affiliate => [affiliate, (guidesAbout(affiliate, [{ title }]).length ? 1000 : 0) + (links.match(new RegExp(`href="https?://([a-z0-9-]+\\.)*${affiliate.site.replace(/\./g, '\\.')}[/"?]`, 'g'))?.length ?? 0)]);
-  const [top, count] = linked.reduce((best, entry) => entry[1] > best[1] ? entry : best);
-  const line = count
-    ? `<p class="meta"><a href="/tools.html#${logoSlug(top)}" data-placement="guide_tools_all">See ${escape(top.name)} and every tool I recommend →</a></p>\n`
-    : '<p class="meta"><a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a></p>\n';
+  const tools = guideTools(html).slice(0, shownGuideTools);
+  const block = tools.length
+    ? `<aside class="note guide-tools" aria-label="Tools in this guide"><p><strong>Tools in this guide</strong></p><ul>${tools.map(affiliate => `<li><a href="/tools.html#${logoSlug(affiliate)}" data-placement="guide_tool_card">${escape(affiliate.name)} pricing and videos</a>: ${escape(affiliate.bestFor)}. <a href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-placement="guide_tools">Try ${escape(affiliate.name)} ↗</a></li>`).join('')}</ul><p class="meta">Try links are affiliate links, so I may earn a commission or credit. ${allToolsLink}</p></aside>\n`
+    : `<p class="meta">${allToolsLink}</p>\n`;
   const at = ['<aside class="note next-steps"', '<form class="notes"'].map(marker => html.indexOf(marker)).find(index => index !== -1);
-  return at === undefined ? html.replace('</main>', `${line}</main>`) : html.slice(0, at) + line + html.slice(at);
+  return at === undefined ? html.replace('</main>', `${block}</main>`) : html.slice(0, at) + block + html.slice(at);
 }
 
 const usage = count => count === 1 ? 'Used in one video' : `Used in ${count} videos`;

@@ -3,7 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { affiliates, categories, logoSlug } from './affiliates.js';
 import { toolLink } from './tool-links.js';
-import { addToolsLink, renderToolsPage, topTools, videosUsing } from './tools-page.js';
+import { addToolsLink, guideTools, renderToolsPage, topTools, videosUsing } from './tools-page.js';
 import { uploads } from './uploads-snapshot.js';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -23,7 +23,7 @@ test('the affiliate list matches the descriptions’ recommended tools and has o
 
 test('watch pages link every affiliate tool name to the same referral link', () => {
   for (const affiliate of affiliates) {
-    for (const name of affiliate.tools) assert.deepEqual(toolLink(name), { url: affiliate.url, affiliate: true }, name);
+    for (const name of affiliate.tools) assert.deepEqual(toolLink(name), { url: affiliate.url, affiliate: true, card: { name: affiliate.name, slug: logoSlug(affiliate) } }, name);
   }
 });
 
@@ -70,11 +70,15 @@ test('the top picks are the most-used tools, and every card has a logo, a best-f
 test('watch pages and guides point to the tools page, except guides that promise no affiliate links', async () => {
   assert.match(await read('src/archive.js'), /href="\/tools\.html" data-placement="watch_tools_all"/);
   const guide = '<main><h1>Automate a sheet</h1><p><a href="https://www.make.com/en/pricing">Make</a> <a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></p><aside class="note next-steps"></aside></main>';
-  assert.match(addToolsLink(guide), /<a href="\/tools\.html#make-com" data-placement="guide_tools_all">See Make\.com and every tool I recommend →<\/a><\/p>\n<aside class="note next-steps"/);
+  const make = affiliates.find(affiliate => affiliate.name === 'Make.com');
+  assert.ok(addToolsLink(guide).includes(`<aside class="note guide-tools" aria-label="Tools in this guide"><p><strong>Tools in this guide</strong></p><ul><li><a href="/tools.html#make-com" data-placement="guide_tool_card">Make.com pricing and videos</a>: ${make.bestFor}. <a href="${make.url}" target="_blank" rel="sponsored noopener" data-affiliate="Make.com" data-placement="guide_tools">Try Make.com ↗</a></li></ul><p class="meta">Try links are affiliate links, so I may earn a commission or credit. <a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a></p></aside>\n<aside class="note next-steps"`));
   assert.equal(addToolsLink(addToolsLink(guide)), addToolsLink(guide));
-  // A tool in the title wins over links, and the AI Income Lab community link doesn't count as Skool.
-  assert.match(addToolsLink(guide.replace('Automate a sheet', 'Claude Code for beginners')), /tools\.html#claude"/);
-  assert.match(addToolsLink('<main><h1>x</h1><a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></main>'), /<a href="\/tools\.html" data-placement="guide_tools_all">See every tool I recommend →/);
+  // A tool in the title comes first, and the AI Income Lab community link doesn't count as Skool.
+  assert.deepEqual(guideTools(guide.replace('Automate a sheet', 'Claude Code for beginners')).map(affiliate => affiliate.name), ['Claude', 'Make.com']);
+  assert.match(addToolsLink('<main><h1>x</h1><a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></main>'), /<p class="meta"><a href="\/tools\.html" data-placement="guide_tools_all">See every tool I recommend →/);
+  // Three plain mentions count; two don't, and Claude Code isn't Claude.
+  assert.deepEqual(guideTools('<main><h1>x</h1><p>HeyGen, HeyGen and HeyGen. Vapi and Vapi. Claude Code, Claude Code, Claude Code. Gemini 4, Gemini 4, Gemini 4.</p></main>').map(affiliate => affiliate.name), ['HeyGen']);
+  assert.deepEqual(guideTools('<main><h1>x</h1><pre>Apify Apify Apify</pre></main>'), []);
   const sponsored = guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>');
   assert.equal(addToolsLink(sponsored), sponsored);
   assert.match(await read('scripts/prerender.js'), /addGuideVideos\(addToolsLink\(html\)/);
