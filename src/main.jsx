@@ -126,9 +126,9 @@ const tools = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
-  { name: 'Premium', price: 49, annual: 490, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
-  { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
+  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners building their first workflows and unlocking lessons as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
+  { name: 'Premium', price: 49, annual: 490, fit: 'Builders ready to make automations, voice agents, and avatar videos with immediate course access.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
+  { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly group help with their projects and reusable n8n workflows.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
 
 const timeline = [
@@ -143,6 +143,7 @@ const faqs = [
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
   ['What is free without joining?', 'Every video and written guide on this site is free, with no Skool login. AI Income Lab adds the step-by-step courses, templates and a community to ask while you build. The tools in each build may need their own accounts or charge for usage.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
+  ['What does VIP coaching cover?', 'VIP includes weekly live group coaching and Q&A to help you implement what you learn. Bring questions about the workflows, agents, or coding builds you are working on. Custom business implementation is separate and is not included in membership. Ask about your project’s scope before joining.'],
   ['What happens when I click Join?', 'Skool’s plan page opens in a new tab. You choose Standard, Premium, or VIP and monthly or yearly billing, then sign in or create a Skool account and pay on Skool. This site never sees your payment details.'],
   ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
@@ -843,6 +844,8 @@ function App({ page = 'home' }) {
       <section className="section band" id="community">
         <div className="shell">
           <SectionHead title="Choose a plan for your next build">Join 2,900+ members in AI Income Lab. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <p className="community-help">AI Income Lab offers project-based AI workflow courses, templates, and a community for questions. Practice with the free guides below, then choose the course access and support you need.</p>
+          <p className="community-help"><strong>Workflow automation:</strong> use Make.com to <a href="/guides/make-first-automation.html">filter approved requests into a spreadsheet</a>. <strong>AI agent training:</strong> <a href="/guides/ai-agent-workflow.html#practice">classify three sample requests and test the review boundary</a>, then <a href="/guides/no-code-ai-agent-builder.html#build">compare a small agent in n8n, Make, or Zapier</a>. <strong>AI coding:</strong> <a href="/guides/build-apps-with-ai-coding-agents.html#practice">add and verify a filter in a local task list</a>.</p>
           <div className="members">
             <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
             <p>Some of the members building AI workflows on Skool</p>
@@ -862,6 +865,8 @@ function App({ page = 'home' }) {
             ))}
           </ul>
           <p className="fine-print">Pay monthly or yearly; a year costs the same as 10 months. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
+          <p className="community-help" id="coaching"><strong>VIP coaching:</strong> weekly live group coaching and Q&amp;A for members implementing what they learn. Bring questions about your workflow, agent tests, or coding project. Custom business implementation is separate from membership; <a href="mailto:automojic@proton.me?subject=Implementation%20scope">ask about your project’s scope</a>.</p>
+          <p className="community-help">Learning to offer automation services yourself? Read <a href="/guides/ai-automation-services-small-business.html">the guide to selling AI automation services</a>.</p>
           <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
         </div>
       </section>
