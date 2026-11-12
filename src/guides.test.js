@@ -72,10 +72,11 @@ test('the fast AI income guide is discoverable and has its own image', async () 
 
 test('/guides redirects once to the hub without catching guide pages', async () => {
   const { redirects } = JSON.parse(await read('vercel.json'));
-  const page = redirects.find(rule => rule.destination === '/:page.html');
+  const page = redirects.find(rule => rule.source.includes(':page(') && !rule.source.endsWith('/'));
   const pattern = new RegExp(`^${page.source.replace(':page', '')}$`);
   assert.ok(pattern.test('/guides'));
   assert.ok(pattern.test('/search'));
+  assert.equal(page.destination, 'https://www.ai-automation-station.com/:page.html');
   for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html', '/search.html']) assert.ok(!pattern.test(path), path);
 });
 
@@ -96,7 +97,9 @@ test('guide video figures are click-to-load players with no YouTube iframe in th
 
 test('/blog sends readers to the guides hub', async () => {
   const { redirects } = JSON.parse(await read('vercel.json'));
-  assert.ok(redirects.some(rule => rule.source === '/blog' && rule.destination === '/guides.html' && rule.permanent === true));
+  const hub = 'https://www.ai-automation-station.com/guides.html';
+  assert.ok(redirects.some(rule => rule.source === '/blog' && rule.destination === hub && rule.permanent === true));
+  assert.ok(redirects.some(rule => rule.source === '/blog/' && rule.destination === hub && rule.permanent === true));
 });
 
 test('guide figures are described once, by their caption', async () => {

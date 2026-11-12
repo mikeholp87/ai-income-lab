@@ -388,7 +388,7 @@ function Services({ channel }) {
           <img className="service-image" src="/services/campaign.webp" alt="" width="1152" height="864" loading="lazy" decoding="async" />
         </article>
         <div className="service-grid">
-          <article className="service">
+          <article className="service" id="dedicated-video">
             <h3>Dedicated video</h3>
             <p className="service-price">$1,500</p>
             <p className="service-saving">In the four-format campaign: <strong>$1,350</strong> — save $150 on this placement.</p>
@@ -396,7 +396,7 @@ function Services({ channel }) {
             <img className="service-image" src="/services/dedicated-video.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video', 'Dedicated video')}>Ask about a dedicated video</a>
           </article>
-          <article className="service">
+          <article className="service" id="youtube-short">
             <h3>YouTube Short</h3>
             <p className="service-price">$400</p>
             <p className="service-saving">In the four-format campaign: <strong>$350</strong> — save $50 on this placement.</p>
@@ -404,7 +404,7 @@ function Services({ channel }) {
             <img className="service-image service-short" src="/services/short.webp" alt="" width="720" height="1280" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short', 'YouTube Short')}>Ask about a Short</a>
           </article>
-          <article className="service">
+          <article className="service" id="ai-income-lab-post">
             <h3>AI Income Lab post</h3>
             <p className="service-price">$300</p>
             <p className="service-saving">In the four-format campaign: <strong>$250</strong> — save $50 on this placement.</p>
@@ -412,7 +412,7 @@ function Services({ channel }) {
             <MockPost network="AI Income Lab" byline="Community post">New in the toolbox: {yourProduct}. I used it on this week&rsquo;s build. Here&rsquo;s the setup, and what it saved me.</MockPost>
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post', 'AI Income Lab post')}>Ask about a community post</a>
           </article>
-          <article className="service">
+          <article className="service" id="linkedin-post">
             <h3>LinkedIn post</h3>
             <p className="service-price">$350</p>
             <p className="service-saving">In the four-format campaign: <strong>$300</strong> — save $50 on this placement.</p>

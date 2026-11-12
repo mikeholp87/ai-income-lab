@@ -2,10 +2,15 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 import vm from 'node:vm';
+import { gaBootHead, gaBootScript, gaConsentInline } from './ga-boot-html.js';
 import { GA_MEASUREMENT_ID } from './tracking.js';
 import { renderToolsPage } from './tools-page.js';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+const bootTag = /<script src="\/ga-boot.js" defer><\/script>/;
+const blockingBoot = /<script src="\/ga-boot.js"><\/script>/;
+const site = 'https://www.ai-automation-station.com';
+const themeInline = "try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}";
 
 test('the measurement ID is G-XYRWT4PFN8 in the loader, the HEAD boot script, and nowhere else as a different ID', async () => {
   assert.equal(GA_MEASUREMENT_ID, 'G-XYRWT4PFN8');
@@ -16,15 +21,27 @@ test('the measurement ID is G-XYRWT4PFN8 in the loader, the HEAD boot script, an
   assert.equal((boot.match(/G-[A-Z0-9]+/g) || []).every(id => id === GA_MEASUREMENT_ID), true);
 });
 
-test('React pages, watch/archive templates and the tools page include the HEAD GA boot script', async () => {
-  assert.match(await read('index.html'), /<script src="\/ga-boot.js"><\/script>/);
-  assert.match(await read('sponsors.html'), /<script src="\/ga-boot.js"><\/script>/);
+test('React pages, watch/archive templates and the tools page defer ga-boot.js after an inline consent snippet', async () => {
+  const index = await read('index.html');
+  const sponsors = await read('sponsors.html');
   const archive = await read('src/archive.js');
-  assert.equal((archive.match(/<script src="\/ga-boot.js"><\/script>/g) || []).length, 2);
-  assert.match(renderToolsPage({ uploads: [] }), /<script src="\/ga-boot.js"><\/script>/);
+  const tools = renderToolsPage({ uploads: [] });
+  const prerender = await read('scripts/prerender.js');
+  for (const html of [index, sponsors, tools]) {
+    assert.match(html, bootTag);
+    assert.doesNotMatch(html, blockingBoot);
+    assert.ok(html.includes(gaConsentInline));
+    assert.ok(html.includes(themeInline));
+    assert.match(html, /<script src="\/theme.js" defer><\/script>/);
+  }
+  assert.equal((archive.match(/\$\{gaBootHead\}/g) || []).length, 2);
+  assert.doesNotMatch(archive, blockingBoot);
+  assert.match(prerender, /withGaBoot/);
+  assert.match(prerender, /gaBootHead/);
+  assert.doesNotMatch(prerender, blockingBoot);
   assert.match(await read('src/reading.js'), /bootGoogleAnalytics\(\)/);
   assert.match(await read('src/main.jsx'), /bootGoogleAnalytics\(\)/);
-  assert.match(await read('scripts/prerender.js'), /withGaBoot/);
+  assert.equal(gaBootHead, `${gaConsentInline}${gaBootScript}`);
 });
 
 test('static public HTML pages load reading.js so prerender can inject ga-boot.js', async () => {
@@ -39,6 +56,41 @@ test('vercel.json redirects do not put a query string in the destination, so the
   for (const rule of redirects) {
     assert.doesNotMatch(rule.destination, /\?/, rule.source);
   }
+});
+
+test('extensionless and trailing-slash URLs hop once to the www .html canonical', async () => {
+  const { redirects } = JSON.parse(await read('vercel.json'));
+  const pages = ['start-here', 'guides', 'about', 'sponsors', 'privacy', 'terms', 'search', 'tools'];
+  const slash = redirects.find(rule => rule.source.includes(':page(') && rule.source.endsWith('/'));
+  const bare = redirects.find(rule => rule.source.includes(':page(') && !rule.source.endsWith('/'));
+  assert.equal(slash.destination, `${site}/:page.html`);
+  assert.equal(bare.destination, `${site}/:page.html`);
+  assert.equal(slash.permanent && bare.permanent, true);
+  const slashPattern = new RegExp(`^${slash.source.replace(':page', '')}$`);
+  const barePattern = new RegExp(`^${bare.source.replace(':page', '')}$`);
+  for (const page of pages) {
+    assert.ok(slashPattern.test(`/${page}/`), page);
+    assert.ok(barePattern.test(`/${page}`), page);
+  }
+  for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html', '/search.html', '/about.html']) {
+    assert.ok(!slashPattern.test(path), path);
+    assert.ok(!barePattern.test(path), path);
+  }
+  const slugSlash = redirects.find(rule => rule.source.startsWith('/guides/:slug') && rule.source.endsWith('/'));
+  const slug = redirects.find(rule => rule.source.startsWith('/guides/:slug') && !rule.source.endsWith('/'));
+  assert.equal(slugSlash.destination, `${site}/guides/:slug.html`);
+  assert.equal(slug.destination, `${site}/guides/:slug.html`);
+});
+
+test('the inline consent snippet captures the landing URL and its UTMs before the deferred loader', () => {
+  const landing = 'https://www.ai-automation-station.com/?utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp';
+  const dataLayer = [];
+  const window = { location: { href: landing }, dataLayer };
+  vm.runInNewContext(gaConsentInline.replace(/^<script>|<\/script>$/g, ''), { window, location: window.location });
+  assert.equal(window.__landingPageLocation, landing);
+  assert.equal(window.__gaConsentDefaulted, true);
+  assert.equal(dataLayer[0][1], 'default');
+  assert.equal(dataLayer[0][2].analytics_storage, 'denied');
 });
 
 test('ga-boot.js captures the landing URL and loads gtag.js only after stored consent', async () => {

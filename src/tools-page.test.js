@@ -3,7 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { affiliates, categories, logoSlug } from './affiliates.js';
 import { toolLink } from './tool-links.js';
-import { addToolsLink, guideTools, renderToolsPage, topTools, videosUsing } from './tools-page.js';
+import { addToolsLink, guideTools, renderToolsPage, toolsTitle, topTools, videosUsing } from './tools-page.js';
 import { uploads } from './uploads-snapshot.js';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -29,6 +29,19 @@ test('watch pages link every affiliate tool name to the same referral link', () 
 
 test('the tools page discloses affiliate links before the first one and marks every one sponsored', () => {
   const html = renderToolsPage({ uploads, guides: [{ title: 'Make.com Google Sheets tutorial', url: 'https://www.ai-automation-station.com/guides/make-first-automation.html', modified: '2026-11-01' }], updated: new Date('2026-11-12T00:00:00Z') });
+  const title = html.match(/<title>([^<]+)<\/title>/)[1];
+  const description = html.match(/<meta name="description" content="([^"]+)">/)[1];
+  const ogTitle = html.match(/<meta property="og:title" content="([^"]+)">/)[1];
+  const twitterTitle = html.match(/<meta name="twitter:title" content="([^"]+)">/)[1];
+  assert.equal(title, `${toolsTitle} | Mike Holp`);
+  assert.ok(title.length <= 60, title.length);
+  assert.ok(description.length <= 160, description.length);
+  assert.doesNotMatch(title, /[—;…]/);
+  assert.doesNotMatch(description, /[—;…]/);
+  assert.equal(ogTitle, toolsTitle);
+  assert.equal(twitterTitle, toolsTitle);
+  assert.match(toolsTitle, /^Choose AI tools/);
+  assert.match(description, /^Choose AI tools/);
   assert.equal((html.match(/<h1>/g) || []).length, 1);
   assert.ok(html.indexOf('Affiliate disclosure') < html.indexOf('class="tool-cta"'));
   const ctas = [...html.matchAll(/<a class="tool-cta" href="([^"]+)" target="_blank" rel="sponsored noopener" data-affiliate="([^"]+)" data-placement="(tools_page|tools_top_picks)"/g)];
