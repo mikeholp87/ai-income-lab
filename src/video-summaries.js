@@ -2359,7 +2359,6 @@ export const videoSummaries = {
     "summary": "A walkthrough of DextroLab, a tool for giving agency clients a branded portal to run Make.com or n8n automations, with usage billing through Stripe. Mike connects Make.com, delivers a voice agent workflow to a client and sets example pricing. A custom-variable step fails with an invalid API key error and is dropped. The link in the description is an affiliate link.",
     "whatYouBuild": "A white-label client setup in DextroLab: a Make.com connection, a workflow delivered to a client for approval, and example pricing with a per-run fee, a monthly base fee and a one-time setup fee.",
     "toolsUsed": [
-      "DextroLab",
       "Make.com",
       "n8n",
       "Stripe"
@@ -8300,9 +8299,7 @@ export const videoSummaries = {
   "zWM4AjUto2A": {
     "summary": "A three-minute list of five AI automation ideas for a business: customer service chatbots, email triage, invoice processing, content and social media automation, and no-code workflow automation. It names no tools and shows no demos. The claim that chatbots can resolve up to 80 percent of routine questions is stated without a source.",
     "whatYouBuild": "Nothing is built. It only lists automation ideas.",
-    "toolsUsed": [
-      "No-code automation platforms"
-    ],
+    "toolsUsed": [],
     "keySteps": [
       {
         "seconds": 21,

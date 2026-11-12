@@ -6,6 +6,8 @@ import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderAr
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
 import { videoTools } from './video-tools.js';
+import { videoSummaries } from './video-summaries.js';
+import { toolLink } from './tool-links.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
 import { durationSeconds, validChapters } from './youtube.js';
@@ -416,15 +418,22 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
   assert.match(html, /<p class="meta">Compare pricing: [^<]*<a href="\/tools\.html#make-com" data-placement="watch_tool_card">Make\.com<\/a>[^]*?Some ↗ links are affiliate links, so I may earn a commission or credit\. <a href="\/tools\.html" data-placement="watch_tools_all">/);
   assert.equal(html.match(/href="\/tools\.html#make-com"/g).length, 1);
-  assert.match(renderWatch(uploads.find(upload => upload.id === 'QMqe2ubsn0g'), { videos: uploads }), /<li>DextroLab<\/li>/);
   const tubeAnalytics = renderWatch(uploads.find(upload => upload.id === 'gebtJAsMioo'), { videos: uploads });
-  assert.match(tubeAnalytics, /<li>TubeAnalytics<\/li>/);
-  assert.doesNotMatch(tubeAnalytics, /href="https:\/\/www\.tubeanalytics\.net/);
+  assert.doesNotMatch(tubeAnalytics, /TubeAnalytics<\/li>|href="https:\/\/www\.tubeanalytics\.net/);
+});
+
+test('every tool listed on a watch page has a link, preferring the affiliate one', () => {
+  const names = [...Object.values(videoSummaries).flatMap(brief => brief.toolsUsed ?? []), ...Object.values(videoTools).flat()];
+  assert.deepEqual([...new Set(names.filter(name => !toolLink(name)))], [], 'add the tool to src/tool-links.js or remove it');
+  assert.equal(toolLink('OpenCode VS Code extension').affiliate, true);
+  assert.equal(toolLink('Claude skills').affiliate, true);
+  assert.equal(toolLink('Gemini 3.1 Pro').affiliate, true);
+  assert.equal(toolLink('GNU Make').affiliate, false);
 });
 
 test('every watch page lists the tools used', () => {
   // No product is used on screen: a list of automation ideas, a moving vlog, and a TubeAnalytics-only demo.
-  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w']);
+  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w', 'gebtJAsMioo']);
   const missing = uploads.filter(video => video.embeddable && !noTools.has(video.id) && !/<h[23][^>]*>Tools used<\/h[23]>/.test(renderWatch(video, { videos: uploads })));
   assert.deepEqual(missing.map(video => video.id), [], 'add the tools to src/video-tools.js');
   for (const tools of Object.values(videoTools)) for (const tool of tools) assert.doesNotMatch(tool, /[—;…()]/, tool);

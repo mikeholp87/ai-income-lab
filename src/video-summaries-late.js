@@ -139,7 +139,7 @@ Object.assign(lateSummaries, {
   'lbBZ7uLJwbM': {
     summary: 'Install the official ChatGPT desktop app on Debian, launch its Codex workspace, set project permissions and try model selection, a skill, Fast Mode and voice dictation.',
     whatYouBuild: 'A working official ChatGPT and Codex desktop app on Linux. The recording downloads the Debian package, installs dependencies in the terminal, opens a project and runs an SEO audit skill.',
-    toolsUsed: ['ChatGPT desktop app for Linux', 'Codex', 'Debian package (.deb)', 'Terminal'],
+    toolsUsed: ['ChatGPT desktop app for Linux', 'Codex'],
     keySteps: [
       { seconds: 69, step: 'Download the package that matches your distribution from the official page.' },
       { seconds: 115, step: 'Install the package and its dependencies from the terminal.' },
@@ -159,7 +159,7 @@ Object.assign(lateSummaries, {
   'geKngm3sg3w': {
     summary: 'Set up 9Router as a gateway that falls back from paid models to cheaper ones, connect OAuth and API providers and watch live token and cost tracking.',
     whatYouBuild: 'A local 9Router gateway between coding tools and 60 or more model providers, with three-tier fallback from paid subscriptions to cheap models to free ones, plus a dashboard for token and cost tracking.',
-    toolsUsed: ['9Router', 'Claude Code', 'Codex', 'OpenCode', 'Tailscale', 'Caveman and Ponytail skills'],
+    toolsUsed: ['9Router', 'Claude Code', 'Codex', 'OpenCode', 'Tailscale', 'Caveman', 'Ponytail'],
     keySteps: [
       { seconds: 30, step: 'See what 9Router is and how requests are routed.' },
       { seconds: 79, step: 'Understand the three-tier automatic fallback.' },
@@ -181,7 +181,7 @@ Object.assign(lateSummaries, {
     searchTitle: 'Building TubeAnalytics in public: debugging, SEO fixes and data',
     summary: 'Follow a working session on TubeAnalytics: fixing a 500 error on the pricing page with OpenCode, reviewing the dashboard and applying Search Console data.',
     whatYouBuild: 'Fixes and growth work for the TubeAnalytics site. OpenCode on a free model repairs a pricing page error, the dashboard supplies revenue recommendations and Search Console data drives indexing and content changes.',
-    toolsUsed: ['TubeAnalytics', 'OpenCode', 'systematic-debugging skill', 'Google Search Console', 'Vercel analytics', 'ChatGPT'],
+    toolsUsed: ['OpenCode', 'systematic-debugging skill', 'Google Search Console', 'Vercel analytics', 'ChatGPT'],
     keySteps: [
       { seconds: 0, step: 'Start with the pricing page 500 error and a dashboard redirect bug.' },
       { seconds: 107, step: 'Run a debugging skill in OpenCode on a free model.' },
@@ -202,7 +202,7 @@ Object.assign(lateSummaries, {
   'g4BmgmEy_mI': {
     summary: 'Build a community Codex desktop app for Debian from its GitHub project with make, then see the install output, features and first launch. This is the unofficial route.',
     whatYouBuild: 'A Codex desktop app running on Debian, built from a community GitHub project rather than an OpenAI download. The recording clones the repository, runs its bootstrap and package steps and packages a .deb.',
-    toolsUsed: ['Codex', 'Community Codex desktop project on GitHub', 'make', 'Electron', 'Debian'],
+    toolsUsed: ['Codex', 'Community Codex desktop project on GitHub', 'GNU Make', 'Electron', 'Debian'],
     keySteps: [
       { seconds: 0, step: 'See why the app is needed when the official one covered only Windows and Mac.' },
       { seconds: 84, step: 'Prepare the Linux setup.' },
@@ -264,7 +264,7 @@ Object.assign(lateSummaries, {
   'qC2ipjdszPA': {
     summary: 'See the ChatGPT Business trial used to raise Codex limits, why the CLI kept showing old credits and the sign out and back in step that finally synced the plan.',
     whatYouBuild: 'A higher Codex usage allowance. The recording starts the ChatGPT Business trial, upgrades the workspace and signs out of the CLI and back in until the command line shows full credits.',
-    toolsUsed: ['ChatGPT Business', 'Codex CLI', 'Codex cloud', 'VS Code extension'],
+    toolsUsed: ['ChatGPT Business', 'Codex CLI', 'Codex cloud', 'Codex VS Code extension'],
     keySteps: [
       { seconds: 27, step: 'Review the Business plan features and pricing shown.' },
       { seconds: 66, step: 'Upgrade and see the credit limit increase in usage settings.' },
@@ -284,7 +284,7 @@ Object.assign(lateSummaries, {
   '_8qzOkIWMSk': {
     summary: 'Install OpenCode with a one-line command, see where it runs, compare its Go and free Zen plans with Claude Code limits and connect models through OpenRouter.',
     whatYouBuild: 'A working OpenCode install with model connections. The recording covers the install options, the free and paid plans, adding OpenRouter and API keys, running custom SEO skills and adding the VS Code extension.',
-    toolsUsed: ['OpenCode', 'OpenRouter', 'VS Code extension', 'Custom skills'],
+    toolsUsed: ['OpenCode', 'OpenRouter', 'OpenCode VS Code extension'],
     keySteps: [
       { seconds: 24, step: 'Install with a one-line curl, npm or brew command.' },
       { seconds: 124, step: 'Compare the OpenCode Go and free Zen plans.' },
@@ -308,7 +308,7 @@ Object.assign(lateSummaries, {
   'DfyAAwHPJuU': {
     summary: 'Why the TubeAnalytics SaaS was built, how Claude Code, Gemini and OpenCode were used, then a tour of its dashboard, competitor tracking and AI tools.',
     whatYouBuild: 'A tour of a finished YouTube analytics SaaS and how it was built. The recording covers plans, the dashboard, audience and video scores, a content calendar, competitor tracking, AI tools, monetization scenarios and reporting.',
-    toolsUsed: ['TubeAnalytics', 'Claude Code', 'Gemini', 'OpenCode', 'Ahrefs'],
+    toolsUsed: ['Claude Code', 'Gemini', 'OpenCode', 'Ahrefs'],
     keySteps: [
       { seconds: 0, step: 'Hear how the platform was built in about two weeks with AI coding tools.' },
       { seconds: 104, step: 'Review the Starter, Professional and Enterprise plans.' },
@@ -330,7 +330,7 @@ Object.assign(lateSummaries, {
   'gebtJAsMioo': {
     summary: 'A three minute tour of TubeAnalytics: dashboard stats, audience health, video scores, traffic sources, competitor tracking, thumbnail scoring and keyword research.',
     whatYouBuild: 'A product demonstration rather than a build. It shows how one dashboard combines channel stats, audience health, video scores, a content calendar, competitor monitoring and monetization tools.',
-    toolsUsed: ['TubeAnalytics'],
+    toolsUsed: [],
     keySteps: [
       { seconds: 0, step: 'Meet the founder and the problem the tool addresses.' },
       { seconds: 37, step: 'See the subscription plans.' },
@@ -351,7 +351,7 @@ Object.assign(lateSummaries, {
   'xlVDUw_rBXE': {
     summary: 'See six n8n automations on a Hostinger VPS: job applications, a LinkedIn newsletter, a YouTube Shorts uploader and an AI stock advisor, with templates.',
     whatYouBuild: 'A self-hosted n8n instance and several workflows that combine AI models with workflow logic. The recording covers automated job applications, a LinkedIn newsletter, a YouTube Shorts uploader and an AI stock advisor.',
-    toolsUsed: ['n8n', 'Hostinger VPS', 'AI models'],
+    toolsUsed: ['n8n', 'Hostinger VPS'],
     keySteps: [
       { seconds: 45, step: 'See the self-hosted n8n instance on Hostinger.' },
       { seconds: 120, step: 'Review the automated job application workflow.' },
@@ -437,7 +437,7 @@ Object.assign(lateSummaries, {
   '9kHdIiobKMA': {
     summary: 'Build a Vapi voice assistant, connect it to Make.com with webhooks, add ElevenLabs voice and Twilio and finish with a live call and record updates.',
     whatYouBuild: 'An AI phone agent named Bill. Mike writes the system prompt, configures the model and voice, publishes the assistant, links Make.com and Twilio, handles voicemail detection and updates records from the data collected on a call.',
-    toolsUsed: ['Vapi', 'Make.com', 'Twilio', 'ElevenLabs', 'Webhooks'],
+    toolsUsed: ['Vapi', 'Make.com', 'Twilio', 'ElevenLabs'],
     keySteps: [
       { seconds: 73, step: 'Configure the model and write the system prompt.' },
       { seconds: 153, step: 'Set the API and voice configuration.' },
@@ -480,7 +480,7 @@ Object.assign(lateSummaries, {
   'G_XWYIwjhKY': {
     summary: 'Build a Make.com AI agent that replies to Tally form submissions by email, with a chosen language model, a system prompt, tools and a test run.',
     whatYouBuild: 'A Make.com AI agent triggered by a Tally form. It decides whether someone wants a call or to join the community and sends a personalized email through a connected tool.',
-    toolsUsed: ['Make.com', 'Make AI Agents', 'Tally forms', 'Email'],
+    toolsUsed: ['Make.com', 'Make AI Agents', 'Tally forms'],
     keySteps: [
       { seconds: 69, step: 'Set up the AI agent in Make.com.' },
       { seconds: 109, step: 'Choose the language model.' },
@@ -501,7 +501,7 @@ Object.assign(lateSummaries, {
   'Lifl4PC2_3M': {
     summary: 'A one-hour Make.com crash course covering triggers and actions, pricing, Google Sheets, AI email, ChatGPT scenarios, scheduling and starter templates and agents.',
     whatYouBuild: 'A working knowledge of Make.com scenarios. The course covers real examples, how triggers and actions work, pricing plans, Google Sheets, automated email with AI, ChatGPT modules, larger business automations and scheduling.',
-    toolsUsed: ['Make.com', 'Google Sheets', 'ChatGPT', 'Email'],
+    toolsUsed: ['Make.com', 'Google Sheets', 'ChatGPT'],
     keySteps: [
       { seconds: 184, step: 'See real-world automation examples.' },
       { seconds: 407, step: 'Learn how triggers and actions work.' },
@@ -523,7 +523,7 @@ Object.assign(lateSummaries, {
   'oDAKXkIyOHE': {
     summary: 'Build a Make.com scenario that watches for new emails, has AI write a customized reply and sends it, with a template to download.',
     whatYouBuild: 'An email automation in Make.com. A module watches an inbox for new emails, an AI step writes a response based on the message and another module sends it.',
-    toolsUsed: ['Make.com', 'Email modules', 'AI model'],
+    toolsUsed: ['Make.com'],
     keySteps: [],
     notCovered: ['Safeguards against replying to every message, such as filters or approval.', 'Time actually saved. The 10 hours a week in the title is a claim.'],
     qa: [
