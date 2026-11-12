@@ -59,7 +59,10 @@ test('vercel.json redirects do not put a query string in the destination, so the
 });
 
 test('extensionless and trailing-slash URLs hop once to the www .html canonical', async () => {
-  const { redirects } = JSON.parse(await read('vercel.json'));
+  const config = JSON.parse(await read('vercel.json'));
+  // trailingSlash:false compiles ahead of redirects, so /guides/ would 308 to /guides first.
+  assert.equal(Object.hasOwn(config, 'trailingSlash'), false);
+  const { redirects } = config;
   const pages = ['start-here', 'guides', 'about', 'sponsors', 'privacy', 'terms', 'search', 'tools'];
   const slash = redirects.find(rule => rule.source.includes(':page(') && rule.source.endsWith('/'));
   const bare = redirects.find(rule => rule.source.includes(':page(') && !rule.source.endsWith('/'));
@@ -80,6 +83,11 @@ test('extensionless and trailing-slash URLs hop once to the www .html canonical'
   const slug = redirects.find(rule => rule.source.startsWith('/guides/:slug') && !rule.source.endsWith('/'));
   assert.equal(slugSlash.destination, `${site}/guides/:slug.html`);
   assert.equal(slug.destination, `${site}/guides/:slug.html`);
+  const strip = redirects.find(rule => rule.source === '/:path(.*)/');
+  assert.equal(strip.destination, '/:path');
+  assert.equal(strip.permanent, true);
+  assert.ok(redirects.indexOf(slash) < redirects.indexOf(strip));
+  assert.ok(redirects.indexOf(slugSlash) < redirects.indexOf(strip));
 });
 
 test('the inline consent snippet captures the landing URL and its UTMs before the deferred loader', () => {
