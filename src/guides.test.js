@@ -227,6 +227,23 @@ test('the guides hub filters its cards with the same search box as /videos', asy
   assert.match(script, /\/videos\?q=\$\{encodeURIComponent\(typed\)\}/);
 });
 
+test('the guides hub sorts by topic or publish date, and every card shows its date', async () => {
+  const { addGuideDates, guideMeta } = await import('./feed.js');
+  const metas = await Promise.all(guides.map(async file => guideMeta(await read(`public/guides/${file}`))));
+  const hub = addGuideDates(await read('public/guides.html'), metas);
+  const cards = [...hub.matchAll(/<li class="guide"( data-published="(\d{4}-\d{2}-\d{2})")?>[^]*?<h3><a href="([^"]+)">[^]*?<\/h3><p class="meta guide-date"><time datetime="(\d{4}-\d{2}-\d{2})">\w{3} \d{1,2}, \d{4}<\/time><\/p>/g)];
+  assert.equal(cards.length, guides.length);
+  for (const [, , stamped, path, shown] of cards) {
+    assert.equal(stamped, shown, path);
+    assert.equal(stamped, metas.find(meta => meta.url.endsWith(path)).published.slice(0, 10), path);
+  }
+  assert.match(await read('scripts/prerender.js'), /file === 'guides\.html' \? addGuideDates\(read, guideTitles\)/);
+  const script = await read('public/guide-search.js');
+  assert.match(script, /const sorts = \{ topic: 'By topic', newest: 'Newest', oldest: 'Oldest' \};/);
+  assert.match(script, /sort === 'oldest' \? a\.published\.localeCompare\(b\.published\) : b\.published\.localeCompare\(a\.published\)/);
+  assert.match(script, /url\.searchParams\.set\('sort', sort\)/);
+});
+
 test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
   const css = await read('public/archive.css');
   assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: var\(--signal\);/);

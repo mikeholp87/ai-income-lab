@@ -93,6 +93,7 @@ header nav { display: flex; gap: 24px; margin-left: auto; }
 .intro .meta { margin-top: 16px; }
 .intro .meta a { color: var(--text); }
 li.guide { display: grid; gap: 12px; align-content: start; }
+.guide-list.by-date { margin-top: 32px; }
 .guide > div { display: grid; gap: 8px; }
 .guide a { display: inline; }
 .guide img { aspect-ratio: 1200 / 630; }

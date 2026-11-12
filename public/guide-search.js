@@ -1,6 +1,7 @@
 // The /guides.html search box and pager. Typing hides guide cards that don't match, along with any topic left
 // empty; with no search, 15 cards show per page (?page=N) like /videos. A topic pill filters to that topic
-// (?topic=id), paged the same way. Every card stays in the HTML, so
+// (?topic=id), paged the same way. "Newest" and "Oldest" (?sort=) list the cards by the publish date the build
+// stamps on them (data-published), across topics. Every card stays in the HTML, so
 // crawlers and no-JS readers get the whole list, and without JavaScript the form submits to /search.html.
 import { afterTyping, searchInside } from '/inside-search.js';
 
@@ -16,9 +17,24 @@ const sections = [...document.querySelectorAll('ul.guide-list')].map(list => {
   };
 });
 const all = sections.flatMap(section => section.cards);
+for (const entry of all) Object.assign(entry, { home: entry.card.parentElement, published: entry.card.dataset.published ?? '' });
 const perPage = 15;
 const params = new URLSearchParams(location.search);
 let page = Number(params.get('page')) || 1;
+// "By topic" keeps the topic sections; "Newest" and "Oldest" move every card into one list ordered by publish date.
+const sorts = { topic: 'By topic', newest: 'Newest', oldest: 'Oldest' };
+let sort = Object.hasOwn(sorts, params.get('sort')) ? params.get('sort') : 'topic';
+const sortNav = Object.assign(document.createElement('nav'), { className: 'sort' });
+sortNav.setAttribute('aria-label', 'Sort guides');
+sortNav.innerHTML = Object.entries(sorts).map(([key, label]) => `<a href="?${key === 'topic' ? '' : `sort=${key}`}" data-sort="${key}" rel="nofollow">${label}</a>`).join('');
+form.after(sortNav);
+const dated = Object.assign(document.createElement('ul'), { className: 'guide-list by-date', hidden: true });
+sections[0].parts[0].before(dated);
+const byDate = (a, b) => sort === 'oldest' ? a.published.localeCompare(b.published) : b.published.localeCompare(a.published);
+function arrange() {
+  if (sort === 'topic') for (const entry of all) entry.home.append(entry.card);
+  else for (const entry of [...all].sort(byDate)) dated.append(entry.card);
+}
 // Topic id from ?topic= or an old #hash link; null shows every guide.
 const idOf = section => section.parts[0].id;
 let topic = [params.get('topic'), location.hash.slice(1)].find(id => sections.some(section => idOf(section) === id)) ?? null;
@@ -26,7 +42,7 @@ topics.prepend(Object.assign(document.createElement('a'), { href: '?', textConte
 const pager = Object.assign(document.createElement('nav'), { className: 'pager mono' });
 pager.setAttribute('aria-label', 'Guide pages');
 document.getElementById('next').before(pager);
-const pagerLink = (to, label) => `<a href="?${new URLSearchParams({ ...(topic && { topic }), page: to })}" data-page="${to}">${label}</a>`;
+const pagerLink = (to, label) => `<a href="?${new URLSearchParams({ ...(topic && { topic }), ...(sort !== 'topic' && { sort }), page: to })}" data-page="${to}">${label}</a>`;
 const esc = text => String(text).replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
 
 function run() {
@@ -61,12 +77,15 @@ function paint() {
   // A search covers every guide; otherwise only the chosen topic's.
   const scope = typed || !topic ? all : sections.find(section => idOf(section) === topic).cards;
   const live = scope.filter(entry => !entry.miss);
+  if (sort !== 'topic') live.sort(byDate);
   const pages = typed ? 1 : Math.max(1, Math.ceil(live.length / perPage));
   page = Math.min(Math.max(page, 1), pages);
   const shown = new Set(typed ? live : live.slice((page - 1) * perPage, page * perPage));
   for (const entry of all) entry.card.hidden = !shown.has(entry);
-  for (const { parts, cards } of sections) for (const part of parts) part.hidden = !cards.some(entry => shown.has(entry));
+  for (const { parts, cards } of sections) for (const part of parts) part.hidden = sort !== 'topic' || !cards.some(entry => shown.has(entry));
+  dated.hidden = sort === 'topic' || !shown.size;
   for (const link of topics.children) link.toggleAttribute('aria-current', (link.hash.slice(1) || null) === topic);
+  for (const link of sortNav.children) link.toggleAttribute('aria-current', link.dataset.sort === sort);
   pager.hidden = pages < 2;
   pager.innerHTML = pages < 2 ? '' : [
     page > 1 ? pagerLink(page - 1, '← Previous') : '',
@@ -77,6 +96,7 @@ function paint() {
   if (typed) url.searchParams.set('q', input.value.trim()); else url.searchParams.delete('q');
   if (page > 1) url.searchParams.set('page', page); else url.searchParams.delete('page');
   if (topic) url.searchParams.set('topic', topic); else url.searchParams.delete('topic');
+  if (sort !== 'topic') url.searchParams.set('sort', sort); else url.searchParams.delete('sort');
   url.hash = '';
   history.replaceState(null, '', url);
 }
@@ -101,6 +121,18 @@ topics.addEventListener('click', event => {
   form.scrollIntoView();
 });
 
+// A sort keeps the search and topic and starts again from page 1.
+sortNav.addEventListener('click', event => {
+  const link = event.target.closest('a[data-sort]');
+  if (!link) return;
+  event.preventDefault();
+  sort = link.dataset.sort;
+  page = 1;
+  arrange();
+  if (input.value.trim()) run(); else paint();
+});
+
+arrange();
 input.value = new URLSearchParams(location.search).get('q') ?? '';
 input.addEventListener('input', () => { page = 1; run(); });
 form.addEventListener('submit', event => { event.preventDefault(); run(); });

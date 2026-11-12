@@ -19,6 +19,18 @@ export function guideMeta(html) {
   };
 }
 
+const shortDate = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+// Stamp each /guides.html card with its guide's publish date, for the "Newest" and "Oldest" sorts and a visible date.
+export function addGuideDates(html, guides) {
+  const published = new Map(guides.map(guide => [guide.url.replace(site, ''), guide.published.slice(0, 10)]));
+  return html.replace(/<li class="guide">([^]*?<h3><a href="([^"]+)">[^]*?<\/h3>)/g, (card, inner, path) => {
+    const date = published.get(path);
+    if (!date) return card;
+    return `<li class="guide" data-published="${date}">${inner}<p class="meta guide-date"><time datetime="${date}">${shortDate.format(new Date(`${date}T00:00:00Z`))}</time></p>`;
+  });
+}
+
 const videoItems = videos => videos.filter(video => video.public !== false)
   .map(video => ({ title: video.title, description: snippet(video.summary || '', 200), url: `${site}/watch/${video.id}`, published: video.published, kind: 'video' }));
 

@@ -6,7 +6,7 @@ import { uploads } from '../src/uploads-snapshot.js';
 import { topics } from '../src/topics.js';
 import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
-import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
 import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
@@ -44,7 +44,8 @@ await writeFile('dist/tools.html', renderToolsPage({ uploads, guides: guideTitle
 const guides = [];
 for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
-  const html = withGaBoot(await readFile(path, 'utf8'), file);
+  const read = withGaBoot(await readFile(path, 'utf8'), file);
+  const html = file === 'guides.html' ? addGuideDates(read, guideTitles) : read;
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));

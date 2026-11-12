@@ -3,71 +3,57 @@
     {
       "id": "7JN-sMkJBCs",
       "title": "Let GrokBot Find And Apply To Jobs For You",
-      "published": "2026-11-11T15:43:48Z",
+      "published": "2026-11-11T15:43:48+00:00",
       "views": 74,
-      "duration": "8:48",
       "summary": "Build a personal AI agent that automates your job search. This system finds, sources, and applies to remote jobs for you using GrokBot.",
-      "embeddable": true,
       "heading": "Let GrokBot find and Apply to jobs for you"
     },
     {
       "id": "V3ETwJAR5-I",
       "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
-      "published": "2026-11-10T04:36:16Z",
-      "views": 163,
-      "duration": "14:05",
+      "published": "2026-11-10T04:36:16+00:00",
+      "views": 164,
       "summary": "See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.",
-      "embeddable": true,
       "heading": "GrokBot credit usage: why it drains and how to save"
     },
     {
       "id": "YYZSR1p32EQ",
       "title": "Herdr On Windows Is Better Than I Expected!",
-      "published": "2026-11-09T04:13:12Z",
-      "views": 846,
-      "duration": "11:03",
+      "published": "2026-11-09T04:13:12+00:00",
+      "views": 840,
       "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.",
-      "embeddable": true,
       "heading": "Herdr on Windows: Installation, Themes, Mods and Usage"
     },
     {
       "id": "IV6q81wRay4",
       "title": "New HERDR Desktop App Is A Game Changer!",
-      "published": "2026-11-07T07:05:11Z",
+      "published": "2026-11-07T07:05:11+00:00",
       "views": 14458,
-      "duration": "11:17",
       "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
-      "embeddable": true,
       "heading": "Herdr Desktop Setup: Workspaces, Themes and Claude Code"
     },
     {
       "id": "V0PoYhOprBI",
       "title": "3 Open Source Projects I Built That You Need to Try!",
-      "published": "2026-11-05T08:47:59Z",
+      "published": "2026-11-05T08:47:59+00:00",
       "views": 279,
-      "duration": "10:36",
       "summary": "Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.",
-      "embeddable": true,
       "heading": "Tasky, Restic-Studio and Luma-Launcher: Project Demos"
     },
     {
       "id": "phVQuQMojA8",
       "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
-      "published": "2026-11-03T07:48:25Z",
+      "published": "2026-11-03T07:48:25+00:00",
       "views": 452,
-      "duration": "4:17",
       "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
-      "embeddable": true,
       "heading": "Claude Code Task-Manager Demo: Processes and Packaging"
     },
     {
       "id": "0iTOlQjNdhs",
       "title": "I Fixed My Android TV With Claude Code + CleanYourTV",
-      "published": "2026-11-02T02:42:16Z",
+      "published": "2026-11-02T02:42:16+00:00",
       "views": 4008,
-      "duration": "15:01",
       "summary": "Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.",
-      "embeddable": true,
       "heading": "CleanYourTV and Claude Code: customize Android TV"
     }
   ],
