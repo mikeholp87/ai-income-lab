@@ -68,4 +68,4 @@ try {
 // The homepage's "Tools I use most" strip, counted the same way as the tools page, so the homepage bundle doesn't
 // carry the video tool lists.
 const { uploads } = await import(`../src/uploads-snapshot.js?${Date.now()}`);
-await writeFile(new URL('../src/top-tools.json', import.meta.url), `${JSON.stringify(topTools(uploads), null, 2)}\n`);
+await writeFile(new URL('../src/top-tools.json', import.meta.url), `${JSON.stringify(topTools(uploads, 10), null, 2)}\n`);

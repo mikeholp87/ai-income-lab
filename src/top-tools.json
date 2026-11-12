@@ -28,5 +28,35 @@
     "slug": "google-gemini",
     "videos": 19,
     "bestFor": "Building and coding with Google’s models"
+  },
+  {
+    "name": "HeyGen",
+    "slug": "heygen",
+    "videos": 8,
+    "bestFor": "Avatar videos without filming yourself"
+  },
+  {
+    "name": "Hostinger",
+    "slug": "hostinger",
+    "videos": 8,
+    "bestFor": "A VPS for self-hosting n8n and AI agents"
+  },
+  {
+    "name": "Skool",
+    "slug": "skool",
+    "videos": 8,
+    "bestFor": "Running a paid community with courses"
+  },
+  {
+    "name": "Treg",
+    "slug": "treg",
+    "videos": 8,
+    "bestFor": "Giving an agent many APIs through one token"
+  },
+  {
+    "name": "Lovable",
+    "slug": "lovable",
+    "videos": 6,
+    "bestFor": "Building a web app without writing code"
   }
 ]

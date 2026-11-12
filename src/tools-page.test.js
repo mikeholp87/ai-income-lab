@@ -71,14 +71,14 @@ test('watch pages and guides point to the tools page, except guides that promise
 });
 
 test('the homepage, Start here, About, 404 and the welcome email link the tools page', async () => {
-  assert.deepEqual(JSON.parse(await read('src/top-tools.json')), topTools(uploads));
+  assert.deepEqual(JSON.parse(await read('src/top-tools.json')), topTools(uploads, 10));
   const jsx = await read('src/main.jsx');
   assert.match(jsx, /import topTools from '\.\/top-tools\.json'/);
   assert.match(jsx, /<section className="section top-tools" id="tools-i-use">[^]*?href=\{`\/tools\.html#\$\{tool\.slug\}`\}[^]*?href="\/tools\.html"/);
   for (const page of ['public/start-here.html', 'public/about.html', 'public/404.html']) assert.match(await read(page), /<a href="\/tools\.html">/, page);
   const { welcome } = await import('../api/subscribe.js');
   assert.match(welcome.text, /four good places to start:[^]*4\. The tools I use most[^]*\(some are affiliate links\):\nhttps:\/\/www\.ai-automation-station\.com\/tools\.html\n/);
-  assert.match(await read('scripts/refresh-videos.js'), /top-tools\.json[^\n]*topTools\(uploads\)/);
+  assert.match(await read('scripts/refresh-videos.js'), /top-tools\.json[^\n]*topTools\(uploads, 10\)/);
 });
 
 test('a tool is counted in a video whichever of its two tool lists names it', () => {
