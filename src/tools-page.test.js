@@ -144,3 +144,16 @@ test('a guide can exclude a tool it only uses as an example', () => {
   assert.deepEqual(guideTools(html), []);
   assert.doesNotMatch(addToolsLink(html), /data-affiliate="Hostinger"/);
 });
+
+test('every section opens with a one-line guide that only names tools from that section', () => {
+  const html = renderToolsPage({ uploads, guides: [] });
+  for (const [id, , , intro] of categories) {
+    assert.ok(intro && intro.length > 40 && intro.length < 260, `${id} intro`);
+    assert.match(html, new RegExp(`<h2 id="${id}-heading">[^<]*</h2><p class="meta">${intro.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/&/g, '&amp;')}</p><ul class="tool-cards">`), id);
+    for (const affiliate of affiliates) {
+      if (new RegExp(`\\b${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(intro)) assert.equal(affiliate.category, id, `${id} intro names ${affiliate.name}`);
+    }
+    // Every tool in the section is named, so the intro cannot drift from the cards.
+    for (const affiliate of affiliates.filter(item => item.category === id)) assert.match(intro, new RegExp(`\\b${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `${id} intro omits ${affiliate.name}`);
+  }
+});

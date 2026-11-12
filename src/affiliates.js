@@ -6,15 +6,16 @@
 // button; `price` is shown only when set, and must come from the tool's current pricing page. Update
 // pricesChecked whenever the prices are rechecked; the tools page shows it.
 export const pricesChecked = '2026-11-12';
+// [id, heading, short nav label, one-line guide to the section]. Intros only name tools in their own category.
 export const categories = [
-  ['coding', 'AI coding and app builders', 'Coding'],
-  ['automation', 'Automation and AI agents', 'Automation'],
-  ['seo', 'SEO and AI search', 'SEO'],
-  ['video', 'Video and content creation', 'Video'],
-  ['youtube', 'YouTube growth', 'YouTube'],
-  ['marketing', 'Email, marketing and sales', 'Marketing'],
-  ['hosting', 'Hosting', 'Hosting'],
-  ['business', 'Community, hiring and freelancing', 'Business'],
+  ['coding', 'AI coding and app builders', 'Coding', 'Coding agents that work in your terminal (OpenCode, Claude), builders that turn a chat prompt into an app (Lovable, Replit, Emergent), and general assistants (Google Gemini, Manus).'],
+  ['automation', 'Automation and AI agents', 'Automation', 'Tools that move data between apps and the web without you: Make.com for no-code workflows, Apify and Firecrawl for turning websites into data, Vapi for voice agents that take phone calls.'],
+  ['seo', 'SEO and AI search', 'SEO', 'Data for search and for AI answers: DataForSEO and Treg give an agent pay-per-use data, while Trakkr and CrowdReply show how AI assistants mention your brand.'],
+  ['video', 'Video and content creation', 'Video', 'Tools for making video and visuals with AI: avatar videos (HeyGen), short clips (OpusClip), faceless videos (Syllaby), thumbnails (Pikzels) and slides (Gamma).'],
+  ['youtube', 'YouTube growth', 'YouTube', 'Two YouTube tools for keyword research and thumbnail tests: vidIQ and TubeBuddy.'],
+  ['marketing', 'Email, marketing and sales', 'Marketing', 'Email and outreach tools: newsletters and automations (GetResponse), email, SMS and chatbots (SendPulse), and B2B lead lists (Apollo).'],
+  ['hosting', 'Hosting', 'Hosting', 'Hosting for self-hosted AI tools (Hostinger VPS) and for WordPress sites (Bluehost).'],
+  ['business', 'Community, hiring and freelancing', 'Business', 'Running a paid community (Skool), hiring and paying people abroad (Deel), and buying one-off tasks from freelancers (Fiverr).'],
 ];
 
 export const affiliates = [

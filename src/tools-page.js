@@ -153,7 +153,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
   const url = `${site}/tools.html`;
   const used = new Map(affiliates.map(affiliate => [affiliate, videosUsing(affiliate, uploads)]));
   // Most-used first, then the tools in every video description.
-  const grouped = categories.map(([id, label, short]) => [id, label, affiliates.filter(affiliate => affiliate.category === id).sort((a, b) => byUse(used, a, b)), short]).filter(([, , items]) => items.length);
+  const grouped = categories.map(([id, label, short, intro]) => [id, label, affiliates.filter(affiliate => affiliate.category === id).sort((a, b) => byUse(used, a, b)), short, intro]).filter(([, , items]) => items.length);
   const nav = grouped.map(([id, , , short]) => `<a href="#${id}">${escape(short)}</a>`).join('');
   const picks = topTools(uploads).map(pick => affiliates.find(affiliate => affiliate.name === pick.name));
   const schema = [
@@ -169,7 +169,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
 <aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.</p></aside>
 ${picks.length ? `<section class="top-picks" aria-labelledby="top-picks-heading"><h2 id="top-picks-heading">Start here: the ${picks.length} tools I use most</h2><ol>${picks.map(affiliate => topPick(affiliate, used.get(affiliate))).join('')}</ol></section>` : ''}
 <p class="meta">How this list works: each card counts the videos that use the tool on screen, read from the video transcripts, and the most-used tools come first. A tool marked “On my recommended list” is in every video description but has no build video yet.</p>
-${grouped.map(([id, label, items]) => `<section class="tool-group" id="${id}" aria-labelledby="${id}-heading"><h2 id="${id}-heading">${escape(label)}</h2><ul class="tool-cards">${items.map(affiliate => card(affiliate, used.get(affiliate), guides)).join('')}</ul></section>`).join('\n')}
+${grouped.map(([id, label, items, , intro]) => `<section class="tool-group" id="${id}" aria-labelledby="${id}-heading"><h2 id="${id}-heading">${escape(label)}</h2><p class="meta">${escape(intro)}</p><ul class="tool-cards">${items.map(affiliate => card(affiliate, used.get(affiliate), guides)).join('')}</ul></section>`).join('\n')}
 <form class="notes" method="post" data-subscribe data-placement="tools_page"><p><strong>Want to see new tools first?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
 <p>New to these tools? <a href="/start-here.html">Choose your first build</a>, or <a href="/guides.html">browse every guide by topic</a>. Making one of these products? <a href="/sponsors.html">Sponsor a build</a>.</p></main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
 `;
