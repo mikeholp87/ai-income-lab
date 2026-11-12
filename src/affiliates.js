@@ -8,7 +8,7 @@
 export const pricesChecked = '2026-11-12';
 // [id, heading, short nav label, one-line guide to the section]. Intros only name tools in their own category.
 export const categories = [
-  ['coding', 'AI coding and app builders', 'Coding', 'Coding agents that work in your terminal (OpenCode, Claude), builders that turn a chat prompt into an app (Lovable, Replit, Emergent), and general assistants (Google Gemini, Manus).'],
+  ['coding', 'AI coding and app builders', 'Coding', 'A coding agent that works in your terminal (OpenCode), builders that turn a chat prompt into an app (Lovable, Replit, Emergent), and general assistants (Google Gemini, Manus).'],
   ['automation', 'Automation and AI agents', 'Automation', 'Tools that move data between apps and the web without you: Make.com for no-code workflows, Apify and Firecrawl for turning websites into data, Vapi for voice agents that take phone calls.'],
   ['seo', 'SEO and AI search', 'SEO', 'Data for search and for AI answers: DataForSEO and Treg give an agent pay-per-use data, while Trakkr and CrowdReply show how AI assistants mention your brand.'],
   ['video', 'Video and content creation', 'Video', 'Tools for making video and visuals with AI: avatar videos (HeyGen), short clips (OpusClip), faceless videos (Syllaby), thumbnails (Pikzels) and slides (Gamma).'],

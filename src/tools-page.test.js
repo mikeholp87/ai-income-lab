@@ -153,6 +153,8 @@ test('every section opens with a one-line guide that only names tools from that 
     for (const affiliate of affiliates) {
       if (new RegExp(`\\b${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(intro)) assert.equal(affiliate.category, id, `${id} intro names ${affiliate.name}`);
     }
+    // Every tool named in brackets has a card in this section, so a removed tool cannot linger in the intro.
+    for (const name of [...intro.matchAll(/\(([^)]+)\)/g)].flatMap(([, list]) => list.split(/,\s*/))) assert.ok(affiliates.some(affiliate => affiliate.category === id && (name === affiliate.name || name.startsWith(`${affiliate.name} `))), `${id} intro names ${name}, which has no card`);
     // Every tool in the section is named, so the intro cannot drift from the cards.
     for (const affiliate of affiliates.filter(item => item.category === id)) assert.match(intro, new RegExp(`\\b${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`), `${id} intro omits ${affiliate.name}`);
   }
