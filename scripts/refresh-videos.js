@@ -19,10 +19,8 @@ try {
   const feed = await response.json();
   if (!validFeed(feed)) throw new Error('Invalid YouTube feed');
   // The feed drops the channel numbers when the YouTube API quota runs out; keep the last ones we had.
-  const saved = JSON.parse(await readFile(path, 'utf8'));
-  const channel = Number.isFinite(feed.channel?.subscribers) ? feed.channel : saved.channel;
-  if (!Number.isFinite(channel?.subscribers)) throw new Error('Feed missing channel counts');
-  await writeFile(path, `${JSON.stringify(withSummaries({ ...feed, channel }), null, 2)}\n`);
+  if (!feed.channel) feed.channel = JSON.parse(await readFile(path, 'utf8')).channel ?? null;
+  await writeFile(path, `${JSON.stringify(withSummaries(feed), null, 2)}\n`);
   console.log('Updated the latest-video snapshot.');
 } catch (error) {
   if (!validFeed(JSON.parse(await readFile(path, 'utf8')))) throw new Error('No usable video snapshot', { cause: error });
