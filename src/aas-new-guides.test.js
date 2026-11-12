@@ -80,6 +80,16 @@ test('excluded existing-URL revisions and the unpublished connect path stay out 
   const comparison = await read('public/guides/claude-code-vs-codex.html');
   assert.doesNotMatch(comparison, /connect-claude-code-codex-to-grokbot/);
   assert.match(comparison, /<title>Codex vs Claude Code: /);
+  const openrouter = await read('public/guides/openrouter-setup.html');
+  assert.doesNotMatch(openrouter, /<figure class="video">/);
+  assert.doesNotMatch(openrouter, /data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/Qb6RG0-8O1k"/);
+  const runable = await read('public/guides/runable-audit-website.html');
+  assert.match(runable, /data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/qQVAnp4-EpI"/);
+  assert.match(runable, /unlisted as of 12 November 2026/);
+  assert.doesNotMatch(runable, /the watch page/);
+  const hub = await read('public/guides.html');
+  assert.doesNotMatch(hub, /qQVAnp4-EpI/);
+  assert.doesNotMatch(hub, /Qb6RG0-8O1k/);
 });
 
 test('the rocket guide stays a qualified case study without reconstructing the prompt', async () => {
