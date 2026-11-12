@@ -35,6 +35,24 @@ const NEW = [
 ];
 const EXCLUDED = ['claude-models-compared', 'openrouter-setup', 'claude-code-vs-codex'];
 
+const BATCH01 = [
+  ['rank-prompt-ai-search-visibility', ['ndG48skyZZY'], 'Rank Prompt AI Visibility: Scan, MCP and Fixes', 'Run a Rank Prompt visibility scan, track prompts across AI answers, connect the MCP in Claude Code, and review the recorded content and outreach steps.'],
+  ['semrush-mcp-ai-visibility', ['Fw-RqLjArc8'], 'Semrush MCP: AI Visibility and Keyword Gaps', 'Connect Semrush to a coding agent over MCP, read AI visibility and citation data, then turn keyword and backlink gaps into a plan you review.'],
+  ['opencode-seo-audit-skills', ['1LN7TqmW--w'], 'OpenCode SEO Audit Skills: Site Checks and Files', 'Run OpenCode SEO audit skills on a live site, generate llms.txt and sitemap files, and note plan limits shown in the recording.'],
+  ['ai-token-usage-dashboard', ['L_dAm5Xh-fQ'], 'Token Usage Dashboard: ccusage, RTK and Costs', 'Build a local token-usage dashboard with ccusage, compare daily costs, and check RTK and Caveman savings the recording showed.'],
+  ['hermes-agent-supermemory', ['wL6bjqaUcd8'], 'Hermes Agent Memory: Install Supermemory', 'Install Supermemory on Hermes Agent, add the API key, test a memory write, then connect the same plugin in OpenCode and Codex.'],
+  ['hermes-backlink-outreach-pipeline', ['bBGqWXXIw44'], 'Hermes Backlink Outreach: Crawl, Pitch and Send', 'Build a Hermes outreach pipeline with Firecrawl, Hunter.io and Mailgun, keep sends gated, and read the delivery numbers from the recording.'],
+  ['chatgpt-thumbnail-ctr-pipeline', ['JJe2G17_eRU'], 'ChatGPT Thumbnails: Audit CTR and Redesign', 'Audit channel thumbnail CTR, note brightness and contrast targets from the recording, then run the master prompt in ChatGPT Images.'],
+  ['visiscan-ai-visibility-audit', ['e73WvglCLW0'], 'VisiScan AI Visibility: Free Scan and Report', 'Run a VisiScan domain scan, read readiness and visibility scores, and review sitemap, robots.txt and llms.txt checks. Mike owns VisiScan.'],
+  ['rtk-token-savings-claude-code', ['jB9hYQJGAuM'], 'RTK Token Savings: Install, Hooks and Checks', 'Install RTK with curl or Homebrew, add hooks in Claude Code and Codex, then run rtk gain to read the savings the recording showed.'],
+  ['claude-code-second-brain', ['pwLLS6zFpKs'], 'Claude Code Second Brain: Cortex Project Tour', 'Walk through Cortex, a Claude Code second-brain project: markdown files, Radar, theme graph, VidIQ MCP and the limits shown on camera.'],
+  ['claude-code-video-editor-skill', ['3cP3DeBG5Q0'], 'Claude Code Video Editor Skill: Build and Run', 'Follow the recorded video-editor skill for Claude Code: the prompt loop, guardrails, confidence checks and the command used to run it.'],
+  ['9router-cost-tracking-fallbacks', ['tzSGF7gu6EE'], '9Router Cost Tracking: Combos and Fallbacks', 'Track 9Router token cost, set model combos and auto-fallback across paid, cheap and free models, and read weekly quota from the recording.'],
+  ['ai-visibility-tracker-saas-build', ['2G5klyFz61E'], 'AI Visibility Tracker: SaaS Build Log', 'Follow a recorded SaaS build of an AI visibility tracker: landing page, DataForSEO MCP data, GEO files and a Stripe pricing page draft.'],
+  ['zcode-glm-desktop-app', ['mmiQaVfA5e0'], 'ZCode GLM Desktop: Install, Plans and Review', 'Install Z.ai\'s ZCode desktop app for GLM 5.2 on Linux, review the plans shown on camera, and run a local site review from the terminal.'],
+  ['claude-fable-5-game-prompts', ['X9Bo29B_46k'], 'Claude Fable 5 Games: Prompts and Plugins', 'Use Claude Fable 5 to build a small game: effort modes, Compound Engineering, plan mode and the prompt briefs shown in the recording.'],
+];
+
 test('the 22 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
   const hub = await read('public/guides.html');
   const sitemap = await read('public/sitemap.xml');
@@ -69,6 +87,38 @@ test('the 22 new AAS guides have exact metadata, canonicals, robots, schema and 
     }
     assert.doesNotMatch(html, /<iframe/, slug);
     assert.doesNotMatch(html, /connect-claude-code-codex-to-grokbot/, slug);
+  }
+});
+
+test('batch 01 AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  const collection = schemas(hub).find(item => item['@type'] === 'CollectionPage');
+  assert.equal(BATCH01.length, 15);
+  for (const [slug, ids, title, description] of BATCH01) {
+    const html = await read(`public/guides/${slug}.html`);
+    const url = `${site}/guides/${slug}.html`;
+    assert.equal(decode(html.match(/<title>(.*?)<\/title>/)[1]), title, slug);
+    assert.equal(decode(html.match(/<meta name="description" content="([^"]*)">/)[1]), description, slug);
+    assert.match(html, /<meta name="robots" content="index,follow">/, slug);
+    assert.ok(html.includes(`<link rel="canonical" href="${url}">`), slug);
+    assert.ok(html.includes(`<h1>${title}</h1>`), slug);
+    const article = schemas(html).find(item => item['@type'] === 'Article');
+    const crumbs = schemas(html).find(item => item['@type'] === 'BreadcrumbList');
+    const faq = schemas(html).find(item => item['@type'] === 'FAQPage');
+    assert.equal(article.headline, title, slug);
+    assert.equal(article.url, url, slug);
+    assert.equal(article.description, description, slug);
+    assert.equal(faq.url, url, slug);
+    assert.equal(crumbs.itemListElement[2].item, url, slug);
+    assert.match(hub, new RegExp(`<a href="/guides/${slug}\\.html">`), slug);
+    assert.ok(collection.mainEntity.itemListElement.some(item => item.url === url), slug);
+    assert.ok(sitemap.includes(`<loc>${url}</loc><lastmod>${article.dateModified}</lastmod>`), slug);
+    assert.ok(llms.includes(`](${url})`), slug);
+    const embeds = [...html.matchAll(/data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/([\w-]{11})"/g)].map(match => match[1]);
+    assert.deepEqual(embeds, ids, slug);
+    assert.doesNotMatch(html, /<iframe/, slug);
   }
 });
 

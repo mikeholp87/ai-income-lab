@@ -11,6 +11,21 @@ const youtubeWalkthroughPosters = {
   'claude-code-vs-codex.html': 'ys5tJuTFCEo',
   'grok-4-7-openrouter.html': 'p7kV1iHSP54',
   'dataforseo-mcp-claude.html': 'wRqpZ9F3rmI',
+  'rank-prompt-ai-search-visibility.html': 'ndG48skyZZY',
+  'semrush-mcp-ai-visibility.html': 'Fw-RqLjArc8',
+  'opencode-seo-audit-skills.html': '1LN7TqmW--w',
+  'ai-token-usage-dashboard.html': 'L_dAm5Xh-fQ',
+  'hermes-agent-supermemory.html': 'wL6bjqaUcd8',
+  'hermes-backlink-outreach-pipeline.html': 'bBGqWXXIw44',
+  'chatgpt-thumbnail-ctr-pipeline.html': 'JJe2G17_eRU',
+  'visiscan-ai-visibility-audit.html': 'e73WvglCLW0',
+  'rtk-token-savings-claude-code.html': 'jB9hYQJGAuM',
+  'claude-code-second-brain.html': 'pwLLS6zFpKs',
+  'claude-code-video-editor-skill.html': '3cP3DeBG5Q0',
+  '9router-cost-tracking-fallbacks.html': 'tzSGF7gu6EE',
+  'ai-visibility-tracker-saas-build.html': '2G5klyFz61E',
+  'zcode-glm-desktop-app.html': 'mmiQaVfA5e0',
+  'claude-fable-5-game-prompts.html': 'X9Bo29B_46k',
 };
 
 test('the guides hub links, lists and describes every guide', async () => {
