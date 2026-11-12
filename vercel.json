@@ -58,7 +58,6 @@
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ],
-  "trailingSlash": false,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/blog/", "destination": "https://www.ai-automation-station.com/guides.html", "permanent": true },
@@ -66,7 +65,8 @@
     { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools)/", "destination": "https://www.ai-automation-station.com/:page.html", "permanent": true },
     { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools)", "destination": "https://www.ai-automation-station.com/:page.html", "permanent": true },
     { "source": "/guides/:slug([a-z0-9-]+)/", "destination": "https://www.ai-automation-station.com/guides/:slug.html", "permanent": true },
-    { "source": "/guides/:slug([a-z0-9-]+)", "destination": "https://www.ai-automation-station.com/guides/:slug.html", "permanent": true }
+    { "source": "/guides/:slug([a-z0-9-]+)", "destination": "https://www.ai-automation-station.com/guides/:slug.html", "permanent": true },
+    { "source": "/:path(.*)/", "destination": "/:path", "permanent": true }
   ],
   "rewrites": [
     { "source": "/watch/:id", "destination": "/api/videos?video=:id" },

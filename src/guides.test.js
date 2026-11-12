@@ -80,6 +80,40 @@ test('/guides redirects once to the hub without catching guide pages', async () 
   for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html', '/search.html']) assert.ok(!pattern.test(path), path);
 });
 
+test('/guides/ reaches the hub in one 308 because trailingSlash is unset', async () => {
+  const config = JSON.parse(await read('vercel.json'));
+  // trailingSlash:false is compiled ahead of redirects, so /guides/ would 308 to /guides first.
+  assert.equal(Object.hasOwn(config, 'trailingSlash'), false);
+  const { redirects } = config;
+  const hub = 'https://www.ai-automation-station.com/:page.html';
+  const slashPage = redirects.find(rule => rule.source.includes(':page(') && rule.source.endsWith('/'));
+  const slashSlug = redirects.find(rule => rule.source.startsWith('/guides/:slug') && rule.source.endsWith('/'));
+  const strip = redirects.find(rule => rule.source === '/:path(.*)/');
+  assert.equal(slashPage.destination, hub);
+  assert.equal(slashPage.permanent, true);
+  assert.equal(slashSlug.destination, 'https://www.ai-automation-station.com/guides/:slug.html');
+  assert.equal(slashSlug.permanent, true);
+  assert.equal(strip.destination, '/:path');
+  assert.equal(strip.permanent, true);
+  assert.ok(redirects.indexOf(slashPage) < redirects.indexOf(strip));
+  assert.ok(redirects.indexOf(slashSlug) < redirects.indexOf(strip));
+  const pagePattern = new RegExp(`^${slashPage.source.replace(':page', '')}$`);
+  assert.ok(pagePattern.test('/guides/'));
+  assert.ok(pagePattern.test('/about/'));
+  assert.ok(!pagePattern.test('/guides'));
+  assert.ok(!pagePattern.test('/guides/codex-workflow/'));
+  const slugPattern = new RegExp(`^${slashSlug.source.replace(':slug', '')}$`);
+  assert.ok(slugPattern.test('/guides/codex-workflow/'));
+  assert.ok(!slugPattern.test('/guides/codex-workflow.html/'));
+  // @vercel/routing-utils compiles /:path(.*)/ to this; it must not match / or steal /guides/.
+  const stripPattern = /^(?:\/(.*))\/$/;
+  assert.ok(stripPattern.test('/videos/'));
+  assert.ok(stripPattern.test('/watch/abc/'));
+  assert.ok(stripPattern.test('/guides.html/'));
+  assert.ok(!stripPattern.test('/'));
+  assert.ok(!stripPattern.test('/guides'));
+});
+
 test('guide video figures are click-to-load players with no YouTube iframe in the HTML', async () => {
   const reading = await read('src/reading.js');
   assert.match(reading, /bindGuidePlayers\(document\)/);
