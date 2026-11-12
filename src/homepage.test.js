@@ -268,6 +268,17 @@ test('the sponsors page structured data offers the same formats and prices as th
   const cards = [...services.matchAll(/<h3>([^<]+)<\/h3>\s*<p className="service-price">\$([\d,]+)/g)].map(([, name, price]) => [name, price.replace(/,/g, '')]);
   assert.equal(cards.length, 5);
   assert.deepEqual(offers.map(offer => [offer.name, offer.price]), cards);
+  const anchors = {
+    'Multi-platform campaign': 'campaign',
+    'Dedicated video': 'dedicated-video',
+    'YouTube Short': 'youtube-short',
+    'AI Income Lab post': 'ai-income-lab-post',
+    'LinkedIn post': 'linkedin-post',
+  };
+  for (const offer of offers) {
+    assert.equal(offer.url, `https://www.ai-automation-station.com/sponsors.html#${anchors[offer.name]}`);
+    assert.match(services, new RegExp(`id="${anchors[offer.name]}"`));
+  }
   assert.match(html, /og:image" content="https:\/\/www\.ai-automation-station\.com\/og-sponsors\.jpg/);
   // The campaign's written guide is promised in the card and the markup alike.
   assert.match(services, /<li>A written guide on this site, built from the video<\/li>/);

@@ -7,13 +7,14 @@ import { topics } from '../src/topics.js';
 import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+import { gaBootHead } from '../src/ga-boot-html.js';
 import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
 
 function withGaBoot(html, file) {
   if (html.includes('src="/ga-boot.js"')) return html;
-  if (html.includes('<script src="/theme.js"')) return html.replace('<script src="/theme.js"', '<script src="/ga-boot.js"></script><script src="/theme.js"');
+  if (html.includes('<script src="/theme.js"')) return html.replace('<script src="/theme.js"', `${gaBootHead}<script src="/theme.js"`);
   throw new Error(`Missing GA boot script: ${file}`);
 }
 

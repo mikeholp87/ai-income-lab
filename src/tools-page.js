@@ -1,5 +1,6 @@
 import { affiliates, categories, logoSlug, pricesChecked } from './affiliates.js';
 import { videoHeading } from './curated-summary.js';
+import { gaBootHead } from './ga-boot-html.js';
 import { videoSummaries } from './video-summaries.js';
 import { videoTools } from './video-tools.js';
 
@@ -11,8 +12,8 @@ const shownVideos = 3;
 const shownGuides = 2;
 const topPicks = 5;
 
-export const toolsTitle = 'AI tools I recommend for automation, coding and content';
-const description = 'The AI tools from my YouTube descriptions, grouped by job: coding agents, automation, SEO, video, YouTube growth, email and hosting. Each links to the videos that use it.';
+export const toolsTitle = 'Choose AI tools for automation and coding';
+const description = 'Choose AI tools from my YouTube descriptions, grouped by job: coding agents, automation, SEO, video, YouTube growth, email and hosting.';
 
 // Public uploads whose tool lists name one of the affiliate's tools, newest first. Both lists are read from
 // the transcript, so a written summary's list doesn't hide a tool the transcript list caught.
@@ -109,7 +110,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
   ].map(item => `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, '\\u003c')}</script>`).join('\n');
 
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>${escape(toolsTitle)} | Mike Holp</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="website"><meta property="og:title" content="${escape(toolsTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script><script src="/ga-boot.js"></script><script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>${schema}
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>${escape(toolsTitle)} | Mike Holp</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="website"><meta property="og:title" content="${escape(toolsTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(toolsTitle)}"><meta name="twitter:description" content="${escape(description)}"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>${gaBootHead}<script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>${schema}
 </head>
 <body class="wide"><a class="skip" href="#content">Skip to content</a><header class="single-line-header tools-header"><a href="/">AI Income Lab</a><nav aria-label="Tool categories">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Tool categories menu">Categories</summary><nav aria-label="Tool categories menu">${nav}</nav></details></header><main id="content"><p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · Updated <time datetime="${date}">${readable}</time></p><h1>Tools I recommend for AI automation.</h1><p>The tools linked in my YouTube descriptions, with the ones I use most on camera first. Watch any of them in a real build before you sign up.</p>
 <aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.</p></aside>
