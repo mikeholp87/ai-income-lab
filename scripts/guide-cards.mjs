@@ -10,6 +10,11 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'apify-agent-skills': {
+    title: 'Apify agent skills: scrape leads in Cursor',
+    steps: [['Install', 'npx skills add apify/agent-skills'], ['Token', 'Add APIFY_TOKEN to .env'], ['Scrape', 'Leads CSV, then emails']],
+    note: 'The Google Maps CSV in the recording had websites but no emails.',
+  },
   "ai-agent-workflow": {"title": "An AI agent workflow with checks at every boundary", "steps": [["Brief", "Define inputs and allowed actions"], ["Draft", "Propose a structured result"], ["Check", "Validate before acting"]], "note": "Practice: classify three fictional requests without sending anything."},
   "ai-content-creation-workflows": {"title": "Make an AI content draft you can review", "steps": [["Brief", "One message and one format"], ["Draft", "Create one small asset"], ["Review", "Check facts, rights and export"]], "note": "Practice: turn three supplied facts into a 20-second explainer."},
   "build-apps-with-ai-coding-agents": {"title": "Build a small app with an AI coding agent", "steps": [["Scope", "One feature with clear checks"], ["Change", "Use the project’s existing pattern"], ["Verify", "Try edge cases and read the diff"]], "note": "Practice: add a case-insensitive filter to a local task list."},

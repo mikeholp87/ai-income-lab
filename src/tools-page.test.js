@@ -263,8 +263,8 @@ test('og image tags use the real og-card.jpg pixel size', async () => {
   assert.equal(ogImageHeight, height);
 });
 
-test('OpenCode, Gemini and Hostinger cards link existing guides, and Apify is skipped', async () => {
-  const paths = ['opencode-go.html', 'opencode-vs-claude-code.html', 'opencode-seo-audit-skills.html', 'opencode-stripe-billing-saas.html', 'google-ai-studio-chat-app.html', 'install-openclaw.html'];
+test('OpenCode, Gemini, Hostinger and Apify cards link existing guides', async () => {
+  const paths = ['opencode-go.html', 'opencode-vs-claude-code.html', 'opencode-seo-audit-skills.html', 'opencode-stripe-billing-saas.html', 'google-ai-studio-chat-app.html', 'install-openclaw.html', 'apify-agent-skills.html'];
   for (const file of paths) await access(new URL(`../public/guides/${file}`, import.meta.url));
   const guides = [
     { title: 'OpenCode Go: pricing, models, limits and setup', url: `${siteOrigin}/guides/opencode-go.html`, modified: '2026-11-08' },
@@ -273,6 +273,7 @@ test('OpenCode, Gemini and Hostinger cards link existing guides, and Apify is sk
     { title: 'OpenCode Stripe Billing Build: A SaaS Case Study', url: `${siteOrigin}/guides/opencode-stripe-billing-saas.html`, modified: '2026-11-12' },
     { title: 'Build a Chat Web App in Google AI Studio, No Code', url: `${siteOrigin}/guides/google-ai-studio-chat-app.html`, modified: '2026-11-12' },
     { title: 'How to install OpenClaw: local, VPS or hosted, safely', url: `${siteOrigin}/guides/install-openclaw.html`, modified: '2026-11-07' },
+    { title: 'Apify Agent Skills: Scrape Leads in Cursor', url: `${siteOrigin}/guides/apify-agent-skills.html`, modified: '2026-11-12' },
   ];
   const html = renderToolsPage({ uploads, guides });
   const card = name => {
@@ -287,5 +288,5 @@ test('OpenCode, Gemini and Hostinger cards link existing guides, and Apify is sk
   assert.match(card('OpenCode'), /href="\/guides\/opencode-seo-audit-skills\.html"/);
   assert.match(card('Google Gemini'), /href="\/guides\/google-ai-studio-chat-app\.html"/);
   assert.match(card('Hostinger'), /href="\/guides\/install-openclaw\.html"/);
-  assert.doesNotMatch(card('Apify'), /<p class="used-in">Read:/);
+  assert.match(card('Apify'), /href="\/guides\/apify-agent-skills\.html"/);
 });
