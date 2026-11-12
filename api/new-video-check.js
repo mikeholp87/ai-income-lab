@@ -6,11 +6,8 @@
 // ponytail: Hobby crons run once a day; YouTube WebSub push would make new uploads near-instant.
 // Each run also renews the YouTube WebSub subscription (api/youtube-push.js), the fast path.
 import { uploads } from '../src/uploads-snapshot.js';
-import { longFormPlaylistId } from '../src/youtube.js';
+import { longFormFeedUrl as feedUrl } from '../src/youtube.js';
 import { subscribe } from './youtube-push.js';
-
-// The public playlist feed costs no API quota; "UULF" lists long-form uploads only, newest first.
-const feedUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${longFormPlaylistId}`;
 
 export const newestUploadId = xml => xml.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/)?.[1] ?? null;
 

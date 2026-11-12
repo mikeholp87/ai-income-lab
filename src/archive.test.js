@@ -221,7 +221,8 @@ async function earlyRefreshHarness(t, ids) {
   const request = path => GET(new Request(`https://www.ai-automation-station.com${path}`));
   assert.equal((await request('/videos')).status, 200);
   assert.equal(upstream.mock.callCount(), 2, 'stale inventory refreshes once');
-  return { state, request, calls: () => upstream.mock.callCount(), advance: ms => { now += ms; } };
+  const toFeed = call => String(call.arguments[0]).startsWith('https://www.youtube.com/feeds/');
+  return { state, request, calls: () => upstream.mock.calls.filter(call => !toFeed(call)).length, feedCalls: () => upstream.mock.calls.filter(toFeed).length, advance: ms => { now += ms; } };
 }
 
 test('an upload newer than the inventory gets its watch page after one early refresh', async t => {
@@ -254,13 +255,14 @@ test('an unknown id after a successful refresh is a briefly cached 404, and repe
 });
 
 test('an unknown id goes to YouTube, briefly cached, when no refresh is possible', async t => {
-  const { state, request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const { state, request, calls, feedCalls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
   advance(660000);
   state.failing = true;
+  t.after(() => assert.equal(feedCalls(), 12, 'the quota-free feed gets six tries, then six more a minute later'));
   const unknown = await request('/watch/zzzzzzzzzzz?t=98');
   assert.equal(unknown.status, 302);
   assert.equal(unknown.headers.get('location'), 'https://www.youtube.com/watch?v=zzzzzzzzzzz&t=98s');
-  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
+  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
   assert.equal(calls(), 3, 'the failed early refresh stops at the first request');
   advance(60000);
   const again = await request('/watch/yyyyyyyyyyy?t=abc');

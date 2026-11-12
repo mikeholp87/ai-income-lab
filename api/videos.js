@@ -1,6 +1,6 @@
 import { fetchUploads, pageCount, renderArchive, renderWatch, renderVideoSitemap, sorts, sponsoredVideos, videoIndex } from '../src/archive.js';
 import { uploads, uploadsUpdatedAt } from '../src/uploads-snapshot.js';
-import { channelUrl, longFormPlaylistId } from '../src/youtube.js';
+import { channelUrl, longFormFeedUrl, longFormPlaylistId, parseFeedUploads } from '../src/youtube.js';
 import { topicBySlug } from '../src/topics.js';
 import { readingCss } from '../src/asset-version.js';
 
@@ -41,6 +41,25 @@ function refreshUploads() {
     .catch(error => { console.error('[videos]', error.message); retryAt = Date.now() + 300000; })
     .finally(() => { refresh = null; });
   return refresh;
+}
+
+// When the Data API can't refresh (daily quota spent, outage), the quota-free long-form feed still has a new upload,
+// so its watch page works instead of redirecting to YouTube. One feed fetch per 10 minutes per instance.
+let feedAt = 0;
+async function addFromFeed() {
+  if (Date.now() - feedAt < earlyRefreshGap) return;
+  feedAt = Date.now();
+  // The feed often answers 404 or 500 several times in a row, so try up to six times; after a total failure,
+  // allow another try in a minute rather than ten.
+  let entries = [];
+  for (let attempt = 0; attempt < 6 && !entries.length; attempt++) {
+    const response = await fetch(longFormFeedUrl, { signal: AbortSignal.timeout(5000) }).catch(() => null);
+    if (response?.ok) entries = parseFeedUploads(await response.text().catch(() => ''));
+  }
+  if (!entries.length) feedAt -= earlyRefreshGap - 60000;
+  const known = new Set(memo.videos.map(video => video.id));
+  const fresh = entries.filter(video => !known.has(video.id));
+  if (fresh.length) memo = { ...memo, videos: [...fresh, ...memo.videos].sort((a, b) => b.published.localeCompare(a.published)) };
 }
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
@@ -102,9 +121,14 @@ export async function GET(request) {
     // The inventory only lists this channel's public videos. If it was refreshed in the last 10 minutes and still lacks
     // the id, the video is deleted, private or someone else's: 404, never a redirect to an arbitrary YouTube video.
     if (!video && Date.now() - memo.at < earlyRefreshGap) return notFound(unknownCache);
-    // No refresh was possible (rate limited, backing off, no key or failed) or embedding is off: send the visitor to
+    if (!video) {
+      await addFromFeed();
+      video = find();
+      if (video) return html(renderWatch(video, { videos: memo.videos, start }), 200, 'public, max-age=300, s-maxage=600');
+    }
+    // No refresh was possible (rate limited, backing off, no key or failed) and the feed lacks it, or embedding is off: send the visitor to
     // YouTube instead of a 404. Temporary, so the watch page takes over once the inventory knows the video.
-    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': unknownCache } });
+    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': video ? unknownCache : 'public, max-age=0, s-maxage=60' } });
   }
   // An empty topic would be a thin page; 404 it until a matching video exists.
   if (topic && !memo.videos.some(video => topic.pattern.test(video.title))) return notFound();

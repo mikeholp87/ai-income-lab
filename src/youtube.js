@@ -4,6 +4,8 @@ export const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${ch
 // YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts).
 export const longFormPlaylistId = `UULF${channelId.slice(2)}`;
 export const shortsPlaylistId = `UUSH${channelId.slice(2)}`;
+// The public playlist feed costs no API quota and lists the 15 newest long-form uploads, newest first.
+export const longFormFeedUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${longFormPlaylistId}`;
 
 // Validate the public feed before it becomes rendered content or a persisted build snapshot.
 export function validFeed(feed) {
@@ -38,6 +40,23 @@ export function parseFeed(xml) {
     }))
     .filter(video => video.id);
 }
+
+// The long-form feed → upload inventory entries like parseUploads', for watch pages when the Data API can't refresh.
+// The feed only lists public videos and has no length or embedding flag; uploads allow embedding by default.
+export const parseFeedUploads = xml => xml.split('<entry>').slice(1).map(entry => {
+  const description = decode(tag(entry, 'media:description'));
+  return {
+    id: tag(entry, 'yt:videoId'),
+    title: decode(tag(entry, 'title')),
+    published: tag(entry, 'published'),
+    summary: summarize(description),
+    details: describe(description),
+    chapters: parseChapters(description),
+    views: Number(entry.match(/views="(\d+)"/)?.[1] ?? 0),
+    public: true,
+    embeddable: true,
+  };
+}).filter(video => /^[\w-]{11}$/.test(video.id) && Number.isFinite(Date.parse(video.published)));
 
 // channels.list statistics → counts, leaving out any YouTube hides so the page keeps its built-in numbers.
 export function parseChannel(data) {
