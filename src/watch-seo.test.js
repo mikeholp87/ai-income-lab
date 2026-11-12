@@ -57,6 +57,6 @@ test('project demonstrations link directly to their repositories and Windows Her
     assert.ok(projects.includes(`href="https://github.com/mikeholp87/${name}"`), name);
   }
   const windows = renderWatch({ id: 'YYZSR1p32EQ', title: 'Herdr On Windows Is Better Than I Expected!', published: '2026-11-09T00:00:00Z' });
-  assert.match(windows, /href="\/guides\/herdr-desktop-app.html"/);
+  assert.match(windows, /href="\/guides\/herdr-on-windows.html"/);
   assert.match(windows, /href="https:\/\/github.com\/mikeholp87\/update-forge"/);
 });
