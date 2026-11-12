@@ -1,5 +1,11 @@
 [
   {
+    "name": "Claude",
+    "slug": "claude",
+    "videos": 63,
+    "bestFor": "Writing, research and coding with Claude Code"
+  },
+  {
     "name": "OpenCode",
     "slug": "opencode",
     "videos": 52,
@@ -8,14 +14,8 @@
   {
     "name": "Make.com",
     "slug": "make-com",
-    "videos": 37,
+    "videos": 38,
     "bestFor": "No-code automations between your apps"
-  },
-  {
-    "name": "Claude",
-    "slug": "claude",
-    "videos": 32,
-    "bestFor": "Writing, research and coding with Claude Code"
   },
   {
     "name": "Apify",

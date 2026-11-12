@@ -3,7 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { affiliates, categories, logoSlug } from './affiliates.js';
 import { toolLink } from './tool-links.js';
-import { addToolsLink, guideTools, renderToolsPage, toolsTitle, topTools, videosUsing } from './tools-page.js';
+import { addToolsLink, guideTools, linkFirstMentions, renderToolsPage, toolsTitle, topTools, videosUsing } from './tools-page.js';
 import { uploads } from './uploads-snapshot.js';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -89,8 +89,17 @@ test('watch pages and guides point to the tools page, except guides that promise
   // A tool in the title comes first, and the AI Income Lab community link doesn't count as Skool.
   assert.deepEqual(guideTools(guide.replace('Automate a sheet', 'Claude Code for beginners')).map(affiliate => affiliate.name), ['Claude', 'Make.com']);
   assert.match(addToolsLink('<main><h1>x</h1><a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></main>'), /<p class="meta"><a href="\/tools\.html" data-placement="guide_tools_all">See every tool I recommend →/);
-  // Three plain mentions count; two don't, and Claude Code isn't Claude.
-  assert.deepEqual(guideTools('<main><h1>x</h1><p>HeyGen, HeyGen and HeyGen. Vapi and Vapi. Claude Code, Claude Code, Claude Code. Gemini 4, Gemini 4, Gemini 4.</p></main>').map(affiliate => affiliate.name), ['HeyGen']);
+  // Three plain mentions count; two don't. Claude Code counts as Claude; Gemini 4 isn't the Gemini app and "Make" is a verb.
+  assert.deepEqual(guideTools('<main><h1>x</h1><p>HeyGen, HeyGen and HeyGen. Vapi and Vapi. Claude Code, Claude Code, Claude Code. Gemini 4, Gemini 4, Gemini 4. Make it. Make it. Make it.</p></main>').map(affiliate => affiliate.name), ['Claude', 'HeyGen']);
+  // The first prose mention after the quick answer links the affiliate, with the disclosure before that paragraph.
+  const heygen = affiliates.find(affiliate => affiliate.name === 'HeyGen');
+  const inline = linkFirstMentions(`<main><h1>HeyGen tutorial</h1><p>HeyGen quick answer.</p><h2>Set up HeyGen</h2><nav><a href="#x">HeyGen</a></nav><p>Open <code>HeyGen</code>, then HeyGen AI Studio. Later HeyGen again.</p></main>`, [heygen]);
+  assert.equal(inline, `<main><h1>HeyGen tutorial</h1><p>HeyGen quick answer.</p><h2>Set up HeyGen</h2><nav><a href="#x">HeyGen</a></nav><p class="meta">Some tool links in this guide are affiliate links, so I may earn a commission or credit.</p>\n<p>Open <code>HeyGen</code>, then <a href="${heygen.url.replace(/&/g, '&amp;')}" target="_blank" rel="sponsored noopener" data-affiliate="HeyGen" data-placement="guide_inline">HeyGen</a> AI Studio. Later HeyGen again.</p></main>`);
+  assert.equal(linkFirstMentions(`<main><h1>x</h1><p>a</p><p>HeyGen <a href="${heygen.url.replace(/&/g, '&amp;')}">link</a></p></main>`, [heygen]).includes('guide_inline'), false, 'a guide already linking the affiliate is left alone');
+  for (const promise of ['this guide uses plain links only.', 'This page uses the public product site with no tracking parameters.']) {
+    const plain = guide.replace('<main>', `<main><p>${promise}</p>`);
+    assert.equal(addToolsLink(plain), plain, promise);
+  }
   assert.deepEqual(guideTools('<main><h1>x</h1><pre>Apify Apify Apify</pre></main>'), []);
   const sponsored = guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>');
   assert.equal(addToolsLink(sponsored), sponsored);
@@ -121,4 +130,10 @@ test('the tools page is built, listed and linked', async () => {
   assert.match(await read('vercel.json'), /search\|tools\)"/);
   assert.match(await read('src/main.jsx'), /<a href="\/tools\.html">Recommended tools<\/a>/);
   assert.match(await read('src/reading.js'), /trackGoogleEvent\('affiliate_outbound_clicked', event\)/);
+});
+
+test('a guide can exclude a tool it only uses as an example', () => {
+  const html = '<html><head><meta name="affiliate-exclude" content="Hostinger"></head><body><main><h1>Hostinger scan</h1><p>a</p><p>The Hostinger report.</p></main></body></html>';
+  assert.deepEqual(guideTools(html), []);
+  assert.doesNotMatch(addToolsLink(html), /data-affiliate="Hostinger"/);
 });

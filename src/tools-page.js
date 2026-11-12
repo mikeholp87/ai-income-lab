@@ -39,36 +39,89 @@ export function guidesAbout(affiliate, guides) {
   return guides.filter(guide => pattern.test(guide.title)).sort((a, b) => (b.modified || '').localeCompare(a.modified || ''));
 }
 
-// A tools page line at the end of a guide, before its closing next steps. It points at the card of the tool the
-// guide links most (links to the AI Income Lab community on Skool don't count), or at the whole page.
-// Guides that promise no affiliate or referral links (the sponsored ones) are left alone.
 const pattern = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const shownGuideTools = 4;
 const allToolsLink = '<a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a>';
+// Sponsored guides and guides that promise plain links get no affiliate links.
+const plainLinksOnly = /no (affiliate|referral) (links|codes)|plain links only|no tracking parameters/i;
+
+// A tool's names as written in prose. Model versions such as Gemini 4 aren't the Gemini app, and "Make" alone
+// is too often the verb.
+const mentionPattern = (affiliate, flags = 'g') => {
+  const names = [...new Set([affiliate.name, ...affiliate.tools])].filter(name => name !== 'Make').sort((a, b) => b.length - a.length);
+  return new RegExp(`(?<![\\w.-])(?:${names.map(pattern).join('|')})(?![\\w-]|\\.\\w|\\s+\\d)`, flags);
+};
 
 // Affiliate tools a guide is about: named in its title, linked from it, or mentioned at least three times
-// in the text. Claude Code and model versions such as Gemini 4 don't count as the Claude or Gemini apps. The AI Income Lab community link and
-// mentions don't count as Skool. Strongest first.
+// in the text. The AI Income Lab community link and mentions don't count as Skool. A guide that only uses a tool
+// as an example (a scanned site, say) names it in <meta name="affiliate-exclude" content="Hostinger, …">. Strongest first.
 export function guideTools(html) {
+  const excluded = new Set((html.match(/<meta name="affiliate-exclude" content="([^"]*)">/)?.[1] ?? '').split(',').map(name => name.trim()));
   const main = html.slice(Math.max(0, html.indexOf('<main')), html.includes('</main>') ? html.indexOf('</main>') : undefined);
   const title = main.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, '') ?? '';
   const links = main.replaceAll(/href="https:\/\/www\.skool\.com\/ai-automation-station[^"]*"/g, '');
   const text = main.replace(/<(script|style|pre|code)\b[^]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ');
-  return affiliates.map(affiliate => {
+  return affiliates.filter(affiliate => !excluded.has(affiliate.name)).map(affiliate => {
     const inTitle = guidesAbout(affiliate, [{ title }]).length > 0;
     const linked = links.match(new RegExp(`href="https?://([a-z0-9-]+\\.)*${pattern(affiliate.site)}[/"?]`, 'g'))?.length ?? 0;
-    const names = [...new Set([affiliate.name, ...affiliate.tools])].sort((a, b) => b.length - a.length);
-    const mentions = text.match(new RegExp(`(?<![\\w.-])(?:${names.map(pattern).join('|')})(?![\\w-]|\\.\\w|\\s+Code\\b|\\s+\\d)`, 'g'))?.length ?? 0;
+    const mentions = text.match(mentionPattern(affiliate))?.length ?? 0;
     const counts = inTitle || linked || (mentions >= 3 && affiliate.name !== 'Skool');
     return [affiliate, counts ? (inTitle ? 1000 : 0) + linked * 10 + mentions : 0];
   }).filter(([, score]) => score).sort((a, b) => b[1] - a[1]).map(([affiliate]) => affiliate);
 }
 
-// Before a guide's closing next steps: the tools it covers, each linking its tools-page card and its
-// affiliate link, or just a link to the tools page when it covers none.
+// Prose that inline links may touch: paragraphs outside headings, links, code, navigation, figures, asides and tables.
+const noLinkTags = new Set(['a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code', 'pre', 'script', 'style', 'nav', 'button', 'summary', 'figure', 'aside', 'blockquote', 'table', 'label']);
+const affiliateNote = '<p class="meta">Some tool links in this guide are affiliate links, so I may earn a commission or credit.</p>\n';
+
+// Links the first plain mention of each covered tool to its affiliate URL, from the second paragraph after the
+// title (the first is the quick answer) up to the sources, with the disclosure before the first such paragraph.
+export function linkFirstMentions(html, tools) {
+  const start = html.indexOf('</h1>');
+  const end = Math.min(...['<h2 id="sources"', '<aside class="note next-steps"', '<form class="notes"', '</main>'].map(marker => html.indexOf(marker, start)).filter(index => index > start));
+  if (start === -1 || !Number.isFinite(end)) return html;
+  const pending = tools.filter(affiliate => !html.includes(`href="${escape(affiliate.url)}"`));
+  const skip = [];
+  let paragraphs = 0;
+  let inParagraph = false;
+  let paragraphAt = -1;
+  let noteAt = -1;
+  const out = [];
+  for (const [token, close, name] of html.slice(start, end).matchAll(/<(\/?)([a-zA-Z][\w-]*)\b[^>]*>|[^<]+|</g)) {
+    const tag = name?.toLowerCase();
+    if (tag) {
+      if (noLinkTags.has(tag)) close ? skip.pop() : skip.push(tag);
+      if (tag === 'p' && !skip.length) {
+        inParagraph = !close;
+        if (!close) { paragraphs++; paragraphAt = out.length; }
+      }
+      out.push(token);
+      continue;
+    }
+    if (!pending.length || skip.length || !inParagraph || paragraphs < 2 || token === '<') { out.push(token); continue; }
+    const found = pending.map(affiliate => [affiliate, mentionPattern(affiliate, '').exec(token)]).filter(([, match]) => match).sort((a, b) => a[1].index - b[1].index);
+    let text = '';
+    let from = 0;
+    for (const [affiliate, match] of found) {
+      if (match.index < from) continue;
+      text += `${token.slice(from, match.index)}<a href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-placement="guide_inline">${match[0]}</a>`;
+      from = match.index + match[0].length;
+      pending.splice(pending.indexOf(affiliate), 1);
+      if (noteAt === -1) noteAt = paragraphAt;
+    }
+    out.push(text + token.slice(from));
+  }
+  if (noteAt !== -1) out.splice(noteAt, 0, affiliateNote);
+  return html.slice(0, start) + out.join('') + html.slice(end);
+}
+
+// Guides get the first in-text mention of each tool they cover linked to its affiliate URL and, before their
+// closing next steps, a box listing those tools with tools-page card and affiliate links (or just a link to the
+// tools page when they cover none).
 export function addToolsLink(html) {
-  if (html.includes('data-placement="guide_tools_all"') || /no (affiliate|referral) (links|codes)/i.test(html)) return html;
+  if (html.includes('data-placement="guide_tools_all"') || plainLinksOnly.test(html)) return html;
   const tools = guideTools(html).slice(0, shownGuideTools);
+  html = linkFirstMentions(html, tools);
   const block = tools.length
     ? `<aside class="note guide-tools" aria-label="Tools in this guide"><p><strong>Tools in this guide</strong></p><ul>${tools.map(affiliate => `<li><a href="/tools.html#${logoSlug(affiliate)}" data-placement="guide_tool_card">${escape(affiliate.name)} pricing and videos</a>: ${escape(affiliate.bestFor)}. <a href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-placement="guide_tools">Try ${escape(affiliate.name)} ↗</a></li>`).join('')}</ul><p class="meta">Try links are affiliate links, so I may earn a commission or credit. ${allToolsLink}</p></aside>\n`
     : `<p class="meta">${allToolsLink}</p>\n`;
