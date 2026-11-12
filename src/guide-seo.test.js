@@ -127,7 +127,9 @@ test('the title, heading, answer lead and llms.txt name are the same claim', asy
     const description = meta(html, 'description');
     assert.equal(decode(html.match(/<h1>(.*?)<\/h1>/)[1]), title, file);
     assert.ok(description.length <= 155, `${file} description is ${description.length}`);
-    assert.match(html, /<p><strong>Quick answer:<\/strong> /, file);
+    assert.match(html, /<section class="quick-answer" aria-labelledby="quick-answer-heading">/, file);
+    assert.match(html, /<h2 id="quick-answer-heading">Quick answer<\/h2>/, file);
+    assert.match(html, /<section class="quick-answer"[^>]*>\s*<h2[^>]*>Quick answer<\/h2>\s*<p>[\s\S]+?<\/p>\s*<\/section>/, file);
     const pattern = `\\[${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\]\\(${site}/guides/${file}\\): ${description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`;
     assert.match(llms, new RegExp(pattern), file);
   }
