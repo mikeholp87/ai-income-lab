@@ -4,6 +4,14 @@ import test from 'node:test';
 
 const read = async path => (await readFile(new URL(`../${path}`, import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
+const youtubeWalkthroughPosters = {
+  'grokbot-job-application-agent.html': '7JN-sMkJBCs',
+  'grokbot-credit-usage.html': 'V3ETwJAR5-I',
+  'herdr-on-windows.html': 'YYZSR1p32EQ',
+  'claude-code-vs-codex.html': 'ys5tJuTFCEo',
+  'grok-4-7-openrouter.html': 'p7kV1iHSP54',
+  'dataforseo-mcp-claude.html': 'wRqpZ9F3rmI',
+};
 
 test('the guides hub links, lists and describes every guide', async () => {
   const hub = await read('public/guides.html');
@@ -298,13 +306,21 @@ test('guide cards offer the 640px copy wherever they show, and every copy exists
   }
 });
 
-test('every guide page shows its own branded card and never points at a YouTube thumbnail', async () => {
+test('every guide page shows its own branded card and never points at a YouTube thumbnail outside the walkthrough poster', async () => {
   for (const file of guides) {
     const slug = file.replace(/\.html$/, '');
     const html = await read(`public/guides/${file}`);
-    assert.doesNotMatch(html, /i\.ytimg\.com|img\.youtube\.com/, file);
+    const withoutVideo = html.replace(/<figure class="video">[\s\S]*?<\/figure>/g, '');
+    assert.doesNotMatch(withoutVideo, /i\.ytimg\.com|img\.youtube\.com/, file);
     assert.match(html, new RegExp(`<img src="/assets/guides/${slug}\\.webp" srcset="/assets/guides/sizes/${slug}-640\\.webp 640w`), file);
     assert.match(html, new RegExp(`<meta property="og:image" content="https://www\\.ai-automation-station\\.com/assets/guides/${slug}\\.webp"`), file);
+    const expectedId = youtubeWalkthroughPosters[file];
+    if (!expectedId) {
+      assert.doesNotMatch(html, /i\.ytimg\.com|img\.youtube\.com/, file);
+      continue;
+    }
+    assert.match(html, new RegExp(`data-embed="https://www\\.youtube-nocookie\\.com/embed/${expectedId}"`));
+    assert.match(html, new RegExp(`<img src="https://i\\.ytimg\\.com/vi/${expectedId}/maxresdefault\\.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">`));
   }
 });
 
