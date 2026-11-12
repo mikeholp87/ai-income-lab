@@ -1,0 +1,32 @@
+[
+  {
+    "name": "OpenCode",
+    "slug": "opencode",
+    "videos": 52,
+    "bestFor": "Coding in the terminal with open models"
+  },
+  {
+    "name": "Make.com",
+    "slug": "make-com",
+    "videos": 37,
+    "bestFor": "No-code automations between your apps"
+  },
+  {
+    "name": "Claude",
+    "slug": "claude",
+    "videos": 32,
+    "bestFor": "Writing, research and coding with Claude Code"
+  },
+  {
+    "name": "Apify",
+    "slug": "apify",
+    "videos": 22,
+    "bestFor": "Scraping websites from code or an AI agent"
+  },
+  {
+    "name": "Google Gemini",
+    "slug": "google-gemini",
+    "videos": 19,
+    "bestFor": "Building and coding with Google’s models"
+  }
+]

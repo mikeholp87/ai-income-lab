@@ -23,18 +23,33 @@ export function videosUsing(affiliate, uploads) {
     .sort((a, b) => b.published.localeCompare(a.published));
 }
 
+const byUse = (used, a, b) => used.get(b).length - used.get(a).length || Number(Boolean(b.recommended)) - Number(Boolean(a.recommended));
+
+// The most-used tools, for the tools page's top picks and the homepage strip.
+export function topTools(uploads, count = topPicks) {
+  const used = new Map(affiliates.map(affiliate => [affiliate, videosUsing(affiliate, uploads)]));
+  return [...affiliates].sort((a, b) => byUse(used, a, b)).slice(0, count).filter(affiliate => used.get(affiliate).length)
+    .map(affiliate => ({ name: affiliate.name, slug: logoSlug(affiliate), videos: used.get(affiliate).length, bestFor: affiliate.bestFor }));
+}
+
 // Guides with the tool's name in their title, most recently updated first.
 export function guidesAbout(affiliate, guides) {
   const pattern = new RegExp(`(^|[^\\w.])${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`, 'i');
   return guides.filter(guide => pattern.test(guide.title)).sort((a, b) => (b.modified || '').localeCompare(a.modified || ''));
 }
 
-// A "see every tool" line at the end of a guide that links one of the tools' sites, before its closing next steps.
+// A tools page line at the end of a guide, before its closing next steps. It points at the card of the tool the
+// guide links most (links to the AI Income Lab community on Skool don't count), or at the whole page.
 // Guides that promise no affiliate or referral links (the sponsored ones) are left alone.
 export function addToolsLink(html) {
-  if (html.includes('href="/tools.html" data-placement="guide_tools_all"') || /no (affiliate|referral) (links|codes)/i.test(html)) return html;
-  if (!affiliates.some(affiliate => new RegExp(`href="https?://([a-z0-9-]+\\.)*${affiliate.site.replace(/\./g, '\\.')}[/"?]`).test(html))) return html;
-  const line = '<p class="meta"><a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a></p>\n';
+  if (html.includes('data-placement="guide_tools_all"') || /no (affiliate|referral) (links|codes)/i.test(html)) return html;
+  const title = html.match(/<h1[^>]*>([^]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g, '') ?? '';
+  const links = html.replaceAll(/href="https:\/\/www\.skool\.com\/ai-automation-station[^"]*"/g, '');
+  const linked = affiliates.map(affiliate => [affiliate, (guidesAbout(affiliate, [{ title }]).length ? 1000 : 0) + (links.match(new RegExp(`href="https?://([a-z0-9-]+\\.)*${affiliate.site.replace(/\./g, '\\.')}[/"?]`, 'g'))?.length ?? 0)]);
+  const [top, count] = linked.reduce((best, entry) => entry[1] > best[1] ? entry : best);
+  const line = count
+    ? `<p class="meta"><a href="/tools.html#${logoSlug(top)}" data-placement="guide_tools_all">See ${escape(top.name)} and every tool I recommend →</a></p>\n`
+    : '<p class="meta"><a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a></p>\n';
   const at = ['<aside class="note next-steps"', '<form class="notes"'].map(marker => html.indexOf(marker)).find(index => index !== -1);
   return at === undefined ? html.replace('</main>', `${line}</main>`) : html.slice(0, at) + line + html.slice(at);
 }
@@ -63,9 +78,8 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
   const url = `${site}/tools.html`;
   const used = new Map(affiliates.map(affiliate => [affiliate, videosUsing(affiliate, uploads)]));
   // Most-used first, then the tools in every video description.
-  const byUse = (a, b) => used.get(b).length - used.get(a).length || Number(Boolean(b.recommended)) - Number(Boolean(a.recommended));
-  const grouped = categories.map(([id, label]) => [id, label, affiliates.filter(affiliate => affiliate.category === id).sort(byUse)]).filter(([, , items]) => items.length);
-  const picks = [...affiliates].sort(byUse).slice(0, topPicks).filter(affiliate => used.get(affiliate).length);
+  const grouped = categories.map(([id, label]) => [id, label, affiliates.filter(affiliate => affiliate.category === id).sort((a, b) => byUse(used, a, b))]).filter(([, , items]) => items.length);
+  const picks = topTools(uploads).map(pick => affiliates.find(affiliate => affiliate.name === pick.name));
   const schema = [
     { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, name: toolsTitle, description, url, dateModified: date, author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` }, publisher: { '@id': `${site}/#org` }, isPartOf: { '@id': `${site}/#website` }, inLanguage: 'en',
       mainEntity: { '@type': 'ItemList', numberOfItems: affiliates.length, itemListElement: grouped.flatMap(([, , items]) => items).map((affiliate, index) => ({ '@type': 'ListItem', position: index + 1, name: affiliate.name, description: affiliate.blurb })) } },

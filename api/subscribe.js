@@ -16,7 +16,7 @@ export const welcome = {
 
 Once a week you'll get one short email: the new guides I've published and the AI tools I've actually tested on real builds, with what worked and what didn't. No fluff, and nothing you have to read on a schedule.
 
-While you wait for the first one, three good places to start:
+While you wait for the first one, four good places to start:
 
 1. Start here, the shortest path through everything on the site:
 ${site}/start-here.html
@@ -26,6 +26,9 @@ ${site}/guides.html
 
 3. Every video, grouped by tool (Claude Code, n8n, Make.com, AI agents and more):
 ${site}/videos
+
+4. The tools I use most, with the videos that show each one in action (some are affiliate links):
+${site}/tools.html
 
 If you want help building alongside other people, that's what AI Income Lab is for: courses, templates and 2,900+ members on Skool. Have a look whenever you're ready:
 ${site}/#community

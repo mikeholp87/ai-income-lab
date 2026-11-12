@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { fetchUploads, sponsoredBenchmark, sponsoredVideos } from '../src/archive.js';
 import { curatedSummary, withSummaries } from '../src/curated-summary.js';
+import { topTools } from '../src/tools-page.js';
 import { validFeed } from '../src/youtube.js';
 import { refreshThumbnail } from './thumbnail.js';
 import { syncWatchThumbnails } from './watch-thumbnails.js';
@@ -17,6 +18,8 @@ try {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const feed = await response.json();
   if (!validFeed(feed)) throw new Error('Invalid YouTube feed');
+  // The feed drops the channel numbers when the YouTube API quota runs out; keep the last ones we had.
+  if (!feed.channel) feed.channel = JSON.parse(await readFile(path, 'utf8')).channel ?? null;
   await writeFile(path, `${JSON.stringify(withSummaries(feed), null, 2)}\n`);
   console.log('Updated the latest-video snapshot.');
 } catch (error) {
@@ -61,3 +64,8 @@ try {
 } catch (error) {
   console.warn(`Using the saved self-hosted thumbnails: ${error.message}`);
 }
+
+// The homepage's "Tools I use most" strip, counted the same way as the tools page, so the homepage bundle doesn't
+// carry the video tool lists.
+const { uploads } = await import(`../src/uploads-snapshot.js?${Date.now()}`);
+await writeFile(new URL('../src/top-tools.json', import.meta.url), `${JSON.stringify(topTools(uploads), null, 2)}\n`);
