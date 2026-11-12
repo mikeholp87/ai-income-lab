@@ -41,6 +41,11 @@ test('the tools page discloses affiliate links before the first one and marks ev
     assert.deepEqual([...header.match(nav)[1].matchAll(/<a href="#([a-z]+)">([^<]+)<\/a>/g)].map(([, id, label]) => [id, label]), categories.map(([id, , short]) => [id, short]));
   }
   assert.doesNotMatch(html, /class="tool-nav"/);
+  for (const affiliate of affiliates) {
+    assert.ok(affiliate.price, `${affiliate.name} has a price from its pricing page`);
+    assert.ok(html.includes(`<p class="tool-price"><strong>Price:</strong> ${affiliate.price.replace(/&/g, '&amp;').replace(/'/g, '&#39;')}</p>`), affiliate.name);
+  }
+  assert.match(html, /Prices are in USD from each tool’s pricing page on November 12, 2026/);
   assert.match(html, /<a href="\/guides\/make-first-automation\.html">Make\.com Google Sheets tutorial<\/a>/);
   assert.match(html, /<time datetime="2026-11-12">November 12, 2026<\/time>/);
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(json);

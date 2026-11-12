@@ -1,4 +1,4 @@
-import { affiliates, categories, logoSlug } from './affiliates.js';
+import { affiliates, categories, logoSlug, pricesChecked } from './affiliates.js';
 import { videoHeading } from './curated-summary.js';
 import { videoSummaries } from './video-summaries.js';
 import { videoTools } from './video-tools.js';
@@ -63,7 +63,7 @@ function card(affiliate, videos, guides) {
   const badge = videos.length ? usage(videos.length) : affiliate.recommended ? 'On my recommended list' : '';
   const videoList = videos.length ? `<p class="used-in">Watch it in use${videos.length > shownVideos ? ` (${shownVideos} newest)` : ''}:</p><ul>${videos.slice(0, shownVideos).map(video => `<li><a href="/watch/${video.id}">${escape(videoHeading(video))}</a></li>`).join('')}</ul>` : '';
   const guideList = related.length ? `<p class="used-in">Read: ${related.map(guide => `<a href="${escape(guide.url.replace(site, ''))}">${escape(guide.title)}</a>`).join(' · ')}</p>` : '';
-  return `<li class="tool-card" id="${logoSlug(affiliate)}"><div class="tool-head">${logo(affiliate)}<div><h3>${escape(affiliate.name)}</h3>${badge ? `<p class="tool-badge">${badge}</p>` : ''}</div></div><p class="best-for"><strong>Best for:</strong> ${escape(affiliate.bestFor)}.</p><p>${escape(affiliate.blurb)}</p>${affiliate.price ? `<p class="tool-price">${escape(affiliate.price)}</p>` : ''}${cta(affiliate, 'tools_page')}${videoList}${guideList}</li>`;
+  return `<li class="tool-card" id="${logoSlug(affiliate)}"><div class="tool-head">${logo(affiliate)}<div><h3>${escape(affiliate.name)}</h3>${badge ? `<p class="tool-badge">${badge}</p>` : ''}</div></div><p class="best-for"><strong>Best for:</strong> ${escape(affiliate.bestFor)}.</p><p>${escape(affiliate.blurb)}</p>${affiliate.price ? `<p class="tool-price"><strong>Price:</strong> ${escape(affiliate.price)}</p>` : ''}${cta(affiliate, 'tools_page')}${videoList}${guideList}</li>`;
 }
 
 function topPick(affiliate, videos) {
@@ -72,7 +72,9 @@ function topPick(affiliate, videos) {
 
 export function renderToolsPage({ uploads, guides = [], updated = new Date() }) {
   const date = updated.toISOString().slice(0, 10);
-  const readable = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(updated);
+  const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  const readable = longDate.format(updated);
+  const priceDate = longDate.format(new Date(`${pricesChecked}T00:00:00Z`));
   const url = `${site}/tools.html`;
   const used = new Map(affiliates.map(affiliate => [affiliate, videosUsing(affiliate, uploads)]));
   // Most-used first, then the tools in every video description.
@@ -89,7 +91,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>${escape(toolsTitle)} | Mike Holp</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="website"><meta property="og:title" content="${escape(toolsTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script><script src="/ga-boot.js"></script><script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>${schema}
 </head>
 <body class="wide"><a class="skip" href="#content">Skip to content</a><header class="single-line-header tools-header"><a href="/">AI Income Lab</a><nav aria-label="Tool categories">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Tool categories menu">Categories</summary><nav aria-label="Tool categories menu">${nav}</nav></details></header><main id="content"><p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · Updated <time datetime="${date}">${readable}</time></p><h1>Tools I recommend for AI automation.</h1><p>The tools linked in my YouTube descriptions, with the ones I use most on camera first. Watch any of them in a real build before you sign up.</p>
-<aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Check current pricing before you pay.</p></aside>
+<aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.</p></aside>
 ${picks.length ? `<section class="top-picks" aria-labelledby="top-picks-heading"><h2 id="top-picks-heading">Start here: the ${picks.length} tools I use most</h2><ol>${picks.map(affiliate => topPick(affiliate, used.get(affiliate))).join('')}</ol></section>` : ''}
 ${grouped.map(([id, label, items]) => `<section class="tool-group" id="${id}" aria-labelledby="${id}-heading"><h2 id="${id}-heading">${escape(label)}</h2><ul class="tool-cards">${items.map(affiliate => card(affiliate, used.get(affiliate), guides)).join('')}</ul></section>`).join('\n')}
 <form class="notes" method="post" data-subscribe data-placement="tools_page"><p><strong>Want to see new tools first?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
