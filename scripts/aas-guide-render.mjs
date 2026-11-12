@@ -3,7 +3,7 @@
 // module is the checked-in source of TOC labels, Quick answers and hub video IDs
 // so the next batch does not recreate those bugs.
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, writeFile } from 'node:fs/promises';
 
 export const NEW_GUIDE_SLUGS = [
   'ai-threejs-rocket-demo',
@@ -88,11 +88,31 @@ export function rewriteToc(html) {
   });
 }
 
-export function insertQuickAnswer(html, answer) {
-  if (!answer || /<strong>Quick answer:<\/strong>/.test(html)) return html;
+export const QUICK_ANSWER_HEADING_ID = 'quick-answer-heading';
+
+export function renderQuickAnswer(answerHtml) {
+  return [
+    `<section class="quick-answer" aria-labelledby="${QUICK_ANSWER_HEADING_ID}">`,
+    `  <h2 id="${QUICK_ANSWER_HEADING_ID}">Quick answer</h2>`,
+    `  <p>${String(answerHtml).trim()}</p>`,
+    '</section>',
+  ].join('\n');
+}
+
+export function wrapQuickAnswer(html) {
+  if (html.includes('class="quick-answer"')) return html;
   return html.replace(
+    /<p>\s*<strong>Quick answer:<\/strong>\s*([\s\S]*?)<\/p>/,
+    (_, body) => renderQuickAnswer(body),
+  );
+}
+
+export function insertQuickAnswer(html, answer) {
+  const next = wrapQuickAnswer(html);
+  if (!answer || /class="quick-answer"/.test(next) || /<strong>Quick answer:<\/strong>/.test(next)) return next;
+  return next.replace(
     /(<nav class="toc" aria-label="On this page">[\s\S]*?<\/nav>\n)/,
-    `$1<p><strong>Quick answer:</strong> ${escape(answer)}</p>\n`,
+    `$1${renderQuickAnswer(escape(answer))}\n`,
   );
 }
 
@@ -112,10 +132,14 @@ export function hubVideosFor(slug, claimed = VIDEO_IDS_BY_SLUG) {
 
 export async function patchExistingGuides(root = new URL('../public/guides/', import.meta.url)) {
   const written = [];
-  for (const slug of NEW_GUIDE_SLUGS) {
-    const path = new URL(`${slug}.html`, root);
+  const files = (await readdir(root)).filter(name => name.endsWith('.html'));
+  for (const file of files) {
+    const slug = file.slice(0, -5);
+    const path = new URL(file, root);
     const html = await readFile(path, 'utf8');
-    const next = applyLibraryConventions(html, slug);
+    const next = NEW_GUIDE_SLUGS.includes(slug)
+      ? applyLibraryConventions(html, slug)
+      : wrapQuickAnswer(html);
     if (next !== html) {
       await writeFile(path, next);
       written.push(slug);

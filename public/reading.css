@@ -112,3 +112,48 @@ footer.site-footer .footer-base p{margin:0}
 footer.site-footer .footer-base div{display:flex;flex-wrap:wrap;gap:0 24px}
 @media(max-width:960px){footer.site-footer .footer-directory{grid-template-columns:minmax(0,1fr);gap:32px}}
 @media(max-width:640px){footer.site-footer .footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}footer.site-footer .footer-base{flex-direction:column;align-items:flex-start;gap:8px}}
+
+/* Quick answer callout: the answer-first summary on each written guide. */
+.quick-answer {
+  margin: 28px 0 36px;
+  padding: 20px 22px 22px 24px;
+  border: 1px solid color-mix(in srgb, var(--signal) 28%, var(--line-strong));
+  border-left: 4px solid var(--signal);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--signal) 8%, var(--raised));
+  color: var(--text);
+}
+.quick-answer h2 {
+  margin: 0 0 10px;
+  color: var(--signal);
+  font: 700 14px/1.3 'Instrument Sans', system-ui, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.quick-answer p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05em;
+  line-height: 1.7;
+}
+@media (max-width: 480px) {
+  .quick-answer {
+    margin: 20px 0 28px;
+    padding: 16px 16px 18px 18px;
+    border-radius: 10px;
+  }
+}
+@media print {
+  .quick-answer {
+    background: transparent;
+    border: 1px solid #000;
+    border-left-width: 4px;
+    color: #000;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  .quick-answer h2,
+  .quick-answer p {
+    color: #000;
+  }
+}

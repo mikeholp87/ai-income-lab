@@ -11,7 +11,9 @@ import {
   applyLibraryConventions,
   headingText,
   hubVideosFor,
+  renderQuickAnswer,
   rewriteToc,
+  wrapQuickAnswer,
 } from '../scripts/aas-guide-render.mjs';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -26,8 +28,17 @@ test('TOC labels copy the heading text instead of the slug', () => {
 test('Quick answers are inserted once after the contents list', () => {
   const html = '<h1>Demo</h1>\n<nav class="toc" aria-label="On this page"><h2>On this page</h2></nav>\n<p>Body</p>';
   const once = applyLibraryConventions(html, 'ai-threejs-rocket-demo');
-  assert.match(once, /<p><strong>Quick answer:<\/strong> Start from a source prompt/);
+  assert.match(once, /<section class="quick-answer" aria-labelledby="quick-answer-heading">/);
+  assert.match(once, /<h2 id="quick-answer-heading">Quick answer<\/h2>/);
+  assert.match(once, /<p>Start from a source prompt/);
   assert.equal(applyLibraryConventions(once, 'ai-threejs-rocket-demo'), once);
+});
+
+test('wrapQuickAnswer upgrades the old lead paragraph without changing the answer text', () => {
+  const html = '<nav class="toc" aria-label="On this page"></nav>\n<p><strong>Quick answer:</strong> Install with <code>npx skills add apify/agent-skills</code>.</p>\n<p>Next.</p>';
+  const wrapped = wrapQuickAnswer(html);
+  assert.equal(wrapped, `<nav class="toc" aria-label="On this page"></nav>\n${renderQuickAnswer('Install with <code>npx skills add apify/agent-skills</code>.')}\n<p>Next.</p>`);
+  assert.equal(wrapQuickAnswer(wrapped), wrapped);
 });
 
 test('a hub card does not advertise another guide’s exclusive video', () => {
@@ -46,7 +57,8 @@ test('the 21 new guides keep sentence-case contents and a Quick answer', async (
       if (heading) assert.equal(label, heading, `${slug} #${id}`);
       assert.notEqual(label, label.toLowerCase(), `${slug} lowercase TOC: ${label}`);
     }
-    assert.match(html, /<p><strong>Quick answer:<\/strong> /, slug);
+    assert.match(html, /<section class="quick-answer" aria-labelledby="quick-answer-heading">/, slug);
+    assert.match(html, /<h2 id="quick-answer-heading">Quick answer<\/h2>/, slug);
     if (QUICK_ANSWERS[slug]) assert.match(html, new RegExp(QUICK_ANSWERS[slug].slice(0, 40).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), slug);
   }
 });

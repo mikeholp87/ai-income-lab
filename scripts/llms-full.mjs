@@ -12,7 +12,7 @@ for (const file of (await readdir(new URL('guides/', root))).filter(name => name
   const html = await readFile(new URL(`guides/${file}`, root), 'utf8');
   const title = decode(html.match(/<h1>(.*?)<\/h1>/s)[1]);
   const updated = html.match(/dateModified":"([^"]+)"/)?.[1];
-  const answer = html.match(/<p>\s*<strong>Quick answer:<\/strong>(.*?)<\/p>/s)?.[1] ?? html.match(/<meta name="description" content="([^"]*)"/)[1];
+  const answer = html.match(/<section class="quick-answer"[^>]*>\s*<h2[^>]*>Quick answer<\/h2>\s*<p>(.*?)<\/p>/s)?.[1] ?? html.match(/<p>\s*<strong>Quick answer:<\/strong>(.*?)<\/p>/s)?.[1] ?? html.match(/<meta name="description" content="([^"]*)"/)[1];
   entries.push(`### ${title}\n${site}/guides/${file}${updated ? ` (updated ${updated})` : ''}\n${text(answer)}\n`);
 }
 
