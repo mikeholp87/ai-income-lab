@@ -17,7 +17,10 @@ try {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const feed = await response.json();
   if (!validFeed(feed)) throw new Error('Invalid YouTube feed');
-  await writeFile(path, `${JSON.stringify(withSummaries(feed), null, 2)}\n`);
+  const saved = JSON.parse(await readFile(path, 'utf8'));
+  const channel = Number.isFinite(feed.channel?.subscribers) ? feed.channel : saved.channel;
+  if (!Number.isFinite(channel?.subscribers)) throw new Error('Feed missing channel counts');
+  await writeFile(path, `${JSON.stringify(withSummaries({ ...feed, channel }), null, 2)}\n`);
   console.log('Updated the latest-video snapshot.');
 } catch (error) {
   if (!validFeed(JSON.parse(await readFile(path, 'utf8')))) throw new Error('No usable video snapshot', { cause: error });

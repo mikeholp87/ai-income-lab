@@ -347,7 +347,10 @@ function MockPost({ network, byline, children }) {
   );
 }
 
-const subscriberCount = channel => viewFormat.format(Number.isFinite(channel?.subscribers) ? channel.subscribers : youtubeSnapshot.channel.subscribers);
+const subscriberCount = channel => {
+  const count = Number.isFinite(channel?.subscribers) ? channel.subscribers : youtubeSnapshot.channel?.subscribers;
+  return Number.isFinite(count) ? viewFormat.format(count) : '5.1K';
+};
 
 // Rate card add-ons, priced on top of the formats above.
 const addOns = [
