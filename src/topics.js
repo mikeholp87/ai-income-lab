@@ -75,7 +75,7 @@ export const topics = [
     intro: 'Websites, landing pages and web apps built with AI builders, start to finish.',
     about: 'Each video builds a real site or app with an AI builder, from Lovable, Replit and Base44 to Google AI Studio, Antigravity and KiloCode, then checks what shipped. You see the prompts, the fixes and the deployment, so you can compare how much each tool did on its own. The written guides cover installing Kilo Code and running a first task you can check, and adding a YouTube feed to a React site with caching and a fallback when the API is down.',
     pattern: /website|landing pages?|web apps?|\bsaas\b|lovable|replit|base44|ai studio|antigravity|kilocode|runable|bluehost|rocket ai|claude design|design alternative/i,
-    guides: [['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit: pricing and which to pick'], ['/guides/runable-audit-website.html', 'Runable AI Audit-Service Website: Research to an MVP'], ['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks'], ['/guides/ai-visibility-tracker-saas-build.html', 'AI Visibility Tracker: SaaS Build Log']],
+    guides: [['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit: pricing and which to pick'], ['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial: install, free models and first task'], ['/guides/youtube-feed.html', 'React YouTube feed tutorial: API, caching and fallbacks'], ['/guides/ai-visibility-tracker-saas-build.html', 'AI Visibility Tracker: SaaS Build Log']],
   },
   {
     slug: 'ai-video', name: 'AI video and YouTube',

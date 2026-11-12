@@ -25,7 +25,6 @@ export const NEW_GUIDE_SLUGS = [
   'opendesign-linux-slides',
   'rea-video-editor-prototype',
   'run-a-blog-with-grokbot',
-  'runable-audit-website',
   'trakkr-codex-visibility-workflow',
   'treg-inside-grokbot',
 ];
@@ -50,7 +49,6 @@ export const VIDEO_IDS_BY_SLUG = {
   'opendesign-linux-slides': ['rMRsVyIsZCU'],
   'rea-video-editor-prototype': ['UAPaM6KrC-M'],
   'run-a-blog-with-grokbot': ['wLIiTkra7uM'],
-  'runable-audit-website': ['qQVAnp4-EpI'],
   'trakkr-codex-visibility-workflow': ['0jzTOUv_B04'],
   'treg-inside-grokbot': ['9A2StjrxOms'],
 };
@@ -71,7 +69,6 @@ export const QUICK_ANSWERS = {
   'muse-code-setup': 'I tried to run Muse Wonder inside OpenCode with a Meta Model API key and kept getting an invalid API key error. Installing Meta\'s own Muse Code CLI and signing in through the browser worked within a couple of minutes. I started a project audit on camera, but the video ends before it finished.',
   'opendesign-linux-slides': 'Follow the recorded Linux source setup, make one first design, then export a standalone HTML deck. On Linux that means cloning the official repo, using Node 24 with Corepack, then running pnpm tools-dev run web. Local agents, BYOK keys and hosted credits are billed separately, so a free desktop app is not free inference.',
   'rea-video-editor-prototype': 'I connected REA to my coding agents with its one-line npx setup command, then asked Claude Code to rebuild Kdenlive, my usual video editor. After hours of work it produced a prototype called Cutline. Importing, timeline dragging and splitting worked, but playback was glitchy, effects didn\'t work and pane resizing was broken.',
-  'runable-audit-website': 'Write a master brief first, let Runable research the market, then feed both into the build. I got a polished first version of an audit-service website in about 20 minutes and a cleaner homepage after one focused revision. Stripe payments and the consultation email were still not connected when I finished, so a complete-looking site is not yet a business that can take orders.',
   'trakkr-codex-visibility-workflow': 'Connect Trakkr\'s hosted MCP server to Codex, pull the action list into a report, and read it before you let Codex edit anything. Keep AI visibility, crawler visits, citations and real visitors as separate numbers. An assistant naming your brand is not a click, and a fix list is not a result.',
 };
 

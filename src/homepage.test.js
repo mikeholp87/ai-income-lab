@@ -199,6 +199,12 @@ test('the main Join buttons open the Skool plan picker', () => {
   assert.doesNotMatch(jsx, /course-promo|runable-course-title/);
 });
 
+test('the withdrawn Runable course is not offered on any plan', async () => {
+  for (const file of ['src/main.jsx', 'index.html', 'public/pricing.md', 'public/llms.txt', 'public/llms-full.txt']) {
+    assert.doesNotMatch(await readFile(new URL(`../${file}`, import.meta.url), 'utf8'), /Runable course/i, file);
+  }
+});
+
 test('footer social links show an icon beside each name', () => {
   assert.match(jsx, /socialLinks\.map\(\(\[name, url, icon\]\) => <a key=\{name\} href=\{url\} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d=\{icon\} \/><\/svg>\{name\}<\/a>\)/);
   for (const name of ['YouTube', 'GitHub', 'LinkedIn', 'X']) assert.match(jsx, new RegExp(`\\['${name}', \\w+Url, 'M`), name);

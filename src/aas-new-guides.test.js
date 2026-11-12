@@ -29,7 +29,6 @@ const NEW = [
   ['opendesign-linux-slides', ['rMRsVyIsZCU'], 'OpenDesign (Open Design) on Linux: Source Setup and Slides', 'Run OpenDesign (Open Design) from source on Linux, fix the Corepack and dependency errors, and export an HTML slide deck.', 'OpenDesign (Open Design) on Linux: Source Setup and Slides'],
   ['rea-video-editor-prototype', ['UAPaM6KrC-M'], 'REA Coding-Agent Case: A Video-Editor Prototype', 'Build a browser video-editor prototype with REA: the setup command, what worked after hours of agent time, and the playback and effects bugs left.', 'REA Coding-Agent Case: A Video-Editor Prototype'],
   ['run-a-blog-with-grokbot', ['wLIiTkra7uM'], 'GrokBot WordPress Workflow: Long-Form Videos to Drafts', 'Turn long-form video sources into reviewable WordPress drafts, separating connector access, recurring writing, publication approval and subscriber emails.', 'GrokBot WordPress Workflow: Long-Form Videos to Drafts'],
-  ['runable-audit-website', ['qQVAnp4-EpI'], 'Runable AI Audit-Service Website: Research to an MVP', 'Build an audit-service website with Runable AI, from business brief to revised MVP, then check payments and inquiry emails before you launch.', 'Runable AI Audit-Service Website: Research to an MVP'],
   ['trakkr-codex-visibility-workflow', ['0jzTOUv_B04'], 'Trakkr and Codex: AI Visibility, Crawlers and Visits', 'Track how AI assistants see your site with Trakkr and Codex, and tell AI visibility, crawler hits, citations and real visits apart.', 'Trakkr and Codex: AI Visibility, Crawlers and Visits'],
   ['treg-inside-grokbot', ['9A2StjrxOms'], 'Treg in GrokBot: Connect Data Tools and Control Costs', 'Connect Treg data tools inside GrokBot for SEO reports, see what each call costs, and approve paid data requests before they run.', 'Treg in GrokBot: Connect Data Tools and Control Costs'],
 ];
@@ -53,12 +52,12 @@ const BATCH01 = [
   ['claude-fable-5-game-prompts', ['X9Bo29B_46k'], 'Claude Fable 5 Games: Prompts and Plugins', 'Use Claude Fable 5 to build a small game: effort modes, Compound Engineering, plan mode and the prompt briefs shown in the recording.'],
 ];
 
-test('the 22 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
+test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
   const hub = await read('public/guides.html');
   const sitemap = await read('public/sitemap.xml');
   const llms = await read('public/llms.txt');
   const collection = schemas(hub).find(item => item['@type'] === 'CollectionPage');
-  assert.equal(NEW.length, 22);
+  assert.equal(NEW.length, 21);
   for (const [slug, ids, title, description, headline] of NEW) {
     assert.equal(headline, title, slug);
     const html = await read(`public/guides/${slug}.html`);
@@ -133,10 +132,6 @@ test('excluded existing-URL revisions and the unpublished connect path stay out 
   const openrouter = await read('public/guides/openrouter-setup.html');
   assert.doesNotMatch(openrouter, /<figure class="video">/);
   assert.doesNotMatch(openrouter, /data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/Qb6RG0-8O1k"/);
-  const runable = await read('public/guides/runable-audit-website.html');
-  assert.match(runable, /data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/qQVAnp4-EpI"/);
-  assert.match(runable, /unlisted as of 12 November 2026/);
-  assert.doesNotMatch(runable, /the watch page/);
   const hub = await read('public/guides.html');
   assert.doesNotMatch(hub, /qQVAnp4-EpI/);
   assert.doesNotMatch(hub, /Qb6RG0-8O1k/);

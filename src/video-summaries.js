@@ -193,7 +193,6 @@ export const videoSummaries = {
     "summary": "Write a master brief, run market research in Runable, then generate and refine an AI Growth Audit website from that research. Stripe payments and the consultation email are not connected by the end of the recording.",
     "whatYouBuild": "A first-version marketing site and customer portal for an AI Growth Audit service, with a chatbot, Google sign-in, FAQ and a contact form, built from a brief and generated research.",
     "toolsUsed": [
-      "Runable",
       "ChatGPT (to write the brief and research prompt)"
     ],
     "keySteps": [

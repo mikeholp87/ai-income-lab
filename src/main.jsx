@@ -126,7 +126,7 @@ const tools = [
 ];
 
 const plans = [
-  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners building their first workflows and unlocking lessons as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
+  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners building their first workflows and unlocking lessons as they participate.', features: ['Community, courses, and tutorials', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
   { name: 'Premium', price: 49, annual: 490, fit: 'Builders ready to make automations, voice agents, and avatar videos with immediate course access.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
   { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly group help with their projects and reusable n8n workflows.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
@@ -145,7 +145,7 @@ const faqs = [
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
   ['What does VIP coaching cover?', 'VIP includes weekly live group coaching and Q&A to help you implement what you learn. Bring questions about the workflows, agents, or coding builds you are working on. Custom business implementation is separate and is not included in membership. Ask about your project’s scope before joining.'],
   ['What happens when I click Join?', 'Skool’s plan page opens in a new tab. You choose Standard, Premium, or VIP and monthly or yearly billing, then sign in or create a Skool account and pay on Skool. This site never sees your payment details.'],
-  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
+  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],

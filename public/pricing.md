@@ -14,14 +14,13 @@ Cancel before the next billing period from your Skool account.
 
 ## What each plan includes
 
-- Standard: community, courses and tutorials; the Runable course; Beginner's Automation Course (unlocks at Skool level 2); VAPI AI Voice Agent Course (unlocks at level 4).
+- Standard: community, courses and tutorials; Beginner's Automation Course (unlocks at Skool level 2); VAPI AI Voice Agent Course (unlocks at level 4).
 - Premium: everything in Standard, immediate access to the Beginner's Automation Course and the VAPI AI Voice Agent Course, and the Complete AI Avatar Video Course.
 - VIP: everything in Premium, weekly live group coaching and Q&A, the Ultimate N8N Template Library (6,400+ workflows), and software deals.
 
 ## Limits and scope
 
 - Coaching is weekly group coaching and Q&A for members implementing what they learn. Custom business implementation is separate and is not included in membership. Ask about project scope before joining.
-- The Runable course is available to all members on every plan.
 - No income is guaranteed.
 
 ## Free without joining

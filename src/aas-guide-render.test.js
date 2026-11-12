@@ -36,8 +36,8 @@ test('a hub card does not advertise another guide’s exclusive video', () => {
   assert.deepEqual(hubVideosFor('grokbot-vs-dots'), ['vauqktcB6ak', 'uTcTJd5JaZU']);
 });
 
-test('the 22 new guides keep sentence-case contents and a Quick answer', async () => {
-  assert.equal(NEW_GUIDE_SLUGS.length, 22);
+test('the 21 new guides keep sentence-case contents and a Quick answer', async () => {
+  assert.equal(NEW_GUIDE_SLUGS.length, 21);
   for (const slug of NEW_GUIDE_SLUGS) {
     const html = await read(`public/guides/${slug}.html`);
     const toc = html.match(/<nav class="toc" aria-label="On this page">(.*?)<\/nav>/s)[1];
@@ -81,7 +81,7 @@ test('CI runs npm test and lint on pull requests', async () => {
   assert.doesNotMatch(yaml, /refresh-videos/);
 });
 
-test('each of the 22 new guides can attach related watch cards', async () => {
+test('each of the 21 new guides can attach related watch cards', async () => {
   for (const slug of NEW_GUIDE_SLUGS) {
     const html = await read(`public/guides/${slug}.html`);
     const next = addGuideVideos(html, `/guides/${slug}.html`, uploads);

@@ -31,7 +31,6 @@ const links = [
   [['Hermes Agent', 'Hermes'], 'https://hermes-agent.nousresearch.com/'],
   [['Hermes desktop app'], 'https://github.com/fathah/hermes-desktop'],
   [['Herdr', 'Herdr Desktop'], 'https://www.herdr.dev/'],
-  [['Runable'], 'https://runable.com/?utm_source=courses&utm_medium=mike', true],
   [['REA'], 'https://rea.tools/'],
   [['Muse Wonder'], 'https://research.meta.ai/blog/muse-wonder'],
   [['Ghostty'], 'https://ghostty.org/'],
@@ -226,7 +225,7 @@ const links = [
 ];
 
 const key = name => name.replace(/\s*\(.*\)\s*$/, '').trim().toLowerCase();
-// `card` names the affiliate's card on the tools page; Runable is a referral link without one.
+// `card` names the affiliate's card on the tools page.
 const byName = new Map(links.flatMap(([names, url, affiliate = false]) => names.map(name => [key(name), typeof affiliate === 'object' ? { url, affiliate: true, card: affiliate } : { url, affiliate }])));
 
 export const toolLink = name => byName.get(key(name)) ?? null;
