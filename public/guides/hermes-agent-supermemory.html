@@ -16,9 +16,7 @@
 <p>The video calls Supermemory a context cloud for agents: a custom skill or plugin that stores long-term memory so an agent can keep facts across sessions instead of relying only on a built-in memory.md file. The recording presents persistent memory, captured conversations, and a dashboard graph. It does not report a measured accuracy score.</p>
 <p>A tweet on camera compared memory usage with Supermemory versus RAG and showed about a 40% reduction. That figure is what the recording cited on 31 July 2026. No token-saving claim was spoken, so this page does not turn that tweet into a token result. For usage meters in coding harnesses, see <a href="/guides/ai-token-usage-dashboard.html">AI Token Usage Dashboard</a> and <a href="/guides/rtk-token-savings-claude-code.html">RTK Token Savings in Claude Code</a>.</p>
 <h2 id="install">1. Install Supermemory</h2>
-<p>The recording showed a one-line curl command that starts the Supermemory server and prints that the memory layer is live. That curl line was on screen, not spoken, so it is not copied here. For the demo install, this command was spoken:</p>
-<pre tabindex="0"><code>npm install super memory</code></pre>
-<p class="meta">Spoken at 01:14 while the package installed in the terminal.</p>
+<p>The recording showed a one-line curl command that starts the Supermemory server and prints that the memory layer is live. That curl line was on screen, not spoken, so it is not copied here. At 01:14 the caption heard "npm install super memory" for a demo install. That spoken line has a space, so it is not a copyable package name. Copy the install command from <a href="https://www.supermemory.ai">supermemory.ai</a>, not from this page.</p>
 <p>Hermes was then given this setup line:</p>
 <pre tabindex="0"><code>Hermes memory setup</code></pre>
 <p class="meta">Spoken at 01:25. When prompted, the recording selected Supermemory instead of the built-in memory.md file.</p>
@@ -32,9 +30,7 @@
 <h2 id="connect">4. Connect OpenCode and Codex</h2>
 <p>The recording then installed the same plugin in other coding harnesses. For Claude Code it said to paste the plugin and install it. That plugin line was not spoken, so it is not copied here. Cursor and Notion were named as other listed apps.</p>
 <p>OpenCode pulled the Supermemory AI memory SDK and reported that Supermemory was installed in package.json.</p>
-<p>For Codex, the recording installed the Supermemory plugin from the terminal, trusted a hook that was already present, and tried this login:</p>
-<pre tabindex="0"><code>super memory login</code></pre>
-<p class="meta">Spoken at 04:56. The recording expected to enter the API key again. Login was not completed because that account was out of credits.</p>
+<p>For Codex, the recording installed the Supermemory plugin from the terminal, trusted a hook that was already present, and tried a login the caption heard as "super memory login" at 04:56. That spoken line has a space, so it is not copied as a command. The recording expected to enter the API key again. Login was not completed because that account was out of credits.</p>
 <p>Routing models through OpenRouter in Hermes is a separate switch: <a href="/guides/grok-4-7-openrouter.html">Grok 4.7 on OpenRouter</a>. If you are connecting other tools through MCP rather than this plugin, start with <a href="/guides/what-is-mcp.html">What is MCP?</a>. A later Hermes build that uses memory plus crawl-and-send work is <a href="/guides/hermes-backlink-outreach-pipeline.html">Hermes Backlink Outreach: Crawl, Pitch and Send</a>.</p>
 <h2 id="watch-the-walkthrough">Watch the walkthrough</h2>
 <figure class="video"><a class="player" href="https://www.youtube.com/watch?v=wL6bjqaUcd8" data-embed="https://www.youtube-nocookie.com/embed/wL6bjqaUcd8" aria-label="Play Give Your Hermes Agent A Memory Upgrade!"><img src="https://i.ytimg.com/vi/wL6bjqaUcd8/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a><figcaption>Watch on YouTube: Give Your Hermes Agent A Memory Upgrade! (6:09). Also on this site with notes: <a href="/watch/wL6bjqaUcd8">the watch page</a>.</figcaption></figure>
