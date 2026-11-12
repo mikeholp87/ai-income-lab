@@ -403,3 +403,13 @@ test('the MCP and AI agent explainers are listed everywhere a guide should be', 
   assert.match(agency, /<title>AI automation agency: /);
   assert.match(agency, /<h2 id="agency">Starting an AI automation agency/);
 });
+
+test('guides list at most five sources', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const at = html.indexOf('<h2 id="sources">');
+    if (at === -1) continue;
+    const list = html.slice(at).match(/<(ul|ol)\b[^>]*>([^]*?)<\/\1>/)[2];
+    assert.ok(list.match(/<li\b/g).length <= 5, file);
+  }
+});
