@@ -67,8 +67,9 @@ test('validates rendered feed data before using it as a snapshot', async () => {
   }
 });
 
-test('feed failures log upstream details and return a generic 502', async t => {
+test('feed failures log upstream details once as a warning and serve the saved feed', async t => {
   const { GET } = await import('../api/youtube.js');
+  const warn = t.mock.method(console, 'warn', () => {});
   const error = t.mock.method(console, 'error', () => {});
   let attempt = 0;
   t.mock.method(globalThis, 'fetch', async () => {
@@ -76,11 +77,12 @@ test('feed failures log upstream details and return a generic 502', async t => {
     return new Response('upstream body', { status: 503 });
   });
   const response = await GET();
-  assert.equal(response.status, 502);
-  assert.equal(response.headers.get('cache-control'), 'no-store');
-  assert.deepEqual(await response.json(), { error: 'YouTube feed unavailable' });
-  assert.equal(error.mock.callCount(), 1);
-  const details = error.mock.calls[0].arguments[1];
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('cache-control'), 'public, max-age=60, s-maxage=300');
+  assert.ok((await response.json()).videos.length > 0);
+  assert.equal(error.mock.callCount(), 0);
+  assert.equal(warn.mock.callCount(), 1);
+  const details = warn.mock.calls[0].arguments[1];
   assert.ok(details.includes(503));
   assert.ok(details.some(status => String(status).includes('upstream failure detail')));
 });

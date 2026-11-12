@@ -1,16 +1,21 @@
 import { withSummaries } from '../src/curated-summary.js';
+import snapshot from '../src/youtube-snapshot.json' with { type: 'json' };
 import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
 
 // Hourly, to match /api/videos' newest-upload probe so the hero and /videos pick up a new upload in the same hour.
 const hour = 3600000;
 // Fluid Compute reuses instances, so this survives between requests. Cache-busting query strings
 // skip the CDN but not this, which keeps them from draining the API quota.
-let memo = { at: 0, feed: null };
+// A cold instance starts from the build's saved feed (at 0, so it counts as stale and the first request still tries a refresh).
+// When the Data API quota is spent and the RSS feed refuses Vercel's IPs, visitors get the saved list, not a 502.
+let memo = { at: 0, feed: validFeed(snapshot) ? withSummaries(snapshot) : null };
 let refresh;
 let retryAt = 0;
 let statuses = [];
 
 const cached = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600' } });
+// The saved feed is only a stopgap, so the CDN keeps it for minutes: a recovered upstream shows up quickly.
+const saved = feed => Response.json(feed, { headers: { 'Cache-Control': 'public, max-age=60, s-maxage=300' } });
 
 // Data API when YOUTUBE_API_KEY is set (3 quota units per call), otherwise the public RSS feed.
 // Only the Data API has channel counts; without them the page keeps its built-in numbers.
@@ -59,13 +64,17 @@ export async function GET() {
       .catch(error => { statuses.push(error.message); return null; })
       .then(feed => {
         if (feed) memo = { at: Date.now(), feed: withSummaries(feed) };
-        else retryAt = Date.now() + 300000;
+        else {
+          retryAt = Date.now() + 300000;
+          // Once per failed refresh, as a warning: the saved feed covers it, so it is not a runtime error.
+          console.warn('[youtube] refresh failed, serving the saved feed', statuses);
+        }
       })
       .finally(() => { refresh = null; });
     await refresh;
   }
   // A day-old feed beats an error page when both sources are down.
-  if (memo.feed) return cached(memo.feed);
+  if (memo.feed) return memo.at ? cached(memo.feed) : saved(memo.feed);
   console.error('[youtube] feed unavailable', statuses);
   return Response.json({ error: 'YouTube feed unavailable' }, { status: 502, headers: { 'Cache-Control': 'no-store' } });
 }

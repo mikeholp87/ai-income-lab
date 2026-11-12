@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import savedSnapshot from './youtube-snapshot.json' with { type: 'json' };
+import { withSummaries } from './curated-summary.js';
 
 const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
 const playlist = { items: [{ snippet: { resourceId: { videoId: 'aaaaaaaaaaa' }, title: 'A build', publishedAt: '2026-10-05T12:37:47Z', description: 'Build an agent.' } }] };
@@ -108,25 +110,29 @@ test('API timeouts allow the RSS fallback to start live and succeed', async t =>
   assert.equal(globalThis.fetch.mock.callCount(), 3, 'the successful fallback is memoized');
 });
 
-test('failed YouTube refreshes retain the 502 for five minutes before retrying', async t => {
+test('failed YouTube refreshes on a cold instance serve the saved feed and retry only after five minutes', async t => {
   const { GET } = await setup(t);
   let now = 1000000000000;
   t.mock.method(Date, 'now', () => now);
   t.mock.method(globalThis, 'fetch', async () => new Response(null, { status: 503 }));
-  const failure = 'YouTube feed unavailable';
+  const warn = t.mock.method(console, 'warn', () => {});
+  const error = t.mock.method(console, 'error', () => {});
+  const saved = withSummaries(structuredClone(savedSnapshot));
   for (const response of await Promise.all([GET(), GET()])) {
-    assert.equal(response.status, 502);
-    assert.equal(response.headers.get('Cache-Control'), 'no-store');
-    assert.equal((await response.json()).error, failure);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('Cache-Control'), 'public, max-age=60, s-maxage=300');
+    assert.deepEqual(await response.json(), saved);
   }
   assert.equal(globalThis.fetch.mock.callCount(), 6);
+  assert.equal(warn.mock.callCount(), 1, 'one warning per failed refresh, not one per request');
+  assert.equal(error.mock.callCount(), 0, 'the saved feed means no runtime error');
   now += 299999;
   const response = await GET();
-  assert.equal(response.status, 502);
-  assert.equal((await response.json()).error, failure);
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), saved);
   assert.equal(globalThis.fetch.mock.callCount(), 6, 'the cooldown prevents another upstream call');
   now++;
-  assert.equal((await GET()).status, 502);
+  assert.equal((await GET()).status, 200);
   assert.equal(globalThis.fetch.mock.callCount(), 12, 'upstream retries resume after five minutes');
 });
 
@@ -207,15 +213,16 @@ test('an aborted YouTube refresh settles and enters the failure cooldown', async
     return hangUntilAbort(signal);
   });
   const requests = [GET(), GET()];
+  t.mock.method(console, 'warn', () => {});
   for (const response of await Promise.all(requests)) {
-    assert.equal(response.status, 502);
-    assert.equal((await response.json()).error, 'YouTube feed unavailable');
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), withSummaries(structuredClone(savedSnapshot)));
   }
   assert.equal(globalThis.fetch.mock.callCount(), 6);
   assert.deepEqual(startedLive, [true, true, true, true, true, true]);
   assert.deepEqual(AbortSignal.timeout.mock.calls.map(call => call.arguments), [[8000], [8000], [5000], [5000], [5000], [5000]]);
   const signals = globalThis.fetch.mock.calls.map(call => call.arguments[1].signal);
   assert.equal(new Set(signals).size, 6);
-  assert.equal((await GET()).status, 502);
+  assert.equal((await GET()).status, 200);
   assert.equal(globalThis.fetch.mock.callCount(), 6);
 });
