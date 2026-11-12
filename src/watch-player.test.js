@@ -11,16 +11,18 @@ function setup({ start = 0, hash = '' } = {}) {
   const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(m => m[1]).find(code => code.includes('.chapters'));
   const player = { src: html.match(/<iframe[^>]*src="([^"]+)"/)[1], focus() { this.focused = true; }, scrollIntoView() { this.scrolled = true; } };
   const chapters = { addEventListener(type, handler) { this[type] = handler; } };
+  const keySteps = { addEventListener(type, handler) { this[type] = handler; } };
   const handlers = {};
   const location = { hash };
   const history = { replaceState(_state, _title, hash) { location.hash = hash; } };
-  vm.runInNewContext(script, { URL, location, history, document: { querySelector: selector => selector === 'iframe.player' ? player : chapters }, addEventListener(type, handler) { handlers[type] = handler; } });
-  const click = (hash, modifier = {}) => {
+  const document = { querySelector: selector => selector === 'iframe.player' ? player : null, querySelectorAll: selector => selector === '.chapters,.key-steps' ? [chapters, keySteps] : [] };
+  vm.runInNewContext(script, { URL, location, history, document, addEventListener(type, handler) { handlers[type] = handler; } });
+  const clickIn = list => (hash, modifier = {}) => {
     const event = { button: 0, target: { closest: () => ({ hash }) }, preventDefault() { this.prevented = true; }, ...modifier };
-    chapters.click(event);
+    list.click(event);
     return event;
   };
-  return { player, click, location, handlers };
+  return { player, click: clickIn(chapters), clickStep: clickIn(keySteps), location, handlers };
 }
 
 test('every saved watch page exposes one matching player before scripts run', () => {
@@ -49,6 +51,15 @@ test('chapter navigation plays the requested time and can return to zero', () =>
   assert.equal(new URL(player.src).searchParams.get('start'), '0');
   assert.equal(location.hash, '#t=0');
   assert.equal(player.focused, true);
+  assert.equal(player.scrolled, true);
+});
+
+test('key step timestamps play the video and bring the player into view, like chapters', () => {
+  const { player, clickStep, location } = setup();
+  assert.equal(clickStep('#t=30').prevented, true);
+  assert.equal(new URL(player.src).searchParams.get('start'), '30');
+  assert.equal(new URL(player.src).searchParams.get('autoplay'), '1');
+  assert.equal(location.hash, '#t=30');
   assert.equal(player.scrolled, true);
 });
 

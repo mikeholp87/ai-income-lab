@@ -308,7 +308,6 @@ export const guides = [
   [/claude design alternative|open design/i, '/guides/opendesign-linux-slides.html', 'OpenDesign (Open Design) on Linux: Source Setup and Slides'],
   [/\brea\b|reverse engineer anything/i, '/guides/rea-video-editor-prototype.html', 'REA Coding-Agent Case: A Video-Editor Prototype'],
   [/grokbot run my blog/i, '/guides/run-a-blog-with-grokbot.html', 'GrokBot WordPress Workflow: Long-Form Videos to Drafts'],
-  [/runable/i, '/guides/runable-audit-website.html', 'Runable AI Audit-Service Website: Research to an MVP'],
   [/your business is invisible to ai search|rank prompt/i, '/guides/rank-prompt-ai-search-visibility.html', 'Rank Prompt AI Visibility: Scan, MCP and Fixes'],
   [/stop wasting money on seo|semrush/i, '/guides/semrush-mcp-ai-visibility.html', 'Semrush MCP: AI Visibility and Keyword Gaps'],
   [/opencode replace your seo|seo audit skills/i, '/guides/opencode-seo-audit-skills.html', 'OpenCode SEO Audit Skills: Site Checks and Files'],
@@ -377,7 +376,7 @@ export const guides = [
 // Watch pages expose the primary player in the initial HTML, without autoplay or a click gate.
 // Chapter fragments add no crawlable URLs. Opening a shared fragment cues without autoplay;
 // choosing a chapter re-cues the same privacy-enhanced player, including the zero-second chapter.
-const playerScript = `(()=>{const player=document.querySelector('iframe.player');const cue=(start,autoplay)=>{const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');else url.searchParams.delete('autoplay');player.src=url.href;if(autoplay)player.focus();};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};seek(location.hash,false);document.querySelector('.chapters')?.addEventListener('click',event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}});addEventListener('hashchange',()=>seek(location.hash,true));})()`;
+const playerScript = `(()=>{const player=document.querySelector('iframe.player');const cue=(start,autoplay)=>{const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');else url.searchParams.delete('autoplay');player.src=url.href;if(autoplay)player.focus();};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};seek(location.hash,false);const jump=event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}};document.querySelectorAll('.chapters,.key-steps').forEach(list=>list.addEventListener('click',jump));addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
 // Reviewed follow-up reading for recordings whose titles do not identify the written guide.
 // IDs keep these links stable when a video's title changes.
@@ -635,7 +634,6 @@ const guideVideoTopics = {
   '/guides/opendesign-linux-slides.html': /chatgpt images 2\.5|claude design alternative|heygen|sora 2/i,
   '/guides/rea-video-editor-prototype.html': /rocket launch simulator|opusclip|ai video editor|chatgpt images 2\.5/i,
   '/guides/run-a-blog-with-grokbot.html': /5 ai agents you need to build with grok|virtual office for my ai agents|treg\.to inside grok|youtube transcript/i,
-  '/guides/runable-audit-website.html': /lovable|base44|replit|deploy a saas with vercel/i,
   '/guides/trakkr-codex-visibility-workflow.html': /dataforseo|grok bot for seo|codex to fix my seo|openseo/i,
   '/guides/treg-inside-grokbot.html': /grok bot for seo|5 ai agents you need to build with grok|dataforseo|virtual office for my ai agents/i,
   '/guides/what-is-an-ai-agent.html': /5 ai agents you need to build|openai's new agent builder|lindy ai agent tutorial|mindstudio ai agents/i,
