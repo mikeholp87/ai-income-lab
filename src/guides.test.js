@@ -471,3 +471,10 @@ test('guides list at most five sources', async () => {
     assert.ok(list.match(/<li\b/g).length <= 5, file);
   }
 });
+
+test('the guides hub shows the total number of guides in its All guides pill', async () => {
+  const script = await read('public/guide-search.js');
+  assert.match(script, /className: 'pill-count', textContent: all\.length/);
+  assert.match(script, /aria-label', `All guides \(\$\{all\.length\}\)`/);
+  assert.match(await read('public/archive.css'), /\.topics \.pill-count \{/);
+});

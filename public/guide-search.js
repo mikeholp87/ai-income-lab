@@ -38,7 +38,10 @@ function arrange() {
 // Topic id from ?topic= or an old #hash link; null shows every guide.
 const idOf = section => section.parts[0].id;
 let topic = [params.get('topic'), location.hash.slice(1)].find(id => sections.some(section => idOf(section) === id)) ?? null;
-topics.prepend(Object.assign(document.createElement('a'), { href: '?', textContent: 'All guides' }));
+const allLink = Object.assign(document.createElement('a'), { href: '?', textContent: 'All guides ' });
+allLink.append(Object.assign(document.createElement('span'), { className: 'pill-count', textContent: all.length }));
+allLink.setAttribute('aria-label', `All guides (${all.length})`);
+topics.prepend(allLink);
 const pager = Object.assign(document.createElement('nav'), { className: 'pager mono' });
 pager.setAttribute('aria-label', 'Guide pages');
 document.getElementById('next').before(pager);

@@ -585,7 +585,9 @@ test('topic pages list only matching videos on one page with their own canonical
 test('the archive shows a topic row with every topic', () => {
   const html = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }]);
   const row = html.match(/<nav class="topics" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
-  assert.match(row, /^<a href="\/videos" aria-current="page">All videos<\/a>/);
+  assert.match(row, /^<a href="\/videos" aria-current="page" aria-label="All videos \(1\)">All videos <span class="pill-count">1<\/span><\/a>/);
+  const topicPage = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }, { id: 'bbbbbbbbbbb', title: 'Make.com scenario', published: '2026-10-01T00:00:00Z', summary: '' }], 1, topics.find(topic => topic.pattern.test('Claude Code hooks tutorial')));
+  assert.match(topicPage, /<a href="\/videos" aria-label="All videos \(2\)">All videos <span class="pill-count">2<\/span><\/a>/, 'topic pages still count every video');
   assert.equal((row.match(/<a /g) || []).length, topics.length + 1);
   for (const topic of topics) assert.ok(row.includes(`href="/videos/${topic.slug}"`), topic.slug);
 });
