@@ -404,3 +404,15 @@ test('a build keeps the last channel numbers when the live feed drops them', asy
   assert.match(jsx, /<dd>\{key \? channelCount\(channel, key\) : value\}<\/dd>/);
   assert.doesNotMatch(jsx, /'5\.1K'|'498K'/);
 });
+
+test('the course list in structured data only names courses the page says members get', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const graph = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
+  const list = graph.find(node => node['@type'] === 'ItemList' && node['@id'].endsWith('#courses'));
+  assert.equal(list.numberOfItems, list.itemListElement.length);
+  const visible = jsx.replaceAll('&amp;', '&');
+  for (const { item } of list.itemListElement) {
+    assert.equal(item['@type'], 'Course');
+    assert.ok(visible.includes(item.name), item.name);
+  }
+});

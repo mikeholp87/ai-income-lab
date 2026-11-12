@@ -138,4 +138,6 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Make.com Course: Sheets, OpenAI, Airtable, Facebook](https://www.ai-automation-station.com/guides/make-com-beginner-course-scenarios.html): Follow a Make.com beginner course: a Sheets to Gmail template, an OpenAI, Airtable and Facebook scenario with its errors, and an Apollo lead scraper.
 - [Make.com Business Automations: Email, Skool, Leads](https://www.ai-automation-station.com/guides/make-business-automation-examples.html): Make.com business automations from one recording: an email reply, community members to an email list, Messenger, Instagram, cold email and lead scraping.
 - [ChatGPT Thumbnails: Audit CTR and Redesign](https://www.ai-automation-station.com/guides/chatgpt-thumbnail-ctr-pipeline.html): Audit channel thumbnail CTR, note brightness and contrast targets from the recording, then run the master prompt in ChatGPT Images.
+- [AI Income Lab pricing in plain markdown](https://www.ai-automation-station.com/pricing.md): plans, billing, what each plan includes and what coaching covers.
+- [Everything in one file](https://www.ai-automation-station.com/llms-full.txt): this file, the pricing page and every written guide's quick answer.
 - Support: automojic@proton.me

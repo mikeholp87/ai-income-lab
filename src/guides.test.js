@@ -368,13 +368,14 @@ test('every guide page shows its own branded card and never points at a YouTube 
   for (const file of guides) {
     const slug = file.replace(/\.html$/, '');
     const html = await read(`public/guides/${file}`);
-    const withoutVideo = html.replace(/<figure class="video">[\s\S]*?<\/figure>/g, '');
+    // Structured data may name the video's own thumbnail; the visible page may not.
+    const withoutVideo = html.replace(/<figure class="video">[\s\S]*?<\/figure>/g, '').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
     assert.doesNotMatch(withoutVideo, /i\.ytimg\.com|img\.youtube\.com/, file);
     assert.match(html, new RegExp(`<img src="/assets/guides/${slug}\\.webp" srcset="/assets/guides/sizes/${slug}-640\\.webp 640w`), file);
     assert.match(html, new RegExp(`<meta property="og:image" content="https://www\\.ai-automation-station\\.com/assets/guides/${slug}\\.webp"`), file);
     const expectedId = youtubeWalkthroughPosters[file];
     if (!expectedId) {
-      assert.doesNotMatch(html, /i\.ytimg\.com|img\.youtube\.com/, file);
+      assert.doesNotMatch(html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, ''), /i\.ytimg\.com|img\.youtube\.com/, file);
       continue;
     }
     assert.match(html, new RegExp(`data-embed="https://www\\.youtube-nocookie\\.com/embed/${expectedId}"`));
@@ -483,4 +484,31 @@ test('choosing a guide topic keeps the scroll position, like the videos page', a
   const script = await read('public/guide-search.js');
   const handler = script.match(/topics\.addEventListener\('click', event => \{[^]*?\n\}\);/)[0];
   assert.doesNotMatch(handler, /scrollIntoView|scrollTo/);
+});
+
+test('every guide that embeds a video describes it in structured data and lists its chapters', async () => {
+  const { uploads } = await import('./uploads-snapshot.js');
+  const known = new Set(uploads.map(video => video.id));
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, id] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})"/g)) {
+      if (known.has(id)) assert.ok(html.includes(`"@id":"https://www.ai-automation-station.com/watch/${id}#video"`), `${file}: run node scripts/guide-video-schema.mjs`);
+    }
+    if (html.includes('class="video-chapters"')) assert.match(html, /<ul class="video-chapters"[^>]*>(<li><a href="https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}&amp;t=\d+s">\d+:\d{2}<\/a> [^<]+<\/li>){3,}<\/ul>/, file);
+  }
+});
+
+test('llms-full.txt carries every guide and the pricing page, and pricing.md matches the plans on the page', async () => {
+  const full = await read('public/llms-full.txt');
+  for (const file of guides) assert.ok(full.includes(`/guides/${file}`), `${file}: run node scripts/llms-full.mjs`);
+  assert.ok(full.includes((await read('public/pricing.md')).trim()), 'pricing.md changed: run node scripts/llms-full.mjs');
+  const llms = await read('public/llms.txt');
+  assert.match(llms, /\]\(https:\/\/www\.ai-automation-station\.com\/pricing\.md\)/);
+  assert.match(llms, /\]\(https:\/\/www\.ai-automation-station\.com\/llms-full\.txt\)/);
+  const jsx = await read('src/main.jsx');
+  const pricing = await read('public/pricing.md');
+  for (const [name, monthly, yearly] of [['Standard', 29, 290], ['Premium', 49, 490], ['VIP', 89, 890]]) {
+    assert.match(jsx, new RegExp(`name: '${name}', price: ${monthly}, annual: ${yearly}`), name);
+    assert.match(pricing, new RegExp(`\\| ${name} \\| \\$${monthly} \\| \\$${yearly} \\|`), name);
+  }
 });
