@@ -1,10 +1,9 @@
 import { affiliates, categories, logoSlug, pricesChecked } from './affiliates.js';
 import { videoHeading } from './curated-summary.js';
 import { gaBootHead } from './ga-boot-html.js';
+import { organizationNode, siteFooterHtml, siteOrigin as site, skoolPlansUrl, websiteNode } from './site-footer.js';
 import { videoSummaries } from './video-summaries.js';
 import { videoTools } from './video-tools.js';
-
-const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const escape = text => String(text).replace(/[&<>"']/g, char => entities[char]);
 const key = name => name.replace(/\s*\(.*\)\s*$/, '').trim().toLowerCase();
@@ -13,7 +12,19 @@ const shownGuides = 2;
 const topPicks = 5;
 
 export const toolsTitle = 'Choose AI tools for automation and coding';
+export const toolsDocumentTitle = 'Choose AI tools for automation | AI Automation Station';
 const description = 'Choose AI tools by job: coding agents, automation, SEO, video, YouTube, email and hosting, each with a checked price and the videos that show it in use.';
+const ogImage = `${site}/og-card.jpg?v=2`;
+export const ogImageWidth = 1200;
+export const ogImageHeight = 630;
+const headerJoin = `${skoolPlansUrl}?utm_source=website&utm_medium=referral&utm_campaign=tools_page&utm_content=header_join`;
+// Extra card links for tools whose written guides omit the product name from the title. Only paths that
+// exist in public/guides/. Apify has no matching guide, so it is left to title matches only.
+const extraGuidePaths = {
+  OpenCode: ['/guides/opencode-go.html', '/guides/opencode-vs-claude-code.html'],
+  'Google Gemini': ['/guides/google-ai-studio-chat-app.html'],
+  Hostinger: ['/guides/install-openclaw.html'],
+};
 
 // Public uploads whose tool lists name one of the affiliate's tools, newest first. Both lists are read from
 // the transcript, so a written summary's list doesn't hide a tool the transcript list caught.
@@ -37,6 +48,31 @@ export function topTools(uploads, count = topPicks) {
 export function guidesAbout(affiliate, guides) {
   const pattern = new RegExp(`(^|[^\\w.])${affiliate.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\w])`, 'i');
   return guides.filter(guide => pattern.test(guide.title)).sort((a, b) => (b.modified || '').localeCompare(a.modified || ''));
+}
+
+const guidePath = guide => guide.url.replace(site, '');
+
+// Title matches plus pinned guides that exist in the supplied list. Pinned paths come first so OpenCode
+// keeps linking opencode-go and opencode-vs-claude-code even when newer OpenCode guides exist.
+export function relatedGuides(affiliate, guides) {
+  const extras = (extraGuidePaths[affiliate.name] ?? []).map(path => guides.find(guide => guidePath(guide) === path)).filter(Boolean);
+  const named = guidesAbout(affiliate, guides).filter(guide => !extras.some(extra => extra.url === guide.url));
+  return [...extras, ...named].slice(0, shownGuides + extras.length);
+}
+
+export function toolsSummary(count, priceDate) {
+  return `This page lists ${count} AI tools from my YouTube descriptions. Cards are ranked by on-screen video use, counted from the transcripts, so the most-used tools come first. Prices are in USD from each tool’s pricing page on ${priceDate}. I may earn a commission or credit if you sign up through these buttons.`;
+}
+
+export function toolsFaqs(count, priceDate, pickCount) {
+  return [
+    ['How many tools are on this page?', `This page lists ${count} AI tools from my YouTube descriptions.`],
+    ['How is this list ranked?', 'Each card counts the videos that use the tool on screen, read from the video transcripts, and the most-used tools come first.'],
+    ['When were the prices checked?', `Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.`],
+    ['Are these affiliate links?', 'I may earn a commission or credit if you sign up through these buttons.'],
+    ['What does “On my recommended list” mean?', 'A tool marked “On my recommended list” is in every video description but has no build video yet.'],
+    ['Where should I start?', `Start here: the ${pickCount} tools I use most.`],
+  ];
 }
 
 const pattern = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -132,9 +168,14 @@ export function addToolsLink(html) {
 const usage = count => count === 1 ? 'Used in one video' : `Used in ${count} videos`;
 const logo = affiliate => `<img class="tool-logo" src="/tools/logos/${logoSlug(affiliate)}.webp" alt="" width="48" height="48" loading="lazy" decoding="async">`;
 const cta = (affiliate, placement) => `<a class="tool-cta" href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-category="${affiliate.category}" data-placement="${placement}">${escape(affiliate.cta || `Try ${affiliate.name}`)} ↗</a>`;
+const notesForm = (heading, placement, emailId) => `<form class="notes" method="post" action="/api/subscribe" data-subscribe data-placement="${placement}"><p><strong>${heading}</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="${emailId}">Email address</label><input id="${emailId}" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>`;
+const jsonLd = item => `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...item }).replace(/</g, '\\u003c')}</script>`;
+const faqMarkup = faqs => `<section class="tools-faq" aria-labelledby="faq"><h2 id="faq">Questions about this list</h2><div class="faq-list">${faqs.map(([question, answer]) => `<details class="faq-item"><summary><h3>${escape(question)}</h3></summary>
+<p>${escape(answer)}</p>
+</details>`).join('\n')}</div></section>`;
 
 function card(affiliate, videos, guides) {
-  const related = guidesAbout(affiliate, guides).slice(0, shownGuides);
+  const related = relatedGuides(affiliate, guides);
   const badge = videos.length ? usage(videos.length) : affiliate.recommended ? 'On my recommended list' : '';
   const videoList = videos.length ? `<p class="used-in">Watch it in use${videos.length > shownVideos ? ` (${shownVideos} newest)` : ''}:</p><ul>${videos.slice(0, shownVideos).map(video => `<li><a href="/watch/${video.id}">${escape(videoHeading(video))}</a></li>`).join('')}</ul>` : '';
   const guideList = related.length ? `<p class="used-in">Read: ${related.map(guide => `<a href="${escape(guide.url.replace(site, ''))}">${escape(guide.title)}</a>`).join(' · ')}</p>` : '';
@@ -156,21 +197,28 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
   const grouped = categories.map(([id, label, short, intro]) => [id, label, affiliates.filter(affiliate => affiliate.category === id).sort((a, b) => byUse(used, a, b)), short, intro]).filter(([, , items]) => items.length);
   const nav = grouped.map(([id, , , short]) => `<a href="#${id}">${escape(short)}</a>`).join('');
   const picks = topTools(uploads).map(pick => affiliates.find(affiliate => affiliate.name === pick.name));
+  const summary = toolsSummary(affiliates.length, priceDate);
+  const faqs = toolsFaqs(affiliates.length, priceDate, picks.length || topPicks);
   const schema = [
-    { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, name: toolsTitle, description, url, dateModified: date, author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` }, publisher: { '@id': `${site}/#org` }, isPartOf: { '@id': `${site}/#website` }, inLanguage: 'en',
+    { '@type': 'CollectionPage', '@id': url, name: toolsTitle, description, url, dateModified: date, author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` }, publisher: { '@id': `${site}/#org` }, isPartOf: { '@id': `${site}/#website` }, inLanguage: 'en',
       mainEntity: { '@type': 'ItemList', numberOfItems: affiliates.length, itemListElement: grouped.flatMap(([, , items]) => items).map((affiliate, index) => ({ '@type': 'ListItem', position: index + 1, name: affiliate.name, description: affiliate.blurb, url: `${url}#${logoSlug(affiliate)}` })) } },
-    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` }, { '@type': 'ListItem', position: 2, name: 'Recommended tools', item: url }] },
-  ].map(item => `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, '\\u003c')}</script>`).join('\n');
+    { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` }, { '@type': 'ListItem', position: 2, name: 'Recommended tools', item: url }] },
+    organizationNode,
+    websiteNode,
+    { '@type': 'FAQPage', '@id': `${url}#faq-schema`, url, mainEntity: faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })) },
+  ].map(jsonLd).join('\n');
 
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>${escape(toolsTitle)} | Mike Holp</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="website"><meta property="og:title" content="${escape(toolsTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${site}/og-card.jpg?v=2"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(toolsTitle)}"><meta name="twitter:description" content="${escape(description)}"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>${gaBootHead}<script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>${schema}
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="index,follow"><title>${escape(toolsDocumentTitle)}</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${url}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/reading.css"><link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript><meta property="og:type" content="website"><meta property="og:site_name" content="AI Automation Station"><meta property="og:locale" content="en_US"><meta property="og:title" content="${escape(toolsTitle)}"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${ogImage}"><meta property="og:image:width" content="${ogImageWidth}"><meta property="og:image:height" content="${ogImageHeight}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escape(toolsTitle)}"><meta name="twitter:description" content="${escape(description)}"><meta name="twitter:image" content="${ogImage}"><script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>${gaBootHead}<script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>${schema}
 </head>
-<body class="wide"><a class="skip" href="#content">Skip to content</a><header class="single-line-header tools-header"><a href="/">AI Income Lab</a><nav aria-label="Tool categories">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Tool categories menu">Categories</summary><nav aria-label="Tool categories menu">${nav}</nav></details></header><main id="content"><p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · Updated <time datetime="${date}">${readable}</time></p><h1>Tools I recommend for AI automation.</h1><p>The tools linked in my YouTube descriptions, with the ones I use most on camera first. Watch any of them in a real build before you sign up.</p>
+<body class="wide"><a class="skip" href="#content">Skip to content</a><header class="single-line-header tools-header"><a href="/">AI Income Lab</a><nav aria-label="Tool categories">${nav}</nav><a class="join" href="${escape(headerJoin)}" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Tool categories menu">Categories</summary><nav aria-label="Tool categories menu">${nav}</nav></details></header><main id="content"><p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · Updated <time datetime="${date}">${readable}</time></p><h1>Tools I recommend for AI automation.</h1><p class="tools-summary">${escape(summary)}</p>
 <aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.</p></aside>
-${picks.length ? `<section class="top-picks" aria-labelledby="top-picks-heading"><h2 id="top-picks-heading">Start here: the ${picks.length} tools I use most</h2><ol>${picks.map(affiliate => topPick(affiliate, used.get(affiliate))).join('')}</ol></section>` : ''}
+${picks.length ? `<section class="top-picks" aria-labelledby="top-picks-heading"><h2 id="top-picks-heading">Start here: the ${picks.length} tools I use most</h2><ol>${picks.map(affiliate => topPick(affiliate, used.get(affiliate))).join('')}</ol></section>
+${notesForm('Want the next tool I test?', 'tools_page_top', 'notes-email-top')}` : ''}
 <p class="meta">How this list works: each card counts the videos that use the tool on screen, read from the video transcripts, and the most-used tools come first. A tool marked “On my recommended list” is in every video description but has no build video yet.</p>
 ${grouped.map(([id, label, items, , intro]) => `<section class="tool-group" id="${id}" aria-labelledby="${id}-heading"><h2 id="${id}-heading">${escape(label)}</h2><p class="meta">${escape(intro)}</p><ul class="tool-cards">${items.map(affiliate => card(affiliate, used.get(affiliate), guides)).join('')}</ul></section>`).join('\n')}
-<form class="notes" method="post" data-subscribe data-placement="tools_page"><p><strong>Want to see new tools first?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
-<p>New to these tools? <a href="/start-here.html">Choose your first build</a>, or <a href="/guides.html">browse every guide by topic</a>. Making one of these products? <a href="/sponsors.html">Sponsor a build</a>.</p></main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
+${faqMarkup(faqs)}
+${notesForm('Want to see new tools first?', 'tools_page', 'notes-email')}
+<p>New to these tools? <a href="/start-here.html">Choose your first build</a>, or <a href="/guides.html">browse every guide by topic</a>. Making one of these products? <a href="/sponsors.html">Sponsor a build</a>.</p></main>${siteFooterHtml({ joinPlacement: 'tools_footer' })}</body></html>
 `;
 }
