@@ -78,3 +78,13 @@ pre:focus-visible,table:focus-visible{outline:2px solid var(--signal);outline-of
 .wide .choice-head{position:sticky;top:24px;align-self:start}
 @media(max-width:960px){.wide .choice-head{position:static}}
 @media(max-width:640px){.picks div{grid-template-columns:1fr}}
+.disclosure{margin:28px 0;padding:16px 20px;border:1px solid var(--line-strong);border-left:3px solid var(--signal);background:var(--panel)}.disclosure p{margin:0;font-size:16px}.disclosure strong{color:var(--text)}
+.tool-group{margin-top:56px}.tool-group h2{margin-bottom:20px}
+.tool-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.tool-card{display:flex;flex-direction:column;gap:10px;margin:0;padding:22px 24px;border:1px solid var(--line-strong);border-radius:14px;background:var(--panel)}
+.tool-card h3{margin:0;color:var(--text);font-size:22px}.tool-card p{margin:0;font-size:16px;line-height:1.6}
+.tool-card ul{margin:0;padding-left:18px}.tool-card li{margin:4px 0;font-size:15px;line-height:1.5}
+.tool-card .used-in{color:var(--muted);font-size:14px}
+.tool-cta{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;margin-top:auto;padding:0 18px;border:1px solid var(--signal);border-radius:999px;color:var(--signal);font:600 15px 'Instrument Sans',system-ui,sans-serif;text-decoration:none}.tool-cta:hover{background:var(--signal);color:var(--on-signal)}
+@media(max-width:960px){.tool-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.tool-cards{grid-template-columns:1fr}.tool-group{margin-top:40px}}

@@ -1,33 +1,14 @@
 // Where each "Tools used" entry on a watch page links. Names are matched case-insensitively with any
 // "(…)" note removed, so "Claude Code (Opus 5.5)" uses the Claude Code link.
-// `affiliate: true` marks referral links copied from the YouTube descriptions; they render with rel="sponsored".
+// Affiliate links come from affiliates.js (copied from the YouTube descriptions) and render with rel="sponsored".
+import { affiliates } from './affiliates.js';
+
 const links = [
+  ...affiliates.filter(affiliate => affiliate.tools.length).map(affiliate => [affiliate.tools, affiliate.url, true]),
   [['Tasky'], 'https://github.com/mikeholp87/Tasky'],
   [['Restic-Studio'], 'https://github.com/mikeholp87/Restic-Studio'],
   [['Luma-Launcher'], 'https://github.com/mikeholp87/Luma-Launcher'],
   [['Update Forge', 'update-forge'], 'https://github.com/mikeholp87/update-forge'],
-  [['Make.com'], 'https://www.make.com/en/register?pc=mikeholp', true],
-  [['HeyGen'], 'https://www.heygen.com/?sid=rewardful&via=mike-holp', true],
-  [['Vapi'], 'https://vapi.ai/?aff=mike9c', true],
-  [['vidIQ', 'vidIQ MCP'], 'https://www.vidiq.com/mikeholp', true],
-  [['OpenCode', 'OpenCode Go', 'OpenCode Zen'], 'https://opencode.ai/go?ref=Y0V64DGPZN', true],
-  [['Apify', 'Apify Agent Skills'], 'https://www.apify.com?fpr=fklok2', true],
-  [['Manus'], 'https://manus.im/invitation/DF5TX92CTYPP', true],
-  [['Gamma'], 'https://try.gamma.app/q9q68k9i00tu', true],
-  [['Emergent'], 'https://app.emergent.sh/?via=mike-holp', true],
-  [['Treg'], 'https://www.treg.to/?ref=digitalnomad-2a5c2', true],
-  [['Apollo'], 'https://get.apollo.io/1mpkcotn2pwa', true],
-  [['Hostinger'], 'https://www.hostinger.com?REFERRALCODE=5XNDIGITACZ9', true],
-  [['Lovable'], 'https://www.lovable.dev/?via=mike-holp', true],
-  [['SendPulse'], 'https://www.sendpulse.com?p=68ef5bec898ba', true],
-  [['Syllaby'], 'https://www.syllaby.io/?via=mike26', true],
-  [['OpusClip'], 'https://www.opus.pro/?via=8b6827', true],
-  [['Replit'], 'https://replit.com/refer/digitalnomadven', true],
-  [['Skool'], 'https://www.skool.com/signup?ref=8be413d469374945a9c1f8db3e5a92a0', true],
-  [['Trakkr'], 'https://trakkr.ai/r/mikeholp87', true],
-  [['DataForSEO'], 'https://try.dataforseo.com/70uqp0vd9ao3', true],
-  [['Firecrawl'], 'https://firecrawl.link/mike-holp', true],
-  [['CrowdReply'], 'https://crowdreply.io?via=mike98', true],
   [['GrokBot', 'GrokBot WordPress plugin'], 'https://x.ai/bot'],
   [['Claude Code'], 'https://claude.com/product/claude-code'],
   [['Claude', 'Claude Desktop', 'Claude Haiku 5.5', 'Claude Sonnet 5.5', 'Claude Opus 5', 'Claude Opus 5.5', 'Claude Fable 5', 'Claude Fable 5.1', 'Opus 4.5', 'Opus 4.6', 'Opus 4.8'], 'https://claude.ai'],
@@ -38,7 +19,6 @@ const links = [
   [['ChatGPT', 'OpenAI ChatGPT', 'ChatGPT Pro', 'ChatGPT Business', 'ChatGPT Dots', 'ChatGPT Images', 'ChatGPT Images 2.0', 'ChatGPT Images 2.5', 'GPT-5.6', 'GPT-6 Astra', 'GPT-6 Sol', 'GPT-6.1 Sol'], 'https://chatgpt.com'],
   [['OpenAI API', 'OpenAI Assistants', 'OpenAI Agent Builder'], 'https://platform.openai.com'],
   [['Sora 2'], 'https://sora.com'],
-  [['Gemini', 'Google Gemini'], 'https://g.co/g1referral/G68XU81Q', true],
   [['Google AI Studio', 'Nano Banana', 'Nano Banana Pro', 'Gemini 3', 'Gemini 3 Pro', 'Veo 3', 'Veo 3.1'], 'https://aistudio.google.com'],
   [['NotebookLM'], 'https://notebooklm.google.com/'],
   [['Grok 4.5', 'Grok 4.7', 'Grok CLI'], 'https://x.ai'],
@@ -168,7 +148,6 @@ const links = [
   [['React'], 'https://react.dev'],
   [['Node.js'], 'https://nodejs.org'],
   [['Three.js'], 'https://threejs.org'],
-  [['Bluehost AI Assistant'], 'https://bluehost.sjv.io/k4Wm4v', true],
   [['Microsoft PowerPoint'], 'https://www.microsoft.com/microsoft-365/powerpoint'],
   [['OpenClaw'], 'https://openclaw.ai'],
   [['ClawHub'], 'https://clawhub.ai'],

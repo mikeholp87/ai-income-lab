@@ -63,6 +63,14 @@ for (const link of document.querySelectorAll('a[href]')) {
       trackGoogleEvent('youtube_outbound_clicked', event);
     });
   }
+  if (String(link.rel || '').split(/\s+/).includes('sponsored')) {
+    link.addEventListener('click', () => {
+      const placement = link.dataset.placement || (viewEvent === 'video_page_view' ? 'watch_tools' : 'written_guide');
+      const event = { ...properties, placement, action: 'visit_affiliate', tool: link.dataset.affiliate || link.textContent.replace('↗', '').trim(), link_url: link.href, button_text: link.textContent.trim() };
+      trackGoogleEvent('cta_click', event);
+      trackGoogleEvent('affiliate_outbound_clicked', event);
+    });
+  }
   if (target.origin !== 'https://www.skool.com' || !/^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname)) continue;
   link.addEventListener('click', () => {
     const event = { ...properties, placement: link.dataset.placement || 'written_guide', ...(link.dataset.videoId ? { video_id: link.dataset.videoId } : {}), action: 'visit_skool', link_url: link.href, button_text: link.textContent.trim() };

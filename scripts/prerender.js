@@ -7,6 +7,7 @@ import { topics } from '../src/topics.js';
 import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+import { renderToolsPage } from '../src/tools-page.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
 
@@ -31,8 +32,10 @@ try {
 }
 
 const guideFiles = (await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`);
+const guideTitles = await Promise.all(guideFiles.map(async file => guideMeta(await readFile(`dist/${file}`, 'utf8'))));
+await writeFile('dist/tools.html', renderToolsPage({ uploads, guides: guideTitles }));
 const guides = [];
-for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', ...guideFiles]) {
+for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
   const html = await readFile(path, 'utf8');
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);

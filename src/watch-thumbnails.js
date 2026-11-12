@@ -27,6 +27,7 @@ export const watchThumbnails = new Set([
   "5zBHLxXw3tI",
   "6iFA7ds2PU4",
   "6jDcOXSOT00",
+  "7JN-sMkJBCs",
   "7UMrV3w1e40",
   "7p3n6-FH9IQ",
   "7v_675nO7nM",
