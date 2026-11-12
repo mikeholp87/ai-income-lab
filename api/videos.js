@@ -44,7 +44,13 @@ function refreshUploads() {
 }
 
 const html = (body, status, cache) => new Response(body, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': cache } });
-const nav = '<a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a>';
+function redirectKeepingQuery(from, pathname, drop = []) {
+  const next = new URL(pathname, from);
+  next.search = from.search;
+  for (const key of drop) next.searchParams.delete(key);
+  return Response.redirect(next, 308);
+}
+const nav = '<a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a>';
 // Same header and footer as public/404.html.
 const message = (title, text) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="noindex,follow"><title>${title} | Mike Holp</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${readingCss}"></head><body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu">${nav}</nav></details></header><main id="content"><p class="meta">${title === 'Page not found' ? '404' : 'Temporarily unavailable'}</p><h1>${title}</h1><p>${text}</p><p><a href="/">Go home</a> · <a href="/guides.html">Read the free guides</a> · <a href="/start-here.html">Choose a first build</a></p></main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>`;
 const notFound = (cache = 'no-store') => html(message('Page not found', 'That page of videos doesn’t exist. <a href="/videos">See the newest videos</a>.'), 404, cache);
@@ -64,11 +70,11 @@ export async function GET(request) {
   const topic = requested === null ? null : topicBySlug(requested) ?? null;
   if (requested !== null && !topic && !/^[1-9]\d{0,3}$/.test(requested)) return notFound();
   const page = topic ? 1 : Number(requested ?? 1);
-  if (requested !== null && !topic && page === 1) return Response.redirect(`${url.origin}/videos${url.search.includes('sort=') ? `?sort=${encodeURIComponent(url.searchParams.get('sort'))}` : ''}`, 308);
+  if (requested !== null && !topic && page === 1) return redirectKeepingQuery(url, '/videos', ['page']);
   const sort = url.searchParams.get('sort') ?? 'newest';
   // An unknown or default sort would duplicate the plain page, so send it there.
   if (videoId === null && !sitemap && !sponsored && !index && (sort === 'newest' || !Object.hasOwn(sorts, sort)) && url.searchParams.has('sort')) {
-    return Response.redirect(`${url.origin}${topic ? `/videos/${topic.slug}` : page > 1 ? `/videos/${page}` : '/videos'}`, 308);
+    return redirectKeepingQuery(url, topic ? `/videos/${topic.slug}` : page > 1 ? `/videos/${page}` : '/videos', ['sort']);
   }
 
   if ((!memo.videos || Date.now() - memo.at > day) && Date.now() >= retryAt) await refreshUploads();

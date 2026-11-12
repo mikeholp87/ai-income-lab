@@ -3,7 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, median, validFeed } from './youtube.js';
 import { topics } from './topics.js';
@@ -16,6 +16,8 @@ import sponsorBenchmark from './sponsor-benchmark.json';
 import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
+
+if (typeof window !== 'undefined') bootGoogleAnalytics();
 
 const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
 
@@ -238,7 +240,7 @@ function SectionHead({ title, children }) {
 }
 
 const navLinks = {
-  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/search.html', 'Search'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/tools.html', 'Tools'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
   sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#sponsored', 'Sponsored builds'], ['#services', 'Packages'], ['#faq', 'FAQ'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
@@ -992,7 +994,7 @@ function App({ page = 'home' }) {
         <div className="footer-directory">
           <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p>{!sponsorsPage && <NotesSignup />}</div>
           <nav className="footer-columns" aria-label="Footer">
-            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a><a href="/llms.txt">Site overview</a></div>
+            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a><a href="/tools.html">Recommended tools</a><a href="/llms.txt">Site overview</a></div>
             <div><h2>Products</h2><span>TubeAnalytics (temporarily unavailable)</span><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
             <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
             <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>

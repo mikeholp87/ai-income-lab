@@ -1,6 +1,7 @@
 // Tools each video uses on screen, read from its transcript, for videos without a written summary in
 // video-summaries.js (those list their own). Names link through tool-links.js.
 export const videoTools = {
+  "7JN-sMkJBCs": ["GrokBot", "Treg", "ChatGPT"],
   "phVQuQMojA8": ["Claude Code", "Tasky", "GitHub"],
   "0iTOlQjNdhs": ["Claude Code", "CleanYourTV", "Docker"],
   "tv_A-CN76Cg": ["GrokBot", "Treg", "ChatGPT"],

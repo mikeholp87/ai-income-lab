@@ -50,7 +50,7 @@
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" }]
     },
     {
-      "source": "/theme.js",
+      "source": "/(theme|ga-boot).js",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     },
     {
@@ -62,7 +62,7 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/blog", "destination": "/guides.html", "permanent": true },
-    { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search)", "destination": "/:page.html", "permanent": true },
+    { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools)", "destination": "/:page.html", "permanent": true },
     { "source": "/guides/:slug([a-z0-9-]+)", "destination": "/guides/:slug.html", "permanent": true }
   ],
   "rewrites": [

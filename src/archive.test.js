@@ -70,7 +70,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
   // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
-  assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/);
+  assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/);
   assert.doesNotMatch(html, /header a:first-child/);
   // Video titles use the reading pages' Instrument Sans, not the system font.
   // The title takes the shared page-title style from reading.css.
@@ -145,6 +145,7 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.match(html, /<iframe class="player"[^>]*src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*title="Keys &amp; &lt;API&gt;"[^>]*width="960" height="540"[^>]*allowfullscreen><\/iframe>/);
   assert.doesNotMatch(html.match(/<iframe[^>]+>/)[0], /autoplay=|loading="lazy"|srcdoc=|data-embed=/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
+  assert.match(html, /<script src="\/ga-boot.js"><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
   const sitemap = renderVideoSitemap([video, { ...video, id: 'lbBZ7uLJwbM', embeddable: false }]);
@@ -323,6 +324,7 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form videos/);
+  assert.match(html, /<script src="\/ga-boot.js"><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /href="\/consent.css\?v=[0-9a-f]{8}"/);
   assert.doesNotMatch(html, /class="pager/);
@@ -467,6 +469,13 @@ test('routes page numbers before loading any videos', async () => {
   const one = await GET(new Request('https://www.ai-automation-station.com/videos/1'));
   assert.equal(one.status, 308);
   assert.equal(one.headers.get('location'), 'https://www.ai-automation-station.com/videos');
+  const campaign = 'utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp';
+  const withUtm = await GET(new Request(`https://www.ai-automation-station.com/videos/1?${campaign}`));
+  assert.equal(withUtm.status, 308);
+  assert.equal(withUtm.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
+  const newest = await GET(new Request(`https://www.ai-automation-station.com/videos?sort=newest&${campaign}`));
+  assert.equal(newest.status, 308);
+  assert.equal(newest.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
   for (const bad of ['/videos/0', '/videos/abc', '/videos/02', '/api/videos?page=-1']) {
     assert.equal((await GET(new Request(`https://www.ai-automation-station.com${bad}`))).status, 404, bad);
   }
@@ -525,7 +534,7 @@ test('longer archives show first, last and nearby pages only', () => {
 
 test('the archive links the reading pages and offers the community', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
-  assert.match(html, /<nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
+  assert.match(html, /<nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav>/);
   assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
   assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab<\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
   assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('<li><a '));
@@ -557,7 +566,7 @@ test('topic pages list only matching videos on one page with their own canonical
   assert.doesNotMatch(html, /class="pager/);
   assert.match(html, /<a href="\/videos\/claude-code" aria-current="page">Claude Code<\/a>/);
   // The header's All videos link is not the current page on a topic page.
-  assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join"/);
+  assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join"/);
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, 'Claude Code tutorials and builds');
   assert.equal(schema.mainEntity.itemListElement.length, 1);

@@ -6,20 +6,21 @@ import vm from 'node:vm';
 const page = await readFile(new URL('../public/search.html', import.meta.url), 'utf8');
 const script = page.match(/<script type="module">([\s\S]*?)<\/script>/)[1].replace(/^import .*;$/m, '');
 
-async function search(query, rows, duringLoad) {
+async function search(query, rows, duringLoad, extraSearch = '') {
   const elements = Object.fromEntries(['q', 'search-status', 'search-results', 'search-more', 'search-inside', 'inside-results'].map(id => [id, { value: '', addEventListener(type, fn) { this[type] = fn; } }]));
   elements.q.form = { addEventListener() {} };
+  const history = { calls: [], replaceState(...args) { this.calls.push(args); } };
+  const location = new URL(`https://www.ai-automation-station.com/search.html${query ? `?q=${encodeURIComponent(query)}` : ''}${extraSearch}`);
   await vm.runInNewContext(`(async()=>{${script}})()`, {
     document: { getElementById: id => elements[id] },
-    location: { search: `?q=${encodeURIComponent(query)}`, pathname: '/search.html' },
-    history: { replaceState() {} }, URLSearchParams,
+    location, history, URL, URLSearchParams,
     fetch: async () => {
       duringLoad?.(elements.q);
       return { ok: true, json: async () => rows };
     },
     afterTyping: () => () => {}, searchInside() {},
   });
-  return elements;
+  return { ...elements, history, location };
 }
 
 test('Make.com tool matches rank ahead of the verb make while retaining other results', async () => {
@@ -47,4 +48,10 @@ test('search preserves typing during index loading and handles empty and unmatch
   const none = await search('unfindable', rows);
   assert.match(none['search-status'].textContent, /Nothing matches/);
   assert.equal(none['search-results'].innerHTML, '');
+});
+
+test('search keeps campaign query parameters when rewriting ?q=', async () => {
+  const rows = [['guide', 'n8n setup', '/n8n', 'Automate a task']];
+  const { history } = await search('n8n', rows, undefined, '&utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp');
+  assert.equal(history.calls.at(-1)[2], '/search.html?q=n8n&utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp');
 });

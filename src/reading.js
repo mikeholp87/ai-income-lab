@@ -1,5 +1,5 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
 import { bindGuidePlayers } from './guide-player.js';
 import { showSubscribeNotice } from './subscribe-notice.js';
@@ -7,6 +7,7 @@ import { dropMissingMaxres } from './thumbnail.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
+bootGoogleAnalytics();
 // Cookieless page views and Core Web Vitals from real visitors, the same as the homepage sends.
 injectAnalytics();
 injectSpeedInsights();
@@ -61,6 +62,14 @@ for (const link of document.querySelectorAll('a[href]')) {
       const event = { ...properties, placement, action, video_id: videoId, link_url: link.href, button_text: link.textContent.trim() };
       trackGoogleEvent('cta_click', event);
       trackGoogleEvent('youtube_outbound_clicked', event);
+    });
+  }
+  if (String(link.rel || '').split(/\s+/).includes('sponsored')) {
+    link.addEventListener('click', () => {
+      const placement = link.dataset.placement || (viewEvent === 'video_page_view' ? 'watch_tools' : 'written_guide');
+      const event = { ...properties, placement, action: 'visit_affiliate', tool: link.dataset.affiliate || link.textContent.replace('↗', '').trim(), link_url: link.href, button_text: link.textContent.trim() };
+      trackGoogleEvent('cta_click', event);
+      trackGoogleEvent('affiliate_outbound_clicked', event);
     });
   }
   if (target.origin !== 'https://www.skool.com' || !/^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname)) continue;

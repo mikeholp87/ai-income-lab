@@ -106,7 +106,7 @@ const escape = text => String(text).replace(/[&<>"]/g, char => ({ "&": "&amp;", 
 export function confirmationPage(token) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0a0a0a"><meta name="robots" content="noindex,follow"><title>Confirm your signup | Mike Holp</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${readingCss}"><script src="/theme.js"></script></head>
-<body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav></header>
+<body><a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a></nav></header>
 <main id="content">
 <h1>Confirm your weekly build notes signup.</h1>
 <p>Nothing is added to the list until you press the button. If you did not ask for these emails, close this page.</p>
