@@ -11,7 +11,6 @@ const links = [
   [['Update Forge', 'update-forge'], 'https://github.com/mikeholp87/update-forge'],
   [['GrokBot', 'GrokBot WordPress plugin'], 'https://x.ai/bot'],
   [['Claude Code'], 'https://claude.com/product/claude-code'],
-  [['Claude', 'Claude Desktop', 'Claude Haiku 5.5', 'Claude Sonnet 5.5', 'Claude Opus 5', 'Claude Opus 5.5', 'Claude Fable 5', 'Claude Fable 5.1', 'Opus 4.5', 'Opus 4.6', 'Opus 4.8'], 'https://claude.ai'],
   [['Claude Design'], 'https://claude.ai/design/'],
   [['Claude Routines'], 'https://claude.ai/code/routines/'],
   [['Anthropic API'], 'https://console.anthropic.com'],

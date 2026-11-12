@@ -238,7 +238,7 @@ function SectionHead({ title, children }) {
 }
 
 const navLinks = {
-  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/search.html', 'Search'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['/tools.html', 'Tools'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
   sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#sponsored', 'Sponsored builds'], ['#services', 'Packages'], ['#faq', 'FAQ'], ['#work-together', 'Contact']],
 };
 const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));

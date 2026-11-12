@@ -28,7 +28,7 @@ test('static pages close the mobile menu after a choice or Escape', async () => 
 
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
-    assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/, path);
+    assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/, path);
   }
 });
 

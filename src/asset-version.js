@@ -1,5 +1,5 @@
 // Versioned stylesheet URLs. These are cached as immutable for a year, so new HTML must ask for the
 // matching CSS. src/asset-version.test.js fails until the hash here matches the file; paste the new one.
-export const readingCss = '/reading.css?v=a0ffb114';
+export const readingCss = '/reading.css?v=a1edd835';
 export const archiveCss = '/archive.css?v=d88584fd';
 export const consentCss = '/consent.css?v=60b69383';

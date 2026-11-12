@@ -207,7 +207,7 @@ ${jsonLd(breadcrumbs)}
 </head>
 <body>
 <a class="skip" href="#content">Skip to videos</a>
-<header class="shell single-line-header"><a class="brand desktop-brand" href="/"><span></span>AI Income Lab</a><a class="mobile-brand" href="/">AI Income Lab</a><nav class="site-nav" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/search.html">Search</a></nav></details></header>
+<header class="shell single-line-header"><a class="brand desktop-brand" href="/"><span></span>AI Income Lab</a><a class="mobile-brand" href="/">AI Income Lab</a><nav class="site-nav" aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/tools.html">Tools</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos"${topic ? '' : ' aria-current="page"'}>All videos</a><a href="/tools.html">Tools</a></nav></details></header>
 <main class="shell" id="content">
 <div class="intro"><h1>${escape(name)}</h1><p>${topic ? `${count}, ${order}. ${escape(topic.intro)}` : `${list.length} long-form videos, ${order}. ${pageNote}Hands-on builds with new AI models, agents and automation tools, plus breakdowns of new releases.`}</p>${topic?.about ? `<p>${escape(topic.about)}</p>` : ''}</div>
 ${topicNav(topic)}${topic ? `\n<script>${currentPillScript}</script>` : ''}
@@ -234,6 +234,7 @@ const toolItem = tool => {
   const link = toolLink(tool);
   return link ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
 };
+const toolsPageLink = tools => tools.some(tool => toolLink(tool)?.affiliate) ? '\n<p class="meta"><a href="/tools.html" data-placement="watch_tools_all">See every tool I recommend →</a></p>' : '';
 const longDate = new Intl.DateTimeFormat('en', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const article = minutes => /^(8|11|18|8\d)$/.test(String(minutes)) ? 'an' : 'a';
 // Used only when a video has no summary anywhere: length, topic and date, plus the first chapters after the intro.
@@ -426,7 +427,7 @@ ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <style>section[aria-labelledby="related-guides"]{margin-bottom:48px}</style>
 </head><body>
 <a class="skip" href="#content">Skip to video</a>
-<header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/search.html">Search</a></nav></details></header>
+<header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a></nav></details></header>
 <main id="content">
 <nav aria-label="Breadcrumb" class="meta"><a href="/">Home</a> / <a href="/videos">Videos</a> / ${topic ? `<a href="/videos/${topic.slug}">${escape(topic.name)}</a> / ` : ''}<span aria-current="page">${escape(heading)}</span></nav>
 <h1>${escape(heading)}</h1>
@@ -457,7 +458,7 @@ ${summaryParagraphs.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}${c
 <h3>What you build</h3>
 <p>${escape(brief.whatYouBuild)}</p>${brief.toolsUsed?.length ? `
 <h3>Tools used</h3>
-<ul>${brief.toolsUsed.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>` : ''}${brief.keySteps?.length ? `
+<ul>${brief.toolsUsed.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>${toolsPageLink(brief.toolsUsed)}` : ''}${brief.keySteps?.length ? `
 <h3>Key steps</h3>
 <ol>${brief.keySteps.map(step => `<li>${Number.isFinite(step.seconds) ? `<a href="#t=${step.seconds}">${clock(step.seconds)}</a> ` : ''}${escape(step.step)}</li>`).join('')}</ol>` : ''}${brief.notCovered?.length ? `
 <h3>Not covered</h3>
@@ -467,7 +468,7 @@ ${watchPageCopy[video.id]?.disclosure ? `<p class="meta">${escape(watchPageCopy[
 </section>` : ''}${tools?.length ? `
 <section aria-labelledby="tools-used">
 <h2 id="tools-used">Tools used</h2>
-<ul>${tools.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>
+<ul>${tools.map(tool => `<li>${toolItem(tool)}</li>`).join('')}</ul>${toolsPageLink(tools)}
 </section>` : ''}${chapters.length ? `
 <h2 id="chapters">In this video</h2>
 <ol class="chapters">${chapters.map(chapter => `<li><a href="#t=${chapter.seconds}">${clock(chapter.seconds)}</a> ${escape(chapter.label)}</li>`).join('')}</ol>` : ''}${faq ? `
