@@ -6,6 +6,12 @@ export const watchNotes = {
 <p>Read the <a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a> for current primary-source documentation alongside this live demo.</p>
 </section>`,
   },
+  tR7AYN5FiqA: {
+    html: `<section aria-labelledby="codex-cli-install">
+<h2 id="codex-cli-install">Install the Codex CLI first</h2>
+<p>The recording starts with the Codex CLI already installed and updated on Debian Linux. To install it yourself, follow <a href="/guides/codex-on-linux.html">how to install the Codex CLI on Linux</a>: the official install commands, ChatGPT sign-in, and fixes for common install errors.</p>
+</section>`,
+  },
   '9WPazkEp7VU': {
     html: `<section aria-labelledby="crowdreply-guide">
 <h2 id="crowdreply-guide">CrowdReply written guide</h2>

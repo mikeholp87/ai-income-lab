@@ -210,7 +210,7 @@ const featuredGuides = [
   { slug: 'ai-automation', tag: 'Beginner', title: 'What is AI automation? Examples, tools and a first build', alt: 'Guide card for What is AI automation, with examples, tools and a first build.' },
   { slug: 'make-money-with-ai-no-experience', tag: 'Earning', title: 'Make money with AI with no experience', alt: 'Guide card for making money with AI with no experience.' },
   { slug: 'ai-automation-services-small-business', tag: 'Earning', title: 'Sell AI automation services to small businesses', alt: 'Guide card for selling AI automation services to small businesses.' },
-  { slug: 'n8n-vs-zapier-vs-make', tag: 'Comparison', title: 'n8n vs Zapier vs Make: billing, builders and AI agents', alt: 'Guide card comparing n8n, Zapier and Make.' },
+  { slug: 'agentic-ai-vs-traditional-automation', tag: 'Comparison', title: 'How does agentic AI differ from traditional automation?', alt: 'Guide card comparing agentic AI with traditional automation.' },
   { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
   { slug: '9router-setup', tag: 'Setup', title: '9Router setup: install, port 20128, updates and providers', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
