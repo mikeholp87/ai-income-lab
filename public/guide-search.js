@@ -113,7 +113,8 @@ pager.addEventListener('click', event => {
   form.scrollIntoView();
 });
 
-// A topic pill shows that topic's guides from page 1 ("All guides" clears it).
+// A topic pill shows that topic's guides from page 1 ("All guides" clears it), leaving the scroll position alone
+// like the /videos topic pills.
 topics.addEventListener('click', event => {
   const link = event.target.closest('a');
   if (!link || link.pathname !== location.pathname) return;
@@ -121,7 +122,6 @@ topics.addEventListener('click', event => {
   topic = link.hash.slice(1) || null;
   page = 1;
   paint();
-  form.scrollIntoView();
 });
 
 // A sort keeps the search and topic and starts again from page 1.

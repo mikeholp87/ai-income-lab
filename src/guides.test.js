@@ -478,3 +478,9 @@ test('the guides hub shows the total number of guides in its All guides pill', a
   assert.match(script, /aria-label', `All guides \(\$\{all\.length\}\)`/);
   assert.match(await read('public/archive.css'), /\.topics \.pill-count \{/);
 });
+
+test('choosing a guide topic keeps the scroll position, like the videos page', async () => {
+  const script = await read('public/guide-search.js');
+  const handler = script.match(/topics\.addEventListener\('click', event => \{[^]*?\n\}\);/)[0];
+  assert.doesNotMatch(handler, /scrollIntoView|scrollTo/);
+});
