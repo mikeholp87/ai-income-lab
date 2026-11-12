@@ -19,7 +19,7 @@ export const ogImageWidth = 1200;
 export const ogImageHeight = 630;
 const headerJoin = `${skoolPlansUrl}?utm_source=website&utm_medium=referral&utm_campaign=tools_page&utm_content=header_join`;
 // Extra card links for tools whose written guides omit the product name from the title. Only paths that
-// exist in public/guides/. Apify has no matching guide, so it is left to title matches only.
+// exist in public/guides/. Apify is left to title matches because the new guide name includes Apify.
 const extraGuidePaths = {
   OpenCode: ['/guides/opencode-go.html', '/guides/opencode-vs-claude-code.html'],
   'Google Gemini': ['/guides/google-ai-studio-chat-app.html'],

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="index,follow">
+<title>Apify Agent Skills: Scrape Leads in Cursor</title>
+<meta name="description" content="Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.">
+<link rel="canonical" href="https://www.ai-automation-station.com/guides/apify-agent-skills.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/reading.css">
+<link rel="stylesheet" href="/consent.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/consent.css"></noscript>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apify Agent Skills: Scrape Leads in Cursor">
+<meta property="og:description" content="Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.">
+<meta property="og:url" content="https://www.ai-automation-station.com/guides/apify-agent-skills.html">
+<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/apify-agent-skills.webp">
+<meta property="og:site_name" content="AI Automation Station">
+<meta property="article:published_time" content="2026-11-12">
+<meta property="article:modified_time" content="2026-11-12">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Apify Agent Skills: Scrape Leads in Cursor">
+<meta name="twitter:description" content="Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.">
+<meta name="twitter:image" content="https://www.ai-automation-station.com/assets/guides/apify-agent-skills.webp">
+<script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script><script src="/theme.js" defer></script><script type="module" src="/src/reading.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Apify Agent Skills: Scrape Leads in Cursor","description":"Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.","url":"https://www.ai-automation-station.com/guides/apify-agent-skills.html","mainEntityOfPage":"https://www.ai-automation-station.com/guides/apify-agent-skills.html","image":"https://www.ai-automation-station.com/assets/guides/apify-agent-skills.webp","datePublished":"2026-11-12","dateModified":"2026-11-12","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html","sameAs":["https://www.youtube.com/@ai-automation-station","https://github.com/mikeholp87","https://www.linkedin.com/in/mikeholp","https://x.com/mikeholp"]},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/","logo":{"@type":"ImageObject","url":"https://www.ai-automation-station.com/logo.png","width":512,"height":512}},"isPartOf":{"@type":"WebSite","@id":"https://www.ai-automation-station.com/#website","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"},"inLanguage":"en","about":[{"@type":"Thing","name":"Apify","sameAs":"https://apify.com"},{"@type":"Thing","name":"Apify agent skills"},{"@type":"Thing","name":"Cursor"},{"@type":"Thing","name":"OpenCode"},{"@type":"Thing","name":"Claude Code"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.ai-automation-station.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://www.ai-automation-station.com/guides.html"},{"@type":"ListItem","position":3,"name":"Apify Agent Skills: Scrape Leads in Cursor","item":"https://www.ai-automation-station.com/guides/apify-agent-skills.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.ai-automation-station.com/guides/apify-agent-skills.html#faq-schema","url":"https://www.ai-automation-station.com/guides/apify-agent-skills.html","mainEntity":[{"@type":"Question","name":"How do you install the Apify agent skills?","acceptedAnswer":{"@type":"Answer","text":"Run npx skills add apify/agent-skills in a terminal, select the skills you want with the spacebar, and choose the editor to install them for. The recording installed all 12 skills globally for Cursor, then accepted the optional find-skills skill."}},{"@type":"Question","name":"Do the Apify skills need an API token?","acceptedAnswer":{"@type":"Answer","text":"Yes. The lead generation skill reported that no token was found until a .env file was added with APIFY_TOKEN set to an Apify API token."}},{"@type":"Question","name":"Does the Google Maps scrape include email addresses?","acceptedAnswer":{"@type":"Answer","text":"No. The AI startups CSV in the recording had company names and websites but no emails, so a contact info scraper was run on those websites and wrote a second CSV."}},{"@type":"Question","name":"Can you run the same skills in Claude Code?","acceptedAnswer":{"@type":"Answer","text":"The recording says you can use the same install command in Claude Code, and the README on screen also listed Claude Code plugin commands. That path was described, not demonstrated end to end. The live demo ran in OpenCode inside Cursor."}},{"@type":"Question","name":"What does Apify cost?","acceptedAnswer":{"@type":"Answer","text":"The recording starts from a free account and mentions paid plans without a firm current price. Plans checked on apify.com on 12 November 2026 were: Free at $0 with $5 of usage a month, and Starter at $19 a month, or $17 a month billed yearly. Confirm the live price before you pay."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","@id":"https://www.ai-automation-station.com/watch/mtpX58dNfCE#video","name":"Apify Agent Skills In Claude Code - 10x More Power!","description":"Install the Apify agent skills globally with npm, add an Apify token to a .env file, and run them through OpenCode in Cursor to scrape AI startups in San Francisco and then pull their emails. The first Google Maps run returned no email addresses, so a second contact info scraper skill was needed.","thumbnailUrl":["https://i.ytimg.com/vi/mtpX58dNfCE/maxresdefault.jpg"],"uploadDate":"2026-02-05T06:49:17Z","embedUrl":"https://www.youtube-nocookie.com/embed/mtpX58dNfCE","url":"https://www.ai-automation-station.com/watch/mtpX58dNfCE","inLanguage":"en","author":{"@type":"Person","@id":"https://www.ai-automation-station.com/#mike","name":"Mike Holp","url":"https://www.ai-automation-station.com/about.html"},"publisher":{"@type":"Organization","@id":"https://www.ai-automation-station.com/#org","name":"AI Automation Station","url":"https://www.ai-automation-station.com/"}}</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a><header class="single-line-header"><a href="/">AI Income Lab</a><nav aria-label="Site"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a></nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Site menu">Menu</summary><nav aria-label="Site menu"><a href="/start-here.html">Start here</a><a href="/guides.html">Guides</a><a href="/videos">All videos</a><a href="/tools.html">Tools</a></nav></details></header>
+<main id="content">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides.html">Guides</a></li><li><span aria-current="page">Apify Agent Skills: Scrape Leads in Cursor</span></li></ol></nav>
+<p class="meta">Build guide · By <a href="/about.html" rel="author">Mike Holp</a> · Published <time datetime="2026-11-12">November 12, 2026</time> · Updated <time datetime="2026-11-12">November 12, 2026</time></p>
+<h1>Apify Agent Skills: Scrape Leads in Cursor</h1>
+<figure><img src="/assets/guides/apify-agent-skills.webp" srcset="/assets/guides/sizes/apify-agent-skills-640.webp 640w, /assets/guides/apify-agent-skills.webp 1200w" sizes="(max-width: 1160px) calc(100vw - 40px), 1120px" alt="Diagram for the Apify agent skills guide: install the skills, add an APIFY_TOKEN, then scrape leads and extract emails." width="1200" height="630" loading="eager" fetchpriority="high"><figcaption>Install the skills → Add APIFY_TOKEN → Scrape leads, then emails</figcaption></figure>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#what-you-build">1. What you build</a></li><li><a href="#install">2. Install the agent skills</a></li><li><a href="#project">3. Open a Cursor project</a></li><li><a href="#token">4. Add your Apify token</a></li><li><a href="#scrape">5. Scrape AI startups to a CSV</a></li><li><a href="#emails">6. Extract emails from the websites</a></li><li><a href="#editors">7. Cursor, Claude Code and Linux</a></li><li><a href="#costs">8. Costs and limits</a></li><li><a href="#not-covered">What this recording did not cover</a></li><li><a href="#watch-the-walkthrough">Watch the walkthrough</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ul></nav>
+<p><strong>Quick answer:</strong> Install the Apify agent skills with <code>npx skills add apify/agent-skills</code>, add your Apify API token to a <code>.env</code> file as <code>APIFY_TOKEN</code>, and run the lead generation skill from OpenCode in Cursor. In the 5 February 2026 recording, a Google Maps scrape of AI startups in San Francisco wrote 74 leads to a CSV with names and websites but no emails, so a second contact info scrape pulled emails from those sites into another CSV. The same install command can be used in Claude Code, though that path was described, not shown end to end.</p>
+<p>This walkthrough is from a video sponsored by Apify. The signup link is an affiliate link, so I may earn a commission or credit. Current plan prices are on the <a href="/tools.html#apify">Apify card on the tools page</a>.</p>
+
+<h2 id="what-you-build">1. What you build</h2>
+<p>The recording is a short lead-scraping example, not a full outreach system. You install Apify agent skills, connect an API token, and ask an agent to scrape a list of AI startups in San Francisco. That first run uses a Google Maps scraper and writes a CSV of companies and websites. A second skill then visits those sites and writes email addresses to another CSV.</p>
+<p>Mike says he has used Apify for a couple of years, and that it has integrations for Google Maps, TikTok, YouTube, Facebook and Instagram, among others. He also says there are thousands of apps you can scrape. The demo itself uses the lead generation skill and then a contact info scraper.</p>
+<figure><img src="/assets/guides/apify-agent-skills/store.webp" alt="Apify homepage showing ready-made Actors such as Google Maps Scraper, TikTok Scraper and Instagram Scraper." width="720" height="330" loading="lazy"><figcaption>The Apify site in the recording, with ready-made scrapers for Maps, TikTok, Instagram and other sources.</figcaption></figure>
+
+<h2 id="install">2. Install the agent skills</h2>
+<p>Open the Apify agent skills GitHub readme and copy the install line that uses the Node.js package manager. In the recording that command is:</p>
+<pre tabindex="0"><code>npx skills add apify/agent-skills</code></pre>
+<p>Run it in a terminal if you want the skills installed globally on your system, which is what Mike did. The installer asked to proceed, then cloned <code>https://github.com/apify/agent-skills.git</code> and reported 12 skills. Use the spacebar to toggle the ones you want. The recording selected all 12, including lead generation, content analytics, competitor analysis and audience analytics.</p>
+<figure><img src="/assets/guides/apify-agent-skills/install-command.webp" alt="GitHub readme and terminal both showing the command npx skills add apify/agent-skills, waiting for confirmation." width="720" height="320" loading="lazy"><figcaption>The command on the readme, and the same line running in the terminal.</figcaption></figure>
+<figure><img src="/assets/guides/apify-agent-skills/skill-select.webp" alt="Terminal skill picker listing 12 Apify skills such as lead generation, content analytics and ultimate scraper." width="780" height="340" loading="lazy"><figcaption>The installer listing all 12 skills, with lead generation described as scraping B2B or B2C leads from Google Maps and websites.</figcaption></figure>
+<p>After the skills were selected, the installer asked for a target editor. Mike chose Cursor, installed into his home directory, and accepted a symlink. The run finished with a notice that Replit does not support global skill installation. It then offered a one-time find-skills skill, which helps an agent discover and suggest skills. He accepted that too. The find-skills source shown on screen was <code>https://github.com/vercel-labs/skills.git</code>.</p>
+<p>The same readme also listed Claude Code plugin commands, which the recording did not run:</p>
+<pre tabindex="0"><code>/plugin marketplace add https://github.com/apify/agent-skills
+/plugin install apify-ultimate-scraper@apify-agent-skills</code></pre>
+<p>You can also clone the repository instead of installing globally. Mike chose the global install so the skills would be available in Cursor.</p>
+
+<h2 id="project">3. Open a Cursor project</h2>
+<p>Create a new project folder in Cursor. In the recording the folder was named <code>Cursor</code> under Documents, at <code>/home/mikeh/Cursor/</code>. Open a terminal in that project and start OpenCode, then ask it to list the skills it can use:</p>
+<pre tabindex="0"><code>list all of the agent skills you have access to</code></pre>
+<p>OpenCode listed the newly installed Apify skills, plus a Remotion skill that was already present on that machine. Then run the lead generation skill:</p>
+<pre tabindex="0"><code>run apify-lead-generation skill</code></pre>
+
+<h2 id="token">4. Add your Apify token</h2>
+<p>The first attempt failed the way the skill's own docs predicted. OpenCode asked for permission to read a <code>.env</code> file, then reported that no token was found.</p>
+<figure><img src="/assets/guides/apify-agent-skills/run-skill.webp" alt="OpenCode running the Apify lead generation skill and asking permission to read a .env file because no token was found." width="760" height="330" loading="lazy"><figcaption>The first run of the lead generation skill, stopped on a missing .env token.</figcaption></figure>
+<p>Create a <code>.env</code> file in the project and set your Apify API token. The variable name shown on screen was <code>APIFY_TOKEN</code>. Do not commit that file, and do not paste a live token into a video or a page. Use your own token from the Apify console:</p>
+<pre tabindex="0"><code>APIFY_TOKEN = "your_apify_token"</code></pre>
+<p>After the token was in place, the same prompt was sent again:</p>
+<pre tabindex="0"><code>run apify-lead-generation skill</code></pre>
+<p>OpenCode read the skill file and started a Google Places crawl, which Mike took as a sign that the token was working.</p>
+
+<h2 id="scrape">5. Scrape AI startups to a CSV</h2>
+<p>That first successful run had no search terms yet, so the skill scraped coffee shops in Seattle, Washington, including opening hours and other Google Maps fields. Mike did not want that list. He stopped and gave a specific prompt:</p>
+<pre tabindex="0"><code>run apify-lead-generation skill and find ai startups in san francisco and add them into a csv database</code></pre>
+<p>That run also used Google Places. You can watch the job in the Apify console under Runs. The recording showed a Google Maps scraper collecting AI startups in San Francisco, with websites attached, and no email addresses in those results.</p>
+<p>When the run finished, OpenCode had written a CSV in the project folder. The file shown on screen was <code>2026-02-05_ai-startups-san-francisco.csv</code>, with 74 leads and a size of 86,348 bytes. Columns included title, category, address, phone, website, rating and a Google Maps URL, among others.</p>
+<figure><img src="/assets/guides/apify-agent-skills/startup-csv.webp" alt="Cursor showing a 74-lead CSV of San Francisco AI startups and the prompt that asked the lead generation skill to save them." width="680" height="350" loading="lazy"><figcaption>The saved CSV from the recording: 74 leads, company names and websites, no email column yet.</figcaption></figure>
+
+<h2 id="emails">6. Extract emails from the websites</h2>
+<p>Mike first looked in the Apify store for other ways to get emails. He mentioned an Apollo integration he thought had been removed, and a leads scraper then listed at $1 per 1,000 emails, including Apollo and LinkedIn profiles. That store price was what the recording showed in February 2026, so check the Actor page before you rely on it. He did not run that Actor in the demo. He asked the agent to use a skill instead:</p>
+<pre tabindex="0"><code>run a apify skill to extract emails from the ai startups database</code></pre>
+<figure><img src="/assets/guides/apify-agent-skills/email-prompt.webp" alt="OpenCode prompt asking an Apify skill to extract emails from the AI startups CSV already open in the editor." width="680" height="340" loading="lazy"><figcaption>The follow-up prompt, typed against the startups CSV that was already in the project.</figcaption></figure>
+<p>OpenCode chose the contact info scraper. In the recording it fed the website URLs from the first CSV into that scraper and looked for email addresses on each site. When it finished, it wrote another CSV that included the emails. The video does not check whether those addresses were accurate or deliverable.</p>
+
+<h2 id="editors">7. Cursor, Claude Code and Linux</h2>
+<p>The live demo ran in OpenCode inside Cursor. Mike says you can set this up in Claude Code the same way, by entering the same install command after Claude Code is installed, including from Visual Studio Code. He did not walk through that path on camera.</p>
+<p>He was using Linux, installed Cursor from the Linux download, and said he would rather use an editor like this than tools such as OpenClaw or Moltbot. On a Mac, he says you would install the Cursor executable instead.</p>
+
+<h2 id="costs">8. Costs and limits</h2>
+<p>The recording starts with a free Apify account and says paid plans are also available. A firm current price was not established in the video. Plans on <a href="https://apify.com/pricing">apify.com/pricing</a>, checked on 12 November 2026, were:</p>
+<ul>
+<li>Free: $0, with $5 of usage a month</li>
+<li>Starter: $19 a month, or $17 a month billed yearly, with $19 of usage a month</li>
+</ul>
+<p>In the recording Mike also pointed at a data-usage total of $1 spent out of $55 during that session. Treat that as one reading from that day, not a plan name or a current quota. Confirm today's usage and price in your Apify billing settings before you scale a scrape up.</p>
+<p>Get started with Apify through this affiliate link: <a href="https://www.apify.com?fpr=fklok2" rel="sponsored noopener">apify.com</a>.</p>
+
+<h2 id="not-covered">What this recording did not cover</h2>
+<ul>
+<li>It does not check whether the scraped email addresses are accurate or deliverable.</li>
+<li>Running the skills inside Claude Code is only described, not demonstrated end to end.</li>
+<li>Apify pricing in the video is only estimated in passing. The plan prices above were checked on the official pricing page on 12 November 2026, and they can change.</li>
+</ul>
+<p>Related setup and data-tool guides: <a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners</a>, <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code</a>, <a href="/guides/dataforseo-mcp-claude.html">DataForSEO MCP in Claude Code</a>, <a href="/guides/first-api-request.html">Test your first API request</a>, and <a href="/guides/treg-inside-grokbot.html">Treg in GrokBot</a>.</p>
+
+<h2 id="watch-the-walkthrough">Watch the walkthrough</h2>
+<figure class="video"><a class="player" href="https://www.youtube.com/watch?v=mtpX58dNfCE" data-embed="https://www.youtube-nocookie.com/embed/mtpX58dNfCE" aria-label="Play Apify Agent Skills In Claude Code - 10x More Power!"><img src="https://i.ytimg.com/vi/mtpX58dNfCE/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a><figcaption>Watch on YouTube: Apify Agent Skills In Claude Code - 10x More Power! (12:57). Also on this site with notes: <a href="/watch/mtpX58dNfCE">the watch page</a>.</figcaption></figure>
+<ul class="video-chapters" aria-label="Chapters in Apify Agent Skills In Claude Code - 10x More Power!"><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=0s">0:00</a> Introduction: The Power of Apify + Claude Code</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=42s">0:42</a> Overview of Apify Scrapers (Google Maps, TikTok, YouTube)</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=81s">1:21</a> Global Installation via Terminal (NPM)</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=121s">2:01</a> Choosing Your Skills (Lead Gen, Analytics, etc.)</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=215s">3:35</a> Setting Up a New Project in Cursor</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=302s">5:02</a> Configuring the API Token and .env File</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=378s">6:18</a> Live Demo: Scraping AI Startups in San Francisco</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=453s">7:33</a> Monitoring Runs in the Apify Console</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=524s">8:44</a> Reviewing the Scraped Startup CSV</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=569s">9:29</a> Extracting Emails: Running the Contact Info Scraper Skill</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=661s">11:01</a> Results: A Fully Populated Email Lead List</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=705s">11:45</a> Claude Code vs. Cursor: Which IDE to Use?</li><li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE&amp;t=750s">12:30</a> Final Tips for Linux Users and Outro</li></ul>
+
+<h2 id="faq">FAQ</h2>
+<div class="faq-list">
+<details class="faq-item"><summary><h3>How do you install the Apify agent skills?</h3></summary>
+<p>Run <code>npx skills add apify/agent-skills</code> in a terminal, select the skills you want with the spacebar, and choose the editor to install them for. The recording installed all 12 skills globally for Cursor, then accepted the optional find-skills skill.</p>
+<p class="meta">Source: the 5 February 2026 walkthrough, at 1:21.</p>
+</details>
+<details class="faq-item"><summary><h3>Do the Apify skills need an API token?</h3></summary>
+<p>Yes. The lead generation skill reported that no token was found until a <code>.env</code> file was added with <code>APIFY_TOKEN</code> set to an Apify API token.</p>
+<p class="meta">Source: the 5 February 2026 walkthrough, at 5:02.</p>
+</details>
+<details class="faq-item"><summary><h3>Does the Google Maps scrape include email addresses?</h3></summary>
+<p>No. The AI startups CSV in the recording had company names and websites but no emails, so a contact info scraper was run on those websites and wrote a second CSV.</p>
+<p class="meta">Source: the 5 February 2026 walkthrough, at 7:33 and 9:29.</p>
+</details>
+<details class="faq-item"><summary><h3>Can you run the same skills in Claude Code?</h3></summary>
+<p>The recording says you can use the same install command in Claude Code, and the README on screen also listed Claude Code plugin commands. That path was described, not demonstrated end to end. The live demo ran in OpenCode inside Cursor.</p>
+<p class="meta">Source: the 5 February 2026 walkthrough, at 11:45.</p>
+</details>
+<details class="faq-item"><summary><h3>What does Apify cost?</h3></summary>
+<p>The recording starts from a free account and mentions paid plans without a firm current price. Plans checked on apify.com on 12 November 2026 were: Free at $0 with $5 of usage a month, and Starter at $19 a month, or $17 a month billed yearly. Confirm the live price before you pay.</p>
+<p class="meta">Source: Apify pricing, checked 12 November 2026, and the walkthrough at 0:29 and 11:36.</p>
+</details>
+</div>
+<h2 id="sources">Sources</h2>
+<p>Walkthrough source is the 5 February 2026 recording. Official pricing was checked on 12 November 2026. Console controls and Actor prices can change.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=mtpX58dNfCE">Apify Agent Skills In Claude Code - 10x More Power!</a>, also on the <a href="/watch/mtpX58dNfCE">watch page</a></li>
+<li><a href="https://github.com/apify/agent-skills">Apify agent skills on GitHub</a></li>
+<li><a href="https://apify.com/pricing">Apify pricing</a></li>
+<li><a href="https://console.apify.com">Apify console</a></li>
+<li><a href="/tools.html#apify">Apify on the recommended tools page</a></li>
+</ul>
+<aside class="note next-steps" aria-labelledby="keep-going"><h2 id="keep-going">Keep going</h2><ul><li>Next guide: <a href="/guides/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it</a></li><li>Watch: <a href="/watch/mtpX58dNfCE">Apify Agent Skills In Claude Code - 10x More Power!</a></li><li>More on this topic: <a href="/videos/claude-code">Claude Code tutorials and builds</a></li></ul></aside>
+<section class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab</h2><p>Step-by-step courses, reusable templates, and a community that answers when you get stuck.</p><p class="cta-fit">Members get the <strong>Claude Code &amp; Skills</strong> and <strong>Codex Tutorials &amp; Courses</strong> lessons.</p><ul class="cta-list"><li>Courses for builds like this one</li><li>Copy-ready templates</li><li>Ask questions while you build</li><li>Weekly coaching on VIP</li></ul><div class="cta-action"><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="guide_end">Join AI Income Lab ↗</a><span>From $29/month. Cancel anytime.</span></div><div class="cta-members"><span class="cta-faces" aria-hidden="true"><img src="/members/member-0.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-1.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-2.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-3.png" alt="" width="30" height="30" loading="lazy"><img src="/members/member-4.png" alt="" width="30" height="30" loading="lazy"></span><span>Join 2,900+ members building with AI</span></div></section>
+<form class="notes" method="post" data-subscribe><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
+</main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>

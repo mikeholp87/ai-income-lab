@@ -280,6 +280,7 @@ export function relatedVideos(video, videos, count = 4) {
 
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
+  [/apify agent skills in claude code/i, '/guides/apify-agent-skills.html', 'Apify Agent Skills: Scrape Leads in Cursor'],
   [/build web apps in minutes with google ai studio/i, '/guides/google-ai-studio-chat-app.html', 'Build a Chat Web App in Google AI Studio, No Code'],
   [/opencode makes it easy to build saas/i, '/guides/opencode-stripe-billing-saas.html', 'OpenCode Stripe Billing Build: A SaaS Case Study'],
   [/ai social media agent in 10 minutes/i, '/guides/n8n-social-media-agent-template.html', 'n8n Social Post Template: Trends, Research, Posting'],
@@ -381,6 +382,7 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // Reviewed follow-up reading for recordings whose titles do not identify the written guide.
 // IDs keep these links stable when a video's title changes.
 const watchGuideLinks = {
+  mtpX58dNfCE: ['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads'],
   bCsSqZp0yVg: ['/guides/youtube-channel-growth-workflow.html', 'Use the YouTube channel growth workflow'],
   ncg6F27PYt0: ['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task'],
   Ip8KBwDixJs: ['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access'],
@@ -567,6 +569,7 @@ export function renderPageSitemap(xml, videos) {
 
 // Guide path → titles of videos that cover the same job. Videos the guide already embeds or links are skipped.
 const guideVideoTopics = {
+  '/guides/apify-agent-skills.html': /claude code for beginners|opencode vs claude|dataforseo|treg\.to inside grok|first api request/i,
   '/guides/9router-setup.html': /glm 5\.2 inside opencode|kimi k2\.7 code vs deepseek|openrouter|kilo code/i,
   '/guides/9router-cost-tracking-fallbacks.html': /how to use 9router|track token usage|saves token usage|glm 5\.2 inside opencode/i,
   '/guides/rank-prompt-ai-search-visibility.html': /visible to ai answer engines|ai search ranking blueprint|semrush|dataforseo/i,

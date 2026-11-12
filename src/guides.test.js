@@ -5,6 +5,7 @@ import test from 'node:test';
 const read = async path => (await readFile(new URL(`../${path}`, import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
+  'apify-agent-skills.html': 'mtpX58dNfCE',
   'grokbot-job-application-agent.html': '7JN-sMkJBCs',
   'grokbot-credit-usage.html': 'V3ETwJAR5-I',
   'herdr-on-windows.html': 'YYZSR1p32EQ',
