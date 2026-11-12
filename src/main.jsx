@@ -3,7 +3,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { channelUrl, median, validFeed } from './youtube.js';
 import { topics } from './topics.js';
@@ -16,6 +16,8 @@ import sponsorBenchmark from './sponsor-benchmark.json';
 import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
+
+if (typeof window !== 'undefined') bootGoogleAnalytics();
 
 const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
 

@@ -199,6 +199,7 @@ ${sorted ? '<meta name="robots" content="noindex,follow">' : `<link rel="canonic
 ${fontPreloads}
 <link rel="stylesheet" href="${consentCss}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${consentCss}"></noscript>
 <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<script src="/ga-boot.js"></script>
 <script src="/theme.js" defer></script>
 <script type="module" src="/assets/reading.js"></script>
 ${jsonLd(schema)}
@@ -412,6 +413,7 @@ ${fontPreloads}
 <link rel="stylesheet" href="${readingCss}">
 <link rel="stylesheet" href="${consentCss}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${consentCss}"></noscript>
 <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<script src="/ga-boot.js"></script>
 <script src="/theme.js" defer></script>
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">

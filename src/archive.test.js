@@ -145,6 +145,7 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.match(html, /<iframe class="player"[^>]*src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*title="Keys &amp; &lt;API&gt;"[^>]*width="960" height="540"[^>]*allowfullscreen><\/iframe>/);
   assert.doesNotMatch(html.match(/<iframe[^>]+>/)[0], /autoplay=|loading="lazy"|srcdoc=|data-embed=/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
+  assert.match(html, /<script src="\/ga-boot.js"><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
   const sitemap = renderVideoSitemap([video, { ...video, id: 'lbBZ7uLJwbM', embeddable: false }]);
@@ -323,6 +324,7 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form videos/);
+  assert.match(html, /<script src="\/ga-boot.js"><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /href="\/consent.css\?v=[0-9a-f]{8}"/);
   assert.doesNotMatch(html, /class="pager/);
@@ -467,6 +469,13 @@ test('routes page numbers before loading any videos', async () => {
   const one = await GET(new Request('https://www.ai-automation-station.com/videos/1'));
   assert.equal(one.status, 308);
   assert.equal(one.headers.get('location'), 'https://www.ai-automation-station.com/videos');
+  const campaign = 'utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp';
+  const withUtm = await GET(new Request(`https://www.ai-automation-station.com/videos/1?${campaign}`));
+  assert.equal(withUtm.status, 308);
+  assert.equal(withUtm.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
+  const newest = await GET(new Request(`https://www.ai-automation-station.com/videos?sort=newest&${campaign}`));
+  assert.equal(newest.status, 308);
+  assert.equal(newest.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
   for (const bad of ['/videos/0', '/videos/abc', '/videos/02', '/api/videos?page=-1']) {
     assert.equal((await GET(new Request(`https://www.ai-automation-station.com${bad}`))).status, 404, bad);
   }

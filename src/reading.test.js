@@ -53,7 +53,8 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     clickLinks();
     form.focusin({ target: { name: 'email' } });
     assert.equal(gated().length, 0);
-    assert.equal(events.length, 0);
+    assert.equal(events.filter(event => event[0] === 'event').length, 0);
+    assert.ok(events.some(event => event[0] === 'consent' && event[1] === 'default'));
     buttons[1].click();
     assert.equal(banner.hidden, true);
     form.focusin({ target: { name: 'email' } });
@@ -90,6 +91,9 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked').length, 8);
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'starter_kit_download').length, 2);
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === eventName).length, 1);
+    const config = events.find(event => event[0] === 'config');
+    assert.match(config[2].page_location, /utm_source=youtube/);
+    assert.match(config[2].page_location, /utm_content=video-a/);
     assert.equal(events.filter(event => event[0] === 'meta' && event[1] === 'track' && event[2] === 'PageView').length, 2);
     assert.equal(events.some(event => /purchase|lead|signup/i.test(event[1] || '')), false);
   } finally {
