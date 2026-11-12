@@ -390,7 +390,8 @@ a.video-card:hover h3 { color: var(--signal); }
 .sponsors-intro { padding: 72px 0 0; }
 .sponsors-intro + .section { padding-top: 72px; }
 .sponsors-intro h1 { max-width: 20ch; font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
-.sponsors-intro .button-row { margin-top: 28px; }
+.sponsors-intro .button-row { flex-wrap: nowrap; margin-top: 28px; }
+.sponsors-intro .button-row .button { justify-content: center; white-space: nowrap; }
 .sponsor-proof { margin-top: 28px; color: var(--body); }
 .sponsor-proof a { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
 .sponsors-intro > .fine-print { margin-top: 12px; }
@@ -467,6 +468,8 @@ a.video-card:hover h3 { color: var(--signal); }
 }
 
 @media (max-width: 640px) {
+  .sponsors-intro .button-row { gap: 10px; }
+  .sponsors-intro .button-row .button { flex: 1 1 auto; padding-inline: 14px; }
   .brands-row { padding: 36px 24px 28px; border-radius: 18px; }
   .brands-row::before { left: 24px; }
   .service, .service-featured { padding: 24px; }
@@ -573,6 +576,10 @@ a.video-card:hover h3 { color: var(--signal); }
 .notes-signup--hero .button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 .notes-signup--hero .notes-signup-privacy { margin-top: 10px; color: var(--muted); font: 400 12px/1.5 var(--sans); }
 .notes-signup--hero a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 374px) {
+  .sponsors-intro .button-row { gap: 8px; }
+  .sponsors-intro .button-row .button { padding-inline: 8px; font-size: 14px; }
+}
 @media (max-width: 359px) {
   .nav-actions .nav-join { padding-inline: 10px; }
   .nav-mobile summary { padding-inline: 10px; }

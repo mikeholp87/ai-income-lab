@@ -43,6 +43,7 @@ for (const playlistId of [longFormPlaylistId, shortsPlaylistId]) {
 const inRange = (id, published) => (!group || groupOf(id) === group) && (!before || published < before) && (!after || published >= after);
 let updated = 0, outside = 0, noBlock = 0, failed = 0, sample = '';
 for (const id of ids) {
+  if (group && groupOf(id) !== group) { outside++; continue; }
   try {
     const before_ = await snippetOf(id);
     if (!before_) { console.log(`${id}  not found`); failed++; continue; }

@@ -5,14 +5,14 @@
 // for the logo in public/tools/logos/ (node scripts/fetch-tool-logos.mjs). `cta` overrides "Try <name>" on the
 // button; `price` is shown only when set, and must come from the tool's current pricing page.
 export const categories = [
-  ['coding', 'AI coding and app builders'],
-  ['automation', 'Automation and AI agents'],
-  ['seo', 'SEO and AI search'],
-  ['video', 'Video and content creation'],
-  ['youtube', 'YouTube growth'],
-  ['marketing', 'Email, marketing and sales'],
-  ['hosting', 'Hosting'],
-  ['business', 'Community, hiring and freelancing'],
+  ['coding', 'AI coding and app builders', 'Coding'],
+  ['automation', 'Automation and AI agents', 'Automation'],
+  ['seo', 'SEO and AI search', 'SEO'],
+  ['video', 'Video and content creation', 'Video'],
+  ['youtube', 'YouTube growth', 'YouTube'],
+  ['marketing', 'Email, marketing and sales', 'Marketing'],
+  ['hosting', 'Hosting', 'Hosting'],
+  ['business', 'Community, hiring and freelancing', 'Business'],
 ];
 
 export const affiliates = [

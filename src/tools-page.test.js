@@ -36,6 +36,11 @@ test('the tools page discloses affiliate links before the first one and marks ev
   assert.equal(ctas.filter(cta => cta[3] === 'tools_top_picks').length, 5);
   for (const [, url, name] of ctas) assert.equal(url.replace(/&amp;/g, '&'), affiliates.find(affiliate => affiliate.name === name).url);
   for (const [id] of categories) assert.match(html, new RegExp(`<a href="#${id}">[^]*?<section class="tool-group" id="${id}"`));
+  const header = html.match(/<header class="single-line-header tools-header">[^]*?<\/header>/)?.[0] ?? '';
+  for (const nav of [/<nav aria-label="Tool categories">([^]*?)<\/nav>/, /<nav aria-label="Tool categories menu">([^]*?)<\/nav>/]) {
+    assert.deepEqual([...header.match(nav)[1].matchAll(/<a href="#([a-z]+)">([^<]+)<\/a>/g)].map(([, id, label]) => [id, label]), categories.map(([id, , short]) => [id, short]));
+  }
+  assert.doesNotMatch(html, /class="tool-nav"/);
   assert.match(html, /<a href="\/guides\/make-first-automation\.html">Make\.com Google Sheets tutorial<\/a>/);
   assert.match(html, /<time datetime="2026-11-12">November 12, 2026<\/time>/);
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(json);
