@@ -280,6 +280,12 @@ export function relatedVideos(video, videos, count = 4) {
 
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
+  [/build web apps in minutes with google ai studio/i, '/guides/google-ai-studio-chat-app.html', 'Build a Chat Web App in Google AI Studio, No Code'],
+  [/opencode makes it easy to build saas/i, '/guides/opencode-stripe-billing-saas.html', 'OpenCode Stripe Billing Build: A SaaS Case Study'],
+  [/ai social media agent in 10 minutes/i, '/guides/n8n-social-media-agent-template.html', 'n8n Social Post Template: Trends, Research, Posting'],
+  [/whatsapp workflow in n8n/i, '/guides/n8n-whatsapp-ai-agent.html', 'n8n WhatsApp AI Agent: Trigger, OpenRouter, Meta'],
+  [/make\.com tutorial: automate your business in under 15/i, '/guides/make-com-beginner-course-scenarios.html', 'Make.com Course: Sheets, OpenAI, Airtable, Facebook'],
+  [/10 ai automations you can build in minutes/i, '/guides/make-business-automation-examples.html', 'Make.com Business Automations: Email, Skool, Leads'],
   [/^3 open source projects i built/i, '/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents: a safe first workflow'],
   [/herdr on windows/i, '/guides/herdr-on-windows.html', 'Install Herdr on Windows: PowerShell, Mods and Insights'],
   [/new herdr desktop|herdr desktop app/i, '/guides/herdr-desktop-app.html', 'Herdr Desktop Guide: Setup, Workspaces and Limits'],
