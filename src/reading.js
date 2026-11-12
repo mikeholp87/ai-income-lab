@@ -1,5 +1,5 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
 import { bindGuidePlayers } from './guide-player.js';
 import { showSubscribeNotice } from './subscribe-notice.js';
@@ -7,6 +7,7 @@ import { dropMissingMaxres } from './thumbnail.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
+bootGoogleAnalytics();
 // Cookieless page views and Core Web Vitals from real visitors, the same as the homepage sends.
 injectAnalytics();
 injectSpeedInsights();

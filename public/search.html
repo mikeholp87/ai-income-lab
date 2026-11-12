@@ -29,7 +29,9 @@ const starter = () => [...rows.filter(row => row[0] === 'guide').slice(0, 3), ..
 function run() {
   const query = input.value.trim().toLowerCase();
   if (query !== lastQuery) { shown = pageSize; lastQuery = query; }
-  history.replaceState(null, '', query ? `?q=${encodeURIComponent(query)}` : location.pathname);
+  const url = new URL(location.href);
+  if (query) url.searchParams.set('q', input.value.trim()); else url.searchParams.delete('q');
+  history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
   more.hidden = true;
   inside.hidden = true;
   if (!rows) return void (status.textContent = 'Search is unavailable right now. Browse the guides or all videos instead.');
