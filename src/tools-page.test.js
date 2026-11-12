@@ -94,10 +94,10 @@ test('watch pages and guides point to the tools page, except guides that promise
   assert.ok(addToolsLink(guide).includes(`<aside class="note guide-tools" aria-label="Tools in this guide"><p><strong>Tools in this guide</strong></p><ul><li><a href="/tools.html#make-com" data-placement="guide_tool_card">Make.com pricing and videos</a>: ${make.bestFor}. <a href="${make.url}" target="_blank" rel="sponsored noopener" data-affiliate="Make.com" data-placement="guide_tools">Try Make.com ↗</a></li></ul><p class="meta">Try links are affiliate links, so I may earn a commission or credit. <a href="/tools.html" data-placement="guide_tools_all">See every tool I recommend →</a></p></aside>\n<aside class="note next-steps"`));
   assert.equal(addToolsLink(addToolsLink(guide)), addToolsLink(guide));
   // A tool in the title comes first, and the AI Income Lab community link doesn't count as Skool.
-  assert.deepEqual(guideTools(guide.replace('Automate a sheet', 'Claude Code for beginners')).map(affiliate => affiliate.name), ['Claude', 'Make.com']);
+  assert.deepEqual(guideTools(guide.replace('Automate a sheet', 'Claude Code for beginners')).map(affiliate => affiliate.name), ['Make.com']);
   assert.match(addToolsLink('<main><h1>x</h1><a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></main>'), /<p class="meta"><a href="\/tools\.html" data-placement="guide_tools_all">See every tool I recommend →/);
-  // Three plain mentions count; two don't. Claude Code counts as Claude; Gemini 4 isn't the Gemini app and "Make" is a verb.
-  assert.deepEqual(guideTools('<main><h1>x</h1><p>HeyGen, HeyGen and HeyGen. Vapi and Vapi. Claude Code, Claude Code, Claude Code. Gemini 4, Gemini 4, Gemini 4. Make it. Make it. Make it.</p></main>').map(affiliate => affiliate.name), ['Claude', 'HeyGen']);
+  // Three plain mentions count; two don't. Claude isn't an affiliate; Gemini 4 isn't the Gemini app and "Make" is a verb.
+  assert.deepEqual(guideTools('<main><h1>x</h1><p>HeyGen, HeyGen and HeyGen. Vapi and Vapi. Claude Code, Claude Code, Claude Code. Gemini 4, Gemini 4, Gemini 4. Make it. Make it. Make it.</p></main>').map(affiliate => affiliate.name), ['HeyGen']);
   // The first prose mention after the quick answer links the affiliate, with the disclosure before that paragraph.
   const heygen = affiliates.find(affiliate => affiliate.name === 'HeyGen');
   const inline = linkFirstMentions(`<main><h1>HeyGen tutorial</h1><p>HeyGen quick answer.</p><h2>Set up HeyGen</h2><nav><a href="#x">HeyGen</a></nav><p>Open <code>HeyGen</code>, then HeyGen AI Studio. Later HeyGen again.</p></main>`, [heygen]);

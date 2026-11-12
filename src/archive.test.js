@@ -426,7 +426,7 @@ test('every tool listed on a watch page has a link, preferring the affiliate one
   const names = [...Object.values(videoSummaries).flatMap(brief => brief.toolsUsed ?? []), ...Object.values(videoTools).flat()];
   assert.deepEqual([...new Set(names.filter(name => !toolLink(name)))], [], 'add the tool to src/tool-links.js or remove it');
   assert.equal(toolLink('OpenCode VS Code extension').affiliate, true);
-  assert.equal(toolLink('Claude skills').affiliate, true);
+  assert.deepEqual(toolLink('Claude Code'), { url: 'https://claude.ai', affiliate: false }, 'Claude is not an affiliate');
   assert.equal(toolLink('Gemini 3.1 Pro').affiliate, true);
   assert.equal(toolLink('GNU Make').affiliate, false);
 });

@@ -1,11 +1,5 @@
 [
   {
-    "name": "Claude",
-    "slug": "claude",
-    "videos": 63,
-    "bestFor": "Writing, research and coding with Claude Code"
-  },
-  {
     "name": "OpenCode",
     "slug": "opencode",
     "videos": 52,
@@ -58,5 +52,11 @@
     "slug": "lovable",
     "videos": 6,
     "bestFor": "Building a web app without writing code"
+  },
+  {
+    "name": "Syllaby",
+    "slug": "syllaby",
+    "videos": 5,
+    "bestFor": "Faceless social videos"
   }
 ]
