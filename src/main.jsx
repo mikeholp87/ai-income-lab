@@ -13,6 +13,7 @@ import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import sponsoredSnapshot from './sponsored-snapshot.json';
 import sponsorBenchmark from './sponsor-benchmark.json';
+import topTools from './top-tools.json';
 import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
@@ -902,6 +903,25 @@ function App({ page = 'home' }) {
           <p className="guide-start">New guides: {newGuides.map(([slug, label], i) => <span key={slug}>{i > 0 && ', '}<a href={`/guides/${slug}.html`}>{label}</a></span>)}.</p>
           <p className="guide-start">Build case study: <a href="/guides/youtube-feed.html#site-case-study">How this site keeps its guides and videos available</a>, with screenshots, checks, and costs.</p>
           <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
+        </div>
+      </section>
+
+      <div className="divider" aria-hidden="true" />
+      <section className="section top-tools" id="tools-i-use">
+        <div className="shell">
+          <SectionHead title="Tools I use most">Counted from my videos. Each one opens what it is best for and the builds that use it.</SectionHead>
+          <ul className="top-tools-list">
+            {topTools.map(tool => (
+              <li key={tool.slug}>
+                <a href={`/tools.html#${tool.slug}`} onClick={trackClick('tools_strip', tool.name, `/tools.html#${tool.slug}`, 'view_tool')}>
+                  <img src={`/tools/logos/${tool.slug}.webp`} alt="" width="48" height="48" loading="lazy" decoding="async" />
+                  <span className="top-tool-name">{tool.name}</span>
+                  <span className="top-tool-meta">Used in {tool.videos} videos</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="guide-more"><a className="button button-primary" href="/tools.html" onClick={trackClick('tools_strip', 'See every tool I recommend', '/tools.html', 'browse_tools')}>See every tool I recommend</a></p>
         </div>
       </section>
 

@@ -3,7 +3,7 @@ import { access, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { affiliates, categories, logoSlug } from './affiliates.js';
 import { toolLink } from './tool-links.js';
-import { addToolsLink, renderToolsPage, videosUsing } from './tools-page.js';
+import { addToolsLink, renderToolsPage, topTools, videosUsing } from './tools-page.js';
 import { uploads } from './uploads-snapshot.js';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -59,12 +59,26 @@ test('the top picks are the most-used tools, and every card has a logo, a best-f
 
 test('watch pages and guides point to the tools page, except guides that promise no affiliate links', async () => {
   assert.match(await read('src/archive.js'), /href="\/tools\.html" data-placement="watch_tools_all"/);
-  const guide = '<main><p><a href="https://www.make.com/en/pricing">Make</a></p><aside class="note next-steps"></aside></main>';
-  assert.match(addToolsLink(guide), /See every tool I recommend →<\/a><\/p>\n<aside class="note next-steps"/);
+  const guide = '<main><h1>Automate a sheet</h1><p><a href="https://www.make.com/en/pricing">Make</a> <a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></p><aside class="note next-steps"></aside></main>';
+  assert.match(addToolsLink(guide), /<a href="\/tools\.html#make-com" data-placement="guide_tools_all">See Make\.com and every tool I recommend →<\/a><\/p>\n<aside class="note next-steps"/);
   assert.equal(addToolsLink(addToolsLink(guide)), addToolsLink(guide));
-  assert.equal(addToolsLink(guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>')), guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>'));
-  assert.equal(addToolsLink('<main><a href="https://example.com/">x</a></main>'), '<main><a href="https://example.com/">x</a></main>');
+  // A tool in the title wins over links, and the AI Income Lab community link doesn't count as Skool.
+  assert.match(addToolsLink(guide.replace('Automate a sheet', 'Claude Code for beginners')), /tools\.html#claude"/);
+  assert.match(addToolsLink('<main><h1>x</h1><a href="https://www.skool.com/ai-automation-station-7346/plans">Join</a></main>'), /<a href="\/tools\.html" data-placement="guide_tools_all">See every tool I recommend →/);
+  const sponsored = guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>');
+  assert.equal(addToolsLink(sponsored), sponsored);
   assert.match(await read('scripts/prerender.js'), /addGuideVideos\(addToolsLink\(html\)/);
+});
+
+test('the homepage, Start here, About, 404 and the welcome email link the tools page', async () => {
+  assert.deepEqual(JSON.parse(await read('src/top-tools.json')), topTools(uploads));
+  const jsx = await read('src/main.jsx');
+  assert.match(jsx, /import topTools from '\.\/top-tools\.json'/);
+  assert.match(jsx, /<section className="section top-tools" id="tools-i-use">[^]*?href=\{`\/tools\.html#\$\{tool\.slug\}`\}[^]*?href="\/tools\.html"/);
+  for (const page of ['public/start-here.html', 'public/about.html', 'public/404.html']) assert.match(await read(page), /<a href="\/tools\.html">/, page);
+  const { welcome } = await import('../api/subscribe.js');
+  assert.match(welcome.text, /four good places to start:[^]*4\. The tools I use most[^]*\(some are affiliate links\):\nhttps:\/\/www\.ai-automation-station\.com\/tools\.html\n/);
+  assert.match(await read('scripts/refresh-videos.js'), /top-tools\.json[^\n]*topTools\(uploads\)/);
 });
 
 test('a tool is counted in a video whichever of its two tool lists names it', () => {
