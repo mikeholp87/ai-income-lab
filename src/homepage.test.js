@@ -386,5 +386,10 @@ test('the member count says when it was taken', () => {
 
 test('a build keeps the last channel numbers when the live feed drops them', async () => {
   assert.match(await readFile(new URL('../scripts/refresh-videos.js', import.meta.url), 'utf8'), /if \(!feed\.channel\) feed\.channel = JSON\.parse\(await readFile\(path, 'utf8'\)\)\.channel/);
-  assert.ok(Number.isFinite(JSON.parse(await readFile(new URL('./youtube-snapshot.json', import.meta.url), 'utf8')).channel?.subscribers));
+  const { channel } = JSON.parse(await readFile(new URL('./youtube-snapshot.json', import.meta.url), 'utf8'));
+  for (const key of ['subscribers', 'views', 'videos']) assert.ok(Number.isFinite(channel?.[key]), key);
+  // The page has no hard-coded counts: each comes from the live feed, else this build's snapshot.
+  assert.match(jsx, /setFeed\(\{ \.\.\.next, channel: next\.channel \?\? youtubeSnapshot\.channel, failed: false \}\)/);
+  assert.match(jsx, /<dd>\{key \? channelCount\(channel, key\) : value\}<\/dd>/);
+  assert.doesNotMatch(jsx, /'5\.1K'|'498K'/);
 });

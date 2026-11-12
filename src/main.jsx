@@ -102,14 +102,14 @@ function ConsentBanner({ campaign, campaignReady }) {
   return <aside ref={banner} className="consent-banner" aria-label="Privacy choices"><p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
 }
 
-// Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
+// Keyed rows show channel counts: the daily build's snapshot first, then /api/youtube's live numbers.
 // The member count comes from Skool, so it has no key and stays static: update membersAsOf with it.
 const membersAsOf = 'November 2026';
 const stats = [
   ['2,900+', 'community members'],
-  ['5.1K', 'YouTube subscribers', 'subscribers'],
-  ['498K', 'video views', 'views'],
-  ['336', 'videos published', 'videos'],
+  [null, 'YouTube subscribers', 'subscribers'],
+  [null, 'video views', 'views'],
+  [null, 'videos published', 'videos'],
 ];
 
 const tools = [
@@ -171,7 +171,7 @@ function useYouTubeFeed() {
     const controller = new AbortController();
     fetch('/api/youtube', { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response.status))
-      .then(next => { if (validFeed(next)) setFeed({ ...next, failed: false }); })
+      .then(next => { if (validFeed(next)) setFeed({ ...next, channel: next.channel ?? youtubeSnapshot.channel, failed: false }); })
       .catch(() => {}); // Keep the prerendered snapshot when the live feed is unavailable.
     return () => controller.abort();
   }, []);
@@ -350,10 +350,11 @@ function MockPost({ network, byline, children }) {
   );
 }
 
-const subscriberCount = channel => {
-  const count = Number.isFinite(channel?.subscribers) ? channel.subscribers : youtubeSnapshot.channel?.subscribers;
-  return Number.isFinite(count) ? viewFormat.format(count) : '5.1K';
+const channelCount = (channel, key) => {
+  const count = Number.isFinite(channel?.[key]) ? channel[key] : youtubeSnapshot.channel?.[key];
+  return Number.isFinite(count) ? viewFormat.format(count) : null;
 };
+const subscriberCount = channel => channelCount(channel, 'subscribers');
 
 // Rate card add-ons, priced on top of the formats above.
 const addOns = [
@@ -835,7 +836,7 @@ function App({ page = 'home' }) {
       </section>
 
       <section className="stats" aria-label="Community and channel numbers">
-        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{key ? channelCount(channel, key) : value}</dd></div>)}</dl>
         <p className="stats-note shell">Member count from Skool as of {membersAsOf}. YouTube numbers update daily.</p>
       </section>
 

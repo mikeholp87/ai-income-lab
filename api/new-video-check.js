@@ -1,8 +1,9 @@
-// Daily Vercel cron (vercel.json). If YouTube's newest long-form upload isn't in this deployment's
-// snapshot, call the Vercel deploy hook. The rebuild refreshes the snapshot, rss.xml, the search
-// index and the IndexNow ping, so a new video reaches the feed within a day without a git push.
+// Daily Vercel cron (vercel.json): calls the Vercel deploy hook every day. The rebuild refreshes the
+// YouTube subscriber, view and video counts baked into the pages, plus the uploads snapshot, rss.xml,
+// the search index and the IndexNow ping, so a new video reaches the feed within a day without a git push.
+// `newUpload` reports whether YouTube's newest long-form upload was missing from this deployment.
 // Needs CRON_SECRET (Vercel sends it as a Bearer token on cron calls) and DEPLOY_HOOK_URL.
-// ponytail: Hobby crons run once a day; YouTube WebSub push would make this near-instant.
+// ponytail: Hobby crons run once a day; YouTube WebSub push would make new uploads near-instant.
 // Each run also renews the YouTube WebSub subscription (api/youtube-push.js), the fast path.
 import { uploads } from '../src/uploads-snapshot.js';
 import { longFormPlaylistId } from '../src/youtube.js';
@@ -19,13 +20,11 @@ export async function GET(request) {
   // The hub answers 202 when it accepts the request; it then verifies with a GET to the callback.
   const websub = await subscribe();
   const reply = (data, status = 200) => Response.json({ ...data, websub }, { status });
+  // The feed only labels the run; the channel counts need the rebuild even when it is down.
   const feed = await fetch(feedUrl, { signal: AbortSignal.timeout(8000) }).catch(() => null);
-  if (!feed?.ok) return reply({ error: `YouTube feed ${feed?.status ?? 'unreachable'}` }, 502);
-  const newest = newestUploadId(await feed.text());
-  if (!newest) return reply({ error: 'No video in the YouTube feed' }, 502);
-  if (uploads.some(video => video.id === newest)) return reply({ rebuild: false, newest });
-  // ponytail: if the build can't fetch uploads it keeps the old snapshot, so this retries the next day.
-  if (!process.env.DEPLOY_HOOK_URL) return reply({ error: 'DEPLOY_HOOK_URL is not set', newest }, 500);
+  const newest = feed?.ok ? newestUploadId(await feed.text()) : null;
+  const newUpload = newest ? !uploads.some(video => video.id === newest) : null;
+  if (!process.env.DEPLOY_HOOK_URL) return reply({ error: 'DEPLOY_HOOK_URL is not set', newest, newUpload }, 500);
   const hook = await fetch(process.env.DEPLOY_HOOK_URL, { method: 'POST', signal: AbortSignal.timeout(8000) }).catch(() => null);
-  return reply({ rebuild: Boolean(hook?.ok), newest }, hook?.ok ? 202 : 502);
+  return reply({ rebuild: Boolean(hook?.ok), newest, newUpload }, hook?.ok ? 202 : 502);
 }
