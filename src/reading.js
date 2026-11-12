@@ -30,7 +30,8 @@ for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
 }
 const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
   : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view'
-  : /^\/(?:privacy|terms)\.html$/.test(window.location.pathname) ? 'legal_page_view' : 'guide_view';
+  : /^\/(?:privacy|terms)\.html$/.test(window.location.pathname) ? 'legal_page_view'
+  : window.location.pathname === '/tools.html' ? 'tools_page_view' : 'guide_view';
 let viewed = false;
 
 function recordView() {
@@ -67,7 +68,7 @@ for (const link of document.querySelectorAll('a[href]')) {
   if (String(link.rel || '').split(/\s+/).includes('sponsored')) {
     link.addEventListener('click', () => {
       const placement = link.dataset.placement || (viewEvent === 'video_page_view' ? 'watch_tools' : 'written_guide');
-      const event = { ...properties, placement, action: 'visit_affiliate', tool: link.dataset.affiliate || link.textContent.replace('↗', '').trim(), link_url: link.href, button_text: link.textContent.trim() };
+      const event = { ...properties, placement, action: 'visit_affiliate', tool: link.dataset.affiliate || link.textContent.replace('↗', '').trim(), ...(link.dataset.category ? { tool_category: link.dataset.category } : {}), destination_domain: target.hostname, link_url: link.href, button_text: link.textContent.trim() };
       trackGoogleEvent('cta_click', event);
       trackGoogleEvent('affiliate_outbound_clicked', event);
     });

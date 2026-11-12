@@ -44,7 +44,10 @@ test('the tools page discloses affiliate links before the first one and marks ev
   assert.match(description, /^Choose AI tools/);
   assert.equal((html.match(/<h1>/g) || []).length, 1);
   assert.ok(html.indexOf('Affiliate disclosure') < html.indexOf('class="tool-cta"'));
-  const ctas = [...html.matchAll(/<a class="tool-cta" href="([^"]+)" target="_blank" rel="sponsored noopener" data-affiliate="([^"]+)" data-placement="(tools_page|tools_top_picks)"/g)];
+  const ctas = [...html.matchAll(/<a class="tool-cta" href="([^"]+)" target="_blank" rel="sponsored noopener" data-affiliate="([^"]+)" data-category="([a-z]+)" data-placement="(tools_page|tools_top_picks)"/g)].map(([all, url, name, category, placement]) => {
+    assert.equal(category, affiliates.find(affiliate => affiliate.name === name).category, name);
+    return [all, url, name, placement];
+  });
   assert.equal(ctas.filter(cta => cta[3] === 'tools_page').length, affiliates.length);
   assert.equal(ctas.filter(cta => cta[3] === 'tools_top_picks').length, 5);
   for (const [, url, name] of ctas) assert.equal(url.replace(/&amp;/g, '&'), affiliates.find(affiliate => affiliate.name === name).url);
@@ -61,7 +64,11 @@ test('the tools page discloses affiliate links before the first one and marks ev
   assert.match(html, /Prices are in USD from each tool’s pricing page on November 12, 2026/);
   assert.match(html, /<a href="\/guides\/make-first-automation\.html">Make\.com Google Sheets tutorial<\/a>/);
   assert.match(html, /<time datetime="2026-11-12">November 12, 2026<\/time>/);
-  for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)) JSON.parse(json);
+  const [collection] = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(([, json]) => JSON.parse(json));
+  // Each listed tool points at its card, and every card the list names exists on the page.
+  assert.equal(collection.mainEntity.itemListElement.length, affiliates.length);
+  for (const item of collection.mainEntity.itemListElement) assert.ok(html.includes(`<li class="tool-card" id="${item.url.split('#')[1]}">`), item.url);
+  assert.match(html, /How this list works: each card counts the videos that use the tool on screen/);
   // Only public, embeddable uploads get a watch link, so none of them 404.
   const ids = new Set(uploads.filter(video => video.public !== false && video.embeddable !== false).map(video => video.id));
   for (const [, id] of html.matchAll(/href="\/watch\/([\w-]{11})"/g)) assert.ok(ids.has(id), id);

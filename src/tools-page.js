@@ -13,7 +13,7 @@ const shownGuides = 2;
 const topPicks = 5;
 
 export const toolsTitle = 'Choose AI tools for automation and coding';
-const description = 'Choose AI tools from my YouTube descriptions, grouped by job: coding agents, automation, SEO, video, YouTube growth, email and hosting.';
+const description = 'Choose AI tools by job: coding agents, automation, SEO, video, YouTube, email and hosting, each with a checked price and the videos that show it in use.';
 
 // Public uploads whose tool lists name one of the affiliate's tools, newest first. Both lists are read from
 // the transcript, so a written summary's list doesn't hide a tool the transcript list caught.
@@ -131,7 +131,7 @@ export function addToolsLink(html) {
 
 const usage = count => count === 1 ? 'Used in one video' : `Used in ${count} videos`;
 const logo = affiliate => `<img class="tool-logo" src="/tools/logos/${logoSlug(affiliate)}.webp" alt="" width="48" height="48" loading="lazy" decoding="async">`;
-const cta = (affiliate, placement) => `<a class="tool-cta" href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-placement="${placement}">${escape(affiliate.cta || `Try ${affiliate.name}`)} ↗</a>`;
+const cta = (affiliate, placement) => `<a class="tool-cta" href="${escape(affiliate.url)}" target="_blank" rel="sponsored noopener" data-affiliate="${escape(affiliate.name)}" data-category="${affiliate.category}" data-placement="${placement}">${escape(affiliate.cta || `Try ${affiliate.name}`)} ↗</a>`;
 
 function card(affiliate, videos, guides) {
   const related = guidesAbout(affiliate, guides).slice(0, shownGuides);
@@ -158,7 +158,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
   const picks = topTools(uploads).map(pick => affiliates.find(affiliate => affiliate.name === pick.name));
   const schema = [
     { '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, name: toolsTitle, description, url, dateModified: date, author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` }, publisher: { '@id': `${site}/#org` }, isPartOf: { '@id': `${site}/#website` }, inLanguage: 'en',
-      mainEntity: { '@type': 'ItemList', numberOfItems: affiliates.length, itemListElement: grouped.flatMap(([, , items]) => items).map((affiliate, index) => ({ '@type': 'ListItem', position: index + 1, name: affiliate.name, description: affiliate.blurb })) } },
+      mainEntity: { '@type': 'ItemList', numberOfItems: affiliates.length, itemListElement: grouped.flatMap(([, , items]) => items).map((affiliate, index) => ({ '@type': 'ListItem', position: index + 1, name: affiliate.name, description: affiliate.blurb, url: `${url}#${logoSlug(affiliate)}` })) } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` }, { '@type': 'ListItem', position: 2, name: 'Recommended tools', item: url }] },
   ].map(item => `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, '\\u003c')}</script>`).join('\n');
 
@@ -168,6 +168,7 @@ export function renderToolsPage({ uploads, guides = [], updated = new Date() }) 
 <body class="wide"><a class="skip" href="#content">Skip to content</a><header class="single-line-header tools-header"><a href="/">AI Income Lab</a><nav aria-label="Tool categories">${nav}</nav><a class="join" href="https://www.skool.com/ai-automation-station-7346/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗</a><details class="nav-mobile"><summary aria-label="Tool categories menu">Categories</summary><nav aria-label="Tool categories menu">${nav}</nav></details></header><main id="content"><p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · Updated <time datetime="${date}">${readable}</time></p><h1>Tools I recommend for AI automation.</h1><p>The tools linked in my YouTube descriptions, with the ones I use most on camera first. Watch any of them in a real build before you sign up.</p>
 <aside class="disclosure" aria-label="Affiliate disclosure"><p><strong>Affiliate links.</strong> I may earn a commission or credit if you sign up through these buttons. Prices are in USD from each tool’s pricing page on ${priceDate}, so check the current price before you pay.</p></aside>
 ${picks.length ? `<section class="top-picks" aria-labelledby="top-picks-heading"><h2 id="top-picks-heading">Start here: the ${picks.length} tools I use most</h2><ol>${picks.map(affiliate => topPick(affiliate, used.get(affiliate))).join('')}</ol></section>` : ''}
+<p class="meta">How this list works: each card counts the videos that use the tool on screen, read from the video transcripts, and the most-used tools come first. A tool marked “On my recommended list” is in every video description but has no build video yet.</p>
 ${grouped.map(([id, label, items]) => `<section class="tool-group" id="${id}" aria-labelledby="${id}-heading"><h2 id="${id}-heading">${escape(label)}</h2><ul class="tool-cards">${items.map(affiliate => card(affiliate, used.get(affiliate), guides)).join('')}</ul></section>`).join('\n')}
 <form class="notes" method="post" data-subscribe data-placement="tools_page"><p><strong>Want to see new tools first?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>
 <p>New to these tools? <a href="/start-here.html">Choose your first build</a>, or <a href="/guides.html">browse every guide by topic</a>. Making one of these products? <a href="/sponsors.html">Sponsor a build</a>.</p></main><footer><a href="/">Home</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="mailto:automojic@proton.me">Email support</a></footer></body></html>
