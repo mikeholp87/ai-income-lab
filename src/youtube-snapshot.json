@@ -1,6 +1,14 @@
 {
   "videos": [
     {
+      "id": "ndG48skyZZY",
+      "title": "Your Business Is Invisible to AI Search (Here's the Fix)",
+      "published": "2026-11-12T03:40:14+00:00",
+      "views": 12,
+      "summary": "Discover how to fix your AI search visibility so customers actually find your business and you show up in AI recommendations using RankPrompt.",
+      "heading": "Your business is invisible to AI search (here's the fix)"
+    },
+    {
       "id": "7JN-sMkJBCs",
       "title": "Let GrokBot Find And Apply To Jobs For You",
       "published": "2026-11-11T15:43:48+00:00",
@@ -20,7 +28,7 @@
       "id": "YYZSR1p32EQ",
       "title": "Herdr On Windows Is Better Than I Expected!",
       "published": "2026-11-09T04:13:12+00:00",
-      "views": 840,
+      "views": 850,
       "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.",
       "heading": "Herdr on Windows: Installation, Themes, Mods and Usage"
     },
@@ -28,7 +36,7 @@
       "id": "IV6q81wRay4",
       "title": "New HERDR Desktop App Is A Game Changer!",
       "published": "2026-11-07T07:05:11+00:00",
-      "views": 14458,
+      "views": 14486,
       "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
       "heading": "Herdr Desktop Setup: Workspaces, Themes and Claude Code"
     },
@@ -47,14 +55,6 @@
       "views": 452,
       "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
       "heading": "Claude Code Task-Manager Demo: Processes and Packaging"
-    },
-    {
-      "id": "0iTOlQjNdhs",
-      "title": "I Fixed My Android TV With Claude Code + CleanYourTV",
-      "published": "2026-11-02T02:42:16+00:00",
-      "views": 4008,
-      "summary": "Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.",
-      "heading": "CleanYourTV and Claude Code: customize Android TV"
     }
   ],
   "channel": {
