@@ -61,10 +61,10 @@ const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '
 const escape = text => String(text).replace(/[&<>"']/g, char => entities[char]);
 const iconLink = (href, label, icon, extra = '') => `<a href="${escape(href)}"${extra}><svg class="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="${icon}"></path></svg>${escape(label)}</a>`;
 
-export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'footer' } = {}) {
+export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'footer', className = '' } = {}) {
   const explore = footerExplore.map(([href, label]) => `<a href="${href}">${escape(label)}</a>`).join('');
   const social = socialLinks.map(([name, url, icon]) => iconLink(url, name, icon, ' target="_blank" rel="noreferrer"')).join('');
-  return `<footer class="footer site-footer">
+  return `<footer class="footer site-footer${className ? ` ${escape(className)}` : ''}">
 <div class="footer-cta">
 <p>Build your next automation.</p>
 <div class="button-row">

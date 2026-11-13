@@ -1,3 +1,4 @@
+import { siteFooterHtml } from './site-footer.js';
 import { channelUrl, clock, describe, durationSeconds, formatDuration, longFormPlaylistId, median, parseChapters, summarize, validChapters } from './youtube.js';
 import { videoNotes } from './video-notes.js';
 import { videoOffer } from './video-offer.js';
@@ -220,7 +221,7 @@ ${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's'
 <div data-archive>${pager(page, pages, sort)}</div>
 <script type="module" src="/video-search.js"></script>
 </main>
-<footer class="shell mono"><a href="/">Home</a><a href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer">Subscribe on YouTube ↗</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></footer>
+${siteFooterHtml({ className: 'shell' })}
 </body>
 </html>`;
 }
@@ -545,7 +546,7 @@ ${relatedList(related)}` : ''}
 ${neighbourNav(neighbourVideos(video, videos))}
 </main>
 <script>${playerScript}</script>
-<footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>
+${siteFooterHtml()}
 </body></html>`;
 }
 
