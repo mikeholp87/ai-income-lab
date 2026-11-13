@@ -9,7 +9,19 @@ export const watchNotes = {
   tR7AYN5FiqA: {
     html: `<section aria-labelledby="codex-cli-install">
 <h2 id="codex-cli-install">Install the Codex CLI first</h2>
-<p>The recording starts with the Codex CLI already installed and updated on Debian Linux. To install it yourself, follow <a href="/guides/codex-on-linux.html">how to install the Codex CLI on Linux</a>: the official install commands, ChatGPT sign-in, and fixes for common install errors.</p>
+<p>The recording starts with the Codex CLI already installed and updated on Debian Linux. To install it yourself, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>: the official install commands, ChatGPT sign-in, and fixes for common install errors.</p>
+</section>`,
+  },
+  C5wEcJRo_VA: {
+    html: `<section aria-labelledby="code-assist-status">
+<h2 id="code-assist-status">Gemini Code Assist for individuals</h2>
+<p>Google has deprecated Gemini Code Assist for individuals. Google’s documentation says that starting June 18, 2026, Gemini Code Assist IDE extensions stopped serving requests for the Gemini Code Assist for individuals, Google AI Pro, and Google AI Ultra tiers. Login with Google no longer works for those IDE extensions or Gemini CLI. Read <a href="https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals">Google’s deprecation page</a>.</p>
+</section>`,
+  },
+  ud2su6XhtKw: {
+    html: `<section aria-labelledby="code-assist-status">
+<h2 id="code-assist-status">Gemini Code Assist for individuals</h2>
+<p>Google has deprecated Gemini Code Assist for individuals. Google’s documentation says that starting June 18, 2026, Gemini Code Assist IDE extensions stopped serving requests for the Gemini Code Assist for individuals, Google AI Pro, and Google AI Ultra tiers. Login with Google no longer works for those IDE extensions or Gemini CLI. Read <a href="https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals">Google’s deprecation page</a>.</p>
 </section>`,
   },
   '9WPazkEp7VU': {
@@ -221,7 +233,13 @@ export const watchNotes = {
     summary: 'Build a ChatGPT-style chat web app in Rocket.new using only prompts: pick a web app, describe the clone, let Rocket add OpenAI chat completions, then review the result. Recorded in about 20 minutes; Rocket needs credits in your account.',
   },
   lKqe0r0zoGY: { searchTitle: 'Lindy AI tutorial: build your first agent' },
-  ZlD4Z6UKS8o: { searchTitle: 'Build a website with AI: Lovable tutorial' },
+  ZlD4Z6UKS8o: {
+    searchTitle: 'Build a website with AI: Lovable tutorial',
+    html: `<section aria-labelledby="orchids-status">
+<h2 id="orchids-status">Orchids site status</h2>
+<p>The recording also tried Orchids as a third builder. The Orchids website returned a 503 DEPLOYMENT_PAUSED response as of November 2026, so this page does not link it as a live builder.</p>
+</section>`,
+  },
   SLAnjvWK1Y4: { searchTitle: 'Automating YouTube Shorts with AI' },
   KEXgl3vsVMI: { searchTitle: 'Skool Hobby plan: the recorded $9/month review' },
   kKiFzNW9fjw: { searchTitle: 'Build an AI content workflow in Make.com' },
@@ -308,7 +326,7 @@ export const watchNotes = {
 <p>The desktop app launches and starts a project audit. The microphone control is visible, but dictation is not confirmed working in this recording. The session also does not establish feature parity with the official clients or independently validate the audit findings.</p>
 <p>Do not delete a package-manager lock merely to reproduce the install sequence. Check whether another package operation is active and let it finish. For a fresh setup, start with <a href="/watch/lbBZ7uLJwbM">the later official Linux walkthrough and compatibility notes</a>, which links to the vendor’s installation instructions.</p>
 <p>Once your client opens a project, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a> to make a small, reviewable change and verify it with the project’s own checks.</p>
-<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for the desktop app download, ChatGPT sign-in, and the distinction from the earlier unofficial setup. For the terminal CLI, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>.</p>
 </section>`,
   },
   enKnxKJJFZw: {
@@ -364,7 +382,7 @@ export const watchNotes = {
 <h3>What worked, and what to recheck</h3>
 <p>The narration confirms that the app opens, the project and skills are available, and the audit returns a list of fixes. It also describes a slow first launch and a buggy desktop pet. These are observations from this setup, not a benchmark of all Linux installations.</p>
 <p>Available models and features may differ from the recording. Check the current documentation instead of copying the video’s model names or assuming parity with Windows and macOS. For the next workflow, watch <a href="/watch/TuVL2x6IfDk">the Codex internal-linking audit</a>.</p>
-<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for the desktop app download, ChatGPT sign-in, and the distinction from the earlier unofficial setup. For the terminal CLI, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>.</p>
 </section>`,
   },
   TuVL2x6IfDk: {

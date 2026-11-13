@@ -264,7 +264,7 @@ test('guide titles and sections match what people search for', async () => {
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
     ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
-    ['codex-on-linux', 'Codex desktop app for Linux: download Codex'],
+    ['codex-on-linux', 'Codex on Linux: download and set up'],
     ['codex-usage-limits', 'Codex usage limits: check usage'],
     ['vapi-voice-agent-tutorial', 'Vapi AI tutorial: '],
   ]) {
@@ -422,6 +422,12 @@ test('guides have no unverified placeholders and link to at least five other gui
     const linked = new Set([...body.matchAll(/href="\/guides\/([a-z0-9-]+)\.html/g)].map(([, slug]) => slug).filter(slug => `${slug}.html` !== file));
     assert.ok(linked.size >= 5, `${file}: ${linked.size}`);
   }
+});
+
+test('the Google AI Studio guide keeps going to an existing video topic', async () => {
+  const html = await read('public/guides/google-ai-studio-chat-app.html');
+  assert.doesNotMatch(html, /\/videos\/ai-coding/);
+  assert.match(html, /href="\/videos\/ai-website-builders">AI website builder videos</);
 });
 
 test('guide Article data names the author profiles and the topics the guide covers', async () => {

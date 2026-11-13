@@ -54,4 +54,5 @@ test('topic hubs list the matching written guides', () => {
   assert.ok(hrefs('ai-video').includes('/guides/youtube-channel-growth-workflow.html'));
   assert.ok(hrefs('ai-video').includes('/guides/ai-content-creation-workflows.html'));
   assert.ok(hrefs('new-models').includes('/guides/choosing-ai-models-for-a-task.html'));
+  assert.ok(hrefs('codex-opencode').includes('/guides/codex-cli.html'));
 });
