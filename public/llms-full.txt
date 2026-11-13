@@ -70,7 +70,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [AI side hustles for beginners: 7 services to test](https://www.ai-automation-station.com/guides/ai-side-hustles.html): AI side hustles: 7 ideas judged by skill, cost and time to first client, each with a first test you can run this week. No hype, no income promises.
 - [AI automation agency: sell services to small businesses](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html): Start an AI automation agency for small businesses: what to offer, discovery, fixed scope, pricing, handover and running several clients.
 - [Make money with ChatGPT: 4 client services](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html): How to make money with ChatGPT through client work: editing, research, FAQ drafts and assistant setups, with quality checks. See what to offer first.
-- [9Router setup: install, port 20128, updates and providers](https://www.ai-automation-station.com/guides/9router-setup.html): 9Router setup: install the gateway, use or change port 20128, update it, find the official docs, add providers and model combos, and connect coding tools.
+- [9Router setup: install, port 20128, updates and providers](https://www.ai-automation-station.com/guides/9router-setup.html): 9Router setup: install with npm, the default port 20128 and how to change it, how updates work, then add providers, model combos and coding tools.
 - [OpenCode Go: pricing, models, limits and setup](https://www.ai-automation-station.com/guides/opencode-go.html): OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.
 - [OpenRouter: API key, free models, pricing and setup](https://www.ai-automation-station.com/guides/openrouter-setup.html): OpenRouter setup: create an API key, use :free models within daily caps, understand the credit fee, connect Claude Code, and fix 401, 402 or 429 errors.
 - [Kilo Code tutorial: install, free models and first task](https://www.ai-automation-station.com/guides/kilo-code-tutorial.html): Kilo Code tutorial: install the VS Code extension or CLI, choose free, BYOK or paid models, set approvals, run a first task, and see what Kilo Pass costs.
@@ -131,6 +131,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Claude Code Video Editor Skill: Build and Run](https://www.ai-automation-station.com/guides/claude-code-video-editor-skill.html): Follow the recorded video-editor skill for Claude Code: the prompt loop, guardrails, confidence checks and the command used to run it.
 - [Hermes Agent Memory: Install Supermemory](https://www.ai-automation-station.com/guides/hermes-agent-supermemory.html): Install Supermemory on Hermes Agent, add the API key, test a memory write, then connect the same plugin in OpenCode and Codex.
 - [Hermes Backlink Outreach: Crawl, Pitch and Send](https://www.ai-automation-station.com/guides/hermes-backlink-outreach-pipeline.html): Build a Hermes outreach pipeline with Firecrawl, Hunter.io and Mailgun, keep sends gated, and read the delivery numbers from the recording.
+- [Install Codex CLI: Mac, Windows and Linux Commands](https://www.ai-automation-station.com/guides/codex-cli.html): Install the OpenAI Codex CLI on Mac, Windows or Linux with the official installer, npm or Homebrew, sign in with ChatGPT, update it and run a first task.
 - [Build a Chat Web App in Google AI Studio, No Code](https://www.ai-automation-station.com/guides/google-ai-studio-chat-app.html): Build a ChatGPT-style web app in Google AI Studio build mode, connect the OpenAI API, then see what deploying needs. Notes from an October 2025 recording.
 - [OpenCode Stripe Billing Build: A SaaS Case Study](https://www.ai-automation-station.com/guides/opencode-stripe-billing-saas.html): Watch OpenCode add Stripe subscription pages to a SaaS app, fix a Prisma and missing-dependency build, and see what was not tested.
 - [n8n Social Post Template: Trends, Research, Posting](https://www.ai-automation-station.com/guides/n8n-social-media-agent-template.html): Import n8n’s multi-social post template, test the Google Trends and keyword steps, and see why the Perplexity and posting steps still failed.
@@ -187,11 +188,11 @@ https://www.ai-automation-station.com/guides/9router-cost-tracking-fallbacks.htm
 On 9 July 2026, 9Router ran as a local proxy so OpenCode token use and estimated cost stayed visible, with model combos, auto-fallback from subscription to cheap to free, and weekly quota on the same dashboard. Install is on the 9Router setup guide.
 
 ### 9Router setup: install, port 20128, updates and providers
-https://www.ai-automation-station.com/guides/9router-setup.html (updated 2026-11-11)
-9Router is a gateway between your coding tools and their model providers. It gives Claude Code, Codex and similar tools one OpenAI-compatible endpoint, http://localhost:20128/v1, plus a dashboard for providers, keys, model combos and usage. Install it with npm install -g 9router, add one provider and verify one request before adding fallbacks.
+https://www.ai-automation-station.com/guides/9router-setup.html (updated 2026-11-13)
+9Router is a gateway between your coding tools and their model providers. It gives Claude Code, Codex and similar tools one OpenAI-compatible endpoint, http://localhost:20128/v1, plus a dashboard for providers, keys, model combos and usage. Install it with npm install -g 9router, add one provider and verify one request before adding fallbacks. The default port is 20128; start it with 9router --port 8080 to change it. The CLI checks for updates each time it starts, and Docker users update with docker pull decolua/9router:latest.
 
 ### How does agentic AI differ from traditional automation?
-https://www.ai-automation-station.com/guides/agentic-ai-vs-traditional-automation.html (updated 2026-11-08)
+https://www.ai-automation-station.com/guides/agentic-ai-vs-traditional-automation.html (updated 2026-11-13)
 Traditional automation follows a path you drew in advance. Agentic AI is handed a goal and a set of tools, and it decides which steps to take. That difference changes how you build, test and trust the system.
 
 ### AI agent workflow: choose tools, add checks, keep control
@@ -286,8 +287,12 @@ Use Claude Opus 5.5 for most coding and agent work: it is Anthropic’s recommen
 https://www.ai-automation-station.com/guides/cleanyourtv-claude-code.html (updated 2026-11-11)
 Check that your TV runs Android TV or Google TV, turn on USB debugging, paste the CleanYourTV prompt into Claude Code and let it back up the TV before it changes anything. On my TCL it disabled the apps I don't use and installed a much cleaner, faster home screen, but several remote buttons stopped working. Keep the restore command handy and test every button before you call it done.
 
+### Install Codex CLI: Mac, Windows and Linux Commands
+https://www.ai-automation-station.com/guides/codex-cli.html (updated 2026-11-13)
+Codex CLI is OpenAI’s coding agent for the terminal. On Mac or Linux, install it with curl -fsSL https://chatgpt.com/codex/install.sh | sh. On Windows, use the PowerShell installer below. npm (npm install -g @openai/codex) and Homebrew also work. Then run codex in a project folder and choose Sign in with ChatGPT.
+
 ### Codex desktop app for Linux: download Codex and the CLI
-https://www.ai-automation-station.com/guides/codex-on-linux.html (updated 2026-11-11)
+https://www.ai-automation-station.com/guides/codex-on-linux.html (updated 2026-11-13)
 For Codex on Linux, use the official CLI or the Codex desktop Linux preview, and choose a supported system from OpenAI’s installation guide. Install one client and finish a small task before adding anything else.
 
 ### Internal Link Audit with Codex: A Reviewed SEO Workflow

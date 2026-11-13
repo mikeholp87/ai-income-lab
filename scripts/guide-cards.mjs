@@ -243,6 +243,7 @@ export const cards = {
   'n8n-whatsapp-ai-agent': {"title":"An n8n agent that answers WhatsApp messages","steps":[["Trigger","WhatsApp on-messages node"],["Agent","Chat model plus memory"],["Send","Reply node needs Meta access"]],"note":"The send step was still blocked in the recording."},
   'make-com-beginner-course-scenarios': {"title":"A Make.com course in three builds","steps":[["Template","Sheets row sends a Gmail"],["Scratch","OpenAI, Airtable, Facebook"],["Scraper","Apify leads into Sheets"]],"note":"Errors left in on purpose."},
   'make-business-automation-examples': {"title":"Make.com automations for a small business","steps":[["Reply","Draft email replies with ChatGPT"],["Sync","Add new members to your list"],["Reach","Send, scrape, then review"]],"note":"Consent and spam rules apply."},
+  'codex-cli': {"title":"Install Codex CLI and run a first task","steps":[["Install","Installer, npm or Homebrew"],["Sign in","Choose Sign in with ChatGPT"],["Run","codex in a project folder"]],"note":"Official commands for Mac, Windows and Linux."},
   'what-is-mcp': {
     title: 'What is MCP? One standard plug for AI tools',
     steps: [['Host', 'Claude Code, Codex or ChatGPT'], ['Server', 'Offers tools, data and prompts'], ['Check', 'Start read-only, approve writes']],

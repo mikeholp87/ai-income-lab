@@ -27,6 +27,7 @@ const youtubeWalkthroughPosters = {
   'ai-visibility-tracker-saas-build.html': '2G5klyFz61E',
   'zcode-glm-desktop-app.html': 'mmiQaVfA5e0',
   'claude-fable-5-game-prompts.html': 'X9Bo29B_46k',
+  'codex-cli.html': 'tR7AYN5FiqA',
   'google-ai-studio-chat-app.html': 'Ax-v4H9xv50',
   'opencode-stripe-billing-saas.html': 'ud2su6XhtKw',
   'n8n-social-media-agent-template.html': '1klc_1MxBdM',

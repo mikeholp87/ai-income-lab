@@ -281,6 +281,7 @@ export function relatedVideos(video, videos, count = 4) {
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
   [/apify agent skills in claude code/i, '/guides/apify-agent-skills.html', 'Apify Agent Skills: Scrape Leads in Cursor'],
+  [/new codex cli/i, '/guides/codex-cli.html', 'Install Codex CLI: Mac, Windows and Linux Commands'],
   [/build web apps in minutes with google ai studio/i, '/guides/google-ai-studio-chat-app.html', 'Build a Chat Web App in Google AI Studio, No Code'],
   [/opencode makes it easy to build saas/i, '/guides/opencode-stripe-billing-saas.html', 'OpenCode Stripe Billing Build: A SaaS Case Study'],
   [/ai social media agent in 10 minutes/i, '/guides/n8n-social-media-agent-template.html', 'n8n Social Post Template: Trends, Research, Posting'],
