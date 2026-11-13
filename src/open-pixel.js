@@ -23,6 +23,7 @@ export const PIXEL_ROUTES = [
   { prefix: 'POD-', key: 'POD', product: 'Podcast Outreach' },
   { prefix: 'JOB-', key: 'JOB', product: 'Job App Agent' },
   { prefix: 'INV-', key: 'INV', product: 'Startup Investor Outreach' },
+  { prefix: 'AAS-OUT-', key: 'AAS_OUT', product: 'AI Automation Station Outreach' },
 ];
 
 export function airtableConfig(env = process.env) {
