@@ -54,6 +54,8 @@ test('routes tokens by prefix and falls unknown tokens back to Skool', () => {
   assert.equal(matchPixelRoute('POD-show').key, 'POD');
   assert.equal(matchPixelRoute('JOB-42').key, 'JOB');
   assert.equal(matchPixelRoute('INV-round').key, 'INV');
+  assert.equal(matchPixelRoute('AAS-OUT-B4-12').key, 'AAS_OUT');
+  assert.equal(matchPixelRoute('aas-out-b5-3').key, 'AAS_OUT');
   assert.equal(matchPixelRoute('test-token').key, 'SKOOL_FT');
   assert.equal(matchPixelRoute('').key, 'SKOOL_FT');
 });
@@ -437,4 +439,22 @@ test('Airtable errors contain only method, table/record path and status', async 
       token: 'test-token', openedAt: '2026-10-09T00:00:00Z', userAgent: 'test',
     }, { AIRTABLE_API_KEY: 'mock' }), { message: `Airtable ${method} ${path} 503` });
   }
+});
+
+test('AAS-OUT- tokens use their own env route and never the Skool default', () => {
+  const unset = resolveAirtableRoute('AAS-OUT-B4-1', {});
+  assert.equal(unset.key, 'AAS_OUT');
+  assert.equal(unset.configured, false);
+  assert.notEqual(unset.baseId, AIRTABLE_BASE_ID);
+
+  const set = resolveAirtableRoute('AAS-OUT-B5-7', {
+    AIRTABLE_ROUTE_AAS_OUT_BASE_ID: 'appAasBase',
+    AIRTABLE_ROUTE_AAS_OUT_OPENS_TABLE_ID: 'tblAasOpens',
+    AIRTABLE_ROUTE_AAS_OUT_SENDS_TABLE_ID: 'tblAasSends',
+  });
+  assert.equal(set.configured, true);
+  assert.equal(set.source, 'env');
+  assert.equal(set.baseId, 'appAasBase');
+  assert.equal(set.opensTableId, 'tblAasOpens');
+  assert.equal(set.sendsTableId, 'tblAasSends');
 });

@@ -46,6 +46,7 @@ Auth (one of these, do not commit secrets):
 | `POD-` | Podcast Outreach | `POD` | set env (no code defaults) |
 | `JOB-` | Job App Agent | `JOB` | set env (no code defaults) |
 | `INV-` | Startup Investor Outreach | `INV` | set env (no code defaults) |
+| `AAS-OUT-` | AI Automation Station Outreach | `AAS_OUT` | set env (no code defaults) |
 
 Unknown tokens (for example `test-token`) fall back to the Skool route.
 
@@ -85,6 +86,10 @@ AIRTABLE_ROUTE_JOB_SENDS_TABLE_ID=
 AIRTABLE_ROUTE_INV_BASE_ID=
 AIRTABLE_ROUTE_INV_OPENS_TABLE_ID=
 AIRTABLE_ROUTE_INV_SENDS_TABLE_ID=
+
+AIRTABLE_ROUTE_AAS_OUT_BASE_ID=
+AIRTABLE_ROUTE_AAS_OUT_OPENS_TABLE_ID=
+AIRTABLE_ROUTE_AAS_OUT_SENDS_TABLE_ID=
 ```
 
 Optional JSON override (keys are the env keys above, or the raw prefix). A complete entry wins over the per-bot vars:
