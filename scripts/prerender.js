@@ -9,6 +9,7 @@ import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
 import { gaBootHead } from '../src/ga-boot-html.js';
 import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
+import { optimizeGuide, previewRobots } from '../src/guide-seo.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
 
@@ -46,11 +47,11 @@ const guides = [];
 for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
   const read = withGaBoot(await readFile(path, 'utf8'), file);
-  const html = file === 'guides.html' ? addGuideDates(read, guideTitles) : read;
+  const html = previewRobots(file === 'guides.html' ? addGuideDates(read, guideTitles) : read);
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));
-  await writeFile(path, (guideFiles.includes(file) ? addGuideVideos(addToolsLink(html), `/${file}`, uploads) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
+  await writeFile(path, (guideFiles.includes(file) ? optimizeGuide(addGuideVideos(addToolsLink(html), `/${file}`, uploads)) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
 }
 const notFound = withGaBoot(await readFile('dist/404.html', 'utf8'), '404.html');
 await writeFile('dist/404.html', notFound.replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));
