@@ -93,6 +93,11 @@ test('the latest videos section links every shared video topic', () => {
   assert.match(latest, /topics\.map\(topic => <a key=\{topic\.slug\} href=\{`\/videos\/\$\{topic\.slug\}`\}>\{topic\.name\}<\/a>\)/);
   assert.match(css, /\.topic-row \{ display: flex; flex-wrap: wrap;/);
   assert.match(css, /\.topic-row a \{ display: inline-flex; align-items: center; min-height: 44px;/);
+  const phone = media('(max-width: 640px)');
+  assert.match(phone, /\.topic-row \{ flex-wrap: nowrap;[^}]*overflow-x: auto;/);
+  assert.match(phone, /\.topic-row::-webkit-scrollbar \{ display: none; \}/);
+  assert.match(phone, /\.topic-row a \{ flex: none; min-height: 44px; padding: 0 10px;/);
+  assert.doesNotMatch(phone, /\.topic-row \{[^}]*flex-wrap: wrap/);
 });
 
 test('the homepage lists GitHub projects in a separate section', () => {
