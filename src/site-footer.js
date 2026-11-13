@@ -59,10 +59,18 @@ const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '
 const escape = text => String(text).replace(/[&<>"']/g, char => entities[char]);
 const iconLink = (href, label, icon, extra = '') => `<a href="${escape(href)}"${extra}><svg class="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="${icon}"></path></svg>${escape(label)}</a>`;
 
-export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'footer', className = '' } = {}) {
+// Same fields and wording as NotesSignup in main.jsx; src/reading.js submits it to /api/subscribe.
+const notesSignupHtml = `<form class="notes-signup" method="post" data-subscribe data-placement="footer">
+<label for="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
+<div><input id="footer-notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="Your email"><input class="contact-trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="button" type="submit">Subscribe</button></div>
+<p class="notes-signup-status" role="status" aria-live="polite" hidden></p>
+</form>`;
+
+export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'footer' } = {}) {
   const explore = footerExplore.map(([href, label]) => `<a href="${href}">${escape(label)}</a>`).join('');
   const social = socialLinks.map(([name, url, icon]) => iconLink(url, name, icon, ' target="_blank" rel="noreferrer"')).join('');
-  return `<footer class="footer site-footer${className ? ` ${escape(className)}` : ''}">
+  return `<footer class="footer site-footer">
+<div class="shell">
 <div class="footer-cta">
 <p>Build your next automation.</p>
 <div class="button-row">
@@ -71,7 +79,7 @@ export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'foot
 </div>
 </div>
 <div class="footer-directory">
-<div class="footer-brand"><a class="brand" href="/"><span aria-hidden="true"></span>AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p></div>
+<div class="footer-brand"><a class="brand" href="/"><span aria-hidden="true"></span>AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p>${notesSignupHtml}</div>
 <nav class="footer-columns" aria-label="Footer">
 <div><h2>Explore</h2>${explore}</div>
 <div><h2>Community</h2><a href="${escape(skoolAboutUrl)}" target="_blank" rel="noreferrer">AI Income Lab</a><a href="${escape(skoolCommunityUrl)}" target="_blank" rel="noreferrer">Member login</a></div>
@@ -79,5 +87,6 @@ export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'foot
 </nav>
 </div>
 <div class="footer-base"><p>&copy; 2026 Mike Holp</p><div><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div></div>
+</div>
 </footer>`;
 }

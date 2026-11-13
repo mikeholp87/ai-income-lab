@@ -123,8 +123,26 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) {
   });
   form.addEventListener('submit', async event => {
   event.preventDefault();
-  const status = form.querySelector('[role="status"]');
+  const status = form.querySelector('.notes-signup-status, [role="status"]');
   const button = form.querySelector('button');
+  if (form.classList.contains('notes-signup')) {
+    // The footer signup behaves like the homepage one: validate, send, then swap the form for a confirmation line.
+    const email = form.elements.email.value.trim();
+    const say = text => { status.textContent = text; status.hidden = false; status.setAttribute('role', 'alert'); };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return void say('Enter a valid email address.');
+    button.disabled = true;
+    button.textContent = 'Subscribing';
+    const sent = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, hp: form.elements.hp.value }) }).then(response => response.ok ? response.json() : null).catch(() => null);
+    button.disabled = false;
+    button.textContent = 'Subscribe';
+    if (!sent?.ok) return void say('That didn’t go through. Try again in a minute.');
+    status.textContent = 'Almost there. Check your inbox (and spam) and click the link to confirm.';
+    status.setAttribute('role', 'status');
+    status.hidden = false;
+    form.replaceWith(status);
+    trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement });
+    return;
+  }
   button.disabled = true;
   status.textContent = 'Subscribing';
   const fields = Object.fromEntries(new FormData(form));

@@ -221,7 +221,7 @@ ${topic?.guides ? `<p class="start">Written guide${topic.guides.length > 1 ? 's'
 <div data-archive>${pager(page, pages, sort)}</div>
 <script type="module" src="/video-search.js"></script>
 </main>
-${siteFooterHtml({ className: 'shell' })}
+${siteFooterHtml()}
 </body>
 </html>`;
 }

@@ -12,8 +12,7 @@ let changed = 0;
 for (const file of files) {
   const html = await readFile(file, 'utf8');
   if (!/<footer[\s>]/.test(html)) continue;
-  // Pages styled by archive.css center the footer with .shell; reading.css pages size it themselves.
-  const footer = siteFooterHtml({ className: html.includes('/archive.css') ? 'shell' : '' });
+  const footer = siteFooterHtml();
   const next = html.replace(/<footer[\s\S]*?<\/footer>/, () => footer);
   if (next !== html) { await writeFile(file, next); changed += 1; }
 }
