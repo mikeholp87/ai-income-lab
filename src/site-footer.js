@@ -11,9 +11,7 @@ export const youtubeSubscribeUrl = `${channelUrl}?sub_confirmation=1`;
 export const githubUrl = 'https://github.com/mikeholp87';
 export const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
 export const xUrl = 'https://x.com/mikeholp';
-export const visiscanUrl = 'https://www.visiscan.app';
 export const supportEmail = 'mailto:automojic@proton.me';
-export const footerProductsNote = 'TubeAnalytics (temporarily unavailable)';
 
 export const footerExplore = [
   ['/start-here.html', 'Start here'],
@@ -76,7 +74,6 @@ export function siteFooterHtml({ joinHref = skoolPlansUrl, joinPlacement = 'foot
 <div class="footer-brand"><a class="brand" href="/"><span aria-hidden="true"></span>AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p></div>
 <nav class="footer-columns" aria-label="Footer">
 <div><h2>Explore</h2>${explore}</div>
-<div><h2>Products</h2><span>${escape(footerProductsNote)}</span><a href="${escape(visiscanUrl)}" target="_blank" rel="noreferrer">VisiScan</a></div>
 <div><h2>Community</h2><a href="${escape(skoolAboutUrl)}" target="_blank" rel="noreferrer">AI Income Lab</a><a href="${escape(skoolCommunityUrl)}" target="_blank" rel="noreferrer">Member login</a></div>
 <div><h2>Connect</h2>${social}${iconLink(supportEmail, 'Email', emailIcon)}</div>
 </nav>

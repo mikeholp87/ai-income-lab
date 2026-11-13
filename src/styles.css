@@ -418,7 +418,7 @@ a.video-card:hover h3 { color: var(--signal); }
 .footer-brand .brand { min-height: 44px; font-size: 14px; line-height: 1.5; }
 .footer-brand .brand span { flex: none; }
 .footer-brand p { max-width: 24ch; margin-top: 8px; color: var(--body); font: 400 14px/1.6 var(--sans); }
-.footer-columns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.footer-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .footer-columns div { display: grid; align-content: start; }
 .footer-columns h2 { margin-bottom: 8px; color: var(--muted); font-size: 14px; font-weight: 600; }
 .footer-columns a { justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; }

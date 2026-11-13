@@ -6,7 +6,7 @@ import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './
 import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
 import { median, validFeed } from './youtube.js';
-import { emailIcon, footerExplore, footerProductsNote, githubUrl, linkedinUrl, skoolAboutUrl, skoolCommunityUrl, skoolPlansUrl, socialLinks, visiscanUrl, xUrl, youtubeSubscribeUrl } from './site-footer.js';
+import { emailIcon, footerExplore, githubUrl, linkedinUrl, skoolAboutUrl, skoolCommunityUrl, skoolPlansUrl, socialLinks, xUrl, youtubeSubscribeUrl } from './site-footer.js';
 import { topics } from './topics.js';
 import { validGithubRepositories } from './github-repositories.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
@@ -1006,7 +1006,6 @@ function App({ page = 'home' }) {
           <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p>{!sponsorsPage && <NotesSignup />}</div>
           <nav className="footer-columns" aria-label="Footer">
             <div><h2>Explore</h2>{footerExplore.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</div>
-            <div><h2>Products</h2><span>{footerProductsNote}</span><a href={visiscanUrl} target="_blank" rel="noreferrer">VisiScan</a></div>
             <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
             <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>
           </nav>
