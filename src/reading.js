@@ -91,7 +91,8 @@ document.body.append(banner);
 const choices = document.createElement('button');
 choices.type = 'button';
 choices.textContent = 'Privacy choices';
-document.querySelector('footer').append(choices);
+// Sits in the footer's legal row, after Terms, like the homepage.
+(document.querySelector('footer .footer-base div') ?? document.querySelector('footer')).append(choices);
 choices.addEventListener('click', () => {
   banner.hidden = false;
   banner.querySelector('button').focus();

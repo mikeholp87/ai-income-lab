@@ -110,6 +110,9 @@ footer.site-footer .social-icon{flex:none;width:16px;height:16px;fill:currentCol
 footer.site-footer .footer-base{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer.site-footer .footer-base p{margin:0}
 footer.site-footer .footer-base div{display:flex;flex-wrap:wrap;gap:0 24px}
+footer.site-footer .footer-base a,footer.site-footer .footer-base button{display:inline-flex;align-items:center;min-height:44px}
+footer.site-footer .footer-base button{padding:0;border:0;color:inherit;background:none;font:inherit;cursor:pointer}
+footer.site-footer .footer-base a:hover,footer.site-footer .footer-base button:hover{color:var(--signal)}
 @media(max-width:960px){footer.site-footer .footer-directory{grid-template-columns:minmax(0,1fr);gap:32px}}
 @media(max-width:640px){footer.site-footer .footer-columns{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}footer.site-footer .footer-base{flex-direction:column;align-items:flex-start;gap:8px}}
 
