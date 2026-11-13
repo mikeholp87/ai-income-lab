@@ -492,6 +492,11 @@ a.video-card:hover h3 { color: var(--signal); }
   .tool:only-child > img { height: auto; aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--line); }
   .repo-list { grid-template-columns: 1fr; }
   .repo-list li { min-height: 0; padding: 24px; }
+  /* Phones: one compact swipeable row of topic chips instead of a wrapped stack of pills. */
+  .topic-row { flex-wrap: nowrap; gap: 4px; margin-inline: -16px; padding-inline: 16px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .topic-row::-webkit-scrollbar { display: none; }
+  .topic-row a { flex: none; min-height: 44px; padding: 0 10px; border: 1px solid var(--line); background: transparent; font-size: 13px; font-weight: 500; white-space: nowrap; }
+  .topic-row a:hover, .topic-row a:focus-visible { color: var(--signal); border-color: var(--signal); }
   /* Phones: the six recent videos become a compact list, thumbnail left, title and date right. */
   .video-grid { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; }
   .video-card { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 6px 14px; align-content: start; }

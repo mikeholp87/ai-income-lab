@@ -359,7 +359,9 @@ test('the 3 s deadline returns the GIF and cancels the Airtable request', async 
   let returned = false;
   response.then(() => { returned = true; });
   // Let the token fingerprint and the lookup start before the clock moves.
-  for (let i = 0; i < 20 && !calls.length; i += 1) await new Promise(resolve => setImmediate(resolve));
+  // SubtleCrypto can take more than 20 turns on CI; abortSeen hangs if fetch never starts.
+  for (let i = 0; i < 500 && !calls.length; i += 1) await new Promise(resolve => setImmediate(resolve));
+  assert.equal(calls.length, 1);
   t.mock.timers.tick(2999);
   await Promise.resolve();
   assert.equal(returned, false);
