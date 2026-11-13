@@ -272,10 +272,10 @@ function FeaturedVideo({ video, playButtonRef }) {
           : <button ref={playButtonRef} type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
                 {...featuredThumbnail(video.id)}
-                sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 960px) calc(100vw - 48px), 604px"
                 onLoad={event => dropMissingMaxres(event.currentTarget)}
                 onError={event => swapToJpegThumbnail(event, video.id)}
-                alt="" width="1280" height="720" fetchPriority="high" decoding="async"
+                alt="" fetchPriority="high" decoding="async"
               />
               <span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
               {video.duration && <span className="duration">{video.duration}</span>}

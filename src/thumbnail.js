@@ -17,11 +17,16 @@ export function dropMissingMaxres(image) {
 }
 
 export function featuredThumbnail(id) {
-  if (thumbnail.videoId === id) return { src: thumbnail.src, srcSet: thumbnail.srcSet };
+  if (thumbnail.videoId === id) {
+    const width = Number(/-(\d+)\.webp$/.exec(thumbnail.src)?.[1]);
+    return { src: thumbnail.src, srcSet: thumbnail.srcSet, width, height: Math.round(width * 9 / 16) };
+  }
   // ponytail: optimize the featured build snapshot; new live uploads use YouTube until the next build.
   return {
     src: `https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp`,
     srcSet: `https://i.ytimg.com/vi_webp/${id}/sddefault.webp 640w, https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp 1280w`,
+    width: 1280,
+    height: 720,
   };
 }
 

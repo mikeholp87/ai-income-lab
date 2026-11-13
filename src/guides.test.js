@@ -506,6 +506,16 @@ test('every guide that embeds a video describes it in structured data and lists 
   }
 });
 
+test('n8n docs links use current deploy and build paths instead of redirected hosting, code and executions URLs', async () => {
+  const stale = /docs\.n8n\.io\/(?:hosting\/|code\/code-node\/|workflows\/executions\/)/;
+  for (const file of guides) {
+    assert.doesNotMatch(await read(`public/guides/${file}`), stale, file);
+  }
+  const selfHost = await read('public/guides/self-host-n8n.html');
+  assert.match(selfHost, /https:\/\/docs\.n8n\.io\/deploy\/host-n8n\/install-options\/install-with-npm"/);
+  assert.match(selfHost, /https:\/\/docs\.n8n\.io\/deploy\/host-n8n\/install-options\/install-with-docker"/);
+});
+
 test('llms-full.txt carries every guide and the pricing page, and pricing.md matches the plans on the page', async () => {
   const full = await read('public/llms-full.txt');
   for (const file of guides) assert.ok(full.includes(`/guides/${file}`), `${file}: run node scripts/llms-full.mjs`);
