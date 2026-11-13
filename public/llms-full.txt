@@ -53,7 +53,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [React YouTube feed tutorial: API, caching and fallbacks](https://www.ai-automation-station.com/guides/youtube-feed.html): Build a YouTube feed in React with server-side API access, cached video data, accessible cards and failure checks when a request fails.
 - [React consent tracking: Google Analytics and Meta](https://www.ai-automation-station.com/guides/consent-tracking.html): Add consent tracking to a React site for Google Analytics and Meta: store the choice, guard optional events, and test opt-in and opt-out.
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
-- [Codex desktop app for Linux: download Codex and the CLI](https://www.ai-automation-station.com/guides/codex-on-linux.html): Download Codex on Linux: install the desktop preview or the Codex CLI with official commands, sign in with ChatGPT, and fix errors.
+- [Codex on Linux: download and set up the desktop app](https://www.ai-automation-station.com/guides/codex-on-linux.html): Download Codex on Linux: install the desktop app preview with official packages, sign in with ChatGPT, and fix common setup errors.
 - [Apify Agent Skills: Scrape Leads in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.
 - [Claude Code tutorial for beginners: install and use it](https://www.ai-automation-station.com/guides/claude-code-for-beginners.html): Claude Code tutorial for beginners: install on Mac, Windows or Linux, sign in, learn permissions and CLAUDE.md, and make one small change you can check.
 - [HeyGen AI avatar tutorial: create your first video](https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html): HeyGen AI avatar tutorial: choose stock or custom avatars, record consent, refine your script and voice, check plan limits, and plan API automation.
@@ -291,9 +291,9 @@ Check that your TV runs Android TV or Google TV, turn on USB debugging, paste th
 https://www.ai-automation-station.com/guides/codex-cli.html (updated 2026-11-13)
 Codex CLI is OpenAI’s coding agent for the terminal. On Mac or Linux, install it with curl -fsSL https://chatgpt.com/codex/install.sh | sh. On Windows, use the PowerShell installer below. npm (npm install -g @openai/codex) and Homebrew also work. Then run codex in a project folder and choose Sign in with ChatGPT.
 
-### Codex desktop app for Linux: download Codex and the CLI
+### Codex on Linux: download and set up the desktop app
 https://www.ai-automation-station.com/guides/codex-on-linux.html (updated 2026-11-13)
-For Codex on Linux, use the official CLI or the Codex desktop Linux preview, and choose a supported system from OpenAI’s installation guide. Install one client and finish a small task before adding anything else.
+Install OpenAI’s Codex desktop preview on a supported Linux distribution, then sign in with ChatGPT. For the terminal CLI on Mac, Windows or Linux, follow the Codex CLI install guide.
 
 ### Internal Link Audit with Codex: A Reviewed SEO Workflow
 https://www.ai-automation-station.com/guides/codex-seo-workflow.html (updated 2026-11-11)

@@ -429,6 +429,23 @@ test('every tool listed on a watch page has a link, preferring the affiliate one
   assert.deepEqual(toolLink('Claude Code'), { url: 'https://claude.ai', affiliate: false }, 'Claude is not an affiliate');
   assert.equal(toolLink('Gemini 3.1 Pro').affiliate, true);
   assert.equal(toolLink('GNU Make').affiliate, false);
+  assert.equal(toolLink('Gemini Code Assist').url, 'https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals');
+  assert.equal(toolLink('Google Cloud Code Assist').url, toolLink('Gemini Code Assist').url);
+  assert.equal(toolLink('Orchids').url, null);
+});
+
+test('Code Assist and Orchids watch pages state current tool status', () => {
+  const deprecation = 'https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals';
+  for (const id of ['C5wEcJRo_VA', 'ud2su6XhtKw']) {
+    const html = renderWatch(uploads.find(video => video.id === id), { videos: uploads });
+    assert.match(html, new RegExp(deprecation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), id);
+    assert.doesNotMatch(html, /codeassist\.google/, id);
+    assert.match(html, /deprecated Gemini Code Assist for individuals/, id);
+  }
+  const orchids = renderWatch(uploads.find(video => video.id === 'ZlD4Z6UKS8o'), { videos: uploads });
+  assert.doesNotMatch(orchids, /orchids\.app/);
+  assert.match(orchids, /503 DEPLOYMENT_PAUSED response as of November 2026/);
+  assert.match(orchids, />Orchids</);
 });
 
 test('every watch page lists the tools used', () => {

@@ -235,7 +235,7 @@ const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
 const toolItem = tool => {
   const link = toolLink(tool);
-  return link ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
+  return link?.url ? `<a href="${escape(link.url)}" target="_blank" rel="${link.affiliate ? 'sponsored noopener' : 'noopener'}">${escape(tool)} ↗</a>` : escape(tool);
 };
 // Under a watch page's tool list: each affiliate tool's tools-page card, and the affiliate disclosure.
 const toolsPageLink = tools => {
@@ -360,7 +360,7 @@ export const guides = [
   [/(?=.*\bcodex\b)(?=.*claude code)/i, '/guides/claude-code-vs-codex.html', 'Codex vs Claude Code: how I use both and route tasks'],
   [/claude code/i, '/guides/claude-code-for-beginners.html', 'Claude Code tutorial for beginners: install and use it'],
   [/claude (opus|sonnet|haiku|fable|mythos)/i, '/guides/claude-models-compared.html', 'Claude Opus vs Sonnet vs Haiku vs Fable: which to use'],
-  [/codex.*linux|linux.*codex/i, '/guides/codex-on-linux.html', 'Codex on Linux: install Codex CLI and the desktop app'],
+  [/codex.*linux|linux.*codex/i, '/guides/codex-on-linux.html', 'Codex on Linux: download and set up the desktop app'],
   [/\bcodex\b/i, '/guides/codex-workflow.html', 'Codex tutorial: make and verify a small code change'],
   [/make\.com/i, '/guides/make-first-automation.html', 'Make.com Google Sheets tutorial: filter approved requests'],
   [/voice agent|phone agent/i, '/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'],
