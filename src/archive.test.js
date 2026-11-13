@@ -708,6 +708,17 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   assert.match(html, /<form class="notes" method="post" data-subscribe data-placement="watch_end">/);
 });
 
+test('watch pages whose titles match a narrower guide still link the setup or overview guide', () => {
+  const cost = uploads.find(video => video.id === 'tzSGF7gu6EE');
+  const make = uploads.find(video => video.id === 'gibc7oWLCn4');
+  const costHtml = renderWatch(cost);
+  const makeHtml = renderWatch(make);
+  assert.match(costHtml, /href="\/guides\/9router-setup.html"><small>Written guide<\/small>9Router setup: install, port 20128, updates and providers/);
+  assert.doesNotMatch(costHtml, /href="\/guides\/9router-cost-tracking-fallbacks.html"/);
+  assert.match(makeHtml, /href="\/guides\/ai-automation.html"><small>Written guide<\/small>What Is AI Automation\? Examples, Tools and a First Build/);
+  assert.doesNotMatch(makeHtml, /href="\/guides\/make-business-automation-examples.html"/);
+});
+
 test('guide routing keeps specific tools ahead of broad coding-agent matches', () => {
   const route = title => guides.find(([pattern]) => pattern.test(title))?.[1];
   assert.equal(route('This Claude Code Hack Saves Token Usage'), '/guides/rtk-token-savings-claude-code.html');

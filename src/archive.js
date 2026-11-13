@@ -398,6 +398,8 @@ const watchGuideLinks = {
   ncg6F27PYt0: ['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task'],
   Ip8KBwDixJs: ['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access'],
   FBlN3qWR9kg: ['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)'],
+  tzSGF7gu6EE: ['/guides/9router-setup.html', '9Router setup: install, port 20128, updates and providers'],
+  gibc7oWLCn4: ['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
 };
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.

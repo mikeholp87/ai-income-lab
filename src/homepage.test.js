@@ -343,6 +343,13 @@ test('plan cards show the verified monthly and annual prices and report the chos
   assert.match(jsx, /Plans from \$29\/month or \$290\/year\. Cancel anytime\./);
 });
 
+test('the featured poster is sized for the desktop hero slot and is not lazy-loaded', () => {
+  const featured = jsx.slice(jsx.indexOf('function FeaturedVideo'), jsx.indexOf('function VideoCard'));
+  assert.match(featured, /sizes="\(max-width: 640px\) calc\(100vw - 32px\), \(max-width: 960px\) calc\(100vw - 48px\), 604px"/);
+  assert.match(featured, /fetchPriority="high"/);
+  assert.doesNotMatch(featured, /loading=/);
+});
+
 test('the hero heading names the community in both variants', () => {
   assert.equal(count(jsx, '<h1><span className="hero-brand">AI Income Lab:</span> '), 2);
   assert.match(css, /\.hero h1 \.hero-brand \{/);
