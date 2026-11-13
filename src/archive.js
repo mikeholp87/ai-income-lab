@@ -278,6 +278,15 @@ export function relatedVideos(video, videos, count = 4) {
     .slice(0, count).map(({ other }) => other);
 }
 
+// Older/newer neighbours by upload date. Title-word related lists leave some watch pages with no inbound link,
+// so this chain gives every embeddable watch page at least one link from its neighbours.
+export function neighbourVideos(video, videos) {
+  const list = videos.filter(other => other.embeddable).sort((a, b) => b.published.localeCompare(a.published));
+  const at = list.findIndex(other => other.id === video.id);
+  return at === -1 ? {} : { newer: list[at - 1], older: list[at + 1] };
+}
+const neighbourNav = ({ newer, older }) => newer || older ? `<nav class="pager mono" aria-label="More videos">${older ? `<a href="/watch/${older.id}" rel="prev">← Older: ${escape(videoHeading(older))}</a>` : ''}${newer ? `<a href="/watch/${newer.id}" rel="next">Newer: ${escape(videoHeading(newer))} →</a>` : ''}</nav>` : '';
+
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
   [/apify agent skills in claude code/i, '/guides/apify-agent-skills.html', 'Apify Agent Skills: Scrape Leads in Cursor'],
@@ -533,6 +542,7 @@ ${transcript.slice(0, openParagraphs).map(paragraph => `<p>${escape(paragraph)}<
 <form class="notes" method="post" data-subscribe data-placement="watch_end"><p><strong>Not ready to join?</strong> Get the weekly build notes: new guides and tested builds in one short email.</p><div><label for="notes-email">Email address</label><input id="notes-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"><input class="trap" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Subscribe</button></div><p class="notes-status" role="status"></p></form>${related.length ? `
 <h2>You may also like</h2>
 ${relatedList(related)}` : ''}
+${neighbourNav(neighbourVideos(video, videos))}
 </main>
 <script>${playerScript}</script>
 <footer><a href="/videos">Browse all videos</a><a href="/start-here.html">Choose your first build</a><a href="/privacy.html">Privacy</a></footer>

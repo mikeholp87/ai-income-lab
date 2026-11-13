@@ -826,3 +826,14 @@ test('watch pages declare their language and keywords in VideoObject data', () =
   assert.equal(video.inLanguage, 'en');
   assert.match(video.keywords, /^n8n/);
 });
+
+test('every embeddable watch page links to its older and newer neighbour', () => {
+  const v = (id, published, embeddable = true) => ({ id, title: `Video ${id}`, published, embeddable });
+  const videos = [v('aaaaaaaaaaa', '2026-01-01T00:00:00Z'), v('bbbbbbbbbbb', '2026-02-01T00:00:00Z'), v('xxxxxxxxxxx', '2026-02-15T00:00:00Z', false), v('ccccccccccc', '2026-03-01T00:00:00Z')];
+  const nav = html => html.match(/<nav class="pager mono" aria-label="More videos">.*?<\/nav>/s)[0];
+  const middle = nav(renderWatch(videos[1], { videos }));
+  assert.match(middle, /href="\/watch\/aaaaaaaaaaa" rel="prev"/);
+  assert.match(middle, /href="\/watch\/ccccccccccc" rel="next"/);
+  assert.doesNotMatch(middle, /xxxxxxxxxxx/);
+  assert.doesNotMatch(nav(renderWatch(videos[0], { videos })), /rel="prev"/);
+});
