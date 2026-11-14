@@ -19,7 +19,7 @@ export async function GET(request) {
   const reply = (data, status = 200) => Response.json({ ...data, websub }, { status });
   // The feed only labels the run; the channel counts need the rebuild even when it is down.
   const feed = await fetch(feedUrl, { signal: AbortSignal.timeout(8000) }).catch(() => null);
-  const newest = feed?.ok ? newestUploadId(await feed.text()) : null;
+  const newest = feed?.ok ? newestUploadId(await feed.text().catch(() => '')) : null;
   const newUpload = newest ? !uploads.some(video => video.id === newest) : null;
   if (!process.env.DEPLOY_HOOK_URL) return reply({ error: 'DEPLOY_HOOK_URL is not set', newest, newUpload }, 500);
   const hook = await fetch(process.env.DEPLOY_HOOK_URL, { method: 'POST', signal: AbortSignal.timeout(8000) }).catch(() => null);

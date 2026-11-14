@@ -51,6 +51,21 @@ test('the guides hub links, lists and describes every guide', async () => {
   assert.match(await read('public/sitemap.xml'), /<loc>https:\/\/www.ai-automation-station.com\/guides.html<\/loc>/);
 });
 
+test('guide links to /videos topics and /watch pages resolve', async () => {
+  const { topicBySlug } = await import('./topics.js');
+  const { uploads } = await import('./uploads-snapshot.js');
+  const ids = new Set(uploads.map(video => video.id));
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, slug] of html.matchAll(/href="\/videos\/([^"#?/]+)"/g)) {
+      const topic = topicBySlug(slug);
+      assert.ok(topic || /^[1-9]\d{0,3}$/.test(slug), `${file} links to unknown /videos/${slug}`);
+      if (topic) assert.ok(uploads.some(video => topic.pattern.test(video.title)), `${file} links to empty topic ${slug}`);
+    }
+    for (const [, id] of html.matchAll(/href="\/watch\/([A-Za-z0-9_-]{11})/g)) assert.ok(ids.has(id), `${file} links to unknown /watch/${id}`);
+  }
+});
+
 test('static pages close the mobile menu after a choice or Escape', async () => {
   const js = await read('public/theme.js');
   assert.match(js, /\.nav-mobile nav a/);

@@ -19,14 +19,22 @@ async function setup(t) {
   return { ...(await import(`../api/youtube-push.js?test=${encodeURIComponent(t.name)}`)), hooks };
 }
 
-test('the hub verification echoes the challenge for our channel feed only', async t => {
-  const { GET } = await setup(t);
-  const verify = (topic, mode = 'subscribe') => GET(new Request(`${callback}?${new URLSearchParams({ 'hub.mode': mode, 'hub.topic': topic, 'hub.challenge': 'abc123', 'hub.lease_seconds': '864000' })}`));
+test('the hub verification echoes the challenge for our own subscription to our channel feed only', async t => {
+  const { GET, callbackUrl, subscribe, hooks } = await setup(t);
+  const keyed = callbackUrl('hub-secret');
+  const verify = (topic, mode = 'subscribe', url = keyed) => GET(new Request(`${url}&${new URLSearchParams({ 'hub.mode': mode, 'hub.topic': topic, 'hub.challenge': 'abc123', 'hub.lease_seconds': '864000' })}`));
   const ok = await verify(feedUrl);
   assert.equal(ok.status, 200);
   assert.equal(await ok.text(), 'abc123');
   assert.equal((await verify('https://www.youtube.com/feeds/videos.xml?channel_id=someone-else')).status, 404);
   assert.equal((await verify(feedUrl, 'publish')).status, 404);
+  // Anyone can ask the hub to unsubscribe or resubscribe our callback with their own secret; neither may be confirmed.
+  assert.equal((await verify(feedUrl, 'unsubscribe')).status, 404);
+  assert.equal((await verify(feedUrl, 'subscribe', `${callback}?k=`)).status, 404);
+  assert.equal((await verify(feedUrl, 'subscribe', callbackUrl('attacker-secret'))).status, 404);
+  t.mock.method(globalThis, 'fetch', async (input, init = {}) => { hooks.push([String(input), String(init.body)]); return new Response(null, { status: 202 }); });
+  assert.equal(await subscribe('hub-secret'), 202);
+  assert.equal(new URLSearchParams(hooks.at(-1)[1]).get('hub.callback'), keyed);
 });
 
 test('a signed notification for a new upload triggers one rebuild', async t => {

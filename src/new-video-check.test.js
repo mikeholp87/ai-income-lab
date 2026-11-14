@@ -37,7 +37,7 @@ test('the site still rebuilds daily without a new upload, so the channel counts 
   assert.deepEqual(hooks, ['POST']);
   assert.equal(subscriptions.length, 1);
   assert.equal(subscriptions[0]['hub.mode'], 'subscribe');
-  assert.equal(subscriptions[0]['hub.callback'], 'https://www.ai-automation-station.com/api/youtube-push');
+  assert.match(subscriptions[0]['hub.callback'], /^https:\/\/www\.ai-automation-station\.com\/api\/youtube-push\?k=[0-9a-f]{32}$/);
   assert.equal(subscriptions[0]['hub.topic'], 'https://www.youtube.com/feeds/videos.xml?channel_id=UC8_eYAfJcUgI5BV3hg9U2cw');
   assert.equal(subscriptions[0]['hub.secret'], 'hub-secret');
 });
@@ -50,6 +50,19 @@ test('a YouTube feed outage does not skip the daily rebuild', async t => {
     return new Response('down', { status: 500 });
   });
   assert.deepEqual(await (await call(GET)).json(), { rebuild: true, newest: null, newUpload: null, websub: 202 });
+  assert.deepEqual(hooks, ['POST']);
+});
+
+test('a feed body that fails while downloading does not skip the daily rebuild', async t => {
+  const { GET, hooks } = await setup(t, '');
+  globalThis.fetch.mock.mockImplementation(async (input, init = {}) => {
+    if (String(input).startsWith('https://hooks.test/')) { hooks.push(init.method); return new Response('{}', { status: 201 }); }
+    if (String(input).startsWith('https://pubsubhubbub.appspot.com/')) return new Response(null, { status: 202 });
+    return new Response(new ReadableStream({ pull(controller) { controller.error(new Error('body timeout')); } }));
+  });
+  const response = await call(GET);
+  assert.equal(response.status, 202);
+  assert.deepEqual(await response.json(), { rebuild: true, newest: null, newUpload: null, websub: 202 });
   assert.deepEqual(hooks, ['POST']);
 });
 

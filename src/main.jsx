@@ -255,12 +255,18 @@ function swapToJpegThumbnail(event, id) {
   image.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 
-function FeaturedVideo({ video, playButtonRef }) {
-  const [playing, setPlaying] = useState(false);
+// The play button unmounts when the player starts; without this, keyboard focus falls back to the top of the page.
+const focusOnMount = element => element?.focus();
+
+function FeaturedVideo({ video: latest, playButtonRef }) {
+  // The live feed can replace the build snapshot's newest video after a visitor presses play; keep playing what they chose.
+  const [playingVideo, setPlayingVideo] = useState(null);
+  const playing = Boolean(playingVideo);
+  const video = playingVideo ?? latest;
   if (!video) return <div className="player"><div className="player-screen is-loading" /><div className="player-meta"><span className="skeleton-line" /><span className="skeleton-line short" /></div></div>;
 
   function play() {
-    setPlaying(true);
+    setPlayingVideo(video);
     trackEvent('Video Played', { placement: 'latest', video_id: video.id });
   }
 
@@ -268,7 +274,7 @@ function FeaturedVideo({ video, playButtonRef }) {
     <article className="player">
       <div className="player-screen">
         {playing
-          ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+          ? <iframe ref={focusOnMount} src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
           : <button ref={playButtonRef} type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
                 {...featuredThumbnail(video.id)}

@@ -168,6 +168,7 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   const ids = ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk'];
   let requests = 0;
   t.mock.method(globalThis, 'fetch', async input => {
+    if (String(input).startsWith('https://www.youtube.com/feeds/')) return new Response('<feed></feed>');
     requests++;
     if (new URL(input).pathname.endsWith('/playlistItems')) return Response.json({ items: ids.map(id => item(id, `Video ${id}`, '2026-09-01T00:00:00Z')) });
     return Response.json({ items: ids.map((id, index) => ({ id, status: { privacyStatus: index === 2 ? 'private' : 'public', embeddable: index === 0 } })) });
@@ -236,6 +237,17 @@ test('an upload newer than the inventory gets its watch page after one early ref
   assert.equal(watch.status, 200);
   assert.match(await watch.text(), /youtube-nocookie.com\/embed\/newupload01/);
   assert.equal(calls(), 4, 'one early refresh');
+});
+
+test('an upload published just after a refresh gets its watch page from the feed instead of a cached 404', async t => {
+  const { calls } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const feed = '<feed><entry><yt:videoId>newupload03</yt:videoId><title>Brand new upload</title><published>2026-10-10T00:00:00+00:00</published><media:group><media:description>A new video.</media:description><media:community><media:statistics views="3"/></media:community></media:group></entry></feed>';
+  const fallback = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', async (input, init) => String(input).startsWith('https://www.youtube.com/feeds/') ? new Response(feed) : fallback(input, init));
+  const watch = await GET(new Request('https://www.ai-automation-station.com/watch/newupload03'));
+  assert.equal(watch.status, 200);
+  assert.match(await watch.text(), /youtube-nocookie.com\/embed\/newupload03/);
+  assert.equal(calls(), 2, 'no Data API quota spent');
 });
 
 test('an unknown id after a successful refresh is a briefly cached 404, and repeats do not refetch', async t => {

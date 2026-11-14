@@ -6,6 +6,7 @@ export function addCopyButtons(doc, clipboard) {
     button.className = 'copy';
     button.textContent = 'Copy';
     button.setAttribute('aria-live', 'polite');
+    let reset;
     button.addEventListener('click', async () => {
       try {
         await clipboard.writeText(block.textContent);
@@ -13,7 +14,8 @@ export function addCopyButtons(doc, clipboard) {
       } catch {
         button.textContent = 'Copy failed: select the text';
       }
-      setTimeout(() => { button.textContent = 'Copy'; }, 2000);
+      clearTimeout(reset);
+      reset = setTimeout(() => { button.textContent = 'Copy'; }, 2000);
     });
     block.before(button);
   }

@@ -118,14 +118,15 @@ export async function GET(request) {
     // ?t=98 comes from a chapter link or a Key Moments result; cue the player there.
     const start = /^\d{1,5}$/.test(url.searchParams.get('t') ?? '') ? Number(url.searchParams.get('t')) : 0;
     if (video?.embeddable) return html(renderWatch(video, { videos: memo.videos, start }), 200, cache);
-    // The inventory only lists this channel's public videos. If it was refreshed in the last 10 minutes and still lacks
-    // the id, the video is deleted, private or someone else's: 404, never a redirect to an arbitrary YouTube video.
-    if (!video && Date.now() - memo.at < earlyRefreshGap) return notFound(unknownCache);
+    // An upload published after the last refresh is in the quota-free feed before the inventory.
     if (!video) {
       await addFromFeed();
       video = find();
       if (video) return html(renderWatch(video, { videos: memo.videos, start }), 200, 'public, max-age=300, s-maxage=600');
     }
+    // The inventory only lists this channel's public videos. If it was refreshed in the last 10 minutes and neither it
+    // nor the feed has the id, the video is deleted, private or someone else's: 404, never a redirect to an arbitrary YouTube video.
+    if (!video && Date.now() - memo.at < earlyRefreshGap) return notFound(unknownCache);
     // No refresh was possible (rate limited, backing off, no key or failed) and the feed lacks it, or embedding is off: send the visitor to
     // YouTube instead of a 404. Temporary, so the watch page takes over once the inventory knows the video.
     return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': video ? unknownCache : 'public, max-age=0, s-maxage=60' } });

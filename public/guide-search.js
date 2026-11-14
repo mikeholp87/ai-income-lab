@@ -20,7 +20,7 @@ const all = sections.flatMap(section => section.cards);
 for (const entry of all) Object.assign(entry, { home: entry.card.parentElement, published: entry.card.dataset.published ?? '' });
 const perPage = 15;
 const params = new URLSearchParams(location.search);
-let page = Number(params.get('page')) || 1;
+let page = Math.floor(Number(params.get('page'))) || 1;
 // "By topic" keeps the topic sections; "Newest" and "Oldest" move every card into one list ordered by publish date.
 const sorts = { topic: 'By topic', newest: 'Newest', oldest: 'Oldest' };
 let sort = Object.hasOwn(sorts, params.get('sort')) ? params.get('sort') : 'topic';
