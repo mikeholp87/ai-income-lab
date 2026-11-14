@@ -273,7 +273,7 @@ test('OpenCode, Gemini, Hostinger and Apify cards link existing guides', async (
     { title: 'OpenCode Stripe Billing Build: A SaaS Case Study', url: `${siteOrigin}/guides/opencode-stripe-billing-saas.html`, modified: '2026-11-12' },
     { title: 'Build a Chat Web App in Google AI Studio, No Code', url: `${siteOrigin}/guides/google-ai-studio-chat-app.html`, modified: '2026-11-12' },
     { title: 'How to install OpenClaw: local, VPS or hosted, safely', url: `${siteOrigin}/guides/install-openclaw.html`, modified: '2026-11-07' },
-    { title: 'Apify Agent Skills: Scrape Leads in Cursor', url: `${siteOrigin}/guides/apify-agent-skills.html`, modified: '2026-11-12' },
+    { title: 'Apify agent skills setup in Cursor', url: `${siteOrigin}/guides/apify-agent-skills.html`, modified: '2026-11-12' },
   ];
   const html = renderToolsPage({ uploads, guides });
   const card = name => {

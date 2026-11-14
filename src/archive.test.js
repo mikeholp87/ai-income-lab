@@ -640,7 +640,7 @@ test('the page sitemap lists topic pages that have videos and drops stale ones',
 test('topic pages link the written guides on the same subject', () => {
   const videos = [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true }];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it<\/a>, <a href="\/guides\/claude-code-task-manager.html">Claude Code Task Manager: Scope, Checks and Packaging<\/a>, <a href="\/guides\/cleanyourtv-claude-code.html">CleanYourTV with Claude Code: TCL Setup and Risks<\/a>, <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a>/);
+  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial: install and first task<\/a>, <a href="\/guides\/claude-code-task-manager.html">Claude Code Task Manager: Scope, Checks and Packaging<\/a>, <a href="\/guides\/cleanyourtv-claude-code.html">CleanYourTV with Claude Code: TCL Setup and Risks<\/a>, <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a>/);
   assert.match(html, /<a href="\/guides\/rtk-token-savings-claude-code.html">RTK Token Savings: Install, Hooks and Checks<\/a>/);
   assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: (?:<a [^>]+>[^<]+<\/a>, ){3,}and <a /);
   assert.match(renderArchive(videos, 1, topicBySlug('new-models')), /Written guides: <a href="\/guides\/claude-models-compared.html">/);
@@ -725,7 +725,7 @@ test('watch pages whose titles match a narrower guide still link the setup or ov
   const make = uploads.find(video => video.id === 'gibc7oWLCn4');
   const costHtml = renderWatch(cost);
   const makeHtml = renderWatch(make);
-  assert.match(costHtml, /href="\/guides\/9router-setup.html"><small>Written guide<\/small>9Router setup: install, port 20128, updates and providers/);
+  assert.match(costHtml, /href="\/guides\/9router-setup.html"><small>Written guide<\/small>9Router setup and update command/);
   assert.doesNotMatch(costHtml, /href="\/guides\/9router-cost-tracking-fallbacks.html"/);
   assert.match(makeHtml, /href="\/guides\/ai-automation.html"><small>Written guide<\/small>What Is AI Automation\? Examples, Tools and a First Build/);
   assert.doesNotMatch(makeHtml, /href="\/guides\/make-business-automation-examples.html"/);
