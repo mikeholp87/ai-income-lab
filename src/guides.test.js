@@ -278,9 +278,9 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-11-12</);
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
-    ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
-    ['codex-on-linux', 'Codex on Linux: download and set up'],
-    ['codex-usage-limits', 'Codex usage limits: check usage'],
+    ['claude-code-for-beginners', 'Claude Code tutorial: install and first'],
+    ['codex-on-linux', 'Codex on Linux: desktop app and Linux'],
+    ['codex-usage-limits', 'Codex usage limits by ChatGPT plan'],
     ['vapi-voice-agent-tutorial', 'Vapi AI tutorial: '],
   ]) {
     const html = await read(`public/guides/${file}.html`);
