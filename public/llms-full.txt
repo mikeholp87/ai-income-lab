@@ -55,6 +55,16 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.
+- [Free Claude Code vs OpenCode vs Codex: What Broke and What Worked](https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html): Why I moved from Free Claude Code to OpenCode and Codex while building an AI visibility app: API errors, a 401 caused by startup order, and free models.
+- [OpenCode Desktop App: Build a Habit Tracker With React and Electron](https://www.ai-automation-station.com/guides/opencode-desktop-habit-tracker-electron.html): Install the OpenCode desktop app on Debian, build a habit tracker in React and Electron with free models, fix a white screen and add local storage.
+- [Lovable Landing Page: Cal.com Booking, Stripe and a Custom Domain](https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html): Run one landing-page prompt in Replit, Lovable and Orchids, then take Lovable live with Cal.com, Supabase, Stripe and a domain. Stripe was partly done.
+- [Nano Banana in Google AI Studio: Free Images and a Make.com Quota Error](https://www.ai-automation-station.com/guides/nano-banana-gemini-images-make.html): Generate images with Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app, then see why my Make.com Gemini module hit a quota error.
+- [Build a Web App in Replit: Viral Post Genie, Errors and Limits](https://www.ai-automation-station.com/guides/replit-viral-post-genie-build.html): Build a Facebook post generator in Replit’s AI agent: the prompt, OpenAI key errors and fixes, thread format, history, Google sign-in and free-plan limit.
+- [Apollo B2B Lead Lists and the Apify Apollo Scraper](https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html): Filter B2B leads in Apollo, save lists, review a cold email sequence, and see how an Apify actor exports Apollo searches to CSV. Includes the plan limits.
+- [Self-Host n8n on Hostinger: KVM Plan, Template and First Import](https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html): Set up n8n on a Hostinger VPS: pick a KVM plan, choose the n8n template with 100 workflows, open n8n, claim the license key and import a template.
+- [Manus AI First Test: Calendar, Gmail and an Email Autoresponder](https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html): My first Manus test on the free Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder and switch it to Gemini. What failed.
+- [Install OpenClaw (Moltbot) on Emergent: Setup and WhatsApp Snag](https://www.ai-automation-station.com/guides/emergent-openclaw-install.html): Install OpenClaw, also called Moltbot, inside Emergent with its install script, sign in with Google and open the control UI. WhatsApp did not connect.
+- [Apify Agent Skills: Scrape Klook Hotels With Claude Code](https://www.ai-automation-station.com/guides/apify-klook-hotel-scraper-claude-code.html): Install Apify agent skills in Claude Code, scrape Klook hotels for a travel site, and fix wrong results and empty prices. Sponsored by Apify, Feb 2026.
 - [vidIQ MCP in Claude: Channel Audit and Idea Checks](https://www.ai-automation-station.com/guides/vidiq-mcp-claude-channel-audit.html): Connect the vidIQ MCP to Claude Desktop, check a video idea, audit a YouTube channel and compare competitors with real data. Includes a wrong-channel fix.
 - [Syllaby First Test: A Faceless Video From Idea to YouTube](https://www.ai-automation-station.com/guides/syllaby-faceless-video-first-test.html): My first live Syllaby run on a free trial: pick style, voice and music, script a one-minute video, render it in about three minutes, publish to YouTube.
 - [Syllaby Bulk Scheduler: A Week of Faceless Videos at Once](https://www.ai-automation-station.com/guides/syllaby-bulk-scheduler-faceless-videos.html): Use Syllaby to make faceless videos, edit styles and voices, and bulk-schedule 7 to 30 days of posts from a content calendar. August 2025 notes.
@@ -321,6 +331,46 @@ A first live test of Syllaby on a free trial. Choose a faceless video, set style
 ### vidIQ MCP in Claude: Channel Audit and Idea Checks
 https://www.ai-automation-station.com/guides/vidiq-mcp-claude-channel-audit.html (updated 2026-11-15)
 A May 2026 setup of the vidIQ MCP in Claude Desktop: add a connector with the vidIQ MCP server URL, then run video idea validation, a full channel audit and a competitor breakdown using real data. The first channel health check returned the wrong channel until the channel ID was pasted in. The video was not sponsored by vidIQ.
+
+### Apify Agent Skills: Scrape Klook Hotels With Claude Code
+https://www.ai-automation-station.com/guides/apify-klook-hotel-scraper-claude-code.html (updated 2026-11-15)
+A February 2026 sponsored build: install Apify agent skills with npx skills add apify/agent-skills, ask Claude Code to scrape Klook for luxury hotels in Koh Samui, pass the direct Klook URL after Disney results, add check-in dates to get prices, and let Claude write a Playwright scraper that saved about 49 hotels. Check a site’s terms before scraping.
+
+### Install OpenClaw (Moltbot) on Emergent: Setup and WhatsApp Snag
+https://www.ai-automation-station.com/guides/emergent-openclaw-install.html (updated 2026-11-15)
+A February 2026 walkthrough of installing OpenClaw (Moltbot) inside Emergent: click the Moltbot chip, run the install script, sign in with Google, choose the preconfigured Opus 4.5 and open the control UI. Publishing the server cost 50 credits a month as stated. Skills were installed, but WhatsApp failed with a channel config schema unavailable error.
+
+### Manus AI First Test: Calendar, Gmail and an Email Autoresponder
+https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html (updated 2026-11-15)
+A January 2026 first test of Manus on the free Manus 1.6 Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder with a Python script, add OpenAI and Gemini keys and switch to Gemini. A calendar delete did not work and a SaaS build was too complex for Lite.
+
+### Self-Host n8n on Hostinger: KVM Plan, Template and First Import
+https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html (updated 2026-11-15)
+An October 2025 walkthrough of n8n on a Hostinger VPS: choose a KVM plan (KVM 1 was $5 a month), a one-month term, a nearby server location and the n8n template with 100 workflows ($10.69 first month), set a root password, open n8n with Manage App, claim the free license key and import a template. Backups and hardening were not covered.
+
+### Apollo B2B Lead Lists and the Apify Apollo Scraper
+https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html (updated 2026-11-15)
+A September 2025 Apollo walkthrough: filter verified emails, founder and CEO titles and company size to go from about 2 million people to 3,700, save lists 25 at a time on the free plan, export up to thousands of leads with an Apify Apollo actor at about $1.20 per 1,000, and review an email sequence and deliverability settings. Cold-email laws and terms were not covered.
+
+### Build a Web App in Replit: Viral Post Genie, Errors and Limits
+https://www.ai-automation-station.com/guides/replit-viral-post-genie-build.html (updated 2026-11-15)
+An August 2025 build of a Facebook post generator in Replit: paste a ChatGPT-written prompt, add an OpenAI key, fix max-tokens, JSON-format and 500 errors by switching to GPT-4, add a numbered thread format, demo popup, images, history and Google sign-in on a temporary Postgres database. The starter plan limit stopped the work and deploying needs a paid plan.
+
+### Nano Banana in Google AI Studio: Free Images and a Make.com Quota Error
+https://www.ai-automation-station.com/guides/nano-banana-gemini-images-make.html (updated 2026-11-15)
+An August 2025 tour of Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app: character consistency, intelligent editing and image merging, with images generating in under ten seconds. A Make.com Gemini module failed with an exceeded quota error because billing was not linked on the Google Cloud project.
+
+### Lovable Landing Page: Cal.com Booking, Stripe and a Custom Domain
+https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html (updated 2026-11-15)
+A July 2025 build of an agency landing page: one ChatGPT prompt run in Replit, Lovable and Orchids, then in Lovable add a Cal.com booking button and popup, Supabase, Stripe products and a domain, and publish in under an hour. Stripe was only partly working: page prices differed from Stripe products and buttons still led to account creation.
+
+### OpenCode Desktop App: Build a Habit Tracker With React and Electron
+https://www.ai-automation-station.com/guides/opencode-desktop-habit-tracker-electron.html (updated 2026-11-15)
+A May 2026 build in the OpenCode desktop app on Debian: pick a free Zen model, use plan mode, choose React and Electron for a daily habit tracker, switch to MiniMax M2.5 for speed, fix a white screen by setting a relative Vite base and add local storage so habits persist.
+
+### Free Claude Code vs OpenCode vs Codex: What Broke and What Worked
+https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html (updated 2026-11-15)
+A May 2026 account of moving from Free Claude Code to OpenCode and Codex while building a local Next.js AI visibility app: repeated API request errors, slow replies and a 401 caused by starting the proxy and Claude Code in the wrong order. OpenCode answered quickly on free models and Codex at about $20 a month was preferred over Claude Pro. One person’s experience, not a benchmark.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)

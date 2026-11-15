@@ -403,6 +403,16 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  ga22WZgoj9M: [['/guides/free-claude-code-vs-opencode-codex.html', 'Follow the Free Claude Code vs OpenCode comparison']],
+  '7v_675nO7nM': [['/guides/opencode-desktop-habit-tracker-electron.html', 'Follow the OpenCode desktop app habit tracker build']],
+  ZlD4Z6UKS8o: [['/guides/lovable-landing-page-calcom-stripe-domain.html', 'Follow the Lovable landing page build']],
+  QlL87_URHZ8: [['/guides/nano-banana-gemini-images-make.html', 'Follow the Nano Banana image generation tutorial']],
+  mKsPxDi7uM0: [['/guides/replit-viral-post-genie-build.html', 'Follow the Replit Viral Post Genie build']],
+  YCjvrNI1pa4: [['/guides/apollo-apify-b2b-lead-list.html', 'Follow the Apollo and Apify lead list tutorial']],
+  wZ76glbPIPc: [['/guides/hostinger-n8n-vps-setup.html', 'Follow the n8n on Hostinger VPS setup']],
+  '-cLECY10Tzg': [['/guides/manus-first-test-calendar-gmail.html', 'Follow the Manus first test with Calendar and Gmail']],
+  wmjAyAth1Ug: [['/guides/emergent-openclaw-install.html', 'Follow the OpenClaw install on Emergent']],
+  KLuU0Yxu9g4: [['/guides/apify-klook-hotel-scraper-claude-code.html', 'Follow the Apify Klook hotel scraping build']],
   eui7NABhRV8: [['/guides/syllaby-faceless-video-first-test.html', 'Follow the Syllaby first faceless video test']],
   PDfEWpyyRMI: [['/guides/syllaby-faceless-video-first-test.html', 'Follow the Syllaby first faceless video test']],
   AkIz84oXvdk: [['/guides/syllaby-bulk-scheduler-faceless-videos.html', 'Follow the Syllaby faceless video and bulk scheduler tutorial']],

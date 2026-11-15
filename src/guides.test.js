@@ -6,6 +6,16 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'free-claude-code-vs-opencode-codex.html': 'ga22WZgoj9M',
+  'opencode-desktop-habit-tracker-electron.html': '7v_675nO7nM',
+  'lovable-landing-page-calcom-stripe-domain.html': 'ZlD4Z6UKS8o',
+  'nano-banana-gemini-images-make.html': 'QlL87_URHZ8',
+  'replit-viral-post-genie-build.html': 'mKsPxDi7uM0',
+  'apollo-apify-b2b-lead-list.html': 'YCjvrNI1pa4',
+  'hostinger-n8n-vps-setup.html': 'wZ76glbPIPc',
+  'manus-first-test-calendar-gmail.html': '-cLECY10Tzg',
+  'emergent-openclaw-install.html': 'wmjAyAth1Ug',
+  'apify-klook-hotel-scraper-claude-code.html': 'KLuU0Yxu9g4',
   'vidiq-mcp-claude-channel-audit.html': 'bCsSqZp0yVg',
   'syllaby-faceless-video-first-test.html': 'PDfEWpyyRMI',
   'syllaby-bulk-scheduler-faceless-videos.html': 'AkIz84oXvdk',

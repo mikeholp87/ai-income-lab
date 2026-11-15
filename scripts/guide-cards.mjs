@@ -10,6 +10,56 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'free-claude-code-vs-opencode-codex': {
+    title: "Free Claude Code, OpenCode and Codex on one project",
+    steps: [["Build","AI visibility app in Next.js"],["Break","API errors, slow replies, a 401"],["Switch","OpenCode free models; Codex at ≈$20"]],
+    note: "My own experience from May 2026, not a benchmark.",
+  },
+  'opencode-desktop-habit-tracker-electron': {
+    title: "A habit tracker built in the OpenCode desktop app",
+    steps: [["Install","Desktop app on Debian, free Zen model"],["Build","Plan, then React and Electron"],["Fix","Relative paths for the white screen, local storage"]],
+    note: "May 2026 recording; model lists change often.",
+  },
+  'lovable-landing-page-calcom-stripe-domain': {
+    title: "A landing page built and published with Lovable",
+    steps: [["Compare","Same prompt in Replit, Lovable, Orchids"],["Add","Cal.com booking, Supabase, Stripe links"],["Publish","Domain through Lovable; Stripe incomplete"]],
+    note: "July 2025 recording; Stripe was only partly working.",
+  },
+  'nano-banana-gemini-images-make': {
+    title: "Nano Banana: Gemini 2.5 Flash Image",
+    steps: [["Open","aistudio.google.com, Gemini 2.5 Flash Image"],["Prompt","Generate and edit; compare variants"],["Automate","Make.com needs billing, else quota error"]],
+    note: "August 2025 recording; Google features change quickly.",
+  },
+  'replit-viral-post-genie-build': {
+    title: "A web app built with Replit’s AI agent",
+    steps: [["Prompt","Write it in ChatGPT, choose web app"],["Fix","OpenAI key, max tokens, JSON errors"],["Extend","History, sign-in; deploy needs paid"]],
+    note: "August 2025; the free plan limit stopped the build.",
+  },
+  'apollo-apify-b2b-lead-list': {
+    title: "Build a B2B lead list in Apollo, export with Apify",
+    steps: [["Filter","Verified emails, titles, location, size"],["Save","Lists, 25 contacts at a time on free"],["Export","Apify actor, about 1.20 USD per 1,000 leads"]],
+    note: "Check cold-email laws and Apollo’s terms first.",
+  },
+  'hostinger-n8n-vps-setup': {
+    title: "n8n on a Hostinger VPS, step by step",
+    steps: [["Plan","KVM plan, one month, nearest location"],["Template","n8n with 100 workflows"],["Open","Manage App, owner account, import"]],
+    note: "October 2025 prices; backups and hardening not covered.",
+  },
+  'manus-first-test-calendar-gmail': {
+    title: "Manus on the Lite model: connectors and an autoresponder",
+    steps: [["Connect","Google Calendar and Gmail"],["Build","Hourly task drafts replies with a script"],["Switch","Move from OpenAI to Gemini"]],
+    note: "Calendar delete and a SaaS build did not work on Lite.",
+  },
+  'emergent-openclaw-install': {
+    title: "OpenClaw on Emergent, no local install",
+    steps: [["Install","Run the Moltbot script in Emergent"],["Sign in","Google, preconfigured Opus 4.5"],["Extend","Skills via ClawHub; WhatsApp failed"]],
+    note: "February 2026 recording; credits and features may have changed.",
+  },
+  'apify-klook-hotel-scraper-claude-code': {
+    title: "Scrape hotel data with Apify skills in Claude Code",
+    steps: [["Install","npx skills add apify/agent-skills"],["Scrape","Ultimate scraper skill, direct Klook URL"],["Fix","Add check-in dates so prices appear"]],
+    note: "Sponsored by Apify; check a site’s terms before scraping.",
+  },
   'vidiq-mcp-claude-channel-audit': {
     title: "The vidIQ MCP inside Claude Desktop",
     steps: [["Connect","Add a connector with the vidIQ MCP URL"],["Ask","Idea check, channel audit, competitors"],["Verify","Paste the channel ID if it picks the wrong one"]],
