@@ -14,7 +14,7 @@ export const videoNotes = {
       ['Cost', 'A plan of at least $100 a month', 'Free to start, Pro $20 a month; I use Pro Plus at $60. The job search used about 10 cents of Treg credits.'],
     ],
     verdict: 'GrokBot finished in a couple of minutes what Dots couldn’t finish in 45. Dots felt rushed out, and I don’t think it’s worth $100 a month when GrokBot starts free.',
-    note: 'Everything above is as shown in the video published October 1, 2026. Prices are as stated in the recording and have not been re-verified. Both tools change often, so check current plans.',
+    note: 'Everything above is as shown in the video published October 1, 2026. Prices are as I noted then and have not been re-verified. Both tools change often, so check current plans.',
   },
   Ip8KBwDixJs: {
     searchTitle: 'GrokBot as an AI chief of staff: video walkthrough',

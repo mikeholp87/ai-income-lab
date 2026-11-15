@@ -10,6 +10,36 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'make-apify-apollo-leads-sheet': {
+    title: "Apollo leads into Google Sheets with Make.com",
+    steps: [["Search","Copy the Apollo people-search URL"],["Run","Apify actor with a 100-lead limit"],["Write","Map fields, iterate into sheet rows"]],
+    note: "June 2025; the phone column came back wrong.",
+  },
+  'hermes-youtube-to-linkedin-cron': {
+    title: "YouTube to LinkedIn, run daily by Hermes",
+    steps: [["Script","Find the newest video, write two posts"],["Fix","Move to OpenCode and the OpenAI API"],["Schedule","Daily cron job, dated output files"]],
+    note: "May 2026; posting is still done by hand.",
+  },
+  'dextrolab-white-label-automations': {
+    title: "A client portal for your automations",
+    steps: [["Connect","Make.com or n8n with an API key"],["Price","Per run, monthly base, setup fee"],["Deliver","Workflow waits for client approval"]],
+    note: "August 2025; prices are examples and may have changed.",
+  },
+  'whatsapp-ai-voice-clone-make': {
+    title: "A WhatsApp assistant that replies in your cloned voice",
+    steps: [["Route","Router splits texts and voice memos"],["Answer","OpenAI assistant with a transcript knowledge base"],["Speak","ElevenLabs voice sent back as audio"]],
+    note: "June 2025; tested with a hardcoded test number.",
+  },
+  'vapi-outbound-ai-caller-make-twilio': {
+    title: "An outbound AI caller with Vapi and Make.com",
+    steps: [["Assistant","Vapi scheduler template, voice, tools"],["Number","Twilio number imported into Vapi"],["Calls","Make.com reads sheet rows and dials"]],
+    note: "July 2025; Vapi’s own outbound campaign feature did not work for me.",
+  },
+  'opusclip-clone-app-opencode': {
+    title: "A local OpusClip-style app built with OpenCode",
+    steps: [["Prompt","Detailed prompt written in Claude Desktop"],["Scaffold","OpenCode builds workers, API and UI"],["Fix","Keys, Postgres, local storage instead of S3"]],
+    note: "May 2026; the app was unfinished, with no clips shown.",
+  },
   'claude-seo-skill-site-audit': {
     title: "The Claude SEO skill on a real site",
     steps: [["Install","One curl command from GitHub"],["Audit","SEO audit, plan, image audit"],["Fix","Approve edits; GEO check for AI crawlers"]],
@@ -18,7 +48,7 @@ export const cards = {
   'opencode-video-trim-skill': {
     title: "A custom OpenCode skill for video trimming",
     steps: [["Prompt","Describe the cut: hook first, no filler"],["Process","Faster Whisper, hook finder, trim"],["Short","9x16 stack and animated subtitles"]],
-    note: "May 2026 recording; subtitles still needed polish.",
+    note: "May 2026 walkthrough; subtitles still needed polish.",
   },
   'make-messenger-chatgpt-bot': {
     title: "A ChatGPT Messenger bot in Make.com",
@@ -38,7 +68,7 @@ export const cards = {
   'emergent-saas-agency-website': {
     title: "An agency website built in Emergent",
     steps: [["Prompt","ChatGPT writes the full build prompt"],["Budget","Pick GPT-5 and cap the credits"],["Refine","Form, booking popup, fix the broken button"]],
-    note: "September 2025 recording; plans and credits may have changed.",
+    note: "September 2025 walkthrough; plans and credits may have changed.",
   },
   'free-claude-code-vs-opencode-codex': {
     title: "Free Claude Code, OpenCode and Codex on one project",
@@ -48,17 +78,17 @@ export const cards = {
   'opencode-desktop-habit-tracker-electron': {
     title: "A habit tracker built in the OpenCode desktop app",
     steps: [["Install","Desktop app on Debian, free Zen model"],["Build","Plan, then React and Electron"],["Fix","Relative paths for the white screen, local storage"]],
-    note: "May 2026 recording; model lists change often.",
+    note: "May 2026 walkthrough; model lists change often.",
   },
   'lovable-landing-page-calcom-stripe-domain': {
     title: "A landing page built and published with Lovable",
     steps: [["Compare","Same prompt in Replit, Lovable, Orchids"],["Add","Cal.com booking, Supabase, Stripe links"],["Publish","Domain through Lovable; Stripe incomplete"]],
-    note: "July 2025 recording; Stripe was only partly working.",
+    note: "July 2025 walkthrough; Stripe was only partly working.",
   },
   'nano-banana-gemini-images-make': {
     title: "Nano Banana: Gemini 2.5 Flash Image",
     steps: [["Open","aistudio.google.com, Gemini 2.5 Flash Image"],["Prompt","Generate and edit; compare variants"],["Automate","Make.com needs billing, else quota error"]],
-    note: "August 2025 recording; Google features change quickly.",
+    note: "August 2025 walkthrough; Google features change quickly.",
   },
   'replit-viral-post-genie-build': {
     title: "A web app built with Replit’s AI agent",
@@ -83,7 +113,7 @@ export const cards = {
   'emergent-openclaw-install': {
     title: "OpenClaw on Emergent, no local install",
     steps: [["Install","Run the Moltbot script in Emergent"],["Sign in","Google, preconfigured Opus 4.5"],["Extend","Skills via ClawHub; WhatsApp failed"]],
-    note: "February 2026 recording; credits and features may have changed.",
+    note: "February 2026 walkthrough; credits and features may have changed.",
   },
   'apify-klook-hotel-scraper-claude-code': {
     title: "Scrape hotel data with Apify skills in Claude Code",
@@ -113,7 +143,7 @@ export const cards = {
   'skool-membership-tiers': {
     title: "Skool membership tiers: free, premium and VIP",
     steps: [["Settings","Pricing, then membership tiers"],["Tiers","Free, $29 premium, $89 VIP in my community"],["Lock","Classroom modules and calls by tier"]],
-    note: "Prices from an October 2025 recording; check Skool.",
+    note: "Prices from an October 2025 walkthrough; check Skool.",
   },
   'skool-hobby-plan-review': {
     title: "Skool Hobby vs Pro: what changes",
@@ -133,7 +163,7 @@ export const cards = {
   'skool-classroom-upsell-tour': {
     title: "A free Skool community with paid upsells",
     steps: [["Feed","Reply fast to introductions"],["Classroom","Start here, free tutorials, how-tos"],["Upsell","Course, templates, consultation"]],
-    note: "Figures are my own from a June 2025 recording.",
+    note: "Figures are my own from a June 2025 walkthrough.",
   },
   'make-youtube-description-updater': {
     title: "Auto-update YouTube descriptions with Make.com",
@@ -153,7 +183,7 @@ export const cards = {
   'make-ai-agent-tally-email': {
     title: "A Make.com AI agent that replies to form submissions",
     steps: [["Agent","Pick a model and write a system prompt"],["Trigger","A Tally submission runs the agent"],["Reply","It drafts the email; sending needs plan access"]],
-    note: "AI agents were in beta in this July 2025 recording.",
+    note: "AI agents were in beta in this July 2025 walkthrough.",
   },
   'heygen-make-youtube-automation': {
     title: "HeyGen video to YouTube, automated in Make.com",
@@ -163,32 +193,32 @@ export const cards = {
   'heygen-elevenlabs-make-course': {
     title: "AI avatar videos: HeyGen, ElevenLabs and Make.com",
     steps: [["Avatar","Upload 2+ minutes of footage and consent"],["Voice","Clone in HeyGen or import ElevenLabs"],["Automate","Make.com, with the 180-second API cap"]],
-    note: "From a July 2025 course recording; check current plans.",
+    note: "From a July 2025 walkthrough; check current plans.",
   },
   'heygen-airtable-facebook-content-machine': {
     title: "A Make.com content machine for avatar videos",
     steps: [["Topic","Airtable row with status to-do"],["Make","Perplexity research, script, HeyGen render"],["Post","Facebook upload, Airtable set to done"]],
-    note: "The HeyGen API capped videos at 3 minutes in this recording.",
+    note: "The HeyGen API capped videos at 3 minutes in this walkthrough.",
   },
   'gamma-workshop-deck-and-site-export': {
     title: "A workshop deck in Gamma, published as a site",
     steps: [["Outline","ChatGPT outline pasted into Gamma"],["Generate","Concise text, professional theme"],["Share","Publish as a site or export a PDF"]],
-    note: "Google Slides export failed in the recording.",
+    note: "Google Slides export failed in my walkthrough.",
   },
   'gamma-coaching-deck-from-chatgpt-plan': {
     title: "A Gamma deck from a pasted outline",
     steps: [["Paste","Detailed plan as notes"],["Set","Ten cards, concise text, theme, images"],["Export","Edit with the agent, then Google Slides"]],
-    note: "Plans and prices are from a March 2026 recording.",
+    note: "Plans and prices are from a March 2026 walkthrough.",
   },
   'bluehost-ai-assistant': {
     title: "Bluehost AI Assistant: one dashboard, four model families",
-    steps: [["Plan","AI All Access Pack, $20 a month in the recording"],["Chat","Auto routing, web search, image edits"],["Agents","Research, article writer, slides"]],
+    steps: [["Plan","AI All Access Pack, $20 a month in my walkthrough"],["Chat","Auto routing, web search, image edits"],["Agents","Research, article writer, slides"]],
     note: "Sponsored video; check current plans on Bluehost.",
   },
   'apify-agent-skills': {
     title: 'Apify agent skills: scrape leads in Cursor',
     steps: [['Install', 'npx skills add apify/agent-skills'], ['Token', 'Add APIFY_TOKEN to .env'], ['Scrape', 'Leads CSV, then emails']],
-    note: 'The Google Maps CSV in the recording had websites but no emails.',
+    note: 'The Google Maps CSV in my walkthrough had websites but no emails.',
   },
   "ai-agent-workflow": {"title": "An AI agent workflow with checks at every boundary", "steps": [["Brief", "Define inputs and allowed actions"], ["Draft", "Propose a structured result"], ["Check", "Validate before acting"]], "note": "Practice: classify three fictional requests without sending anything."},
   "ai-content-creation-workflows": {"title": "Make an AI content draft you can review", "steps": [["Brief", "One message and one format"], ["Draft", "Create one small asset"], ["Review", "Check facts, rights and export"]], "note": "Practice: turn three supplied facts into a 20-second explainer."},
@@ -384,10 +414,10 @@ export const cards = {
   'grokbot-for-seo': {"title":"GrokBot SEO bots: audits, data and reviewed fixes","steps":[["Bot","Scope the audit job"],["Data","Separate estimates from provider data"],["Fix","Review before changing the site"]],"note":"Costs and trials in my video are examples, not entitlements."},
   'grokbot-virtual-office': {"title":"A custom GrokBot office page for agent status","steps":[["Layout","Build the office Page"],["Handoff","Copy approvals into chat"],["Limits","Status sync stayed unfinished"]],"note":"A visual overview, not a native approval API."},
   'grokbot-vs-dots': {"title":"GrokBot vs Dots: onboarding, drafts and permissions","steps":[["Onboard","Follow each product’s docs"],["Draft","Compare one job-search task"],["Bound","Do not claim applications were sent"]],"note":"Two long-form videos, one comparison page."},
-  'grokbot-job-application-agent': {"title":"GrokBot job applications: resume, queue and review","steps":[["Resume","Upload and review the file"],["Leads","Ask the job-app agent for roles"],["Approve","Nothing sends without your OK"]],"note":"The recording queued drafts. It did not show a live send."},
-  'grokbot-credit-usage': {"title":"GrokBot credit usage: routines, rules and caps","steps":[["Chats","One conversation per task"],["Routines","Widen schedules and pause idle ones"],["Cap","Leave on-demand spending off"]],"note":"Settings come from the Maestro article shown in the recording."},
+  'grokbot-job-application-agent': {"title":"GrokBot job applications: resume, queue and review","steps":[["Resume","Upload and review the file"],["Leads","Ask the job-app agent for roles"],["Approve","Nothing sends without your OK"]],"note":"I queued drafts. It did not show a live send."},
+  'grokbot-credit-usage': {"title":"GrokBot credit usage: routines, rules and caps","steps":[["Chats","One conversation per task"],["Routines","Widen schedules and pause idle ones"],["Cap","Leave on-demand spending off"]],"note":"Settings come from the Maestro article shown in my walkthrough."},
   'herdr-on-windows': {"title":"Herdr on Windows: install, mods and Insights","steps":[["Install","Paste the official PowerShell line"],["Mods","Copy a gallery prompt into Herdr"],["Insights","Switch layout to open the dashboard"]],"note":"The Linux desktop walkthrough stays on its own page."},
-  'grok-4-7-openrouter': {"title":"Grok 4.7 in Hermes through OpenRouter","steps":[["Find","Open the Grok 4.7 model page"],["Switch","Pick x-ai/grok-4.7 in Hermes"],["Continue","Resume the task in the new model"]],"note":"Vendor charts in the recording are not current price quotes."},
+  'grok-4-7-openrouter': {"title":"Grok 4.7 in Hermes through OpenRouter","steps":[["Find","Open the Grok 4.7 model page"],["Switch","Pick x-ai/grok-4.7 in Hermes"],["Continue","Resume the task in the new model"]],"note":"Vendor charts in my walkthrough are not current price quotes."},
   'herdr-desktop-app': {"title":"Herdr desktop: workspaces, resume and limits","steps":[["Install","Use the current official app"],["Space","One repo, separate tabs"],["Review","Check diffs and lifecycle docs"]],"note":"Closing the window is not the same as stopping herdr-core."},
   'herdr-guide': {"title":"Herdr TUI: one terminal for existing coding agents","steps":[["Install","Use the documented installer"],["Space","Open the project folder"],["Session","Distinguish TUI from desktop"]],"note":"It organizes agents; it does not replace them."},
   'jev-skills-router-setup': {"title":"Jev with coding agents: skills, access and routed tests","steps":[["Install","Add the Jev skills"],["Access","Configure provider credentials"],["Inspect","Read the returned request"]],"note":"Confidence is not proof of a correct route."},
@@ -397,11 +427,11 @@ export const cards = {
   'run-a-blog-with-grokbot': {"title":"GrokBot WordPress drafts from long-form videos","steps":[["Connect","Use the supported WordPress flow"],["Draft","Ask for reviewable posts"],["Separate","Publishing is a later approval"]],"note":"Drafts, schedules and emails are distinct actions."},
   'trakkr-codex-visibility-workflow': {"title":"Trakkr and Codex: visibility, crawlers and visits","steps":[["Track","Inspect tracked questions"],["Distinguish","Visibility is not visits"],["Review","Do not auto-publish fixes"]],"note":"llms.txt is not treated as a ranking lever."},
   'treg-inside-grokbot': {"title":"Treg in GrokBot: data tools with a spending check","steps":[["Connect","Add the Treg plugin"],["Price","Inspect the endpoint first"],["Approve","Paid calls are a separate decision"]],"note":"Provider billing is not the same as catalog access."},
-  'rank-prompt-ai-search-visibility': {"title": "Rank Prompt: scan, track prompts, then fix", "steps": [["Scan", "Run a visibility check"], ["Track", "Read prompts by category"], ["Fix", "Review MCP edits"]], "note": "Rank Prompt sponsored the 12 November 2026 recording."},
+  'rank-prompt-ai-search-visibility': {"title": "Rank Prompt: scan, track prompts, then fix", "steps": [["Scan", "Run a visibility check"], ["Track", "Read prompts by category"], ["Fix", "Review MCP edits"]], "note": "Rank Prompt sponsored the 12 November 2026 walkthrough."},
   'visiscan-ai-visibility-audit': {"title": "VisiScan: free scan and a paid report", "steps": [["Scan", "Enter a domain"], ["Read", "Readiness and visibility"], ["Files", "Check sitemap and robots"]], "note": "Mike owns VisiScan. Prices below are from 22 July 2026."},
-  'semrush-mcp-ai-visibility': {"title": "Semrush MCP: visibility and keyword gaps", "steps": [["Connect", "Add the Semrush MCP"], ["Read", "AI visibility and citations"], ["Plan", "Review keyword gaps"]], "note": "Scores and shares are from the 6 August 2026 recording."},
+  'semrush-mcp-ai-visibility': {"title": "Semrush MCP: visibility and keyword gaps", "steps": [["Connect", "Add the Semrush MCP"], ["Read", "AI visibility and citations"], ["Plan", "Review keyword gaps"]], "note": "Scores and shares are from the 6 August 2026 walkthrough."},
   'ai-visibility-tracker-saas-build': {"title": "An AI visibility tracker, built on camera", "steps": [["Land", "Ship a landing page"], ["Data", "Pull DataForSEO MCP data"], ["Price", "Draft a Stripe page"]], "note": "A build log, not a finished product launch."},
-  'opencode-seo-audit-skills': {"title": "OpenCode SEO skills: site checks and files", "steps": [["Audit", "Run the SEO skills"], ["Files", "Generate llms.txt"], ["Limits", "Note the plan caps"]], "note": "Plan limits are what the recording showed."},
+  'opencode-seo-audit-skills': {"title": "OpenCode SEO skills: site checks and files", "steps": [["Audit", "Run the SEO skills"], ["Files", "Generate llms.txt"], ["Limits", "Note the plan caps"]], "note": "Plan limits are what this walkthrough showed."},
   'ai-token-usage-dashboard': {"title": "A local dashboard for token usage", "steps": [["Install", "Run ccusage locally"], ["Read", "Compare daily costs"], ["Check", "Note RTK savings"]], "note": "Costs and savings are from 3 August 2026."},
   'rtk-token-savings-claude-code': {"title": "RTK: compress tokens before they land", "steps": [["Install", "Use curl or Homebrew"], ["Hook", "Add Claude Code and Codex"], ["Gain", "Run rtk gain"]], "note": "Savings numbers are from 21 July 2026."},
   '9router-cost-tracking-fallbacks': {"title": "9Router costs, combos and fallbacks", "steps": [["Track", "Read token cost"], ["Combo", "Set paid, cheap, free"], ["Fallback", "Auto-switch on failure"]], "note": "Install lives on the 9Router setup guide."},
@@ -412,10 +442,10 @@ export const cards = {
   'hermes-agent-supermemory': {"title": "Give Hermes Agent a memory plugin", "steps": [["Install", "Add the Supermemory CLI"], ["Key", "Paste the API key"], ["Test", "Write one memory"]], "note": "Then connect the same plugin in OpenCode and Codex."},
   'hermes-backlink-outreach-pipeline': {"title": "Hermes outreach: crawl, pitch, then send", "steps": [["Crawl", "Find candidate pages"], ["Pitch", "Draft the outreach"], ["Gate", "Review before send"]], "note": "Delivery numbers are from 29 July 2026."},
   'chatgpt-thumbnail-ctr-pipeline': {"title": "Audit thumbnail CTR, then redesign", "steps": [["Audit", "Read channel CTR"], ["Note", "Brightness and contrast"], ["Redraw", "Run the Images prompt"]], "note": "Contrast targets are from 24 July 2026."},
-  'google-ai-studio-chat-app': {"title":"Build a chat web app in Google AI Studio","steps":[["Prompt","Describe the app in build mode"],["Connect","Add an OpenAI API key"],["Deploy","Needs a Google Cloud project"]],"note":"An October 2025 recording, with the limits noted."},
+  'google-ai-studio-chat-app': {"title":"Build a chat web app in Google AI Studio","steps":[["Prompt","Describe the app in build mode"],["Connect","Add an OpenAI API key"],["Deploy","Needs a Google Cloud project"]],"note":"An October 2025 walkthrough, with the limits noted."},
   'opencode-stripe-billing-saas': {"title":"OpenCode adds Stripe billing to a SaaS app","steps":[["Prompt","Paste one billing prompt"],["Fix","Install Stripe, regenerate Prisma"],["Check","Build, then test checkout"]],"note":"A February 2026 case study, with gaps listed."},
-  'n8n-social-media-agent-template': {"title":"An n8n social post workflow from a template","steps":[["Trends","Pull Google Trends with SerpApi"],["Research","Pick a topic, ask Perplexity"],["Post","Log it, then publish"]],"note":"Only the first steps ran in the recording."},
-  'n8n-whatsapp-ai-agent': {"title":"An n8n agent that answers WhatsApp messages","steps":[["Trigger","WhatsApp on-messages node"],["Agent","Chat model plus memory"],["Send","Reply node needs Meta access"]],"note":"The send step was still blocked in the recording."},
+  'n8n-social-media-agent-template': {"title":"An n8n social post workflow from a template","steps":[["Trends","Pull Google Trends with SerpApi"],["Research","Pick a topic, ask Perplexity"],["Post","Log it, then publish"]],"note":"Only the first steps ran in my walkthrough."},
+  'n8n-whatsapp-ai-agent': {"title":"An n8n agent that answers WhatsApp messages","steps":[["Trigger","WhatsApp on-messages node"],["Agent","Chat model plus memory"],["Send","Reply node needs Meta access"]],"note":"The send step was still blocked in my walkthrough."},
   'make-com-beginner-course-scenarios': {"title":"A Make.com course in three builds","steps":[["Template","Sheets row sends a Gmail"],["Scratch","OpenAI, Airtable, Facebook"],["Scraper","Apify leads into Sheets"]],"note":"Errors left in on purpose."},
   'make-business-automation-examples': {"title":"Make.com automations for a small business","steps":[["Reply","Draft email replies with ChatGPT"],["Sync","Add new members to your list"],["Reach","Send, scrape, then review"]],"note":"Consent and spam rules apply."},
   'codex-cli': {"title":"Install Codex CLI and run a first task","steps":[["Install","Installer, npm or Homebrew"],["Sign in","Choose Sign in with ChatGPT"],["Run","codex in a project folder"]],"note":"Official commands for Mac, Windows and Linux."},

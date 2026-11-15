@@ -6,8 +6,8 @@ import { lateQa, lateSummaries } from './video-summaries-late.js';
 export const videoSummaries = {
   YYZSR1p32EQ: {
     searchTitle: 'Herdr on Windows: Installation, Themes, Mods and Usage',
-    summary: 'Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The recording also tours an Update Forge app build.',
-    whatYouBuild: 'The recording demonstrates a Windows workspace for coding agents, theme changes and custom mods, then turns to an Update Forge application. Use the desktop companion for workspace setup and check each mod against your installed version. This walkthrough is not a controlled comparison of agent performance or credit savings.',
+    summary: 'Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The walkthrough also tours an Update Forge app build.',
+    whatYouBuild: 'The walkthrough demonstrates a Windows workspace for coding agents, theme changes and custom mods, then turns to an Update Forge application. Use the desktop companion for workspace setup and check each mod against your installed version. This walkthrough is not a controlled comparison of agent performance or credit savings.',
     toolsUsed: ['Herdr Desktop', 'Update Forge'],
     keySteps: [
       { seconds: 36, step: 'Review the PowerShell installation and Windows setup.' },
@@ -46,7 +46,7 @@ export const videoSummaries = {
   phVQuQMojA8: {
     searchTitle: 'Claude Code Task-Manager Demo: Processes and Packaging',
     summary: 'Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.',
-    whatYouBuild: 'A process and performance-monitoring app is the subject of this project walkthrough. The companion guide describes CPU and memory views, expandable process details and a paused history display. Start with a small brief and checks against the operating system. The recording explains the prompting approach but does not supply the complete original prompt or confirm every installer on a clean machine.',
+    whatYouBuild: 'A process and performance-monitoring app is the subject of this project walkthrough. The companion guide describes CPU and memory views, expandable process details and a paused history display. Start with a small brief and checks against the operating system. The walkthrough explains the prompting approach but does not supply the complete original prompt or confirm every installer on a clean machine.',
     toolsUsed: ['Claude Code', 'ChatGPT', 'Rust', 'Tauri', 'React'],
     keySteps: [
       { seconds: 59, step: 'Inspect the process list and performance-monitoring views.' },
@@ -58,7 +58,7 @@ export const videoSummaries = {
     sourceNote: "Summary based on the saved video description, chapters and the Claude Code task-manager written guide. No separate transcript review was performed for this summary.",
   },
   '0iTOlQjNdhs': {
-    summary: 'Customize an Android TV launcher with CleanYourTV and Claude Code. The recording covers backups and a Docker build, with remote-button issues still unresolved.',
+    summary: 'Customize an Android TV launcher with CleanYourTV and Claude Code. The walkthrough covers backups and a Docker build, with remote-button issues still unresolved.',
     whatYouBuild: 'A replacement Android TV home screen is built and tried on the recorded device. The companion guide describes backing up settings, selecting apps and building a launcher through Docker when the local Android SDK is missing. The launcher opens retained apps and accepts a theme, but Settings and other remote-button problems remain. Check the exact device, supported project instructions and a recovery path before following the workflow.',
     toolsUsed: ['CleanYourTV', 'Claude Code', 'Android TV', 'Docker'],
     keySteps: [
@@ -71,7 +71,7 @@ export const videoSummaries = {
     sourceNote: "Summary based on the saved video description, chapters and the CleanYourTV written guide. No separate transcript review was performed for this summary.",
   },
   "wLIiTkra7uM": {
-    "summary": "Connect GrokBot to WordPress with its plugin, then let an agent turn YouTube transcripts into scheduled blog posts that also go out to email subscribers. The recording hits GrokBot's weekly usage limit, so most of the demo reviews posts that were already drafted and scheduled.",
+    "summary": "Connect GrokBot to WordPress with its plugin, then let an agent turn YouTube transcripts into scheduled blog posts that also go out to email subscribers. The walkthrough hits GrokBot's weekly usage limit, so most of the demo reviews posts that were already drafted and scheduled.",
     "whatYouBuild": "A GrokBot blog-writer agent that reads a YouTube video's transcript, writes a WordPress article with the video embedded, adds excerpt, categories and tags, and schedules one post a day with a subscriber email.",
     "toolsUsed": [
       "GrokBot",
@@ -106,7 +106,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 342,
-        "step": "Pricing as stated in the recording: free to start, paid plans from $30 a month, with the $60 plan in use."
+        "step": "Pricing as I noted then: free to start, paid plans from $30 a month, with the $60 plan in use."
       }
     ],
     "notCovered": [
@@ -190,7 +190,7 @@ export const videoSummaries = {
     ]
   },
   "qQVAnp4-EpI": {
-    "summary": "Write a master brief, run market research in Runable, then generate and refine an AI Growth Audit website from that research. Stripe payments and the consultation email are not connected by the end of the recording.",
+    "summary": "Write a master brief, run market research in Runable, then generate and refine an AI Growth Audit website from that research. Stripe payments and the consultation email are not connected by the end of this walkthrough.",
     "whatYouBuild": "A first-version marketing site and customer portal for an AI Growth Audit service, with a chatbot, Google sign-in, FAQ and a contact form, built from a brief and generated research.",
     "toolsUsed": [
       "ChatGPT (to write the brief and research prompt)"
@@ -234,7 +234,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Can Runable do the market research too?",
-        "a": "Yes. In the recording one research prompt produced seven files, including a competitor database and a pricing comparison."
+        "a": "Yes. In this walkthrough one research prompt produced seven files, including a competitor database and a pricing comparison."
       },
       {
         "q": "Is the site ready to take payments at the end?",
@@ -336,7 +336,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 433,
-        "step": "Run an audit on a project. About a dollar was spent so far when the recording ends."
+        "step": "Run an audit on a project. About a dollar was spent so far when this walkthrough ends."
       }
     ],
     "notCovered": [
@@ -747,7 +747,7 @@ export const videoSummaries = {
   },
   "0tmhsHn5B30": {
     "searchTitle": "GLM 5.2 in OpenCode Go: setup and Hermes Agent test",
-    "summary": "Select GLM 5.2 inside OpenCode on the Go plan, then use the same model in the OpenCode desktop app and in Hermes Agent. The free Zen option returned an insufficient balance error, so the test needed the Go plan, which costs $10 per month as stated in the recording.",
+    "summary": "Select GLM 5.2 inside OpenCode on the Go plan, then use the same model in the OpenCode desktop app and in Hermes Agent. The free Zen option returned an insufficient balance error, so the test needed the Go plan, which costs $10 per month as I noted then.",
     "whatYouBuild": "Nothing is built from scratch. The video shows GLM 5.2 selected in the OpenCode terminal app, the OpenCode desktop app and Hermes Agent, then used for a site audit and a cron job list.",
     "toolsUsed": [
       "OpenCode",
@@ -797,7 +797,7 @@ export const videoSummaries = {
       },
       {
         "q": "How much did the GLM 5.2 tests cost in OpenCode?",
-        "a": "The OpenCode usage page showed about 34 cents spent on GLM 5.2 by the end of the video, as stated in the recording, covered by the Go plan."
+        "a": "The OpenCode usage page showed about 34 cents spent on GLM 5.2 by the end of the video, as I noted then, covered by the Go plan."
       }
     ]
   },
@@ -954,7 +954,7 @@ export const videoSummaries = {
       }
     ],
     "notCovered": [
-      "The full system prompt and Make.com template are sold separately for $15, as stated in the recording, so the exact prompt is not shown.",
+      "The full system prompt and Make.com template are sold separately for $15, as I noted then, so the exact prompt is not shown.",
       "Setting up outbound call campaigns inside Vapi is skipped, and Mike says it did not work for him.",
       "The Make.com webhook for call status messages is mentioned but never configured."
     ],
@@ -965,7 +965,7 @@ export const videoSummaries = {
       },
       {
         "q": "Why use Twilio instead of a free Vapi number?",
-        "a": "Vapi offers free numbers up to 10 per account, but only US area codes, as stated in the recording, so Twilio is used for other countries."
+        "a": "Vapi offers free numbers up to 10 per account, but only US area codes, as I noted then, so Twilio is used for other countries."
       },
       {
         "q": "How does the agent book appointments?",
@@ -1295,7 +1295,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 125,
-        "step": "Install OpenCode and use the Go plan, which the recording says costs $5 for the first month and then $10 per month."
+        "step": "Install OpenCode and use the Go plan, which this walkthrough says costs $5 for the first month and then $10 per month."
       },
       {
         "seconds": 172,
@@ -1451,7 +1451,7 @@ export const videoSummaries = {
       },
       {
         "q": "Does Ghostty use less memory than Konsole?",
-        "a": "In this test Konsole used about 1.7 GB and Ghostty about 270 MB with almost the same number of tabs open, as stated in the recording."
+        "a": "In this test Konsole used about 1.7 GB and Ghostty about 270 MB with almost the same number of tabs open, as I noted then."
       }
     ]
   },
@@ -1700,7 +1700,7 @@ export const videoSummaries = {
   },
   "mmiQaVfA5e0": {
     "searchTitle": "ZCode walkthrough: run GLM 5.2 in the official desktop app",
-    "summary": "Install ZCode, the official desktop app from Z.ai, and run GLM 5.2 on an existing project with plugins, skills, a built-in terminal and browser, and usage tracking. The test stays on the free plan, which the recording says includes 5 million GLM tokens per day.",
+    "summary": "Install ZCode, the official desktop app from Z.ai, and run GLM 5.2 on an existing project with plugins, skills, a built-in terminal and browser, and usage tracking. The test stays on the free plan, which this walkthrough says includes 5 million GLM tokens per day.",
     "whatYouBuild": "Nothing is built from scratch. The video shows ZCode suggesting features for and starting a code review of the existing Tube Analytics project.",
     "toolsUsed": [
       "ZCode",
@@ -1746,7 +1746,7 @@ export const videoSummaries = {
     "qa": [
       {
         "q": "Is ZCode free?",
-        "a": "Yes, there is a free plan. As stated in the recording, it includes 5 million GLM tokens per day, and paid coding plans cost $16, $65 and $144 per month."
+        "a": "Yes, there is a free plan. As stated in my walkthrough, it includes 5 million GLM tokens per day, and paid coding plans cost $16, $65 and $144 per month."
       },
       {
         "q": "Does ZCode run on Linux?",
@@ -1946,7 +1946,7 @@ export const videoSummaries = {
     "keySteps": [
       {
         "seconds": 50,
-        "step": "Review the landing page redesigned with OpenCode, with plans from $19 to $149 per month as stated in the recording."
+        "step": "Review the landing page redesigned with OpenCode, with plans from $19 to $149 per month as I noted then."
       },
       {
         "seconds": 92,
@@ -2019,7 +2019,7 @@ export const videoSummaries = {
       },
       {
         "seconds": 260,
-        "step": "Publish the server so it keeps running, which costs 50 credits per month as stated in the recording."
+        "step": "Publish the server so it keeps running, which costs 50 credits per month as I noted then."
       },
       {
         "seconds": 314,
@@ -2042,7 +2042,7 @@ export const videoSummaries = {
       },
       {
         "q": "How much does it cost to keep OpenClaw running on Emergent?",
-        "a": "Emergent says the server shuts down after inactivity unless published, and publishing costs 50 credits per month as stated in the recording."
+        "a": "Emergent says the server shuts down after inactivity unless published, and publishing costs 50 credits per month as I noted then."
       },
       {
         "q": "Can you connect WhatsApp to OpenClaw on Emergent?",
@@ -2102,7 +2102,7 @@ export const videoSummaries = {
       },
       {
         "q": "How long does the trimming take?",
-        "a": "Trimming a roughly 10-minute video took about five minutes of CPU processing, and the vertical Short conversion took under 30 seconds, as stated in the recording."
+        "a": "Trimming a roughly 10-minute video took about five minutes of CPU processing, and the vertical Short conversion took under 30 seconds, as I noted then."
       },
       {
         "q": "What did the first test run produce?",
@@ -2132,7 +2132,7 @@ export const videoSummaries = {
       { "seconds": 445, "step": "Watch the agent create package.json, the Tailwind and TypeScript config and the Next.js layout files." }
     ],
     "notCovered": [
-      "A finished app. The recording ends while files are still being created.",
+      "A finished app. The walkthrough ends while files are still being created.",
       "A speed or quality comparison with Claude on a paid plan beyond the remark that the default model felt slower.",
       "Setting up Ollama, LM Studio or DeepSeek, which are only mentioned.",
       "Whether routing Claude Code through a third-party proxy fits Anthropic's terms or your data-handling needs."
@@ -9151,7 +9151,7 @@ export const videoSummaries = {
     ]
   },
   "PDfEWpyyRMI": {
-    "summary": "A hands-on trial of Syllaby on a free 7-day account: pick a style, voice and music, write a custom-topic script about low-cost countries for digital nomads, render a one-minute faceless video in about three minutes and publish it to YouTube from Syllaby. The recording appears nearly identical to another video on this channel about Syllaby, so one of them may be a re-upload. The link is an affiliate link, and results after publishing are not shown.",
+    "summary": "A hands-on trial of Syllaby on a free 7-day account: pick a style, voice and music, write a custom-topic script about low-cost countries for digital nomads, render a one-minute faceless video in about three minutes and publish it to YouTube from Syllaby. The walkthrough appears nearly identical to another video on this channel about Syllaby, so one of them may be a re-upload. The link is an affiliate link, and results after publishing are not shown.",
     "whatYouBuild": "A portrait faceless video with ambient music and karaoke subtitles, published directly to YouTube.",
     "toolsUsed": [
       "Syllaby",

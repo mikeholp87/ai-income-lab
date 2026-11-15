@@ -1,8 +1,11 @@
 // Renders written-guide specs (specs/*.mjs) into public/guides/<slug>.html and registers each guide.
 // Usage: node scripts/guide-from-spec.mjs <slug> [slug ...]   (spec: docs/guide-specs/<slug>.mjs)
 // After it runs: node scripts/guide-cards.mjs <slug>, node scripts/guide-video-schema.mjs, npm test.
-// Spec fields: slug, video, alsoWatch?, title, short, description (<=155), hub, watchLabel, about[], card{title,steps[3],note},
-// quick, intro, sections[{id,h,html}], limits[], faq[[q,a]], sources[], related[5+ [path,title]], next, more, linkFrom[], llms.
+// Spec fields: slug, video, alsoWatch?, type (Comparison|Case study|How-to|Review|Tool guide|Explainer),
+// title (<=60), short, description (<=155), hub, watchLabel, about[], card{title,steps[3],note},
+// quick, intro, sections[{id,h,html}], limits[], done?[], faq[[q,a]], sources[] (>=1 non-YouTube),
+// related[5+ [path,title]], next, more, linkFrom[], llms.
+// Do not use "the recording" / "in the recording"; write in first person.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
@@ -25,19 +28,29 @@ const tail = ref.slice(ref.indexOf('<section class="cta"')); // join card, notes
 
 const clock = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
+const TYPES = new Set(['Comparison', 'Case study', 'How-to', 'Review', 'Tool guide', 'Explainer', 'Build guide']);
+const recordingPhrase = /\b(the recording|in the recording|this recording|spoken source)\b/i;
+
 function render(s) {
   const v = byId.get(s.video);
   must(v, `${s.slug}: unknown video ${s.video}`);
+  must(TYPES.has(s.type), `${s.slug}: type must be one of ${[...TYPES].join(', ')}`);
+  must(s.title.length <= 60, `${s.slug}: title is ${s.title.length} chars (max 60)`);
   must(s.description.length <= 155, `${s.slug}: description is ${s.description.length}`);
   must(s.sections.length >= 3, `${s.slug}: need >= 3 sections`);
   must(new Set([...s.related.map(r => r[0]), s.next[0]]).size >= 5, `${s.slug}: need 5 distinct guide links (distinct guide links)`);
+  const nonYt = (s.sources ?? []).filter(x => !/youtube\.com\/watch/.test(x));
+  must(nonYt.length >= 1, `${s.slug}: Sources need at least one non-YouTube link`);
+  const blob = [s.quick, s.intro, ...s.sections.map(x => x.h + x.html), ...(s.limits ?? []), ...(s.done ?? []), ...s.faq.flat(), ...s.sources, s.llms, s.hub, s.card?.note].join('\n');
+  must(!recordingPhrase.test(blob), `${s.slug}: avoid "the recording"; write in first person`);
+  const done = s.done ?? s.card.steps.map(([, detail]) => detail.replace(/\.$/, ''));
   const url = `${site}/guides/${s.slug}.html`;
   const img = `${site}/assets/guides/${s.slug}.webp`;
   const author = { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html`, sameAs: ['https://www.youtube.com/@ai-automation-station', 'https://github.com/mikeholp87', 'https://www.linkedin.com/in/mikeholp', 'https://x.com/mikeholp'] };
   const article = { '@context': 'https://schema.org', '@type': 'Article', headline: s.title, description: s.description, url, mainEntityOfPage: url, image: img, datePublished: TODAY, dateModified: TODAY, author, publisher: { '@type': 'Organization', '@id': `${site}/#org`, name: 'AI Automation Station', url: `${site}/`, logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 } }, isPartOf: { '@type': 'WebSite', '@id': `${site}/#website`, name: 'AI Automation Station', url: `${site}/` }, inLanguage: 'en', about: s.about.map(name => ({ '@type': 'Thing', name })) };
   const crumbs = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` }, { '@type': 'ListItem', position: 2, name: 'Guides', item: `${site}/guides.html` }, { '@type': 'ListItem', position: 3, name: s.title, item: url }] };
   const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${url}#faq-schema`, url, mainEntity: s.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) };
-  const toc = [...s.sections.map(x => [x.id, x.h]), ...(s.limits ? [['limits', 'What this recording did not cover']] : []), ['watch-the-walkthrough', 'Watch the walkthrough'], ['faq', 'FAQ'], ['sources', 'Sources']];
+  const toc = [...s.sections.map(x => [x.id, x.h]), ['done', 'Done when'], ...(s.limits ? [['limits', "What I didn't cover"]] : []), ['watch-the-walkthrough', 'Watch the walkthrough'], ['faq', 'FAQ'], ['sources', 'Sources']];
   const chapters = (v.chapters ?? []).map(c => `<li><a href="https://www.youtube.com/watch?v=${v.id}&amp;t=${c.seconds}s">${clock(c.seconds)}</a> ${esc(c.label)}</li>`).join('');
   const related = s.related.map(([p, t]) => `<a href="${p}">${esc(t)}</a>`);
   const relatedText = related.length > 1 ? `${related.slice(0, -1).join(', ')} and ${related.at(-1)}` : related[0];
@@ -79,7 +92,7 @@ function render(s) {
 `;
   const body = `<main id="content">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/guides.html">Guides</a></li><li><span aria-current="page">${esc(s.title)}</span></li></ol></nav>
-<p class="meta">Tool guide · By <a href="/about.html" rel="author">Mike Holp</a> · Published <time datetime="${TODAY}">${TODAY_LONG}</time> · Updated <time datetime="${TODAY}">${TODAY_LONG}</time></p>
+<p class="meta">${esc(s.type)} · By <a href="/about.html" rel="author">Mike Holp</a> · Published <time datetime="${TODAY}">${TODAY_LONG}</time> · Updated <time datetime="${TODAY}">${TODAY_LONG}</time></p>
 <h1>${esc(s.title)}</h1>
 <figure><img src="/assets/guides/${s.slug}.webp" srcset="/assets/guides/sizes/${s.slug}-640.webp 640w, /assets/guides/${s.slug}.webp 1200w" sizes="(max-width: 1160px) calc(100vw - 40px), 1120px" alt="${esc(alt)}" width="1200" height="630" loading="eager" fetchpriority="high"><figcaption>${esc(caption)}</figcaption></figure>
 <nav class="toc" aria-label="On this page"><h2>On this page</h2><ul>${toc.map(([id, h]) => `<li><a href="#${id}">${esc(h)}</a></li>`).join('')}</ul></nav>
@@ -89,7 +102,9 @@ function render(s) {
 </section>
 ${s.intro}
 ${s.sections.map(x => `<h2 id="${x.id}">${esc(x.h)}</h2>\n${x.html}`).join('\n')}
-${s.limits ? `<h2 id="limits">What this recording did not cover</h2>\n<ul>${s.limits.map(l => `<li>${l}</li>`).join('')}</ul>${s.limitsAfter ? `<p>${s.limitsAfter}</p>` : ''}` : ''}
+<h2 id="done">Done when</h2>
+<ul>${done.map(item => `<li>${item}</li>`).join('')}</ul>
+${s.limits ? `<h2 id="limits">What I didn't cover</h2>\n<ul>${s.limits.map(l => `<li>${l}</li>`).join('')}</ul>${s.limitsAfter ? `<p>${s.limitsAfter}</p>` : ''}` : ''}
 <h2 id="watch-the-walkthrough">Watch the walkthrough</h2>
 <figure class="video"><a class="player" href="https://www.youtube.com/watch?v=${v.id}" data-embed="https://www.youtube-nocookie.com/embed/${v.id}" aria-label="Play ${esc(v.title)}"><img src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></a><figcaption>Watch on YouTube: ${esc(v.title)}. Also on this site with notes: <a href="/watch/${v.id}">the watch page</a>.</figcaption></figure>
 ${(v.chapters ?? []).length >= 3 ? `<ul class="video-chapters" aria-label="Chapters in ${esc(v.title)}">${chapters}</ul>` : ''}

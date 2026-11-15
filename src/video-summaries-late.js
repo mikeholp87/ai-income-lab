@@ -12,7 +12,7 @@ export const lateQa = {
     ],
   },
   'IV6q81wRay4': {
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Memory figures and theme behavior are as shown in the recording on one Linux machine.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Memory figures and theme behavior are as shown in my walkthrough on one Linux machine.',
     qa: [
       { q: 'How do you install the Herdr desktop app on Linux or Mac?', a: 'Copy the one-line curl command from the download page and paste it into a terminal. Windows uses a PowerShell command instead.' },
       { q: 'Do my existing Herdr workspaces carry over to the desktop app?', a: 'The first-run prompt says the workspaces stay where they are, so the ones already open in the command-line version appear in the app.' },
@@ -33,7 +33,7 @@ export const lateSummaries = {
   'V3ETwJAR5-I': {
     searchTitle: 'GrokBot credit usage: why it drains fast and how to save tokens',
     summary: 'See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.',
-    whatYouBuild: 'A lower-cost GrokBot setup. The recording audits recurring routines and pauses unused ones, moves the routines into a dedicated bot, removes unused plugins, adds ask-first rules and checks that on-demand spending is off.',
+    whatYouBuild: 'A lower-cost GrokBot setup. The walkthrough audits recurring routines and pauses unused ones, moves the routines into a dedicated bot, removes unused plugins, adds ask-first rules and checks that on-demand spending is off.',
     toolsUsed: ['GrokBot', 'GrokBot routines and plugins', 'Cursor cloud agents', 'X (a posted guide to 12 token-saving settings)'],
     keySteps: [
       { seconds: 0, step: 'Hit 100% of a $60 plan in one day, then see the company statement and the limit reset.' },
@@ -42,13 +42,13 @@ export const lateSummaries = {
       { seconds: 380, step: 'Ask the chief of staff bot to create a routines-only bot and move every routine into it.' },
       { seconds: 608, step: 'Remove unused plugins, add ask-first rules and keep on-demand monthly usage turned off.' },
     ],
-    notCovered: ['A measured before-and-after credit comparison. Usage is only quoted at a few points in the recording.', 'The fixes the company said were coming for token efficiency.'],
+    notCovered: ['A measured before-and-after credit comparison. Usage is only quoted at a few points in my walkthrough.', 'The fixes the company said were coming for token efficiency.'],
     qa: [
       { q: 'Why do GrokBot credits run out so quickly?', a: 'A posted guide quoted by Mike says the bot rereads the whole chat on every turn and that short-interval routines can use a week of allowance in a day.' },
       { q: 'What should you do with routines?', a: 'Audit them, pause the ones that produced nothing useful and give the rest their own bot so scheduled runs do not pile into the chat you use all day.' },
       { q: 'Should you turn on on-demand usage?', a: 'Keep it off, Mike recommends, because on-demand usage draws on API credits, which he describes as far more expensive than the subscription.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Credit figures are as stated in the recording and not independently checked.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Credit figures are as I noted then and not independently checked.',
   },
 };
 
@@ -56,7 +56,7 @@ Object.assign(lateQa, {
   'phVQuQMojA8': {
     sourceNote: 'Summary based on the saved video description, chapters and transcript. The app was not independently tested for this summary.',
     qa: [
-      { q: 'How long did the task manager take to build?', a: 'About three hours in Claude Code on the $20 a month plan, according to the recording.' },
+      { q: 'How long did the task manager take to build?', a: 'About three hours in Claude Code on the $20 a month plan, according to this walkthrough.' },
       { q: 'Was it copied from an existing task manager?', a: 'No. Mike says it was written from scratch and that another task manager was only the inspiration. CPU and memory readings were checked against a second system monitor.' },
       { q: 'What does the app show?', a: 'An overview of CPU and memory, a processes tab with per-process usage, a performance view over time and system information including core temperatures.' },
     ],
@@ -74,7 +74,7 @@ Object.assign(lateQa, {
 Object.assign(lateSummaries, {
   'vauqktcB6ak': {
     summary: 'Compare OpenAI Dots and GrokBot on the same job application agent task, with setup time, missing email results, Airtable tracking and plan pricing.',
-    whatYouBuild: 'A job application agent that finds remote AI jobs, tailors a resume and cover letter to each posting and tracks the results in an Airtable base. The recording builds it in Dots first and then in GrokBot.',
+    whatYouBuild: 'A job application agent that finds remote AI jobs, tailors a resume and cover letter to each posting and tracks the results in an Airtable base. The walkthrough builds it in Dots first and then in GrokBot.',
     toolsUsed: ['OpenAI Dots in ChatGPT', 'GrokBot', 'Airtable', 'Lead Magic API'],
     keySteps: [
       { seconds: 42, step: 'Set up and customize Dots in ChatGPT and read its results.' },
@@ -86,11 +86,11 @@ Object.assign(lateSummaries, {
     ],
     notCovered: ['A controlled benchmark. It is one task run once per tool.', 'Whether any application emails were actually sent and answered.'],
     qa: [
-      { q: 'How long did the Dots build take?', a: 'About 45 minutes in the recording, and it found three jobs but could not verify application emails.' },
+      { q: 'How long did the Dots build take?', a: 'About 45 minutes in my walkthrough, and it found three jobs but could not verify application emails.' },
       { q: 'How long did the GrokBot build take?', a: 'About two to three minutes to create the agent in the desktop app, Mike estimates, before he adds Airtable tracking and salary sorting.' },
       { q: 'What do the plans cost?', a: 'GrokBot is free to start, then $20 a month for Pro and $60 a month for Pro Plus, which Mike uses.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Timings and prices are as stated in the recording.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Timings and prices are as I noted then.',
   },
   'TuVL2x6IfDk': {
     summary: 'Feed a forum post on internal linking tests into Codex, run an audit of 600+ articles and apply the resulting plan to fix orphan pages and link clusters.',
@@ -111,7 +111,7 @@ Object.assign(lateSummaries, {
       { q: 'Does link position matter?', a: 'Mike covers where on the page to place links, and cites a Google patent and the forum tests as the reasoning.' },
       { q: 'Do you need an SEO team to apply it?', a: 'No, Mike argues. He has Codex create and run the plan itself, then checks the result with a final audit.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. The forum post and patent claims are quoted from the recording and not verified.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. The forum post and patent claims are quoted from this walkthrough and not verified.',
   },
 });
 
@@ -130,15 +130,15 @@ Object.assign(lateSummaries, {
     ],
     notCovered: ['Current prices or availability. The video describes one moment and plans change.', 'A measured comparison of usage limits between plans.'],
     qa: [
-      { q: 'What did OpenAI pause on the ChatGPT Pro plans?', a: 'New sign-ups for the $200 a month Pro 20x plan. The recording says existing subscribers kept access and the roughly $100 a month 5x plan stayed available.' },
-      { q: 'Why was it paused?', a: 'According to the posts quoted in the recording, demand for GPT-6 Astra was far higher than expected and OpenAI was adding capacity.' },
-      { q: 'Is the ChatGPT Pro 20x sign-up pause still in place?', a: 'Check the official plan page. The recording describes the situation on the day it was made, and our written guide on ChatGPT Pro limits is the better place for current details.' },
+      { q: 'What did OpenAI pause on the ChatGPT Pro plans?', a: 'New sign-ups for the $200 a month Pro 20x plan. The walkthrough says existing subscribers kept access and the roughly $100 a month 5x plan stayed available.' },
+      { q: 'Why was it paused?', a: 'According to the posts quoted in my walkthrough, demand for GPT-6 Astra was far higher than expected and OpenAI was adding capacity.' },
+      { q: 'Is the ChatGPT Pro 20x sign-up pause still in place?', a: 'Check the official plan page. The walkthrough describes the situation on the day it was made, and our written guide on ChatGPT Pro limits is the better place for current details.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Plan names and prices are as stated in the recording and may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Plan names and prices are as I noted then and may have changed.',
   },
   'lbBZ7uLJwbM': {
     summary: 'Install the official ChatGPT desktop app on Debian, launch its Codex workspace, set project permissions and try model selection, a skill, Fast Mode and voice dictation.',
-    whatYouBuild: 'A working official ChatGPT and Codex desktop app on Linux. The recording downloads the Debian package, installs dependencies in the terminal, opens a project and runs an SEO audit skill.',
+    whatYouBuild: 'A working official ChatGPT and Codex desktop app on Linux. The walkthrough downloads the Debian package, installs dependencies in the terminal, opens a project and runs an SEO audit skill.',
     toolsUsed: ['ChatGPT desktop app for Linux', 'Codex'],
     keySteps: [
       { seconds: 69, step: 'Download the package that matches your distribution from the official page.' },
@@ -172,10 +172,10 @@ Object.assign(lateSummaries, {
     notCovered: ['A measured saving. Costs are only shown live in the dashboard.', 'Provider prices, which change often.'],
     qa: [
       { q: 'What does 9Router do?', a: 'It sits between your coding tools and providers and picks a model by cost, speed and availability, falling back automatically when one runs out of credits.' },
-      { q: 'What are the three tiers?', a: 'Paid subscriptions first, cheap models second and free or low-cost options third, as described in the recording.' },
+      { q: 'What are the three tiers?', a: 'Paid subscriptions first, cheap models second and free or low-cost options third, as described in my walkthrough.' },
       { q: 'How is it installed?', a: 'With a terminal command, after which a web dashboard opens where providers are connected.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Model names and plan limits quoted in the recording may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Model names and plan limits quoted in my walkthrough may have changed.',
   },
   '-L0CVvJMzZI': {
     searchTitle: 'Building TubeAnalytics in public: debugging, SEO fixes and data',
@@ -191,17 +191,17 @@ Object.assign(lateSummaries, {
     notCovered: ['A complete build from an empty project.', 'Verified earnings or traffic figures beyond what is shown on screen.'],
     qa: [
       { q: 'What is being fixed in this video?', a: 'A 500 error on the pricing page and a bug that sends logged-in users back to onboarding, both worked on in OpenCode.' },
-      { q: 'Which model writes the code?', a: 'A free DeepSeek model through OpenCode Zen, and the recording shows zero credits spent that month.' },
+      { q: 'Which model writes the code?', a: 'A free DeepSeek model through OpenCode Zen, and this walkthrough shows zero credits spent that month.' },
       { q: 'Where does the dashboard data come from?', a: 'The YouTube API through the Google Cloud Console, after the user signs in with Google and connects a channel.' },
     ],
-    sourceNote: 'Summary based on the saved video description, transcript and chapter list. The chapter labels are generic, so only the clearly supported steps are listed. Figures are as shown in the recording.',
+    sourceNote: 'Summary based on the saved video description, transcript and chapter list. The chapter labels are generic, so only the clearly supported steps are listed. Figures are as shown in my walkthrough.',
   },
 });
 
 Object.assign(lateSummaries, {
   'g4BmgmEy_mI': {
     summary: 'Build a community Codex desktop app for Debian from its GitHub project with make, then see the install output, features and first launch. This is the unofficial route.',
-    whatYouBuild: 'A Codex desktop app running on Debian, built from a community GitHub project rather than an OpenAI download. The recording clones the repository, runs its bootstrap and package steps and packages a .deb.',
+    whatYouBuild: 'A Codex desktop app running on Debian, built from a community GitHub project rather than an OpenAI download. The walkthrough clones the repository, runs its bootstrap and package steps and packages a .deb.',
     toolsUsed: ['Codex', 'Community Codex desktop project on GitHub', 'GNU Make', 'Electron', 'Debian'],
     keySteps: [
       { seconds: 0, step: 'See why the app is needed when the official one covered only Windows and Mac.' },
@@ -255,15 +255,15 @@ Object.assign(lateSummaries, {
     ],
     notCovered: ['Cost of the model providers used.', 'A long-running test of the scheduled jobs.'],
     qa: [
-      { q: 'Is this the official Hermes app?', a: 'The description calls it a community-built desktop interface, and the recording installs it from its GitHub project.' },
+      { q: 'Is this the official Hermes app?', a: 'The description calls it a community-built desktop interface, and this walkthrough installs it from its GitHub project.' },
       { q: 'Why use it over the command line?', a: 'Mike finds the command line powerful but hard for most users to set up, and the app adds profiles, a model screen and scheduling.' },
       { q: 'Which models can it connect to?', a: 'Mike connects providers such as OpenRouter and Gemini.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Interfaces and provider requirements may differ from what the recording shows.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Interfaces and provider requirements may differ from what this walkthrough shows.',
   },
   'qC2ipjdszPA': {
     summary: 'See the ChatGPT Business trial used to raise Codex limits, why the CLI kept showing old credits and the sign out and back in step that finally synced the plan.',
-    whatYouBuild: 'A higher Codex usage allowance. The recording starts the ChatGPT Business trial, upgrades the workspace and signs out of the CLI and back in until the command line shows full credits.',
+    whatYouBuild: 'A higher Codex usage allowance. The walkthrough starts the ChatGPT Business trial, upgrades the workspace and signs out of the CLI and back in until the command line shows full credits.',
     toolsUsed: ['ChatGPT Business', 'Codex CLI', 'Codex cloud', 'Codex VS Code extension'],
     keySteps: [
       { seconds: 27, step: 'Review the Business plan features and pricing shown.' },
@@ -277,13 +277,13 @@ Object.assign(lateSummaries, {
     qa: [
       { q: 'Why did the CLI still show the old limit?', a: 'The usage settings page showed the new plan, but the command line session kept the old one until it was signed out and back in.' },
       { q: 'How much does ChatGPT Business cost?', a: 'About $15 a month after a one-month free trial, Mike says. Check OpenAI for current pricing.' },
-      { q: 'How big was the increase?', a: 'Mike describes about a 20x credit limit increase compared with the free plan, in the recording only.' },
+      { q: 'How big was the increase?', a: 'Mike describes about a 20x credit limit increase compared with the free plan, in my walkthrough only.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices, trials and limits are as stated in the recording and may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices, trials and limits are as I noted then and may have changed.',
   },
   '_8qzOkIWMSk': {
     summary: 'Install OpenCode with a one-line command, see where it runs, compare its Go and free Zen plans with Claude Code limits and connect models through OpenRouter.',
-    whatYouBuild: 'A working OpenCode install with model connections. The recording covers the install options, the free and paid plans, adding OpenRouter and API keys, running custom SEO skills and adding the VS Code extension.',
+    whatYouBuild: 'A working OpenCode install with model connections. The walkthrough covers the install options, the free and paid plans, adding OpenRouter and API keys, running custom SEO skills and adding the VS Code extension.',
     toolsUsed: ['OpenCode', 'OpenRouter', 'OpenCode VS Code extension'],
     keySteps: [
       { seconds: 24, step: 'Install with a one-line curl, npm or brew command.' },
@@ -296,7 +296,7 @@ Object.assign(lateSummaries, {
     ],
     notCovered: ['A controlled test showing OpenCode beats Claude Code. The title is an opinion.', 'Current plan prices and limits.'],
     qa: [
-      { q: 'Is OpenCode really free?', a: 'The tool is open source with free models built in. Paid options such as Go and connected provider plans are optional, and the recording shows both.' },
+      { q: 'Is OpenCode really free?', a: 'The tool is open source with free models built in. Paid options such as Go and connected provider plans are optional, and this walkthrough shows both.' },
       { q: 'Where can you run it?', a: 'In the terminal, in editors such as VS Code and Cursor, or as a desktop app.' },
       { q: 'How many models can it use?', a: 'About 75 providers through models.dev, Mike says, plus ChatGPT Plus or Pro and GitHub Copilot logins.' },
     ],
@@ -307,7 +307,7 @@ Object.assign(lateSummaries, {
 Object.assign(lateSummaries, {
   'DfyAAwHPJuU': {
     summary: 'Why the TubeAnalytics SaaS was built, how Claude Code, Gemini and OpenCode were used, then a tour of its dashboard, competitor tracking and AI tools.',
-    whatYouBuild: 'A tour of a finished YouTube analytics SaaS and how it was built. The recording covers plans, the dashboard, audience and video scores, a content calendar, competitor tracking, AI tools, monetization scenarios and reporting.',
+    whatYouBuild: 'A tour of a finished YouTube analytics SaaS and how it was built. The walkthrough covers plans, the dashboard, audience and video scores, a content calendar, competitor tracking, AI tools, monetization scenarios and reporting.',
     toolsUsed: ['Claude Code', 'Gemini', 'OpenCode', 'Ahrefs'],
     keySteps: [
       { seconds: 0, step: 'Hear how the platform was built in about two weeks with AI coding tools.' },
@@ -319,13 +319,13 @@ Object.assign(lateSummaries, {
       { seconds: 665, step: 'Model monetization scenarios.' },
       { seconds: 868, step: 'Manage comments and export PDF reports.' },
     ],
-    notCovered: ['Independent verification of the build time or traffic claims.', 'Current prices, which the recording shows at the time it was made.'],
+    notCovered: ['Independent verification of the build time or traffic claims.', 'Current prices, which this walkthrough shows at the time it was made.'],
     qa: [
       { q: 'How long did the TubeAnalytics build take?', a: 'Roughly 150 hours over about two weeks, Mike says, and he estimates two years without AI coding tools. These are his own figures.' },
       { q: 'Which AI tools were used to build it?', a: 'Claude Code, Gemini and OpenCode.' },
-      { q: 'What TubeAnalytics plans are shown?', a: 'Starter at $19 a month, Professional at $49 and Enterprise at $149, as listed in the recording.' },
+      { q: 'What TubeAnalytics plans are shown?', a: 'Starter at $19 a month, Professional at $49 and Enterprise at $149, as listed in my walkthrough.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and results are as stated in the recording and may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and results are as I noted then and may have changed.',
   },
   'gebtJAsMioo': {
     summary: 'A three minute tour of TubeAnalytics: dashboard stats, audience health, video scores, traffic sources, competitor tracking, thumbnail scoring and keyword research.',
@@ -346,11 +346,11 @@ Object.assign(lateSummaries, {
       { q: 'What does TubeAnalytics cost?', a: 'Plans start at $19 a month, with Professional and Enterprise tiers that track more channels, Mike says.' },
       { q: 'Why was it built?', a: 'The founder says only about 7% of YouTubers are monetized and wants data to be easier to act on.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and figures are as stated in the recording and may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and figures are as I noted then and may have changed.',
   },
   'xlVDUw_rBXE': {
     summary: 'See six n8n automations on a Hostinger VPS: job applications, a LinkedIn newsletter, a YouTube Shorts uploader and an AI stock advisor, with templates.',
-    whatYouBuild: 'A self-hosted n8n instance and several workflows that combine AI models with workflow logic. The recording covers automated job applications, a LinkedIn newsletter, a YouTube Shorts uploader and an AI stock advisor.',
+    whatYouBuild: 'A self-hosted n8n instance and several workflows that combine AI models with workflow logic. The walkthrough covers automated job applications, a LinkedIn newsletter, a YouTube Shorts uploader and an AI stock advisor.',
     toolsUsed: ['n8n', 'Hostinger VPS'],
     keySteps: [
       { seconds: 45, step: 'See the self-hosted n8n instance on Hostinger.' },
@@ -370,7 +370,7 @@ Object.assign(lateSummaries, {
   },
   'm9VrHQHTMTE': {
     summary: 'Install Coolify with Docker on Debian 13, deploy n8n through it, run into the localhost and webhook domain problems and compare self-hosting with Coolify Cloud.',
-    whatYouBuild: 'A Coolify install on a Linux machine used to deploy an n8n instance. The recording shows the setup issues and why a real domain is needed for webhooks.',
+    whatYouBuild: 'A Coolify install on a Linux machine used to deploy an n8n instance. The walkthrough shows the setup issues and why a real domain is needed for webhooks.',
     toolsUsed: ['Coolify', 'n8n', 'Docker', 'Debian Linux'],
     keySteps: [
       { seconds: 30, step: 'Install Coolify with the curl command, which relies on Docker.' },
@@ -454,7 +454,7 @@ Object.assign(lateSummaries, {
       { q: 'Which tools connect to the assistant?', a: 'Make.com through webhooks, Twilio for a phone number and ElevenLabs for the voice.' },
       { q: 'What happens after the call?', a: 'The collected data goes to Make.com, which updates records.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and settings shown are from the recording and may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and settings shown are from this walkthrough and may have changed.',
   },
   'G8u1-hKEqig': {
     summary: 'A long course on making AI avatar videos with HeyGen, an ElevenLabs voice clone and a Make.com automation, including the API limit problems that came up.',
@@ -475,7 +475,7 @@ Object.assign(lateSummaries, {
       { q: 'Where does the avatar come from?', a: 'It is trained on videos you upload to HeyGen.' },
       { q: 'What goes wrong in the HeyGen Make.com automation?', a: 'API limit issues come up in the Make.com automation step.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. The recording is a course and the tool plans it uses may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. The walkthrough is a course and the tool plans it uses may have changed.',
   },
   'G_XWYIwjhKY': {
     summary: 'Build a Make.com AI agent that replies to Tally form submissions by email, with a chosen language model, a system prompt, tools and a test run.',
@@ -512,13 +512,13 @@ Object.assign(lateSummaries, {
       { seconds: 1947, step: 'Run scenarios in real time and on a schedule.' },
       { seconds: 2511, step: 'Start from templates and AI agents.' },
     ],
-    notCovered: ['Current Make.com prices. The pricing section reflects the recording date.', 'Advanced error handling.'],
+    notCovered: ['Current Make.com prices. The pricing section reflects this walkthrough date.', 'Advanced error handling.'],
     qa: [
       { q: 'Who is this course for?', a: 'Beginners. Mike says he has used Make.com for seven to eight months for his own business and clients.' },
       { q: 'Are templates included?', a: 'Many of the templates are available on Mike\'s Gumroad page, linked in the description, he says.' },
       { q: 'How is Make.com different from ChatGPT?', a: 'Chatbots only answer, while Make.com can run automations across apps, Mike says.' },
     ],
-    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and features in the recording may have changed.',
+    sourceNote: 'Summary based on the saved video description, chapters and transcript. Prices and features in my walkthrough may have changed.',
   },
   'oDAKXkIyOHE': {
     summary: 'Build a Make.com scenario that watches for new emails, has AI write a customized reply and sends it, with a template to download.',
@@ -531,6 +531,6 @@ Object.assign(lateSummaries, {
       { q: 'Do you have to build it yourself?', a: 'No. A template is offered, but Mike shows how to build it so you understand each module.' },
       { q: 'How do you add a module?', a: 'Right-click in the scenario, choose add a module and pick the email app and its watch for emails trigger.' },
     ],
-    sourceNote: 'Summary based on the saved video description and transcript. This recording has no published chapters, so no step timings are listed.',
+    sourceNote: 'Summary based on the saved video description and transcript. This walkthrough has no published chapters, so no step timings are listed.',
   },
 });

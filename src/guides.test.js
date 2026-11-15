@@ -6,6 +6,12 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'make-apify-apollo-leads-sheet.html': 'kXw2yntdmo4',
+  'hermes-youtube-to-linkedin-cron.html': 'dVvazfQHhW4',
+  'dextrolab-white-label-automations.html': 'QMqe2ubsn0g',
+  'whatsapp-ai-voice-clone-make.html': '1TPm7B5oStw',
+  'vapi-outbound-ai-caller-make-twilio.html': '4uNxh9FW6Ho',
+  'opusclip-clone-app-opencode.html': 'HlPdlZh0AHM',
   'claude-seo-skill-site-audit.html': 'q4-LkuMDkIE',
   'opencode-video-trim-skill.html': 'yR-zoMUY27Q',
   'make-messenger-chatgpt-bot.html': '8ieDSa8BVH4',
@@ -84,6 +90,34 @@ test('the guides hub links, lists and describes every guide', async () => {
   assert.match(hub, /src="\/src\/reading.js"/, 'scripts/prerender.js rewrites this entry for the build');
   assert.match(await read('scripts/prerender.js'), /'guides.html'/);
   assert.match(await read('public/sitemap.xml'), /<loc>https:\/\/www.ai-automation-station.com\/guides.html<\/loc>/);
+});
+
+test('new guides avoid tape voice, overlong titles and thin Sources', async () => {
+  const types = new Set(['Comparison', 'Case study', 'How-to', 'Review', 'Tool guide', 'Explainer', 'Build guide']);
+  const recording = /\b(the recording|in the recording|this recording|spoken source|What this recording did not cover)\b/i;
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const pub = html.match(/published_time" content="([^"]+)"/)?.[1] ?? '';
+    if (pub < '2026-11-12') continue;
+    assert.equal(recording.test(html), false, `${file} still talks about "the recording"`);
+    const title = html.match(/<title>([^<]+)/)?.[1] ?? '';
+    assert.ok(title.length <= 60, `${file} title is ${title.length} chars: ${title}`);
+    const type = html.match(/<p class="meta">([^·]+)/)?.[1]?.trim();
+    assert.ok(types.has(type), `${file} has unknown byline type ${type}`);
+    assert.match(html, /id="done"/, `${file} needs a Done when checklist`);
+    const sources = html.match(/<h2[^>]*id="sources"[\s\S]*?(?=<h2|<\/main)/)?.[0] ?? '';
+    const nonYt = [...sources.matchAll(/href="((?:https?:\/\/|\/)[^"]+)"/g)].map(m => m[1]).filter(u => !u.includes('youtube.com/watch') && !u.includes('youtu.be'));
+    assert.ok(nonYt.length >= 1, `${file} Sources need a non-YouTube link`);
+  }
+});
+
+test('guide-from-spec rejects tape voice, missing type and overlong titles', async () => {
+  const src = await read('scripts/guide-from-spec.mjs');
+  assert.match(src, /TYPES\.has\(s\.type\)/);
+  assert.match(src, /title\.length <= 60/);
+  assert.match(src, /recordingPhrase/);
+  assert.match(src, /What I didn't cover/);
+  assert.match(src, /id="done"/);
 });
 
 test('guide links to /videos topics and /watch pages resolve', async () => {

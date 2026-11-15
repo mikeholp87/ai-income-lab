@@ -1,24 +1,50 @@
 export default {
   slug: 'gamma-workshop-deck-and-site-export',
   video: '9DQYe6HywT8',
+  type: 'How-to',
   title: 'Gamma for a Conference Workshop: Deck, Site and PDF Export',
   short: 'Gamma workshop deck',
   description: 'Build a 40-minute workshop deck in Gamma from a ChatGPT outline, add a comparison slide, publish it as a site and export a PDF when Google Slides failed.',
   hub: 'Build a 40-minute workshop deck in Gamma from an outline, add an n8n vs Make.com slide, publish it as a site and export a PDF.',
   watchLabel: 'Follow the Gamma workshop deck build',
-  about: ['Gamma', 'ChatGPT', 'Google Gemini', 'Google Slides'],
+  about: ['Gamma','ChatGPT','Google Gemini','Google Slides'],
   card: {
     title: 'A workshop deck in Gamma, published as a site',
-    steps: [['Outline', 'ChatGPT outline pasted into Gamma'], ['Generate', 'Concise text, professional theme'], ['Share', 'Publish as a site or export a PDF']],
-    note: 'Google Slides export failed in the recording.',
+    steps: [
+      ['Outline','ChatGPT outline pasted into Gamma'],
+      ['Generate','Concise text, professional theme'],
+      ['Share','Publish as a site or export a PDF'],
+    ],
+    note: 'Google Slides export failed in my walkthrough.',
   },
   quick: 'Ask ChatGPT for an outline of your talk, then in Gamma choose Create new, paste the text, pick Presentation and the default fluid format and generate from notes. I set concise text for a 40-minute workshop, described the audience and tone, picked a professional theme with automatic images and watched the slides build in real time. I then improved the writing, restyled the deck, added a slide comparing n8n and Make.com, published it as a site and exported a PDF because the Google Slides export failed.',
-  intro: '<p>This is an October 2025 build for an AI workshop I was giving at a digital nomad conference in Bangkok the next month. I wanted to avoid building every slide by hand, and I found Gamma by asking Google Gemini for AI presentation tools. The Gamma link is an affiliate link. For a client coaching deck made from a pasted plan, see <a href="/guides/gamma-coaching-deck-from-chatgpt-plan.html">the Gamma coaching deck guide</a>.</p>',
+  intro: "<p>This is an October 2025 build for an AI workshop I was giving at a digital nomad conference in Bangkok the next month. I wanted to avoid building every slide by hand, and I found Gamma by asking Google Gemini for AI presentation tools. The Gamma link is an affiliate link. For a client coaching deck made from a pasted plan, see <a href=\"/guides/gamma-coaching-deck-from-chatgpt-plan.html\">the Gamma coaching deck guide</a>.</p>\n<p>Prices and plan names change. Confirm them on the vendor page before you buy. Checked November 15, 2026 against the Sources links below where listed.</p>",
   sections: [
-    { id: 'start', h: '1. Find the tool and paste the outline', html: '<p>Gemini suggested Gamma and Beautiful.ai. Beautiful.ai had only a free trial, while Gamma was free to start, so I used Gamma. In Gamma choose Create new, then paste text, generate from a one-line prompt or import a PDF or PowerPoint. I pasted the ChatGPT outline, chose Presentation, kept the default fluid format (16 by 9 and 4 by 3 are also offered) and chose Generate from notes or an outline.</p>' },
-    { id: 'settings', h: '2. Set text, audience and theme', html: '<p>The text amount options are minimal, concise, detailed and extensive. The talk was about 40 minutes with a Q&amp;A, so I chose concise. I wrote the audience and tone, picked a professional theme with automatic images and generated the deck. The slides appeared in real time.</p>' },
-    { id: 'revise', h: '3. Revise with AI', html: '<p>Improve writing rewrote the whole deck, and a theme suggestion restyled it. I also asked Gamma to add a slide comparing n8n and Make.com. It listed n8n as open source, self-hostable and developer friendly with lower long-term cost at high volume, and Make.com as cloud-based with a visual drag-and-drop interface and higher cost but immediate deployment. For my own comparison of the two, see <a href="/guides/n8n-vs-zapier-vs-make.html">n8n vs Zapier vs Make</a>.</p>' },
-    { id: 'share', h: '4. Publish or export', html: '<p>Share offers PDF, PowerPoint, Google Slides or images, and installing fonts helps PowerPoint look right. Hiding the Gamma logo needs a paid plan, about \$10 a month as I said then. You can also convert the deck to a site and publish it to its own Gamma address; a custom domain needs a paid plan. I published the site so I could send it to the organizers.</p><p>The Google Slides export did not work in the recording after the sign-in step, so I exported a PDF. It looked good out of the box, with some revision still needed.</p>' },
+    {
+      id: 'start',
+      h: '1. Find the tool and paste the outline',
+      html: '<p>Gemini suggested Gamma and Beautiful.ai. Beautiful.ai had only a free trial, while Gamma was free to start, so I used Gamma. In Gamma choose Create new, then paste text, generate from a one-line prompt or import a PDF or PowerPoint. I pasted the ChatGPT outline, chose Presentation, kept the default fluid format (16 by 9 and 4 by 3 are also offered) and chose Generate from notes or an outline.</p>',
+    },
+    {
+      id: 'settings',
+      h: '2. Set text, audience and theme',
+      html: '<p>The text amount options are minimal, concise, detailed and extensive. The talk was about 40 minutes with a Q&amp;A, so I chose concise. I wrote the audience and tone, picked a professional theme with automatic images and generated the deck. The slides appeared in real time.</p>',
+    },
+    {
+      id: 'revise',
+      h: '3. Revise with AI',
+      html: '<p>Improve writing rewrote the whole deck, and a theme suggestion restyled it. I also asked Gamma to add a slide comparing n8n and Make.com. It listed n8n as open source, self-hostable and developer friendly with lower long-term cost at high volume, and Make.com as cloud-based with a visual drag-and-drop interface and higher cost but immediate deployment. For my own comparison of the two, see <a href="/guides/n8n-vs-zapier-vs-make.html">n8n vs Zapier vs Make</a>.</p>',
+    },
+    {
+      id: 'share',
+      h: '4. Publish or export',
+      html: "<p>Share offers PDF, PowerPoint, Google Slides or images, and installing fonts helps PowerPoint look right. Hiding the Gamma logo needs a paid plan, about $10 a month as I said then. You can also convert the deck to a site and publish it to its own Gamma address; a custom domain needs a paid plan. I published the site so I could send it to the organizers.</p><p>The Google Slides export did not work in my walkthrough after the sign-in step, so I exported a PDF. It looked good out of the box, with some revision still needed.</p>",
+    },
+  ],
+  done: [
+    'ChatGPT outline pasted into Gamma',
+    'Concise text, professional theme',
+    'Publish as a site or export a PDF',
   ],
   limits: [
     'How the talk went or whether the organizers used the site.',
@@ -26,17 +52,33 @@ export default {
     'Why the Google Slides export failed on this run.',
   ],
   faq: [
-    ['Is Gamma free?', 'Free to start in the recording, with paid plans from about \$10 a month at the time. Check current pricing.'],
-    ['Can Gamma make a website?', 'Yes. You can convert a deck to a site and publish it. A custom domain needs a paid plan.'],
-    ['Why did you export a PDF?', 'The Google Slides export did not work in my test, so I used PDF instead.'],
+    [
+      'Is Gamma free?',
+      "Free to start in my walkthrough, with paid plans from about $10 a month at the time. Check current pricing.",
+    ],
+    [
+      'Can Gamma make a website?',
+      'Yes. You can convert a deck to a site and publish it. A custom domain needs a paid plan.',
+    ],
+    [
+      'Why did you export a PDF?',
+      'The Google Slides export did not work in my test, so I used PDF instead.',
+    ],
   ],
   sources: [
     'Video: <a href="https://www.youtube.com/watch?v=9DQYe6HywT8">How I Created A Presentation In Minutes with Gamma AI</a> (recorded October 2025)',
     'Try Gamma through my affiliate link: <a href="https://try.gamma.app/q9q68k9i00tu" rel="sponsored noopener">Gamma</a>',
+    'Gamma: <a href="https://gamma.app/">gamma.app</a>',
   ],
-  related: [['/guides/gamma-coaching-deck-from-chatgpt-plan.html', 'Gamma coaching deck'], ['/guides/n8n-vs-zapier-vs-make.html', 'n8n vs Zapier vs Make'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/what-is-n8n-used-for.html', 'What is n8n used for?'], ['/guides/ai-automation.html', 'AI automation: what it is and a first build']],
-  next: ['/guides/n8n-vs-zapier-vs-make.html', 'n8n vs Zapier vs Make'],
+  related: [
+    ['/guides/gamma-coaching-deck-from-chatgpt-plan.html','Gamma coaching deck'],
+    ['/guides/n8n-vs-zapier-vs-make.html','n8n vs Zapier vs Make'],
+    ['/guides/ai-content-creation-workflows.html','AI content creation workflow'],
+    ['/guides/what-is-n8n-used-for.html','What is n8n used for?'],
+    ['/guides/ai-automation.html','AI automation: what it is and a first build'],
+  ],
+  next: ['/guides/n8n-vs-zapier-vs-make.html','n8n vs Zapier vs Make'],
   more: 'Price and details: <a href="/tools.html#gamma">Gamma on the tools page</a>',
   linkFrom: ['/guides/n8n-vs-zapier-vs-make.html'],
-  llms: 'An October 2025 Gamma build of a 40-minute workshop deck: paste a ChatGPT outline, keep the fluid format, choose concise text and a professional theme, generate, improve the writing, add an n8n versus Make.com slide, publish as a site and export a PDF after Google Slides export failed. Paid plans started around \$10 a month then.',
+  llms: "An October 2025 Gamma build of a 40-minute workshop deck: paste a ChatGPT outline, keep the fluid format, choose concise text and a professional theme, generate, improve the writing, add an n8n versus Make.com slide, publish as a site and export a PDF after Google Slides export failed. Paid plans started around $10 a month then.",
 };

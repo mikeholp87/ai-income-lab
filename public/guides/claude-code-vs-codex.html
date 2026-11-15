@@ -85,15 +85,15 @@
 <p>For substantial work, the tool that did not write the change reviews it. If Codex wrote it, Claude Code reviews it (Opus 5.5, high effort). If Claude Code wrote it, Codex reviews it in a read-only sandbox (GPT-6.1-Sol, high effort).</p>
 <p>The idea is that a different model family tends to catch different mistakes. I treat a change as substantial if it is an audit, research, a feature or bug fix, a script that sends or writes externally, anything client-facing or in another language, anything over about 100 changed lines, or anything that will be merged, published or sent. The reviewer reports findings and does not edit. Fixes go back to the author tool.</p>
 <h2 id="grokbot">Connect them on GrokBot</h2>
-<p>The 7 November 2026 recording installs Claude Code and Codex on GrokBot’s virtual computer so they can run when Cursor cloud agents are out of credits. That is the same routing idea as the rest of this page, not a second comparison. GrokBot job-application and credit-usage walks are separate: <a href="/guides/grokbot-job-application-agent.html">job application agent</a> and <a href="/guides/grokbot-credit-usage.html">credit usage</a>.</p>
-<p>Steps shown in that recording:</p>
+<p>The 7 November 2026 walkthrough installs Claude Code and Codex on GrokBot’s virtual computer so they can run when Cursor cloud agents are out of credits. That is the same routing idea as the rest of this page, not a second comparison. GrokBot job-application and credit-usage walks are separate: <a href="/guides/grokbot-job-application-agent.html">job application agent</a> and <a href="/guides/grokbot-credit-usage.html">credit usage</a>.</p>
+<p>Steps shown in that walkthrough:</p>
 <ol>
 <li>Tell the Chief of Staff to open a computer, then: “Hey chief, can you go ahead and install Codex and Claude code using the virtual computer?” The reply on camera was that no API keys were touched, only the tools.</li>
 <li>Codex still needs a sign-in: a ChatGPT account or an OpenAI API key. Ask the chief to open the login screen and authenticate on the Computer tab.</li>
-<li>Repeat the sign-in for Claude Code. The recording completes a CAPTCHA in the virtual terminal.</li>
+<li>Repeat the sign-in for Claude Code. I completes a CAPTCHA in the virtual terminal.</li>
 <li>Point Claude Code at a separate project folder. Auto mode in a shared workspace can edit files and run commands, including live email send scripts. The current setup on this page uses manual mode instead. See <a href="#safety">Run them safely</a>.</li>
 <li>Save a fallback rule: when Cursor cloud agents are out of credits, Codex and Claude Code on the computer handle coding and content work.</li>
-<li>Ask for a routing rule that picks Claude Code or Codex by task type and picks a model. The recording creates a fresh markdown file and a helper script because no routing config existed on the machine. It shows the command before running anything. Cursor cloud agents stay the default when credits remain.</li>
+<li>Ask for a routing rule that picks Claude Code or Codex by task type and picks a model. I creates a fresh markdown file and a helper script because no routing config existed on the machine. It shows the command before running anything. Cursor cloud agents stay the default when credits remain.</li>
 </ol>
 <p>Useful GrokBot UI frames from that video show a private agent dashboard, so they are not reproduced here. Token views for the same two tools on Windows are on <a href="/guides/herdr-on-windows.html">Herdr on Windows</a>.</p>
 <h2 id="video">Watch it come together</h2>

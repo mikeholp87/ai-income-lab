@@ -403,6 +403,12 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  kXw2yntdmo4: [['/guides/make-apify-apollo-leads-sheet.html', 'Follow the Make.com Apify Apollo lead scraper build']],
+  dVvazfQHhW4: [['/guides/hermes-youtube-to-linkedin-cron.html', 'Follow the Hermes YouTube to LinkedIn cron job build']],
+  QMqe2ubsn0g: [['/guides/dextrolab-white-label-automations.html', 'Follow the DextroLab white-label walkthrough']],
+  '1TPm7B5oStw': [['/guides/whatsapp-ai-voice-clone-make.html', 'Follow the WhatsApp AI voice clone course']],
+  '4uNxh9FW6Ho': [['/guides/vapi-outbound-ai-caller-make-twilio.html', 'Follow the Vapi outbound voice agent course']],
+  HlPdlZh0AHM: [['/guides/opusclip-clone-app-opencode.html', 'Follow the Short Forge app build in OpenCode']],
   'q4-LkuMDkIE': [['/guides/claude-seo-skill-site-audit.html', 'Follow the Claude SEO skill audit']],
   'yR-zoMUY27Q': [['/guides/opencode-video-trim-skill.html', 'Follow the OpenCode video trimming skill build']],
   '8ieDSa8BVH4': [['/guides/make-messenger-chatgpt-bot.html', 'Follow the Make.com Messenger bot build']],

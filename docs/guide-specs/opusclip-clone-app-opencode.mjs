@@ -1,0 +1,75 @@
+export default {
+  slug: 'opusclip-clone-app-opencode',
+  video: 'HlPdlZh0AHM',
+  type: 'Build guide',
+  title: 'Build an OpusClip-Style Web App With OpenCode: Short Forge',
+  short: 'Short Forge app build',
+  description: 'Scaffold Short Forge, a local OpusClip-style app, in OpenCode with Clerk, Prisma, Postgres and FFmpeg, and fix the build, database and storage errors.',
+  hub: 'Scaffold a local OpusClip-style app in OpenCode with Clerk, Prisma, Postgres and FFmpeg, and fix the build, database and storage errors on the way.',
+  watchLabel: 'Follow the Short Forge app build in OpenCode',
+  about: ['OpenCode','Claude Desktop','Clerk','Prisma','PostgreSQL'],
+  card: {
+    title: 'A local OpusClip-style app built with OpenCode',
+    steps: [
+      ['Prompt','Detailed prompt written in Claude Desktop'],
+      ['Scaffold','OpenCode builds workers, API and UI'],
+      ['Fix','Keys, Postgres, local storage instead of S3'],
+    ],
+    note: 'May 2026; the app was unfinished, with no clips shown.',
+  },
+  quick: 'Write a detailed prompt in Claude Desktop for a web app that turns long YouTube videos into shorts, paste it into OpenCode and let it scaffold the project: worker files for import and rendering, API routes, Clerk sign-up, Prisma and Postgres, with FFmpeg doing the video work. Fill in the env keys, run npm run dev and paste build errors back until it loads on port 3000. I then fixed the Postgres user and database and swapped Amazon S3 for a local storage folder. The app was still unfinished at the end: the subscribe buttons did not work and no finished clips were shown.',
+  intro: '<p>This is a May 2026 build log of an MVP I called Short Forge, a local alternative to OpusClip that reuses my own video-trimming skills. I used the free Qwen 3.6 Plus model in OpenCode, so building cost no credits. Downloading other people’s videos has rules, so use only your own or licensed footage. The OpenCode link on this page is an affiliate link. For the trimming skill itself, see <a href="/guides/opencode-video-trim-skill.html">the OpenCode video trim skill</a>.</p>',
+  sections: [
+    {
+      id: 'prompt',
+      h: '1. Write the build prompt',
+      html: '<p>In Claude Desktop I asked for a prompt to build a web app with OpenCode that replicates OpusClip’s core idea: upload a long video or import it from YouTube and produce ready-to-post shorts, reusing the custom skills I already had and FFmpeg for rendering. Running locally on my own machine made FFmpeg simple.</p>',
+    },
+    {
+      id: 'scaffold',
+      h: '2. Let OpenCode scaffold it',
+      html: '<p>OpenCode created the project structure, the file upload flow, the YouTube URL import, a video render worker, API routes, components and library files. About ten more minutes of building later the files were in place.</p>',
+    },
+    {
+      id: 'keys',
+      h: '3. Keys and first run',
+      html: '<p>The .env file needed a Google Cloud client with the YouTube Data API enabled, an OpenAI API key and Clerk keys. Run npm run dev and paste each build error back into OpenCode until the app loads on port 3000. I signed up through Clerk and saw a three-tier pricing page, whose subscribe buttons did not work yet.</p>',
+    },
+    {
+      id: 'db',
+      h: '4. Fix the database and storage',
+      html: '<p>The dashboard failed until I created the Postgres user and database from the terminal and restarted Postgres, after a Prisma connection error. For storage, OpenCode had set up Amazon S3. I chose a local storage folder instead to avoid an AWS account and server cost, and OpenCode rewired the code and uploads. A YouTube import then began downloading to my machine.</p>',
+    },
+  ],
+  done: [
+    'Detailed prompt written in Claude Desktop',
+    'OpenCode builds workers, API and UI',
+    'Keys, Postgres, local storage instead of S3',
+  ],
+  limits: [
+    'Finished clips. I ended while the first import was still processing.',
+    'Working subscriptions. The pricing buttons did nothing.',
+    'Rights to videos you import, and YouTube’s terms on downloading.',
+  ],
+  faq: [
+    ['Does it cost credits to build?','Not with the free Qwen 3.6 Plus model in OpenCode.'],
+    ['Why not use S3?','Running locally, a storage folder avoids an AWS account and bill.'],
+    ['Is it finished?','No. It was a work in progress with no finished clips.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=HlPdlZh0AHM">I Built My Own OpusClip for FREE! (Step-by-Step)</a> (recorded May 2026)',
+    'OpenCode through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a>',
+    'OpenCode: <a href="https://opencode.ai/">opencode.ai</a>',
+  ],
+  related: [
+    ['/guides/opencode-video-trim-skill.html','OpenCode video trim skill'],
+    ['/guides/opencode-desktop-habit-tracker-electron.html','OpenCode desktop habit tracker'],
+    ['/guides/opencode-go.html','OpenCode Go'],
+    ['/guides/build-apps-with-ai-coding-agents.html','Build apps with AI coding agents'],
+    ['/guides/claude-code-video-editor-skill.html','Claude Code video editor skill'],
+  ],
+  next: ['/guides/opencode-video-trim-skill.html','OpenCode video trim skill'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/opencode-video-trim-skill.html'],
+  llms: 'A May 2026 build log of Short Forge, a local OpusClip-style web app made in OpenCode: a prompt written in Claude Desktop scaffolds workers, API routes, Clerk sign-up, Prisma, Postgres and FFmpeg rendering. Build, Postgres and storage errors were fixed and S3 was replaced with local storage. The app was unfinished with no clips shown.',
+};
