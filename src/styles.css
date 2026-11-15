@@ -123,6 +123,17 @@ section[id], main [id] { scroll-margin-top: 88px; }
   }
 }
 
+/* Phones: the topic chip row scrolls sideways with its scrollbar hidden, so its edges fade where more chips sit
+   off-screen. A scroll timeline is only active while the row overflows, so a row that fits shows no fade. */
+@property --chip-fade-start { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --chip-fade-end { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@keyframes chip-row-fade { 0% { --chip-fade-start: 0px; --chip-fade-end: 32px; } 10%, 90% { --chip-fade-start: 32px; --chip-fade-end: 32px; } 100% { --chip-fade-start: 32px; --chip-fade-end: 0px; } }
+@supports (animation-timeline: scroll()) {
+  @media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+    .topic-row { mask-image: linear-gradient(to right, transparent, #000 var(--chip-fade-start), #000 calc(100% - var(--chip-fade-end)), transparent); animation: chip-row-fade linear both; animation-timeline: scroll(self inline); }
+  }
+}
+
 /* Back to top: appears after the first screen, timed by scroll position like the progress bar */
 .to-top { display: none; }
 @supports (animation-timeline: scroll()) {
@@ -389,7 +400,9 @@ a.video-card:hover h3 { color: var(--signal); }
 /* Sponsors: page intro on /sponsors.html, and the one-line pointer to it on the homepage */
 .sponsors-intro { padding: 72px 0 0; }
 .sponsors-intro + .section { padding-top: 72px; }
-.sponsors-intro h1 { max-width: 20ch; font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
+/* The H1 names the page (matching its title); the benefit line below keeps the large display type. */
+.sponsors-intro h1 { color: var(--signal); font: 600 16px/1.4 var(--sans); letter-spacing: .02em; }
+.sponsors-benefit { max-width: 20ch; margin-top: 14px; color: var(--text); font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
 .sponsors-intro .button-row { flex-wrap: nowrap; margin-top: 28px; }
 .sponsors-intro .button-row .button { justify-content: center; white-space: nowrap; }
 .sponsor-proof { margin-top: 28px; color: var(--body); }

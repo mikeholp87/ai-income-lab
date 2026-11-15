@@ -27,7 +27,7 @@ const links = [
   [['Google AI Studio', 'Nano Banana', 'Nano Banana Pro', 'Gemini 3', 'Gemini 3 Pro', 'Gemini 2.5 Flash', 'Gemini 2.5 Flash Image', 'Veo 3', 'Veo 3.1'], 'https://aistudio.google.com'],
   [['NotebookLM'], 'https://notebooklm.google.com/'],
   [['Grok 4.5', 'Grok 4.7', 'Grok CLI'], 'https://x.ai'],
-  [['Gemini Code Assist', 'Google Cloud Code Assist'], 'https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals'],
+  [['Gemini Code Assist', 'Google Cloud Code Assist'], 'https://developers.google.com/gemini-code-assist/docs/overview'],
   [['Google Antigravity'], 'https://antigravity.google'],
   [['Hermes Agent', 'Hermes'], 'https://hermes-agent.nousresearch.com/'],
   [['Hermes desktop app'], 'https://github.com/fathah/hermes-desktop'],

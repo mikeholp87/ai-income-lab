@@ -257,6 +257,14 @@ test('the sponsors page shows proof before price: media kit, sponsored videos, s
   assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
 
+test('the sponsors H1 carries the sponsor intent from the title, with the benefit line kept as the subhead', async () => {
+  const start = jsx.indexOf('function SponsorsMain(');
+  const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
+  assert.match(page, /<h1>Sponsor AI Automation Station<\/h1>\n\s*<p className="sponsors-benefit">Show what your AI product can actually do\.<\/p>/);
+  assert.equal((page.match(/<h1>/g) ?? []).length, 1);
+  assert.match(await readFile(new URL('../sponsors.html', import.meta.url), 'utf8'), /<title>Sponsor AI Automation Station: Media Kit &amp; Packages<\/title>/);
+});
+
 test('the homepage keeps the brands strip and the contact section, in that order, above the FAQ', () => {
   const home = jsx.slice(jsx.indexOf('function App('));
   const order = ['id="about"', 'id="brands"', '<WorkTogether campaign={campaign} />', 'id="faq"'].map(text => home.indexOf(text));

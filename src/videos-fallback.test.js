@@ -94,6 +94,8 @@ test('a new upload gets its watch page from the quota-free feed when the Data AP
   assert.equal((await request('newupload02')).status, 200, 'later visitors reuse the feed result');
   assert.equal(globalThis.fetch.mock.calls.filter(call => String(call.arguments[0]).startsWith('https://www.youtube.com/feeds/')).length, 1);
   const missing = await request('zzzzzzzzzzz');
-  assert.equal(missing.status, 302, 'an id the feed lacks still goes to YouTube');
-  assert.equal(missing.headers.get('location'), 'https://www.youtube.com/watch?v=zzzzzzzzzzz');
+  // An id neither the inventory nor the feed knows is not this channel's public video: a 404, cached for a minute.
+  assert.equal(missing.status, 404, 'an id the feed lacks is never sent to an arbitrary YouTube video');
+  assert.equal(missing.headers.get('location'), null);
+  assert.equal(missing.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
 });

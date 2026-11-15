@@ -44,6 +44,16 @@ li .summary { display: -webkit-box; overflow: hidden; color: var(--muted); font-
 .topics .pill-count { margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--line); color: var(--text); font-size: 13px; font-variant-numeric: tabular-nums; }
 /* Phones: one swipeable row instead of four wrapped rows; it bleeds to the screen edges. */
 @media (max-width: 640px) { .topics { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; } }
+/* Its scrollbar is hidden, so the row's edges fade where more chips sit off-screen. A scroll timeline is only active
+   while the row overflows, so a row that fits shows no fade; browsers without scroll timelines show none. */
+@property --chip-fade-start { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --chip-fade-end { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@keyframes chip-row-fade { 0% { --chip-fade-start: 0px; --chip-fade-end: 32px; } 10%, 90% { --chip-fade-start: 32px; --chip-fade-end: 32px; } 100% { --chip-fade-start: 32px; --chip-fade-end: 0px; } }
+@supports (animation-timeline: scroll()) {
+  @media (max-width: 640px) and (prefers-reduced-motion: no-preference) {
+    .topics, .sort { mask-image: linear-gradient(to right, transparent, #000 var(--chip-fade-start), #000 calc(100% - var(--chip-fade-end)), transparent); animation: chip-row-fade linear both; animation-timeline: scroll(self inline); }
+  }
+}
 [hidden] { display: none !important; }
 /* Search and sort share one row; sort is a segmented control so it reads differently from the topic pills. */
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 32px; }

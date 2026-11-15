@@ -11,10 +11,7 @@
     },
     {
       "source": "/pricing.md",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex" },
-        { "key": "Link", "value": "<https://www.ai-automation-station.com/>; rel=\"canonical\"" }
-      ]
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
       "source": "/llms.txt",

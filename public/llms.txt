@@ -6,7 +6,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 
 ## Key facts
 
-- Product and membership facts reviewed November 8, 2026 against the published site. Check the linked official pages for subsequent changes.
+- Product and membership facts reviewed November 15, 2026 against the published site. Check the linked official pages for subsequent changes.
 - New long-form videos most days; the full archive is at /videos.
 - TubeAnalytics: YouTube analytics for creators, currently temporarily unavailable. No active trial or subscription offer is advertised on this site.
 - VisiScan: checks whether AI assistants recommend a business. Free scan with no signup; full report $49 USD once; weekly monitoring from $29 USD a month.
@@ -21,7 +21,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Home](https://www.ai-automation-station.com/)
 - [About Mike Holp](https://www.ai-automation-station.com/about.html): who runs the channel, how the guides and videos are made, and how to get in touch.
 - [Sponsor a build](https://www.ai-automation-station.com/sponsors.html): audience numbers, packages and rates, past sponsored videos, and a proposal form. The [media kit](https://www.ai-automation-station.com/media-kit/ai-automation-station-media-kit-2026.pdf) and [rate card](https://www.ai-automation-station.com/media-kit/ai-automation-station-rate-card-2026.pdf) are PDFs.
-- [Every video](https://www.ai-automation-station.com/videos)
+- [Every video: AI tools tested on real builds](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
 - [TubeAnalytics status](https://www.ai-automation-station.com/#tools): Temporarily unavailable; see the product section for current status.
 - [VisiScan](https://www.visiscan.app)
@@ -30,24 +30,24 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 
 ## Video topics
 
-- [Claude Code tutorials and builds](https://www.ai-automation-station.com/videos/claude-code): Builds, skills and workflows with Anthropic’s Claude Code in the terminal.
-- [Codex and OpenCode tutorials](https://www.ai-automation-station.com/videos/codex-opencode): Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.
-- [n8n tutorials: AI workflows and agents](https://www.ai-automation-station.com/videos/n8n): Workflows and AI automations in n8n, from a first build to self-hosted agents.
+- [Claude Code tutorials: builds, skills, workflows](https://www.ai-automation-station.com/videos/claude-code): Builds, skills and workflows with Anthropic’s Claude Code in the terminal.
+- [Codex and OpenCode tutorials: setup and builds](https://www.ai-automation-station.com/videos/codex-opencode): Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.
+- [n8n tutorials: AI workflows and self-hosting](https://www.ai-automation-station.com/videos/n8n): Workflows and AI automations in n8n, from a first build to self-hosted agents.
 - [Make.com tutorials: no-code AI automations](https://www.ai-automation-station.com/videos/make-com): No-code AI automations built step by step in Make.com.
-- [AI agent tutorials and tests](https://www.ai-automation-station.com/videos/ai-agents): Personal assistants, research agents and agent tools tested on real tasks.
-- [AI SEO: get found in Google and AI answers](https://www.ai-automation-station.com/videos/ai-seo): Tools and tests for getting a site found in Google and in AI answers.
-- [Make money with AI: client work, leads and services](https://www.ai-automation-station.com/videos/make-money): Client services, lead generation and monetization with AI, tested without income promises.
-- [AI website and app builder tutorials](https://www.ai-automation-station.com/videos/ai-website-builders): Websites, landing pages and web apps built with AI builders, start to finish.
-- [AI video and YouTube tutorials](https://www.ai-automation-station.com/videos/ai-video): AI video editing, Shorts, thumbnails and avatar workflows for creators.
-- [AI content and social media tutorials](https://www.ai-automation-station.com/videos/ai-content): Social posts, images, presentations and page chatbots made with AI tools.
-- [AI automation ideas and no-code workflows](https://www.ai-automation-station.com/videos/ai-automation): Practical automations for email, leads, content and admin, with the tools named.
-- [New AI model launches, tested](https://www.ai-automation-station.com/videos/new-models): Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.
+- [AI agent tutorials: assistants and voice agents](https://www.ai-automation-station.com/videos/ai-agents): Personal assistants, research agents and agent tools tested on real tasks.
+- [AI SEO tutorials: rank in Google and AI answers](https://www.ai-automation-station.com/videos/ai-seo): Tools and tests for getting a site found in Google and in AI answers.
+- [Make money with AI: client work and honest tests](https://www.ai-automation-station.com/videos/make-money): Client services, lead generation and monetization with AI, tested without income promises.
+- [AI website and app builders: tutorials and tests](https://www.ai-automation-station.com/videos/ai-website-builders): Websites, landing pages and web apps built with AI builders, start to finish.
+- [AI video tutorials: avatars, Shorts, YouTube](https://www.ai-automation-station.com/videos/ai-video): AI video editing, Shorts, thumbnails and avatar workflows for creators.
+- [AI content tutorials: posts, images and chatbots](https://www.ai-automation-station.com/videos/ai-content): Social posts, images, presentations and page chatbots made with AI tools.
+- [AI automation ideas: no-code workflows to copy](https://www.ai-automation-station.com/videos/ai-automation): Practical automations for email, leads, content and admin, with the tools named.
+- [New AI models: launch breakdowns and first tests](https://www.ai-automation-station.com/videos/new-models): Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.
 
 ## Start building
 
 - [Codex usage limits by ChatGPT plan](https://www.ai-automation-station.com/guides/codex-usage-limits.html): Check Codex usage limits on each ChatGPT plan, find remaining allowance and reset time, and choose what to do when you run out.
 - [Vapi AI tutorial: build a voice agent, test calls, webhooks](https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html): Vapi AI voice agent tutorial: create an assistant, pick a model, voice and transcriber, test a call, connect a phone number, then check webhooks and costs.
-- [Free build guides](https://www.ai-automation-station.com/guides.html): Free AI automation guides and articles: learn Claude Code, Codex, Make.com, n8n, AI agents and SEO, with practical builds, sources and checks you can run.
+- [AI automation guides: Claude Code, Codex, n8n and more](https://www.ai-automation-station.com/guides.html): Free AI automation guides and articles: learn Claude Code, Codex, Make.com, n8n, AI agents and SEO, with practical builds, sources and checks you can run.
 - [Recommended tools](https://www.ai-automation-station.com/tools.html): the AI tools from the YouTube descriptions, grouped by job, each with the videos that use it. The buttons are affiliate or referral links.
 - [Start here](https://www.ai-automation-station.com/start-here.html): Choose a free first build: AI API gateways, creator websites, business automation, or avatar and voice agents. Find prerequisites and practical next steps.
 - [React YouTube feed tutorial: API, caching and fallbacks](https://www.ai-automation-station.com/guides/youtube-feed.html): Build a YouTube feed in React with server-side API access, cached video data, accessible cards and failure checks when a request fails.

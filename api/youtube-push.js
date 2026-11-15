@@ -23,13 +23,21 @@ export async function subscribe(secret = process.env.WEBSUB_SECRET) {
   return response ? response.status : 'hub unreachable';
 }
 
-// The hub verifies a subscription by asking us to echo its challenge: our own subscribe requests for our channel feed only.
+const keyedRequest = params => {
+  const secret = process.env.WEBSUB_SECRET;
+  return Boolean(secret) && params.get('k') === callbackKey(secret);
+};
+
+// The hub verifies a request by asking us to echo its challenge, for our channel feed only: subscribe on the keyed
+// callback, and unsubscribe on the old unkeyed callback, so the pre-key subscription can be removed. The keyed
+// subscription can never be unsubscribed or re-signed by someone else, since they cannot derive the key.
 export function GET(request) {
   const params = new URL(request.url).searchParams;
-  const secret = process.env.WEBSUB_SECRET;
   const challenge = params.get('hub.challenge');
-  const keyed = secret && params.get('k') === callbackKey(secret);
-  if (!keyed || params.get('hub.topic') !== feedUrl || params.get('hub.mode') !== 'subscribe' || !challenge) return new Response('Not found', { status: 404 });
+  const mode = params.get('hub.mode');
+  const legacy = !params.has('k');
+  const allowed = mode === 'subscribe' ? keyedRequest(params) : mode === 'unsubscribe' && legacy;
+  if (!allowed || params.get('hub.topic') !== feedUrl || !challenge) return new Response('Not found', { status: 404 });
   return new Response(challenge, { headers: { 'Content-Type': 'text/plain' } });
 }
 
@@ -42,8 +50,10 @@ const signed = (body, header, secret) => {
 export async function POST(request) {
   const body = await request.text();
   const secret = process.env.WEBSUB_SECRET;
-  // WebSub: acknowledge every delivery with 2xx, but act only on correctly signed ones.
-  if (!secret || !signed(body, request.headers.get('x-hub-signature'), secret)) return new Response(null, { status: 202 });
+  // WebSub: acknowledge every delivery with 2xx, but act only on correctly signed ones sent to the keyed callback.
+  // The old unkeyed subscription shares the secret, so without the key check one upload could start two builds.
+  if (!keyedRequest(new URL(request.url).searchParams)) return new Response(null, { status: 202 });
+  if (!signed(body, request.headers.get('x-hub-signature'), secret)) return new Response(null, { status: 202 });
   const id = body.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/)?.[1];
   // Deletions carry no videoId; edits to videos already deployed need no rebuild.
   if (!id || uploads.some(video => video.id === id)) return Response.json({ rebuild: false, id: id ?? null });
@@ -51,5 +61,6 @@ export async function POST(request) {
   // long-form check or a debounce if that ever becomes noisy.
   if (!process.env.DEPLOY_HOOK_URL) return Response.json({ rebuild: false, id, error: 'DEPLOY_HOOK_URL is not set' });
   const hook = await fetch(process.env.DEPLOY_HOOK_URL, { method: 'POST', signal: AbortSignal.timeout(8000) }).catch(() => null);
-  return Response.json({ rebuild: Boolean(hook?.ok), id });
+  // A failed hook answers 503 so the hub redelivers the notification and the rebuild gets another try.
+  return Response.json({ rebuild: Boolean(hook?.ok), id }, { status: hook?.ok ? 200 : 503 });
 }
