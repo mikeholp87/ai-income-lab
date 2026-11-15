@@ -10,6 +10,101 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'vidiq-mcp-claude-channel-audit': {
+    title: "The vidIQ MCP inside Claude Desktop",
+    steps: [["Connect","Add a connector with the vidIQ MCP URL"],["Ask","Idea check, channel audit, competitors"],["Verify","Paste the channel ID if it picks the wrong one"]],
+    note: "Not sponsored by vidIQ; the link is an affiliate link.",
+  },
+  'syllaby-faceless-video-first-test': {
+    title: "A faceless video in Syllaby, start to publish",
+    steps: [["Setup","Style, voice, subtitles, portrait"],["Script","Custom topic in the script assistant"],["Publish","Render, then post to YouTube"]],
+    note: "Trial had about 50 credits; script facts not checked.",
+  },
+  'syllaby-bulk-scheduler-faceless-videos': {
+    title: "Schedule a month of faceless videos with Syllaby",
+    steps: [["Style","Hyper realism, subtitles, voice"],["Script","AI assistant for 7 to 30 days"],["Schedule","Bulk scheduler, up to five posts a day"]],
+    note: "Based on about three months of my own use in August 2025.",
+  },
+  'skool-welcome-email-automation': {
+    title: "Skool member to welcome email, automated",
+    steps: [["Capture","Skool Zapier integration fills a sheet"],["Add","Make.com watches rows, adds to EmailOctopus"],["Send","Three-email welcome sequence"]],
+    note: "Paid communities cannot ask membership questions.",
+  },
+  'skool-membership-tiers': {
+    title: "Skool membership tiers: free, premium and VIP",
+    steps: [["Settings","Pricing, then membership tiers"],["Tiers","Free, $29 premium, $89 VIP in my community"],["Lock","Classroom modules and calls by tier"]],
+    note: "Prices from an October 2025 recording; check Skool.",
+  },
+  'skool-hobby-plan-review': {
+    title: "Skool Hobby vs Pro: what changes",
+    steps: [["Hobby","$9 a month, one admin, 10% fee"],["Pro","$99 a month, 2.9% fee, plugins"],["Choose","Downgrade if you do not need Pro"]],
+    note: "July 2025 plan details; they may have changed.",
+  },
+  'skool-free-community-first-weeks': {
+    title: "Launching a free Skool community",
+    steps: [["Free","No barrier to joining; collect emails"],["Promote","Facebook, YouTube, email list"],["Offer","Templates, course, consultation"]],
+    note: "Earnings and ranking claims are my own, June 2025.",
+  },
+  'skool-community-setup-guide': {
+    title: "Set up a Skool community from scratch",
+    steps: [["Launch","Hobby or Pro plan, 14-day trial"],["Set up","Pricing, questions, About page"],["Grow","Discovery, posts, classroom"]],
+    note: "Income examples in the video are not verified.",
+  },
+  'skool-classroom-upsell-tour': {
+    title: "A free Skool community with paid upsells",
+    steps: [["Feed","Reply fast to introductions"],["Classroom","Start here, free tutorials, how-tos"],["Upsell","Course, templates, consultation"]],
+    note: "Figures are my own from a June 2025 recording.",
+  },
+  'make-youtube-description-updater': {
+    title: "Auto-update YouTube descriptions with Make.com",
+    steps: [["Queue","Airtable rows with status to-do"],["Write","Transcript, then an assistant fills a template"],["Update","YouTube module, then mark the row done"]],
+    note: "Test on one video first; this edits live descriptions.",
+  },
+  'make-gmail-ai-auto-reply': {
+    title: "An AI email auto-reply in Make.com",
+    steps: [["Watch","Unread emails in the inbox"],["Write","OpenAI drafts a reply from the message"],["Send","After a delay, with a copy in Sent"]],
+    note: "Unlink the send step and read the draft first.",
+  },
+  'make-faceless-video-json2video': {
+    title: "Faceless AI videos from Airtable, posted by Make.com",
+    steps: [["Topics","Airtable rows with status to-do"],["Render","OpenAI script, JSON2Video toolbox"],["Post","Router sends to Facebook and YouTube"]],
+    note: "Resolution lowered to fit the free plan’s 5 MB file cap.",
+  },
+  'make-ai-agent-tally-email': {
+    title: "A Make.com AI agent that replies to form submissions",
+    steps: [["Agent","Pick a model and write a system prompt"],["Trigger","A Tally submission runs the agent"],["Reply","It drafts the email; sending needs plan access"]],
+    note: "AI agents were in beta in this July 2025 recording.",
+  },
+  'heygen-make-youtube-automation': {
+    title: "HeyGen video to YouTube, automated in Make.com",
+    steps: [["Script","OpenAI assistant writes from a topic"],["Render","HeyGen makes the avatar video"],["Upload","Second scenario posts it unlisted"]],
+    note: "Videos rendered at 720p in this July 2025 test.",
+  },
+  'heygen-elevenlabs-make-course': {
+    title: "AI avatar videos: HeyGen, ElevenLabs and Make.com",
+    steps: [["Avatar","Upload 2+ minutes of footage and consent"],["Voice","Clone in HeyGen or import ElevenLabs"],["Automate","Make.com, with the 180-second API cap"]],
+    note: "From a July 2025 course recording; check current plans.",
+  },
+  'heygen-airtable-facebook-content-machine': {
+    title: "A Make.com content machine for avatar videos",
+    steps: [["Topic","Airtable row with status to-do"],["Make","Perplexity research, script, HeyGen render"],["Post","Facebook upload, Airtable set to done"]],
+    note: "The HeyGen API capped videos at 3 minutes in this recording.",
+  },
+  'gamma-workshop-deck-and-site-export': {
+    title: "A workshop deck in Gamma, published as a site",
+    steps: [["Outline","ChatGPT outline pasted into Gamma"],["Generate","Concise text, professional theme"],["Share","Publish as a site or export a PDF"]],
+    note: "Google Slides export failed in the recording.",
+  },
+  'gamma-coaching-deck-from-chatgpt-plan': {
+    title: "A Gamma deck from a pasted outline",
+    steps: [["Paste","Detailed plan as notes"],["Set","Ten cards, concise text, theme, images"],["Export","Edit with the agent, then Google Slides"]],
+    note: "Plans and prices are from a March 2026 recording.",
+  },
+  'bluehost-ai-assistant': {
+    title: "Bluehost AI Assistant: one dashboard, four model families",
+    steps: [["Plan","AI All Access Pack, $20 a month in the recording"],["Chat","Auto routing, web search, image edits"],["Agents","Research, article writer, slides"]],
+    note: "Sponsored video; check current plans on Bluehost.",
+  },
   'apify-agent-skills': {
     title: 'Apify agent skills: scrape leads in Cursor',
     steps: [['Install', 'npx skills add apify/agent-skills'], ['Token', 'Add APIFY_TOKEN to .env'], ['Scrape', 'Leads CSV, then emails']],
