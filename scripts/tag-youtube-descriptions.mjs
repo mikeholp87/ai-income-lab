@@ -12,18 +12,21 @@
 //     guide matches) below the "Work with me → …" line in Useful Links & Resources, in that file's
 //     priority order. Videos without that line are skipped. Each write costs about
 //     55 quota units of the project's shared 10,000 a day, so run it in batches with --limit.
+//   node scripts/tag-youtube-descriptions.mjs --move-intro VIDEO_ID ... | --all-bare | --all-shorts [--dry-run]
+//     Move the video's own text from below the "Join the growing AI community ⤵️" link to above it.
 //
 // Needs the Desktop OAuth client at ~/.config/yt-oauth/client_secret.json (Google Cloud project ai-income-lab-site-1006).
 // At sign-in, choose the AI Automation Station brand account. Already-tagged videos are skipped, so reruns are safe.
 // videos.update replaces the whole snippet, so title, tags, category and languages are sent back unchanged.
 import { readFile } from 'node:fs/promises';
 import { longFormPlaylistId, shortsPlaylistId } from '../src/youtube.js';
-import { guideLines, resourceLine, withGuideLine } from './guide-lines.mjs';
+import { guideLines, resourceLine, withGuideLine, withIntroAbove } from './guide-lines.mjs';
 import { accessToken } from './youtube-oauth.mjs';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const guideMode = args.includes('--guide-links');
+const introMode = args.includes('--move-intro');
 const allBare = args.includes('--all-bare');
 const allShorts = args.includes('--all-shorts');
 const latestAt = args.indexOf('--latest');
@@ -76,7 +79,11 @@ for (const id of ids) {
     const before = await snippetOf(id);
     if (!before) { console.log(`${id}  not found`); failed++; continue; }
     let description;
-    if (guideMode) {
+    if (introMode) {
+      const result = withIntroAbove(before.description);
+      if (!result.description) { console.log(`${id}  skipped (${result.reason}): ${before.title.slice(0, 60)}`); skipped++; continue; }
+      description = result.description;
+    } else if (guideMode) {
       if (!lineById.has(id)) { console.log(`${id}  skipped (no line in docs/youtube-description-links.md)`); skipped++; continue; }
       const result = withGuideLine(before.description, lineById.get(id));
       if (!result.description) { console.log(`${id}  skipped (${result.reason}): ${before.title.slice(0, 60)}`); skipped++; continue; }

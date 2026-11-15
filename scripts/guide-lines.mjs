@@ -38,3 +38,22 @@ export function withGuideLine(description, line) {
   if (next.length > maxLength) return { description: null, reason: `would exceed ${maxLength} characters` };
   return { description: next, reason: null };
 }
+
+// For `--move-intro`: older descriptions open with the "Join the growing AI community ⤵️" line and its
+// link, then the video's own text. Move that text above the community block, leaving every other line as is.
+// Only plain text moves: a paragraph with a link (or the next emoji, Timestamps or hashtag section) ends it.
+const communityBlock = /^Join the growing AI community ⤵️[ \t]*\n\S+[ \t]*$/m;
+const sectionStart = /^\s*(\p{Extended_Pictographic}|Timestamps|Chapters|#)/iu;
+export function withIntroAbove(description) {
+  const current = description ?? '';
+  const block = current.match(communityBlock);
+  if (!block) return { description: null, reason: 'no community block' };
+  const above = current.slice(0, block.index).trim();
+  const paragraphs = current.slice(block.index + block[0].length).trim().split(/\n\s*\n/);
+  let count = 0;
+  while (count < paragraphs.length && !sectionStart.test(paragraphs[count]) && !/https?:\/\//.test(paragraphs[count])) count++;
+  if (!count) return { description: null, reason: above ? 'text already above the community link' : 'no text below the community link' };
+  const intro = paragraphs.slice(0, count).join('\n\n').trim();
+  const rest = paragraphs.slice(count).join('\n\n');
+  return { description: `${[above, intro].filter(Boolean).join('\n\n')}\n\n${block[0]}${rest ? `\n\n${rest}` : ''}`, reason: null };
+}

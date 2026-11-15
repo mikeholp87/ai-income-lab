@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { guideLines, linkedPage, resourceLine, withGuideLine } from '../scripts/guide-lines.mjs';
+import { guideLines, linkedPage, resourceLine, withGuideLine, withIntroAbove } from '../scripts/guide-lines.mjs';
 
 const url = 'https://www.ai-automation-station.com/guides/9router-setup.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=miBtL2fVkpg';
 const line = `Written guide: 9Router setup and update command: ${url}`;
@@ -33,4 +33,14 @@ test('already-linked or too-long descriptions are skipped', () => {
 test('descriptions without a resources anchor keep their text and append the guide', () => {
   assert.deepEqual(withGuideLine('No resources section here.', line), { description: `No resources section here.\n\n${resourceLine(line)}`, reason: null });
   assert.deepEqual(withGuideLine('', line), { description: resourceLine(line), reason: null });
+});
+
+test('move-intro puts the video text above the community block and keeps everything else', () => {
+  const block = 'Join the growing AI community ⤵️  \nhttps://www.ai-automation-station.com/?utm_source=youtube&utm_content=abc';
+  const intro = 'What this video covers.';
+  assert.deepEqual(withIntroAbove(`${block}\n\n${intro}\n\n${resources}`), { description: `${intro}\n\n${block}\n\n${resources}`, reason: null });
+  assert.equal(withIntroAbove(`${intro}\n\n${block}\n\n${resources}`).reason, 'text already above the community link');
+  assert.equal(withIntroAbove(`${block}\n\n${resources}`).reason, 'no text below the community link');
+  assert.equal(withIntroAbove(`${block}\n\nWork with me → https://automojic.vercel.app/`).reason, 'no text below the community link');
+  assert.equal(withIntroAbove(resources).reason, 'no community block');
 });
