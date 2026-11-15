@@ -1,0 +1,6 @@
+# YouTube quota ran out on 2026-11-15 mid-run. Finish after the daily quota resets:
+#   node scripts/tag-youtube-descriptions.mjs --guide-links <ids below>
+# then remove the older generic guide lines (node scripts/drop-generic-guide-lines.mjs --dry-run, then without the flag), then delete this file.
+# Already linked before the quota stopped: UnnN2i90ALg OUgxXuWG_wU 3RPEo7PB7ug
+jtyWB5iGPOs w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
+# Generic lines still to drop for all 13: UnnN2i90ALg OUgxXuWG_wU 3RPEo7PB7ug jtyWB5iGPOs w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
