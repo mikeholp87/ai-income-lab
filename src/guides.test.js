@@ -6,6 +6,12 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'suno-n8n-music-video-workflow.html': 'pDbRjYYUjRI',
+  'kimi-k2-7-code-opencode-test.html': 'LqRRXcM8Kxc',
+  'odysseus-electron-desktop-app.html': 'Zi_PG07mDxo',
+  'make-news-to-video-autoposter.html': '4jK9RraWbiU',
+  'agent-skills-seo-kilo-code.html': 'ZKpr-vmz_iY',
+  'hermes-cron-jobs-vercel-reports.html': 'iVI11AZvUdk',
   'make-apify-apollo-leads-sheet.html': 'kXw2yntdmo4',
   'hermes-youtube-to-linkedin-cron.html': 'dVvazfQHhW4',
   'dextrolab-white-label-automations.html': 'QMqe2ubsn0g',

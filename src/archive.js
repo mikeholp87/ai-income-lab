@@ -403,6 +403,12 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  pDbRjYYUjRI: [['/guides/suno-n8n-music-video-workflow.html', 'Follow the n8n Suno music video workflow']],
+  LqRRXcM8Kxc: [['/guides/kimi-k2-7-code-opencode-test.html', 'Follow the Kimi K2.7 Code vs DeepSeek V4 Pro test']],
+  Zi_PG07mDxo: [['/guides/odysseus-electron-desktop-app.html', 'Follow the Odysseus Electron desktop app build']],
+  '4jK9RraWbiU': [['/guides/make-news-to-video-autoposter.html', 'Follow the Make.com news-to-video autoposter']],
+  'ZKpr-vmz_iY': [['/guides/agent-skills-seo-kilo-code.html', 'Follow the agent skills SEO walkthrough']],
+  iVI11AZvUdk: [['/guides/hermes-cron-jobs-vercel-reports.html', 'Follow the Hermes cron jobs and Vercel build']],
   kXw2yntdmo4: [['/guides/make-apify-apollo-leads-sheet.html', 'Follow the Make.com Apify Apollo lead scraper build']],
   dVvazfQHhW4: [['/guides/hermes-youtube-to-linkedin-cron.html', 'Follow the Hermes YouTube to LinkedIn cron job build']],
   QMqe2ubsn0g: [['/guides/dextrolab-white-label-automations.html', 'Follow the DextroLab white-label walkthrough']],

@@ -1,0 +1,43 @@
+export default {
+  slug: 'odysseus-electron-desktop-app',
+  type: 'Build guide',
+  video: 'Zi_PG07mDxo',
+  title: 'Wrap Odysseus in an Electron Desktop App With an AI Agent',
+  short: 'Odysseus Electron app',
+  description: 'Ask Odysseus with DeepSeek V4 Pro to build an Electron wrapper for itself, finish the stalled npm install with Codex, and run it in its own window.',
+  hub: 'Have Odysseus build an Electron desktop wrapper for itself with DeepSeek V4 Pro, finish the stalled install with Codex and run it in its own window.',
+  watchLabel: 'Follow the Odysseus Electron desktop app build',
+  about: ['Odysseus', 'Electron', 'DeepSeek V4 Pro', 'Codex', 'OpenCode'],
+  card: {
+    title: 'An Electron desktop app for Odysseus',
+    steps: [['Ask', 'Odysseus builds the Electron wrapper'], ['Fix', 'Stalled npm install, finish with Codex'], ['Run', 'Own window, about 2.3 GB memory']],
+    note: 'June 2026; the build used 31 cents of credits.',
+  },
+  quick: 'Ask Odysseus, running DeepSeek V4 Pro, to build an Electron desktop app for its own project. It inspected the FastAPI backend and static web UI and created the Electron wrapper files, a launch script, icons and package.json scripts. The npm install had not finished after about eight minutes, so I stopped it, asked Codex for the same job and ran npm install in the terminal. The launch script crashed once and npm start worked. The app ran in its own window using about 2.3 GB of memory and felt faster than the browser. The build cost 31 cents in OpenCode credits.',
+  intro: '<p>This is a June 2026 follow-up to <a href="/guides/odysseus-ai-self-hosted-workspace.html">my Odysseus install guide</a>. I wanted the workspace in its own window instead of a browser tab. It is a wrapper around the local web app, not a new build of Odysseus, and I have not shared it. The OpenCode link on this site is an affiliate link.</p>',
+  sections: [
+    { id: 'ask', h: '1. Ask the agent to build it', html: '<p>In Odysseus I asked: can you build a desktop app in Electron that I can run on my machine for the current project? With DeepSeek V4 Pro it explored the project first, and found a FastAPI Python backend with a rich static web UI served locally. It then planned an Electron wrapper.</p>' },
+    { id: 'files', h: '2. What it created', html: '<p>The agent created the Electron main process, a launch script, icons and a README, and added Electron scripts to the root package.json, then checked the files. It did not run the app when asked, so I told it to continue.</p>' },
+    { id: 'stall', h: '3. When npm install stalls', html: '<p>The npm install had not finished after about eight minutes, so I stopped it. I gave Codex the same task and ran npm install myself in the terminal, which completed. If an agent hangs on a long command, running it yourself is often faster.</p>' },
+    { id: 'run', h: '4. Run and check it', html: '<p>The launch script crashed once. Starting it with npm start worked, and Odysseus opened in its own window named Odysseus Desktop. I signed in with two-factor authentication, my models were all connected and themes worked as in the browser. The console showed about 2.3 GB of memory. It felt faster than the browser tab. The whole build took about 15 minutes and 31 cents of credits.</p>' },
+  ],
+  limits: [
+    'Packaging an installer. I ran it from the project with npm start.',
+    'Why the launch script crashed once.',
+    'Whether the wrapper is safe to share. It is untested beyond my machine.',
+  ],
+  faq: [
+    ['How much did it cost?', '31 cents in OpenCode credits, using DeepSeek V4 Pro.'],
+    ['Why did you switch to Codex?', 'The npm install had not finished after about eight minutes, so I asked Codex for the same job and ran the install myself.'],
+    ['Is it faster than the browser?', 'It felt faster to me, but I did not measure it.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=Zi_PG07mDxo">I Built My Own Desktop App For Odysseus AI!</a> (recorded June 2026)',
+    'Electron: <a href="https://www.electronjs.org">electronjs.org</a> · OpenCode through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a>',
+  ],
+  related: [['/guides/odysseus-ai-self-hosted-workspace.html', 'Odysseus AI workspace'], ['/guides/opencode-desktop-habit-tracker-electron.html', 'OpenCode desktop habit tracker'], ['/guides/opencode-go.html', 'OpenCode Go'], ['/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents'], ['/guides/codex-workflow.html', 'Make and verify a code change with Codex']],
+  next: ['/guides/odysseus-ai-self-hosted-workspace.html', 'Odysseus AI workspace'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/odysseus-ai-self-hosted-workspace.html'],
+  llms: 'A June 2026 build: ask Odysseus with DeepSeek V4 Pro to create an Electron desktop wrapper for itself (FastAPI backend plus static UI), finish a stalled npm install with Codex and the terminal, and run it in its own window at about 2.3 GB of memory. The build took about 15 minutes and 31 cents of OpenCode credits.',
+};

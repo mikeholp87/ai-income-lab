@@ -1,0 +1,43 @@
+export default {
+  slug: 'suno-n8n-music-video-workflow',
+  type: 'Build guide',
+  video: 'pDbRjYYUjRI',
+  title: 'n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate',
+  short: 'n8n music video workflow',
+  description: 'Build an n8n workflow that takes a genre, writes a Suno prompt, makes tracks and a background image through KIE, and assembles a video in Creatomate.',
+  hub: 'An n8n workflow from genre to music video: OpenAI writes the Suno prompt, KIE makes tracks and a Nano Banana Pro image, Creatomate assembles the video.',
+  watchLabel: 'Follow the n8n Suno music video workflow',
+  about: ['n8n', 'Suno', 'KIE', 'Nano Banana Pro', 'Creatomate'],
+  card: {
+    title: 'AI music videos with n8n',
+    steps: [['Prompt', 'Form genre, OpenAI writes the Suno prompt'], ['Make', 'KIE: Suno tracks and a 2K image, with polling'], ['Assemble', 'Creatomate render, then Google Drive']],
+    note: 'January 2026; the Creatomate step still errored.',
+  },
+  quick: 'Add an n8n form trigger that collects a music genre, have an OpenAI node write a Suno prompt under 500 characters, call the KIE Suno endpoint for instrumental tracks and poll every 10 seconds until the task succeeds. Generate a 16:9, 2K background image with Nano Banana Pro the same way, then render a Creatomate template with the two audio URLs and the image and upload the video to Google Drive. Everything worked up to the Creatomate step, which errored in my demo and still needed debugging. For a one-off channel, making the videos by hand may be easier.',
+  intro: '<p>This is a January 2026 build for a synthwave channel I started. It is a working draft, and I recommend a manual path if you only make a few videos. I self-host n8n on a Hostinger VPS, and the Hostinger link on this site may pay me a commission. For the server setup, see <a href="/guides/hostinger-n8n-vps-setup.html">the n8n on Hostinger guide</a>.</p>',
+  sections: [
+    { id: 'form', h: '1. Form and prompt', html: '<p>The workflow starts with an n8n form that asks for the genre. An OpenAI node using the GPT-4o model gets the instruction: create a detailed prompt for Suno for that genre, only the prompt, and under 500 characters, because longer prompts will not generate a track in Suno. You can also type a prompt into Suno yourself.</p>' },
+    { id: 'music', h: '2. Generate the music through KIE', html: '<p>An HTTP node calls the KIE Suno endpoint for instrumental tracks with the prompt, genre and model version. Generation takes a while, so a polling loop checks the task every 10 seconds until its status is success, then passes on the audio URLs. Suno returned two tracks per run.</p>' },
+    { id: 'image', h: '3. Make the background image', html: '<p>A second OpenAI step writes an image prompt. KIE then calls Nano Banana Pro to create a 16:9, 2K PNG, with another polling loop until it finishes.</p>' },
+    { id: 'video', h: '4. Assemble and store', html: '<p>Creatomate renders a template with the two audio URLs and the image, then the workflow waits for the render and downloads the video to Google Drive. The Creatomate step errored in my run, so I did not get a finished video. I post to YouTube manually.</p><p>If you make only a few videos, generate the tracks in Suno and edit them in Kdenlive, Final Cut or CapCut. It is probably easier than automating.</p>' },
+  ],
+  limits: [
+    'A finished rendered video. Creatomate errored in my demo.',
+    'KIE, Suno, Creatomate and OpenAI cost per video.',
+    'Platform rules on AI-generated music and repeated uploads.',
+  ],
+  faq: [
+    ['Why under 500 characters?', 'Longer Suno prompts will not generate a track.'],
+    ['How does the workflow wait for the music?', 'A loop polls the KIE task every 10 seconds until it reports success.'],
+    ['Did it finish a video?', 'No. The Creatomate step still needed debugging.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=pDbRjYYUjRI">Automate Your Entire Music Video Production with Suno & N8N</a> (recorded January 2026)',
+    'Hostinger: <a href="https://www.hostinger.com?REFERRALCODE=5XNDIGITACZ9" rel="sponsored noopener">hostinger.com</a> · Creatomate: <a href="https://creatomate.com">creatomate.com</a>',
+  ],
+  related: [['/guides/hostinger-n8n-vps-setup.html', 'n8n on Hostinger'], ['/guides/self-host-n8n.html', 'Self-host n8n'], ['/guides/what-is-n8n-used-for.html', 'What is n8n used for?'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/nano-banana-gemini-images-make.html', 'Nano Banana images']],
+  next: ['/guides/hostinger-n8n-vps-setup.html', 'n8n on Hostinger'],
+  more: 'Price and details: <a href="/tools.html#hostinger">Hostinger on the tools page</a>',
+  linkFrom: ['/guides/hostinger-n8n-vps-setup.html'],
+  llms: 'A January 2026 n8n workflow for AI music videos: a form takes the genre, OpenAI writes a Suno prompt under 500 characters, KIE generates instrumental tracks and a 2K Nano Banana Pro image with polling every 10 seconds, Creatomate assembles the video and Google Drive stores it. The Creatomate step still errored.',
+};

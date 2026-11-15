@@ -10,6 +10,36 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'suno-n8n-music-video-workflow': {
+    title: "AI music videos with n8n",
+    steps: [["Prompt","Form genre, OpenAI writes the Suno prompt"],["Make","KIE: Suno tracks and a 2K image, with polling"],["Assemble","Creatomate render, then Google Drive"]],
+    note: "January 2026; the Creatomate step still errored.",
+  },
+  'kimi-k2-7-code-opencode-test': {
+    title: "Kimi K2.7 Code, tested on one real site",
+    steps: [["Select","Choose the model with /models in OpenCode"],["Audit","Codebase-only SEO audit, then fixes"],["Cost","About 3 USD, Go monthly limit reached"]],
+    note: "June 2026, a few hours after the release; one test, not a benchmark.",
+  },
+  'odysseus-electron-desktop-app': {
+    title: "An Electron desktop app for Odysseus",
+    steps: [["Ask","Odysseus builds the Electron wrapper"],["Fix","Stalled npm install, finish with Codex"],["Run","Own window, about 2.3 GB memory"]],
+    note: "June 2026; the build used 31 cents of credits.",
+  },
+  'make-news-to-video-autoposter': {
+    title: "RSS article to posted video in Make.com",
+    steps: [["Summarize","RSS item, Perplexity Sonar summary"],["Script","ChatGPT writes scenes, JSON2Video renders"],["Post","Router to Facebook, Instagram, YouTube"]],
+    note: "October 2025; the demo stopped when JSON2Video ran out of credits.",
+  },
+  'agent-skills-seo-kilo-code': {
+    title: "SEO agent skills in Kilo Code",
+    steps: [["Install","npx skills add, pick skills with space"],["Run","Images, Core Web Vitals, IndexNow"],["Retest","PageSpeed barely moved; desktop 97"]],
+    note: "April 2026; Core Web Vitals still failed after the fixes.",
+  },
+  'hermes-cron-jobs-vercel-reports': {
+    title: "Hermes cron jobs, then Vercel cron for reliability",
+    steps: [["Create","Hermes builds the jobs and scripts"],["Report","Resend emails the results"],["Move","Codex adds cron routes to vercel.json"]],
+    note: "June 2026; local jobs need the computer awake.",
+  },
   'make-apify-apollo-leads-sheet': {
     title: "Apollo leads into Google Sheets with Make.com",
     steps: [["Search","Copy the Apollo people-search URL"],["Run","Apify actor with a 100-lead limit"],["Write","Map fields, iterate into sheet rows"]],

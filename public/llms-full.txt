@@ -55,6 +55,12 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate](https://www.ai-automation-station.com/guides/suno-n8n-music-video-workflow.html): Build an n8n workflow that takes a genre, writes a Suno prompt, makes tracks and a background image through KIE, and assembles a video in Creatomate.
+- [Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost](https://www.ai-automation-station.com/guides/kimi-k2-7-code-opencode-test.html): I ran Kimi K2.7 Code in OpenCode on a real site audit and fixes, tracked its credit use against DeepSeek V4 Pro and hit the OpenCode Go monthly limit.
+- [Wrap Odysseus in an Electron Desktop App With an AI Agent](https://www.ai-automation-station.com/guides/odysseus-electron-desktop-app.html): Ask Odysseus with DeepSeek V4 Pro to build an Electron wrapper for itself, finish the stalled npm install with Codex, and run it in its own window.
+- [Make.com News-to-Video Autoposter: RSS to Social Posts](https://www.ai-automation-station.com/guides/make-news-to-video-autoposter.html): Build a Make.com scenario that turns an RSS item into a video: Perplexity summary, ChatGPT script, JSON2Video render and posts to three networks.
+- [Free Agent Skills for SEO: Install and Run in Kilo Code](https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html): Install free open-source agent skills with npx skills add, then run SEO skills in Kilo Code for images, Core Web Vitals, IndexNow and Search Console.
+- [Hermes Agent Cron Jobs: Move Them to Vercel With Reports](https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html): Set up scheduled jobs in the Hermes Agent desktop app, then move a broken-link checker and a blog digest to Vercel cron with weekly Resend email reports.
 - [Make.com Lead Scraper: Apify Apollo Actor to Google Sheets](https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html): Build a Make.com scenario that runs an Apify Apollo actor on a search URL, takes 100 leads and writes them to a new Google Sheet. Includes the two snags.
 - [Hermes Agent Cron Job: YouTube Video to LinkedIn Posts](https://www.ai-automation-station.com/guides/hermes-youtube-to-linkedin-cron.html): Use Hermes Agent and OpenCode to turn your newest YouTube video into LinkedIn posts and a newsletter with a Python script, then run it as a daily cron job.
 - [DextroLab: A White-Label Client Portal for Make.com and n8n](https://www.ai-automation-station.com/guides/dextrolab-white-label-automations.html): See DextroLab, a client portal for running Make.com or n8n automations with Stripe usage billing: connections, example pricing and delivering a workflow.
@@ -431,6 +437,30 @@ A May 2026 build: ask Hermes Agent for a Python script that finds the newest You
 ### Make.com Lead Scraper: Apify Apollo Actor to Google Sheets
 https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html (updated 2026-11-15)
 A June 2025 Make.com build: create a Google Sheet, run an Apify Apollo actor with an Apollo search URL and a 100-lead limit, read the dataset items, map name, email, phone, industry and location, and add one row per lead. A sheet-name clash was fixed and the phone column came back wrong. Scraping terms and cold-email rules were not covered.
+
+### Hermes Agent Cron Jobs: Move Them to Vercel With Reports
+https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html (updated 2026-11-15)
+A June 2026 build: set up cron jobs in the Hermes Agent desktop app, switch limited jobs to Big Pickle with DeepSeek V4 Pro fallback, have Hermes build a broken-link checker and blog digest with Resend email reports, then use Codex to move both to Vercel cron in vercel.json (Monday 7:00 UTC and Tuesday 5:00). Local jobs need the computer awake.
+
+### Free Agent Skills for SEO: Install and Run in Kilo Code
+https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html (updated 2026-11-15)
+An April 2026 walkthrough: install free agent skills with npx skills add, target Claude Code and Kilo Code, then run image optimization, Core Web Vitals, IndexNow (submit all URLs to Bing with npx tsx), schema and Search Console monitoring skills on a real site. A PageSpeed retest showed about the same speed, Core Web Vitals still failing and desktop at 97.
+
+### Make.com News-to-Video Autoposter: RSS to Social Posts
+https://www.ai-automation-station.com/guides/make-news-to-video-autoposter.html (updated 2026-11-15)
+An October 2025 Make.com scenario: read one RSS item, summarize it with Perplexity Sonar, have ChatGPT write a scene-based video script, render it in JSON2Video at 720p, fetch the file, write the post text and post to Facebook, Instagram and YouTube with a router. The demo stopped when JSON2Video credits ran out.
+
+### Wrap Odysseus in an Electron Desktop App With an AI Agent
+https://www.ai-automation-station.com/guides/odysseus-electron-desktop-app.html (updated 2026-11-15)
+A June 2026 build: ask Odysseus with DeepSeek V4 Pro to create an Electron desktop wrapper for itself (FastAPI backend plus static UI), finish a stalled npm install with Codex and the terminal, and run it in its own window at about 2.3 GB of memory. The build took about 15 minutes and 31 cents of OpenCode credits.
+
+### Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost
+https://www.ai-automation-station.com/guides/kimi-k2-7-code-opencode-test.html (updated 2026-11-15)
+A June 2026 first-day test of Kimi K2.7 Code in OpenCode: a codebase-only site audit and fixes (www canonical, robots.txt, about 1,700 URL replacements). The audit cost close to half of a full day of DeepSeek V4 Pro, total spend was about 3 USD and the OpenCode Go monthly limit was reached. One task, not a benchmark.
+
+### n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate
+https://www.ai-automation-station.com/guides/suno-n8n-music-video-workflow.html (updated 2026-11-15)
+A January 2026 n8n workflow for AI music videos: a form takes the genre, OpenAI writes a Suno prompt under 500 characters, KIE generates instrumental tracks and a 2K Nano Banana Pro image with polling every 10 seconds, Creatomate assembles the video and Google Drive stores it. The Creatomate step still errored.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)
