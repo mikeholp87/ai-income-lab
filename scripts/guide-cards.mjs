@@ -10,6 +10,21 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'ai-automation-strategy-notes-skills-seo-policy': {
+    title: "YouTube SEO, policy news and automation opinions",
+    steps: [["Optimize","Custom GPT, vidIQ score, one change at a time"],["Check","Read the YouTube policy yourself"],["Weigh","Treat opinion videos as opinion"]],
+    note: "July to September 2025; these are talks, not tested builds.",
+  },
+  'no-code-agent-builders-mindstudio-rocket-assistants': {
+    title: "Three no-code AI builders, honestly tested",
+    steps: [["MindStudio","Template tour, no agent running"],["Rocket.new","ChatGPT-style app in about 20 minutes"],["Assistant","OpenAI assistant called from Make.com"]],
+    note: "August 2025; first impressions, plans and prices may have changed.",
+  },
+  'six-agent-builds-claude-code-dashboards-outreach': {
+    title: "Six things I built by prompting coding agents",
+    steps: [["Set up","Claude Code on Linux and in VS Code"],["Build","Dashboards: competitors, stocks, operations"],["Reach out","Sponsor and lead tools, human review"]],
+    note: "January to July 2026; most were unfinished and used mock or paper data.",
+  },
   'make-content-builds-facebook-ebook-forms': {
     title: "Three small Make.com content automations",
     steps: [["Post","ChatGPT caption, DALL-E 3 image, Facebook"],["Write","Claude chapters into a Google Doc"],["Capture","Fillout form to an Airtable record"]],

@@ -1,22 +1,8 @@
 # Long videos that use a top tool but have no dedicated guide yet (id | tools | title | length). Write a spec per video, run scripts/guide-from-spec.mjs, then --guide-links.
 Ip8KBwDixJs | Treg | GrokBot Is The Ultimate AI Chief Of Staff | PT13M3S
 IymTRFLMY_s | Treg | Why GrokBot Is The Best Personal AI Assistant | PT18M37S
-NoHkFvhbiuU | OpenCode | I Built an AI Tool to Find Website Clients (It Actually Works!) | PT13M9S
 geKngm3sg3w | OpenCode | How to Use 9Router: Setup, Providers & Fallbacks | PT11M15S
-YNpIRq7O3UE | OpenCode | This AI Agent Found $81,000 In Brand Deals! | PT23M11S
-kUbhr1QGYeU | OpenCode | I Built An AI Operating System From Scratch! | PT17M40S
 ByncCPWeGNY | OpenCode | Finally, the Hermes Agent Desktop App is Here! (Complete Setup) | PT10M3S
 5zBHLxXw3tI | Google Gemini | Hermes Agent Desktop App Is A Game Changer! | PT11M4S
-ffnMlBzcJOQ | OpenCode | I Built A Stock Trading Bot In Under 15 Minutes! | PT17M14S
 rZh4zVT2LKY | OpenCode | The Best Claude Design Alternative You Can Run On Your PC | PT6M30S
-IlOJWfmlpGg | Apify | I Built a YouTube Competitor Spy Tool Using Claude Code | PT12M52S
-mKZHLQLaq2k | Google Gemini | Get Started with Claude Code in 10 Minutes | PT10M46S
 4x2gxyIFUa8 | Make.com,Vapi | How I Built an AI Voice Agent That Actually Sounds Real | PT1M35S
-508QvEHI5n0 | Lovable,Make.com,Syllaby | The Only AI Skills You Need to Master in 2026 | PT7M4S
-bAgP_0uW0dY | vidIQ | The SEO Strategy You Need for More YouTube Views | PT12M21S
-uTYZC3Kxwjo | Make.com | MindStudio AI Agents: From Zero to Deployment in Minutes! | PT12M53S
-J86tffN9nmg | Lovable | I Let Rocket AI Build My ChatGPT Clone (Here's What Happened) | PT17M15S
-DtmxxnAbS00 | Make.com,Skool | How to Build an AI Assistant That Actually Works for You | PT18M46S
-a3TwomrR6pw | HeyGen,Syllaby | YouTube Monetization Update: AI Content Is Getting Banned? | PT18M30S
-dILjZszMZ5o | Skool | Your Competition Is Using AI Automations (You Should Too) | PT1M38S
-TZxNymn9msU | Google Gemini | These 5 AI Automation Tools Are Scaling Businesses Right Now | PT11M59S

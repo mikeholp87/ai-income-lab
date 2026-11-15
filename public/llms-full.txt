@@ -55,6 +55,9 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [AI Automation Strategy Notes: Skills, YouTube SEO, Policy](https://www.ai-automation-station.com/guides/ai-automation-strategy-notes-skills-seo-policy.html): Five talk-style videos in one guide: a YouTube SEO routine with a custom GPT, the July 2025 monetization policy update, and my views on skills and tools.
+- [No-Code Agent Builders Tried: MindStudio, Rocket, Assistants](https://www.ai-automation-station.com/guides/no-code-agent-builders-mindstudio-rocket-assistants.html): First impressions of three no-code AI builders: MindStudio (no agent running), Rocket.new for a ChatGPT-style app, and an OpenAI assistant in Make.com.
+- [Six Agent Builds: Claude Code, Dashboards and Outreach Tools](https://www.ai-automation-station.com/guides/six-agent-builds-claude-code-dashboards-outreach.html): Six builds with coding agents: Claude Code setup, a competitor dashboard, an Alpaca stock app, an AI operating system, an outreach agent and LeadScope.
 - [Make.com Content Builds: Facebook Posts, Ebook and Forms](https://www.ai-automation-station.com/guides/make-content-builds-facebook-ebook-forms.html): Three Make.com builds: a daily AI image and caption post on a Facebook page, an ebook written with Claude chapter by chapter, and a form feeding Airtable.
 - [Make.com YouTube Idea-to-Video Pipeline: Apify to Upload](https://www.ai-automation-station.com/guides/make-youtube-ideas-to-video-pipeline.html): Build a Make.com pipeline that scrapes popular YouTube videos with Apify, makes ideas and scripts, renders with JSON2Video and uploads to YouTube.
 - [Make.com Lead Generation: Pitches, Apollo and Google Maps](https://www.ai-automation-station.com/guides/make-lead-generation-pitches-apollo-maps.html): Three Make.com lead builds: Google Maps emails into a sheet, an Apollo search scraped with Apify, and AI pitch drafts saved to Airtable for review.
@@ -536,6 +539,18 @@ Three 2025 Make.com videos: scrape popular YouTube videos with Apify into Airtab
 ### Make.com Content Builds: Facebook Posts, Ebook and Forms
 https://www.ai-automation-station.com/guides/make-content-builds-facebook-ebook-forms.html (updated 2026-11-15)
 Three Make.com builds from 2025: a daily Facebook page post with a ChatGPT 4o caption and DALL-E 3 image scheduled for 10 am, an ebook written chapter by chapter with Claude Sonnet 4 from an Airtable outline (credit errors fixed with a new key, run unfinished), and a Fillout form feeding Airtable through a webhook or the built-in integration.
+
+### Six Agent Builds: Claude Code, Dashboards and Outreach Tools
+https://www.ai-automation-station.com/guides/six-agent-builds-claude-code-dashboards-outreach.html (updated 2026-11-15)
+Six 2026 builds with coding agents: Claude Code setup on Debian and VS Code, a competitor dashboard with Apify skills (sponsored), an Alpaca paper-trading dashboard (401 fixed with paper keys, chart unfinished), a mock-data AI operating system, a sponsorship outreach agent whose 81,000 dollar pipeline was the model's estimate, and the LeadScope lead and audit tool.
+
+### No-Code Agent Builders Tried: MindStudio, Rocket, Assistants
+https://www.ai-automation-station.com/guides/no-code-agent-builders-mindstudio-rocket-assistants.html (updated 2026-11-15)
+Three August 2025 no-code builder trials: MindStudio (template tour, no working agent, API on the business plan), Rocket.new (a ChatGPT-style app in about ten minutes, custom domain needing a 25 a month plan) and a custom OpenAI assistant called from Make.com that needed prompt edits. These are first impressions.
+
+### AI Automation Strategy Notes: Skills, YouTube SEO, Policy
+https://www.ai-automation-station.com/guides/ai-automation-strategy-notes-skills-seo-policy.html (updated 2026-11-15)
+Five 2025 talk videos in one guide: a YouTube SEO routine with a custom GPT, vidIQ title scoring and one change at a time; a reading of reports on the July 15, 2025 YouTube update on mass-produced content (not policy advice); my case for learning Make.com; a scripted five-tool overview; and a short promo. Only the SEO routine is practical.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)
