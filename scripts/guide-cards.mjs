@@ -10,6 +10,31 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'ai-visibility-trakkr-dataforseo-geo-skills': {
+    title: "Tracking and improving AI search visibility",
+    steps: [["Track","Trakkr: citations, crawler visits, prompts"],["Write","GEO skill and MCP gaps in Codex"],["Audit","DataForSEO MCP in Claude Code"]],
+    note: "April and May 2026; results are self-reported, causes unproven.",
+  },
+  'nano-banana-pro-infographics-thumbnails-notebooklm': {
+    title: "Infographics and thumbnails with Nano Banana Pro",
+    steps: [["Summarize","Gemini summarizes the video transcript"],["Draw","Nano Banana Pro in AI Studio or KIE"],["Compare","NotebookLM is quicker, less detailed"]],
+    note: "December 2025 to January 2026; thumbnail click rates not measured.",
+  },
+  'opencode-free-models-go-plan-and-skills': {
+    title: "OpenCode: models, plans and agent skills",
+    steps: [["Install","curl or npm, free Zen models"],["Upgrade","Go plan, models by API key"],["Skills","npx skills add: design, SEO, speed, GEO"]],
+    note: "May and June 2026; model lists and prices change.",
+  },
+  'opencode-webcam-layout-skill-and-clip-app': {
+    title: "Vertical clips with an OpenCode skill",
+    steps: [["Skill","Detect the webcam, stack screen over it"],["Render","About 20 seconds per clip"],["App","ShortForge finds and scores clips"]],
+    note: "May 2026; subtitles and the layout were not yet in the app.",
+  },
+  'hermes-agent-install-electron-build-openclaw': {
+    title: "Hermes Agent: install, build and the risks",
+    steps: [["Install","One-line installer, full setup, free model"],["Build","Electron wrapper; Codex fixed the chart bug"],["Caution","Agent networks expose keys"]],
+    note: "Three videos, February to May 2026; sandbox data only.",
+  },
   'ai-model-news-kimi-glm-fable-gemini': {
     title: "Four model releases and how I tried them",
     steps: [["Read","Release posts and benchmark pages"],["Try","OpenCode Go or AI Studio, where I could"],["Check","Cost, speed and limits on your own task"]],

@@ -55,6 +55,11 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills](https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html): How I track and improve AI search visibility on my own site: Trakkr and its MCP, a GEO blog skill in Codex, and a DataForSEO MCP audit in Claude Code.
+- [Nano Banana Pro Infographics, Thumbnails and NotebookLM](https://www.ai-automation-station.com/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html): Make infographics and thumbnails with Nano Banana Pro through Google AI Studio and KIE, and compare a one-off NotebookLM infographic with my n8n workflow.
+- [OpenCode Free Models, Go Plan and 10 Agent Skills](https://www.ai-automation-station.com/guides/opencode-free-models-go-plan-and-skills.html): Set up OpenCode with free Zen models, upgrade to the Go plan, run models in several terminals, and install ten agent skills from the skills.sh registry.
+- [OpenCode Webcam-Layout Skill and the ShortForge Clip App](https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html): Build an OpenCode skill that stacks a screen share over a webcam for vertical clips, then see the ShortForge app that finds, renders and scores clips.
+- [Hermes Agent: Install, Electron Build and OpenClaw Risks](https://www.ai-automation-station.com/guides/hermes-agent-install-electron-build-openclaw.html): Install Hermes Agent on Linux, wrap a stock tracker in Electron with Codex fixing the last bug, and why I warned people off the Moltbook agent network.
 - [AI Model News: Kimi K3, GLM 5.2, Claude Fable 5, Gemini 3](https://www.ai-automation-station.com/guides/ai-model-news-kimi-glm-fable-gemini.html): What I covered on four model releases: Kimi K3, GLM 5.2, Claude Fable 5’s return and Gemini 3, what I tested and what rests on other people’s results.
 - [SendPulse Facebook Chatbot: Comment Replies and DMs](https://www.ai-automation-station.com/guides/sendpulse-facebook-comment-chatbot.html): Set up a SendPulse chatbot that replies to Facebook page comments and sends one DM, with spam limits, an AI agent step, a CRM and the plan limits I hit.
 - [n8n Job Search Workflows: Scrape, Score and Draft Letters](https://www.ai-automation-station.com/guides/n8n-job-search-resume-cover-letter-workflows.html): Two n8n job-search workflows: scrape Indeed with Apify, score fit against your resume with OpenAI, then draft a cover letter or tailored resume.
@@ -481,6 +486,26 @@ Three SendPulse Facebook chatbot builds (October 2025 to January 2026): a commen
 ### AI Model News: Kimi K3, GLM 5.2, Claude Fable 5, Gemini 3
 https://www.ai-automation-station.com/guides/ai-model-news-kimi-glm-fable-gemini.html (updated 2026-11-15)
 Release-day notes on four models: GLM 5.2 (OpenCode Go, third-party comparisons with Opus 4.8), Claude Fable 5’s return with new classifiers, Kimi K3 (cheaper per token but heavier on tokens in another creator’s test; audit hit a priority queue limit) and Gemini 3 in Google AI Studio (landing page rebuild, logo mockup app). Claims are vendors’ or others’, not verified.
+
+### Hermes Agent: Install, Electron Build and OpenClaw Risks
+https://www.ai-automation-station.com/guides/hermes-agent-install-electron-build-openclaw.html (updated 2026-11-15)
+Three videos on Hermes Agent: install with the one-line installer and a free OpenCode Zen model, wrap a sandbox stock tracker in Electron (Codex fixed the chart bug), and a warning about the Moltbook agent network based on reports of exposed API keys. The claim that Hermes beats OpenClaw is an opinion; OpenClaw was never run.
+
+### OpenCode Webcam-Layout Skill and the ShortForge Clip App
+https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html (updated 2026-11-15)
+Two May 2026 videos: an OpenCode skill that finds a webcam overlay and stacks the screen share over it for 1080 by 1920 vertical clips (about 20 seconds per render, FFmpeg and OpenCV), and a local ShortForge app that imports a video, transcribes with Whisper, renders about nine clips from ten minutes and scores each. Subtitles and the layout were not yet in the app.
+
+### OpenCode Free Models, Go Plan and 10 Agent Skills
+https://www.ai-automation-station.com/guides/opencode-free-models-go-plan-and-skills.html (updated 2026-11-15)
+Two OpenCode videos from May and June 2026: install OpenCode, use the free Zen models, upgrade to Go (5 then 10 a month), run several terminals and sub-agents, then install ten agent skills from skills.sh with npx skills add (front-end design, Vercel and Next.js practices, SEO, AI SEO, page speed, GEO). Traffic and score figures are the author's own.
+
+### Nano Banana Pro Infographics, Thumbnails and NotebookLM
+https://www.ai-automation-station.com/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html (updated 2026-11-15)
+Three videos on Nano Banana Pro visuals: a manual infographic from a Gemini 3 summary in Google AI Studio with a Gemini 3 Pro LinkedIn post, a NotebookLM infographic compared with an n8n and KIE workflow, and YouTube thumbnails regenerated in KIE (16:9, 1K) with a Gemini face swap. Click-through effects were not measured.
+
+### AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills
+https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html (updated 2026-11-15)
+A case study from three 2026 videos on my own SaaS: Trakkr shows citations, AI crawler visits and prompt coverage; its MCP lets Codex find citation gaps and a GEO skill drafts a 16-article cluster; a DataForSEO MCP audit in Claude Code was implemented by Codex with better desktop Lighthouse performance. Figures are self-reported and causes are unproven.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)
