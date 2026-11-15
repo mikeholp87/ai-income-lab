@@ -1,0 +1,42 @@
+export default {
+  slug: 'pi-dev-terminal-coding-agent',
+  video: 'C5wEcJRo_VA',
+  title: 'Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs',
+  short: 'Pi.dev coding agent',
+  description: 'Try Pi, a minimal open-source terminal coding agent: install with npm, log in with an OpenRouter key, run a site audit, and watch token costs and limits.',
+  hub: 'Install Pi, a minimal open-source terminal coding agent, connect OpenRouter, run a site audit, track session costs and see slow runs and a rate limit.',
+  watchLabel: 'Follow the Pi.dev terminal coding agent test',
+  about: ['Pi', 'OpenRouter', 'OpenCode', 'Google Cloud Code Assist'],
+  card: {
+    title: 'Pi: a minimal terminal coding agent',
+    steps: [['Install', 'One npm command, then run pi'], ['Connect', 'Log in with an OpenRouter key'], ['Watch', 'Session cost, slow models, rate limits']],
+    note: 'April 2026; I preferred OpenCode in this test.',
+  },
+  quick: 'Install Pi with the one-line npm command from pi.dev, run pi, type login, choose API key and paste an OpenRouter key. It picked Kimi 2.6 by default, and the model list offered about 252 models. I ran a full site audit on my project, used the session command to see messages, tokens and total cost, and also connected Google Cloud Code Assist. Runs were slow, my OpenRouter balance went negative and Gemma 4 free hit a rate limit, so I topped up \$5 and turned on auto top-up. I preferred OpenCode.',
+  intro: '<p>This is an April 2026 first look at Pi, an open-source terminal coding agent. It is a short, personal comparison on one project, not a benchmark, and I preferred OpenCode afterward. For that comparison and pricing, see <a href="/guides/opencode-vs-claude-code.html">OpenCode vs Claude Code</a>. The OpenCode link on this site is an affiliate link.</p>',
+  sections: [
+    { id: 'what', h: '1. What Pi is', html: '<p>The site calls Pi a minimal terminal coding harness that you adapt to your workflow. You extend it with TypeScript extensions, skills, prompts, templates and themes, and can share them as packages. It skips features such as sub-agents and plan mode to stay light, supports 15 or more providers and had about 35,000 GitHub stars.</p>' },
+    { id: 'install', h: '2. Install and log in', html: '<p>Run the one-line npm install from the site, then start it with the pi command. Type login, choose API key and paste a new OpenRouter key from your OpenRouter account. Pi saved it and selected Kimi 2.6. You can choose from models by Anthropic, ByteDance, DeepSeek, Google Gemini, Meta Llama, Mistral, Nvidia, OpenAI and others, over 250 in total.</p>' },
+    { id: 'audit', h: '3. Run an audit and watch the cost', html: '<p>From my SaaS project folder I asked Pi to run a full site audit and tried an SEO skill I had installed. It was noticeably slow, while the same task in OpenCode went quickly. The session command shows messages sent, tokens used and the running cost. That is useful when models bill per token.</p>' },
+    { id: 'accounts', h: '4. Subscriptions, credits and limits', html: '<p>Login with subscription lets you connect accounts such as Claude Pro or Max and GitHub Copilot, and I authenticated Google Cloud Code Assist in the browser. My OpenRouter balance then went negative, so I added \$5 and had about \$4.83 left, and turned on auto top-up. Switching to the Gemma 4 free model returned a temporarily rate limited error, so I moved to another cheap model and the audit continued.</p>' },
+  ],
+  limits: [
+    'A like-for-like speed test between Pi and OpenCode. The slowness may have come from the model or provider.',
+    'Whether the audit’s schema changes were correct.',
+    'Pi’s current features and star count, which change quickly.',
+  ],
+  faq: [
+    ['How do I install Pi?', 'Run the one-line npm install command shown on pi.dev, then start it with the pi command.'],
+    ['Can I use my Claude or Copilot subscription?', 'The login with subscription option offered Claude Pro or Max and GitHub Copilot.'],
+    ['Why did the run stop?', 'My OpenRouter balance went negative, and Gemma 4 free returned a rate-limited error. Adding credits and switching models fixed it.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=C5wEcJRo_VA">The Terminal AI Coding Agent You Need to Try</a> (recorded April 2026)',
+    'OpenCode through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a> · OpenRouter: <a href="https://openrouter.ai">openrouter.ai</a>',
+  ],
+  related: [['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code'], ['/guides/openrouter-setup.html', 'OpenRouter setup'], ['/guides/opencode-go.html', 'OpenCode Go'], ['/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents'], ['/guides/codex-cli.html', 'Install Codex CLI']],
+  next: ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/opencode-go.html'],
+  llms: 'An April 2026 first look at Pi, a minimal open-source terminal coding agent: install with one npm command, log in with an OpenRouter key, run a site audit, read session cost with the session command, connect Google Cloud Code Assist, and hit slow runs, a negative balance and a Gemma 4 rate limit. The author preferred OpenCode.',
+};

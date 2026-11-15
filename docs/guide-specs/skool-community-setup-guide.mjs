@@ -1,0 +1,43 @@
+export default {
+  slug: 'skool-community-setup-guide',
+  video: '6iFA7ds2PU4',
+  title: 'Skool Community Setup: Pricing, About Page and Classroom',
+  short: 'Skool community setup',
+  description: 'Start a Skool community: choose Hobby or Pro, use Discovery, set pricing, write the About page and build a classroom. A September 2025 tour of my own.',
+  hub: 'Tour a Skool community from launch: Hobby vs Pro, Discovery, pricing, settings, posts and polls, member management, About page and classroom.',
+  watchLabel: 'Follow the Skool community setup tour',
+  about: ['Skool', 'Gumroad', 'Cal.com', 'Airtable', 'Zapier'],
+  card: {
+    title: 'Set up a Skool community from scratch',
+    steps: [['Launch', 'Hobby or Pro plan, 14-day trial'], ['Set up', 'Pricing, questions, About page'], ['Grow', 'Discovery, posts, classroom']],
+    note: 'Income examples in the video are not verified.',
+  },
+  quick: 'Create the community and choose the $9 Hobby plan (10% fee) or $99 Pro plan (2.9%), both with a 14-day trial. Then set a monthly price or keep it free, add membership questions and categories, write an About page with video and a testimonial, post introductions and polls, and build a classroom with free tutorials plus a paid course. In my September 2025 tour I reported about $700 in one-time sales over three months. The income examples at the start of the video are quoted from Skool pages and not verified.',
+  intro: '<p>This follows a 41-minute September 2025 recording of my own free community, which had about 870 members at the time. It is a tour, not a guarantee of results. The Skool link is an affiliate link. If you only want to see how paid tiers work, read <a href="/guides/skool-membership-tiers.html">the Skool tiers guide</a>.</p>',
+  sections: [
+    { id: 'launch', h: '1. Launch and choose a plan', html: '<p>Skool offered two plans: Hobby at $9 a month with a 10% transaction fee, and Pro at $99 a month with unlimited members, courses and admins, a 2.9% fee, a custom URL and the option to hide suggested communities. Both begin with a 14-day free trial. I used Hobby for a free and a paid community because I did not need the Pro features.</p>' },
+    { id: 'discovery', h: '2. Use Discovery', html: '<p>Discovery is Skool’s marketplace, where people find communities without ads. To be listed you need your first few members. Ranking depends on activity, so engagement in the community matters more than ad spend at the start.</p>' },
+    { id: 'settings', h: '3. Pricing and settings', html: '<p>Choose monthly, or monthly and annual pricing, with an optional free trial, or leave the community free. In settings I covered the cover image, privacy, payouts, membership questions (a good way to capture an email), plugins and categories. Emails to all members were limited to one every 72 hours.</p>' },
+    { id: 'engage', h: '4. Posts, polls and members', html: '<p>I wrote an introduction post and pinned it, then used polls and tutorials to keep people active. The members area covers levels, the leaderboard and a map. Approve or decline requests, and message people who look like a fit.</p>' },
+    { id: 'about', h: '5. The About page and classroom', html: '<p>The About page holds a video, short copy and a testimonial. The classroom had free tutorials, templates hosted on Gumroad, a $19 course and coaching sold by booking a call. I reported about $700 in one-time sales in three months from these. That is my result, not an average.</p>' },
+  ],
+  limits: [
+    'Skool’s current plans and fees. They may have changed since September 2025.',
+    'The earnings examples shown at the start, which I did not verify.',
+    'How much of the growth came from Skool Discovery versus my YouTube channel.',
+  ],
+  faq: [
+    ['Which plan should I start on?', 'I used the $9 Hobby plan. Pro suits you if you need a custom URL, more admins or the lower 2.9% fee.'],
+    ['Is there a free trial?', 'Yes, 14 days in the recording.'],
+    ['Are the income examples real?', 'They were quoted from Skool pages and I did not verify them.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=6iFA7ds2PU4">How to Build a Profitable Skool Community (Step-by-Step)</a> (recorded September 2025)',
+    'Start a community through my affiliate link: <a href="https://www.skool.com/signup?ref=8be413d469374945a9c1f8db3e5a92a0" rel="sponsored noopener">Skool</a>',
+  ],
+  related: [['/guides/skool-membership-tiers.html', 'Skool membership tiers'], ['/guides/skool-hobby-plan-review.html', 'Skool Hobby plan review'], ['/guides/ai-side-hustles.html', 'AI side hustles'], ['/guides/make-money-with-ai-no-experience.html', 'Make money with AI, no experience'], ['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow']],
+  next: ['/guides/skool-membership-tiers.html', 'Skool membership tiers'],
+  more: 'Price and details: <a href="/tools.html#skool">Skool on the tools page</a>',
+  linkFrom: ['/guides/make-money-with-ai-no-experience.html'],
+  llms: 'A September 2025 tour of starting a Skool community: Hobby ($9 a month, 10% fee) versus Pro ($99, 2.9%), Discovery, pricing, membership questions, posts, member management, the About page and a classroom with free and paid modules. About $700 in one-time sales over three months was reported; income examples shown were not verified.',
+};

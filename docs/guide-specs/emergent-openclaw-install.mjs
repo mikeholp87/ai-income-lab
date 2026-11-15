@@ -1,0 +1,42 @@
+export default {
+  slug: 'emergent-openclaw-install',
+  video: 'wmjAyAth1Ug',
+  title: 'Install OpenClaw (Moltbot) on Emergent: Setup and WhatsApp Snag',
+  short: 'OpenClaw on Emergent',
+  description: 'Install OpenClaw, also called Moltbot, inside Emergent with its install script, sign in with Google and open the control UI. WhatsApp did not connect.',
+  hub: 'Install OpenClaw (Moltbot) inside Emergent with its script, open the control dashboard, add skills, and see why my WhatsApp link failed.',
+  watchLabel: 'Follow the OpenClaw install on Emergent',
+  about: ['Emergent', 'OpenClaw', 'Claude Opus 4.5', 'ClawHub', 'WhatsApp'],
+  card: {
+    title: 'OpenClaw on Emergent, no local install',
+    steps: [['Install', 'Run the Moltbot script in Emergent'], ['Sign in', 'Google, preconfigured Opus 4.5'], ['Extend', 'Skills via ClawHub; WhatsApp failed']],
+    note: 'February 2026 recording; credits and features may have changed.',
+  },
+  quick: 'In Emergent click the Moltbot chip, run the installation script and let Emergent obtain the model key for you. When it finishes, sign in with Google, choose the preconfigured Opus 4.5 option and start OpenClaw to open its control UI. Publishing the server so it keeps running cost 50 credits a month as stated in the recording. I installed skills, but WhatsApp did not connect: the UI showed a channel config schema unavailable error.',
+  intro: '<p>This is a February 2026 walkthrough. OpenClaw, also called Moltbot, is an assistant you talk to through chat channels, and Emergent had just integrated it. The Emergent link on this page is an affiliate link. For installing OpenClaw on a VPS instead, see <a href="/guides/install-openclaw.html">the OpenClaw install guide</a>.</p>',
+  sections: [
+    { id: 'install', h: '1. Run the install script', html: '<p>In Emergent click the Moltbot chip, which fills in the instructions: step one gets the LLM key, and step two runs the install script. The recording said Emergent had found a way to get the key without you entering your own because of account bans with Claude. The installer set up the runtime on a cloud virtual machine, installed dependencies and ran in the background. The article on the page also said you need a Telegram or WhatsApp account to use as your messaging channel.</p><p>The main advantage I gave for Emergent is that it runs on their server, so you do not open ports on your own machine. That reduces some risk, but check what access you give the assistant.</p>' },
+    { id: 'signin', h: '2. Sign in and start OpenClaw', html: '<p>After the install finished I signed in with Google. The setup asks for an LLM provider: Emergent’s own, your Claude key or GPT. I chose the preconfigured Opus 4.5, then Start OpenClaw. It started services and opened the control UI in the browser.</p>' },
+    { id: 'publish', h: '3. Keep it running and set its profile', html: '<p>To keep the instance running, publish the server. The recording stated this costs 50 credits a month. Then tell the assistant your name, what its role is, its vibe and your time zone so it updates its profile files.</p>' },
+    { id: 'skills', h: '4. Skills and channels', html: '<p>The skills list let me install a Twitter monitoring skill with a package manager, and ClawHub offers more. A Gemini skill failed because Homebrew was not installed. For WhatsApp, the assistant offered a dedicated number, but the UI said the web login provider was not available and showed a channel config schema unavailable error. I did not solve it in the recording, so I ended with no channel connected.</p>' },
+  ],
+  limits: [
+    'A working WhatsApp or Telegram connection.',
+    'Emergent’s current credits, and whether the 50 credits a month still applies.',
+    'A security review of the skills you install. Read each skill before you add it.',
+  ],
+  faq: [
+    ['Do I need my own API key?', 'Not in the recording: Emergent obtained a key and offered a preconfigured Opus 4.5. You can also use your own Claude or GPT key.'],
+    ['What does it cost to keep it running?', 'The recording stated 50 credits a month to publish the server. Check Emergent’s plans.'],
+    ['Did WhatsApp work?', 'No. It showed a channel config schema unavailable error and I left it unsolved.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=wmjAyAth1Ug">Emergent Makes It Easy To Install OpenClaw In Minutes!</a> (recorded February 2026)',
+    'Try Emergent through my affiliate link: <a href="https://app.emergent.sh/?via=mike-holp" rel="sponsored noopener">Emergent</a>',
+  ],
+  related: [['/guides/install-openclaw.html', 'Install OpenClaw'], ['/guides/what-is-an-ai-agent.html', 'What is an AI agent?'], ['/guides/ai-agent-workflow.html', 'AI agent workflow'], ['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit'], ['/guides/hermes-desktop.html', 'Hermes Desktop']],
+  next: ['/guides/install-openclaw.html', 'Install OpenClaw'],
+  more: 'Price and details: <a href="/tools.html#emergent">Emergent on the tools page</a>',
+  linkFrom: ['/guides/install-openclaw.html'],
+  llms: 'A February 2026 walkthrough of installing OpenClaw (Moltbot) inside Emergent: click the Moltbot chip, run the install script, sign in with Google, choose the preconfigured Opus 4.5 and open the control UI. Publishing the server cost 50 credits a month as stated. Skills were installed, but WhatsApp failed with a channel config schema unavailable error.',
+};

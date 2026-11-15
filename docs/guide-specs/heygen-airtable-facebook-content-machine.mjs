@@ -1,0 +1,42 @@
+export default {
+  slug: 'heygen-airtable-facebook-content-machine',
+  video: 'kKiFzNW9fjw',
+  title: 'Make.com Content Machine: Airtable, Perplexity and HeyGen',
+  short: 'Make.com content machine',
+  description: 'One Make.com scenario: Airtable topic, Perplexity research, ChatGPT script, HeyGen video, Facebook post. See where the 3-minute API cap bit.',
+  hub: 'Chain Airtable, Perplexity, a ChatGPT script assistant and HeyGen in Make.com, post to Facebook, and see where the 3-minute API limit bites.',
+  watchLabel: 'Follow the Make.com content machine build',
+  about: ['Make.com', 'Airtable', 'Perplexity', 'HeyGen', 'Facebook'],
+  card: {
+    title: 'A Make.com content machine for avatar videos',
+    steps: [['Topic', 'Airtable row with status to-do'], ['Make', 'Perplexity research, script, HeyGen render'], ['Post', 'Facebook upload, Airtable set to done']],
+    note: 'The HeyGen API capped videos at 3 minutes in this recording.',
+  },
+  quick: 'Build one Make.com scenario: search Airtable for one to-do topic, research it with Perplexity’s Sonar model, have a custom ChatGPT assistant write the script, create the HeyGen video, wait for it to render, upload it to a Facebook page from its URL and mark the Airtable row done. In my July 2025 run the HeyGen API refused scripts that ran over about three minutes, so I rendered one video by hand to finish the demo.',
+  intro: '<p>This is the longer cousin of <a href="/guides/heygen-make-youtube-automation.html">the HeyGen to YouTube build</a>: the same avatar and script assistant, but with a topic queue, research step and a Facebook upload instead. The recording is from July 2025 and the HeyGen and Make.com links here are affiliate links. API plans and limits change, so check HeyGen’s pricing before you build around them.</p>',
+  sections: [
+    { id: 'topics', h: '1. Pull one topic from Airtable', html: '<p>The first module searches an Airtable table. I connected it with OAuth, picked the base and table, and used the formula status equals to-do with a limit of one, so each run makes one video. The table has three fields: topic (single line text), URL and status (to-do or done). The URL field is filled in with the finished video’s link at the end.</p>' },
+    { id: 'research', h: '2. Research and script', html: '<p>The topic goes to Perplexity. I used the Sonar model because the deep research model took too long for a short video. Its research text is then passed to an OpenAI module that uses a custom assistant, with a message asking for a three-minute Facebook video script on the topic based on the research. The assistant itself is the one from my YouTube automation video, so I did not rebuild it here.</p>' },
+    { id: 'render', h: '3. Render in HeyGen and wait', html: '<p>The HeyGen module takes the avatar ID, a voice clone and the script. Because the render is not instant, the scenario sleeps before fetching the video and then uses the video ID to get the file URL. My run hit trouble here. HeyGen’s API refused scripts that came out longer than about three minutes, and the resolution was limited unless you pay for a higher API plan. A HeyGen contact told me the Pro API plan, from about $99 a month, was needed, and the recording named a top tier near $330 a month. I did not upgrade.</p>' },
+    { id: 'post', h: '4. Post to Facebook and close the loop', html: '<p>Once the video exists, a Facebook module uploads it to my page from the video URL. The last module updates the Airtable record with that URL and sets the status to done. To finish the demo, I generated the video manually in HeyGen and ran the upload and update modules with its video ID. The video took a while to process on Facebook, then appeared on the page.</p><p>For a gentler way into Make.com, try <a href="/guides/make-first-automation.html">the first Make automation</a> before chaining five services.</p>' },
+  ],
+  limits: [
+    'A fully automatic run from topic to Facebook. The HeyGen render was done by hand.',
+    'The cost of Perplexity, OpenAI and HeyGen API calls per video.',
+    'Why the first Facebook upload attempt seemed to stall before the video appeared.',
+  ],
+  faq: [
+    ['Why did the scenario stop at HeyGen?', 'HeyGen’s API refused scripts over about three minutes on my plan, and the recording said longer or higher-resolution videos needed a higher API plan.'],
+    ['Can this post somewhere other than Facebook?', 'Yes. Make.com has upload modules for other platforms, so you can swap the last module. I only ran Facebook in this recording.'],
+    ['What does the Airtable table need?', 'A topic field, a URL field and a status field with to-do and done options.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=kKiFzNW9fjw">I Built an AI Content Machine In Make.com (Here’s Exactly How)</a> (recorded July 2025)',
+    'Sign up through my affiliate links: <a href="https://www.make.com/en/register?pc=mikeholp" rel="sponsored noopener">Make.com</a> and <a href="https://www.heygen.com/?sid=rewardful&amp;via=mike-holp" rel="sponsored noopener">HeyGen</a>',
+  ],
+  related: [['/guides/heygen-make-youtube-automation.html', 'HeyGen and Make.com YouTube automation'], ['/guides/heygen-elevenlabs-make-course.html', 'HeyGen, ElevenLabs and Make.com course notes'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets'], ['/guides/make-business-automation-examples.html', 'Make.com business automations'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow']],
+  next: ['/guides/make-business-automation-examples.html', 'Make.com Business Automations: Email, Skool, Leads'],
+  more: 'Price and details: <a href="/tools.html#make-com">Make.com on the tools page</a>',
+  linkFrom: ['/guides/make-business-automation-examples.html'],
+  llms: 'A July 2025 Make.com scenario for avatar videos. It reads one to-do topic from Airtable, researches with Perplexity Sonar, writes a script with a custom ChatGPT assistant, creates a HeyGen video, waits, uploads to a Facebook page and updates Airtable. The HeyGen API capped videos near three minutes on the plan used, so the video was rendered manually to finish the demo.',
+};

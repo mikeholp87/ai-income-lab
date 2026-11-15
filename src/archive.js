@@ -403,6 +403,12 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  'q4-LkuMDkIE': [['/guides/claude-seo-skill-site-audit.html', 'Follow the Claude SEO skill audit']],
+  'yR-zoMUY27Q': [['/guides/opencode-video-trim-skill.html', 'Follow the OpenCode video trimming skill build']],
+  '8ieDSa8BVH4': [['/guides/make-messenger-chatgpt-bot.html', 'Follow the Make.com Messenger bot build']],
+  C5wEcJRo_VA: [['/guides/pi-dev-terminal-coding-agent.html', 'Follow the Pi.dev terminal coding agent test']],
+  EECptdYND6k: [['/guides/odysseus-ai-self-hosted-workspace.html', 'Follow the Odysseus AI install and tour']],
+  MYoA3___zYU: [['/guides/emergent-saas-agency-website.html', 'Follow the Emergent agency website build']],
   ga22WZgoj9M: [['/guides/free-claude-code-vs-opencode-codex.html', 'Follow the Free Claude Code vs OpenCode comparison']],
   '7v_675nO7nM': [['/guides/opencode-desktop-habit-tracker-electron.html', 'Follow the OpenCode desktop app habit tracker build']],
   ZlD4Z6UKS8o: [['/guides/lovable-landing-page-calcom-stripe-domain.html', 'Follow the Lovable landing page build']],

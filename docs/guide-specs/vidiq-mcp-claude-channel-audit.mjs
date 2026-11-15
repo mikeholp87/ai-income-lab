@@ -1,0 +1,42 @@
+export default {
+  slug: 'vidiq-mcp-claude-channel-audit',
+  video: 'bCsSqZp0yVg',
+  title: 'vidIQ MCP in Claude: Channel Audit and Idea Checks',
+  short: 'vidIQ MCP in Claude',
+  description: 'Connect the vidIQ MCP to Claude Desktop, check a video idea, audit a YouTube channel and compare competitors with real data. Includes a wrong-channel fix.',
+  hub: 'Add the vidIQ MCP connector to Claude Desktop, then validate a video idea, audit a channel and run a competitor breakdown, with the wrong-channel fix.',
+  watchLabel: 'Follow the vidIQ MCP setup and channel audit in Claude',
+  about: ['vidIQ MCP', 'Claude Desktop', 'YouTube'],
+  card: {
+    title: 'The vidIQ MCP inside Claude Desktop',
+    steps: [['Connect', 'Add a connector with the vidIQ MCP URL'], ['Ask', 'Idea check, channel audit, competitors'], ['Verify', 'Paste the channel ID if it picks the wrong one']],
+    note: 'Not sponsored by vidIQ; the link is an affiliate link.',
+  },
+  quick: 'In Claude Desktop click the plus icon, choose Add a connector and enter the vidIQ MCP server URL from vidIQ’s MCP page. Then ask for a video idea validation, a full channel audit or a competitor breakdown. Claude calls vidIQ tools for keyword research, outliers and trending videos and answers from real channel data. In my May 2026 test the channel health check first returned the wrong channel, and pasting the channel ID fixed it.',
+  intro: '<p>This follows a May 2026 recording. vidIQ did not sponsor the video, and the vidIQ link on this page is an affiliate link. Also note that I am building a competing product, TubeAnalytics, which I mention in the video. Paid vidIQ plans started at \$19 a month then, so check its page. For a broader channel process, see <a href="/guides/youtube-channel-growth-workflow.html">the YouTube channel growth workflow</a>.</p>',
+  sections: [
+    { id: 'connect', h: '1. Add the connector', html: '<p>vidIQ says its MCP works with the Claude web app, Claude Desktop, Cursor, ChatGPT, Codex and other MCP clients. I used Claude Desktop. Click the plus icon, choose Add a connector and, because it usually will not be in the list, paste the MCP server URL from vidIQ’s MCP page. It then appears as a vidIQ connector. For what MCP is, see <a href="/guides/what-is-mcp.html">What is MCP?</a>.</p>' },
+    { id: 'idea', h: '2. Validate a video idea', html: '<p>The connector offers starter prompts: content gap analysis, competitor breakdown, channel health check, niche evaluation and video idea validation. I ran idea validation on the phrase “vidIQ MCP”. Claude ran keyword research and reported that outlier results were unrelated videos, which it read as almost no video supply for that exact phrase, then checked trending and breakout sorts. You can open the requests to see which tools it called.</p>' },
+    { id: 'audit', h: '3. Audit a channel', html: '<p>A full audit of my channel returned subscribers, total views, videos published, channel age and a 90-day growth picture, plus upload cadence (about four videos a week), average views and subscribers per video, and view velocity at 1, 24 and 48 hours. It also suggested keyword opportunities and which of my topics were performing well.</p><p>The first health check pulled the wrong channel. I pasted the channel ID into the prompt and the competitor breakdown then worked, with a 30-day snapshot and keyword opportunities.</p>' },
+    { id: 'check', h: '4. Read the answers critically', html: '<p>One note said my TubeAnalytics video had almost no genuine community response and looked seeded. That was right in a way: I paid for YouTube ads on that video. Another note said my tags were inconsistent, and I disagreed because I tag with vidIQ. The tool reads signals; it does not know why. Treat every finding as a prompt to check.</p>' },
+  ],
+  limits: [
+    'Whether acting on the audit improved the channel.',
+    'vidIQ plan limits for MCP calls, or their cost.',
+    'The accuracy of competitor estimates against YouTube Studio data.',
+  ],
+  faq: [
+    ['Which apps can use the vidIQ MCP?', 'vidIQ lists Claude, Cursor, ChatGPT, Codex and other MCP clients. I used Claude Desktop.'],
+    ['Why did my channel audit show another channel?', 'Mine did on the first health check. Pasting the channel ID into the prompt fixed it.'],
+    ['Was the video sponsored?', 'No. The recording says it was not sponsored by vidIQ, and the sign-up link is an affiliate link.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=bCsSqZp0yVg">This VidIQ Claude MCP Is A Game Changer!</a> (recorded May 2026)',
+    'Try vidIQ through my affiliate link: <a href="https://www.vidiq.com/mikeholp" rel="sponsored noopener">vidIQ</a>',
+  ],
+  related: [['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow'], ['/guides/what-is-mcp.html', 'What is MCP?'], ['/guides/dataforseo-mcp-claude.html', 'DataForSEO MCP in Claude'], ['/guides/semrush-mcp-ai-visibility.html', 'Semrush MCP and AI visibility'], ['/guides/claude-code-for-beginners.html', 'Claude Code for beginners']],
+  next: ['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow'],
+  more: 'Price and details: <a href="/tools.html#vidiq">vidIQ on the tools page</a>',
+  linkFrom: ['/guides/youtube-channel-growth-workflow.html'],
+  llms: 'A May 2026 setup of the vidIQ MCP in Claude Desktop: add a connector with the vidIQ MCP server URL, then run video idea validation, a full channel audit and a competitor breakdown using real data. The first channel health check returned the wrong channel until the channel ID was pasted in. The video was not sponsored by vidIQ.',
+};

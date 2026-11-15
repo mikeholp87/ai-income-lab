@@ -10,6 +10,36 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'claude-seo-skill-site-audit': {
+    title: "The Claude SEO skill on a real site",
+    steps: [["Install","One curl command from GitHub"],["Audit","SEO audit, plan, image audit"],["Fix","Approve edits; GEO check for AI crawlers"]],
+    note: "February 2026; usage limits stopped the run twice.",
+  },
+  'opencode-video-trim-skill': {
+    title: "A custom OpenCode skill for video trimming",
+    steps: [["Prompt","Describe the cut: hook first, no filler"],["Process","Faster Whisper, hook finder, trim"],["Short","9x16 stack and animated subtitles"]],
+    note: "May 2026 recording; subtitles still needed polish.",
+  },
+  'make-messenger-chatgpt-bot': {
+    title: "A ChatGPT Messenger bot in Make.com",
+    steps: [["Scenario","Watch messages, ChatGPT, send reply"],["Meta app","Webhook, verify token, page token"],["Go live","Permissions and business verification"]],
+    note: "July 2025; the bot was not shown live because verification was pending.",
+  },
+  'pi-dev-terminal-coding-agent': {
+    title: "Pi: a minimal terminal coding agent",
+    steps: [["Install","One npm command, then run pi"],["Connect","Log in with an OpenRouter key"],["Watch","Session cost, slow models, rate limits"]],
+    note: "April 2026; I preferred OpenCode in this test.",
+  },
+  'odysseus-ai-self-hosted-workspace': {
+    title: "Odysseus: a self-hosted AI chat workspace",
+    steps: [["Install","Clone, venv, requirements, localhost"],["Connect","OpenRouter, OpenCode, OpenAI keys"],["Try","Agent mode, compare, email digest task"]],
+    note: "June 2026 test; read the repo before you run it.",
+  },
+  'emergent-saas-agency-website': {
+    title: "An agency website built in Emergent",
+    steps: [["Prompt","ChatGPT writes the full build prompt"],["Budget","Pick GPT-5 and cap the credits"],["Refine","Form, booking popup, fix the broken button"]],
+    note: "September 2025 recording; plans and credits may have changed.",
+  },
   'free-claude-code-vs-opencode-codex': {
     title: "Free Claude Code, OpenCode and Codex on one project",
     steps: [["Build","AI visibility app in Next.js"],["Break","API errors, slow replies, a 401"],["Switch","OpenCode free models; Codex at ≈$20"]],

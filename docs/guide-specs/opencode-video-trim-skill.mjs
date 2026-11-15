@@ -1,0 +1,42 @@
+export default {
+  slug: 'opencode-video-trim-skill',
+  video: 'yR-zoMUY27Q',
+  title: 'OpenCode Skill That Trims Long Videos Into Shorts',
+  short: 'OpenCode video trim skill',
+  description: 'Build an OpenCode skill that transcribes with Faster Whisper, cuts filler words, trims a hook-first 16x9 highlight and makes a 9x16 Short with subtitles.',
+  hub: 'Build an OpenCode skill that transcribes with Faster Whisper, trims a long video to a hook-first cut, makes a 9x16 Short and burns in animated subtitles.',
+  watchLabel: 'Follow the OpenCode video trimming skill build',
+  about: ['OpenCode', 'OpenCode Zen', 'Faster Whisper', 'Python'],
+  card: {
+    title: 'A custom OpenCode skill for video trimming',
+    steps: [['Prompt', 'Describe the cut: hook first, no filler'], ['Process', 'Faster Whisper, hook finder, trim'], ['Short', '9x16 stack and animated subtitles']],
+    note: 'May 2026 recording; subtitles still needed polish.',
+  },
+  quick: 'Prompt OpenCode to create a skill that turns a long video into a 1.5 to 2.5 minute 16x9 cut that starts on a hook and removes filler words. It writes a transcribe script with Faster Whisper that outputs word-level timestamps and confidence, plus a script of about 100 lines that finds hooks and lists filler words. On a 10-minute tutorial it took about five minutes of CPU to produce a cut of about a minute and a half, and an existing Shorts skill made the 9x16 version in under 30 seconds. I used the free Qwen 3.6 model in OpenCode Zen.',
+  intro: '<p>This is a May 2026 build in the OpenCode web interface. It is a first working pass, not a polished editor, and I check every cut before I publish. The OpenCode link on this site is an affiliate link. For the OpenCode basics and plans, see <a href="/guides/opencode-go.html">the OpenCode Go guide</a>.</p>',
+  sections: [
+    { id: 'prompt', h: '1. Write a precise prompt', html: '<p>My first prompt was weak and the skill came out as a short-form cutter. I rewrote it: create a skill that takes a long-form video and outputs a shorter video no longer than 1.5 to 2.5 minutes in 16x9, so it is not a Short, that starts on a clear hook, removes filler words and is tuned for virality. OpenCode created it in the right folder for skills as viral short cutter, and I approved the file writes.</p>' },
+    { id: 'transcribe', h: '2. Transcribe with word timestamps', html: '<p>The skill’s transcribe.py uses Faster Whisper to write JSON with words, timestamps and confidence scores. The later steps need that file to add subtitles, find hooks and cut filler words precisely.</p>' },
+    { id: 'trim', h: '3. Find a hook and trim', html: '<p>A second script of about 100 lines looks for compelling openings in the first seconds, a low filler-word ratio, good pacing and questions, and lists the filler words to cut. Running it on a 10-minute tutorial took about five minutes of CPU processing and produced a trimmed video of about a minute and a half. I ran it through the free Qwen 3.6 in OpenCode Zen, so building it cost no credits.</p>' },
+    { id: 'short', h: '4. Make the Short and add subtitles', html: '<p>My existing Shorts skill converted the 16x9 cut into a 9x16 vertical in under 30 seconds. It detected where the talking head sat and stacked it below the screen share. I then asked OpenCode to add a subtitle script inside the same skill. It transcribed the Short and burned animated captions into the middle of the frame. They worked, but I wanted bigger text and a better animation.</p>' },
+  ],
+  limits: [
+    'Audience results from the Shorts this makes.',
+    'Cut quality on videos other than screen-share tutorials.',
+    'The exact setup for installing Faster Whisper and the rest of the dependencies.',
+  ],
+  faq: [
+    ['Does it cost credits?', 'Not in my run: I used a free model in OpenCode Zen. CPU processing happens on your own machine.'],
+    ['How long does it take?', 'About five minutes of CPU for a 10-minute video, and under 30 seconds for the vertical conversion.'],
+    ['Are the subtitles finished?', 'No. The first pass worked but needed bigger text and better animation.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=yR-zoMUY27Q">This AI Skill Edits Your Videos For Free!</a> (recorded May 2026)',
+    'OpenCode through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a>',
+  ],
+  related: [['/guides/opencode-go.html', 'OpenCode Go'], ['/guides/claude-code-video-editor-skill.html', 'Claude Code video editor skill'], ['/guides/opencode-desktop-habit-tracker-electron.html', 'OpenCode desktop habit tracker'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/youtube-channel-growth-workflow.html', 'YouTube channel growth workflow']],
+  next: ['/guides/claude-code-video-editor-skill.html', 'Claude Code video editor skill'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/claude-code-video-editor-skill.html'],
+  llms: 'A May 2026 OpenCode build: a custom skill that transcribes a long video with Faster Whisper, finds a hook and cuts filler words into a 1.5 to 2.5 minute 16x9 highlight (about five minutes of CPU for a 10-minute video), converts it to a 9x16 Short in under 30 seconds with the talking head stacked below, and burns in animated subtitles. Free Qwen 3.6 model; subtitles needed polish.',
+};

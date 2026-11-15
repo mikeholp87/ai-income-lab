@@ -1,0 +1,42 @@
+export default {
+  slug: 'nano-banana-gemini-images-make',
+  video: 'QlL87_URHZ8',
+  title: 'Nano Banana in Google AI Studio: Free Images and a Make.com Quota Error',
+  short: 'Nano Banana images',
+  description: 'Generate images with Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app, then see why my Make.com Gemini module hit a quota error.',
+  hub: 'Try Nano Banana, Gemini 2.5 Flash Image, in Google AI Studio and the Gemini app, then see the Make.com quota error that needs billing.',
+  watchLabel: 'Follow the Nano Banana image generation tutorial',
+  about: ['Nano Banana', 'Google AI Studio', 'Google Gemini', 'Make.com'],
+  card: {
+    title: 'Nano Banana: Gemini 2.5 Flash Image',
+    steps: [['Open', 'aistudio.google.com, Gemini 2.5 Flash Image'], ['Prompt', 'Generate and edit; compare variants'], ['Automate', 'Make.com needs billing, else quota error']],
+    note: 'August 2025 recording; Google features change quickly.',
+  },
+  quick: 'Open Google AI Studio, choose Nano Banana (Gemini 2.5 Flash Image) and prompt it. It keeps a character consistent across images, edits intelligently and merges images. Images like an elephant playing basketball generated in under ten seconds. The Gemini app gave larger files with a Gemini logo. In Make.com I set up a Gemini module with an API key, but it failed with an exceeded quota error because billing was not linked on the Google Cloud project.',
+  intro: '<p>This is an August 2025 beginner tour of Google’s image model, just after launch, and Google’s tools and limits change quickly. The Gemini referral link on this site is an affiliate link. For building a small app in AI Studio, see <a href="/guides/google-ai-studio-chat-app.html">the Google AI Studio chat app guide</a>.</p>',
+  sections: [
+    { id: 'studio', h: '1. Open Nano Banana in AI Studio', html: '<p>Go to aistudio.google.com. Under Chat, choose the Nano Banana model, which is Gemini 2.5 Flash Image. The Build area has a Gemini 2.5 Flash Image starter with examples such as cats, and an SDK you can use with an API key.</p>' },
+    { id: 'abilities', h: '2. What it can do', html: '<p>Google lists three strengths: keeping a subject’s appearance consistent across images and scenes, intelligent editing (I joked that it could replace Photoshop work), and composing or merging images by replacing objects or combining parts of several. I tried prompt variations to compare results, and each image took under ten seconds.</p>' },
+    { id: 'make', h: '3. Try it from Make.com', html: '<p>I created an API key in AI Studio and added a Google Gemini module in Make.com to generate images on a schedule and maybe post them. The run failed with an exceeded quota error. The API route needs billing linked to the Google Cloud project, which I had not done, so the automation never worked in the recording.</p>' },
+    { id: 'app', h: '4. Compare with the Gemini app', html: '<p>The same kind of image in the Gemini app was a larger file with a Gemini logo. Google’s paid Gemini plan also gave access to Veo video generation, which I mentioned but did not use. I had not yet worked out a video workflow with this model.</p>' },
+  ],
+  limits: [
+    'A working Make.com image automation. It stopped at the quota error.',
+    'Google’s current free limits for Nano Banana.',
+    'Image licensing and usage rules for commercial use.',
+  ],
+  faq: [
+    ['What is Nano Banana?', 'Google’s Gemini 2.5 Flash Image model, built into Google AI Studio and the Gemini app.'],
+    ['Why did Make.com fail?', 'It returned an exceeded quota error because billing was not linked on the Google Cloud project.'],
+    ['How fast was it?', 'Images generated in under ten seconds in AI Studio.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=QlL87_URHZ8">Nano Banana: The Easiest Way to Create Free Images with Google Gemini</a> (recorded August 2025)',
+    'Google AI Studio: <a href="https://aistudio.google.com">aistudio.google.com</a> · Google Gemini referral: <a href="https://g.co/g1referral/G68XU81Q" rel="sponsored noopener">Gemini</a>',
+  ],
+  related: [['/guides/google-ai-studio-chat-app.html', 'Google AI Studio chat app'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/chatgpt-images-sketch-workflow.html', 'ChatGPT image editing'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets'], ['/guides/choosing-ai-models-for-a-task.html', 'Choose a model using your actual task']],
+  next: ['/guides/chatgpt-images-sketch-workflow.html', 'ChatGPT image editing'],
+  more: 'Price and details: <a href="/tools.html#google-gemini">Google Gemini on the tools page</a>',
+  linkFrom: ['/guides/chatgpt-images-sketch-workflow.html'],
+  llms: 'An August 2025 tour of Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app: character consistency, intelligent editing and image merging, with images generating in under ten seconds. A Make.com Gemini module failed with an exceeded quota error because billing was not linked on the Google Cloud project.',
+};

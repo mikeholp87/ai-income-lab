@@ -1,0 +1,42 @@
+export default {
+  slug: 'manus-first-test-calendar-gmail',
+  video: '-cLECY10Tzg',
+  title: 'Manus AI First Test: Calendar, Gmail and an Email Autoresponder',
+  short: 'Manus first test',
+  description: 'My first Manus test on the free Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder and switch it to Gemini. What failed.',
+  hub: 'First look at Manus on the Lite model: Google Calendar and Gmail connectors, an hourly autoresponder script, a Gemini switch, and what did not work.',
+  watchLabel: 'Follow the Manus first test with Calendar and Gmail',
+  about: ['Manus', 'Google Calendar', 'Gmail', 'Gemini'],
+  card: {
+    title: 'Manus on the Lite model: connectors and an autoresponder',
+    steps: [['Connect', 'Google Calendar and Gmail'], ['Build', 'Hourly task drafts replies with a script'], ['Switch', 'Move from OpenAI to Gemini']],
+    note: 'Calendar delete and a SaaS build did not work on Lite.',
+  },
+  quick: 'In Manus pick the free Manus 1.6 Lite model, connect Google Calendar and Gmail, and ask it to auto-respond to all emails. It wrote a Python script and an hourly scheduled task that reads unread Gmail and drafts replies with an AI API. I added an OpenAI key and a Gemini key through custom API connectors, then asked it to switch from ChatGPT to Gemini. On Lite, a calendar delete did not work and a lead-flow SaaS build was too complex.',
+  intro: '<p>This is a January 2026 first test; I had never used Manus before. I asked Google Gemini what it was and got: a general purpose AI agent that acts, not just chats. I also noted that Meta had acquired it. The Manus link is a referral link that gives me credits. An autoresponder sends real email, so read the drafts before you let anything send. For a Make.com version, see <a href="/guides/make-gmail-ai-auto-reply.html">the Gmail auto-reply build</a>.</p>',
+  sections: [
+    { id: 'model', h: '1. Pick a model', html: '<p>The options were Manus 1.6 Lite, 1.6 Pro and 1.6 Max. Pro and Max needed a free-trial or paid plan, so I used Lite.</p>' },
+    { id: 'calendar', h: '2. Connect Google Calendar', html: '<p>Connect Google Calendar from the tools list, then run the suggested prompt to test the connector. Manus found the Google Calendar MCP tools, created an event I could see on my calendar and updated it. When I asked it to delete the event, the event stayed on my calendar. You can open the task to see the Ubuntu Linux machine and commands it ran.</p>' },
+    { id: 'gmail', h: '3. Connect Gmail', html: '<p>After connecting Gmail, Manus listed my latest emails. I then asked for a lead-flow SaaS build, which the Lite model could not handle. That is where the Pro tier is meant to help.</p>' },
+    { id: 'autoresponder', h: '4. Build the autoresponder', html: '<p>I asked Manus to auto-respond to all emails. It wrote a Python responder using OpenAI and set an hourly scheduled task that reads unread messages and drafts replies. I added an OpenAI key and a Gemini key from Google AI Studio through the custom API connectors, then asked it to switch the responder from ChatGPT to Gemini. It rewrote the script to use the Google Gen AI library. I prefer Gemini because I have API credits there.</p><p>I did not show it sending or replying to any real email, so treat it as drafts until you have tested.</p>' },
+  ],
+  limits: [
+    'A real inbox run showing the drafted replies.',
+    'Whether the Pro or Max models handle the SaaS build or the calendar delete.',
+    'Cost in credits for the scheduled task.',
+  ],
+  faq: [
+    ['Which Manus model did I use?', 'Manus 1.6 Lite, the free one. Pro and Max needed a trial or paid plan.'],
+    ['Did the calendar delete work?', 'No. Manus said it deleted the event but it stayed on my calendar.'],
+    ['Did the autoresponder send emails?', 'It created an hourly task to draft replies. The recording did not show a reply being sent.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=-cLECY10Tzg">Manus AI Agents Build Anything In Minutes!</a> (recorded January 2026)',
+    'Try Manus through my referral link: <a href="https://manus.im/invitation/DF5TX92CTYPP" rel="sponsored noopener">Manus</a>',
+  ],
+  related: [['/guides/make-gmail-ai-auto-reply.html', 'Make.com Gmail auto-reply'], ['/guides/what-is-an-ai-agent.html', 'What is an AI agent?'], ['/guides/no-code-ai-agent-builder.html', 'No-code AI agent builders'], ['/guides/what-is-mcp.html', 'What is MCP?'], ['/guides/ai-agent-workflow.html', 'AI agent workflow']],
+  next: ['/guides/make-gmail-ai-auto-reply.html', 'Make.com Gmail auto-reply'],
+  more: 'Price and details: <a href="/tools.html#manus">Manus on the tools page</a>',
+  linkFrom: ['/guides/no-code-ai-agent-builder.html'],
+  llms: 'A January 2026 first test of Manus on the free Manus 1.6 Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder with a Python script, add OpenAI and Gemini keys and switch to Gemini. A calendar delete did not work and a SaaS build was too complex for Lite.',
+};

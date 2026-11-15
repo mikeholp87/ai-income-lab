@@ -55,6 +55,12 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a February 2026 recording.
+- [Claude SEO Skill: Audit and Fix a Site From Claude Code](https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html): Install the free Claude SEO skill with one command and run its audit, plan, sitemap and GEO checks on a live site from Claude Code. I hit usage limits.
+- [OpenCode Skill That Trims Long Videos Into Shorts](https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html): Build an OpenCode skill that transcribes with Faster Whisper, cuts filler words, trims a hook-first 16x9 highlight and makes a 9x16 Short with subtitles.
+- [Facebook Messenger Auto-Replies With Make.com and ChatGPT](https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html): Build a Make.com scenario that watches Facebook Messenger, drafts a ChatGPT reply and sends it back, plus the Meta developer app and webhook it needs.
+- [Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs](https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html): Try Pi, a minimal open-source terminal coding agent: install with npm, log in with an OpenRouter key, run a site audit, and watch token costs and limits.
+- [Odysseus AI Workspace: Install on Linux and Try It Locally](https://www.ai-automation-station.com/guides/odysseus-ai-self-hosted-workspace.html): Install Odysseus, a free self-hosted AI chat workspace, on Linux in about five minutes, add model keys, try agent mode and an email digest, with the gaps.
+- [Emergent Website Build: An Agency Site From One ChatGPT Prompt](https://www.ai-automation-station.com/guides/emergent-saas-agency-website.html): Build an agency website in Emergent from a ChatGPT-written prompt, cap the credit budget, add a contact form and booking popup, and fix a broken button.
 - [Free Claude Code vs OpenCode vs Codex: What Broke and What Worked](https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html): Why I moved from Free Claude Code to OpenCode and Codex while building an AI visibility app: API errors, a 401 caused by startup order, and free models.
 - [OpenCode Desktop App: Build a Habit Tracker With React and Electron](https://www.ai-automation-station.com/guides/opencode-desktop-habit-tracker-electron.html): Install the OpenCode desktop app on Debian, build a habit tracker in React and Electron with free models, fix a white screen and add local storage.
 - [Lovable Landing Page: Cal.com Booking, Stripe and a Custom Domain](https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html): Run one landing-page prompt in Replit, Lovable and Orchids, then take Lovable live with Cal.com, Supabase, Stripe and a domain. Stripe was partly done.
@@ -371,6 +377,30 @@ A May 2026 build in the OpenCode desktop app on Debian: pick a free Zen model, u
 ### Free Claude Code vs OpenCode vs Codex: What Broke and What Worked
 https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html (updated 2026-11-15)
 A May 2026 account of moving from Free Claude Code to OpenCode and Codex while building a local Next.js AI visibility app: repeated API request errors, slow replies and a 401 caused by starting the proxy and Claude Code in the wrong order. OpenCode answered quickly on free models and Codex at about $20 a month was preferred over Claude Pro. One person’s experience, not a benchmark.
+
+### Emergent Website Build: An Agency Site From One ChatGPT Prompt
+https://www.ai-automation-station.com/guides/emergent-saas-agency-website.html (updated 2026-11-15)
+A September 2025 Emergent build of an automation agency site: ChatGPT writes the prompt, GPT-5 is chosen with a credit budget, the agent asks about design and scheduling, then prompts add a CMS, contact form and booking popup, and one prompt fixes a broken contact button. Compared with an earlier Lovable build.
+
+### Odysseus AI Workspace: Install on Linux and Try It Locally
+https://www.ai-automation-station.com/guides/odysseus-ai-self-hosted-workspace.html (updated 2026-11-15)
+A June 2026 test of Odysseus, a free self-hosted AI chat workspace: clone the repository, create a Python virtual environment, install requirements, start on localhost, add OpenRouter, OpenCode and OpenAI keys, then try chat, agent mode, model comparison and an email digest task. The shell tool and local models were not set up, and Gmail took several tries.
+
+### Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs
+https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html (updated 2026-11-15)
+An April 2026 first look at Pi, a minimal open-source terminal coding agent: install with one npm command, log in with an OpenRouter key, run a site audit, read session cost with the session command, connect Google Cloud Code Assist, and hit slow runs, a negative balance and a Gemma 4 rate limit. The author preferred OpenCode.
+
+### Facebook Messenger Auto-Replies With Make.com and ChatGPT
+https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html (updated 2026-11-15)
+A July 2025 Make.com build for Messenger: a scenario that watches messages through a webhook and verify token, writes a reply with OpenAI and sends it back, plus the Meta developer app, page access token and webhook setup. A failed webhook check was fixed with a new webhook. Going live needs pages messaging permission and business verification, which was pending.
+
+### OpenCode Skill That Trims Long Videos Into Shorts
+https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html (updated 2026-11-15)
+A May 2026 OpenCode build: a custom skill that transcribes a long video with Faster Whisper, finds a hook and cuts filler words into a 1.5 to 2.5 minute 16x9 highlight (about five minutes of CPU for a 10-minute video), converts it to a 9x16 Short in under 30 seconds with the talking head stacked below, and burns in animated subtitles. Free Qwen 3.6 model; subtitles needed polish.
+
+### Claude SEO Skill: Audit and Fix a Site From Claude Code
+https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html (updated 2026-11-15)
+A February 2026 run of the free Claude SEO skill in Claude Code: install with one curl command, audit tubeanalytics.net, make a SaaS plan, approve fixes to canonicals, titles and 404s, rewrite the sitemap and robots file, and run a GEO analysis. The work used up the Claude Pro limit twice and interrupted the full audit.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)
