@@ -10,6 +10,26 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'ai-model-news-kimi-glm-fable-gemini': {
+    title: "Four model releases and how I tried them",
+    steps: [["Read","Release posts and benchmark pages"],["Try","OpenCode Go or AI Studio, where I could"],["Check","Cost, speed and limits on your own task"]],
+    note: "Release-day notes, November 2025 to July 2026; claims are the vendors’.",
+  },
+  'sendpulse-facebook-comment-chatbot': {
+    title: "A comment-to-DM chatbot on a Facebook page",
+    steps: [["Trigger","Any comment on any post, varied public replies"],["DM","One message with buttons, ignore repeats"],["AI","Agent step on a paid plan"]],
+    note: "Three videos, October 2025 to January 2026; plans change.",
+  },
+  'n8n-job-search-resume-cover-letter-workflows': {
+    title: "Find and score jobs with n8n",
+    steps: [["Scrape","Apify Indeed actor on a schedule"],["Score","OpenAI rates fit out of 10"],["Draft","Cover letter or resume, log in Airtable or Sheets"]],
+    note: "November 2025; applying to jobs stays manual.",
+  },
+  'youtube-to-linkedin-automations-n8n-opencode': {
+    title: "Repurpose a YouTube video for LinkedIn",
+    steps: [["Transcript","Apify pulls it, n8n joins the text"],["Create","Summary, infographic, post, newsletter"],["Post","You review and publish by hand"]],
+    note: "Four builds, November 2025 to May 2026; posting stays manual.",
+  },
   'suno-n8n-music-video-workflow': {
     title: "AI music videos with n8n",
     steps: [["Prompt","Form genre, OpenAI writes the Suno prompt"],["Make","KIE: Suno tracks and a 2K image, with polling"],["Assemble","Creatomate render, then Google Drive"]],
