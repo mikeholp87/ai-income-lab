@@ -1,13 +1,6 @@
-# YouTube quota ran out on 2026-11-15 mid-run. Finish after the daily quota resets:
-#   node scripts/tag-youtube-descriptions.mjs --guide-links <ids below>
-# then remove the older generic guide lines (node scripts/drop-generic-guide-lines.mjs --dry-run, then without the flag), then delete this file.
-# Already linked: UnnN2i90ALg OUgxXuWG_wU 3RPEo7PB7ug jtyWB5iGPOs
-# Quota resets at 08:00 UTC (15:00 Bangkok); a retry at 12:05 UTC on 2026-11-15 was still refused.
-w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
-# Generic lines still to drop for all 13: UnnN2i90ALg OUgxXuWG_wU 3RPEo7PB7ug jtyWB5iGPOs w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
-# Added later (guides live, descriptions not yet linked; run --guide-links, then drop-generic-guide-lines):
-DfyAAwHPJuU 4f9WR0T3vKQ -L0CVvJMzZI _ikohuukGE4 oP11zRs6628 e6JXdMh5Qz0 dEQ8OllsJmk rPhyYNMuDT4 xlVDUw_rBXE 9YueXsoNg80 P7lbzDAb-qk
-# Added next (guides live, descriptions not yet linked):
-X0X8kJTK7vA UkYoSNiqa6o s6004nmWG9g SLAnjvWK1Y4 CGVALaueHeA dIZ7xNyWu3M bjTr9p-zQ1M 3j4YyYFRQKU fjTn95391rg
-# Added last (guides live, descriptions not yet linked):
-ffnMlBzcJOQ mKZHLQLaq2k IlOJWfmlpGg kUbhr1QGYeU YNpIRq7O3UE NoHkFvhbiuU uTYZC3Kxwjo J86tffN9nmg DtmxxnAbS00 bAgP_0uW0dY a3TwomrR6pw 508QvEHI5n0 TZxNymn9msU dILjZszMZ5o
+# Descriptions still to update (YouTube quota ran out on 2026-11-15). Quota resets 08:00 UTC (15:00 Bangkok).
+# 1) node scripts/tag-youtube-descriptions.mjs --guide-links <ids>   (already-linked videos are skipped; ~55 quota units each)
+# 2) node scripts/drop-generic-guide-lines.mjs --dry-run, then without --dry-run   (removes the older generic guide lines)
+# 3) delete this file.
+# 43 video ids; run step 1 in two batches of about 22 if the quota is tight.
+2pD_wqYHKlY 3j4YyYFRQKU 4f9WR0T3vKQ 508QvEHI5n0 9YueXsoNg80 a3TwomrR6pw bAgP_0uW0dY bjTr9p-zQ1M bt-zM7QuKkU cfYpzY-o3fQ CGVALaueHeA DbYip6KaNHo dEQ8OllsJmk DfyAAwHPJuU dILjZszMZ5o dIZ7xNyWu3M DtmxxnAbS00 e6JXdMh5Qz0 ffnMlBzcJOQ fjTn95391rg _ikohuukGE4 IlOJWfmlpGg ix3C2JBFII8 J86tffN9nmg KDZ7yefRv54 kUbhr1QGYeU kxp_dF6NEbg -L0CVvJMzZI mKZHLQLaq2k NoHkFvhbiuU oP11zRs6628 P7lbzDAb-qk qzIaEA0wBCw rPhyYNMuDT4 s6004nmWG9g SLAnjvWK1Y4 TZxNymn9msU UkYoSNiqa6o uTYZC3Kxwjo w_MoA8lpWTg X0X8kJTK7vA xlVDUw_rBXE YNpIRq7O3UE 
