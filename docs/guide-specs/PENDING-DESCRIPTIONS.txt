@@ -5,3 +5,5 @@
 # Quota resets at 08:00 UTC (15:00 Bangkok); a retry at 12:05 UTC on 2026-11-15 was still refused.
 w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
 # Generic lines still to drop for all 13: UnnN2i90ALg OUgxXuWG_wU 3RPEo7PB7ug jtyWB5iGPOs w_MoA8lpWTg cfYpzY-o3fQ kxp_dF6NEbg bt-zM7QuKkU KDZ7yefRv54 ix3C2JBFII8 qzIaEA0wBCw 2pD_wqYHKlY DbYip6KaNHo
+# Added later (guides live, descriptions not yet linked; run --guide-links, then drop-generic-guide-lines):
+DfyAAwHPJuU 4f9WR0T3vKQ -L0CVvJMzZI _ikohuukGE4 oP11zRs6628 e6JXdMh5Qz0 dEQ8OllsJmk rPhyYNMuDT4 xlVDUw_rBXE 9YueXsoNg80 P7lbzDAb-qk

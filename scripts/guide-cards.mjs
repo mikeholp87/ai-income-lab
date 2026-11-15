@@ -10,6 +10,21 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'n8n-hostinger-uploader-sora-2-and-version-2': {
+    title: "n8n on a Hostinger VPS: four things I built",
+    steps: [["Upload","Drive folder to YouTube, AI title and tags"],["Update","docker compose pull, then up -d"],["Generate","Sora 2 node needs n8n 1.118.1 or later"]],
+    note: "October to December 2025; the transcript step failed in the demo.",
+  },
+  'three-ai-site-builds-antigravity-n8n-hotel': {
+    title: "Three sites built by prompting AI tools",
+    steps: [["Landing page","Antigravity and OpenCode, 16 sections"],["Dashboard","Web app calls an n8n webhook"],["Hotel site","Apify scrape to a filterable site"]],
+    note: "February and March 2026; each had unfinished parts.",
+  },
+  'tubeanalytics-build-log-claude-code-opencode': {
+    title: "Building a YouTube analytics SaaS with AI tools",
+    steps: [["Demo","February 2026, unfinished tabs"],["Tour","March: plans, dashboard, tools"],["Debug","June: pricing 500 error, redirects"]],
+    note: "My own product; plans and availability may have changed.",
+  },
   'ai-visibility-trakkr-dataforseo-geo-skills': {
     title: "Tracking and improving AI search visibility",
     steps: [["Track","Trakkr: citations, crawler visits, prompts"],["Write","GEO skill and MCP gaps in Codex"],["Audit","DataForSEO MCP in Claude Code"]],

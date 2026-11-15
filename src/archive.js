@@ -403,6 +403,17 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  'P7lbzDAb-qk': [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
+  '9YueXsoNg80': [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
+  xlVDUw_rBXE: [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
+  rPhyYNMuDT4: [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
+  dEQ8OllsJmk: [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
+  e6JXdMh5Qz0: [['/guides/three-ai-site-builds-antigravity-n8n-hotel.html', 'Follow the three AI site build videos']],
+  oP11zRs6628: [['/guides/three-ai-site-builds-antigravity-n8n-hotel.html', 'Follow the three AI site build videos']],
+  _ikohuukGE4: [['/guides/three-ai-site-builds-antigravity-n8n-hotel.html', 'Follow the three AI site build videos']],
+  '-L0CVvJMzZI': [['/guides/tubeanalytics-build-log-claude-code-opencode.html', 'Follow the TubeAnalytics build log videos']],
+  '4f9WR0T3vKQ': [['/guides/tubeanalytics-build-log-claude-code-opencode.html', 'Follow the TubeAnalytics build log videos']],
+  DfyAAwHPJuU: [['/guides/tubeanalytics-build-log-claude-code-opencode.html', 'Follow the TubeAnalytics build log videos']],
   DbYip6KaNHo: [['/guides/ai-visibility-trakkr-dataforseo-geo-skills.html', 'Follow the AI visibility, Trakkr and DataForSEO videos']],
   '2pD_wqYHKlY': [['/guides/ai-visibility-trakkr-dataforseo-geo-skills.html', 'Follow the AI visibility, Trakkr and DataForSEO videos']],
   qzIaEA0wBCw: [['/guides/ai-visibility-trakkr-dataforseo-geo-skills.html', 'Follow the AI visibility, Trakkr and DataForSEO videos']],

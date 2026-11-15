@@ -55,6 +55,9 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [n8n Automations on Hostinger: Shorts, Sora 2 and Version 2.0](https://www.ai-automation-station.com/guides/n8n-hostinger-uploader-sora-2-and-version-2.html): Five n8n videos in one guide: a Drive-to-YouTube Shorts uploader, a Sora 2 video node, the 2.0 update on a Hostinger VPS, and a tour of six automations.
+- [Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site](https://www.ai-automation-station.com/guides/three-ai-site-builds-antigravity-n8n-hotel.html): Three AI-built sites: a landing page in Google Antigravity, a dashboard that triggers n8n, and a Koh Samui hotel directory scraped with Apify and OpenCode.
+- [TubeAnalytics Build Log: From First Demo to Daily Debugging](https://www.ai-automation-station.com/guides/tubeanalytics-build-log-claude-code-opencode.html): How I built TubeAnalytics, my YouTube analytics SaaS, with Claude Code, Gemini and OpenCode: the February demo, the March tour and a June debugging day.
 - [AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills](https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html): How I track and improve AI search visibility on my own site: Trakkr and its MCP, a GEO blog skill in Codex, and a DataForSEO MCP audit in Claude Code.
 - [Nano Banana Pro Infographics, Thumbnails and NotebookLM](https://www.ai-automation-station.com/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html): Make infographics and thumbnails with Nano Banana Pro through Google AI Studio and KIE, and compare a one-off NotebookLM infographic with my n8n workflow.
 - [OpenCode Free Models, Go Plan and 10 Agent Skills](https://www.ai-automation-station.com/guides/opencode-free-models-go-plan-and-skills.html): Set up OpenCode with free Zen models, upgrade to the Go plan, run models in several terminals, and install ten agent skills from the skills.sh registry.
@@ -506,6 +509,18 @@ Three videos on Nano Banana Pro visuals: a manual infographic from a Gemini 3 su
 ### AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills
 https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html (updated 2026-11-15)
 A case study from three 2026 videos on my own SaaS: Trakkr shows citations, AI crawler visits and prompt coverage; its MCP lets Codex find citation gaps and a GEO skill drafts a 16-article cluster; a DataForSEO MCP audit in Claude Code was implemented by Codex with better desktop Lighthouse performance. Figures are self-reported and causes are unproven.
+
+### TubeAnalytics Build Log: From First Demo to Daily Debugging
+https://www.ai-automation-station.com/guides/tubeanalytics-build-log-claude-code-opencode.html (updated 2026-11-15)
+A build log of TubeAnalytics, the author's own YouTube analytics SaaS built with Claude Code, Gemini and OpenCode on Node.js and Supabase: a February 2026 demo with unfinished tabs, a March tour of plans (19, 49, 149 a month) and tools, and a June debugging day fixing a pricing-page 500 error and an onboarding redirect.
+
+### Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site
+https://www.ai-automation-station.com/guides/three-ai-site-builds-antigravity-n8n-hotel.html (updated 2026-11-15)
+Three 2026 AI site builds: a 16-section landing page made in Google Antigravity (Gemini 3.1 Pro) and finished in OpenCode, a React dashboard that triggers an n8n workflow on a Hostinger VPS (3 minutes 39 seconds, results not displayed in the app), and a Koh Samui hotel directory scraped with Apify and OpenCode.
+
+### n8n Automations on Hostinger: Shorts, Sora 2 and Version 2.0
+https://www.ai-automation-station.com/guides/n8n-hostinger-uploader-sora-2-and-version-2.html (updated 2026-11-15)
+Five n8n videos from October to December 2025 on a Hostinger VPS: a Google Drive to YouTube Shorts uploader with AI title, tags and description (transcript step failed), updating n8n to 1.118.1 for the Sora 2 node (negative OpenAI balance caused a bad request), the 2.0 beta update with docker compose, a tour of six automations, and routes to try Sora 2.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)

@@ -1,0 +1,11 @@
+✓ Done
+
+✓ Search guides and videos | Mike Holp
+  https://www.ai-automation-station.com/search.html
+
+✓ Done
+
+✓ Done
+
+[agent-browser] launched browser
+✗ Wait timed out after 25000ms

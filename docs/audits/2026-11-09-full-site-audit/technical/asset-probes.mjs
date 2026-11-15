@@ -1,0 +1,4 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const out=new URL('./',import.meta.url); const {assets}=JSON.parse(await readFile(new URL('extended-summary.json',out))); let cursor=0;const results=[];
+await Promise.all(Array.from({length:5},async()=>{while(cursor<assets.length){const path=assets[cursor++];try{const r=await fetch('https://www.ai-automation-station.com'+path,{method:'HEAD',signal:AbortSignal.timeout(15000)});results.push({path,status:r.status,type:r.headers.get('content-type'),bytes:r.headers.get('content-length')});}catch(e){results.push({path,error:e.message});} await new Promise(r=>setTimeout(r,1000));}}));
+await writeFile(new URL('asset-probes.json',out),JSON.stringify({checkedAt:new Date().toISOString(),results},null,2));console.log(JSON.stringify({checked:results.length,errors:results.filter(r=>r.status!==200)},null,2));

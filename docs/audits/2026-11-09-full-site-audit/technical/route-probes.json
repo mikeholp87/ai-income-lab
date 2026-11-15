@@ -1,0 +1,262 @@
+{
+  "checkedAt": "2026-11-09T13:09:02.376Z",
+  "results": [
+    {
+      "url": "http://ai-automation-station.com/",
+      "status": 308,
+      "headers": {
+        "content-type": "text/plain",
+        "location": "https://ai-automation-station.com/",
+        "refresh": "0;url=https://ai-automation-station.com/",
+        "server": "Vercel"
+      },
+      "robots": []
+    },
+    {
+      "url": "http://www.ai-automation-station.com/",
+      "status": 308,
+      "headers": {
+        "content-type": "text/plain",
+        "location": "https://www.ai-automation-station.com/",
+        "refresh": "0;url=https://www.ai-automation-station.com/",
+        "server": "Vercel"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://ai-automation-station.com/",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:49 GMT",
+        "location": "https://www.ai-automation-station.com/",
+        "refresh": "0;url=https://www.ai-automation-station.com/",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::bkpwk-1794229729604-c83cbe9e061e"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/index.html",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:50 GMT",
+        "location": "/",
+        "refresh": "0;url=/",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::lrscf-1794229730760-f3b4a7083acf"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:51 GMT",
+        "location": "/guides.html",
+        "refresh": "0;url=/guides.html",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::fvs4j-1794229731813-0c29586830a1"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/9router-setup",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:52 GMT",
+        "location": "/guides/9router-setup.html",
+        "refresh": "0;url=/guides/9router-setup.html",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::ttntk-1794229732866-b8c02afd8d1c"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/guides/9router-setup.html/",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:53 GMT",
+        "location": "/guides/9router-setup.html",
+        "refresh": "0;url=/guides/9router-setup.html",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::96rzk-1794229733913-d29b78ea67ee"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/audit-missing-20261109",
+      "status": 404,
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "0",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-disposition": "inline; filename=\"404.html\"",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Mon, 09 Nov 2026 13:08:55 GMT",
+        "etag": "W/\"ec42ab4eebe3691d845044eda9d0f734\"",
+        "last-modified": "Mon, 09 Nov 2026 13:08:55 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "sin1::t9749-1794229734962-021dac0067ea"
+      },
+      "title": "Page not found | Mike Holp",
+      "robots": [
+        "noindex,follow"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/watch/invalid",
+      "status": 404,
+      "headers": {
+        "age": "0",
+        "cache-control": "no-store",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Mon, 09 Nov 2026 13:08:56 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "sin1::iad1::5k4dg-1794229736591-91c18633b8ca"
+      },
+      "title": "Page not found | Mike Holp",
+      "robots": [
+        "noindex,follow"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/videos/9999",
+      "status": 404,
+      "headers": {
+        "age": "0",
+        "cache-control": "no-store",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Mon, 09 Nov 2026 13:08:58 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "sin1::iad1::858z8-1794229737906-99813e545648"
+      },
+      "title": "Page not found | Mike Holp",
+      "robots": [
+        "noindex,follow"
+      ]
+    },
+    {
+      "url": "https://www.ai-automation-station.com/search?q=make",
+      "status": 308,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/plain",
+        "date": "Mon, 09 Nov 2026 13:08:59 GMT",
+        "location": "/search.html?q=make",
+        "refresh": "0;url=/search.html?q=make",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-vercel-id": "sin1::bkpwk-1794229739229-5ec1d3ced40b"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/llms.txt",
+      "status": 200,
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "29",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-disposition": "inline; filename=\"llms.txt\"",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com",
+        "content-type": "text/plain; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Mon, 09 Nov 2026 13:09:00 GMT",
+        "etag": "W/\"3b277fdce8461da200b58db693a9c36d\"",
+        "last-modified": "Mon, 09 Nov 2026 13:08:30 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sin1::9c28t-1794229740278-4e54e04d0317"
+      },
+      "robots": []
+    },
+    {
+      "url": "https://www.ai-automation-station.com/llms-full.txt",
+      "status": 404,
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "6",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-disposition": "inline; filename=\"404.html\"",
+        "content-encoding": "br",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com",
+        "content-type": "text/html; charset=utf-8",
+        "cross-origin-opener-policy": "same-origin",
+        "date": "Mon, 09 Nov 2026 13:09:01 GMT",
+        "etag": "W/\"ec42ab4eebe3691d845044eda9d0f734\"",
+        "last-modified": "Mon, 09 Nov 2026 13:08:55 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sin1::5k9xg-1794229741338-5bc3daa0b135"
+      },
+      "title": "Page not found | Mike Holp",
+      "robots": [
+        "noindex,follow"
+      ]
+    }
+  ]
+}
