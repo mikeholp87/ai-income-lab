@@ -10,6 +10,21 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'make-content-builds-facebook-ebook-forms': {
+    title: "Three small Make.com content automations",
+    steps: [["Post","ChatGPT caption, DALL-E 3 image, Facebook"],["Write","Claude chapters into a Google Doc"],["Capture","Fillout form to an Airtable record"]],
+    note: "June and October 2025; the ebook run was unfinished.",
+  },
+  'make-youtube-ideas-to-video-pipeline': {
+    title: "From popular videos to a finished upload",
+    steps: [["Scrape","Apify gets creators’ latest videos and views"],["Ideate","Assistant writes ideas, GPT-4.1 scripts"],["Render","JSON2Video, then YouTube with an AI label"]],
+    note: "June and July 2025; the last run hit the JSON2Video quota.",
+  },
+  'make-lead-generation-pitches-apollo-maps': {
+    title: "Three ways to build a lead list in Make.com",
+    steps: [["Find","Google Maps, or an Apollo search via Apify"],["Research","Perplexity niche lookup, ChatGPT pitch"],["Review","Drafts to Airtable before anything sends"]],
+    note: "June to September 2025; check cold-email law and site terms first.",
+  },
   'n8n-hostinger-uploader-sora-2-and-version-2': {
     title: "n8n on a Hostinger VPS: four things I built",
     steps: [["Upload","Drive folder to YouTube, AI title and tags"],["Update","docker compose pull, then up -d"],["Generate","Sora 2 node needs n8n 1.118.1 or later"]],

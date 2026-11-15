@@ -403,6 +403,15 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  fjTn95391rg: [['/guides/make-content-builds-facebook-ebook-forms.html', 'Follow the Make.com Facebook post, ebook and Fillout builds']],
+  '3j4YyYFRQKU': [['/guides/make-content-builds-facebook-ebook-forms.html', 'Follow the Make.com Facebook post, ebook and Fillout builds']],
+  'bjTr9p-zQ1M': [['/guides/make-content-builds-facebook-ebook-forms.html', 'Follow the Make.com Facebook post, ebook and Fillout builds']],
+  dIZ7xNyWu3M: [['/guides/make-youtube-ideas-to-video-pipeline.html', 'Follow the Make.com YouTube idea and video pipeline videos']],
+  CGVALaueHeA: [['/guides/make-youtube-ideas-to-video-pipeline.html', 'Follow the Make.com YouTube idea and video pipeline videos']],
+  SLAnjvWK1Y4: [['/guides/make-youtube-ideas-to-video-pipeline.html', 'Follow the Make.com YouTube idea and video pipeline videos']],
+  s6004nmWG9g: [['/guides/make-lead-generation-pitches-apollo-maps.html', 'Follow the Make.com lead generation builds']],
+  UkYoSNiqa6o: [['/guides/make-lead-generation-pitches-apollo-maps.html', 'Follow the Make.com lead generation builds']],
+  X0X8kJTK7vA: [['/guides/make-lead-generation-pitches-apollo-maps.html', 'Follow the Make.com lead generation builds']],
   'P7lbzDAb-qk': [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
   '9YueXsoNg80': [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
   xlVDUw_rBXE: [['/guides/n8n-hostinger-uploader-sora-2-and-version-2.html', 'Follow the n8n Shorts, Sora 2 and version 2.0 videos']],
