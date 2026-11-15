@@ -8,6 +8,23 @@ const site = 'https://www.ai-automation-station.com';
 export const previewRobots = html => html.replace('<meta name="robots" content="index,follow">',
   '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">');
 
+// X/Twitter cards fall back to Open Graph only partly, so every static page also gets twitter:title, twitter:description
+// and twitter:image copied from its og: tags, plus the og:site_name the rest of the site uses. Tags already present stay.
+const metaContent = (html, attr, name) => html.match(new RegExp(`<meta ${attr}="${name}" content="([^"]*)">`))?.[1];
+export function shareMeta(html) {
+  const card = html.match(/<meta name="twitter:card" content="[^"]*">/)?.[0];
+  let out = html;
+  if (card) {
+    const added = [['twitter:title', 'og:title'], ['twitter:description', 'og:description'], ['twitter:image', 'og:image']]
+      .filter(([twitter, og]) => metaContent(out, 'name', twitter) === undefined && metaContent(out, 'property', og) !== undefined)
+      .map(([twitter, og]) => `<meta name="${twitter}" content="${metaContent(out, 'property', og)}">`);
+    if (added.length) out = out.replace(card, () => `${card}${added.join('')}`);
+  }
+  const type = out.match(/<meta property="og:type" content="[^"]*">/)?.[0];
+  if (type && metaContent(out, 'property', 'og:site_name') === undefined) out = out.replace(type, () => `${type}<meta property="og:site_name" content="AI Automation Station">`);
+  return out;
+}
+
 // Guide cards are rendered at 1200x630 by scripts/guide-cards.mjs, so the share image's size is known. The alt text
 // is the page's own hero image alt, which describes the same card.
 export function socialImageMeta(html) {

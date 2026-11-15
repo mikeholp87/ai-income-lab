@@ -24,7 +24,9 @@ const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '
 const escape = text => String(text).replace(/[&<>"']/g, char => entities[char]);
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const listFormat = new Intl.ListFormat('en');
-export const fontPreloads = ['instrument-sans', 'archivo-black'].map(font => `<link rel="preload" href="/fonts/${font}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
+// The site-standard robots tag for indexable pages (the guides get it from previewRobots in guide-seo.js).
+export const indexRobots = '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">';
+export const fontPreloads =['instrument-sans', 'archivo-black'].map(font => `<link rel="preload" href="/fonts/${font}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n');
 
 // playlistItems pages (snippet, status, contentDetails) → public long-form uploads, newest first.
 export function parseUploads(pages) {
@@ -172,6 +174,8 @@ export function renderArchive(videos, page = 1, topic = null, sort = 'newest') {
   const url = `${site}${topic ? `/videos/${topic.slug}` : pagePath(page)}`;
   const title = topic ? topic.title : page > 1 ? `Every video, page ${page} of ${pages} | Mike Holp` : 'Every video: AI tools tested on real builds | Mike Holp';
   const name = topic ? topic.heading : page > 1 ? `Every video, page ${page} of ${pages}` : 'Every video';
+  // Share cards: the topic heading, or the page title without the suffix so page 2+ never repeats page 1's title.
+  const shareTitle = topic ? topic.heading : page > 1 ? name : 'Every video: AI tools tested on real builds';
   const schema = {
     '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': url, url,
     name, description,
@@ -188,15 +192,18 @@ export function renderArchive(videos, page = 1, topic = null, sort = 'newest') {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(title)}</title>
 <meta name="description" content="${escape(description)}">
-${sorted ? '<meta name="robots" content="noindex,follow">' : `<link rel="canonical" href="${url}">${page > 1 ? `\n<link rel="prev" href="${site}${pagePath(page - 1)}">` : ''}${page < pages ? `\n<link rel="next" href="${site}${pagePath(page + 1)}">` : ''}`}
+${sorted ? '<meta name="robots" content="noindex,follow">' : `${indexRobots}\n<link rel="canonical" href="${url}">${page > 1 ? `\n<link rel="prev" href="${site}${pagePath(page - 1)}">` : ''}${page < pages ? `\n<link rel="next" href="${site}${pagePath(page + 1)}">` : ''}`}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Automation Station">
 <meta property="og:url" content="${url}">
-<meta property="og:title" content="${escape(topic ? topic.heading : 'Every video: AI tools tested on real builds')}">
+<meta property="og:title" content="${escape(shareTitle)}">
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:image" content="${site}/og-card.jpg?v=2">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escape(shareTitle)}">
+<meta name="twitter:description" content="${escape(description)}">
+<meta name="twitter:image" content="${site}/og-card.jpg?v=2">
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
 <link rel="stylesheet" href="${consentCss}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="${consentCss}"></noscript>
@@ -231,7 +238,8 @@ const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 // YouTube serves maxresdefault (true 16:9) only for some uploads; these returned 404 when checked on 2026-11-08.
 const noMaxresThumbnail = new Set(['0jzTOUv_B04', 'F5PwcTwtEos', 'w_MoA8lpWTg', 'HlPdlZh0AHM', 'UnnN2i90ALg', 'rZh4zVT2LKY', '1TPm7B5oStw']);
-const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`]), thumbnailUrl(video)];
+// Shared with scripts/guide-video-schema.mjs so guide VideoObjects never list a missing maxres image.
+export const schemaThumbnails = video => [...(noMaxresThumbnail.has(video.id) ? [] : [`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`]), thumbnailUrl(video)];
 const relatedList = list => `<ul class="related">${list.map(video => `<li><a href="/watch/${video.id}">${thumbPicture(video.id, '(max-width: 640px) calc(50vw - 24px), 270px', 'width="640" height="360" loading="lazy"')}<span>${escape(videoHeading(video))}</span></a></li>`).join('')}</ul>`;
 const toolItem = tool => {
   const link = toolLink(tool);
@@ -391,15 +399,18 @@ export const guides = [
 const playerScript = `(()=>{const player=document.querySelector('iframe.player');const cue=(start,autoplay)=>{const url=new URL(player.src);url.searchParams.set('start',start);if(autoplay)url.searchParams.set('autoplay','1');else url.searchParams.delete('autoplay');player.src=url.href;if(autoplay)player.focus();};const plain=event=>!(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0);const seek=(hash,autoplay)=>{const start=/^#t=(\\d+)$/.exec(hash)?.[1];if(!start)return false;cue(start,autoplay);return true;};seek(location.hash,false);const jump=event=>{if(!plain(event))return;const link=event.target.closest('a');if(link&&seek(link.hash,true)){event.preventDefault();history.replaceState(null,'',link.hash);player.scrollIntoView({block:'center'});}};document.querySelectorAll('.chapters,.key-steps').forEach(list=>list.addEventListener('click',jump));addEventListener('hashchange',()=>seek(location.hash,true));})()`;
 
 // Reviewed follow-up reading for recordings whose titles do not identify the written guide.
-// IDs keep these links stable when a video's title changes.
+// IDs keep these links stable when a video's title changes. Each entry lists [href, label, small?] links in order:
+// the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
-  mtpX58dNfCE: ['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads'],
-  bCsSqZp0yVg: ['/guides/youtube-channel-growth-workflow.html', 'Use the YouTube channel growth workflow'],
-  ncg6F27PYt0: ['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task'],
-  Ip8KBwDixJs: ['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access'],
-  FBlN3qWR9kg: ['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)'],
-  tzSGF7gu6EE: ['/guides/9router-setup.html', '9Router setup and update command'],
-  gibc7oWLCn4: ['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'],
+  mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  bCsSqZp0yVg: [['/guides/youtube-channel-growth-workflow.html', 'Use the YouTube channel growth workflow']],
+  ncg6F27PYt0: [['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task']],
+  Ip8KBwDixJs: [['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access']],
+  FBlN3qWR9kg: [['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)']],
+  tzSGF7gu6EE: [['/guides/9router-cost-tracking-fallbacks.html', '9Router Cost Tracking: Combos and Fallbacks'], ['/guides/9router-setup.html', '9Router setup and update command', 'Setup guide']],
+  gibc7oWLCn4: [['/guides/make-business-automation-examples.html', 'Make.com business automation examples'], ['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build', 'Broader guide']],
+  '7UMrV3w1e40': [['/guides/self-host-n8n.html', 'Self-host n8n on Ubuntu: Docker and Node.js setup'], ['/guides/what-is-n8n-used-for.html', 'What is n8n used for? Real uses and a first workflow', 'Broader guide']],
+  Lifl4PC2_3M: [['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'], ['/guides/make-first-automation.html', 'Make.com Google Sheets tutorial: filter approved requests', 'Next written guide']],
 };
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
@@ -410,7 +421,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   const seconds = durationSeconds(video.duration);
   const chapters = validChapters(videoChapters[video.id] ?? video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
   const related = relatedVideos(video, videos);
-  const guide = watchGuideLinks[video.id] ?? guides.find(([pattern]) => pattern.test(video.title))?.slice(1);
+  const guideLinks = watchGuideLinks[video.id] ?? [guides.find(([pattern]) => pattern.test(video.title))?.slice(1)].filter(Boolean);
   const topic = topicFor(video.title);
   const notes = videoNotes[video.id];
   const transcript = transcripts[video.id] ? transcriptParagraphs(transcripts[video.id]) : [];
@@ -453,6 +464,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(searchTitle(video) || video.title)}</title>
 <meta name="description" content="${escape(metaDescription)}">
+${indexRobots}
 <link rel="canonical" href="${watchUrl(video)}">
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
@@ -470,6 +482,9 @@ ${gaBootHead}
 <meta property="og:description" content="${escape(metaDescription)}">
 <meta property="og:image" content="${thumbnailUrl(video)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${escape(heading)}">
+<meta name="twitter:description" content="${escape(metaDescription)}">
+<meta name="twitter:image" content="${thumbnailUrl(video)}">
 ${jsonLd(schema)}
 ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <style>header,main,footer{width:min(1120px,calc(100% - 32px))}main{padding-top:20px}h1{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{columns:300px 3;column-gap:48px;padding:0;list-style:none}.chapters li{margin:0;padding:2px 0;break-inside:avoid}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.key-steps{padding:0;list-style:none}.key-steps a{font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}main{font-size:19px}main .meta,main small{font-size:15px}.next-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 0;padding:0;list-style:none}.next-links li{margin:0}.next-links a{display:grid;gap:6px;height:100%;padding:18px 22px;border:1px solid #333;border-radius:12px;background:#111;color:#f5f5f0;font-weight:600;line-height:1.4;text-decoration:none}.next-links a:hover,.next-links a:focus-visible{border-color:#ff6846}.next-links small{color:#a5a59e;font-weight:400}.transcript{margin:8px 0 48px}.transcript summary{display:inline-flex;min-height:44px;align-items:center;padding:0 20px;border:1px solid #333;border-radius:999px;font-size:16px;font-weight:600}.transcript summary:hover{border-color:#ff6846}.transcript[open] summary{margin-bottom:16px}@media(max-width:640px){main{font-size:18px}}</style>
@@ -526,10 +541,10 @@ ${watchPageCopy[video.id]?.disclosure ? `<p class="meta">${escape(watchPageCopy[
 <div class="faq-list">
 ${brief.qa.map(({ q, a }) => `<details class="faq-item"><summary><h3>${escape(q)}</h3></summary>\n<p>${escape(a)}</p>\n</details>`).join('\n')}
 </div>
-</section>` : ''}${guide || topic ? `
+</section>` : ''}${guideLinks.length || topic ? `
 <section aria-labelledby="related-guides">
 <h2 id="related-guides">Keep learning</h2>
-<ul class="next-links">${guide ? `<li><a href="${escape(guide[0])}"><small>${escape(guide[2] ?? 'Written guide')}</small>${escape(guide[1])}</a></li>` : ''}${topic ? `<li><a href="/videos/${topic.slug}"><small>More on this topic</small>${escape(topic.heading)}</a></li>` : ''}</ul>
+<ul class="next-links">${guideLinks.map(([href, label, small]) => `<li><a href="${escape(href)}"><small>${escape(small ?? 'Written guide')}</small>${escape(label)}</a></li>`).join('')}${topic ? `<li><a href="/videos/${topic.slug}"><small>More on this topic</small>${escape(topic.heading)}</a></li>` : ''}</ul>
 </section>` : ''}
 ${watchNotes[video.id]?.html ?? ''}${transcript.length ? `
 <section aria-labelledby="transcript">
@@ -571,10 +586,11 @@ ${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(vi
 export function renderPageSitemap(xml, videos) {
   // Drop every /videos URL (numbered and topic) from the base file, then list the current ones.
   const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/[\w-]+)?<\/loc>[\s\S]*?<\/url>/g, '');
-  // A listing page changes when the newest video on it does.
+  // A topic page changes when the newest video on it does. Every new upload shifts each numbered page down by one,
+  // so all of them take the archive's newest upload date.
   const lastmod = list => list.map(video => video.published).sort().at(-1)?.slice(0, 10);
   const entry = (path, list) => `  <url><loc>${site}${path}</loc>${lastmod(list) ? `<lastmod>${lastmod(list)}</lastmod>` : ''}</url>`;
-  const archive = Array.from({ length: pageCount(videos) }, (_, index) => entry(pagePath(index + 1), videos.slice(index * perPage, (index + 1) * perPage)));
+  const archive = Array.from({ length: pageCount(videos) }, (_, index) => entry(pagePath(index + 1), videos));
   const topicPages = topics.map(topic => [topic, videos.filter(video => topic.pattern.test(video.title))]).filter(([, list]) => list.length).map(([topic, list]) => entry(`/videos/${topic.slug}`, list));
   // The homepage lists the latest uploads, so it is at least as fresh as the newest one.
   const home = core.replace(new RegExp(`(<loc>${site}/</loc><lastmod>)([\\d-]+)(</lastmod>)`), (match, open, date, close) => `${open}${[date, lastmod(videos)].filter(Boolean).sort().at(-1)}${close}`);

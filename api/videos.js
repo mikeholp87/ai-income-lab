@@ -15,7 +15,7 @@ let retryAt = 0;
 // so a flood of junk ids cannot make every cold instance spend ~10 quota units straight away.
 const earlyRefreshGap = 600000;
 let attemptedAt = Date.now();
-// Unknown-id answers (404 or the YouTube redirect) are cached briefly at the CDN so repeats never reach the function.
+// Unknown-id 404s and the YouTube redirect for a known video that cannot be embedded are cached briefly at the CDN so repeats never reach the function.
 const unknownCache = 'public, max-age=0, s-maxage=600';
 // The homepage feed (/api/youtube) and this archive are separate functions with separate caches. Without a probe the
 // archive kept a list up to a day old (plus a day of CDN staleness), so a new upload led the homepage hero but was
@@ -45,10 +45,17 @@ function refreshUploads() {
 
 // When the Data API can't refresh (daily quota spent, outage), the quota-free long-form feed still has a new upload,
 // so its watch page works instead of redirecting to YouTube. One feed fetch per 10 minutes per instance.
+// Concurrent requests share the one in-flight lookup, so none of them skips it and answers before the feed does.
 let feedAt = 0;
-async function addFromFeed() {
-  if (Date.now() - feedAt < earlyRefreshGap) return;
+let feedLookup;
+function addFromFeed() {
+  if (feedLookup) return feedLookup;
+  if (Date.now() - feedAt < earlyRefreshGap) return Promise.resolve();
   feedAt = Date.now();
+  feedLookup = lookUpFeed().finally(() => { feedLookup = null; });
+  return feedLookup;
+}
+async function lookUpFeed() {
   // The feed often answers 404 or 500 several times in a row, so try up to six times; after a total failure,
   // allow another try in a minute rather than ten.
   let entries = [];
@@ -124,12 +131,13 @@ export async function GET(request) {
       video = find();
       if (video) return html(renderWatch(video, { videos: memo.videos, start }), 200, 'public, max-age=300, s-maxage=600');
     }
-    // The inventory only lists this channel's public videos. If it was refreshed in the last 10 minutes and neither it
-    // nor the feed has the id, the video is deleted, private or someone else's: 404, never a redirect to an arbitrary YouTube video.
-    if (!video && Date.now() - memo.at < earlyRefreshGap) return notFound(unknownCache);
-    // No refresh was possible (rate limited, backing off, no key or failed) and the feed lacks it, or embedding is off: send the visitor to
-    // YouTube instead of a 404. Temporary, so the watch page takes over once the inventory knows the video.
-    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': video ? unknownCache : 'public, max-age=0, s-maxage=60' } });
+    // The inventory only lists this channel's public videos. Neither it nor the feed has the id, so the video is deleted,
+    // private or someone else's: 404, never a redirect to an arbitrary YouTube video. After a refresh in the last 10 minutes
+    // the answer is cached for 10 minutes; with an older inventory (no refresh possible) only for a minute, so a brand-new
+    // upload the feed missed gets its watch page soon.
+    if (!video) return notFound(Date.now() - memo.at < earlyRefreshGap ? unknownCache : 'public, max-age=0, s-maxage=60');
+    // A known video with embedding off: send the visitor to YouTube. Temporary, so a watch page takes over if embedding returns.
+    return new Response(null, { status: 302, headers: { Location: `https://www.youtube.com/watch?v=${videoId}${start ? `&t=${start}s` : ''}`, 'Cache-Control': unknownCache } });
   }
   // An empty topic would be a thin page; 404 it until a matching video exists.
   if (topic && !memo.videos.some(video => topic.pattern.test(video.title))) return notFound();

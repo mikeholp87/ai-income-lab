@@ -9,7 +9,7 @@ import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
 import { gaBootHead } from '../src/ga-boot-html.js';
 import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
-import { optimizeGuide, previewRobots } from '../src/guide-seo.js';
+import { optimizeGuide, previewRobots, shareMeta } from '../src/guide-seo.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
 
@@ -47,7 +47,7 @@ const guides = [];
 for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
   const read = withGaBoot(await readFile(path, 'utf8'), file);
-  const html = previewRobots(file === 'guides.html' ? addGuideDates(read, guideTitles) : read);
+  const html = shareMeta(previewRobots(file === 'guides.html' ? addGuideDates(read, guideTitles) : read));
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));

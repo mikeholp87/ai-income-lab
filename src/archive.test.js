@@ -268,23 +268,86 @@ test('an unknown id after a successful refresh is a briefly cached 404, and repe
   assert.equal(calls(), 6, 'the gate reopens after 10 minutes');
 });
 
-test('an unknown id goes to YouTube, briefly cached, when no refresh is possible', async t => {
+test('an unknown id is a 404 cached for a minute, never a YouTube redirect, when no refresh is possible', async t => {
   const { state, request, calls, feedCalls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
   advance(660000);
   state.failing = true;
   t.after(() => assert.equal(feedCalls(), 12, 'the quota-free feed gets six tries, then six more a minute later'));
   const unknown = await request('/watch/zzzzzzzzzzz?t=98');
-  assert.equal(unknown.status, 302);
-  assert.equal(unknown.headers.get('location'), 'https://www.youtube.com/watch?v=zzzzzzzzzzz&t=98s');
+  assert.equal(unknown.status, 404);
+  assert.equal(unknown.headers.get('location'), null);
   assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
   assert.equal(calls(), 3, 'the failed early refresh stops at the first request');
   advance(60000);
   const again = await request('/watch/yyyyyyyyyyy?t=abc');
-  assert.equal(again.status, 302);
-  assert.equal(again.headers.get('location'), 'https://www.youtube.com/watch?v=yyyyyyyyyyy');
+  assert.equal(again.status, 404);
+  assert.equal(again.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
   const head = await HEAD(new Request('https://www.ai-automation-station.com/watch/zzzzzzzzzzz', { method: 'HEAD' }));
-  assert.equal(head.status, 302);
+  assert.equal(head.status, 404);
   assert.equal(calls(), 3, 'backing off: no further refresh');
+});
+
+test('concurrent requests for a new upload share one feed lookup and all get its watch page', async t => {
+  const { calls, feedCalls } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const feed = '<feed><entry><yt:videoId>newupload04</yt:videoId><title>Concurrent upload</title><published>2026-10-11T00:00:00+00:00</published><media:group><media:description>A new video.</media:description></media:group></entry></feed>';
+  const fallback = globalThis.fetch;
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  t.mock.method(globalThis, 'fetch', async (input, init) => {
+    if (!String(input).startsWith('https://www.youtube.com/feeds/')) return fallback(input, init);
+    await gate;
+    return new Response(feed);
+  });
+  const pending = [1, 2, 3].map(() => GET(new Request('https://www.ai-automation-station.com/watch/newupload04')));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  release();
+  const responses = await Promise.all(pending);
+  assert.deepEqual(responses.map(response => response.status), [200, 200, 200]);
+  assert.equal(globalThis.fetch.mock.callCount(), 1, 'one shared feed fetch');
+  assert.equal(feedCalls(), 0);
+  assert.equal(calls(), 2, 'no Data API quota spent');
+});
+
+test('concurrent requests share one failing feed lookup, none gets a 200, and a new lookup starts after the cooldown', async t => {
+  const { request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const fallback = globalThis.fetch;
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  const feed = t.mock.method(globalThis, 'fetch', async (input, init) => {
+    if (!String(input).startsWith('https://www.youtube.com/feeds/')) return fallback(input, init);
+    await gate;
+    return new Response('', { status: 500 });
+  });
+  const pending = [1, 2, 3].map(() => request('/watch/zzzzzzzzzzz'));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  assert.equal(feed.mock.callCount(), 1, 'the other requests wait on the in-flight lookup instead of starting their own');
+  release();
+  const responses = await Promise.all(pending);
+  assert.deepEqual(responses.map(response => response.status), [404, 404, 404]);
+  assert.equal(feed.mock.callCount(), 6, 'one shared lookup: six tries in total');
+  advance(30000);
+  assert.equal((await request('/watch/zzzzzzzzzzz')).status, 404);
+  assert.equal(feed.mock.callCount(), 6, 'no new lookup within the one-minute cooldown');
+  advance(30000);
+  assert.equal((await request('/watch/zzzzzzzzzzz')).status, 404);
+  assert.equal(feed.mock.callCount(), 12, 'after the cooldown a new lookup starts');
+  assert.equal(calls(), 2, 'no Data API quota spent');
+});
+
+test('every numbered archive page takes the newest upload date, since each upload shifts all of them', () => {
+  const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: index ? `Video ${index}` : 'Claude Code build', published: `2026-${String(12 - Math.floor(index / 3)).padStart(2, '0')}-01T00:00:00Z` }));
+  const sitemap = renderPageSitemap('<urlset></urlset>', videos);
+  for (const path of ['/videos', '/videos/2', '/videos/3']) assert.ok(sitemap.includes(`<loc>https://www.ai-automation-station.com${path}</loc><lastmod>2026-12-01</lastmod>`), path);
+});
+
+test('watch pages carry the site robots tag and full X card tags', () => {
+  const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'Keys & <API>', summary: 'A short summary.', published: '2026-09-01T00:00:00Z', embeddable: true });
+  assert.equal((html.match(/<meta name="robots"/g) ?? []).length, 1);
+  assert.ok(html.includes('<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">'));
+  assert.match(html, /<meta name="twitter:title" content="Keys &amp; &lt;API&gt;">/);
+  assert.match(html, /<meta name="twitter:description" content="A short summary\.">/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg">/);
+  assert.match(html, /<meta property="og:site_name" content="AI Automation Station">/);
 });
 
 test('page sitemap follows inventory growth and preserves core dates', () => {
@@ -418,6 +481,18 @@ test('splits the archive into pages of 15 linked to each other', () => {
   assert.match(last, /<title>Every video, page 3 of 3 \| Mike Holp<\/title>/);
   assert.match(last, /<h1>Every video, page 3 of 3<\/h1>/);
   assert.match(first, /<h1>Every video<\/h1>/);
+  // Share cards carry the page number from page 2, like the <title>, so each page has its own og:title.
+  for (const [html, title] of [[first, 'Every video: AI tools tested on real builds'], [last, 'Every video, page 3 of 3']]) {
+    assert.ok(html.includes(`<meta property="og:title" content="${title}">`), title);
+    assert.ok(html.includes(`<meta name="twitter:title" content="${title}">`), title);
+    assert.match(html, /<meta name="twitter:description" content="[^"]+">/);
+    assert.match(html, /<meta name="twitter:image" content="https:\/\/www\.ai-automation-station\.com\/og-card\.jpg\?v=2">/);
+    assert.ok(html.includes('<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">'));
+  }
+  // Sorted reorderings stay noindex and never also claim the indexable robots tag.
+  const sorted = renderArchive(videos, 1, null, 'views');
+  assert.match(sorted, /<meta name="robots" content="noindex,follow">/);
+  assert.equal((sorted.match(/<meta name="robots"/g) ?? []).length, 1);
   const list = JSON.parse(last.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(list['@type'], 'CollectionPage');
   assert.deepEqual(list.mainEntity.itemListElement.map(item => item.position), [31]);
@@ -441,7 +516,8 @@ test('every tool listed on a watch page has a link, preferring the affiliate one
   assert.deepEqual(toolLink('Claude Code'), { url: 'https://claude.ai', affiliate: false }, 'Claude is not an affiliate');
   assert.equal(toolLink('Gemini 3.1 Pro').affiliate, true);
   assert.equal(toolLink('GNU Make').affiliate, false);
-  assert.equal(toolLink('Gemini Code Assist').url, 'https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals');
+  // The tool chip links current product docs; the individuals-tier deprecation stays in the watch-page note.
+  assert.equal(toolLink('Gemini Code Assist').url, 'https://developers.google.com/gemini-code-assist/docs/overview');
   assert.equal(toolLink('Google Cloud Code Assist').url, toolLink('Gemini Code Assist').url);
   assert.equal(toolLink('Orchids').url, null);
 });
@@ -453,6 +529,7 @@ test('Code Assist and Orchids watch pages state current tool status', () => {
     assert.match(html, new RegExp(deprecation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), id);
     assert.doesNotMatch(html, /codeassist\.google/, id);
     assert.match(html, /deprecated Gemini Code Assist for individuals/, id);
+    assert.match(html, /href="https:\/\/developers\.google\.com\/gemini-code-assist\/docs\/overview" target="_blank"/, id);
   }
   const orchids = renderWatch(uploads.find(video => video.id === 'ZlD4Z6UKS8o'), { videos: uploads });
   assert.doesNotMatch(orchids, /orchids\.app/);
@@ -720,15 +797,29 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   assert.match(html, /<form class="notes" method="post" data-subscribe data-placement="watch_end">/);
 });
 
-test('watch pages whose titles match a narrower guide still link the setup or overview guide', () => {
-  const cost = uploads.find(video => video.id === 'tzSGF7gu6EE');
-  const make = uploads.find(video => video.id === 'gibc7oWLCn4');
-  const costHtml = renderWatch(cost);
-  const makeHtml = renderWatch(make);
-  assert.match(costHtml, /href="\/guides\/9router-setup.html"><small>Written guide<\/small>9Router setup and update command/);
-  assert.doesNotMatch(costHtml, /href="\/guides\/9router-cost-tracking-fallbacks.html"/);
-  assert.match(makeHtml, /href="\/guides\/ai-automation.html"><small>Written guide<\/small>What Is AI Automation\? Examples, Tools and a First Build/);
-  assert.doesNotMatch(makeHtml, /href="\/guides\/make-business-automation-examples.html"/);
+test('watch pages link the guide that embeds the video first, then the broader setup or overview guide', () => {
+  const links = id => [...renderWatch(uploads.find(video => video.id === id)).match(/<ul class="next-links">(.*?)<\/ul>/s)[1].matchAll(/href="(\/guides\/[^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(links('tzSGF7gu6EE'), ['/guides/9router-cost-tracking-fallbacks.html', '/guides/9router-setup.html']);
+  assert.deepEqual(links('gibc7oWLCn4'), ['/guides/make-business-automation-examples.html', '/guides/ai-automation.html']);
+  assert.deepEqual(links('7UMrV3w1e40'), ['/guides/self-host-n8n.html', '/guides/what-is-n8n-used-for.html']);
+});
+
+test('every watch page whose video a guide embeds links that guide first', async () => {
+  const dir = new URL('../public/guides/', import.meta.url);
+  const embeddedBy = new Map();
+  for (const file of (await readdir(dir)).filter(name => name.endsWith('.html'))) {
+    const html = await readFile(new URL(file, dir), 'utf8');
+    for (const [, id] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})"/g)) {
+      embeddedBy.set(id, [...(embeddedBy.get(id) ?? []), `/guides/${file}`]);
+    }
+  }
+  assert.ok(embeddedBy.size > 50);
+  for (const [id, files] of embeddedBy) {
+    const video = uploads.find(upload => upload.id === id);
+    if (!video) continue;
+    const first = renderWatch(video, { videos: uploads }).match(/<ul class="next-links"><li><a href="([^"]+)"/)?.[1];
+    assert.ok(files.includes(first), `/watch/${id} should link ${files.join(' or ')} first, not ${first}`);
+  }
 });
 
 test('guide routing keeps specific tools ahead of broad coding-agent matches', () => {

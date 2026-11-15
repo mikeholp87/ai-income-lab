@@ -675,7 +675,8 @@ function SponsorsMain({ channel, campaign }) {
   return (
     <>
       <section className="sponsors-intro shell" id="main-content" tabIndex="-1">
-        <h1>Show what your AI product can actually do.</h1>
+        <h1>Sponsor AI Automation Station</h1>
+        <p className="sponsors-benefit">Show what your AI product can actually do.</p>
         <p className="lede">Sponsor a practical build on AI Automation Station. Your product gets a hands-on demo for {subscriberCount(channel)} YouTube subscribers and 2,900+ AI Income Lab members: developers, founders and automation builders.</p>
         <div className="button-row"><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_hero', 'Request a proposal', '#work-together', 'request_proposal')}>Request a proposal</a><a className="button button-quiet" href="#services">Explore packages</a></div>
         <p className="sponsor-proof">Sponsored builds for <a href="#sponsored">Treg, DataForSEO, Bluehost, BrowserAct and Apify</a>.</p>

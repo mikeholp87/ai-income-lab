@@ -14,11 +14,12 @@ test('only fingerprinted assets receive immutable caching', async () => {
   assert.ok(guides.headers.some(header => header.key === 'Cache-Control' && !header.value.includes('immutable')));
 });
 
-test('machine-readable pricing and llms files are noindexed and pricing.md canonicals the homepage', async () => {
+test('machine-readable pricing and llms files are noindexed, without a conflicting canonical', async () => {
   const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
   const header = (source, key) => config.headers.find(rule => rule.source === source)?.headers.find(item => item.key === key)?.value;
   assert.equal(header('/pricing.md', 'X-Robots-Tag'), 'noindex');
-  assert.equal(header('/pricing.md', 'Link'), '<https://www.ai-automation-station.com/>; rel="canonical"');
+  // noindex plus a canonical to another URL sends mixed signals; noindex alone keeps it out of search.
+  assert.equal(header('/pricing.md', 'Link'), undefined);
   assert.equal(header('/llms.txt', 'X-Robots-Tag'), 'noindex');
   assert.equal(header('/llms-full.txt', 'X-Robots-Tag'), 'noindex');
   const robots = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8');

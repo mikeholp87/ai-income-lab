@@ -1,12 +1,31 @@
 import assert from 'node:assert/strict';
 import { readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { addAuthorNote, articleImageObject, optimizeGuide, previewRobots, socialImageMeta } from './guide-seo.js';
+import { addAuthorNote, articleImageObject, optimizeGuide, previewRobots, shareMeta, socialImageMeta } from './guide-seo.js';
 
 const dir = new URL('../public/guides/', import.meta.url);
 const files = (await readdir(dir)).filter(file => file.endsWith('.html'));
 const read = file => readFile(new URL(file, dir), 'utf8');
 const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
+
+test('about, start-here, privacy and terms get X card tags and og:site_name from their Open Graph tags at build', async () => {
+  const meta = (html, attr, name) => [...html.matchAll(new RegExp(`<meta ${attr}="${name}" content="([^"]*)">`, 'g'))].map(match => match[1]);
+  for (const file of ['about.html', 'start-here.html', 'privacy.html', 'terms.html']) {
+    const source = await readFile(new URL(`../public/${file}`, import.meta.url), 'utf8');
+    const html = shareMeta(source);
+    assert.deepEqual(meta(html, 'name', 'twitter:title'), meta(source, 'property', 'og:title'), file);
+    assert.deepEqual(meta(html, 'name', 'twitter:description'), meta(source, 'property', 'og:description'), file);
+    assert.deepEqual(meta(html, 'name', 'twitter:image'), meta(source, 'property', 'og:image'), file);
+    assert.deepEqual(meta(html, 'property', 'og:site_name'), ['AI Automation Station'], file);
+    assert.equal(shareMeta(html), html, `${file}: idempotent`);
+  }
+  // Pages that already carry the tags are left alone.
+  for (const file of ['guides.html', 'search.html']) {
+    const source = await readFile(new URL(`../public/${file}`, import.meta.url), 'utf8');
+    assert.equal(shareMeta(source), source, file);
+  }
+  for (const file of files.slice(0, 10)) assert.equal(shareMeta(await read(file)), await read(file), file);
+});
 
 test('indexable pages allow large image previews and full snippets; noindex pages are untouched', () => {
   assert.equal(previewRobots('<meta name="robots" content="index,follow">'), '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">');

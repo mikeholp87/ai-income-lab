@@ -521,6 +521,42 @@ test('every guide that embeds a video describes it in structured data and lists 
   }
 });
 
+test('guide VideoObjects use the watch page thumbnails and carry the snapshot duration', async () => {
+  const { uploads } = await import('./uploads-snapshot.js');
+  const { schemaThumbnails } = await import('./archive.js');
+  const byId = new Map(uploads.map(video => [video.id, video]));
+  let checked = 0;
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema\.org","@type":"VideoObject".*?)<\/script>/gs)) {
+      const schema = JSON.parse(json);
+      const video = byId.get(schema['@id'].match(/\/watch\/([\w-]{11})#video$/)[1]);
+      if (!video) continue;
+      checked++;
+      assert.deepEqual(schema.thumbnailUrl, schemaThumbnails(video), `${file}: run node scripts/guide-video-schema.mjs`);
+      if (video.duration) assert.equal(schema.duration, video.duration, `${file}: run node scripts/guide-video-schema.mjs`);
+      if (schema.duration) assert.match(schema.duration, /^PT(?:\d+H)?(?:\d+M)?(?:\d+S)?$/, file);
+    }
+  }
+  assert.ok(checked > 50);
+  // 0jzTOUv_B04 has no maxresdefault image; its guide must not list one.
+  assert.doesNotMatch(await read('public/guides/trakkr-codex-visibility-workflow.html'), /0jzTOUv_B04\/maxresdefault/);
+});
+
+test('guides hub cards and ItemList names match each guide title', async () => {
+  const hub = await read('public/guides.html');
+  const decode = text => text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  const title = async path => decode((await read(`public${path}`)).match(/<title>(.*?)<\/title>/s)[1]).replace(/ \| (?:Mike Holp|AI Automation Station)$/, '');
+  const cards = [...hub.matchAll(/<h3><a href="(\/guides\/[^"]+)">([^<]*)<\/a>/g)];
+  assert.ok(cards.length > 50);
+  for (const [, path, name] of cards) assert.equal(decode(name), await title(path), path);
+  const items = [];
+  const walk = node => { if (Array.isArray(node)) node.forEach(walk); else if (node && typeof node === 'object') { if (node['@type'] === 'ListItem' && /\/guides\/[^/]+\.html$/.test(node.url ?? '')) items.push(node); Object.values(node).forEach(walk); } };
+  for (const [, json] of hub.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) walk(JSON.parse(json));
+  assert.ok(items.length > 50);
+  for (const item of items) assert.equal(item.name, await title(new URL(item.url).pathname), item.url);
+});
+
 test('n8n docs links use current deploy and build paths instead of redirected hosting, code and executions URLs', async () => {
   const stale = /docs\.n8n\.io\/(?:hosting\/|code\/code-node\/|workflows\/executions\/)/;
   for (const file of guides) {
