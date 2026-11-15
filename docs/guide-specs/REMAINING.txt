@@ -7,10 +7,7 @@ geKngm3sg3w | OpenCode | How to Use 9Router: Setup, Providers & Fallbacks | PT11
 oQot9GoNZDA | OpenCode | Claude Fable 5 Is Back: What Changed? | PT7M3S
 -L0CVvJMzZI | OpenCode | Watch Me Build Tube Analytics In Public! | PT25M1S
 pRnJdlMSSqM | OpenCode | Is GLM 5.2 The Best Opensource Model Ever? | PT10M58S
-iVI11AZvUdk | OpenCode | Why Your AI Needs Cron Jobs (Hermes Agent Tutorial) | PT12M43S
-LqRRXcM8Kxc | OpenCode | Kimi K2.7 Code Vs DeepSeek V4 Pro: Is It Actually Better? | PT8M36S
 YNpIRq7O3UE | OpenCode | This AI Agent Found $81,000 In Brand Deals! | PT23M11S
-Zi_PG07mDxo | OpenCode | I Built My Own Desktop App For Odysseus AI! | PT9M39S
 kUbhr1QGYeU | OpenCode | I Built An AI Operating System From Scratch! | PT17M40S
 ByncCPWeGNY | OpenCode | Finally, the Hermes Agent Desktop App is Here! (Complete Setup) | PT10M3S
 kxp_dF6NEbg | OpenCode | The Future Of Coding: 10 AI Skills You Need To Install Now | PT16M38S
@@ -26,7 +23,6 @@ ffnMlBzcJOQ | OpenCode | I Built A Stock Trading Bot In Under 15 Minutes! | PT17
 rZh4zVT2LKY | OpenCode | The Best Claude Design Alternative You Can Run On Your PC | PT6M30S
 DbYip6KaNHo | DataForSEO | I Let Claude Code Manage My SEO and It Worked! | PT8M52S
 2pD_wqYHKlY | OpenCode,Trakkr | Why Your Website Is Invisible To AI (And How To Fix It) | PT16M27S
-ZKpr-vmz_iY | OpenCode | These Claude Code Skills Will 10X Your Productivity! | PT14M24S
 DfyAAwHPJuU | OpenCode,Google Gemini | Why I Built TubeAnalytics To Help YouTube Creators Grow Their Channel! | PT17M54S
 _ikohuukGE4 | OpenCode,Google Gemini | Google Antigravity Just Changed How I Build Landing Pages! | PT13M13S
 4f9WR0T3vKQ | OpenCode | I Built This SaaS Platform To Help You Grow On YouTube! | PT9M54S
@@ -38,7 +34,6 @@ KDZ7yefRv54 | Google Gemini | The Easiest Way to Make Infographics from YouTube 
 mKZHLQLaq2k | Google Gemini | Get Started with Claude Code in 10 Minutes | PT10M46S
 ix3C2JBFII8 | Google Gemini,vidIQ | Make Viral YouTube Thumbnails In Minutes With NanoBanana! | PT14M37S
 limgGYHy6Jk | SendPulse | The Easiest Way To Build A Facebook AI Chatbot | PT15M53S
-pDbRjYYUjRI | Hostinger | Automate Your Entire Music Video Production with Suno & N8N | PT17M17S
 CD2mLFgjiT8 | SendPulse | Your Facebook Page Now Has an AI Assistant (Here's How) | PT10M57S
 MIwd2pzmUf0 | Google Gemini,Apify | Save Hours Every Week With This YouTube Automation! | PT17M23S
 rPhyYNMuDT4 | Hostinger | N8N 2.0 Beta: Faster, Safer, Better – Full Breakdown! | PT5M52S
@@ -52,7 +47,6 @@ dEQ8OllsJmk | Google Gemini,Apify,OpusClip | I Built a Fully Automated YouTube S
 yUibdYhO1ms | Apify | This N8N Workflow Saves Job Seekers Hours Every Single Week! | PT16M8S
 9YueXsoNg80 | Hostinger | Automate Your Entire Video Content Strategy With Sora 2 | PT7M52S
 GhHYtL5pQXU | Apify | This N8N Workflow Saves Me Hours Weekly on LinkedIn Content! | PT13M40S
-4jK9RraWbiU | Make.com | This AI Workflow Saves Me 20+ Hours Weekly on Content | PT10M14S
 fjTn95391rg | Make.com | Connect Fillout to Airtable in 15 Minutes (No Code) | PT14M53S
 P7lbzDAb-qk | HeyGen | Sora 2 is Here: Create Professional AI Videos in Minutes | PT12M50S
 wniZpV6LZsE | Make.com,SendPulse | How to Build a Facebook Chatbot in Minutes (No Coding) | PT10M4S
