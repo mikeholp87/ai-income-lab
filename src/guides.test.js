@@ -6,6 +6,8 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'open-design-opencode-free-claude-design.html': 'rZh4zVT2LKY',
+  'grokbot-chief-of-staff-daily-briefing.html': 'Ip8KBwDixJs',
   'ai-automation-strategy-notes-skills-seo-policy.html': 'bAgP_0uW0dY',
   'no-code-agent-builders-mindstudio-rocket-assistants.html': 'uTYZC3Kxwjo',
   'six-agent-builds-claude-code-dashboards-outreach.html': 'ffnMlBzcJOQ',

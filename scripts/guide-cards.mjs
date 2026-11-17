@@ -10,6 +10,16 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'open-design-opencode-free-claude-design': {
+    title: "Open Design running on OpenCode",
+    steps: [["Install","Clone the repo and run pnpm install"],["Choose","Pick OpenCode as the engine"],["Design","Prompt, preview and export a zip"]],
+    note: "May 2026; I used a free OpenCode model.",
+  },
+  'grokbot-chief-of-staff-daily-briefing': {
+    title: "GrokBot chief of staff loop",
+    steps: [["Ask","Request a rundown of what ran today"],["Delegate","Hand each task to the right bot"],["Approve","Sign off before anything is sent or merged"]],
+    note: "October 2026; my own two sites and setup.",
+  },
   'ai-automation-strategy-notes-skills-seo-policy': {
     title: "YouTube SEO, policy news and automation opinions",
     steps: [["Optimize","Custom GPT, vidIQ score, one change at a time"],["Check","Read the YouTube policy yourself"],["Weigh","Treat opinion videos as opinion"]],

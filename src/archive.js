@@ -403,6 +403,8 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  rZh4zVT2LKY: [['/guides/open-design-opencode-free-claude-design.html', 'Watch the Open Design setup']],
+  IymTRFLMY_s: [['/guides/grokbot-chief-of-staff-daily-briefing.html', 'Watch the GrokBot end-of-day rundown']],
   dILjZszMZ5o: [['/guides/ai-automation-strategy-notes-skills-seo-policy.html', 'Follow the AI automation strategy and YouTube SEO videos']],
   TZxNymn9msU: [['/guides/ai-automation-strategy-notes-skills-seo-policy.html', 'Follow the AI automation strategy and YouTube SEO videos']],
   '508QvEHI5n0': [['/guides/ai-automation-strategy-notes-skills-seo-policy.html', 'Follow the AI automation strategy and YouTube SEO videos']],
@@ -512,7 +514,7 @@ const watchGuideLinks = {
   b0Izj5Pv0sQ: [['/guides/bluehost-ai-assistant.html', 'Follow the Bluehost AI Assistant setup and agent tests']],
   bCsSqZp0yVg: [['/guides/vidiq-mcp-claude-channel-audit.html', 'Follow the vidIQ MCP setup and channel audit in Claude']],
   ncg6F27PYt0: [['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task']],
-  Ip8KBwDixJs: [['/guides/grokbot-for-beginners.html', 'Set up a first GrokBot with bounded access']],
+  Ip8KBwDixJs: [['/guides/grokbot-chief-of-staff-daily-briefing.html', 'Watch the GrokBot end-of-day rundown']],
   FBlN3qWR9kg: [['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)']],
   tzSGF7gu6EE: [['/guides/9router-cost-tracking-fallbacks.html', '9Router Cost Tracking: Combos and Fallbacks'], ['/guides/9router-setup.html', '9Router setup and update command', 'Setup guide']],
   gibc7oWLCn4: [['/guides/make-business-automation-examples.html', 'Make.com business automation examples'], ['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build', 'Broader guide']],
