@@ -56,6 +56,8 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [AI Coding Tutorials Compared: Claude Code, OpenCode, More](https://www.ai-automation-station.com/guides/ai-coding-tutorials-compared.html): Compare ways to learn AI-assisted coding: official Claude Code and OpenCode docs, freeCodeCamp, DeepLearning.AI and my build-along tutorials.
+- [AI Agent Training Compared: Free Courses and Coaching](https://www.ai-automation-station.com/guides/ai-agent-training-compared.html): Compare ways to learn building AI agents: Zapier Academy, Make, n8n, DeepLearning.AI, Maven and AI Income Lab, with real build mistakes left in.
 - [AI Implementation Coaching vs Consulting: How to Choose](https://www.ai-automation-station.com/guides/ai-implementation-coaching-guide.html): How to choose AI implementation coaching, a consultant or an agency: questions to ask, what working automations look like and where I fit.
 - [AI Workflow Courses Compared: Make, n8n, Zapier and More](https://www.ai-automation-station.com/guides/ai-workflow-courses-compared.html): Compare free and paid ways to learn AI workflows: Make Academy, the n8n Academy, Zapier guides, DeepLearning.AI, Coursera, Maven and my own community.
 - [Open Design With OpenCode: A Free Claude Design Option](https://www.ai-automation-station.com/guides/open-design-opencode-free-claude-design.html): Install Open Design locally, pick OpenCode as the engine so designs use no Claude credits, and build a dashboard from a design system. My May 2026 test.
@@ -572,6 +574,14 @@ Comparison of ways to learn AI workflows, checked November 18, 2026: Make Academ
 ### AI Implementation Coaching vs Consulting: How to Choose
 https://www.ai-automation-station.com/guides/ai-implementation-coaching-guide.html (updated 2026-11-17)
 How to choose AI implementation coaching versus a consultant or agency for a first AI automation: the four kinds of help, picking one process, asking for working builds, keeping ownership of accounts, and where AI Income Lab coaching and a separate custom agency fit.
+
+### AI Agent Training Compared: Free Courses and Coaching
+https://www.ai-automation-station.com/guides/ai-agent-training-compared.html (updated 2026-11-17)
+Comparison of ways to learn building AI agents, checked November 18, 2026: Zapier Academy, Make Academy, the n8n Academy, DeepLearning.AI short courses, Microsoft Learn, Maven and the paid AI Income Lab community, with what good agent training covers and an OpenAI Agent Builder test that left the mistakes in.
+
+### AI Coding Tutorials Compared: Claude Code, OpenCode, More
+https://www.ai-automation-station.com/guides/ai-coding-tutorials-compared.html (updated 2026-11-17)
+Comparison of ways to learn AI-assisted coding, checked November 18, 2026: the Claude Code and OpenCode docs, freeCodeCamp, DeepLearning.AI, Coursera and build-along tutorials, how to judge a tutorial, and a May 2026 test building a Next.js app on free models through a community proxy.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)

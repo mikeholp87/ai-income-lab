@@ -403,6 +403,8 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  vmEac5CJcNQ: [['/guides/ai-coding-tutorials-compared.html', 'Watch me build a web app with Claude Code']],
+  lumzbY6QV4Y: [['/guides/ai-agent-training-compared.html', 'Watch me test OpenAI Agent Builder']],
   dVC1Or0Tbo8: [['/guides/ai-implementation-coaching-guide.html', 'Watch me test an AI agent platform']],
   _1bZhPHcsm4: [['/guides/ai-workflow-courses-compared.html', 'Watch an n8n email automation build']],
   rZh4zVT2LKY: [['/guides/open-design-opencode-free-claude-design.html', 'Watch the Open Design setup']],

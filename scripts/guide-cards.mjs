@@ -10,6 +10,16 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'ai-coding-tutorials-compared': {
+    title: "How to choose an AI coding tutorial",
+    steps: [["Docs","Start with the official quickstart"],["Build","Follow one complete project"],["Check","Prefer tutorials that show debugging and cost"]],
+    note: "Provider details checked November 18, 2026.",
+  },
+  'ai-agent-training-compared': {
+    title: "How to choose AI agent training",
+    steps: [["Cover","Tools, data, approval and debugging"],["Try","Finish one free agent path first"],["Add","Pay for coaching only if you need feedback"]],
+    note: "Provider details checked November 18, 2026.",
+  },
   'ai-implementation-coaching-guide': {
     title: "Choosing help with your first AI automations",
     steps: [["Scope","Pick one repeated task"],["Ask","Request a demo of working builds"],["Own","Keep control of accounts and workflows"]],
