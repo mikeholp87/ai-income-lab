@@ -10,6 +10,16 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 
 export const cards = {
+  'ai-implementation-coaching-guide': {
+    title: "Choosing help with your first AI automations",
+    steps: [["Scope","Pick one repeated task"],["Ask","Request a demo of working builds"],["Own","Keep control of accounts and workflows"]],
+    note: "My experience; not a ranking of providers.",
+  },
+  'ai-workflow-courses-compared': {
+    title: "How to choose an AI workflow course",
+    steps: [["Pick","Choose the tool you will actually use"],["Try","Finish one free lesson first"],["Pay","Add paid help only for feedback or templates"]],
+    note: "Provider details checked November 18, 2026.",
+  },
   'open-design-opencode-free-claude-design': {
     title: "Open Design running on OpenCode",
     steps: [["Install","Clone the repo and run pnpm install"],["Choose","Pick OpenCode as the engine"],["Design","Prompt, preview and export a zip"]],

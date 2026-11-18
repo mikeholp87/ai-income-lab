@@ -138,7 +138,7 @@ test('the tools page is built, listed and linked', async () => {
   assert.match(await read('scripts/prerender.js'), /'terms\.html', 'tools\.html'/);
   assert.match(await read('public/sitemap.xml'), /<loc>https:\/\/www\.ai-automation-station\.com\/tools\.html<\/loc>/);
   assert.match(await read('public/llms.txt'), /\[Recommended tools\]\(https:\/\/www\.ai-automation-station\.com\/tools\.html\)/);
-  assert.match(await read('vercel.json'), /search\|tools\)"/);
+  assert.match(await read('vercel.json'), /search\|tools\|ai-income-lab\)"/);
   assert.ok(footerExplore.some(([href, label]) => href === '/tools.html' && label === 'Recommended tools'));
   assert.match(await read('src/main.jsx'), /footerExplore\.map\(\(\[href, label\]\) => <a key=\{href\} href=\{href\}>\{label\}<\/a>\)/);
   assert.match(await read('src/reading.js'), /trackGoogleEvent\('affiliate_outbound_clicked', event\)/);

@@ -3,7 +3,7 @@
 // After it runs: node scripts/guide-cards.mjs <slug>, node scripts/guide-video-schema.mjs, npm test.
 // Spec fields: slug, video, alsoWatch?, type (Comparison|Case study|How-to|Review|Tool guide|Explainer),
 // title (<=60), short, description (<=155), hub, watchLabel, about[], card{title,steps[3],note},
-// quick, intro, sections[{id,h,html}], limits[], done?[], faq[[q,a]], sources[] (>=1 non-YouTube),
+// quick, who?, intro, sections[{id,h,html}], limits[], done?[], faq[[q,a]], sources[] (>=1 non-YouTube),
 // related[5+ [path,title]], next, more, linkFrom[], llms.
 // Do not use "the recording" / "in the recording"; write in first person.
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -98,7 +98,8 @@ function render(s) {
 <nav class="toc" aria-label="On this page"><h2>On this page</h2><ul>${toc.map(([id, h]) => `<li><a href="#${id}">${esc(h)}</a></li>`).join('')}</ul></nav>
 <section class="quick-answer" aria-labelledby="quick-answer-heading">
   <h2 id="quick-answer-heading">Quick answer</h2>
-  <p>${s.quick}</p>
+  <p>${s.quick}</p>${s.who ? `
+  <p><strong>Who this is for:</strong> ${s.who}</p>` : ''}
 </section>
 ${s.intro}
 ${s.sections.map(x => `<h2 id="${x.id}">${esc(x.h)}</h2>\n${x.html}`).join('\n')}

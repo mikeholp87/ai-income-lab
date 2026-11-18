@@ -846,7 +846,7 @@ function App({ page = 'home' }) {
 
       <section className="section band" id="community">
         <div className="shell">
-          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in AI Income Lab. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in AI Income Lab. Choose the courses, templates, and support that fit your next project. <a href="/ai-income-lab.html">See what each plan includes</a>.</SectionHead>
           <p className="community-help">AI Income Lab offers project-based AI workflow courses, templates, and a community for questions. Practice with the free guides below, then choose the course access and support you need.</p>
           <p className="community-help"><strong>Workflow automation:</strong> use Make.com to <a href="/guides/make-first-automation.html">filter approved requests into a spreadsheet</a>. <strong>AI agent training:</strong> <a href="/guides/ai-agent-workflow.html#practice">classify three sample requests and test the review boundary</a>, then <a href="/guides/no-code-ai-agent-builder.html#build">compare a small agent in n8n, Make, or Zapier</a>. <strong>AI coding:</strong> <a href="/guides/build-apps-with-ai-coding-agents.html#practice">add and verify a filter in a local task list</a>.</p>
           <div className="members">

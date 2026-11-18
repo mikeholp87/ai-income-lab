@@ -46,7 +46,7 @@ test('React pages, watch/archive templates and the tools page defer ga-boot.js a
 
 test('static public HTML pages load reading.js so prerender can inject ga-boot.js', async () => {
   const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
-  for (const path of ['public/guides.html', 'public/start-here.html', 'public/about.html', 'public/search.html', 'public/privacy.html', 'public/terms.html', ...guides.map(file => `public/guides/${file}`)]) {
+  for (const path of ['public/guides.html', 'public/start-here.html', 'public/ai-income-lab.html', 'public/about.html', 'public/search.html', 'public/privacy.html', 'public/terms.html', ...guides.map(file => `public/guides/${file}`)]) {
     assert.match(await read(path), /src="\/src\/reading.js"/, path);
   }
 });
@@ -63,7 +63,7 @@ test('extensionless and trailing-slash URLs hop once to the www .html canonical'
   // trailingSlash:false compiles ahead of redirects, so /guides/ would 308 to /guides first.
   assert.equal(Object.hasOwn(config, 'trailingSlash'), false);
   const { redirects } = config;
-  const pages = ['start-here', 'guides', 'about', 'sponsors', 'privacy', 'terms', 'search', 'tools'];
+  const pages = ['start-here', 'ai-income-lab', 'guides', 'about', 'sponsors', 'privacy', 'terms', 'search', 'tools'];
   const slash = redirects.find(rule => rule.source.includes(':page(') && rule.source.endsWith('/'));
   const bare = redirects.find(rule => rule.source.includes(':page(') && !rule.source.endsWith('/'));
   assert.equal(slash.destination, `${site}/:page.html`);

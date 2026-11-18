@@ -44,7 +44,7 @@ const guideFiles = (await readdir('dist/guides')).filter(file => file.endsWith('
 const guideTitles = await Promise.all(guideFiles.map(async file => guideMeta(await readFile(`dist/${file}`, 'utf8'))));
 await writeFile('dist/tools.html', renderToolsPage({ uploads, guides: guideTitles }));
 const guides = [];
-for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
+for (const file of ['start-here.html', 'ai-income-lab.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
   const read = withGaBoot(await readFile(path, 'utf8'), file);
   const html = shareMeta(previewRobots(file === 'guides.html' ? addGuideDates(read, guideTitles) : read));
