@@ -30,4 +30,4 @@ All written guides (https://www.ai-automation-station.com/guides.html) and YouTu
 ## Other products by Mike Holp
 
 - VisiScan (https://visiscan.app): free scan with no signup; full report $49 once; weekly monitoring from $29 a month.
-- TubeAnalytics: currently temporarily unavailable. No trial or subscription is offered on this site.
+- TubeAnalytics (https://www.tubeanalytics.net): YouTube analytics for creators; 7-day trial with a card required; Starter $19, Professional $49 and Enterprise $149 a month.

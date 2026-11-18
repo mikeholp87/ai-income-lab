@@ -26,10 +26,9 @@ test('plans are three equal cards on desktop and stack on tablets and phones, pr
 });
 
 test('product card links align at the bottom of each card without competing with Join buttons', () => {
-  assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*\{tool\.url && <a className="button button-primary" href=\{tool\.url\}/);
-  // TubeAnalytics is unavailable, so it gets one line in the intro rather than a card.
-  assert.doesNotMatch(jsx, /name: 'TubeAnalytics'/);
-  assert.match(jsx, /TubeAnalytics, is temporarily unavailable/);
+  assert.match(jsx, /<div className="tool-action">\s*\{tool\.note && <p className="fine-print">\{tool\.note\}<\/p>\}\s*<a className="button button-primary" href=\{tool\.url\}/);
+  assert.match(jsx, /name: 'TubeAnalytics',\s*url: 'https:\/\/www\.tubeanalytics\.net'/);
+  assert.doesNotMatch(jsx, /temporarily unavailable/);
   assert.match(css, /\.tool:only-child \{ grid-column: 1 \/ -1;/);
   assert.match(jsx, /<summary aria-label="Site menu">Menu<\/summary>/);
   assert.doesNotMatch(jsx, /\['#tools',/);

@@ -505,8 +505,6 @@ test('links tools used on watch pages in a new tab, marking referral links spons
   assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
   assert.match(html, /<p class="meta">Compare pricing: [^<]*<a href="\/tools\.html#make-com" data-placement="watch_tool_card">Make\.com<\/a>[^]*?Some ↗ links are affiliate links, so I may earn a commission or credit\. <a href="\/tools\.html" data-placement="watch_tools_all">/);
   assert.equal(html.match(/href="\/tools\.html#make-com"/g).length, 1);
-  const tubeAnalytics = renderWatch(uploads.find(upload => upload.id === 'gebtJAsMioo'), { videos: uploads });
-  assert.doesNotMatch(tubeAnalytics, /TubeAnalytics<\/li>|href="https:\/\/www\.tubeanalytics\.net/);
 });
 
 test('every tool listed on a watch page has a link, preferring the affiliate one', () => {

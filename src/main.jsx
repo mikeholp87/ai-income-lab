@@ -99,6 +99,17 @@ const stats = [
 
 const tools = [
   {
+    name: 'TubeAnalytics',
+    url: 'https://www.tubeanalytics.net',
+    image: '/tools/tubeanalytics.webp',
+    size: [1600, 1000],
+    tagline: 'YouTube analytics for creators.',
+    copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
+    facts: ['Real CPM and RPM for connected channels', '7-day trial, plans from $19 a month'],
+    cta: 'Start a 7-day trial',
+    note: 'Card required. Cancel before the trial ends to avoid a charge.',
+  },
+  {
     name: 'VisiScan',
     url: 'https://www.visiscan.app',
     image: '/tools/visiscan.webp',
@@ -926,7 +937,7 @@ function App({ page = 'home' }) {
       <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead title="Products I built and run">VisiScan started as a problem I kept hitting while growing a channel, and it is free to try. My other app, TubeAnalytics, is temporarily unavailable.</SectionHead>
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. TubeAnalytics has a 7-day trial, and VisiScan has a free scan.</SectionHead>
           <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
@@ -938,7 +949,7 @@ function App({ page = 'home' }) {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    {tool.url && <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>}
+                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>

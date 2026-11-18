@@ -8,7 +8,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 
 - Product and membership facts reviewed November 15, 2026 against the published site. Check the linked official pages for subsequent changes.
 - New long-form videos most days; the full archive is at /videos.
-- TubeAnalytics: YouTube analytics for creators, currently temporarily unavailable. No active trial or subscription offer is advertised on this site.
+- TubeAnalytics: YouTube analytics for creators. 7-day trial with a card required; plans from $19 a month.
 - VisiScan: checks whether AI assistants recommend a business. Free scan with no signup; full report $49 USD once; weekly monitoring from $29 USD a month.
 - AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, or $290, $490, $890 a year. VIP adds weekly live group coaching and Q&A, software deals, and 6,400+ n8n templates. Coaching is group learning support. Custom business implementation is separate and is not included in membership. Ask about project scope before joining.
 - AI Income Lab billing is in USD. Free written guides and videos are separate from the paid Skool membership; automation hosting, AI API usage, and other software can cost extra.
@@ -23,7 +23,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Sponsor a build](https://www.ai-automation-station.com/sponsors.html): audience numbers, packages and rates, past sponsored videos, and a proposal form. The [media kit](https://www.ai-automation-station.com/media-kit/ai-automation-station-media-kit-2026.pdf) and [rate card](https://www.ai-automation-station.com/media-kit/ai-automation-station-rate-card-2026.pdf) are PDFs.
 - [Every video: AI tools tested on real builds](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
-- [TubeAnalytics status](https://www.ai-automation-station.com/#tools): Temporarily unavailable; see the product section for current status.
+- [TubeAnalytics](https://www.tubeanalytics.net)
 - [VisiScan](https://www.visiscan.app)
 - [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
 - [AI Income Lab plans](https://www.skool.com/ai-automation-station-7346/plans): Official plan selection and checkout; current course access and billing details are also visible on the [homepage](https://www.ai-automation-station.com/#pricing).
@@ -244,7 +244,7 @@ All written guides (https://www.ai-automation-station.com/guides.html) and YouTu
 ## Other products by Mike Holp
 
 - VisiScan (https://visiscan.app): free scan with no signup; full report $49 once; weekly monitoring from $29 a month.
-- TubeAnalytics: currently temporarily unavailable. No trial or subscription is offered on this site.
+- TubeAnalytics (https://www.tubeanalytics.net): YouTube analytics for creators; 7-day trial with a card required; Starter $19, Professional $49 and Enterprise $149 a month.
 
 ---
 
