@@ -351,10 +351,10 @@ export const guides = [
   [/heygen/i, '/guides/heygen-ai-avatar-tutorial.html', 'HeyGen AI avatar tutorial: create your first video'],
   [/^Get Started with Claude Code in 10 Minutes$/i, '/guides/claude-code-for-beginners.html', 'Claude Code tutorial: install and first task'],
   [/chatgpt \$200|pro 20x|credit limit on codex/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x vs 5x vs Plus: 2026 Limits and Codex Credits'],
-  [/9router/i, '/guides/9router-setup.html', '9Router setup and update command'],
+  [/9router/i, '/guides/9router-setup.html', '9Router: npm install, port 20128, skip-update'],
   [/\bvapi\b/i, '/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'],
   [/grok 4\.7/i, '/guides/grok-4-7-openrouter.html', 'Grok 4.7 on OpenRouter: Hermes Model Switch'],
-  [/hermes/i, '/guides/hermes-desktop.html', 'Hermes Desktop: install on Mac, Windows or Linux'],
+  [/hermes/i, '/guides/hermes-desktop.html', 'Install Hermes Agent on Mac, Windows or Linux'],
   [/open ?claw|clawdbot|moltbot|moltbook|kiloclaw/i, '/guides/install-openclaw.html', 'How to install OpenClaw: local, VPS or hosted, safely'],
   [/lovable|base44|replit/i, '/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit: pricing and which to pick'],
   [/openseo/i, '/guides/openseo-review.html', 'OpenSEO review: setup, data costs and practical limits'],
@@ -375,7 +375,7 @@ export const guides = [
   [/voice agent|phone agent/i, '/guides/vapi-voice-agent-tutorial.html', 'Vapi AI tutorial: build a voice agent, test calls, webhooks'],
   [/syllaby|faceless|without showing your face/i, '/guides/heygen-ai-avatar-tutorial.html', 'HeyGen AI avatar tutorial: create your first video'],
   [/gpt-6|gpt 5\.6|chatgpt 5\.6/i, '/guides/chatgpt-pro-20x.html', 'ChatGPT Pro 20x vs 5x vs Plus: 2026 Limits and Codex Credits'],
-  [/token usage/i, '/guides/9router-setup.html', '9Router setup and update command'],
+  [/token usage/i, '/guides/9router-setup.html', '9Router: npm install, port 20128, skip-update'],
   [/ollama|private ai/i, '/guides/first-api-request.html', 'Make your first AI API request with a local test'],
   [/claude.*\bseo\b|\bseo\b.*claude/i, '/guides/dataforseo-mcp-claude.html', 'DataForSEO MCP: give Claude Code real SEO data'],
   [/\bseo\b|ai visibility|ai search|answer engines|invisible to ai/i, '/guides/openseo-review.html', 'OpenSEO review: setup, data costs and practical limits'],
@@ -523,7 +523,10 @@ const watchGuideLinks = {
   ncg6F27PYt0: [['/guides/kilo-code-tutorial.html', 'Install Kilo Code and check your first task']],
   Ip8KBwDixJs: [['/guides/grokbot-chief-of-staff-daily-briefing.html', 'Watch the GrokBot end-of-day rundown']],
   FBlN3qWR9kg: [['/guides/chatgpt-images-sketch-workflow.html', 'Follow the sketch-to-scene and local-edit workflow', 'Later related walkthrough (ChatGPT Images 2.5)']],
-  tzSGF7gu6EE: [['/guides/9router-cost-tracking-fallbacks.html', '9Router Cost Tracking: Combos and Fallbacks'], ['/guides/9router-setup.html', '9Router setup and update command', 'Setup guide']],
+  tzSGF7gu6EE: [['/guides/9router-cost-tracking-fallbacks.html', '9Router Cost Tracking: Combos and Fallbacks'], ['/guides/9router-setup.html', '9Router: npm install, port 20128, skip-update', 'Setup guide']],
+  tR7AYN5FiqA: [['/guides/codex-cli.html', 'Codex CLI install: Mac, Windows and Linux']],
+  miBtL2fVkpg: [['/guides/9router-setup.html', '9Router: npm install, port 20128, skip-update']],
+  geKngm3sg3w: [['/guides/9router-setup.html', '9Router: npm install, port 20128, skip-update']],
   gibc7oWLCn4: [['/guides/make-business-automation-examples.html', 'Make.com business automation examples'], ['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build', 'Broader guide']],
   '7UMrV3w1e40': [['/guides/self-host-n8n.html', 'Self-host n8n on Ubuntu: Docker and Node.js setup'], ['/guides/what-is-n8n-used-for.html', 'What is n8n used for? Real uses and a first workflow', 'Broader guide']],
   Lifl4PC2_3M: [['/guides/ai-automation.html', 'What Is AI Automation? Examples, Tools and a First Build'], ['/guides/make-first-automation.html', 'Make.com Google Sheets tutorial: filter approved requests', 'Next written guide']],
@@ -616,6 +619,7 @@ ${chapters.length ? `<p class="meta"><a href="#chapters">Jump to video chapters<
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
 <p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
+${watchNotes[video.id]?.lead ?? ''}
 <p class="description">${escape(description)}</p>${summaryParagraphs.length || chapters.length ? `
 <section aria-labelledby="video-summary">
 <h2 id="video-summary">Video summary</h2>

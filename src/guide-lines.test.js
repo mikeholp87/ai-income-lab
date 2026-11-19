@@ -4,7 +4,7 @@ import test from 'node:test';
 import { guideLines, linkedPage, resourceLine, withGuideLine, withIntroAbove } from '../scripts/guide-lines.mjs';
 
 const url = 'https://www.ai-automation-station.com/guides/9router-setup.html?utm_source=youtube&utm_medium=description&utm_campaign=build-guides&utm_content=miBtL2fVkpg';
-const line = `Written guide: 9Router setup and update command: ${url}`;
+const line = `Written guide: 9Router: npm install, port 20128, skip-update: ${url}`;
 const resources = '🔗 Useful Links & Resources:\nGet started with 9Router → https://9router.com/\nGet TubeAnalytics → https://www.tubeanalytics.net\nWork with me → https://automojic.vercel.app/\n\n🌐 Follow Me on Social Media:\n🧿 Linkedin: http://www.linkedin.com/in/mikeholp';
 
 test('the description-links doc yields one tagged site line per video, in priority order', async () => {

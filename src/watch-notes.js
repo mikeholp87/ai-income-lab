@@ -1,5 +1,11 @@
 // Search titles preserve recorded topics; companion sections state their caption-review date.
 export const watchNotes = {
+  miBtL2fVkpg: {
+    lead: `<p class="note">Install commands, port 20128 and skip-update are in the <a href="/guides/9router-setup.html">9Router setup guide</a>. This page is the recorded walkthrough.</p>`,
+  },
+  tzSGF7gu6EE: {
+    lead: `<p class="note">Cost tracking, combos and fallback steps are in the <a href="/guides/9router-cost-tracking-fallbacks.html">9Router cost tracking guide</a>. This page is the recorded walkthrough.</p>`,
+  },
   dQ_gnts0JCE: {
     html: `<section aria-labelledby="openseo-guide">
 <h2 id="openseo-guide">OpenSEO written review</h2>
@@ -7,6 +13,7 @@ export const watchNotes = {
 </section>`,
   },
   tR7AYN5FiqA: {
+    lead: `<p class="note">Install commands for Mac, Windows and Linux are in the <a href="/guides/codex-cli.html">Codex CLI install guide</a>. This page is the recorded walkthrough.</p>`,
     html: `<section aria-labelledby="codex-cli-install">
 <h2 id="codex-cli-install">Install the Codex CLI first</h2>
 <p>The walkthrough starts with the Codex CLI already installed and updated on Debian Linux. To install it yourself, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>: the official install commands, ChatGPT sign-in, and fixes for common install errors.</p>
@@ -340,6 +347,7 @@ export const watchNotes = {
   },
   '1aG1XbAQj-k': { summary: 'A rundown of Claude Opus 5: pricing against Fable 5, coding and reasoning benchmarks, visual reasoning, and real bug-fixing examples.' },
   geKngm3sg3w: {
+    lead: `<p class="note">Install commands, port 20128 and skip-update are in the <a href="/guides/9router-setup.html">9Router setup guide</a>. This page is the recorded walkthrough.</p>`,
     searchTitle: '9Router video walkthrough: providers and fallbacks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',
     html: `<section aria-labelledby="build-notes">

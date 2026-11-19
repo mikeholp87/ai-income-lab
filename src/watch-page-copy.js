@@ -160,7 +160,7 @@ export const watchPageCopy = {
     description: 'Mike covers OpenAI\'s GPT 5.6 release, its Sol, Terra and Luna models, ChatGPT Work and GPT Live, and a Chrome extension he built with it in Codex.',
   },
   geKngm3sg3w: {
-    title: '9Router 3-tier fallback with OAuth providers and Tailscale',
+    title: 'Video: 9Router 3-tier fallback, OAuth and Tailscale',
   },
   '2G5klyFz61E': {
     disclosure: 'The OpenCode Go sign-up link in the video description is an affiliate link. New users get $5 in credits and Mike gets $5.',
@@ -234,7 +234,7 @@ export const watchPageCopy = {
     title: 'Trakkr AI visibility MCP in Codex: citation gaps to articles',
   },
   tR7AYN5FiqA: {
-    title: 'Codex CLI and Codex Cloud: code review, fixes and deploy',
+    title: 'Video: Codex CLI walkthrough, Cloud review and deploy',
   },
   dVvazfQHhW4: {
     description: 'Mike uses Hermes Agent and OpenCode to build a Python script and daily cron job that turn his latest YouTube video into LinkedIn posts and a newsletter.',
