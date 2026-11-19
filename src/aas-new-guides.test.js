@@ -52,6 +52,19 @@ const BATCH01 = [
   ['claude-fable-5-game-prompts', ['X9Bo29B_46k'], 'Claude Fable 5 Games: Prompts and Plugins', 'Use Claude Fable 5 to build a small game: effort modes, Compound Engineering, plan mode and the prompt briefs shown in my walkthrough.'],
 ];
 
+const BATCH02 = [
+  ['updateforge-package-manager-windows-linux', ['2ToaOs7HMD0'], 'UpdateForge: Windows and Linux Package Manager GUI', 'Install UpdateForge, Mike\'s own open-source package manager GUI for Windows and Linux, then update apps across apt, npm and Cargo.'],
+  ['claude-fable-5-use-cases', ['avgG3VtN2C4'], 'Claude Fable 5 Use Cases: Security and Checkout', 'Switch Claude Code to Fable 5, run a security audit and a checkout review on TubeAnalytics, and watch how fast Pro credits drain.'],
+  ['odysseus-brand-deal-agents', ['YNpIRq7O3UE'], 'Odysseus Brand-Deal Agent: Research and Outreach', 'Build an Odysseus sponsorship agent that researches brands, drafts pitches and schedules Monday outreach. The $81,000 figure was an estimate.'],
+  ['hermes-agent-ai-operating-system', ['kUbhr1QGYeU'], 'Build an AI Operating System Dashboard in Hermes', 'Prompt Hermes Agent and OpenCode to build a local React operations dashboard, then try YouTube API credentials on mock data.'],
+  ['ai-coding-agent-skills-top-10', ['kxp_dF6NEbg'], 'Install Ten skills.sh Coding Agent Skills', 'Update and install skills.sh agent skills with npx, then run design, React, SEO, page speed and GEO audits in Codex and OpenCode.'],
+  ['opencode-linkedin-post-generator', ['vvDdXF2Yuz8'], 'OpenCode: Turn a YouTube Video into LinkedIn Posts', 'Build an OpenCode script that transcribes a video and writes five LinkedIn post variants. Posting stays manual in this walkthrough.'],
+  ['browseract-web-scraping', ['quDDekuPQNI'], 'BrowserAct: Scrape Jobs and Build a Board', 'Install the BrowserAct Skill Forge scraper in Codex, scrape We Work Remotely listings, and build a searchable React job board. BrowserAct sponsored it.'],
+  ['codex-website-redesign', ['MABL6XZgy4g'], 'Rebuild a Site in Codex with Vite and React', 'Ask Claude Desktop for a replication prompt, rebuild a Lovable site in Codex with Vite and React, then deploy to Vercel and read PageSpeed scores.'],
+  ['opusclip-alternative-viral-clips', ['w_MoA8lpWTg'], 'ShortForge Follow-up: Detect, Score and Export Clips', 'Demo Short Forge after the app build: import a YouTube URL or a file, transcribe with Whisper, score clips and export shorts locally.'],
+  ['hermes-agent-scheduled-jobs', ['DB-9bW85TKY'], 'Hermes Agent: Install and Schedule CLI Cron Jobs', 'Install Hermes Agent, run hermes setup with DeepSeek V4 Flash, then create CLI cron jobs and manage them in the desktop app.'],
+];
+
 test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
   const hub = await read('public/guides.html');
   const sitemap = await read('public/sitemap.xml');
@@ -86,6 +99,38 @@ test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and 
     }
     assert.doesNotMatch(html, /<iframe/, slug);
     assert.doesNotMatch(html, /connect-claude-code-codex-to-grokbot/, slug);
+  }
+});
+
+test('batch 02 AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  const collection = schemas(hub).find(item => item['@type'] === 'CollectionPage');
+  assert.equal(BATCH02.length, 10);
+  for (const [slug, ids, title, description] of BATCH02) {
+    const html = await read(`public/guides/${slug}.html`);
+    const url = `${site}/guides/${slug}.html`;
+    assert.equal(decode(html.match(/<title>(.*?)<\/title>/)[1]), title, slug);
+    assert.equal(decode(html.match(/<meta name="description" content="([^"]*)">/)[1]), description, slug);
+    assert.match(html, /<meta name="robots" content="index,follow">/, slug);
+    assert.ok(html.includes(`<link rel="canonical" href="${url}">`), slug);
+    assert.ok(html.includes(`<h1>${title}</h1>`), slug);
+    const article = schemas(html).find(item => item['@type'] === 'Article');
+    const crumbs = schemas(html).find(item => item['@type'] === 'BreadcrumbList');
+    const faq = schemas(html).find(item => item['@type'] === 'FAQPage');
+    assert.equal(article.headline, title, slug);
+    assert.equal(article.url, url, slug);
+    assert.equal(article.description, description, slug);
+    assert.equal(faq.url, url, slug);
+    assert.equal(crumbs.itemListElement[2].item, url, slug);
+    assert.match(hub, new RegExp(`<a href="/guides/${slug}\\.html">`), slug);
+    assert.ok(collection.mainEntity.itemListElement.some(item => item.url === url), slug);
+    assert.ok(sitemap.includes(`<loc>${url}</loc><lastmod>${article.dateModified}</lastmod>`), slug);
+    assert.ok(llms.includes(`](${url})`), slug);
+    const embeds = [...html.matchAll(/data-embed="https:\/\/www.youtube-nocookie\.com\/embed\/([\w-]{11})"/g)].map(match => match[1]);
+    assert.deepEqual(embeds, ids, slug);
+    assert.doesNotMatch(html, /<iframe/, slug);
   }
 });
 

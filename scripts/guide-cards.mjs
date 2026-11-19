@@ -4,12 +4,71 @@
 // Usage: node scripts/guide-cards.mjs [slug ...]   (no slugs renders every card below)
 // Needs google-chrome on PATH; full cards use the system Noto Sans, hub cards the site's Archivo Black.
 import { execFileSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import sharp from 'sharp';
 
+function chromeScreenshot(args, png) {
+  try {
+    execFileSync('google-chrome', args, { stdio: 'ignore', timeout: 8000 });
+  } catch (error) {
+    if (!existsSync(png)) throw error;
+  }
+}
+
 export const cards = {
+  'hermes-agent-scheduled-jobs': {
+    title: "CLI cron jobs inside Hermes Agent",
+    steps: [["Install","Paste the site curl command and run hermes setup"],["Ask","Let the agent recommend jobs for the business"],["Manage","List, pause or trigger jobs in the desktop app"]],
+    note: "15 May 2026. New job results were not shown.",
+  },
+  'opusclip-alternative-viral-clips': {
+    title: "Short Forge clip detection after the app build",
+    steps: [["Import","Paste a YouTube URL or upload a file"],["Score","Read hook, emotion and shareability scores"],["Export","Download a local short without burned-in captions"]],
+    note: "20 May 2026. Part 2 of the Short Forge build. The app was not live.",
+  },
+  'codex-website-redesign': {
+    title: "A Lovable site rebuilt in Codex",
+    steps: [["Prompt","Ask Claude Desktop to replicate the site"],["Build","Let Codex generate Vite and React files"],["Deploy","Push to GitHub and import on Vercel"]],
+    note: "21 May 2026. Custom domain and code review were unfinished.",
+  },
+  'browseract-web-scraping': {
+    title: "BrowserAct scrape to a React job board",
+    steps: [["Install","Paste the Skill Forge npx command"],["Scrape","Pull We Work Remotely jobs to JSON"],["Build","Let Codex make a React and Vite site"]],
+    note: "26 May 2026. BrowserAct sponsored this video.",
+  },
+  'opencode-linkedin-post-generator': {
+    title: "Five LinkedIn variants from one video",
+    steps: [["Trim","Ask OpenCode to run FFmpeg"],["Script","Transcribe with captions or Whisper"],["Write","Save five post styles in one file"]],
+    note: "28 May 2026. Posting stayed manual.",
+  },
+  'ai-coding-agent-skills-top-10': {
+    title: "Ten skills.sh installs for daily coding work",
+    steps: [["Update","Run npx skills update"],["Install","Paste npx skills add from the registry"],["Audit","Run design, SEO and speed skills"]],
+    note: "1 June 2026. The registry page showed about 620,000 skills.",
+  },
+  'hermes-agent-ai-operating-system': {
+    title: "A local AI operating system dashboard",
+    steps: [["Prompt","Run the system prompt in Hermes Agent"],["Fix","Start npm run dev and patch App.tsx"],["Extend","Add a 13-page plan and YouTube APIs"]],
+    note: "5 June 2026. Live YouTube data was still failing.",
+  },
+  'odysseus-brand-deal-agents': {
+    title: "An Odysseus agent for sponsor research",
+    steps: [["Pick","Choose a sponsorship outreach agent"],["Build","Generate targets, pitches and a CRM"],["Schedule","Run a Monday cron job from Gmail"]],
+    note: "11 June 2026. $81,000 was a model estimate, not deals won.",
+  },
+  'claude-fable-5-use-cases': {
+    title: "Fable 5 on a live SaaS codebase",
+    steps: [["Switch","Set /model to Fable 5 and /effort high"],["Audit","Paste a security-audit prompt in plan mode"],["Fix","Review checkout bugs with sub-agents"]],
+    note: "2 July 2026. This is use-case work, not a model picker.",
+  },
+  'updateforge-package-manager-windows-linux': {
+    title: "UpdateForge, a GUI over your package managers",
+    steps: [["Install","Use Winget, apt, or a GitHub .NET build"],["Pick","Install from recommended apps"],["Update","Scan and update from the dashboard"]],
+    note: "November 2026. This is Mike's own open-source project.",
+  },
   'ai-coding-tutorials-compared': {
     title: "How to choose an AI coding tutorial",
     steps: [["Docs","Start with the official quickstart"],["Build","Follow one complete project"],["Check","Prefer tutorials that show debugging and cost"]],
@@ -650,7 +709,8 @@ h1{font:400 40px/1.08 'Archivo Black',sans-serif;letter-spacing:-.01em;text-wrap
 async function screenshot(html, [width, height], scale) {
   const dir = await mkdtemp(join(tmpdir(), 'guide-card-'));
   await writeFile(join(dir, 'card.html'), html);
-  execFileSync('google-chrome', ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', `--force-device-scale-factor=${scale}`, `--window-size=${width},${height}`, `--screenshot=${join(dir, 'card.png')}`, `file://${join(dir, 'card.html')}`], { stdio: 'ignore' });
+  const png = join(dir, 'card.png');
+  chromeScreenshot(['--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', `--force-device-scale-factor=${scale}`, `--window-size=${width},${height}`, `--screenshot=${png}`, `file://${join(dir, 'card.html')}`], png);
   return dir;
 }
 
@@ -671,7 +731,8 @@ export async function renderCard(slug, card, outDir = 'public/assets/guides') {
   const dir = await mkdtemp(join(tmpdir(), 'guide-card-'));
   try {
     await writeFile(join(dir, 'card.html'), cardHtml(card));
-    execFileSync('google-chrome', ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1', '--window-size=1200,630', `--screenshot=${join(dir, 'card.png')}`, `file://${join(dir, 'card.html')}`], { stdio: 'ignore' });
+    const png = join(dir, 'card.png');
+    chromeScreenshot(['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1', '--window-size=1200,630', `--screenshot=${png}`, `file://${join(dir, 'card.html')}`], png);
     await mkdir(join(outDir, 'sizes'), { recursive: true });
     await sharp(join(dir, 'card.png')).resize(640, 336).webp({ quality: 82 }).toFile(join(outDir, 'sizes', `${slug}-640.webp`));
     return await sharp(join(dir, 'card.png')).resize(1200, 630).webp({ quality: 82 }).toFile(join(outDir, `${slug}.webp`));

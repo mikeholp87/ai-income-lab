@@ -3,6 +3,7 @@
 export const videoTools = {
   "IIcekvpPuqo": ["Claude Code", "Herdr", "ChatGPT", "Codex", "Cursor", "GitHub"],
   "XEmJGf5CHwk": ["ChatGPT", "Claude Code", "Herdr", "Tauri", "Codex", "Cursor", "GitHub"],
+  "2ToaOs7HMD0": ["Update Forge", "Claude Code", "GitHub"],
   "ndG48skyZZY": ["RankPrompt", "Claude Code"],
   "7JN-sMkJBCs": ["GrokBot", "Treg", "ChatGPT"],
   "phVQuQMojA8": ["Claude Code", "Tasky", "GitHub"],

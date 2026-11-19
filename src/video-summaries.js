@@ -11428,6 +11428,7 @@ Object.assign(videoSummaries, lateSummaries);
 
 // Third-person rewrites of first-person YouTube description openers, for listing cards and meta descriptions.
 export const listingSummaries = {
+  "2ToaOs7HMD0": "Mike shows UpdateForge, his own open-source Windows and Linux package manager GUI, then installs a package, searches across repos, and turns on automatic updates.",
   "IIcekvpPuqo": "Mike shows the public Aegis VPN Linux app, imports free Proton test server configs, and checks DNS leak protection, a kill switch, and a speed test.",
   "XEmJGf5CHwk": "Mike uses ChatGPT and Claude Code in Herdr to start Aegis VPN, a WireGuard client for Linux and Windows, then compiles an early Tauri and Rust build.",
   "ndG48skyZZY": "Mike uses Rank Prompt to scan VisiScan's AI visibility, then connects the Rank Prompt MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
