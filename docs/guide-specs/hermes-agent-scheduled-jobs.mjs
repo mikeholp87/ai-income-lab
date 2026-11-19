@@ -49,6 +49,7 @@ export default {
     ['/guides/hermes-youtube-to-linkedin-cron.html', 'Hermes YouTube to LinkedIn cron job'],
     ['/guides/hermes-agent-supermemory.html', 'Hermes Agent memory with Supermemory'],
     ['/guides/hermes-agent-ai-operating-system.html', 'Hermes AI OS dashboard'],
+    ["/guides/claude-code-routines.html", "Claude Code Routines: Scheduled Tasks, PRs and Email"],
   ],
   next: ['/guides/hermes-cron-jobs-vercel-reports.html', 'Hermes cron jobs on Vercel'],
   more: 'More on this topic: <a href="/videos/ai-agents">AI agent videos</a>',

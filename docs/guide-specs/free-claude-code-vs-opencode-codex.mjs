@@ -73,6 +73,7 @@ export default {
     ['/guides/ai-visibility-tracker-saas-build.html','AI visibility tracker build'],
     ['/guides/trakkr-codex-visibility-workflow.html','Trakkr and Codex'],
     ['/guides/opencode-go.html','OpenCode Go'],
+    ["/guides/free-claude-code-setup.html", "Free Claude Code GitHub Setup: NIM and OpenRouter Proxy"],
   ],
   next: ['/guides/opencode-vs-claude-code.html','OpenCode vs Claude Code'],
   more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
