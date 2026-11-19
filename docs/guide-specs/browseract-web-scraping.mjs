@@ -4,10 +4,10 @@ export default {
   video: 'quDDekuPQNI',
   title: 'BrowserAct: Scrape Jobs and Build a Board',
   short: 'BrowserAct job board',
-  description: 'Install the BrowserAct Skill Forge scraper in Codex, scrape We Work Remotely listings, and build a searchable React job board. BrowserAct sponsored it.',
-  hub: 'Install the BrowserAct Skill Forge scraper in Codex, scrape We Work Remotely listings, and build a searchable React job board. BrowserAct sponsored it.',
+  description: 'BrowserAct web scraping in Codex: install Skill Forge, scrape We Work Remotely jobs, and build a searchable React board. BrowserAct sponsored it.',
+  hub: 'BrowserAct web scraping in Codex: install Skill Forge, scrape We Work Remotely jobs, and build a searchable React board. BrowserAct sponsored it.',
   watchLabel: 'Follow the BrowserAct remote job board build',
-  about: ['BrowserAct', 'Codex', 'React'],
+  about: ['BrowserAct', 'web scraping', 'Codex', 'React'],
   alt: 'Diagram for the BrowserAct job board guide: install the scraper skill, scrape listings, then build the React site.',
   card: {
     title: 'BrowserAct scrape to a React job board',
@@ -33,6 +33,7 @@ export default {
   ],
   faq: [
     ['Did BrowserAct sponsor this video?', 'Yes. BrowserAct sponsored it. This page uses the public product site with no tracking parameters.'],
+    ['Is this a BrowserAct web scraping tutorial?', 'Yes. I installed Skill Forge in Codex, scraped We Work Remotely jobs, and had Codex build a React job board.'],
     ['How long did the job board take?', 'About 20 minutes with Codex, or about an hour including scraping, on 26 May 2026.'],
     ['Where does the apply button go?', 'To the original We Work Remotely listing, where users create an account to apply.'],
     ['Can I copy the npx install command from this page?', 'No. I copied it from Skill Forge and did not read the full command aloud.'],

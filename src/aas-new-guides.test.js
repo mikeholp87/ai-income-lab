@@ -54,15 +54,15 @@ const BATCH01 = [
 
 const BATCH02 = [
   ['updateforge-package-manager-windows-linux', ['2ToaOs7HMD0'], 'UpdateForge: Windows and Linux Package Manager GUI', 'Install UpdateForge, Mike\'s own open-source package manager GUI for Windows and Linux, then update apps across apt, npm and Cargo.'],
-  ['claude-fable-5-use-cases', ['avgG3VtN2C4'], 'Claude Fable 5 Use Cases: Security and Checkout', 'Switch Claude Code to Fable 5, run a security audit and a checkout review on TubeAnalytics, and watch how fast Pro credits drain.'],
-  ['odysseus-brand-deal-agents', ['YNpIRq7O3UE'], 'Odysseus Brand-Deal Agent: Research and Outreach', 'Build an Odysseus sponsorship agent that researches brands, drafts pitches and schedules Monday outreach. The $81,000 figure was an estimate.'],
-  ['hermes-agent-ai-operating-system', ['kUbhr1QGYeU'], 'Build an AI Operating System Dashboard in Hermes', 'Prompt Hermes Agent and OpenCode to build a local React operations dashboard, then try YouTube API credentials on mock data.'],
-  ['ai-coding-agent-skills-top-10', ['kxp_dF6NEbg'], 'Install Ten skills.sh Coding Agent Skills', 'Update and install skills.sh agent skills with npx, then run design, React, SEO, page speed and GEO audits in Codex and OpenCode.'],
+  ['claude-fable-5-use-cases', ['avgG3VtN2C4'], 'Claude Code Fable 5: Security and Checkout', 'How to use Fable 5 in Claude Code: switch the model, run a security audit and a checkout review on TubeAnalytics.'],
+  ['odysseus-brand-deal-agents', ['YNpIRq7O3UE'], 'Odysseus AI Brand-Deal Agent: Research and Outreach', 'Build an Odysseus AI sponsorship agent that researches brands, drafts pitches and schedules Monday outreach. The $81,000 figure was an estimate.'],
+  ['hermes-agent-ai-operating-system', ['kUbhr1QGYeU'], 'Hermes Agent Dashboard: Local AI Operating System', 'Build a Hermes Agent dashboard: prompt a local React operations UI, then try YouTube API credentials on mock data.'],
+  ['ai-coding-agent-skills-top-10', ['kxp_dF6NEbg'], 'npx skills: Install Ten Coding Agent Skills', 'Run npx skills update and npx skills add, then use ten coding agent skills for design, React, SEO, page speed and GEO audits.'],
   ['opencode-linkedin-post-generator', ['vvDdXF2Yuz8'], 'OpenCode: Turn a YouTube Video into LinkedIn Posts', 'Build an OpenCode script that transcribes a video and writes five LinkedIn post variants. Posting stays manual in this walkthrough.'],
-  ['browseract-web-scraping', ['quDDekuPQNI'], 'BrowserAct: Scrape Jobs and Build a Board', 'Install the BrowserAct Skill Forge scraper in Codex, scrape We Work Remotely listings, and build a searchable React job board. BrowserAct sponsored it.'],
+  ['browseract-web-scraping', ['quDDekuPQNI'], 'BrowserAct: Scrape Jobs and Build a Board', 'BrowserAct web scraping in Codex: install Skill Forge, scrape We Work Remotely jobs, and build a searchable React board. BrowserAct sponsored it.'],
   ['codex-website-redesign', ['MABL6XZgy4g'], 'Rebuild a Site in Codex with Vite and React', 'Ask Claude Desktop for a replication prompt, rebuild a Lovable site in Codex with Vite and React, then deploy to Vercel and read PageSpeed scores.'],
-  ['opusclip-alternative-viral-clips', ['w_MoA8lpWTg'], 'ShortForge Follow-up: Detect, Score and Export Clips', 'Demo Short Forge after the app build: import a YouTube URL or a file, transcribe with Whisper, score clips and export shorts locally.'],
-  ['hermes-agent-scheduled-jobs', ['DB-9bW85TKY'], 'Hermes Agent: Install and Schedule CLI Cron Jobs', 'Install Hermes Agent, run hermes setup with DeepSeek V4 Flash, then create CLI cron jobs and manage them in the desktop app.'],
+  ['opusclip-alternative-viral-clips', ['w_MoA8lpWTg'], 'Opus Clip Alternative: Detect, Score and Export Clips', 'An Opus Clip alternative demo of Short Forge: import a YouTube URL or file, transcribe with Whisper, score clips and export shorts locally.'],
+  ['hermes-agent-scheduled-jobs', ['DB-9bW85TKY'], 'Hermes Agent CLI Cron Jobs: Install and Schedule', 'Install Hermes Agent from the CLI, run hermes setup, then create cron jobs and manage them with hermes cron list.'],
 ];
 
 const BATCH03 = [
