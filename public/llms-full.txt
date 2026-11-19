@@ -56,6 +56,16 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
 - [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
 - [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From a Feb 2026 walkthrough.
+- [Cline: Install the Free Coding Agent](https://www.ai-automation-station.com/guides/cline-ai-coding-agent.html): Install Cline with npm, open it in an IDE, pick a free model, then run a GEO pass on an existing repo. No to-do app was built.
+- [Otterly AI: Track Brand Mentions in LLMs](https://www.ai-automation-station.com/guides/otterly-ai-visibility-tracking.html): Tour Otterly AI brand coverage, citations and crawl checks for TubeAnalytics. I said the signup link is a referral.
+- [Claude Code Routines: Email, PRs and Cron](https://www.ai-automation-station.com/guides/claude-code-routines.html): Set up Claude Code routines for email triage, GitHub PR reviews, calendar and a daily TubeAnalytics speed audit.
+- [ChatGPT Images 2.0: First Tests and Edits](https://www.ai-automation-station.com/guides/chatgpt-images-2-getting-started.html): Open ChatGPT Images 2.0, run gallery-style prompts, then try selection edits, a caricature, a blueprint and an ISBN mockup.
+- [Install video-use in Claude Code](https://www.ai-automation-station.com/guides/claude-code-video-editing-skill-github.html): Install the video-use GitHub skill in Claude Code, then prompt it to cut a 9:16 short with FFmpeg and Faster Whisper.
+- [Free GEO/AEO Tracker with Bright Data](https://www.ai-automation-station.com/guides/geo-aeo-tracker-github.html): Clone the GEO/AEO tracker, add Bright Data, run an AEO audit, then schedule 12-hour checks. Figures are from 27 April 2026.
+- [Redesign a Site in Claude Design](https://www.ai-automation-station.com/guides/claude-design-website-redesign.html): Import design.md into Claude Design, connect GitHub, then hand the kit to Claude Code and Codex. TubeAnalytics is my product.
+- [Claude Design: First Pitch Deck Walkthrough](https://www.ai-automation-station.com/guides/claude-design-getting-started.html): Open Claude Design, upload a screenshot, and generate a 10-slide investor deck. I used TubeAnalytics, which I own.
+- [Kilo Code: AI Visibility Optimizer Skill](https://www.ai-automation-station.com/guides/kilo-code-ai-visibility-optimizer.html): Use Kilo Code to turn an AI visibility playbook into a skill, then score a TubeAnalytics post. Scores are from 2 May 2026.
+- [Free Claude Code: NIM and OpenRouter Proxy](https://www.ai-automation-station.com/guides/free-claude-code-setup.html): Clone Free Claude Code, add NVIDIA NIM and OpenRouter keys, start the local proxy, then try a Next.js build. The app was unfinished.
 - [Hermes Agent: Install and Schedule CLI Cron Jobs](https://www.ai-automation-station.com/guides/hermes-agent-scheduled-jobs.html): Install Hermes Agent, run hermes setup with DeepSeek V4 Flash, then create CLI cron jobs and manage them in the desktop app.
 - [ShortForge Follow-up: Detect, Score and Export Clips](https://www.ai-automation-station.com/guides/opusclip-alternative-viral-clips.html): Demo Short Forge after the app build: import a YouTube URL or a file, transcribe with Whisper, score clips and export shorts locally.
 - [Rebuild a Site in Codex with Vite and React](https://www.ai-automation-station.com/guides/codex-website-redesign.html): Ask Claude Desktop for a replication prompt, rebuild a Lovable site in Codex with Vite and React, then deploy to Vercel and read PageSpeed scores.
@@ -349,6 +359,46 @@ I use Trakkr to see how AI answer engines cite my site, how often AI crawlers vi
 ### AI Workflow Courses Compared: Make, n8n, Zapier and More
 https://www.ai-automation-station.com/guides/ai-workflow-courses-compared.html (updated 2026-11-17)
 If you want to build AI workflows, start with the free vendor academies: Make Academy for Make.com and the n8n Academy for n8n both teach their own tools at no cost. Use Zapier’s guides if you are on Zapier, and DeepLearning.AI if you want AI engineering fundamentals. Pay for a course or community only when you want feedback, templates or live help. I run AI Income Lab, a paid Skool community, so I list it last and say where the free options are the better choice.
+
+### Free Claude Code: NIM and OpenRouter Proxy
+https://www.ai-automation-station.com/guides/free-claude-code-setup.html (updated 2026-11-19)
+A 5 May 2026 setup of the Free Claude Code GitHub proxy: cancel Claude Pro if you want, clone the repo, add NVIDIA NIM and OpenRouter keys, start the proxy on port 8082, then run Claude. GLM 4.7 was slow. StepFun 3.5 Flash on OpenRouter was preferred. A Next.js AI-search app was started and not finished.
+
+### Kilo Code: AI Visibility Optimizer Skill
+https://www.ai-automation-station.com/guides/kilo-code-ai-visibility-optimizer.html (updated 2026-11-19)
+A 2 May 2026 Kilo Code build: turn an AI visibility playbook into a custom skill, then score TubeAnalytics posts. One article failed a 100-word direct-answer rule at 61 words. Another scored 91 then 98 out of 100 after the agent applied its plan. Those scores are the skill's ratings that day. TubeAnalytics is Mike's product.
+
+### Claude Design: First Pitch Deck Walkthrough
+https://www.ai-automation-station.com/guides/claude-design-getting-started.html (updated 2026-11-19)
+A 22 April 2026 first look at Claude Design: upload a TubeAnalytics screenshot, answer pitch questions, get a 10-slide HTML deck, switch from Opus 4.7 to Sonnet 4.6, then export PDF. TubeAnalytics is Mike's product. Research preview from 17 April 2026. Not the later site redesign.
+
+### Redesign a Site in Claude Design
+https://www.ai-automation-station.com/guides/claude-design-website-redesign.html (updated 2026-11-19)
+A 28 April 2026 TubeAnalytics redesign in Claude Design: import design.md, connect a private GitHub repo, skip the Code Web new-app handoff, fetch the kit in Claude Code, hit a weekly credit cap, then let Codex 5.4 update CSS. Haiku reported no further work and the localhost page looked unchanged until Codex. TubeAnalytics is Mike's product.
+
+### Free GEO/AEO Tracker with Bright Data
+https://www.ai-automation-station.com/guides/geo-aeo-tracker-github.html (updated 2026-11-19)
+A 27 April 2026 setup of the free GEO/AEO tracker GitHub repo: npm install, Bright Data trial key, Bright Data CLI and MCP, localhost 3000 dashboard, 17 of 20 AEO checks, about 95 percent visibility on TubeAnalytics, competitor URLs, and a 12-hour schedule. OpenRouter was not finished. TubeAnalytics is Mike's product.
+
+### Install video-use in Claude Code
+https://www.ai-automation-station.com/guides/claude-code-video-editing-skill-github.html (updated 2026-11-19)
+A 25 April 2026 install of the open-source video-use GitHub skill in Claude Code. First 9:16 prompt still had extra PIP. Second pass used Faster Whisper, skipped ElevenLabs, burned in subtitles, and exported about a 17-second 2.1 MB short. Not the later custom long-form editor skill.
+
+### ChatGPT Images 2.0: First Tests and Edits
+https://www.ai-automation-station.com/guides/chatgpt-images-2-getting-started.html (updated 2026-11-19)
+A 23 April 2026 first look at ChatGPT Images 2.0: open image mode on chatgpt.com, run gallery-style prompts that were not read aloud, then selection edits, a selfie caricature, a house blueprint, a sketch-to-photo, and an ISBN-preserving book mockup. Benchmark point gaps were OpenAI's claims. Not the later Images 2.5 sketch workflow.
+
+### Claude Code Routines: Email, PRs and Cron
+https://www.ai-automation-station.com/guides/claude-code-routines.html (updated 2026-11-19)
+An 18 April 2026 Claude Code routines walkthrough: five Pro daily runs, existing email triage, a GitHub PR security event, a 9:00 a.m. calendar list, and an 8:00 a.m. Bangkok TubeAnalytics speed audit. CLI create hit a 401 until Claude auth login. The speed audit returned 403. Weekly usage hit 90 percent. TubeAnalytics is Mike's product.
+
+### Otterly AI: Track Brand Mentions in LLMs
+https://www.ai-automation-station.com/guides/otterly-ai-visibility-tracking.html (updated 2026-11-19)
+A 17 April 2026 Otterly AI dashboard tour for TubeAnalytics: 2-week trial then about $29 a month, about 43 percent brand coverage versus VidIQ around 68 percent, crawlability pass, prompt scores including 100 and 67 out of 100. Signup link is a spoken referral. TubeAnalytics is Mike's product. Not a from-zero setup.
+
+### Cline: Install the Free Coding Agent
+https://www.ai-automation-station.com/guides/cline-ai-coding-agent.html (updated 2026-11-19)
+A 30 March 2026 Cline setup: npm i -g cline, IDE extension in Google Antigravity, free Xiaomi model on a negative credit balance, then a GEO pass on TubeAnalytics that pushed to GitHub. The docs to-do app was copied and not run. TubeAnalytics is Mike's product.
 
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-15)

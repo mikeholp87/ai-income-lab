@@ -19,6 +19,56 @@ function chromeScreenshot(args, png) {
 }
 
 export const cards = {
+  'cline-ai-coding-agent': {
+    title: "Cline in the terminal and an IDE",
+    steps: [["Install","npm i -g cline, then open localhost"],["Model","Pick a free model if credits are empty"],["Task","Run one job in a repo you already own"]],
+    note: "30 March 2026. TubeAnalytics is my product. The to-do quickstart was not run.",
+  },
+  'otterly-ai-visibility-tracking': {
+    title: "Otterly AI brand visibility dashboard",
+    steps: [["Open","Use the logged-in brand report"],["Compare","Read coverage against competitors"],["Check","Crawlability, content, then prompts"]],
+    note: "17 April 2026. TubeAnalytics is my product. Signup link is a referral.",
+  },
+  'claude-code-routines': {
+    title: "Scheduled work inside Claude Code",
+    steps: [["Name","Write a prompt and pick schedule or event"],["Auth","Reconnect if the session token expires"],["Review","Read the run before it can edit files"]],
+    note: "18 April 2026. TubeAnalytics is my product. One speed audit hit 403.",
+  },
+  'chatgpt-images-2-getting-started': {
+    title: "First tests in ChatGPT Images 2.0",
+    steps: [["Open","Start creating from chatgpt.com"],["Prompt","Try a gallery-style image"],["Edit","Select an area and describe the change"]],
+    note: "23 April 2026. Gallery prompts on the OpenAI site were not read aloud.",
+  },
+  'claude-code-video-editing-skill-github': {
+    title: "A GitHub video skill in Claude Code",
+    steps: [["Install","Clone video-use into Claude skills"],["Prompt","Ask for a 9:16 talking-head short"],["Review","Check PIP, subtitles, and length"]],
+    note: "25 April 2026. First short still had extra PIP. Not my custom editor skill.",
+  },
+  'geo-aeo-tracker-github': {
+    title: "Self-host a free AI visibility tracker",
+    steps: [["Clone","npm install the GitHub tracker"],["Keys","Add Bright Data in .env"],["Audit","Run AEO checks and a 12-hour schedule"]],
+    note: "27 April 2026. TubeAnalytics is the brand I measured. Trial prices change.",
+  },
+  'claude-design-website-redesign': {
+    title: "Claude Design to a live site kit",
+    steps: [["Import","Load design.md and register preview cards"],["GitHub","Grant Claude Design access to the repo"],["Handoff","Fetch the kit in Claude Code or Codex"]],
+    note: "28 April 2026. TubeAnalytics is my product. Haiku made no visible change.",
+  },
+  'claude-design-getting-started': {
+    title: "A first Claude Design pitch deck",
+    steps: [["Open","Use the Claude Design research preview"],["Prompt","Upload a screenshot and answer the questions"],["Export","Download PDF, PowerPoint, or HTML"]],
+    note: "22 April 2026. TubeAnalytics is my product. Research preview details change.",
+  },
+  'kilo-code-ai-visibility-optimizer': {
+    title: "A custom AI visibility skill in Kilo Code",
+    steps: [["Install","Use the Kilo Code CLI or the tutorial"],["Skill","Turn a playbook into optimizer files"],["Score","Run it on a blog URL you own"]],
+    note: "2 May 2026. TubeAnalytics is my product. Scores are from that run.",
+  },
+  'free-claude-code-setup': {
+    title: "Run Claude Code through a free proxy",
+    steps: [["Clone","Copy the GitHub repo into a folder"],["Keys","Add NVIDIA NIM and OpenRouter"],["Proxy","Start the local server, then Claude"]],
+    note: "5 May 2026. The Next.js app was not finished on camera.",
+  },
   'hermes-agent-scheduled-jobs': {
     title: "CLI cron jobs inside Hermes Agent",
     steps: [["Install","Paste the site curl command and run hermes setup"],["Ask","Let the agent recommend jobs for the business"],["Manage","List, pause or trigger jobs in the desktop app"]],

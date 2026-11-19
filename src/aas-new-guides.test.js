@@ -65,6 +65,19 @@ const BATCH02 = [
   ['hermes-agent-scheduled-jobs', ['DB-9bW85TKY'], 'Hermes Agent: Install and Schedule CLI Cron Jobs', 'Install Hermes Agent, run hermes setup with DeepSeek V4 Flash, then create CLI cron jobs and manage them in the desktop app.'],
 ];
 
+const BATCH03 = [
+  ['free-claude-code-setup', ['Qb6RG0-8O1k'], 'Free Claude Code: NIM and OpenRouter Proxy', 'Clone Free Claude Code, add NVIDIA NIM and OpenRouter keys, start the local proxy, then try a Next.js build. The app was unfinished.'],
+  ['kilo-code-ai-visibility-optimizer', ['LoNsDme0XQI'], 'Kilo Code: AI Visibility Optimizer Skill', 'Use Kilo Code to turn an AI visibility playbook into a skill, then score a TubeAnalytics post. Scores are from 2 May 2026.'],
+  ['claude-design-getting-started', ['yHaBYtUnzBg'], 'Claude Design: First Pitch Deck Walkthrough', 'Open Claude Design, upload a screenshot, and generate a 10-slide investor deck. I used TubeAnalytics, which I own.'],
+  ['claude-design-website-redesign', ['n3NO40juUBo'], 'Redesign a Site in Claude Design', 'Import design.md into Claude Design, connect GitHub, then hand the kit to Claude Code and Codex. TubeAnalytics is my product.'],
+  ['geo-aeo-tracker-github', ['3X2VU7EyaEU'], 'Free GEO/AEO Tracker with Bright Data', 'Clone the GEO/AEO tracker, add Bright Data, run an AEO audit, then schedule 12-hour checks. Figures are from 27 April 2026.'],
+  ['claude-code-video-editing-skill-github', ['ztEj6zCJh5k'], 'Install video-use in Claude Code', 'Install the video-use GitHub skill in Claude Code, then prompt it to cut a 9:16 short with FFmpeg and Faster Whisper.'],
+  ['chatgpt-images-2-getting-started', ['FBlN3qWR9kg'], 'ChatGPT Images 2.0: First Tests and Edits', 'Open ChatGPT Images 2.0, run gallery-style prompts, then try selection edits, a caricature, a blueprint and an ISBN mockup.'],
+  ['claude-code-routines', ['AO8NoHPU3e0'], 'Claude Code Routines: Email, PRs and Cron', 'Set up Claude Code routines for email triage, GitHub PR reviews, calendar and a daily TubeAnalytics speed audit.'],
+  ['otterly-ai-visibility-tracking', ['pDrMGahPnwc'], 'Otterly AI: Track Brand Mentions in LLMs', 'Tour Otterly AI brand coverage, citations and crawl checks for TubeAnalytics. I said the signup link is a referral.'],
+  ['cline-ai-coding-agent', ['c_WK6TImkNQ'], 'Cline: Install the Free Coding Agent', 'Install Cline with npm, open it in an IDE, pick a free model, then run a GEO pass on an existing repo. No to-do app was built.'],
+];
+
 test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
   const hub = await read('public/guides.html');
   const sitemap = await read('public/sitemap.xml');
@@ -99,6 +112,38 @@ test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and 
     }
     assert.doesNotMatch(html, /<iframe/, slug);
     assert.doesNotMatch(html, /connect-claude-code-codex-to-grokbot/, slug);
+  }
+});
+
+test('batch 03 AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  const collection = schemas(hub).find(item => item['@type'] === 'CollectionPage');
+  assert.equal(BATCH03.length, 10);
+  for (const [slug, ids, title, description] of BATCH03) {
+    const html = await read(`public/guides/${slug}.html`);
+    const url = `${site}/guides/${slug}.html`;
+    assert.equal(decode(html.match(/<title>(.*?)<\/title>/)[1]), title, slug);
+    assert.equal(decode(html.match(/<meta name="description" content="([^"]*)">/)[1]), description, slug);
+    assert.match(html, /<meta name="robots" content="index,follow">/, slug);
+    assert.ok(html.includes(`<link rel="canonical" href="${url}">`), slug);
+    assert.ok(html.includes(`<h1>${title}</h1>`), slug);
+    const article = schemas(html).find(item => item['@type'] === 'Article');
+    const crumbs = schemas(html).find(item => item['@type'] === 'BreadcrumbList');
+    const faq = schemas(html).find(item => item['@type'] === 'FAQPage');
+    assert.equal(article.headline, title, slug);
+    assert.equal(article.url, url, slug);
+    assert.equal(article.description, description, slug);
+    assert.equal(faq.url, url, slug);
+    assert.equal(crumbs.itemListElement[2].item, url, slug);
+    assert.match(hub, new RegExp(`<a href="/guides/${slug}\\.html">`), slug);
+    assert.ok(collection.mainEntity.itemListElement.some(item => item.url === url), slug);
+    assert.ok(sitemap.includes(`<loc>${url}</loc><lastmod>${article.dateModified}</lastmod>`), slug);
+    assert.ok(llms.includes(`](${url})`), slug);
+    const embeds = [...html.matchAll(/data-embed="https:\/\/www.youtube-nocookie\.com\/embed\/([\w-]{11})"/g)].map(match => match[1]);
+    assert.deepEqual(embeds, ids, slug);
+    assert.doesNotMatch(html, /<iframe/, slug);
   }
 });
 
@@ -179,7 +224,22 @@ test('excluded existing-URL revisions and the unpublished connect path stay out 
   assert.doesNotMatch(openrouter, /data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/Qb6RG0-8O1k"/);
   const hub = await read('public/guides.html');
   assert.doesNotMatch(hub, /qQVAnp4-EpI/);
-  assert.doesNotMatch(hub, /Qb6RG0-8O1k/);
+  const openrouterCard = hub.match(/<li class="guide"><img[^>]*>\s*<div><h3><a href="\/guides\/openrouter-setup\.html">[\s\S]*?<\/li>/)?.[0] ?? '';
+  assert.doesNotMatch(openrouterCard, /Qb6RG0-8O1k/);
+});
+
+test('batch 03 watch titles route to the new dedicated guides', () => {
+  const route = title => guides.find(([pattern]) => pattern.test(title))?.[1];
+  assert.equal(route('How To Build Apps Using Free Claude Code!'), '/guides/free-claude-code-setup.html');
+  assert.equal(route('I Built an AI Visibility Optimizer – Here’s How It Works'), '/guides/kilo-code-ai-visibility-optimizer.html');
+  assert.equal(route("I Tested CLAUDE DESIGN And It's Incredible!"), '/guides/claude-design-getting-started.html');
+  assert.equal(route('I Redesigned My Website In Claude Design!'), '/guides/claude-design-website-redesign.html');
+  assert.equal(route('Optimize Your AI Visibility Using This Free Tracker!'), '/guides/geo-aeo-tracker-github.html');
+  assert.equal(route('I Built an AI Video Editor with Claude Code'), '/guides/claude-code-video-editing-skill-github.html');
+  assert.equal(route('CHATGPT IMAGES 2.0 Is Insanely Useful!'), '/guides/chatgpt-images-2-getting-started.html');
+  assert.equal(route("Claude Routines Just Dropped and It's a Game Changer!"), '/guides/claude-code-routines.html');
+  assert.equal(route("Your Competitors Are Winning AI Search (Here's How To Beat Them!)"), '/guides/otterly-ai-visibility-tracking.html');
+  assert.equal(route('How to Build Web Apps for Free Using This AI Agent'), '/guides/cline-ai-coding-agent.html');
 });
 
 test('the rocket guide stays a qualified case study without reconstructing the prompt', async () => {
