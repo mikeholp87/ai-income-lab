@@ -771,6 +771,21 @@ test('reviewed spoken disclosures add public sponsored builds without treating a
   assert.deepEqual(snapshot.map(video => video.id), eligible.map(video => video.id));
 });
 
+test('competing 9Router and Codex watch pages are titled as video and lead with the written guide', () => {
+  const cases = [
+    ['miBtL2fVkpg', '/guides/9router-setup.html', 'Video: 9Router providers, fallbacks and coding tools'],
+    ['tzSGF7gu6EE', '/guides/9router-cost-tracking-fallbacks.html', 'Video: 9Router cost tracking, combos and fallback'],
+    ['geKngm3sg3w', '/guides/9router-setup.html', 'Video: 9Router 3-tier fallback, OAuth and Tailscale'],
+    ['tR7AYN5FiqA', '/guides/codex-cli.html', 'Video: Codex CLI walkthrough, Cloud review and deploy'],
+  ];
+  for (const [id, href, title] of cases) {
+    const html = renderWatch(uploads.find(video => video.id === id));
+    assert.ok(html.includes(`<title>${title}</title>`), id);
+    assert.ok(html.includes(`<h1>${title}</h1>`), id);
+    assert.ok(html.indexOf(`href="${href}"`) < html.indexOf('class="description"'), `${id} should name the written guide before the recording text`);
+  }
+});
+
 test('watch page titles never reuse a written guide title or its lead phrase', async () => {
   const dir = new URL('../public/guides/', import.meta.url);
   const guideTitles = await Promise.all((await readdir(dir)).filter(file => file.endsWith('.html')).map(async file => (await readFile(new URL(file, dir), 'utf8')).match(/<title>(.*?)<\/title>/)[1].replace(/ \| Mike Holp$/, '').replace(/&amp;/g, '&')));

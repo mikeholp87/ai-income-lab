@@ -369,7 +369,9 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(ccvc, /"dateModified":"2026-11-12"/);
   assert.match(ccvc, /Updated <time datetime="2026-11-12">November 12, 2026<\/time>/);
   const hermes = await read('public/guides/hermes-desktop.html');
-  assert.match(hermes, /<title>Hermes Desktop: /);
+  assert.match(hermes, /<title>Install Hermes Agent on Mac, Windows or Linux</);
+  const nine = await read('public/guides/9router-setup.html');
+  assert.match(nine, /<title>9Router: npm install, port 20128, skip-update</);
   assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
   const n8n = await read('public/guides/self-host-n8n.html');
   assert.match(n8n, /<h3 id="docker">Run it in Docker<\/h3>/);
