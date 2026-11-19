@@ -66,16 +66,16 @@ const BATCH02 = [
 ];
 
 const BATCH03 = [
-  ['free-claude-code-setup', ['Qb6RG0-8O1k'], 'Free Claude Code: NIM and OpenRouter Proxy', 'Clone Free Claude Code, add NVIDIA NIM and OpenRouter keys, start the local proxy, then try a Next.js build. The app was unfinished.'],
-  ['kilo-code-ai-visibility-optimizer', ['LoNsDme0XQI'], 'Kilo Code: AI Visibility Optimizer Skill', 'Use Kilo Code to turn an AI visibility playbook into a skill, then score a TubeAnalytics post. Scores are from 2 May 2026.'],
-  ['claude-design-getting-started', ['yHaBYtUnzBg'], 'Claude Design: First Pitch Deck Walkthrough', 'Open Claude Design, upload a screenshot, and generate a 10-slide investor deck. I used TubeAnalytics, which I own.'],
-  ['claude-design-website-redesign', ['n3NO40juUBo'], 'Redesign a Site in Claude Design', 'Import design.md into Claude Design, connect GitHub, then hand the kit to Claude Code and Codex. TubeAnalytics is my product.'],
-  ['geo-aeo-tracker-github', ['3X2VU7EyaEU'], 'Free GEO/AEO Tracker with Bright Data', 'Clone the GEO/AEO tracker, add Bright Data, run an AEO audit, then schedule 12-hour checks. Figures are from 27 April 2026.'],
-  ['claude-code-video-editing-skill-github', ['ztEj6zCJh5k'], 'Install video-use in Claude Code', 'Install the video-use GitHub skill in Claude Code, then prompt it to cut a 9:16 short with FFmpeg and Faster Whisper.'],
-  ['chatgpt-images-2-getting-started', ['FBlN3qWR9kg'], 'ChatGPT Images 2.0: First Tests and Edits', 'Open ChatGPT Images 2.0, run gallery-style prompts, then try selection edits, a caricature, a blueprint and an ISBN mockup.'],
-  ['claude-code-routines', ['AO8NoHPU3e0'], 'Claude Code Routines: Email, PRs and Cron', 'Set up Claude Code routines for email triage, GitHub PR reviews, calendar and a daily TubeAnalytics speed audit.'],
-  ['otterly-ai-visibility-tracking', ['pDrMGahPnwc'], 'Otterly AI: Track Brand Mentions in LLMs', 'Tour Otterly AI brand coverage, citations and crawl checks for TubeAnalytics. I said the signup link is a referral.'],
-  ['cline-ai-coding-agent', ['c_WK6TImkNQ'], 'Cline: Install the Free Coding Agent', 'Install Cline with npm, open it in an IDE, pick a free model, then run a GEO pass on an existing repo. No to-do app was built.'],
+  ['free-claude-code-setup', ['Qb6RG0-8O1k'], 'Free Claude Code GitHub Setup: NIM and OpenRouter Proxy', 'Set up Free Claude Code from GitHub: add NVIDIA NIM and OpenRouter keys, start the Claude Code proxy on port 8082, then test it. The app was unfinished.'],
+  ['kilo-code-ai-visibility-optimizer', ['LoNsDme0XQI'], 'Kilo Code Skills: Build an AI Visibility Optimizer', 'Build a custom Kilo Code skill from an AI visibility playbook, then score a TubeAnalytics post. I own TubeAnalytics. Scores are from 2 May 2026.'],
+  ['claude-design-getting-started', ['yHaBYtUnzBg'], 'How to Use Claude Design: First Pitch Deck Tutorial', 'How to use Claude Design: open claude.ai/design, upload a screenshot, answer its questions and export a 10-slide deck. I used TubeAnalytics, which I own.'],
+  ['claude-design-website-redesign', ['n3NO40juUBo'], 'Claude Design Website Redesign: design.md to Claude Code', 'Redesign a website in Claude Design: import design.md, build a design system from GitHub, then hand off to Claude Code and Codex. I own TubeAnalytics.'],
+  ['geo-aeo-tracker-github', ['3X2VU7EyaEU'], 'Free AEO Tracker: GEO/AEO Tracker GitHub with Bright Data', 'Set up the free open-source GEO/AEO tracker from GitHub: add Bright Data, run an AEO audit, then schedule 12-hour checks. Figures from 27 April 2026.'],
+  ['claude-code-video-editing-skill-github', ['ztEj6zCJh5k'], 'Claude Code Video Editing: Install the video-use Skill', 'Claude Code video editing with the video-use GitHub skill: install it, then prompt a 9:16 short with FFmpeg and Faster Whisper. Tested 25 April 2026.'],
+  ['chatgpt-images-2-getting-started', ['FBlN3qWR9kg'], 'ChatGPT Images 2.0: How to Use It, First Tests and Edits', 'How to use ChatGPT Images 2.0: open image mode, run gallery-style prompts, then try selection edits, a caricature, a blueprint and an ISBN mockup.'],
+  ['claude-code-routines', ['AO8NoHPU3e0'], 'Claude Code Routines: Scheduled Tasks, PRs and Email', 'Set up Claude Code routines for email triage, GitHub PR reviews, a 9:00 a.m. calendar list and a scheduled TubeAnalytics speed audit. I own TubeAnalytics.'],
+  ['otterly-ai-visibility-tracking', ['pDrMGahPnwc'], 'Otterly AI Walkthrough: Brand Mentions, Citations, Pricing', 'Otterly AI walkthrough: brand coverage, citations, crawl checks and the pricing I quoted, on TubeAnalytics, which I own. The signup link is a referral.'],
+  ['cline-ai-coding-agent', ['c_WK6TImkNQ'], 'Cline AI: Install the CLI and Free Coding Agent', 'Install Cline AI with npm i -g cline, add the IDE extension, pick a free model, then run a GEO pass on an existing repo. No to-do app was built.'],
 ];
 
 test('the 21 new AAS guides have exact metadata, canonicals, robots, schema and discovery', async () => {

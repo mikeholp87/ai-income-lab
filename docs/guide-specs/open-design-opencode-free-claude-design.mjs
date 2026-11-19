@@ -38,7 +38,7 @@ export default {
     'Video: <a href="https://www.youtube.com/watch?v=rZh4zVT2LKY">The Best Claude Design Alternative You Can Run On Your PC</a> (May 2026)',
     'Open Design: <a href="https://open-design.ai/">open-design.ai</a> · <a href="https://github.com/nexu-io/open-design">GitHub repository</a> · OpenCode: <a href="https://opencode.ai">opencode.ai</a>',
   ],
-  related: [['/guides/opendesign-linux-slides.html', 'Open Design on Linux'], ['/guides/opencode-free-models-go-plan-and-skills.html', 'OpenCode free models and skills'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/free-claude-code-vs-opencode-codex.html', 'Free Claude Code vs OpenCode vs Codex'], ['/guides/tubeanalytics-build-log-claude-code-opencode.html', 'TubeAnalytics build log']],
+  related: [['/guides/opendesign-linux-slides.html', 'Open Design on Linux'], ['/guides/opencode-free-models-go-plan-and-skills.html', 'OpenCode free models and skills'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/free-claude-code-vs-opencode-codex.html', 'Free Claude Code vs OpenCode vs Codex'], ['/guides/tubeanalytics-build-log-claude-code-opencode.html', 'TubeAnalytics build log'], ['/guides/claude-design-getting-started.html', "How to Use Claude Design: First Pitch Deck Tutorial"]],
   next: ['/guides/opendesign-linux-slides.html', 'Open Design on Linux'],
   more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
   linkFrom: ['/guides/opendesign-linux-slides.html'],
