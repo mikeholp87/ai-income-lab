@@ -6,6 +6,16 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'hermes-agent-scheduled-jobs.html': 'DB-9bW85TKY',
+  'opusclip-alternative-viral-clips.html': 'w_MoA8lpWTg',
+  'codex-website-redesign.html': 'MABL6XZgy4g',
+  'browseract-web-scraping.html': 'quDDekuPQNI',
+  'opencode-linkedin-post-generator.html': 'vvDdXF2Yuz8',
+  'ai-coding-agent-skills-top-10.html': 'kxp_dF6NEbg',
+  'hermes-agent-ai-operating-system.html': 'kUbhr1QGYeU',
+  'odysseus-brand-deal-agents.html': 'YNpIRq7O3UE',
+  'claude-fable-5-use-cases.html': 'avgG3VtN2C4',
+  'updateforge-package-manager-windows-linux.html': '2ToaOs7HMD0',
   'ai-coding-tutorials-compared.html': 'vmEac5CJcNQ',
   'ai-agent-training-compared.html': 'lumzbY6QV4Y',
   'ai-implementation-coaching-guide.html': 'dVC1Or0Tbo8',
@@ -498,7 +508,8 @@ test('every guide page shows its own branded card and never points at a YouTube 
       continue;
     }
     assert.match(html, new RegExp(`data-embed="https://www\\.youtube-nocookie\\.com/embed/${expectedId}"`));
-    assert.match(html, new RegExp(`<img src="https://i\\.ytimg\\.com/vi/${expectedId}/maxresdefault\\.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">`));
+    const poster = expectedId === 'w_MoA8lpWTg' ? 'hqdefault' : 'maxresdefault';
+    assert.match(html, new RegExp(`<img src="https://i\\.ytimg\\.com/vi/${expectedId}/${poster}\\.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">`));
   }
 });
 
