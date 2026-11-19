@@ -2,6 +2,7 @@
 // "(…)" note removed, so "Claude Code (Opus 5.5)" uses the Claude Code link.
 // Affiliate links come from affiliates.js (copied from the YouTube descriptions) and render with rel="sponsored".
 import { affiliates, logoSlug } from './affiliates.js';
+import { visiscanPaths, visiscanUrl } from './visiscan-links.js';
 
 const links = [
   ...affiliates.filter(affiliate => affiliate.tools.length).map(affiliate => [affiliate.tools, affiliate.url, { name: affiliate.name, slug: logoSlug(affiliate) }]),
@@ -209,7 +210,7 @@ const links = [
   [['Android TV'], 'https://www.android.com/tv/'],
   [['CleanYourTV'], 'https://github.com/Gathin23/cleanyourtv'],
   [['RankPrompt'], 'https://www.rankprompt.com'],
-  [['VisiScan'], 'https://www.visiscan.app'],
+  [['VisiScan'], visiscanUrl(visiscanPaths.tool, 'watch')],
   [['Index Guru'], 'https://indexguru.com'],
   [['Synthesia'], 'https://www.synthesia.io'],
   [['Canva'], 'https://www.canva.com'],
