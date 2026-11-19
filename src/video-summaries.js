@@ -11430,7 +11430,7 @@ Object.assign(videoSummaries, lateSummaries);
 export const listingSummaries = {
   "IIcekvpPuqo": "Mike shows the public Aegis VPN Linux app, imports free Proton test server configs, and checks DNS leak protection, a kill switch, and a speed test.",
   "XEmJGf5CHwk": "Mike uses ChatGPT and Claude Code in Herdr to start Aegis VPN, a WireGuard client for Linux and Windows, then compiles an early Tauri and Rust build.",
-  "ndG48skyZZY": "Mike runs a Rank Prompt AI visibility scan on VisiScan, then connects its MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
+  "ndG48skyZZY": "Mike uses Rank Prompt to scan VisiScan's AI visibility, then connects the Rank Prompt MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
   "tv_A-CN76Cg": "Mike builds a GrokBot job search agent with the Treg plugin. It rewrites his resume for ATS checks and queues remote job emails for his approval.",
   "p_qQNolHR-c": "Generate and edit images with Google's Nano Banana in Gemini: text-to-image, reference image edits, free access options and a speed comparison.",
   "t0nQSyryTPg": "A tour of community demos made with GPT-6 Astra: exploding 3D models, a working V8 engine, browser racing games and a Counter-Strike 2 recreation.",

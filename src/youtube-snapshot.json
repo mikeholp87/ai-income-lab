@@ -1,12 +1,42 @@
 {
   "videos": [
     {
+      "id": "IIcekvpPuqo",
+      "title": "I Built a VPN That Anyone Can Use for Free!",
+      "published": "2026-11-17T03:46:47Z",
+      "views": 438,
+      "duration": "12:32",
+      "summary": "Mike shows the public Aegis VPN Linux app, imports free Proton test server configs, and checks DNS leak protection, a kill switch, and a speed test.",
+      "embeddable": true,
+      "heading": "I built a VPN that Anyone can use for free"
+    },
+    {
+      "id": "XEmJGf5CHwk",
+      "title": "I Built My Own VPN Instead of Paying for One!",
+      "published": "2026-11-16T06:37:07Z",
+      "views": 866,
+      "duration": "15:58",
+      "summary": "Mike uses ChatGPT and Claude Code in Herdr to start Aegis VPN, a WireGuard client for Linux and Windows, then compiles an early Tauri and Rust build.",
+      "embeddable": true,
+      "heading": "I built my own VPN instead of paying for one"
+    },
+    {
+      "id": "2ToaOs7HMD0",
+      "title": "I Got Tired of Outdated Software So I Built This App (Windows & Linux)",
+      "published": "2026-11-14T10:28:43Z",
+      "views": 468,
+      "duration": "7:15",
+      "summary": "UpdateForge is a free open-source Windows and Linux package manager GUI — update all your apps in one click across apt, npm, and Cargo (Winget/Chocolatey-style workflow). Built with Claude Code. UniGetUI alternative with a self-learning recommended apps tab.",
+      "embeddable": true,
+      "heading": "I got Tired of Outdated Software so I built this app (Windows & Linux)"
+    },
+    {
       "id": "ndG48skyZZY",
       "title": "Your Business Is Invisible to AI Search (Here's the Fix)",
       "published": "2026-11-12T03:40:14Z",
-      "views": 83,
+      "views": 159,
       "duration": "20:25",
-      "summary": "Mike runs a Rank Prompt AI visibility scan on VisiScan, then connects its MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
+      "summary": "Mike uses Rank Prompt to scan VisiScan's AI visibility, then connects the Rank Prompt MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
       "embeddable": true,
       "heading": "Your business is invisible to AI search (here's the fix)"
     },
@@ -14,17 +44,17 @@
       "id": "7JN-sMkJBCs",
       "title": "Let GrokBot Find And Apply To Jobs For You",
       "published": "2026-11-11T15:43:48Z",
-      "views": 105,
+      "views": 208,
       "duration": "8:48",
-      "summary": "Build a personal AI agent that automates your job search. This system finds, sources, and applies to remote jobs for you using GrokBot.",
+      "summary": "Grok Bot tutorial: use GrokBot as an AI job search agent that finds remote jobs, optimizes your resume for ATS, and helps automate job applications. Full setup — job app agent, sub-agents, ATS resume download, remote + salary filters.",
       "embeddable": true,
       "heading": "Let GrokBot find and Apply to jobs for you"
     },
     {
       "id": "V3ETwJAR5-I",
-      "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
+      "title": "Grok Bot Credits: Why They Run Out So Fast (And How To Fix It)",
       "published": "2026-11-10T04:36:16Z",
-      "views": 193,
+      "views": 728,
       "duration": "14:05",
       "summary": "See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.",
       "embeddable": true,
@@ -34,46 +64,16 @@
       "id": "YYZSR1p32EQ",
       "title": "Herdr On Windows Is Better Than I Expected!",
       "published": "2026-11-09T04:13:12Z",
-      "views": 882,
+      "views": 1353,
       "duration": "11:03",
       "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The walkthrough also tours an Update Forge app build.",
       "embeddable": true,
       "heading": "Herdr on Windows: Installation, Themes, Mods and Usage"
-    },
-    {
-      "id": "IV6q81wRay4",
-      "title": "New HERDR Desktop App Is A Game Changer!",
-      "published": "2026-11-07T07:05:11Z",
-      "views": 14983,
-      "duration": "11:17",
-      "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
-      "embeddable": true,
-      "heading": "Herdr Desktop Setup: Workspaces, Themes and Claude Code"
-    },
-    {
-      "id": "V0PoYhOprBI",
-      "title": "3 Open Source Projects I Built That You Need to Try!",
-      "published": "2026-11-05T08:47:59Z",
-      "views": 281,
-      "duration": "10:36",
-      "summary": "Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.",
-      "embeddable": true,
-      "heading": "Tasky, Restic-Studio and Luma-Launcher: Project Demos"
-    },
-    {
-      "id": "phVQuQMojA8",
-      "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
-      "published": "2026-11-03T07:48:25Z",
-      "views": 453,
-      "duration": "4:17",
-      "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
-      "embeddable": true,
-      "heading": "Claude Code Task-Manager Demo: Processes and Packaging"
     }
   ],
   "channel": {
-    "subscribers": 5410,
-    "views": 586256,
-    "videos": 365
+    "subscribers": 5480,
+    "views": 609017,
+    "videos": 376
   }
 }
