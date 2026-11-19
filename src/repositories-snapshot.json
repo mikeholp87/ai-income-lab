@@ -1,13 +1,18 @@
 [
   {
+    "name": "aegis-vpn",
+    "description": "Aegis VPN For Linux and Windows",
+    "url": "https://github.com/mikeholp87/aegis-vpn"
+  },
+  {
     "name": "apt",
-    "description": "Signed apt repository for mikeholp87's projects",
+    "description": "Signed apt repository for installing Mike Holp's Linux apps (Tasky, Luma Launcher, Restic Studio and more) with apt install",
     "url": "https://mikeholp87.github.io/apt/"
   },
   {
     "name": "update-forge",
     "description": "Auto Updater App For Windows",
-    "url": "https://github.com/mikeholp87/update-forge"
+    "url": "https://mikeholp87.github.io/update-forge/"
   },
   {
     "name": "herdr-mods",
@@ -51,7 +56,7 @@
   },
   {
     "name": "trading-app",
-    "description": "Alpaca Trading App",
+    "description": "Alpaca trading app (JavaScript)",
     "url": "https://github.com/mikeholp87/trading-app"
   }
 ]
