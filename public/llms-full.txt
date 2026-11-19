@@ -66,15 +66,15 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Claude Design: First Pitch Deck Walkthrough](https://www.ai-automation-station.com/guides/claude-design-getting-started.html): Open Claude Design, upload a screenshot, and generate a 10-slide investor deck. I used TubeAnalytics, which I own.
 - [Kilo Code: AI Visibility Optimizer Skill](https://www.ai-automation-station.com/guides/kilo-code-ai-visibility-optimizer.html): Use Kilo Code to turn an AI visibility playbook into a skill, then score a TubeAnalytics post. Scores are from 2 May 2026.
 - [Free Claude Code: NIM and OpenRouter Proxy](https://www.ai-automation-station.com/guides/free-claude-code-setup.html): Clone Free Claude Code, add NVIDIA NIM and OpenRouter keys, start the local proxy, then try a Next.js build. The app was unfinished.
-- [Hermes Agent: Install and Schedule CLI Cron Jobs](https://www.ai-automation-station.com/guides/hermes-agent-scheduled-jobs.html): Install Hermes Agent, run hermes setup with DeepSeek V4 Flash, then create CLI cron jobs and manage them in the desktop app.
-- [ShortForge Follow-up: Detect, Score and Export Clips](https://www.ai-automation-station.com/guides/opusclip-alternative-viral-clips.html): Demo Short Forge after the app build: import a YouTube URL or a file, transcribe with Whisper, score clips and export shorts locally.
+- [Hermes Agent CLI Cron Jobs: Install and Schedule](https://www.ai-automation-station.com/guides/hermes-agent-scheduled-jobs.html): Install Hermes Agent from the CLI, run hermes setup, then create cron jobs and manage them with hermes cron list.
+- [Opus Clip Alternative: Detect, Score and Export Clips](https://www.ai-automation-station.com/guides/opusclip-alternative-viral-clips.html): An Opus Clip alternative demo of Short Forge: import a YouTube URL or file, transcribe with Whisper, score clips and export shorts locally.
 - [Rebuild a Site in Codex with Vite and React](https://www.ai-automation-station.com/guides/codex-website-redesign.html): Ask Claude Desktop for a replication prompt, rebuild a Lovable site in Codex with Vite and React, then deploy to Vercel and read PageSpeed scores.
-- [BrowserAct: Scrape Jobs and Build a Board](https://www.ai-automation-station.com/guides/browseract-web-scraping.html): Install the BrowserAct Skill Forge scraper in Codex, scrape We Work Remotely listings, and build a searchable React job board. BrowserAct sponsored it.
+- [BrowserAct: Scrape Jobs and Build a Board](https://www.ai-automation-station.com/guides/browseract-web-scraping.html): BrowserAct web scraping in Codex: install Skill Forge, scrape We Work Remotely jobs, and build a searchable React board. BrowserAct sponsored it.
 - [OpenCode: Turn a YouTube Video into LinkedIn Posts](https://www.ai-automation-station.com/guides/opencode-linkedin-post-generator.html): Build an OpenCode script that transcribes a video and writes five LinkedIn post variants. Posting stays manual in this walkthrough.
-- [Install Ten skills.sh Coding Agent Skills](https://www.ai-automation-station.com/guides/ai-coding-agent-skills-top-10.html): Update and install skills.sh agent skills with npx, then run design, React, SEO, page speed and GEO audits in Codex and OpenCode.
-- [Build an AI Operating System Dashboard in Hermes](https://www.ai-automation-station.com/guides/hermes-agent-ai-operating-system.html): Prompt Hermes Agent and OpenCode to build a local React operations dashboard, then try YouTube API credentials on mock data.
-- [Odysseus Brand-Deal Agent: Research and Outreach](https://www.ai-automation-station.com/guides/odysseus-brand-deal-agents.html): Build an Odysseus sponsorship agent that researches brands, drafts pitches and schedules Monday outreach. The $81,000 figure was an estimate.
-- [Claude Fable 5 Use Cases: Security and Checkout](https://www.ai-automation-station.com/guides/claude-fable-5-use-cases.html): Switch Claude Code to Fable 5, run a security audit and a checkout review on TubeAnalytics, and watch how fast Pro credits drain.
+- [npx skills: Install Ten Coding Agent Skills](https://www.ai-automation-station.com/guides/ai-coding-agent-skills-top-10.html): Run npx skills update and npx skills add, then use ten coding agent skills for design, React, SEO, page speed and GEO audits.
+- [Hermes Agent Dashboard: Local AI Operating System](https://www.ai-automation-station.com/guides/hermes-agent-ai-operating-system.html): Build a Hermes Agent dashboard: prompt a local React operations UI, then try YouTube API credentials on mock data.
+- [Odysseus AI Brand-Deal Agent: Research and Outreach](https://www.ai-automation-station.com/guides/odysseus-brand-deal-agents.html): Build an Odysseus AI sponsorship agent that researches brands, drafts pitches and schedules Monday outreach. The $81,000 figure was an estimate.
+- [Claude Code Fable 5: Security and Checkout](https://www.ai-automation-station.com/guides/claude-fable-5-use-cases.html): How to use Fable 5 in Claude Code: switch the model, run a security audit and a checkout review on TubeAnalytics.
 - [UpdateForge: Windows and Linux Package Manager GUI](https://www.ai-automation-station.com/guides/updateforge-package-manager-windows-linux.html): Install UpdateForge, Mike's own open-source package manager GUI for Windows and Linux, then update apps across apt, npm and Cargo.
 - [AI Coding Tutorials Compared: Claude Code, OpenCode, More](https://www.ai-automation-station.com/guides/ai-coding-tutorials-compared.html): Compare ways to learn AI-assisted coding: official Claude Code and OpenCode docs, freeCodeCamp, DeepLearning.AI and my build-along tutorials.
 - [AI Agent Training Compared: Free Courses and Coaching](https://www.ai-automation-station.com/guides/ai-agent-training-compared.html): Compare ways to learn building AI agents: Zapier Academy, Make, n8n, DeepLearning.AI, Maven and AI Income Lab, with real build mistakes left in.
@@ -316,7 +316,7 @@ The one practical routine is the YouTube SEO one: use a popular custom GPT for Y
 https://www.ai-automation-station.com/guides/ai-automation.html (updated 2026-11-11)
 AI automation combines rules-based automation with an AI step that classifies, extracts, drafts or decides inside a workflow, so an incoming event can become a checked result and a useful action without someone manually copying information between every stage of the process.
 
-### Install Ten skills.sh Coding Agent Skills
+### npx skills: Install Ten Coding Agent Skills
 https://www.ai-automation-station.com/guides/ai-coding-agent-skills-top-10.html (updated 2026-11-19)
 On 1 June 2026 I installed ten third-party skills from skills.sh with npx and ran them in Codex, OpenCode and VS Code. The registry page showed about 620,000 skills. I updated with npx skills update, then pasted npx skills add from a skill page. The front-end design skill rewrote a light theme. Other runs covered Vercel React and Next.js practices, SEO, AI SEO, PageSpeed and Lighthouse, and GEO content. Quoted install counts and scores are what I showed that day. This is the ten-skill tour, not the free-models OpenCode setup.
 
@@ -360,46 +360,6 @@ I use Trakkr to see how AI answer engines cite my site, how often AI crawlers vi
 https://www.ai-automation-station.com/guides/ai-workflow-courses-compared.html (updated 2026-11-17)
 If you want to build AI workflows, start with the free vendor academies: Make Academy for Make.com and the n8n Academy for n8n both teach their own tools at no cost. Use Zapier’s guides if you are on Zapier, and DeepLearning.AI if you want AI engineering fundamentals. Pay for a course or community only when you want feedback, templates or live help. I run AI Income Lab, a paid Skool community, so I list it last and say where the free options are the better choice.
 
-### Free Claude Code: NIM and OpenRouter Proxy
-https://www.ai-automation-station.com/guides/free-claude-code-setup.html (updated 2026-11-19)
-A 5 May 2026 setup of the Free Claude Code GitHub proxy: cancel Claude Pro if you want, clone the repo, add NVIDIA NIM and OpenRouter keys, start the proxy on port 8082, then run Claude. GLM 4.7 was slow. StepFun 3.5 Flash on OpenRouter was preferred. A Next.js AI-search app was started and not finished.
-
-### Kilo Code: AI Visibility Optimizer Skill
-https://www.ai-automation-station.com/guides/kilo-code-ai-visibility-optimizer.html (updated 2026-11-19)
-A 2 May 2026 Kilo Code build: turn an AI visibility playbook into a custom skill, then score TubeAnalytics posts. One article failed a 100-word direct-answer rule at 61 words. Another scored 91 then 98 out of 100 after the agent applied its plan. Those scores are the skill's ratings that day. TubeAnalytics is Mike's product.
-
-### Claude Design: First Pitch Deck Walkthrough
-https://www.ai-automation-station.com/guides/claude-design-getting-started.html (updated 2026-11-19)
-A 22 April 2026 first look at Claude Design: upload a TubeAnalytics screenshot, answer pitch questions, get a 10-slide HTML deck, switch from Opus 4.7 to Sonnet 4.6, then export PDF. TubeAnalytics is Mike's product. Research preview from 17 April 2026. Not the later site redesign.
-
-### Redesign a Site in Claude Design
-https://www.ai-automation-station.com/guides/claude-design-website-redesign.html (updated 2026-11-19)
-A 28 April 2026 TubeAnalytics redesign in Claude Design: import design.md, connect a private GitHub repo, skip the Code Web new-app handoff, fetch the kit in Claude Code, hit a weekly credit cap, then let Codex 5.4 update CSS. Haiku reported no further work and the localhost page looked unchanged until Codex. TubeAnalytics is Mike's product.
-
-### Free GEO/AEO Tracker with Bright Data
-https://www.ai-automation-station.com/guides/geo-aeo-tracker-github.html (updated 2026-11-19)
-A 27 April 2026 setup of the free GEO/AEO tracker GitHub repo: npm install, Bright Data trial key, Bright Data CLI and MCP, localhost 3000 dashboard, 17 of 20 AEO checks, about 95 percent visibility on TubeAnalytics, competitor URLs, and a 12-hour schedule. OpenRouter was not finished. TubeAnalytics is Mike's product.
-
-### Install video-use in Claude Code
-https://www.ai-automation-station.com/guides/claude-code-video-editing-skill-github.html (updated 2026-11-19)
-A 25 April 2026 install of the open-source video-use GitHub skill in Claude Code. First 9:16 prompt still had extra PIP. Second pass used Faster Whisper, skipped ElevenLabs, burned in subtitles, and exported about a 17-second 2.1 MB short. Not the later custom long-form editor skill.
-
-### ChatGPT Images 2.0: First Tests and Edits
-https://www.ai-automation-station.com/guides/chatgpt-images-2-getting-started.html (updated 2026-11-19)
-A 23 April 2026 first look at ChatGPT Images 2.0: open image mode on chatgpt.com, run gallery-style prompts that were not read aloud, then selection edits, a selfie caricature, a house blueprint, a sketch-to-photo, and an ISBN-preserving book mockup. Benchmark point gaps were OpenAI's claims. Not the later Images 2.5 sketch workflow.
-
-### Claude Code Routines: Email, PRs and Cron
-https://www.ai-automation-station.com/guides/claude-code-routines.html (updated 2026-11-19)
-An 18 April 2026 Claude Code routines walkthrough: five Pro daily runs, existing email triage, a GitHub PR security event, a 9:00 a.m. calendar list, and an 8:00 a.m. Bangkok TubeAnalytics speed audit. CLI create hit a 401 until Claude auth login. The speed audit returned 403. Weekly usage hit 90 percent. TubeAnalytics is Mike's product.
-
-### Otterly AI: Track Brand Mentions in LLMs
-https://www.ai-automation-station.com/guides/otterly-ai-visibility-tracking.html (updated 2026-11-19)
-A 17 April 2026 Otterly AI dashboard tour for TubeAnalytics: 2-week trial then about $29 a month, about 43 percent brand coverage versus VidIQ around 68 percent, crawlability pass, prompt scores including 100 and 67 out of 100. Signup link is a spoken referral. TubeAnalytics is Mike's product. Not a from-zero setup.
-
-### Cline: Install the Free Coding Agent
-https://www.ai-automation-station.com/guides/cline-ai-coding-agent.html (updated 2026-11-19)
-A 30 March 2026 Cline setup: npm i -g cline, IDE extension in Google Antigravity, free Xiaomi model on a negative credit balance, then a GEO pass on TubeAnalytics that pushed to GitHub. The docs to-do app was copied and not run. TubeAnalytics is Mike's product.
-
 ### Apify agent skills setup in Cursor
 https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-15)
 Install the Apify agent skills with npx skills add apify/agent-skills, add your Apify API token to a .env file as APIFY_TOKEN, and run the lead generation skill from OpenCode in Cursor. In the 5 February 2026 walkthrough, a Google Maps scrape of AI startups in San Francisco wrote 74 leads to a CSV with names and websites but no emails, so a second contact info scrape pulled emails from those sites into another CSV. The same install command can be used in Claude Code, though that path was described, not shown end to end.
@@ -423,6 +383,10 @@ On 26 May 2026 I installed BrowserAct's Skill Forge scraper skill into Codex, sc
 ### Build apps with AI coding agents: a safe first workflow
 https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html (updated 2026-11-14)
 give a coding agent one testable feature at a time. First inspect the project and write down the expected behavior. Let the agent propose a small change, review the files it touched, run the project's checks and compare the result with the requirement before adding another feature.
+
+### ChatGPT Images 2.0: First Tests and Edits
+https://www.ai-automation-station.com/guides/chatgpt-images-2-getting-started.html (updated 2026-11-19)
+On 23 April 2026 I opened chatgpt.com, started Images 2.0, ran OpenAI gallery-style prompts without reading those prompts aloud, then used the selection tool to change hair color and swap rabbits for elephants. I uploaded a selfie for a caricature, turned a house photo into a blueprint, made a sketch photorealistic, and asked for an identical book back cover with the same ISBN, which scanned to an Amazon listing. I repeated OpenAI benchmark talk of about 242 points over Nano Banana Pro 2 and about 300 over GPT Image 1.5. Those are the vendor figures from that day, not a test I ran. This is first use of 2.0, not the later Images 2.5 sketch workflow.
 
 ### ChatGPT Image Editing: Sketch-to-Scene and Local Edits
 https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html (updated 2026-11-11)
@@ -448,6 +412,10 @@ choose a model by testing it on representative examples of your actual task. Com
 https://www.ai-automation-station.com/guides/claude-code-for-beginners.html (updated 2026-11-14)
 Claude Code is Anthropic’s coding agent: it reads your project files, edits code and runs commands from the terminal. It is included in paid Claude plans, starting with Pro at $20 a month. Install it with Anthropic’s native installer, sign in with your subscription account, then ask it to explain one project and make one small change you can inspect.
 
+### Claude Code Routines: Email, PRs and Cron
+https://www.ai-automation-station.com/guides/claude-code-routines.html (updated 2026-11-19)
+On 18 April 2026 I used Claude Code routines in the web UI and the CLI. Pro included five daily runs. I already had a daily email-triage routine. I added a GitHub event routine that reviews PRs for security issues, a 9:00 a.m. calendar list after Google Calendar connected, and an 8:00 a.m. Bangkok speed audit of tubeanalytics.net that was analysis only. CLI create hit a 401 until I ran Claude auth login. The speed audit found every page returning 403 because curl bots were blocked. A weekly blog-strategy routine was still running at the end. Weekly usage was already at 90 percent, so I stopped the speed-test run. TubeAnalytics is my own product.
+
 ### Claude Code Second Brain: Cortex Project Tour
 https://www.ai-automation-station.com/guides/claude-code-second-brain.html (updated 2026-11-15)
 Cortex is a personal Claude Code project that stores business notes in markdown, adds a Radar view and a theme graph, and pulls tools such as VidIQ over MCP. The 17 July 2026 walkthrough is a tour. It is not an installable product, and the LeadScope prompt text was not spoken.
@@ -455,6 +423,10 @@ Cortex is a personal Claude Code project that stores business notes in markdown,
 ### Claude Code Task Manager: Scope, Checks and Packaging
 https://www.ai-automation-station.com/guides/claude-code-task-manager.html (updated 2026-11-11)
 I built a Windows and Linux task manager in Claude Code in about three hours by asking a chat model for a detailed build prompt, then checking the numbers against another system monitor. Start with a small brief, verify each metric against a tool you trust, and only package the app once the values hold up. The source is on GitHub if you would rather build my version than prompt your own.
+
+### Install video-use in Claude Code
+https://www.ai-automation-station.com/guides/claude-code-video-editing-skill-github.html (updated 2026-11-19)
+On 25 April 2026 I installed the open-source video-use skill from GitHub (about 3,000 stars) into Claude Code, invoked /video-use, and asked for a 9:16 1080p 30-second short with talking head on the bottom and screen share on top. The first export still showed picture-in-picture on the top half. A second prompt used Faster Whisper locally, skipped ElevenLabs, burned in subtitles, and output about a 17-second 2.1 MB file at 60 frames per second. Clone and Homebrew lines were copied from GitHub and not read aloud. This is not the custom long-form editor skill.
 
 ### Claude Code Video Editor Skill: Build and Run
 https://www.ai-automation-station.com/guides/claude-code-video-editor-skill.html (updated 2026-11-15)
@@ -464,11 +436,19 @@ In the 15 July 2026 walkthrough, a custom long-form video-editor skill for Claud
 https://www.ai-automation-station.com/guides/claude-code-vs-codex.html (updated 2026-11-12)
 Claude Code and Codex are both terminal coding agents. I use both and send each task to the tool that suits it. That is my own working arrangement, not a benchmark.
 
+### Claude Design: First Pitch Deck Walkthrough
+https://www.ai-automation-station.com/guides/claude-design-getting-started.html (updated 2026-11-19)
+On 22 April 2026 I opened Claude Design, five days after the 17 April launch, uploaded a TubeAnalytics screenshot, and asked for a 10-slide investor pitch. I answered pre-seed, $1 to $3 million, angels, bold tone, and a creators-as-media-companies story. It wrote HTML slides with speaker notes in a few minutes. I switched from Opus 4.7 to Sonnet 4.6 to save credits, then exported a PDF. TubeAnalytics is my own product. This is the first-look deck, not a full site redesign.
+
+### Redesign a Site in Claude Design
+https://www.ai-automation-station.com/guides/claude-design-website-redesign.html (updated 2026-11-19)
+On 28 April 2026 I opened a TubeAnalytics design system in Claude Design, imported a design.md that Claude Code had already written, hit a private-GitHub block, then connected the GitHub app and rebuilt marketing and dashboard kits from source. The Code Web handoff tried to create a new app, so I used the fetch-this-design-file command in the terminal instead. Weekly usage hit 100 percent. I topped up about $5, switched to Haiku at $1 per million tokens versus $3 for Sonnet, and Haiku said nothing more was needed. The localhost site still looked the same until Codex 5.4 updated CSS. TubeAnalytics is my own product.
+
 ### Claude Fable 5 Games: Prompts and Plugins
 https://www.ai-automation-station.com/guides/claude-fable-5-game-prompts.html (updated 2026-11-15)
 The 3 July 2026 walkthrough uses Claude Fable 5 on a small island-game example, then shows effort modes, plan mode, on-screen prompt briefs and the Compound Engineering plugin. The YouTube title says games in seconds. This page only repeats what that session actually ran, not a guaranteed build time.
 
-### Claude Fable 5 Use Cases: Security and Checkout
+### Claude Code Fable 5: Security and Checkout
 https://www.ai-automation-station.com/guides/claude-fable-5-use-cases.html (updated 2026-11-19)
 On 2 July 2026, after Fable 5 came back online, I used it in Claude Code on TubeAnalytics. I switched with /model, set /effort to high, ran a security audit in plan mode, then a trial-conversion and checkout review. Sonnet wrote the prompts. Fable 5 reported no critical, high or medium findings in pending changes, then planned payment-bug fixes. Credits on the Pro plan climbed very fast. For which Claude model to pick, see Claude Opus vs Sonnet vs Haiku vs Fable.
 
@@ -483,6 +463,10 @@ Run the one-line curl command from the Claude SEO GitHub page to install the ski
 ### CleanYourTV with Claude Code: TCL Setup and Risks
 https://www.ai-automation-station.com/guides/cleanyourtv-claude-code.html (updated 2026-11-11)
 Check that your TV runs Android TV or Google TV, turn on USB debugging, paste the CleanYourTV prompt into Claude Code and let it back up the TV before it changes anything. On my TCL it disabled the apps I don't use and installed a much cleaner, faster home screen, but several remote buttons stopped working. Keep the restore command handy and test every button before you call it done.
+
+### Cline: Install the Free Coding Agent
+https://www.ai-automation-station.com/guides/cline-ai-coding-agent.html (updated 2026-11-19)
+On 30 March 2026 I installed Cline, a free coding agent, with npm i -g cline, opened it on localhost, and also installed the IDE extension in Google Antigravity next to Claude Code and Codex. Billing showed negative credits, so I used a free Xiaomi model that spent none. I asked it to optimize TubeAnalytics blog articles for GEO. It edited index copy, category stats, metadata, and author dates, then pushed to GitHub. The docs to-do app prompt was copied and not run. I warned the tasks were fairly CPU intensive. TubeAnalytics is my own product. This is Cline setup, not a from-scratch web app.
 
 ### Codex CLI install: Mac, Windows and Linux
 https://www.ai-automation-station.com/guides/codex-cli.html (updated 2026-11-15)
@@ -540,6 +524,10 @@ Create a free Emergent account, ask ChatGPT to write a long build prompt for you
 https://www.ai-automation-station.com/guides/first-api-request.html (updated 2026-11-14)
 Run a local test before calling a real provider: send one request to the example mock server, read the status code, and assert the result. A wrong key should return 401, an unknown model 404 and a valid request 200. The example needs Node.js 22 or later, costs nothing and never reads your API keys.
 
+### Free Claude Code: NIM and OpenRouter Proxy
+https://www.ai-automation-station.com/guides/free-claude-code-setup.html (updated 2026-11-19)
+On 5 May 2026 I cancelled Claude Pro, cloned the Free Claude Code GitHub project (about 21,000 to 22,000 stars that day), copied .env.example to .env, added an NVIDIA NIM key from build.nvidia.com and an OpenRouter key, then started the local proxy on port 8082. A test reply used NVIDIA NIM GLM 4.7 and was slower than Pro. I later preferred OpenRouter StepFun 3.5 Flash, which I said was 10 cents per million tokens. A Next.js AI-search app started in a new folder and was not demoed finished. This is the community proxy, not the official Claude Code install.
+
 ### Free Claude Code vs OpenCode vs Codex
 https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html (updated 2026-11-15)
 I built an AI search visibility app locally in Next.js using Free Claude Code, OpenCode and Codex, then moved away from Free Claude Code because of repeated API request errors, slow replies and a 401 unauthorized error that came from the order I started the proxy and Claude Code. OpenCode answered quickly on free models, and I preferred Codex at about $20 a month over Claude Pro. This is one project and one person’s experience, not a controlled test.
@@ -551,6 +539,10 @@ In Gamma choose Create new, paste your outline as text, pick Presentation and 16
 ### Gamma for a Conference Workshop: Deck, Site and PDF Export
 https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html (updated 2026-11-15)
 Ask ChatGPT for an outline of your talk, then in Gamma choose Create new, paste the text, pick Presentation and the default fluid format and generate from notes. I set concise text for a 40-minute workshop, described the audience and tone, picked a professional theme with automatic images and watched the slides build in real time. I then improved the writing, restyled the deck, added a slide comparing n8n and Make.com, published it as a site and exported a PDF because the Google Slides export failed.
+
+### Free GEO/AEO Tracker with Bright Data
+https://www.ai-automation-station.com/guides/geo-aeo-tracker-github.html (updated 2026-11-19)
+On 27 April 2026 I cloned the GEO/AEO tracker GitHub repo (about 108 stars), ran npm install, added a Bright Data key, installed the Bright Data CLI, and opened a local dashboard on port 3000. An AEO audit showed 17 of 20 checks, average visibility around 95 percent, and AEO readiness 75 percent on TubeAnalytics. I added VidIQ, TubeBuddy, SocialBlade, and ViewStats as competitors, then turned on a 12-hour auto-run. Bright Data trial was $2.50 per 1,000 requests. I skipped a $500 a month upgrade. TubeAnalytics is my own product. This is not Otterly or VisiScan.
 
 ### Ghostty Config on Debian: Themes and Reload Checks
 https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html (updated 2026-11-11)
@@ -604,7 +596,7 @@ Herdr is a free, open source terminal workspace for coding agents. It does not r
 https://www.ai-automation-station.com/guides/herdr-on-windows.html (updated 2026-11-15)
 Copy the Windows PowerShell line from the Herdr download page, paste a gallery agent prompt to install a mod, then switch the layout to main-plus-insights to open the token dashboard. The Linux desktop walkthrough stays on Herdr desktop.
 
-### Build an AI Operating System Dashboard in Hermes
+### Hermes Agent Dashboard: Local AI Operating System
 https://www.ai-automation-station.com/guides/hermes-agent-ai-operating-system.html (updated 2026-11-19)
 On 5 June 2026 I asked Hermes Agent for a personal AI operating system dashboard, ran the prompt with MiniMax 2.7 through OpenCode Go, then used ChatGPT after a Claude Desktop limit. A local React app started with npm run dev after an App.tsx fix. A 13-page extension plan ran in OpenCode on DeepSeek V4 Flash. Numbers on screen were mock data. Live YouTube credentials were still failing at the end. I said I was not sure yet why I needed the dashboard.
 
@@ -612,7 +604,7 @@ On 5 June 2026 I asked Hermes Agent for a personal AI operating system dashboard
 https://www.ai-automation-station.com/guides/hermes-agent-install-electron-build-openclaw.html (updated 2026-11-15)
 Install Hermes Agent with its one-line curl installer, run the full setup, add an OpenRouter key and, when paid models return 401 or balance errors, switch to a free OpenCode Zen model such as Big Pickle. I used it for a code review of a Next.js app and for sub-agent research, and to wrap a stock tracker in Electron with a free MiniMax 2.5 model; Codex fixed the chart-loading bug that Hermes and OpenCode could not. Separately, I advised against joining Moltbook, an agent social network, because reports said it exposed API keys. My title claimed Hermes beats OpenClaw, but I never ran OpenClaw, so that is an opinion.
 
-### Hermes Agent: Install and Schedule CLI Cron Jobs
+### Hermes Agent CLI Cron Jobs: Install and Schedule
 https://www.ai-automation-station.com/guides/hermes-agent-scheduled-jobs.html (updated 2026-11-19)
 On 15 May 2026 I installed Hermes Agent from its site curl command, ran hermes setup, picked the built-in Nous Portal with DeepSeek V4 Flash, and asked which cron jobs to set up. It recommended a nightly database backup, a morning channel digest, trading-app jobs, a four-hour server health check and an IndexNow ping, then wrote scripts and marked all five as live. I listed existing jobs with hermes cron list, including a daily Skool subscriber sync. This is the CLI and install pass, not the later Vercel cron move.
 
@@ -663,6 +655,10 @@ Run OpenClaw on a VPS, a spare machine or a hosted service rather than your main
 ### Jev AI with Coding Agents: Skills, Access and Routed Tests
 https://www.ai-automation-station.com/guides/jev-skills-router-setup.html (updated 2026-11-11)
 Jev is TypeSafe's model for fast, structured decisions, not a chat model for your coding agent. I installed the TypeSafe skill, hit a browser-skill failure that turned out to be a missing API key, then ran Codex through a community router. Confirm real requests in the TypeSafe console before trusting any setup.
+
+### Kilo Code: AI Visibility Optimizer Skill
+https://www.ai-automation-station.com/guides/kilo-code-ai-visibility-optimizer.html (updated 2026-11-19)
+On 2 May 2026 I used Kilo Code to turn Anna York's AI visibility playbook into a custom skill, then ran it on a TubeAnalytics blog post. The skill scored 23 criteria. One live article failed a 100-word direct-answer rule because the first paragraph was 61 words. A second post scored 91 out of 100, then 98 out of 100 after the agent applied its plan. Those scores are that day's self-ratings, not a live ranking. The skill is mine. The description lists a Gumroad page. I do not reconstruct the Kilo install command, which I did not read aloud.
 
 ### Kilo Code tutorial: install, free models and first task
 https://www.ai-automation-station.com/guides/kilo-code-tutorial.html (updated 2026-11-08)
@@ -796,7 +792,7 @@ A no-code AI agent builder lets you give a language model instructions, tools an
 https://www.ai-automation-station.com/guides/odysseus-ai-self-hosted-workspace.html (updated 2026-11-15)
 Clone the Odysseus repository from GitHub, create a Python virtual environment, install the requirements, start it on localhost and sign in with the username and password you create. That took about five minutes on Linux. Then add model keys in settings (an OpenRouter key found 341 models; I also added OpenCode Go, OpenCode Zen and OpenAI), set default chat and research models and try chat, agent mode, side-by-side comparison and a scheduled email digest. The shell tool and a local-model run were not set up, and the Gmail connection took several tries.
 
-### Odysseus Brand-Deal Agent: Research and Outreach
+### Odysseus AI Brand-Deal Agent: Research and Outreach
 https://www.ai-automation-station.com/guides/odysseus-brand-deal-agents.html (updated 2026-11-19)
 On 11 June 2026 I used Odysseus to build a sponsorship outreach agent in Node.js. It listed brand targets, drafted pitch and follow-up emails, tracked a small CRM and ran weekly by cron through connected Gmail. The $81,000 in the title was the agent's own pipeline estimate for 32 prospects, not deals won. Sponsor values and emails were model-generated and unchecked. This is the brand-deal build, not the six-build roundup and not the Odysseus Electron wrapper.
 
@@ -856,13 +852,17 @@ OpenRouter is one API in front of hundreds of models from many providers. Create
 https://www.ai-automation-station.com/guides/openseo-review.html (updated 2026-11-19)
 OpenSEO is worth evaluating for focused SEO research, but its free self-hosted app still needs paid data, and my demo doesn't show it replacing every paid suite.
 
-### ShortForge Follow-up: Detect, Score and Export Clips
+### Opus Clip Alternative: Detect, Score and Export Clips
 https://www.ai-automation-station.com/guides/opusclip-alternative-viral-clips.html (updated 2026-11-19)
 On 20 May 2026 I demoed Short Forge, the local Opus Clip-style app from part 1. I imported a YouTube URL, let Whisper transcribe it, rendered about nine clips from a ten-minute video with FFmpeg, read a virality score, and exported a short stored on my computer. Subtitles were not burned in. A file upload error was still failing until Codex patched it. The app was not live. I had spent about four hours on the build with Codex and OpenCode. Planned hosted pricing is not a live quote. Part 1 is the OpusClip clone in OpenCode guide.
 
 ### Build an OpusClip-Style Web App With OpenCode: Short Forge
 https://www.ai-automation-station.com/guides/opusclip-clone-app-opencode.html (updated 2026-11-15)
 Write a detailed prompt in Claude Desktop for a web app that turns long YouTube videos into shorts, paste it into OpenCode and let it scaffold the project: worker files for import and rendering, API routes, Clerk sign-up, Prisma and Postgres, with FFmpeg doing the video work. Fill in the env keys, run npm run dev and paste build errors back until it loads on port 3000. I then fixed the Postgres user and database and swapped Amazon S3 for a local storage folder. The app was still unfinished at the end: the subscribe buttons did not work and no finished clips were shown.
+
+### Otterly AI: Track Brand Mentions in LLMs
+https://www.ai-automation-station.com/guides/otterly-ai-visibility-tracking.html (updated 2026-11-19)
+On 17 April 2026 I walked an Otterly AI dashboard that tracks a brand in ChatGPT, Gemini, Perplexity, and Microsoft Copilot. I said it had a 2-week free trial, then about $29 a month. For TubeAnalytics I read about 43 percent brand coverage versus VidIQ around 68 percent, about 20 brand mentions, position four, a visibility index that called us a leader in brand coverage, and about 78 percent likelihood to buy. Crawlability showed crawlers allowed. One prompt maxed at 100. Another scored 67 out of 100 at the top. Those figures are that day's dashboard, not a live rank. TubeAnalytics is my own product. I said the description signup link is a referral, so I earn a commission if you use it.
 
 ### Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs
 https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html (updated 2026-11-15)

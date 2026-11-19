@@ -37,6 +37,7 @@ export default {
     ['Is UpdateForge your project?', 'Yes. It is my open-source package manager GUI. The official page in the video description is https://mikeholp87.github.io/update-forge/.'],
     ['Does it run on Mac?', 'Not in the 14 November 2026 demo. I showed Windows and Linux, mostly Debian and Ubuntu.'],
     ['Which package managers did it cover?', 'On Linux I named apt, Bun, Cargo, Flatpak, Homebrew and npm. Windows used Winget, with a GitHub .NET build as another path.'],
+    ['Is UpdateForge a UniGetUI alternative?', 'I modeled a lot of the work on UniGetUI. That was a reference, not a claim it matched every UniGetUI feature.'],
     ['Did you write the code?', 'No. I said I used Claude Code and did not write a single line by hand.'],
   ],
   sources: [
