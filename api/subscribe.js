@@ -2,6 +2,7 @@
 // and welcomes new subscribers by email.
 // Env: RESEND_API_KEY, the same key as the contact form; it needs full access to add contacts.
 import { isEmail, TO as OWNER } from "./contact.js";
+import { addAirtableLead } from "./_lib/airtable-lead.js";
 import { readingCss } from "../src/asset-version.js";
 import { clientIp, createRateLimiter, tooManyRequests } from "../src/rate-limit.js";
 
@@ -210,6 +211,7 @@ export async function addSubscriber(email, page, issuedAt = Date.now()) {
     console.error("subscribe", err);
     return { ok: false };
   }
+  await addAirtableLead(email, page);
   // The contact already exists even when the welcome email fails.
   const welcomeSent = await sendWelcome(email);
   await notifyOwner(email, page, welcomeSent);
