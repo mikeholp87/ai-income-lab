@@ -1,0 +1,170 @@
+[
+  {
+    "url": "http://ai-automation-station.com/",
+    "status": 308,
+    "finalUrl": "http://ai-automation-station.com/",
+    "headers": {
+      "location": "https://ai-automation-station.com/",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": null,
+      "cache-control": null
+    },
+    "robots": []
+  },
+  {
+    "url": "http://www.ai-automation-station.com/",
+    "status": 308,
+    "finalUrl": "http://www.ai-automation-station.com/",
+    "headers": {
+      "location": "https://www.ai-automation-station.com/",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": null,
+      "cache-control": null
+    },
+    "robots": []
+  },
+  {
+    "url": "https://ai-automation-station.com/",
+    "status": 308,
+    "finalUrl": "https://ai-automation-station.com/",
+    "headers": {
+      "location": "https://www.ai-automation-station.com/",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/index.html",
+    "status": 308,
+    "finalUrl": "https://www.ai-automation-station.com/index.html",
+    "headers": {
+      "location": "/",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/guides",
+    "status": 308,
+    "finalUrl": "https://www.ai-automation-station.com/guides",
+    "headers": {
+      "location": "/guides.html",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/guides/9router-setup",
+    "status": 308,
+    "finalUrl": "https://www.ai-automation-station.com/guides/9router-setup",
+    "headers": {
+      "location": "/guides/9router-setup.html",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/guides/9router-setup.html/",
+    "status": 308,
+    "finalUrl": "https://www.ai-automation-station.com/guides/9router-setup.html/",
+    "headers": {
+      "location": "/guides/9router-setup.html",
+      "content-type": "text/plain",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/seo-audit-missing-20261108",
+    "status": 404,
+    "finalUrl": "https://www.ai-automation-station.com/seo-audit-missing-20261108",
+    "headers": {
+      "location": null,
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "title": "Page not found | Mike Holp",
+    "robots": [
+      "noindex,follow"
+    ]
+  },
+  {
+    "url": "https://www.ai-automation-station.com/watch/invalid",
+    "status": 404,
+    "finalUrl": "https://www.ai-automation-station.com/watch/invalid",
+    "headers": {
+      "location": null,
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "no-store"
+    },
+    "title": "Page not found | Mike Holp",
+    "robots": [
+      "noindex,follow"
+    ]
+  },
+  {
+    "url": "https://www.ai-automation-station.com/videos/9999",
+    "status": 404,
+    "finalUrl": "https://www.ai-automation-station.com/videos/9999",
+    "headers": {
+      "location": null,
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "no-store"
+    },
+    "title": "Page not found | Mike Holp",
+    "robots": [
+      "noindex,follow"
+    ]
+  },
+  {
+    "url": "https://www.ai-automation-station.com/videos?sort=popular",
+    "status": 308,
+    "finalUrl": "https://www.ai-automation-station.com/videos?sort=popular",
+    "headers": {
+      "location": "https://www.ai-automation-station.com/videos",
+      "content-type": null,
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "robots": []
+  },
+  {
+    "url": "https://www.ai-automation-station.com/workflow-cost.html",
+    "status": 404,
+    "finalUrl": "https://www.ai-automation-station.com/workflow-cost.html",
+    "headers": {
+      "location": null,
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": null,
+      "strict-transport-security": "max-age=63072000",
+      "cache-control": "public, max-age=0, must-revalidate"
+    },
+    "title": "Page not found | Mike Holp",
+    "robots": [
+      "noindex,follow"
+    ]
+  }
+]

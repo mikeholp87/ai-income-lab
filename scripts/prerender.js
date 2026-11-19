@@ -3,36 +3,57 @@ import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { build } from 'vite';
 import { uploads } from '../src/uploads-snapshot.js';
+import { topics } from '../src/topics.js';
 import { addGuideVideos, fontPreloads, renderPageSitemap } from '../src/archive.js';
 import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
-import { guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
+import { gaBootHead } from '../src/ga-boot-html.js';
+import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
+import { optimizeGuide, previewRobots, shareMeta } from '../src/guide-seo.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
+
+function withGaBoot(html, file) {
+  if (html.includes('src="/ga-boot.js"')) return html;
+  if (html.includes('<script src="/theme.js"')) return html.replace('<script src="/theme.js"', `${gaBootHead}<script src="/theme.js"`);
+  throw new Error(`Missing GA boot script: ${file}`);
+}
 
 await build({ build: { ssr: 'src/main.jsx', outDir: 'dist/.ssr', emptyOutDir: false, rollupOptions: { input: 'src/main.jsx', output: { entryFileNames: '[name].js' } } } });
 try {
   const { Root } = await import('../dist/.ssr/main.js');
-  const path = new URL('../dist/index.html', import.meta.url);
-  const html = await readFile(path, 'utf8');
-  const marker = '<div id="root"></div>';
-  if (!html.includes(marker)) throw new Error('Cannot find root in built HTML');
-  const content = renderToString(createElement(Root));
-  if (!content.includes('<h1') || !content.includes('id="latest"') || !content.includes('id="pricing"') || !content.includes('id="faq"') || !content.includes('skool.com/ai-automation-station-7346/about') || !content.includes('href="/watch/')) throw new Error('Pre-rendered page is incomplete');
-  await writeFile(path, html.replace(marker, `<div id="root">${content}</div>`));
+  const pages = [
+    ['index.html', 'home', ['id="latest"', 'id="pricing"', 'id="faq"', 'id="work-together"', 'href="/sponsors.html"', 'skool.com/ai-automation-station-7346/about', 'href="/watch/', 'aria-label="Browse videos by topic"', ...topics.map(topic => `href="/videos/${topic.slug}">${topic.name}</a>`)]],
+    ['sponsors.html', 'sponsors', ['id="media-kit"', 'id="services"', 'id="work-together"']],
+  ];
+  for (const [file, page, required] of pages) {
+    const path = new URL(`../dist/${file}`, import.meta.url);
+    const html = await readFile(path, 'utf8');
+    if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
+    const marker = '<div id="root"></div>';
+    if (!html.includes(marker)) throw new Error(`Cannot find root in built ${file}`);
+    const content = renderToString(createElement(Root, { page }));
+    if (!content.includes('<h1') || required.some(text => !content.includes(text))) throw new Error(`Pre-rendered ${file} is incomplete`);
+    await writeFile(path, html.replace(marker, `<div id="root">${content}</div>`));
+  }
 } finally {
   await rm(new URL('../dist/.ssr', import.meta.url), { recursive: true, force: true });
 }
 
 const guideFiles = (await readdir('dist/guides')).filter(file => file.endsWith('.html')).map(file => `guides/${file}`);
+const guideTitles = await Promise.all(guideFiles.map(async file => guideMeta(await readFile(`dist/${file}`, 'utf8'))));
+await writeFile('dist/tools.html', renderToolsPage({ uploads, guides: guideTitles }));
 const guides = [];
-for (const file of ['start-here.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', ...guideFiles]) {
+for (const file of ['start-here.html', 'ai-income-lab.html', 'about.html', 'guides.html', 'search.html', 'privacy.html', 'terms.html', 'tools.html', ...guideFiles]) {
   const path = `dist/${file}`;
-  const html = await readFile(path, 'utf8');
+  const read = withGaBoot(await readFile(path, 'utf8'), file);
+  const html = shareMeta(previewRobots(file === 'guides.html' ? addGuideDates(read, guideTitles) : read));
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
+  if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));
-  await writeFile(path, (guideFiles.includes(file) ? addGuideVideos(html, `/${file}`, uploads) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
+  await writeFile(path, (guideFiles.includes(file) ? optimizeGuide(addGuideVideos(addToolsLink(html), `/${file}`, uploads)) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
 }
-const notFound = await readFile('dist/404.html', 'utf8');
+const notFound = withGaBoot(await readFile('dist/404.html', 'utf8'), '404.html');
 await writeFile('dist/404.html', notFound.replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));
 
 const sitemap = renderPageSitemap(await readFile('public/sitemap.xml', 'utf8'), uploads);

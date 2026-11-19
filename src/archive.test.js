@@ -2,15 +2,19 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredVideos } from './archive.js';
+import { addGuideVideos, fetchUploads, guides, pageCount, parseUploads, renderArchive, renderWatch, renderVideoSitemap, renderPageSitemap, sponsoredBenchmark, sponsoredVideos, videoIndex } from './archive.js';
 import { readdir } from 'node:fs/promises';
 import { uploads } from './uploads-snapshot.js';
+import { videoTools } from './video-tools.js';
+import { videoSummaries } from './video-summaries.js';
+import { toolLink } from './tool-links.js';
 import { watchNotes } from './watch-notes.js';
 import { videoNotes } from './video-notes.js';
-import { durationSeconds } from './youtube.js';
+import { clock, durationSeconds, validChapters } from './youtube.js';
 import { GET, HEAD } from '../api/videos.js';
 import { videoOffer } from './video-offer.js';
 import { topicBySlug, topics } from './topics.js';
+import { curatedSummary, videoHeading } from './curated-summary.js';
 
 const item = (id, title, published, privacyStatus = 'public') => ({ snippet: { resourceId: { videoId: id }, title, publishedAt: published, description: 'Join\nhttps://example.com\n\nBuild an agent.' }, status: { privacyStatus }, contentDetails: { videoPublishedAt: published } });
 
@@ -59,7 +63,7 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.deepEqual(schema.hasPart.map(clip => [clip.startOffset, clip.endOffset]), [[0, 98], [98, 400], [400, 675]]);
   assert.equal(schema.hasPart[1].url, 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa?t=98');
   assert.equal(schema.author['@id'], 'https://www.ai-automation-station.com/#mike');
-  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', video.title]);
+  assert.deepEqual(breadcrumbs.itemListElement.map(item => item.name), ['Home', 'Videos', 'Codex and OpenCode', video.title]);
   assert.match(html, /embed\/aaaaaaaaaaa\?start=98"/);
   assert.match(html, /<a href="#t=98">1:38<\/a> Providers/);
   const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('.chapters'));
@@ -68,16 +72,19 @@ test('watch pages add chapters, length, views, related builds and breadcrumbs', 
   assert.match(script, /history\.replaceState/);
   assert.doesNotThrow(() => new Function(script));
   // Same header as the guides pages (pinned in guides.test.js), so every reading page shares one brand and nav.
-  assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/);
+  assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="watch_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/);
   assert.doesNotMatch(html, /header a:first-child/);
   // Video titles use the reading pages' Instrument Sans, not the system font.
-  assert.match(html, /h1\{font:700 clamp\(24px,4vw,36px\)\/1\.2 'Instrument Sans',system-ui,sans-serif;/);
+  // The title takes the shared page-title style from reading.css.
+  assert.match(html, /h1\{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px\}/);
   // Same Skool label as the homepage and the archive.
   assert.match(html, /data-placement="watch_video"[^>]*>Join AI Income Lab ↗<\/a>/);
   assert.match(html, /11:15 · 23,638 views/);
   assert.match(html, /href="\/guides\/9router-setup.html"/);
   // The shared "9router" ranks first; a video that blocks embedding is never linked.
-  assert.match(html, /More builds<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE">/);
+  // A video with self-hosted copies uses them; any other id falls back to YouTube (see the ccccccccccc test below).
+  assert.match(html, /You may also like<\/h2>\n<ul class="related"><li><a href="\/watch\/tzSGF7gu6EE"><img src="\/assets\/watch\/tzSGF7gu6EE-640\.webp" srcset="\/assets\/watch\/tzSGF7gu6EE-320\.webp 320w, \/assets\/watch\/tzSGF7gu6EE-640\.webp 640w, \/assets\/watch\/tzSGF7gu6EE-960\.webp 960w, \/assets\/watch\/tzSGF7gu6EE-1280\.webp 1280w"[^>]*loading="lazy"[^>]*><span>[^<]+<\/span><\/a><\/li>/);
+  assert.doesNotMatch(html.match(/<ul class="related">.*?<\/ul>/s)[0], /i\.ytimg\.com/);
   assert.doesNotMatch(html, /lbBZ7uLJwbM/);
   const description = html.match(/<meta name="description" content="([^"]*)"/)[1];
   assert.ok(description.length <= 160 && description.endsWith('costs.'), description);
@@ -94,7 +101,7 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
     assert.doesNotMatch(html, /href="[^"]*\/watch\/[^"]*\?t=/);
     assert.deepEqual([...html.matchAll(/<ol class="chapters">(.*?)<\/ol>/gs)].flatMap(([, list]) => [...list.matchAll(/href="([^"]*)"/g)].map(match => match[1])), ['#t=0', '#t=98', '#t=400']);
     // The inline handler re-cues the nocookie player; it must parse and not close its own script tag early.
-    const script = html.match(/<script>(.*?)<\/script>/s)[1];
+    const script = [...html.matchAll(/<script>(.*?)<\/script>/gs)].map(match => match[1]).find(code => code.includes('searchParams'));
     assert.doesNotThrow(() => new Function(script));
     assert.match(script, /searchParams\.set\('start'/);
   }
@@ -103,7 +110,7 @@ test('chapter links are fragments, while key-moment clips keep their ?t= URLs', 
 test('watch and subscribe actions follow the player before metadata and chapters', () => {
   for (const chapters of [[], [{ seconds: 0, label: 'Intro' }, { seconds: 30, label: 'Build' }, { seconds: 60, label: 'Check' }]]) {
     const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'A build', published: '2026-10-20T00:00:00Z', duration: 'PT2M', chapters });
-    const playerEnd = html.indexOf('<span class="play"');
+    const playerEnd = html.indexOf('</iframe>');
     const action = html.indexOf('data-placement="watch_player"');
     assert.ok(action > playerEnd && action < html.indexOf('<p class="meta">By'), 'the YouTube action immediately follows the player');
     assert.equal((html.match(/>Watch on YouTube ↗<\/a>/g) ?? []).length, 1);
@@ -132,20 +139,23 @@ test('watch pages and video sitemap safely describe the same visible video', () 
   assert.equal(schema.name, video.title);
   assert.equal(schema.description, video.summary);
   assert.equal(schema.uploadDate, video.published);
-  assert.match(html, new RegExp(`<iframe class="player" src="${schema.embedUrl}"`));
+  assert.ok(html.includes(`<iframe class="player" src="${schema.embedUrl}"`));
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/watch\/aaaaaaaaaaa">/);
   assert.equal((html.match(/<h1>/g) ?? []).length, 1);
-  // A real embedded player near the top, so the video is the page's main content.
+  // The primary player is discoverable without a click or JavaScript, and does not autoplay.
   assert.equal((html.match(/class="player"/g) ?? []).length, 1);
-  assert.match(html, /<iframe class="player" src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa" title="[^"]+"[^>]*allowfullscreen><\/iframe>/);
-  assert.doesNotMatch(html, /<iframe class="player"[^>]*loading=/);
+  assert.match(html, /<iframe class="player"[^>]*src="https:\/\/www\.youtube-nocookie\.com\/embed\/aaaaaaaaaaa"[^>]*title="Keys &amp; &lt;API&gt;"[^>]*width="960" height="540"[^>]*allowfullscreen><\/iframe>/);
+  assert.doesNotMatch(html.match(/<iframe[^>]+>/)[0], /autoplay=|loading="lazy"|srcdoc=|data-embed=/);
   assert.doesNotMatch(html, /<script>alert|loading="lazy"/);
+  assert.match(html, /<script src="\/ga-boot.js" defer><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /&lt;\/script&gt;/);
   const sitemap = renderVideoSitemap([video, { ...video, id: 'lbBZ7uLJwbM', embeddable: false }]);
   assert.match(sitemap, /<video:title>Keys &amp; &lt;API&gt;<\/video:title>/);
   assert.ok(sitemap.includes(`<video:player_loc>${schema.embedUrl}</video:player_loc>`));
-  assert.ok(sitemap.includes(`<video:thumbnail_loc>${schema.thumbnailUrl}</video:thumbnail_loc>`));
+  assert.deepEqual(schema.thumbnailUrl, ['https://i.ytimg.com/vi/aaaaaaaaaaa/maxresdefault.jpg', 'https://i.ytimg.com/vi/aaaaaaaaaaa/hqdefault.jpg']);
+  assert.ok(sitemap.includes(`<video:thumbnail_loc>${schema.thumbnailUrl.at(-1)}</video:thumbnail_loc>`));
+  assert.deepEqual(JSON.parse(renderWatch({ ...video, id: 'F5PwcTwtEos' }, { videos: [] }).match(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema.org","@type":"VideoObject".*?)<\/script>/s)[1]).thumbnailUrl, ['https://i.ytimg.com/vi/F5PwcTwtEos/hqdefault.jpg']);
   assert.doesNotMatch(sitemap, /lbBZ7uLJwbM/);
 });
 
@@ -158,6 +168,7 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   const ids = ['geKngm3sg3w', 'lbBZ7uLJwbM', 'TuVL2x6IfDk'];
   let requests = 0;
   t.mock.method(globalThis, 'fetch', async input => {
+    if (String(input).startsWith('https://www.youtube.com/feeds/')) return new Response('<feed></feed>');
     requests++;
     if (new URL(input).pathname.endsWith('/playlistItems')) return Response.json({ items: ids.map(id => item(id, `Video ${id}`, '2026-09-01T00:00:00Z')) });
     return Response.json({ items: ids.map((id, index) => ({ id, status: { privacyStatus: index === 2 ? 'private' : 'public', embeddable: index === 0 } })) });
@@ -213,7 +224,8 @@ async function earlyRefreshHarness(t, ids) {
   const request = path => GET(new Request(`https://www.ai-automation-station.com${path}`));
   assert.equal((await request('/videos')).status, 200);
   assert.equal(upstream.mock.callCount(), 2, 'stale inventory refreshes once');
-  return { state, request, calls: () => upstream.mock.callCount(), advance: ms => { now += ms; } };
+  const toFeed = call => String(call.arguments[0]).startsWith('https://www.youtube.com/feeds/');
+  return { state, request, calls: () => upstream.mock.calls.filter(call => !toFeed(call)).length, feedCalls: () => upstream.mock.calls.filter(toFeed).length, advance: ms => { now += ms; } };
 }
 
 test('an upload newer than the inventory gets its watch page after one early refresh', async t => {
@@ -225,6 +237,17 @@ test('an upload newer than the inventory gets its watch page after one early ref
   assert.equal(watch.status, 200);
   assert.match(await watch.text(), /youtube-nocookie.com\/embed\/newupload01/);
   assert.equal(calls(), 4, 'one early refresh');
+});
+
+test('an upload published just after a refresh gets its watch page from the feed instead of a cached 404', async t => {
+  const { calls } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const feed = '<feed><entry><yt:videoId>newupload03</yt:videoId><title>Brand new upload</title><published>2026-10-10T00:00:00+00:00</published><media:group><media:description>A new video.</media:description><media:community><media:statistics views="3"/></media:community></media:group></entry></feed>';
+  const fallback = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', async (input, init) => String(input).startsWith('https://www.youtube.com/feeds/') ? new Response(feed) : fallback(input, init));
+  const watch = await GET(new Request('https://www.ai-automation-station.com/watch/newupload03'));
+  assert.equal(watch.status, 200);
+  assert.match(await watch.text(), /youtube-nocookie.com\/embed\/newupload03/);
+  assert.equal(calls(), 2, 'no Data API quota spent');
 });
 
 test('an unknown id after a successful refresh is a briefly cached 404, and repeats do not refetch', async t => {
@@ -245,22 +268,86 @@ test('an unknown id after a successful refresh is a briefly cached 404, and repe
   assert.equal(calls(), 6, 'the gate reopens after 10 minutes');
 });
 
-test('an unknown id goes to YouTube, briefly cached, when no refresh is possible', async t => {
-  const { state, request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+test('an unknown id is a 404 cached for a minute, never a YouTube redirect, when no refresh is possible', async t => {
+  const { state, request, calls, feedCalls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
   advance(660000);
   state.failing = true;
+  t.after(() => assert.equal(feedCalls(), 12, 'the quota-free feed gets six tries, then six more a minute later'));
   const unknown = await request('/watch/zzzzzzzzzzz?t=98');
-  assert.equal(unknown.status, 302);
-  assert.equal(unknown.headers.get('location'), 'https://www.youtube.com/watch?v=zzzzzzzzzzz&t=98s');
-  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=600');
+  assert.equal(unknown.status, 404);
+  assert.equal(unknown.headers.get('location'), null);
+  assert.equal(unknown.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
   assert.equal(calls(), 3, 'the failed early refresh stops at the first request');
   advance(60000);
   const again = await request('/watch/yyyyyyyyyyy?t=abc');
-  assert.equal(again.status, 302);
-  assert.equal(again.headers.get('location'), 'https://www.youtube.com/watch?v=yyyyyyyyyyy');
+  assert.equal(again.status, 404);
+  assert.equal(again.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
   const head = await HEAD(new Request('https://www.ai-automation-station.com/watch/zzzzzzzzzzz', { method: 'HEAD' }));
-  assert.equal(head.status, 302);
+  assert.equal(head.status, 404);
   assert.equal(calls(), 3, 'backing off: no further refresh');
+});
+
+test('concurrent requests for a new upload share one feed lookup and all get its watch page', async t => {
+  const { calls, feedCalls } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const feed = '<feed><entry><yt:videoId>newupload04</yt:videoId><title>Concurrent upload</title><published>2026-10-11T00:00:00+00:00</published><media:group><media:description>A new video.</media:description></media:group></entry></feed>';
+  const fallback = globalThis.fetch;
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  t.mock.method(globalThis, 'fetch', async (input, init) => {
+    if (!String(input).startsWith('https://www.youtube.com/feeds/')) return fallback(input, init);
+    await gate;
+    return new Response(feed);
+  });
+  const pending = [1, 2, 3].map(() => GET(new Request('https://www.ai-automation-station.com/watch/newupload04')));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  release();
+  const responses = await Promise.all(pending);
+  assert.deepEqual(responses.map(response => response.status), [200, 200, 200]);
+  assert.equal(globalThis.fetch.mock.callCount(), 1, 'one shared feed fetch');
+  assert.equal(feedCalls(), 0);
+  assert.equal(calls(), 2, 'no Data API quota spent');
+});
+
+test('concurrent requests share one failing feed lookup, none gets a 200, and a new lookup starts after the cooldown', async t => {
+  const { request, calls, advance } = await earlyRefreshHarness(t, ['geKngm3sg3w']);
+  const fallback = globalThis.fetch;
+  let release;
+  const gate = new Promise(resolve => { release = resolve; });
+  const feed = t.mock.method(globalThis, 'fetch', async (input, init) => {
+    if (!String(input).startsWith('https://www.youtube.com/feeds/')) return fallback(input, init);
+    await gate;
+    return new Response('', { status: 500 });
+  });
+  const pending = [1, 2, 3].map(() => request('/watch/zzzzzzzzzzz'));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  assert.equal(feed.mock.callCount(), 1, 'the other requests wait on the in-flight lookup instead of starting their own');
+  release();
+  const responses = await Promise.all(pending);
+  assert.deepEqual(responses.map(response => response.status), [404, 404, 404]);
+  assert.equal(feed.mock.callCount(), 6, 'one shared lookup: six tries in total');
+  advance(30000);
+  assert.equal((await request('/watch/zzzzzzzzzzz')).status, 404);
+  assert.equal(feed.mock.callCount(), 6, 'no new lookup within the one-minute cooldown');
+  advance(30000);
+  assert.equal((await request('/watch/zzzzzzzzzzz')).status, 404);
+  assert.equal(feed.mock.callCount(), 12, 'after the cooldown a new lookup starts');
+  assert.equal(calls(), 2, 'no Data API quota spent');
+});
+
+test('every numbered archive page takes the newest upload date, since each upload shifts all of them', () => {
+  const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: index ? `Video ${index}` : 'Claude Code build', published: `2026-${String(12 - Math.floor(index / 3)).padStart(2, '0')}-01T00:00:00Z` }));
+  const sitemap = renderPageSitemap('<urlset></urlset>', videos);
+  for (const path of ['/videos', '/videos/2', '/videos/3']) assert.ok(sitemap.includes(`<loc>https://www.ai-automation-station.com${path}</loc><lastmod>2026-12-01</lastmod>`), path);
+});
+
+test('watch pages carry the site robots tag and full X card tags', () => {
+  const html = renderWatch({ id: 'aaaaaaaaaaa', title: 'Keys & <API>', summary: 'A short summary.', published: '2026-09-01T00:00:00Z', embeddable: true });
+  assert.equal((html.match(/<meta name="robots"/g) ?? []).length, 1);
+  assert.ok(html.includes('<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">'));
+  assert.match(html, /<meta name="twitter:title" content="Keys &amp; &lt;API&gt;">/);
+  assert.match(html, /<meta name="twitter:description" content="A short summary\.">/);
+  assert.match(html, /<meta name="twitter:image" content="https:\/\/i\.ytimg\.com\/vi\/aaaaaaaaaaa\/hqdefault\.jpg">/);
+  assert.match(html, /<meta property="og:site_name" content="AI Automation Station">/);
 });
 
 test('page sitemap follows inventory growth and preserves core dates', () => {
@@ -306,7 +393,7 @@ test('guide discovery includes title-only notes and avoids repeated companion li
   assert.equal((companion.match(/href="\/guides\/codex-workflow.html"/g) || []).length, 1);
   assert.match(companion, /<title>Build an Electron habit tracker with OpenCode<\/title>/);
   assert.match(companion, /<link rel="preconnect" href="https:\/\/i.ytimg.com">/);
-  assert.match(companion, /<iframe class="player" src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
+  assert.match(companion, /<iframe class="player"[^>]*src="https:\/\/www.youtube-nocookie.com\/embed\/7v_675nO7nM"/);
   assert.doesNotMatch(companion, /loading="lazy"/);
 });
 
@@ -316,12 +403,13 @@ test('renders year groups and escapes titles', () => {
   assert.match(html, /Claude &lt;Code&gt; &amp; &quot;n8n&quot;/);
   assert.doesNotMatch(html, /<Code>/);
   assert.match(html, /2 long-form videos/);
+  assert.match(html, /<script src="\/ga-boot.js" defer><\/script>/);
   assert.match(html, /<script type="module" src="\/assets\/reading.js"><\/script>/);
   assert.match(html, /href="\/consent.css\?v=[0-9a-f]{8}"/);
   assert.doesNotMatch(html, /class="pager/);
   assert.equal((html.match(/loading="eager"/g) || []).length, 1);
   assert.equal((html.match(/loading="lazy"/g) || []).length, 1);
-  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp 320w, [^"]+"[^>]*><img src="https:\/\/i.ytimg.com\/vi\/a1\/mqdefault.jpg"/);
+  assert.match(html, /<picture data-thumbnail><source type="image\/webp" srcset="https:\/\/i.ytimg.com\/vi_webp\/a1\/mqdefault.webp 320w, [^"]+"[^>]*><img src="https:\/\/i.ytimg.com\/vi\/a1\/sddefault.jpg"/);
 });
 
 test('saved chapter lists produce only valid Clips within video duration', () => {
@@ -334,7 +422,9 @@ test('saved chapter lists produce only valid Clips within video duration', () =>
   }
   const broken = uploads.find(video => video.id === 'oDAKXkIyOHE');
   assert.ok(broken);
-  assert.doesNotMatch(renderWatch(broken), /"hasPart"|id="chapters"/);
+  assert.deepEqual(validChapters(broken.chapters, durationSeconds(broken.duration)), []);
+  assert.match(renderWatch(broken), /id="chapters"/);
+  assert.doesNotMatch(renderWatch({ ...broken, id: 'zzzzzzzzzzz' }), /"hasPart"|id="chapters"/);
 });
 
 test('priority titles and historical offers stay consistent without renaming recordings', () => {
@@ -389,15 +479,120 @@ test('splits the archive into pages of 15 linked to each other', () => {
   assert.match(last, /<a href="\/videos\/2" rel="prev">← Newer<\/a>/);
   assert.match(last, /<span aria-current="page">3<\/span>/);
   assert.match(last, /<title>Every video, page 3 of 3 \| Mike Holp<\/title>/);
+  assert.match(last, /<h1>Every video, page 3 of 3<\/h1>/);
+  assert.match(first, /<h1>Every video<\/h1>/);
+  // Share cards carry the page number from page 2, like the <title>, so each page has its own og:title.
+  for (const [html, title] of [[first, 'Every video: AI tools tested on real builds'], [last, 'Every video, page 3 of 3']]) {
+    assert.ok(html.includes(`<meta property="og:title" content="${title}">`), title);
+    assert.ok(html.includes(`<meta name="twitter:title" content="${title}">`), title);
+    assert.match(html, /<meta name="twitter:description" content="[^"]+">/);
+    assert.match(html, /<meta name="twitter:image" content="https:\/\/www\.ai-automation-station\.com\/og-card\.jpg\?v=2">/);
+    assert.ok(html.includes('<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">'));
+  }
+  // Sorted reorderings stay noindex and never also claim the indexable robots tag.
+  const sorted = renderArchive(videos, 1, null, 'views');
+  assert.match(sorted, /<meta name="robots" content="noindex,follow">/);
+  assert.equal((sorted.match(/<meta name="robots"/g) ?? []).length, 1);
   const list = JSON.parse(last.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(list['@type'], 'CollectionPage');
   assert.deepEqual(list.mainEntity.itemListElement.map(item => item.position), [31]);
+});
+
+test('links tools used on watch pages in a new tab, marking referral links sponsored', () => {
+  const video = uploads.find(upload => upload.id === '1TPm7B5oStw');
+  const html = renderWatch(video, { videos: uploads });
+  assert.match(html, /<a href="https:\/\/www\.make\.com\/en\/register\?pc=mikeholp" target="_blank" rel="sponsored noopener">Make\.com ↗<\/a>/);
+  assert.match(html, /<a href="https:\/\/elevenlabs\.io" target="_blank" rel="noopener">ElevenLabs ↗<\/a>/);
+  assert.match(html, /<p class="meta">Compare pricing: [^<]*<a href="\/tools\.html#make-com" data-placement="watch_tool_card">Make\.com<\/a>[^]*?Some ↗ links are affiliate links, so I may earn a commission or credit\. <a href="\/tools\.html" data-placement="watch_tools_all">/);
+  assert.equal(html.match(/href="\/tools\.html#make-com"/g).length, 1);
+});
+
+test('every tool listed on a watch page has a link, preferring the affiliate one', () => {
+  const names = [...Object.values(videoSummaries).flatMap(brief => brief.toolsUsed ?? []), ...Object.values(videoTools).flat()];
+  assert.deepEqual([...new Set(names.filter(name => !toolLink(name)))], [], 'add the tool to src/tool-links.js or remove it');
+  assert.equal(toolLink('OpenCode VS Code extension').affiliate, true);
+  assert.deepEqual(toolLink('Claude Code'), { url: 'https://claude.ai', affiliate: false }, 'Claude is not an affiliate');
+  assert.equal(toolLink('Gemini 3.1 Pro').affiliate, true);
+  assert.equal(toolLink('GNU Make').affiliate, false);
+  // The tool chip links current product docs; the individuals-tier deprecation stays in the watch-page note.
+  assert.equal(toolLink('Gemini Code Assist').url, 'https://developers.google.com/gemini-code-assist/docs/overview');
+  assert.equal(toolLink('Google Cloud Code Assist').url, toolLink('Gemini Code Assist').url);
+  assert.equal(toolLink('Orchids').url, null);
+});
+
+test('Code Assist and Orchids watch pages state current tool status', () => {
+  const deprecation = 'https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals';
+  for (const id of ['C5wEcJRo_VA', 'ud2su6XhtKw']) {
+    const html = renderWatch(uploads.find(video => video.id === id), { videos: uploads });
+    assert.match(html, new RegExp(deprecation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), id);
+    assert.doesNotMatch(html, /codeassist\.google/, id);
+    assert.match(html, /deprecated Gemini Code Assist for individuals/, id);
+    assert.match(html, /href="https:\/\/developers\.google\.com\/gemini-code-assist\/docs\/overview" target="_blank"/, id);
+  }
+  const orchids = renderWatch(uploads.find(video => video.id === 'ZlD4Z6UKS8o'), { videos: uploads });
+  assert.doesNotMatch(orchids, /orchids\.app/);
+  assert.match(orchids, /503 DEPLOYMENT_PAUSED response as of November 2026/);
+  assert.match(orchids, />Orchids</);
+});
+
+test('every watch page lists the tools used', () => {
+  // No product is used on screen: a list of automation ideas, a moving vlog, and a TubeAnalytics-only demo.
+  const noTools = new Set(['zWM4AjUto2A', 'mkm8cz6dp8w', 'gebtJAsMioo']);
+  const missing = uploads.filter(video => video.embeddable && !noTools.has(video.id) && !/<h[23][^>]*>Tools used<\/h[23]>/.test(renderWatch(video, { videos: uploads })));
+  assert.deepEqual(missing.map(video => video.id), [], 'add the tools to src/video-tools.js');
+  for (const tools of Object.values(videoTools)) for (const tool of tools) assert.doesNotMatch(tool, /[—;…()]/, tool);
+});
+
+test('the videos page searches every video through a live index that includes search titles and tools', async () => {
+  const html = renderArchive(uploads, 2);
+  assert.match(html, new RegExp(`<form class="search-box" id="video-search" role="search" action="/search.html"><label for="video-q">Search all ${uploads.length} videos</label>`));
+  assert.match(html, /<script type="module" src="\/video-search\.js"><\/script>/);
+  assert.match(html, /<section id="video-results" aria-live="polite" hidden>/);
+  const response = await GET(new Request('https://www.ai-automation-station.com/video-index.json'));
+  assert.equal(response.status, 200);
+  assert.ok(Array.isArray(await response.json()));
+  const rows = videoIndex(uploads);
+  assert.equal(rows.length, uploads.length);
+  const row = rows.find(([id]) => id === '1TPm7B5oStw');
+  assert.equal(row[1], '/watch/1TPm7B5oStw');
+  assert.match(row[4], /ElevenLabs/);
+  assert.match(row[4], /WhatsApp AI voice agent with Make\.com and ElevenLabs/);
+});
+
+test('sorts the archive by views, date or length, keeping the sort across pages and out of the index', async () => {
+  const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 31 - index)).toISOString(), views: index * 10, duration: `PT${index + 1}M`, embeddable: true, summary: '' }));
+  const ids = html => html.match(/href="\/watch\/(v\d+)"/g)?.map(match => match.slice(13, -1)) ?? [];
+  const plain = renderArchive(videos, 1);
+  assert.match(plain, /<a href="\/videos\?sort=views" rel="nofollow">Most viewed<\/a>/);
+  assert.match(plain, /<a href="\/videos" rel="nofollow" aria-current="true">Newest<\/a>/);
+  const views = renderArchive(videos, 1, null, 'views');
+  assert.equal(ids(views)[0], 'v30');
+  assert.match(views, /<meta name="robots" content="noindex,follow">/);
+  assert.doesNotMatch(views, /rel="canonical"/);
+  assert.match(views, /<a href="\/videos\/2\?sort=views" rel="next">Next →<\/a>/);
+  assert.match(views, /<h2>Most viewed<\/h2>/);
+  assert.match(views, /31 long-form videos, most viewed first\./);
+  assert.equal(ids(renderArchive(videos, 3, null, 'oldest'))[0], 'v0');
+  assert.equal(ids(renderArchive(videos, 1, null, 'shortest'))[0], 'v0');
+  assert.equal(ids(renderArchive(videos, 1, null, 'longest'))[0], 'v30');
+  for (const [path, location] of [['/videos?sort=bogus', '/videos'], ['/videos?sort=newest', '/videos'], ['/videos/1?sort=views', '/videos?sort=views']]) {
+    const response = await GET(new Request(`https://www.ai-automation-station.com${path}`));
+    assert.equal(response.status, 308, path);
+    assert.equal(new URL(response.headers.get('location')).pathname + new URL(response.headers.get('location')).search, location, path);
+  }
 });
 
 test('routes page numbers before loading any videos', async () => {
   const one = await GET(new Request('https://www.ai-automation-station.com/videos/1'));
   assert.equal(one.status, 308);
   assert.equal(one.headers.get('location'), 'https://www.ai-automation-station.com/videos');
+  const campaign = 'utm_source=test_src&utm_medium=test_med&utm_campaign=test_camp';
+  const withUtm = await GET(new Request(`https://www.ai-automation-station.com/videos/1?${campaign}`));
+  assert.equal(withUtm.status, 308);
+  assert.equal(withUtm.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
+  const newest = await GET(new Request(`https://www.ai-automation-station.com/videos?sort=newest&${campaign}`));
+  assert.equal(newest.status, 308);
+  assert.equal(newest.headers.get('location'), `https://www.ai-automation-station.com/videos?${campaign}`);
   for (const bad of ['/videos/0', '/videos/abc', '/videos/02', '/api/videos?page=-1']) {
     assert.equal((await GET(new Request(`https://www.ai-automation-station.com${bad}`))).status, 404, bad);
   }
@@ -409,8 +604,8 @@ test('routes page numbers before loading any videos', async () => {
 test('archive cards show sharp thumbnails, duration and views', () => {
   const video = { id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: 'Build an agent.', duration: 'PT18M3S', views: 1234, embeddable: true };
   const html = renderArchive([video]);
-  assert.match(html, /srcset="https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/mqdefault.webp 320w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/hqdefault.webp 480w" sizes="/);
-  assert.match(html, /<img src="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg" srcset="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg 320w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/hqdefault.jpg 480w" sizes="/);
+  assert.match(html, /srcset="https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/mqdefault.webp 320w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/sddefault.webp 640w, https:\/\/i.ytimg.com\/vi_webp\/a1b2c3d4e5f\/maxresdefault.webp 1280w" sizes="/);
+  assert.match(html, /<img src="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/sddefault.jpg" srcset="https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/mqdefault.jpg 320w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/sddefault.jpg 640w, https:\/\/i.ytimg.com\/vi\/a1b2c3d4e5f\/maxresdefault.jpg 1280w" sizes="/);
   assert.match(html, /<span class="duration">18:03<\/span>/);
   assert.match(html, /<p class="meta"><time datetime="2026-10-20T00:00:00Z">Oct 20, 2026<\/time><span>1,234 views<\/span><\/p>/);
   assert.match(html, /<p class="summary">Build an agent.<\/p>/);
@@ -426,11 +621,12 @@ test('archive type and grid match the homepage and keep cards even', () => {
   assert.doesNotMatch(archiveStyles, /font-display: swap/);
   assert.match(renderArchive(uploads.slice(0, 3)), /<link rel="preload" href="\/fonts\/instrument-sans\.woff2" as="font" type="font\/woff2" crossorigin>/);
   assert.match(archiveStyles, /body \{[^}]*font: 16px\/1\.6 'Instrument Sans', system-ui, sans-serif;/);
-  // 300px minimum gives three columns in the 1120px shell, so 15 cards fill five rows.
-  assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(300px, 100%\), 1fr\)\)/);
+  // 340px minimum gives three columns in the 1280px shell, so 15 cards fill five rows.
+  assert.match(archiveStyles, /grid-template-columns: repeat\(auto-fill, minmax\(min\(340px, 100%\), 1fr\)\)/);
   assert.match(archiveStyles, /li \.summary \{[^}]*-webkit-line-clamp: 3;[^}]*line-clamp: 3;/);
   assert.doesNotMatch(html, / style="/);
-  assert.match(html, /<p class="start"><a href="\/start-here.html">New here\? Choose your first build<\/a> or <a href="\/guides.html">read the free guides<\/a><\/p>/);
+  assert.doesNotMatch(html, /New here\?/);
+  assert.match(html, /<div class="toolbar"><form class="search-box"[^]*?<\/form><nav class="sort" aria-label="Sort videos" data-archive>/);
 });
 
 test('archives up to 20 pages link every page so each is one hop from any other', () => {
@@ -455,9 +651,9 @@ test('longer archives show first, last and nearby pages only', () => {
 
 test('the archive links the reading pages and offers the community', () => {
   const html = renderArchive([{ id: 'a1b2c3d4e5f', title: 'Build', published: '2026-10-20T00:00:00Z', summary: '' }]);
-  assert.match(html, /<nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/search.html">Search<\/a><\/nav>/);
+  assert.match(html, /<nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html">Guides<\/a><a href="\/videos" aria-current="page">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav>/);
   assert.match(html, /<a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="video_archive_header">Join AI Income Lab ↗<\/a>/);
-  assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><p class="cta-eyebrow">AI Income Lab<\/p><h2 id="join-lab">Don’t build the next one <span>alone\.<\/span><\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
+  assert.match(html, /<aside class="cta" aria-labelledby="join-lab"><h2 id="join-lab">Build the next one with AI Income Lab<\/h2><ul class="cta-list">(<li>[^<]+<\/li>){3}<\/ul><div class="cta-action"><a class="join" [^>]*data-placement="video_archive">Join AI Income Lab ↗<\/a><span>From \$29\/month\. Cancel anytime\.[^<]*<\/span><\/div><\/aside>/);
   assert.ok(html.indexOf('class="cta"') > html.lastIndexOf('<li><a '));
   assert.doesNotMatch(html, /builds something real with it/);
 });
@@ -478,7 +674,7 @@ test('topic pages list only matching videos on one page with their own canonical
     { id: 'bbbbbbbbbbb', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: '', embeddable: true },
   ];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<title>Claude Code tutorials: builds, skills and workflows \| Mike Holp<\/title>/);
+  assert.match(html, /<title>Claude Code tutorials: builds, skills, workflows \| Mike Holp<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/videos\/claude-code">/);
   assert.match(html, /<meta property="og:title" content="Claude Code tutorials and builds">/);
   assert.match(html, /<h1>Claude Code tutorials and builds<\/h1><p>1 videos?, newest first\. Builds, skills and workflows[^<]*<\/p><p>Each video here uses Claude Code/);
@@ -487,7 +683,7 @@ test('topic pages list only matching videos on one page with their own canonical
   assert.doesNotMatch(html, /class="pager/);
   assert.match(html, /<a href="\/videos\/claude-code" aria-current="page">Claude Code<\/a>/);
   // The header's All videos link is not the current page on a topic page.
-  assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join"/);
+  assert.match(html, /<a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join"/);
   const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
   assert.equal(schema.name, 'Claude Code tutorials and builds');
   assert.equal(schema.mainEntity.itemListElement.length, 1);
@@ -501,8 +697,10 @@ test('topic pages list only matching videos on one page with their own canonical
 
 test('the archive shows a topic row with every topic', () => {
   const html = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }]);
-  const row = html.match(/<nav class="topics mono" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
-  assert.match(row, /^<a href="\/videos" aria-current="page">All videos<\/a>/);
+  const row = html.match(/<nav class="topics" aria-label="Video topics">([\s\S]*?)<\/nav>/)[1];
+  assert.match(row, /^<a href="\/videos" aria-current="page" aria-label="All videos \(1\)">All videos <span class="pill-count">1<\/span><\/a>/);
+  const topicPage = renderArchive([{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '' }, { id: 'bbbbbbbbbbb', title: 'Make.com scenario', published: '2026-10-01T00:00:00Z', summary: '' }], 1, topics.find(topic => topic.pattern.test('Claude Code hooks tutorial')));
+  assert.match(topicPage, /<a href="\/videos" aria-label="All videos \(2\)">All videos <span class="pill-count">2<\/span><\/a>/, 'topic pages still count every video');
   assert.equal((row.match(/<a /g) || []).length, topics.length + 1);
   for (const topic of topics) assert.ok(row.includes(`href="/videos/${topic.slug}"`), topic.slug);
 });
@@ -517,20 +715,60 @@ test('the page sitemap lists topic pages that have videos and drops stale ones',
 test('topic pages link the written guides on the same subject', () => {
   const videos = [{ id: 'aaaaaaaaaaa', title: 'Claude Code hooks tutorial', published: '2026-10-02T00:00:00Z', summary: '', embeddable: true }];
   const html = renderArchive(videos, 1, topicBySlug('claude-code'));
-  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial for beginners: install and use it<\/a> and <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a><\/p>/);
-  assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, <a [^>]+>[^<]+<\/a>, and <a /);
-  assert.doesNotMatch(renderArchive(videos, 1, topicBySlug('new-models')), /Written guide/);
+  assert.match(html, /<p class="start">Written guides: <a href="\/guides\/claude-code-for-beginners.html">Claude Code tutorial: install and first task<\/a>, <a href="\/guides\/claude-code-task-manager.html">Claude Code Task Manager: Scope, Checks and Packaging<\/a>, <a href="\/guides\/cleanyourtv-claude-code.html">CleanYourTV with Claude Code: TCL Setup and Risks<\/a>, <a href="\/guides\/claude-code-vs-codex.html">Codex vs Claude Code: how I use both and route tasks<\/a>/);
+  assert.match(html, /<a href="\/guides\/rtk-token-savings-claude-code.html">RTK Token Savings: Install, Hooks and Checks<\/a>/);
+  assert.match(renderArchive(videos, 1, topicBySlug('codex-opencode')), /Written guides: (?:<a [^>]+>[^<]+<\/a>, ){3,}and <a /);
+  assert.match(renderArchive(videos, 1, topicBySlug('new-models')), /Written guides: <a href="\/guides\/claude-models-compared.html">/);
   for (const [slug, guide] of [['n8n', 'self-host-n8n'], ['ai-seo', 'dataforseo-mcp-claude'], ['ai-agents', 'hermes-desktop']]) {
-    assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guides?: <a href="/guides/${guide}.html">`), slug);
+    assert.match(renderArchive(videos, 1, topicBySlug(slug)), new RegExp(`Written guides?: .*?<a href="/guides/${guide}.html">`), slug);
   }
 });
 
-test('only videos with the paid promotion box ticked reach the sponsored section', () => {
+test('paid-promotion flags select sponsored builds without including ordinary videos', () => {
   const videos = [
     { id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: 'PT18M3S', embeddable: true, sponsored: true, chapters: [] },
     { id: 'bbbbbbbbbbb', title: 'Unpaid', published: '2026-10-19T00:00:00Z', views: 9, duration: 'PT1M', embeddable: true, sponsored: false },
   ];
-  assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+  assert.deepEqual(sponsoredVideos(videos), [{ id: 'aaaaaaaaaaa', title: 'Paid', heading: 'Paid', summary: '', published: '2026-10-20T00:00:00Z', views: 5, duration: '18:03', embeddable: true }]);
+});
+
+test('sponsored cards carry the same heading and written summary as the homepage cards', async () => {
+  const snapshot = JSON.parse(await readFile(new URL('./sponsored-snapshot.json', import.meta.url), 'utf8'));
+  for (const video of snapshot) {
+    assert.equal(video.heading, videoHeading(video), video.id);
+    assert.ok(video.summary && video.summary === curatedSummary(video), `${video.id} needs a written summary`);
+  }
+});
+
+test('the sponsored views benchmark only counts other public uploads from the same span', () => {
+  const day = n => `2026-0${n}-01T00:00:00Z`;
+  const videos = [
+    { id: 'sponsored01', title: 'A', published: day(2), views: 900, sponsored: true },
+    { id: 'sponsored02', title: 'B', published: day(6), views: 1500, sponsored: true },
+    { id: 'ordinary001', title: 'C', published: day(3), views: 100 },
+    { id: 'ordinary002', title: 'D', published: day(4), views: 300 },
+    { id: 'ordinary003', title: 'E', published: day(5), views: 500 },
+    { id: 'tooearly001', title: 'F', published: day(1), views: 99999 },
+    { id: 'privatevid1', title: 'G', published: day(4), views: 99999, public: false },
+  ];
+  assert.deepEqual(sponsoredBenchmark(videos), { medianViews: 300, videos: 3 });
+});
+
+test('reviewed spoken disclosures add public sponsored builds without treating affiliate tutorials as paid', async () => {
+  const { sponsorDisclosures } = await import('./sponsor-disclosures.js');
+  const transcripts = JSON.parse(await readFile(new URL('./transcripts.json', import.meta.url), 'utf8'));
+  const { uploads } = await import('./uploads-snapshot.js');
+  for (const [id, { quote }] of Object.entries(sponsorDisclosures)) {
+    assert.ok(transcripts[id].toLowerCase().includes(quote.toLowerCase()), id);
+    assert.ok(uploads.some(video => video.id === id && video.public), id);
+  }
+  const eligible = sponsoredVideos(uploads);
+  for (const id of Object.keys(sponsorDisclosures)) assert.ok(eligible.some(video => video.id === id), id);
+  assert.ok(!eligible.some(video => video.id === 'bCsSqZp0yVg'), 'vidIQ recording explicitly says it is not sponsored');
+  const hidden = { ...uploads.find(video => video.id === 'quDDekuPQNI'), public: false };
+  assert.deepEqual(sponsoredVideos([hidden]), [], 'a historical disclosure cannot republish a private upload');
+  const snapshot = JSON.parse(await readFile(new URL('./sponsored-snapshot.json', import.meta.url), 'utf8'));
+  assert.deepEqual(snapshot.map(video => video.id), eligible.map(video => video.id));
 });
 
 test('watch page titles never reuse a written guide title or its lead phrase', async () => {
@@ -538,7 +776,8 @@ test('watch page titles never reuse a written guide title or its lead phrase', a
   const guideTitles = await Promise.all((await readdir(dir)).filter(file => file.endsWith('.html')).map(async file => (await readFile(new URL(file, dir), 'utf8')).match(/<title>(.*?)<\/title>/)[1].replace(/ \| Mike Holp$/, '').replace(/&amp;/g, '&')));
   const lead = title => title.split(':')[0].trim().toLowerCase();
   const guideLeads = new Set(guideTitles.map(lead));
-  for (const [id, notes] of [...Object.entries(watchNotes), ...Object.entries(videoNotes)]) {
+  const { videoSummaries } = await import('./video-summaries.js');
+  for (const [id, notes] of [...Object.entries(watchNotes), ...Object.entries(videoNotes), ...Object.entries(videoSummaries)]) {
     if (!notes.searchTitle) continue;
     assert.ok(!guideTitles.some(title => title.toLowerCase() === notes.searchTitle.toLowerCase()), `${id} copies a guide title`);
     assert.ok(!guideLeads.has(lead(notes.searchTitle)), `${id} shares a guide's lead phrase: ${notes.searchTitle}`);
@@ -551,14 +790,41 @@ test('watch pages sit under their topic hub in the breadcrumb and link to it', (
   const breadcrumbs = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(item => item['@type'] === 'BreadcrumbList');
   assert.deepEqual(breadcrumbs.itemListElement.map(item => item.item), ['https://www.ai-automation-station.com/', 'https://www.ai-automation-station.com/videos', 'https://www.ai-automation-station.com/videos/n8n', 'https://www.ai-automation-station.com/watch/aaaaaaaaaaa']);
   assert.match(html, /<a href="\/videos">Videos<\/a> \/ <a href="\/videos\/n8n">n8n<\/a> \/ <span aria-current="page">/);
-  assert.match(html, /More on this topic: <a href="\/videos\/n8n">/);
-  assert.match(html, /Related guides<\/h2>\n<ul><li><a href="\/guides\/self-host-n8n.html">/);
-  assert.match(html, /<form class="notes" data-subscribe data-placement="watch_end">/);
+  assert.match(html, /Keep learning<\/h2>\n<ul class="next-links"><li><a href="\/guides\/what-is-n8n-used-for.html"><small>Written guide<\/small>/);
+  assert.match(html, /<li><a href="\/videos\/n8n"><small>More on this topic<\/small>/);
+  assert.match(html, /<form class="notes" method="post" data-subscribe data-placement="watch_end">/);
+});
+
+test('watch pages link the guide that embeds the video first, then the broader setup or overview guide', () => {
+  const links = id => [...renderWatch(uploads.find(video => video.id === id)).match(/<ul class="next-links">(.*?)<\/ul>/s)[1].matchAll(/href="(\/guides\/[^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(links('tzSGF7gu6EE'), ['/guides/9router-cost-tracking-fallbacks.html', '/guides/9router-setup.html']);
+  assert.deepEqual(links('gibc7oWLCn4'), ['/guides/make-business-automation-examples.html', '/guides/ai-automation.html']);
+  assert.deepEqual(links('7UMrV3w1e40'), ['/guides/self-host-n8n.html', '/guides/what-is-n8n-used-for.html']);
+});
+
+test('every watch page whose video a guide embeds links that guide first', async () => {
+  const dir = new URL('../public/guides/', import.meta.url);
+  const embeddedBy = new Map();
+  for (const file of (await readdir(dir)).filter(name => name.endsWith('.html'))) {
+    const html = await readFile(new URL(file, dir), 'utf8');
+    for (const [, id] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})"/g)) {
+      embeddedBy.set(id, [...(embeddedBy.get(id) ?? []), `/guides/${file}`]);
+    }
+  }
+  assert.ok(embeddedBy.size > 50);
+  for (const [id, files] of embeddedBy) {
+    const video = uploads.find(upload => upload.id === id);
+    if (!video) continue;
+    const first = renderWatch(video, { videos: uploads }).match(/<ul class="next-links"><li><a href="([^"]+)"/)?.[1];
+    assert.ok(files.includes(first), `/watch/${id} should link ${files.join(' or ')} first, not ${first}`);
+  }
 });
 
 test('guide routing keeps specific tools ahead of broad coding-agent matches', () => {
   const route = title => guides.find(([pattern]) => pattern.test(title))?.[1];
-  assert.equal(route('This Claude Code Hack Saves Token Usage'), '/guides/claude-code-for-beginners.html');
+  assert.equal(route('This Claude Code Hack Saves Token Usage'), '/guides/rtk-token-savings-claude-code.html');
+  assert.equal(route('9Router Cost Tracking: Model Combos & Auto-Fallback'), '/guides/9router-cost-tracking-fallbacks.html');
+  assert.equal(route('How to Use 9Router: Setup & Fallbacks'), '/guides/9router-setup.html');
   assert.equal(route('Codex vs Claude Code: Which Should You Use?'), '/guides/claude-code-vs-codex.html');
   assert.equal(route('Why OpenCode Is Better Than Claude Code'), '/guides/opencode-vs-claude-code.html');
   assert.equal(route('Codex on Linux: Official Desktop App Setup'), '/guides/codex-on-linux.html');
@@ -593,4 +859,110 @@ test('archive pages carry breadcrumbs and named list items, and the sitemap date
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/<\/loc><lastmod>2026-10-02<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos<\/loc><lastmod>2026-10-02<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/www\.ai-automation-station\.com\/videos\/n8n<\/loc><lastmod>2026-09-01<\/lastmod>/);
+});
+
+test('a new upload reaches /videos within an hour via the cheap newest-upload probe', async t => {
+  const ids = ['geKngm3sg3w'];
+  const { request, calls, advance } = await earlyRefreshHarness(t, ids);
+  ids.unshift('newupload02');
+  advance(1800000);
+  assert.doesNotMatch(await (await request('/videos')).text(), /newupload02/, 'no probe within the hour');
+  assert.equal(calls(), 2);
+  advance(1800001);
+  assert.match(await (await request('/videos')).text(), /href="\/watch\/newupload02"/);
+  assert.equal(calls(), 5, 'one probe plus one full refresh');
+  advance(3600001);
+  await request('/videos');
+  assert.equal(calls(), 6, 'probe finds nothing new, no refresh');
+});
+
+test('watch headings drop hype and use sentence case, keeping product names', async () => {
+  const { watchHeading } = await import('./watch-title.js');
+  for (const [title, heading] of [
+    ['Building My Own Video Editor Using REA (It\'s Insane!)', 'Building my own video editor using REA'],
+    ['I Tested Meta Muse Wonder - Here\'s What Happened', 'I tested Meta Muse Wonder'],
+    ['OpenAI Just Released Dots! Here\'s What You Need To Know', 'OpenAI just released Dots: here\'s what you need to know'],
+    ['Give Your Hermes Agent A Memory Upgrade!', 'Give your Hermes Agent a memory upgrade'],
+    ['This AI Agent Found $81,000 In Brand Deals!', 'This AI agent found $81,000 in brand deals'],
+    ['Connect Fillout to Airtable in 15 Minutes (No Code)', 'Connect Fillout to Airtable in 15 minutes (no code)'],
+    ['These 20 GPT-6 Astra Demos Are INSANE!', 'These 20 GPT-6 Astra demos are insane'],
+    ['I Built My Own OpusClip for FREE! (Step-by-Step)', 'I built my own OpusClip for free (step-by-step)'],
+  ]) assert.equal(watchHeading(title), heading);
+});
+
+test('transcript summaries render a build section and valid FAQPage data', async () => {
+  const { videoSummaries, listingSummaries } = await import('./video-summaries.js');
+  const video = uploads.find(upload => upload.id === 'VE66JDHoS6Y');
+  const html = renderWatch(video);
+  const brief = videoSummaries[video.id];
+  assert.match(html, /<h2 id="build-summary">What this video covers<\/h2>/);
+  const step = brief.keySteps.find(item => Number.isFinite(item.seconds));
+  assert.match(html, /<h3>Key steps<\/h3>\n<ul class="key-steps"><li>/);
+  assert.ok(html.includes(`<li><a href="#t=${step.seconds}">${clock(step.seconds)}</a> - `), 'key steps read "0:00 - step"');
+  assert.doesNotMatch(html, /<h3>Key steps<\/h3>\n<ol/);
+  const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(data => data['@type'] === 'FAQPage');
+  assert.equal(faq.mainEntity.length, brief.qa.length);
+  assert.ok(faq.mainEntity.every(item => item.name && item.acceptedAnswer.text));
+  assert.equal(faq['@id'], `${html.match(/<link rel="canonical" href="([^"]+)"/)[1]}#faq-schema`);
+  assert.equal(faq.url, html.match(/<link rel="canonical" href="([^"]+)"/)[1]);
+  assert.match(html, /<section aria-labelledby="faq">\n<h2 id="faq">Questions and answers<\/h2>\n<div class="faq-list">\n<details class="faq-item">/);
+  assert.doesNotMatch(html, /<h4>/);
+  const unescape = text => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  const items = [...html.matchAll(/<details class="faq-item"><summary><h3>([^<]*)<\/h3><\/summary>\n<p>([^<]*)<\/p>\n<\/details>/g)];
+  assert.deepEqual(faq.mainEntity, items.map(([, q, a]) => ({ '@type': 'Question', name: unescape(q), acceptedAnswer: { '@type': 'Answer', text: unescape(a) } })));
+  assert.ok(html.indexOf('id="faq"') > html.indexOf('id="build-summary"') && html.indexOf('id="faq"') < html.indexOf('id="related-guides"'));
+  for (const text of [...Object.values(videoSummaries).flatMap(entry => [entry.summary, entry.whatYouBuild, ...entry.toolsUsed, ...entry.keySteps.map(step => step.step), ...entry.notCovered, ...entry.qa.flatMap(({ q, a }) => [q, a])]), ...Object.values(listingSummaries)]) {
+    assert.doesNotMatch(text, /[—;…]/, text);
+  }
+});
+
+test('videos without any summary get a descriptive fallback', () => {
+  const html = renderWatch({ id: 'abcdefghijk', title: 'Test n8n build', published: '2026-10-01T00:00:00Z', duration: 'PT7M52S', summary: '', chapters: [] });
+  assert.match(html, /Test n8n build is an 8 minute AI Automation Station video on n8n, published October 1, 2026\./);
+});
+
+test('guide pages list up to four related videos as thumbnail cards, skipping videos the guide already shows', () => {
+  const videos = ['a', 'b', 'c', 'd', 'e', 'f'].map((letter, index) => ({ id: letter.repeat(11), title: `N8N 2.0 build ${letter}`, embeddable: true, views: 100 - index }));
+  videos.push({ id: 'zzzzzzzzzzz', title: 'Suno music video', embeddable: true, views: 999 });
+  const html = addGuideVideos('<main><iframe src="https://www.youtube-nocookie.com/embed/aaaaaaaaaaa"></iframe><a href="/watch/bbbbbbbbbbb">B</a><aside class="note next-steps">Next</aside></main>', '/guides/self-host-n8n.html', videos);
+  assert.match(html, /<section aria-labelledby="you-may-also-like"><h2 id="you-may-also-like">You may also like<\/h2><ul class="related"><li><a href="\/watch\/ccccccccccc"><picture data-thumbnail><source [^>]+><img src="https:\/\/i\.ytimg\.com\/vi\/ccccccccccc\/sddefault\.jpg"[^>]*loading="lazy"[^>]*><\/picture><span>[^<]+<\/span><\/a><\/li>/);
+  const listed = [...html.matchAll(/<li><a href="\/watch\/(\w+)"/g)].map(match => match[1]);
+  assert.deepEqual(listed, ['ccccccccccc', 'ddddddddddd', 'eeeeeeeeeee', 'fffffffffff']);
+  assert.ok(html.indexOf('you-may-also-like') < html.indexOf('next-steps'));
+  assert.equal(addGuideVideos(html, '/guides/self-host-n8n.html', videos), html);
+  assert.equal(addGuideVideos('<main></main>', '/guides/unknown.html', videos), '<main></main>');
+});
+
+test('topic pages link their written guides without a separate start-with list', () => {
+  const html = renderArchive(uploads, 1, topics.find(item => item.slug === 'n8n'));
+  assert.match(html, /<p class="start">Written guides?: <a href="\/guides\//);
+  assert.doesNotMatch(html, /Start with these videos/);
+});
+
+test('every self-hosted thumbnail listed in the manifest exists at all four widths', async () => {
+  const { watchThumbnails } = await import('./watch-thumbnails.js');
+  const { localThumbnail } = await import('./thumbnail.js');
+  assert.ok(watchThumbnails.size > 0);
+  for (const id of watchThumbnails) {
+    for (const width of [320, 640, 960, 1280]) assert.ok(existsSync(new URL(`../public/assets/watch/${id}-${width}.webp`, import.meta.url)), `${id}-${width}`);
+  }
+  assert.equal(localThumbnail('zzzzzzzzzzz'), null);
+});
+
+test('watch pages declare their language and keywords in VideoObject data', () => {
+  const html = renderWatch({ id: 'abcdefghijk', title: 'n8n agent build', published: '2026-10-01T00:00:00Z', summary: 'Build an n8n agent.', embeddable: true });
+  const video = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(item => item['@type'] === 'VideoObject');
+  assert.equal(video.inLanguage, 'en');
+  assert.match(video.keywords, /^n8n/);
+});
+
+test('every embeddable watch page links to its older and newer neighbour', () => {
+  const v = (id, published, embeddable = true) => ({ id, title: `Video ${id}`, published, embeddable });
+  const videos = [v('aaaaaaaaaaa', '2026-01-01T00:00:00Z'), v('bbbbbbbbbbb', '2026-02-01T00:00:00Z'), v('xxxxxxxxxxx', '2026-02-15T00:00:00Z', false), v('ccccccccccc', '2026-03-01T00:00:00Z')];
+  const nav = html => html.match(/<nav class="pager mono" aria-label="More videos">.*?<\/nav>/s)[0];
+  const middle = nav(renderWatch(videos[1], { videos }));
+  assert.match(middle, /href="\/watch\/aaaaaaaaaaa" rel="prev"/);
+  assert.match(middle, /href="\/watch\/ccccccccccc" rel="next"/);
+  assert.doesNotMatch(middle, /xxxxxxxxxxx/);
+  assert.doesNotMatch(nav(renderWatch(videos[0], { videos })), /rel="prev"/);
 });

@@ -1,0 +1,84 @@
+export default {
+  slug: 'apify-klook-hotel-scraper-claude-code',
+  video: 'KLuU0Yxu9g4',
+  type: 'How-to',
+  title: 'Apify Agent Skills: Scrape Klook Hotels With Claude Code',
+  short: 'Apify Klook hotel scraper',
+  description: 'Install Apify agent skills in Claude Code, scrape Klook hotels for a travel site, and fix wrong results and empty prices. Sponsored by Apify, Feb 2026.',
+  hub: 'Scrape Klook luxury hotels in Koh Samui with Apify agent skills in Claude Code, and fix wrong results and empty prices with a URL and dates.',
+  watchLabel: 'Follow the Apify Klook hotel scraping build',
+  about: ['Apify','Apify Agent Skills','Claude Code','Playwright'],
+  card: {
+    title: 'Scrape hotel data with Apify skills in Claude Code',
+    steps: [
+      ['Install','npx skills add apify/agent-skills'],
+      ['Scrape','Ultimate scraper skill, direct Klook URL'],
+      ['Fix','Add check-in dates so prices appear'],
+    ],
+    note: 'Sponsored by Apify; check a site’s terms before scraping.',
+  },
+  quick: 'Install the skills with the one-line npx skills add command from the Apify Agent Skills GitHub page, then ask Claude Code to scrape Klook for four and five star hotels in Koh Samui. My first run returned unrelated Walt Disney World results until I passed the direct Klook accommodation URL, and prices came back empty until I added check-in dates. The run saved about 49 hotels with ratings and locations. Apify sponsored the video, and the sign-up link is an affiliate link.',
+  intro: '<p>This is a February 2026 build for a luxury hotel directory I made for Koh Samui, Thailand. Apify sponsored the video, and the link below is an affiliate link. Scraping a site can break its terms, so check Klook’s terms and robots rules and only collect what you are allowed to use. For a first run with these skills, see <a href="/guides/apify-agent-skills.html">the Apify agent skills guide</a>.</p>',
+  sections: [
+    {
+      id: 'why',
+      h: '1. Why scrape and what Apify offers',
+      html: '<p>My hotel directory needed accurate data, and many prices were wrong. Booking.com makes prices hard to scrape because you must pick dates. The Apify Store lists about 19,000 actors, including scrapers for Google Maps, TikTok, YouTube transcripts, Facebook posts and TripAdvisor. Apify is free to start.</p>',
+    },
+    {
+      id: 'install',
+      h: '2. Install the skills',
+      html: '<p>Search for Apify agent skills to find the GitHub page and run the one-line command in the terminal: npx skills add apify/agent-skills. The installer lists the skills available, including one for scraping many sites. I worked in Visual Studio Code with Claude Code.</p>',
+    },
+    {
+      id: 'scrape',
+      h: '3. Run the scraper and fix it',
+      html: '<p>I asked Claude Code to scrape Klook for luxury four and five star hotels in Koh Samui. It started the Apify ultimate scraper skill and looked for a suitable actor in the store. The first search returned Walt Disney World results, so I passed the direct Klook accommodation URL. It cost only a few cents of Apify credit. Output included hotel names such as a Centara resort and Vanabel, plus reviews, scores and map locations.</p><p>Prices were empty because Klook returns them only with check-in dates. Claude Code offered to add dates to the URL and rescrape, and I said yes. I expected about 450 hotels in the full scrape and did not wait for it on camera.</p>',
+    },
+    {
+      id: 'playwright',
+      h: '4. A custom Playwright scraper',
+      html: '<p>When an actor did not fit, Claude Code wrote its own Playwright script that captured Klook’s hotel API response and scrolled to load more results. It saved about 49 hotels to JSON. I used the earlier JSON scrape of 140 or more hotels to build the site pages. For income from such a site, I mentioned affiliate links and travel payouts; I did not show results.</p>',
+    },
+  ],
+  done: [
+    'npx skills add apify/agent-skills',
+    'Ultimate scraper skill, direct Klook URL',
+    'Add check-in dates so prices appear',
+  ],
+  limits: [
+    'The finished rescrape with prices. I ended while prices were still loading.',
+    'Whether scraping Klook is allowed under its terms. Check them yourself.',
+    'Apify cost for a full 450-hotel scrape beyond the few cents of the first run.',
+  ],
+  faq: [
+    [
+      'Was this sponsored?',
+      'Yes. Apify sponsored the video, and the sign-up link is an affiliate link.',
+    ],
+    [
+      'Why did I get Disney results?',
+      'The first search used a broad query. Passing the direct Klook accommodation URL fixed it.',
+    ],
+    [
+      'Why were prices empty?',
+      'Klook returned empty price fields without check-in dates, so I added dates to the URL and rescraped.',
+    ],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=KLuU0Yxu9g4">Apify Agent Skills Makes It Easy To Scrape Websites!</a> (recorded February 2026, sponsored by Apify)',
+    'Try Apify through my affiliate link: <a href="https://www.apify.com?fpr=fklok2" rel="sponsored noopener">Apify</a>',
+    'Apify: <a href="https://apify.com/">apify.com</a>',
+  ],
+  related: [
+    ['/guides/apify-agent-skills.html','Apify agent skills setup in Cursor'],
+    ['/guides/build-apps-with-ai-coding-agents.html','Build apps with AI coding agents'],
+    ['/guides/claude-code-for-beginners.html','Claude Code for beginners'],
+    ['/guides/ai-agent-workflow.html','AI agent workflow'],
+    ['/guides/what-is-an-ai-agent.html','What is an AI agent?'],
+  ],
+  next: ['/guides/apify-agent-skills.html','Apify agent skills setup in Cursor'],
+  more: 'Price and details: <a href="/tools.html#apify">Apify on the tools page</a>',
+  linkFrom: ['/guides/apify-agent-skills.html'],
+  llms: 'A February 2026 sponsored build: install Apify agent skills with npx skills add apify/agent-skills, ask Claude Code to scrape Klook for luxury hotels in Koh Samui, pass the direct Klook URL after Disney results, add check-in dates to get prices, and let Claude write a Playwright scraper that saved about 49 hotels. Check a site’s terms before scraping.',
+};

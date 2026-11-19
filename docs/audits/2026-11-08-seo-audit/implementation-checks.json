@@ -1,0 +1,120 @@
+{
+  "checkedAt": "2026-11-08T14:31:04.349Z",
+  "delivery": "local build; not deployed",
+  "guideCount": 63,
+  "contextualLinks": [
+    {
+      "source": "https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html",
+      "target": "https://www.ai-automation-station.com/guides/consent-tracking.html",
+      "anchor": "React consent-tracking guide",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/consent-tracking.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html",
+      "target": "https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html",
+      "anchor": "REA video-editor case study",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/choosing-ai-models-for-a-task.html",
+      "target": "https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html",
+      "anchor": "DeepSeek Harness first test",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/choosing-ai-models-for-a-task.html",
+      "target": "https://www.ai-automation-station.com/guides/muse-code-setup.html",
+      "anchor": "Meta Muse Code setup walkthrough",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/muse-code-setup.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/codex-on-linux.html",
+      "target": "https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html",
+      "anchor": "Ghostty config guide for Debian",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/ai-agent-workflow.html",
+      "target": "https://www.ai-automation-station.com/guides/grokbot-virtual-office.html",
+      "anchor": "GrokBot virtual-office dashboard walkthrough",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/grokbot-virtual-office.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/ai-agent-workflow.html",
+      "target": "https://www.ai-automation-station.com/guides/grokbot-vs-dots.html",
+      "anchor": "GrokBot vs Dots comparison",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/grokbot-vs-dots.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/codex-workflow.html",
+      "target": "https://www.ai-automation-station.com/guides/herdr-desktop-app.html",
+      "anchor": "Herdr Desktop workspace guide",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/herdr-desktop-app.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html",
+      "target": "https://www.ai-automation-station.com/guides/runable-audit-website.html",
+      "anchor": "Runable audit-service website walkthrough",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/runable-audit-website.html",
+      "inboundGuidePages": 3
+    },
+    {
+      "source": "https://www.ai-automation-station.com/guides/openseo-review.html",
+      "target": "https://www.ai-automation-station.com/guides/trakkr-codex-visibility-workflow.html",
+      "anchor": "Trakkr and Codex visibility workflow",
+      "placement": "main body",
+      "delivery": "local production build",
+      "canonical": "https://www.ai-automation-station.com/guides/trakkr-codex-visibility-workflow.html",
+      "inboundGuidePages": 3
+    }
+  ],
+  "watchRoutes": [
+    {
+      "path": "/watch/miBtL2fVkpg",
+      "status": 200,
+      "player": "https://www.youtube-nocookie.com/embed/miBtL2fVkpg",
+      "check": "direct Request through API GET handler; no browser"
+    },
+    {
+      "path": "/watch/phVQuQMojA8",
+      "status": 200,
+      "player": "https://www.youtube-nocookie.com/embed/phVQuQMojA8",
+      "check": "direct Request through API GET handler; no browser"
+    },
+    {
+      "path": "/watch/0iTOlQjNdhs",
+      "status": 200,
+      "player": "https://www.youtube-nocookie.com/embed/0iTOlQjNdhs",
+      "check": "direct Request through API GET handler; no browser"
+    }
+  ],
+  "stylesheetHashes": "all three match emitted files",
+  "privacyNotice": "matches player behavior",
+  "homepagePrerendered": true
+}

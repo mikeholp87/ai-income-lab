@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { channelUrl } from './youtube.js';
 
-for (const [path, eventName] of [['/guides/youtube-feed.html', 'guide_view'], ['/watch/Ip8KBwDixJs', 'video_page_view'], ['/videos/2', 'video_archive_view'], ['/videos/ai-agents', 'video_archive_view'], ['/privacy.html', 'legal_page_view'], ['/terms.html', 'legal_page_view']]) {
+for (const [path, eventName] of [['/guides/youtube-feed.html', 'guide_view'], ['/watch/Ip8KBwDixJs', 'video_page_view'], ['/videos/2', 'video_archive_view'], ['/videos/ai-agents', 'video_archive_view'], ['/privacy.html', 'legal_page_view'], ['/terms.html', 'legal_page_view'], ['/tools.html', 'tools_page_view']]) {
 test(`${path} gates tracking across allow, decline and allow`, async () => {
   const values = new Map(), scripts = [], events = [], elements = [];
   const button = value => ({ dataset: { consent: value }, addEventListener(type, fn) { this[type] = fn; }, focus() {} });
@@ -13,7 +13,9 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   const channel = { ...link, dataset: {}, href: channelUrl, textContent: 'YouTube' };
   const defaultVideo = { ...youtube, dataset: {} };
   const lookalike = { ...channel, href: 'https://www.youtube.com.example.org/watch?v=Ip8KBwDixJs' };
-  const links = [link, youtube, subscribe, channel, defaultVideo, lookalike];
+  const download = { ...link, href: 'https://www.ai-automation-station.com/downloads/make-approved-requests-starter-kit.zip', dataset: { starterKit: 'make-approved-requests', kitVersion: '1' }, textContent: 'Download the starter kit (ZIP)' };
+  const affiliate = { ...link, href: 'https://www.make.com/en/register?pc=mikeholp', rel: 'sponsored noopener', dataset: { affiliate: 'Make.com', category: 'automation', placement: 'tools_page' }, textContent: 'Try Make.com ↗' };
+  const links = [link, youtube, subscribe, channel, defaultVideo, lookalike, download, affiliate];
   const form = { dataset: { placement: 'guide_end' }, addEventListener(type, fn) { this[type] = fn; } };
   const clickLinks = () => { for (const target of links) target.click?.(); };
   const images = [false, true, false].map((complete, index) => ({
@@ -32,7 +34,7 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
   globalThis.document = {
     head: { appendChild: script => scripts.push(script), querySelector: () => null },
     body: { append: element => elements.push(element) },
-    querySelectorAll: selector => selector === 'a[href]' ? links : selector === 'form[data-subscribe]' ? [form] : images,
+    querySelectorAll: selector => selector === 'a[href]' ? links : selector === 'form[data-subscribe]' ? [form] : selector === 'figure.video a.player[data-embed]' ? [] : images,
     querySelector: () => ({ append: element => elements.push(element) }),
     createElement: tag => tag === 'aside' ? { setAttribute() {}, querySelectorAll: () => buttons, querySelector: () => buttons[0], contains: () => false } : button(),
   };
@@ -52,14 +54,20 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     clickLinks();
     form.focusin({ target: { name: 'email' } });
     assert.equal(gated().length, 0);
-    assert.equal(events.length, 0);
+    assert.equal(events.filter(event => event[0] === 'event').length, 0);
+    assert.ok(events.some(event => event[0] === 'consent' && event[1] === 'default'));
     buttons[1].click();
     assert.equal(banner.hidden, true);
     form.focusin({ target: { name: 'email' } });
     form.focusin({ target: { name: 'email' } });
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'form_start').length, 1);
-    assert.equal(gated().length, 1); // Existing Meta stub; only the Google loader is inserted.
+    assert.equal(gated().length, 2); // Existing Meta stub; Clarity and Google loaders are inserted.
     clickLinks();
+    const downloads = events.filter(event => event[0] === 'event' && event[1] === 'starter_kit_download');
+    assert.equal(downloads.length, 1);
+    assert.equal(downloads[0][2].kit_id, 'make-approved-requests');
+    assert.equal(downloads[0][2].kit_version, '1');
+    assert.equal(downloads[0][2].file_name, 'make-approved-requests-starter-kit.zip');
     const clicks = events.filter(event => event[0] === 'event' && event[1] === 'skool_outbound_clicked');
     assert.equal(clicks.length, 1);
     const youtubeClicks = events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked');
@@ -82,7 +90,15 @@ test(`${path} gates tracking across allow, decline and allow`, async () => {
     buttons[1].click();
     clickLinks();
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'youtube_outbound_clicked').length, 8);
+    assert.equal(events.filter(event => event[0] === 'event' && event[1] === 'starter_kit_download').length, 2);
+    const affiliateClicks = events.filter(event => event[0] === 'event' && event[1] === 'affiliate_outbound_clicked').map(([, , event]) => event);
+    assert.equal(affiliateClicks.length, 2, 'one event per consented click, none while declined');
+    assert.deepEqual([affiliateClicks[0].tool, affiliateClicks[0].tool_category, affiliateClicks[0].destination_domain, affiliateClicks[0].placement], ['Make.com', 'automation', 'www.make.com', 'tools_page']);
+    assert.equal(new URL(affiliate.href).searchParams.get('pc'), 'mikeholp', 'the referral code is untouched');
     assert.equal(events.filter(event => event[0] === 'event' && event[1] === eventName).length, 1);
+    const config = events.find(event => event[0] === 'config');
+    assert.match(config[2].page_location, /utm_source=youtube/);
+    assert.match(config[2].page_location, /utm_content=video-a/);
     assert.equal(events.filter(event => event[0] === 'meta' && event[1] === 'track' && event[2] === 'PageView').length, 2);
     assert.equal(events.some(event => /purchase|lead|signup/i.test(event[1] || '')), false);
   } finally {

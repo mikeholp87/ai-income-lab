@@ -1,3 +1,19 @@
+import { topicFor } from './topics.js';
+
+// Topic-matched next-step lines for videos the specific offers below do not match.
+const topicLines = {
+  'claude-code': 'Building with Claude Code? Bring your project to AI Income Lab and get help when it stalls.',
+  'codex-opencode': 'Working in Codex or OpenCode? Share your build in AI Income Lab and compare setups with other members.',
+  'n8n': 'Stuck on an n8n workflow? Post it in AI Income Lab and get help fixing it.',
+  'make-com': 'Building in Make.com? Get step-by-step help with your scenario inside AI Income Lab.',
+  'ai-agents': 'Setting up your own agents? See how members run theirs in AI Income Lab.',
+  'ai-seo': 'Working on search and AI visibility? Learn the workflows with other site owners in AI Income Lab.',
+  'make-money': 'Want to earn with what you build? Start with the courses in the AI Income Lab classroom.',
+  'ai-website-builders': 'Building a site with AI? Get feedback on your draft inside AI Income Lab.',
+  'ai-video': 'Making videos with AI? Swap workflows with other creators in AI Income Lab.',
+  'new-models': 'Testing new models? Compare notes with other builders in AI Income Lab.',
+};
+
 // Both the landing page and server-rendered watch pages use the same membership claims.
 export function videoOffer(title) {
   if (/\b(avatar|heygen)\b/i.test(title)) return {
@@ -28,7 +44,7 @@ export function videoOffer(title) {
   };
   return {
     title: 'Put what you watched into practice',
-    detail: 'Bring your AI project to AI Income Lab for courses and community help when a build stalls.',
+    detail: topicLines[topicFor(title)?.slug] ?? 'Build your first useful AI workflow with help from AI Income Lab.',
     access: 'Membership starts at $29 a month.',
   };
 }

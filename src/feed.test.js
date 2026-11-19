@@ -16,6 +16,14 @@ test('the feed lists public items newest first and escapes titles', () => {
   assert.equal(searchIndex([guide], videos).length, 2);
 });
 
+test('an updated guide is dated by its last update and moves ahead of older videos', () => {
+  const updated = { ...guide, modified: '2026-10-30' };
+  const xml = renderFeed([updated], videos);
+  assert.ok(xml.indexOf('Ship A &amp; B') < xml.indexOf('New &lt;video&gt;'));
+  assert.match(xml, /<pubDate>Fri, 30 Oct 2026 00:00:00 GMT<\/pubDate>/);
+  assert.match(xml, /<lastBuildDate>Fri, 30 Oct 2026 00:00:00 GMT<\/lastBuildDate>/);
+});
+
 test('IndexNow gets only recently changed pages and new videos', () => {
   const sitemap = '<url><loc>https://x/old</loc><lastmod>2026-09-01</lastmod></url><url><loc>https://x/new</loc><lastmod>2026-10-27</lastmod></url>';
   assert.deepEqual(recentUrls(sitemap, videos, Date.parse('2026-10-28T12:00:00Z')), ['https://x/new', 'https://www.ai-automation-station.com/watch/abcdefghijk']);

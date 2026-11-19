@@ -1,0 +1,5 @@
+# Long videos that use a top tool but have no dedicated guide yet (id | tools | title | length). Write a spec per video, run scripts/guide-from-spec.mjs, then --guide-links.
+geKngm3sg3w | OpenCode | How to Use 9Router: Setup, Providers & Fallbacks | PT11M15S
+ByncCPWeGNY | OpenCode | Finally, the Hermes Agent Desktop App is Here! (Complete Setup) | PT10M3S
+5zBHLxXw3tI | Google Gemini | Hermes Agent Desktop App Is A Game Changer! | PT11M4S
+4x2gxyIFUa8 | Make.com,Vapi | How I Built an AI Voice Agent That Actually Sounds Real | PT1M35S

@@ -5,18 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0a" />
-    <!-- Scroll reveal: hide sections only while the app is expected to reveal them; give up after 3s if it never loads. -->
-    <script>document.documentElement.classList.add('reveal-on'); setTimeout(function () { if (!window.__revealReady) document.documentElement.classList.remove('reveal-on'); }, 3000);</script>
     <meta name="description" content="Build AI automations with AI Income Lab: courses, templates, and 2,900+ members. The AI Automation Station community by Mike Holp. From $29/month." />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <title>AI Income Lab: AI Automation Courses &amp; Community</title>
+    <title>AI Automation Courses, Tutorials &amp; Community | AI Income Lab</title>
     <link rel="canonical" href="https://www.ai-automation-station.com/" />
+    <link rel="describedby" href="/llms.txt" type="text/plain" title="Site overview and official resources" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/node_modules/@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preconnect" href="https://i.ytimg.com" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AI Automation Station" />
     <meta property="og:url" content="https://www.ai-automation-station.com/" />
@@ -43,7 +41,7 @@
             "image": "https://www.ai-automation-station.com/mike-holp.jpg",
             "jobTitle": "Creator of AI Automation Station and host of AI Income Lab",
             "worksFor": { "@id": "https://www.ai-automation-station.com/#org" },
-            "knowsAbout": ["Claude Code", "Codex", "OpenCode", "n8n", "AI automation"],
+            "knowsAbout": ["Claude Code", "Codex", "OpenCode", "n8n", "Make.com", "AI automation"],
             "sameAs": ["https://www.youtube.com/@ai-automation-station", "https://github.com/mikeholp87", "https://www.linkedin.com/in/mikeholp", "https://x.com/mikeholp"]
           },
           {
@@ -61,7 +59,7 @@
             "@type": "Product",
             "@id": "https://www.ai-automation-station.com/#community",
             "name": "AI Income Lab",
-            "description": "Paid AI automation learning community on Skool by Mike Holp: step-by-step courses, templates, and help while you build.",
+            "description": "Paid AI automation learning community on Skool by Mike Holp: project-based workflow courses, templates, and community support. VIP includes weekly live group coaching and Q&A. Custom business implementation is separate from membership.",
             "brand": { "@id": "https://www.ai-automation-station.com/#org" },
             "url": "https://www.skool.com/ai-automation-station-7346/about",
             "image": "https://www.ai-automation-station.com/og-card.jpg?v=2",
@@ -75,10 +73,65 @@
             ]
           },
           {
+            "@type": "ItemList",
+            "@id": "https://www.ai-automation-station.com/#courses",
+            "name": "AI Income Lab courses",
+            "description": "Courses included in AI Income Lab membership on Skool. Access depends on plan.",
+            "numberOfItems": 3,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "Course",
+                  "name": "Beginner’s Automation Course",
+                  "description": "Make.com business automation course in the AI Income Lab classroom, with how-to guides and templates. Unlocks at Skool level 2 on Standard; immediate access with Premium and VIP.",
+                  "url": "https://www.skool.com/ai-automation-station-7346/about",
+                  "inLanguage": "en",
+                  "isAccessibleForFree": false,
+                  "provider": {
+                    "@id": "https://www.ai-automation-station.com/#org"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "Course",
+                  "name": "VAPI AI Voice Agent Course",
+                  "description": "Course on building a voice agent with VAPI, with community help in AI Income Lab. Unlocks at Skool level 4 on Standard; immediate access with Premium and VIP.",
+                  "url": "https://www.skool.com/ai-automation-station-7346/about",
+                  "inLanguage": "en",
+                  "isAccessibleForFree": false,
+                  "provider": {
+                    "@id": "https://www.ai-automation-station.com/#org"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "Course",
+                  "name": "Complete AI Avatar Video Course",
+                  "description": "Course on making AI avatar videos with HeyGen, ElevenLabs and Make.com. Included with Premium and VIP.",
+                  "url": "https://www.skool.com/ai-automation-station-7346/about",
+                  "inLanguage": "en",
+                  "isAccessibleForFree": false,
+                  "provider": {
+                    "@id": "https://www.ai-automation-station.com/#org"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "@type": "WebSite",
             "@id": "https://www.ai-automation-station.com/#website",
             "name": "AI Automation Station",
             "alternateName": "AI Income Lab",
+            "description": "Practical AI builds by Mike Holp, with AI Income Lab as the paid learning community on Skool.",
             "url": "https://www.ai-automation-station.com/",
             "publisher": { "@id": "https://www.ai-automation-station.com/#org" },
             "inLanguage": "en"
@@ -87,6 +140,10 @@
       }
     </script>
   <link rel="alternate" type="application/rss+xml" title="AI Automation Station" href="/rss.xml">
+    <script>try{if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+    <script>window.__landingPageLocation=window.__landingPageLocation||window.location.href;window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};if(!window.__gaConsentDefaulted){window.__gaConsentDefaulted=true;window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500})}</script>
+    <script src="/ga-boot.js" defer></script>
+    <script src="/theme.js" defer></script>
 </head>
   <body>
     <noscript><p>Use the video title links to open each video. Playing videos on this page requires JavaScript.</p></noscript>

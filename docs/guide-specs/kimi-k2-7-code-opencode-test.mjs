@@ -1,0 +1,43 @@
+export default {
+  slug: 'kimi-k2-7-code-opencode-test',
+  type: 'Review',
+  video: 'LqRRXcM8Kxc',
+  title: 'Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost',
+  short: 'Kimi K2.7 Code test',
+  description: 'I ran Kimi K2.7 Code in OpenCode on a real site audit and fixes, tracked its credit use against DeepSeek V4 Pro and hit the OpenCode Go monthly limit.',
+  hub: 'Test Kimi K2.7 Code in OpenCode on a site audit and fixes, and compare how fast it used credits against DeepSeek V4 Pro.',
+  watchLabel: 'Follow the Kimi K2.7 Code vs DeepSeek V4 Pro test',
+  about: ['Kimi K2.7 Code', 'OpenCode', 'DeepSeek V4 Pro', 'BridgeBench'],
+  card: {
+    title: 'Kimi K2.7 Code, tested on one real site',
+    steps: [['Select', 'Choose the model with /models in OpenCode'], ['Audit', 'Codebase-only SEO audit, then fixes'], ['Cost', 'About 3 USD, Go monthly limit reached']],
+    note: 'June 2026, a few hours after the release; one test, not a benchmark.',
+  },
+  quick: 'In OpenCode, run /models and pick Kimi K2.7 Code, then give it a codebase-only site audit and ask it to apply the fixes. In my first-day test it audited technical SEO, on-page SEO, content, authority and links, then began fixes such as the www canonical, robots.txt and a bulk script that made about 1,700 URL replacements in blog JSON files. The audit alone cost close to half of what DeepSeek V4 Pro used the whole day before, and I spent about 3 USD and hit my OpenCode Go monthly limit before the fixes were done.',
+  intro: '<p>This is a June 2026 test made a few hours after Moonshot AI announced the model, so there was almost no third-party data. It is one task on one codebase, not a benchmark. Moonshot’s own claims were about 30% lower average token use on long tasks and about 10% better agentic results than K2.6. The OpenCode link on this page is an affiliate link. For choosing between models more carefully, see <a href="/guides/choosing-ai-models-for-a-task.html">choosing a model using your own task</a>.</p>',
+  sections: [
+    { id: 'claims', h: '1. What Moonshot claimed', html: '<p>The announcement email described K2.7 Code as its most capable coding model, built for long-context code understanding, multi-step agent tasks, debugging and refactoring. It listed about 30% lower average token use in long-running tests and about 10% better agentic benchmarks, a high-speed mode coming soon and output pricing of about 4 USD per million tokens as I read it. BridgeBench had little data on the model yet, so I could not check the benchmarks.</p>' },
+    { id: 'setup', h: '2. Set it up in OpenCode', html: '<p>I recommended the OpenCode Go plan, 5 USD for the first month and then 10, which gives many cheap models. In OpenCode run /models and choose Kimi K2.7 Code. There is a free Zen tier to start.</p>' },
+    { id: 'audit', h: '3. Audit, then fix', html: '<p>I ran a codebase-only site audit covering technical SEO, on-page SEO, content quality, authority and links. Then I told the model to implement the fixes: the www canonical change, robots.txt updates and a bulk script that made about 1,700 URL replacements across blog JSON files. A bulk replace like that needs a diff review before you merge it.</p>' },
+    { id: 'cost', h: '4. The cost', html: '<p>The audit alone cost close to half of what DeepSeek V4 Pro used for my whole previous day. I spent about 3 USD in total and reached the OpenCode Go monthly limit, which would reset in 11 days, so I would have had to top up the balance in billing to continue. DeepSeek V4 Pro lets me code all day and almost never hit limits. My conclusion for that day: Kimi K2.7 Code burned credits much faster.</p>' },
+  ],
+  limits: [
+    'Code quality. I did not review the fixes before the limit stopped me.',
+    'Moonshot’s benchmark claims, which I did not verify.',
+    'Whether cost evens out once the model is no longer new.',
+  ],
+  faq: [
+    ['Is Kimi K2.7 Code better than DeepSeek V4 Pro?', 'I cannot say from one task. It used credits much faster in my test.'],
+    ['What did it cost?', 'About 3 USD for the audit and part of the fixes, which used up my OpenCode Go monthly limit.'],
+    ['How do I select it?', 'Open OpenCode, run /models and choose Kimi K2.7 Code.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=LqRRXcM8Kxc">Kimi K2.7 Code Vs DeepSeek V4 Pro: Is It Actually Better?</a> (recorded June 2026)',
+    'OpenCode through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a> · Moonshot AI: <a href="https://www.moonshot.ai">moonshot.ai</a>',
+  ],
+  related: [['/guides/choosing-ai-models-for-a-task.html', 'Choose a model using your actual task'], ['/guides/opencode-go.html', 'OpenCode Go'], ['/guides/opencode-vs-claude-code.html', 'OpenCode vs Claude Code'], ['/guides/openrouter-setup.html', 'OpenRouter setup'], ['/guides/free-claude-code-vs-opencode-codex.html', 'Free Claude Code vs OpenCode vs Codex']],
+  next: ['/guides/choosing-ai-models-for-a-task.html', 'Choose a model using your actual task'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/opencode-go.html'],
+  llms: 'A June 2026 first-day test of Kimi K2.7 Code in OpenCode: a codebase-only site audit and fixes (www canonical, robots.txt, about 1,700 URL replacements). The audit cost close to half of a full day of DeepSeek V4 Pro, total spend was about 3 USD and the OpenCode Go monthly limit was reached. One task, not a benchmark.',
+};

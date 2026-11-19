@@ -1,0 +1,86 @@
+export default {
+  slug: 'gamma-coaching-deck-from-chatgpt-plan',
+  video: 'CfbMWB0G99E',
+  type: 'How-to',
+  title: 'Gamma Presentation From a Pasted Plan: Client Coaching Deck',
+  short: 'Gamma coaching deck',
+  description: 'Paste a four-day ChatGPT coaching plan into Gamma, set audience, tone and theme, generate a ten-card deck, edit an image with the AI agent and export.',
+  hub: 'Turn a pasted coaching plan into a ten-card Gamma deck: concise text, light theme, AI images, an agent edit and a Google Slides export.',
+  watchLabel: 'Follow the Gamma client coaching deck build',
+  about: ['Gamma','Google Slides','ChatGPT'],
+  card: {
+    title: 'A Gamma deck from a pasted outline',
+    steps: [
+      ['Paste','Detailed plan as notes'],
+      ['Set','Ten cards, concise text, theme, images'],
+      ['Export','Edit with the agent, then Google Slides'],
+    ],
+    note: 'Plans and prices are from a March 2026 walkthrough.',
+  },
+  quick: "In Gamma choose Create new, paste your outline as text, pick Presentation and 16 by 9, and generate from notes. On the free plan I got ten cards, set text to concise, chose the audience, tone, language and a light theme, and let Gamma pick images in a line art style. The deck took about three minutes. I changed a heading, edited one image with Gamma’s AI agent and exported to Google Slides. Quoted plans: Plus $12, Pro $25 and Ultra $100 a month.",
+  intro: '<p>This follows a March 2026 walkthrough where I made a deck for a client who had never used ChatGPT, about an hour before the session. The Gamma link is an affiliate link. Prices and card limits are the ones I quoted, so check Gamma’s page. For a workshop deck with a website export, see <a href="/guides/gamma-workshop-deck-and-site-export.html">the Gamma workshop guide</a>.</p>',
+  sections: [
+    {
+      id: 'plan',
+      h: '1. Write the plan first',
+      html: '<p>I asked ChatGPT for a four-day coaching plan aimed at a complete beginner, laid out day by day. The plan’s opening idea was that a new learner has two problems at once: they do not know what the tool is and they do not know how to think with it. That plan became the outline Gamma works from.</p>',
+    },
+    {
+      id: 'generate',
+      h: '2. Paste it into Gamma',
+      html: '<p>Choose Create new. The options are a one-line prompt, pasted text, a template or an imported file or URL. I pasted text, chose Presentation, a 16 by 9 format and Generate from notes or outline, then went to the prompt editor. The free plan allowed ten cards. I set the amount of text to concise because I would speak to the slides, and set the audience, tone and language. I chose the light theme.</p>',
+    },
+    {
+      id: 'images',
+      h: '3. Pick the images',
+      html: '<p>I let Gamma choose the image model and selected a line art style. The AI then built the slides in real time in about three minutes. It was a solid deck for a beginner, and I liked the imagery.</p>',
+    },
+    {
+      id: 'edit',
+      h: '4. Edit and export',
+      html: '<p>To change an image, use Edit with agent and type what you want, or tap a suggestion. I picked “make the path golden” and the image changed within seconds. Present in the tab or full screen, or export as PowerPoint, PDF, Google Slides or PNG. I use Linux without PowerPoint, so I exported to Google Slides, signed in and opened the deck in my account. The formatting still needed some work there, and the deck looked better inside Gamma.</p>',
+    },
+    {
+      id: 'pricing',
+      h: '5. What the paid plans quoted',
+      html: "<p>The pricing page listed Plus at $12, Pro at $25 and Ultra at $100 a month, with more cards and credits on higher tiers. I stayed on the free plan.</p>",
+    },
+  ],
+  done: [
+    'Detailed plan as notes',
+    'Ten cards, concise text, theme, images',
+    'Edit with the agent, then Google Slides',
+  ],
+  limits: [
+    'Whether Gamma’s free limits are still ten cards.',
+    'How the client found the deck. The session happened after this walkthrough.',
+    'Fact-checking the generated slide text.',
+  ],
+  faq: [
+    [
+      'How many cards does the free plan allow?',
+      'Ten cards in my walkthrough, which was enough for my four-day plan.',
+    ],
+    ['Can I export to PowerPoint?','Yes, along with PDF, Google Slides and PNG. I used Google Slides.'],
+    [
+      'Can I change a single image?',
+      'Yes. Edit with agent lets you describe the change, and it updated one image in seconds.',
+    ],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=CfbMWB0G99E">Gamma AI Just Changed How I Make Presentations!</a> (recorded March 2026)',
+    'Try Gamma through my affiliate link: <a href="https://try.gamma.app/q9q68k9i00tu" rel="sponsored noopener">Gamma</a>',
+    'Gamma: <a href="https://gamma.app/">gamma.app</a>',
+  ],
+  related: [
+    ['/guides/gamma-workshop-deck-and-site-export.html','Gamma workshop deck and site export'],
+    ['/guides/ai-content-creation-workflows.html','AI content creation workflow'],
+    ['/guides/make-money-with-chatgpt.html','Make money with ChatGPT'],
+    ['/guides/choosing-ai-models-for-a-task.html','Choose a model using your actual task'],
+    ['/guides/ai-automation.html','AI automation: what it is and a first build'],
+  ],
+  next: ['/guides/gamma-workshop-deck-and-site-export.html','Gamma workshop deck and site export'],
+  more: 'Price and details: <a href="/tools.html#gamma">Gamma on the tools page</a>',
+  linkFrom: ['/guides/make-money-with-chatgpt.html'],
+  llms: "A March 2026 Gamma build: paste a four-day ChatGPT coaching plan as notes, choose Presentation, set ten cards, concise text, audience, tone and a light theme, let Gamma pick line art images, generate in about three minutes, edit an image with the AI agent and export to Google Slides. Quoted plans: Plus $12, Pro $25, Ultra $100 a month.",
+};

@@ -1,0 +1,2 @@
+# Immutable stylesheet URL hashes must match the bytes copied into the build on every OS.
+*.css text eol=lf

@@ -2,8 +2,111 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import test from 'node:test';
 
-const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+const read = async path => (await readFile(new URL(`../${path}`, import.meta.url), 'utf8')).replaceAll('\r\n', '\n');
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
+const youtubeWalkthroughPosters = {
+  'apify-agent-skills.html': 'mtpX58dNfCE',
+  'ai-coding-tutorials-compared.html': 'vmEac5CJcNQ',
+  'ai-agent-training-compared.html': 'lumzbY6QV4Y',
+  'ai-implementation-coaching-guide.html': 'dVC1Or0Tbo8',
+  'ai-workflow-courses-compared.html': '_1bZhPHcsm4',
+  'open-design-opencode-free-claude-design.html': 'rZh4zVT2LKY',
+  'grokbot-chief-of-staff-daily-briefing.html': 'Ip8KBwDixJs',
+  'ai-automation-strategy-notes-skills-seo-policy.html': 'bAgP_0uW0dY',
+  'no-code-agent-builders-mindstudio-rocket-assistants.html': 'uTYZC3Kxwjo',
+  'six-agent-builds-claude-code-dashboards-outreach.html': 'ffnMlBzcJOQ',
+  'make-content-builds-facebook-ebook-forms.html': 'bjTr9p-zQ1M',
+  'make-youtube-ideas-to-video-pipeline.html': 'SLAnjvWK1Y4',
+  'make-lead-generation-pitches-apollo-maps.html': 'X0X8kJTK7vA',
+  'n8n-hostinger-uploader-sora-2-and-version-2.html': 'dEQ8OllsJmk',
+  'three-ai-site-builds-antigravity-n8n-hotel.html': '_ikohuukGE4',
+  'tubeanalytics-build-log-claude-code-opencode.html': 'DfyAAwHPJuU',
+  'ai-visibility-trakkr-dataforseo-geo-skills.html': 'qzIaEA0wBCw',
+  'nano-banana-pro-infographics-thumbnails-notebooklm.html': 'bt-zM7QuKkU',
+  'opencode-free-models-go-plan-and-skills.html': 'cfYpzY-o3fQ',
+  'opencode-webcam-layout-skill-and-clip-app.html': 'jtyWB5iGPOs',
+  'hermes-agent-install-electron-build-openclaw.html': 'UnnN2i90ALg',
+  'ai-model-news-kimi-glm-fable-gemini.html': 'pRnJdlMSSqM',
+  'sendpulse-facebook-comment-chatbot.html': 'wniZpV6LZsE',
+  'n8n-job-search-resume-cover-letter-workflows.html': 'yUibdYhO1ms',
+  'youtube-to-linkedin-automations-n8n-opencode.html': 'M_4KgrWyycI',
+  'suno-n8n-music-video-workflow.html': 'pDbRjYYUjRI',
+  'kimi-k2-7-code-opencode-test.html': 'LqRRXcM8Kxc',
+  'odysseus-electron-desktop-app.html': 'Zi_PG07mDxo',
+  'make-news-to-video-autoposter.html': '4jK9RraWbiU',
+  'agent-skills-seo-kilo-code.html': 'ZKpr-vmz_iY',
+  'hermes-cron-jobs-vercel-reports.html': 'iVI11AZvUdk',
+  'make-apify-apollo-leads-sheet.html': 'kXw2yntdmo4',
+  'hermes-youtube-to-linkedin-cron.html': 'dVvazfQHhW4',
+  'dextrolab-white-label-automations.html': 'QMqe2ubsn0g',
+  'whatsapp-ai-voice-clone-make.html': '1TPm7B5oStw',
+  'vapi-outbound-ai-caller-make-twilio.html': '4uNxh9FW6Ho',
+  'opusclip-clone-app-opencode.html': 'HlPdlZh0AHM',
+  'claude-seo-skill-site-audit.html': 'q4-LkuMDkIE',
+  'opencode-video-trim-skill.html': 'yR-zoMUY27Q',
+  'make-messenger-chatgpt-bot.html': '8ieDSa8BVH4',
+  'pi-dev-terminal-coding-agent.html': 'C5wEcJRo_VA',
+  'odysseus-ai-self-hosted-workspace.html': 'EECptdYND6k',
+  'emergent-saas-agency-website.html': 'MYoA3___zYU',
+  'free-claude-code-vs-opencode-codex.html': 'ga22WZgoj9M',
+  'opencode-desktop-habit-tracker-electron.html': '7v_675nO7nM',
+  'lovable-landing-page-calcom-stripe-domain.html': 'ZlD4Z6UKS8o',
+  'nano-banana-gemini-images-make.html': 'QlL87_URHZ8',
+  'replit-viral-post-genie-build.html': 'mKsPxDi7uM0',
+  'apollo-apify-b2b-lead-list.html': 'YCjvrNI1pa4',
+  'hostinger-n8n-vps-setup.html': 'wZ76glbPIPc',
+  'manus-first-test-calendar-gmail.html': '-cLECY10Tzg',
+  'emergent-openclaw-install.html': 'wmjAyAth1Ug',
+  'apify-klook-hotel-scraper-claude-code.html': 'KLuU0Yxu9g4',
+  'vidiq-mcp-claude-channel-audit.html': 'bCsSqZp0yVg',
+  'syllaby-faceless-video-first-test.html': 'PDfEWpyyRMI',
+  'syllaby-bulk-scheduler-faceless-videos.html': 'AkIz84oXvdk',
+  'skool-welcome-email-automation.html': 'Zza-S7YsLy0',
+  'skool-membership-tiers.html': 'nJtbBB0JBYY',
+  'skool-hobby-plan-review.html': 'KEXgl3vsVMI',
+  'skool-free-community-first-weeks.html': 'enKnxKJJFZw',
+  'skool-community-setup-guide.html': '6iFA7ds2PU4',
+  'skool-classroom-upsell-tour.html': 'OPQacEy41kM',
+  'make-youtube-description-updater.html': 'qA683UQVDt4',
+  'make-gmail-ai-auto-reply.html': 'oDAKXkIyOHE',
+  'make-faceless-video-json2video.html': '4sd4-9rC3As',
+  'make-ai-agent-tally-email.html': 'G_XWYIwjhKY',
+  'heygen-make-youtube-automation.html': 'QMcaBMjZSMA',
+  'heygen-elevenlabs-make-course.html': 'G8u1-hKEqig',
+  'heygen-airtable-facebook-content-machine.html': 'kKiFzNW9fjw',
+  'gamma-workshop-deck-and-site-export.html': '9DQYe6HywT8',
+  'gamma-coaching-deck-from-chatgpt-plan.html': 'CfbMWB0G99E',
+  'bluehost-ai-assistant.html': 'b0Izj5Pv0sQ',
+  'grokbot-job-application-agent.html': '7JN-sMkJBCs',
+  'grokbot-credit-usage.html': 'V3ETwJAR5-I',
+  'herdr-on-windows.html': 'YYZSR1p32EQ',
+  'claude-code-vs-codex.html': 'ys5tJuTFCEo',
+  'grok-4-7-openrouter.html': 'p7kV1iHSP54',
+  'dataforseo-mcp-claude.html': 'wRqpZ9F3rmI',
+  'rank-prompt-ai-search-visibility.html': 'ndG48skyZZY',
+  'semrush-mcp-ai-visibility.html': 'Fw-RqLjArc8',
+  'opencode-seo-audit-skills.html': '1LN7TqmW--w',
+  'ai-token-usage-dashboard.html': 'L_dAm5Xh-fQ',
+  'hermes-agent-supermemory.html': 'wL6bjqaUcd8',
+  'hermes-backlink-outreach-pipeline.html': 'bBGqWXXIw44',
+  'chatgpt-thumbnail-ctr-pipeline.html': 'JJe2G17_eRU',
+  'visiscan-ai-visibility-audit.html': 'e73WvglCLW0',
+  'rtk-token-savings-claude-code.html': 'jB9hYQJGAuM',
+  'claude-code-second-brain.html': 'pwLLS6zFpKs',
+  'claude-code-video-editor-skill.html': '3cP3DeBG5Q0',
+  '9router-cost-tracking-fallbacks.html': 'tzSGF7gu6EE',
+  'ai-visibility-tracker-saas-build.html': '2G5klyFz61E',
+  'zcode-glm-desktop-app.html': 'mmiQaVfA5e0',
+  'claude-fable-5-game-prompts.html': 'X9Bo29B_46k',
+  'codex-cli.html': 'tR7AYN5FiqA',
+  'google-ai-studio-chat-app.html': 'Ax-v4H9xv50',
+  'opencode-stripe-billing-saas.html': 'ud2su6XhtKw',
+  'n8n-social-media-agent-template.html': '1klc_1MxBdM',
+  'n8n-whatsapp-ai-agent.html': '7p3n6-FH9IQ',
+  'make-com-beginner-course-scenarios.html': 'R90zVHmoj7A',
+  'make-business-automation-examples.html': 'gibc7oWLCn4',
+  'aegis-vpn-claude-code.html': 'XEmJGf5CHwk',
+};
 
 test('the guides hub links, lists and describes every guide', async () => {
   const hub = await read('public/guides.html');
@@ -20,9 +123,58 @@ test('the guides hub links, lists and describes every guide', async () => {
   assert.match(await read('public/sitemap.xml'), /<loc>https:\/\/www.ai-automation-station.com\/guides.html<\/loc>/);
 });
 
+test('new guides avoid tape voice, overlong titles and thin Sources', async () => {
+  const types = new Set(['Comparison', 'Case study', 'How-to', 'Review', 'Tool guide', 'Explainer', 'Build guide']);
+  const recording = /\b(the recording|in the recording|this recording|spoken source|What this recording did not cover)\b/i;
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const pub = html.match(/published_time" content="([^"]+)"/)?.[1] ?? '';
+    if (pub < '2026-11-12') continue;
+    assert.equal(recording.test(html), false, `${file} still talks about "the recording"`);
+    const title = html.match(/<title>([^<]+)/)?.[1] ?? '';
+    assert.ok(title.length <= 60, `${file} title is ${title.length} chars: ${title}`);
+    const type = html.match(/<p class="meta">([^·]+)/)?.[1]?.trim();
+    assert.ok(types.has(type), `${file} has unknown byline type ${type}`);
+    assert.match(html, /id="done"/, `${file} needs a Done when checklist`);
+    const sources = html.match(/<h2[^>]*id="sources"[\s\S]*?(?=<h2|<\/main)/)?.[0] ?? '';
+    const nonYt = [...sources.matchAll(/href="((?:https?:\/\/|\/)[^"]+)"/g)].map(m => m[1]).filter(u => !u.includes('youtube.com/watch') && !u.includes('youtu.be'));
+    assert.ok(nonYt.length >= 1, `${file} Sources need a non-YouTube link`);
+  }
+});
+
+test('guide-from-spec rejects tape voice, missing type and overlong titles', async () => {
+  const src = await read('scripts/guide-from-spec.mjs');
+  assert.match(src, /TYPES\.has\(s\.type\)/);
+  assert.match(src, /title\.length <= 60/);
+  assert.match(src, /recordingPhrase/);
+  assert.match(src, /What I didn't cover/);
+  assert.match(src, /id="done"/);
+});
+
+test('guide links to /videos topics and /watch pages resolve', async () => {
+  const { topicBySlug } = await import('./topics.js');
+  const { uploads } = await import('./uploads-snapshot.js');
+  const ids = new Set(uploads.map(video => video.id));
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, slug] of html.matchAll(/href="\/videos\/([^"#?/]+)"/g)) {
+      const topic = topicBySlug(slug);
+      assert.ok(topic || /^[1-9]\d{0,3}$/.test(slug), `${file} links to unknown /videos/${slug}`);
+      if (topic) assert.ok(uploads.some(video => topic.pattern.test(video.title)), `${file} links to empty topic ${slug}`);
+    }
+    for (const [, id] of html.matchAll(/href="\/watch\/([A-Za-z0-9_-]{11})/g)) assert.ok(ids.has(id), `${file} links to unknown /watch/${id}`);
+  }
+});
+
+test('static pages close the mobile menu after a choice or Escape', async () => {
+  const js = await read('public/theme.js');
+  assert.match(js, /\.nav-mobile nav a/);
+  assert.match(js, /event.key !== 'Escape'/);
+});
+
 test('static pages share a header that links the guides hub', async () => {
   for (const path of ['public/start-here.html', 'public/404.html', ...guides.map(file => `public/guides/${file}`)]) {
-    assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/search.html">Search<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/, path);
+    assert.match(await read(path), /<header(?: class="single-line-header")?><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html"( aria-current="page")?>Start here<\/a><a href="\/guides.html"( aria-current="page")?>Guides<\/a><a href="\/videos">All videos<\/a><a href="\/tools.html">Tools<\/a><\/nav><a class="join" href="https:\/\/www.skool.com\/ai-automation-station-7346\/plans" target="_blank" rel="noreferrer" data-placement="reading_header">Join AI Income Lab ↗<\/a><details class="nav-mobile"><summary aria-label="Site menu">Menu<\/summary><nav aria-label="Site menu">/, path);
   }
 });
 
@@ -30,7 +182,8 @@ test('the fast AI income guide is discoverable and has its own image', async () 
   const slug = 'make-money-with-ai-fast';
   const link = `/guides/${slug}.html`;
   assert.ok((await read('public/guides.html')).includes(`<a href="${link}">`));
-  assert.ok((await read('public/sitemap.xml')).includes(`<loc>https://www.ai-automation-station.com${link}</loc><lastmod>2026-10-30</lastmod>`));
+  // guide-seo.test.js checks this lastmod against the page's dateModified.
+  assert.match(await read('public/sitemap.xml'), new RegExp(`<loc>https://www\\.ai-automation-station\\.com${link}</loc><lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`));
   assert.ok((await read('public/llms.txt')).includes(`](https://www.ai-automation-station.com${link})`));
   const html = await read(`public${link}`);
   assert.ok(html.includes(`<meta property="og:image" content="https://www.ai-automation-station.com/assets/guides/${slug}.webp">`));
@@ -42,15 +195,68 @@ test('the fast AI income guide is discoverable and has its own image', async () 
 
 test('/guides redirects once to the hub without catching guide pages', async () => {
   const { redirects } = JSON.parse(await read('vercel.json'));
-  const page = redirects.find(rule => rule.destination === '/:page.html');
+  const page = redirects.find(rule => rule.source.includes(':page(') && !rule.source.endsWith('/'));
   const pattern = new RegExp(`^${page.source.replace(':page', '')}$`);
   assert.ok(pattern.test('/guides'));
-  for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html']) assert.ok(!pattern.test(path), path);
+  assert.ok(pattern.test('/search'));
+  assert.equal(page.destination, 'https://www.ai-automation-station.com/:page.html');
+  for (const path of ['/guides.html', '/guides/codex-workflow', '/guides/codex-workflow.html', '/search.html']) assert.ok(!pattern.test(path), path);
+});
+
+test('/guides/ reaches the hub in one 308 because trailingSlash is unset', async () => {
+  const config = JSON.parse(await read('vercel.json'));
+  // trailingSlash:false is compiled ahead of redirects, so /guides/ would 308 to /guides first.
+  assert.equal(Object.hasOwn(config, 'trailingSlash'), false);
+  const { redirects } = config;
+  const hub = 'https://www.ai-automation-station.com/:page.html';
+  const slashPage = redirects.find(rule => rule.source.includes(':page(') && rule.source.endsWith('/'));
+  const slashSlug = redirects.find(rule => rule.source.startsWith('/guides/:slug') && rule.source.endsWith('/'));
+  const strip = redirects.find(rule => rule.source === '/:path(.*)/');
+  assert.equal(slashPage.destination, hub);
+  assert.equal(slashPage.permanent, true);
+  assert.equal(slashSlug.destination, 'https://www.ai-automation-station.com/guides/:slug.html');
+  assert.equal(slashSlug.permanent, true);
+  assert.equal(strip.destination, '/:path');
+  assert.equal(strip.permanent, true);
+  assert.ok(redirects.indexOf(slashPage) < redirects.indexOf(strip));
+  assert.ok(redirects.indexOf(slashSlug) < redirects.indexOf(strip));
+  const pagePattern = new RegExp(`^${slashPage.source.replace(':page', '')}$`);
+  assert.ok(pagePattern.test('/guides/'));
+  assert.ok(pagePattern.test('/about/'));
+  assert.ok(!pagePattern.test('/guides'));
+  assert.ok(!pagePattern.test('/guides/codex-workflow/'));
+  const slugPattern = new RegExp(`^${slashSlug.source.replace(':slug', '')}$`);
+  assert.ok(slugPattern.test('/guides/codex-workflow/'));
+  assert.ok(!slugPattern.test('/guides/codex-workflow.html/'));
+  // @vercel/routing-utils compiles /:path(.*)/ to this; it must not match / or steal /guides/.
+  const stripPattern = /^(?:\/(.*))\/$/;
+  assert.ok(stripPattern.test('/videos/'));
+  assert.ok(stripPattern.test('/watch/abc/'));
+  assert.ok(stripPattern.test('/guides.html/'));
+  assert.ok(!stripPattern.test('/'));
+  assert.ok(!stripPattern.test('/guides'));
+});
+
+test('guide video figures are click-to-load players with no YouTube iframe in the HTML', async () => {
+  const reading = await read('src/reading.js');
+  assert.match(reading, /bindGuidePlayers\(document\)/);
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    assert.doesNotMatch(html, /<iframe/, file);
+    for (const [, id, title] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})" data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/\1" aria-label="Play ([^"]+)"><span class="play" aria-hidden="true">/g)) {
+      assert.ok(id && title, file);
+    }
+    if (html.includes('figure class="video"')) {
+      assert.match(html, /<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}" data-embed="https:\/\/www\.youtube-nocookie\.com\/embed\/[\w-]{11}" aria-label="Play /, file);
+    }
+  }
 });
 
 test('/blog sends readers to the guides hub', async () => {
   const { redirects } = JSON.parse(await read('vercel.json'));
-  assert.ok(redirects.some(rule => rule.source === '/blog' && rule.destination === '/guides.html' && rule.permanent === true));
+  const hub = 'https://www.ai-automation-station.com/guides.html';
+  assert.ok(redirects.some(rule => rule.source === '/blog' && rule.destination === hub && rule.permanent === true));
+  assert.ok(redirects.some(rule => rule.source === '/blog/' && rule.destination === hub && rule.permanent === true));
 });
 
 test('guide figures are described once, by their caption', async () => {
@@ -71,15 +277,15 @@ test('reading pages share the homepage type, link colour and header styles', asy
   assert.match(css, /font-family:'Instrument Sans';font-weight:400 700;src:url\('\/fonts\/instrument-sans.woff2'\)/);
   assert.match(css, /font-family:'DM Mono';src:url\('\/fonts\/dm-mono.woff2'\)/);
   assert.match(css, /body\{[^}]*font:18px\/1\.7 'Instrument Sans',system-ui,sans-serif\}/);
-  assert.match(css, /a\{color:#ff6846;/);
+  assert.match(css, /a\{color:var\(--signal\);/);
   // The brand is the header's own first link; nav links have their own style.
   assert.match(css, /header>a:first-child\{font-family:Archivo/);
   assert.doesNotMatch(css, /header a:first-child/);
-  assert.match(css, /\.join\{[^}]*background:#ff6846;/);
+  assert.match(css, /\.join\{[^}]*background:var\(--signal\);/);
   // Phones: brand left and Join right on the first row, the nav close beneath them.
   assert.match(css, /@media\(max-width:640px\)\{header\{row-gap:4px\}header nav\{order:3;width:100%;margin-left:0\}\.join\{margin-left:auto\}\}/);
   // Instrument Sans has narrow spaces; widen them in bylines so "Name · Date" separators stay readable.
-  assert.match(css, /small,\.meta\{font-size:14px;color:#a5a59e;word-spacing:\.15em\}/);
+  assert.match(css, /small,\.meta\{font-size:14px;color:var\(--soft\);word-spacing:\.15em\}/);
 });
 
 test('guides end with the standard next steps and every plans link says Join', async () => {
@@ -92,7 +298,7 @@ test('guides end with the standard next steps and every plans link says Join', a
   }
   for (const file of guides) {
     // The join card stands on its own after "Keep going", ending the article.
-    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n<form class="notes" data-subscribe>[^\n]*<\/form>\n?<\/main>/, file);
+    assert.match(await read(`public/guides/${file}`), /<\/aside>\n<section class="cta" aria-labelledby="join-lab">[^\n]*data-placement="guide_end">Join AI Income Lab ↗<\/a>[^\n]*<\/section>\n<form class="notes" method="post" data-subscribe>[^\n]*<\/form>\n?<\/main>/, file);
   }
   for (const path of ['public/start-here.html', ...guides.map(file => `public/guides/${file}`)]) {
     const html = await read(path);
@@ -114,7 +320,7 @@ test('the Claude Code vs Codex guide has its own image and a contents list', asy
   assert.match(html, /<figure><img src="\/assets\/guides\/claude-code-vs-codex.webp" [^>]*alt="Diagram: [^"]+" width="1200" height="630"[^>]*><figcaption>[^<]+<\/figcaption><\/figure>/);
   const toc = html.match(/<nav class="toc" aria-label="On this page">([\s\S]*?)<\/nav>/)[1];
   const targets = [...toc.matchAll(/href="#([a-z-]+)"/g)].map(match => match[1]);
-  assert.equal(targets.length, 8);
+  assert.equal(targets.length, 10);
   for (const id of targets) assert.match(html, new RegExp(`<h2 id="${id}">`), id);
   const { size } = await import('node:fs/promises').then(fs => fs.stat(new URL('../public/assets/guides/claude-code-vs-codex.webp', import.meta.url)));
   assert.ok(size > 5000 && size < 60000, `image is ${size} bytes`);
@@ -124,10 +330,11 @@ test('hub entries show an image, what the guide covers and the matching video', 
   const hub = await read('public/guides.html');
   const entries = [...hub.matchAll(/<li class="guide">([\s\S]*?)<\/li>/g)].map(match => match[1]);
   assert.equal(entries.length, guides.length);
-  for (const entry of entries) {
-    assert.match(entry, /<img src="\/assets\/guides\/[a-z0-9-]+\.webp" srcset="[^"]+" sizes="[^"]+" alt="" width="1200" height="630" loading="lazy">/);
+  // The first card is the hub's largest above-the-fold image on phones, so it loads eagerly.
+  entries.forEach((entry, index) => {
+    assert.match(entry, new RegExp(`<img src="/assets/guides/hub/[a-z0-9-]+\\.webp" srcset="[^"]+" sizes="\\(max-width: 735px\\) calc\\(100vw - 32px\\), [^"]+, 411px" alt="" width="1200" height="630" ${index ? 'loading="lazy"' : 'fetchpriority="high"'}>`));
     assert.match(entry, /<h3><a href="\/guides\/[a-z0-9-]+\.html">[^<]+<\/a><\/h3>/);
-  }
+  });
   assert.match(hub, /<a href="\/videos\/claude-code">Claude Code videos<\/a>/);
   assert.match(hub, /<a href="\/videos\/make-com">Make.com videos<\/a>/);
 });
@@ -159,21 +366,21 @@ test('guide titles and sections match what people search for', async () => {
   assert.match(ccvc, /<title>Codex vs Claude Code: /);
   assert.match(ccvc, /<h1>Codex vs Claude Code: /);
   assert.match(ccvc, /<h2 id="short-answer">The short answer \(October 2026\)<\/h2>/);
-  assert.match(ccvc, /"dateModified":"2026-10-30"/);
-  assert.match(ccvc, /Updated <time datetime="2026-10-30">October 30, 2026<\/time>/);
+  assert.match(ccvc, /"dateModified":"2026-11-12"/);
+  assert.match(ccvc, /Updated <time datetime="2026-11-12">November 12, 2026<\/time>/);
   const hermes = await read('public/guides/hermes-desktop.html');
   assert.match(hermes, /<title>Hermes Desktop: /);
   assert.ok(hermes.match(/<meta name="description" content="([^"]*)"/)[1].length <= 158);
   const n8n = await read('public/guides/self-host-n8n.html');
-  assert.match(n8n, /<h3 id="docker">Or run it in Docker<\/h3>/);
+  assert.match(n8n, /<h3 id="docker">Run it in Docker<\/h3>/);
   // n8n's own docker run command, copied from its docs.
   assert.match(n8n, /-v n8n_data:\/home\/node\/\.n8n \\\n n8nio\/n8n<\/code><\/pre>/);
-  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-10-30</);
+  assert.match(await read('public/sitemap.xml'), /guides\/claude-code-vs-codex\.html<\/loc><lastmod>2026-11-12</);
   // Title leads chosen from DataForSEO volumes on 2026-10-27 (docs/audits/2026-10-27-guides-search-data.md).
   for (const [file, lead] of [
-    ['claude-code-for-beginners', 'Claude Code tutorial for beginners: install'],
-    ['codex-on-linux', 'Codex on Linux: install Codex CLI'],
-    ['codex-usage-limits', 'Codex usage limits: check usage'],
+    ['claude-code-for-beginners', 'Claude Code tutorial: install and first'],
+    ['codex-on-linux', 'Codex on Linux: desktop app and Linux'],
+    ['codex-usage-limits', 'Codex usage limits by ChatGPT plan'],
     ['vapi-voice-agent-tutorial', 'Vapi AI tutorial: '],
   ]) {
     const html = await read(`public/guides/${file}.html`);
@@ -187,25 +394,56 @@ test('guide titles and sections match what people search for', async () => {
 test('the guides hub uses the /videos page design', async () => {
   const hub = await read('public/guides.html');
   assert.match(hub, /<link rel="stylesheet" href="\/archive.css">/);
-  assert.match(hub, /<header class="shell single-line-header"><a class="brand desktop-brand" href="\/">[\s\S]*?<a class="mobile-brand" href="\/">AI Income Lab<\/a><nav class="mono" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
-  assert.match(hub, /<div class="intro"><p class="mono path">~\/guides<\/p><h1>/);
-  assert.match(hub, /<nav class="topics mono" aria-label="Guide topics">/);
+  assert.match(hub, /<header class="shell single-line-header"><a class="brand desktop-brand" href="\/">[\s\S]*?<a class="mobile-brand" href="\/">AI Income Lab<\/a><nav class="site-nav" aria-label="Site"><a href="\/start-here.html">Start here<\/a><a href="\/guides.html" aria-current="page">Guides<\/a><a href="\/videos">All videos<\/a>/);
+  assert.match(hub, /<div class="intro"><h1>/);
+  assert.match(hub, /<nav class="topics" aria-label="Guide topics">/);
   assert.match(await read('src/archive.js'), /<link rel="stylesheet" href="\$\{archiveCss\}">/);
+});
+
+test('the guides hub filters its cards with the same search box as /videos', async () => {
+  const hub = await read('public/guides.html');
+  assert.match(hub, /<\/nav>\n<div class="toolbar"><form class="search-box" id="guide-search" role="search" action="\/search.html"><label for="guide-q">Search the guides<\/label><input id="guide-q" name="q" type="search"/);
+  assert.match(hub, /<p class="search-status" id="guide-status" aria-live="polite" hidden><\/p>/);
+  assert.match(hub, /<script type="module" src="\/guide-search\.js"><\/script>/);
+  const script = await read('public/guide-search.js');
+  assert.match(script, /ul\.guide-list/);
+  assert.match(script, /\/videos\?q=\$\{encodeURIComponent\(typed\)\}/);
+});
+
+test('the guides hub sorts by topic or publish date, and every card shows its date', async () => {
+  const { addGuideDates, guideMeta } = await import('./feed.js');
+  const metas = await Promise.all(guides.map(async file => guideMeta(await read(`public/guides/${file}`))));
+  const hub = addGuideDates(await read('public/guides.html'), metas);
+  const cards = [...hub.matchAll(/<li class="guide"( data-published="(\d{4}-\d{2}-\d{2})")?>[^]*?<h3><a href="([^"]+)">[^]*?<\/h3><p class="meta guide-date"><time datetime="(\d{4}-\d{2}-\d{2})">\w{3} \d{1,2}, \d{4}<\/time><\/p>/g)];
+  assert.equal(cards.length, guides.length);
+  for (const [, , stamped, path, shown] of cards) {
+    assert.equal(stamped, shown, path);
+    assert.equal(stamped, metas.find(meta => meta.url.endsWith(path)).published.slice(0, 10), path);
+  }
+  assert.match(await read('scripts/prerender.js'), /file === 'guides\.html' \? addGuideDates\(read, guideTitles\)/);
+  const script = await read('public/guide-search.js');
+  assert.match(script, /const sorts = \{ topic: 'By topic', newest: 'Newest', oldest: 'Oldest' \};/);
+  assert.match(script, /sort === 'oldest' \? a\.published\.localeCompare\(b\.published\) : b\.published\.localeCompare\(a\.published\)/);
+  assert.match(script, /url\.searchParams\.set\('sort', sort\)/);
 });
 
 test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
   const css = await read('public/archive.css');
-  assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: #ff6846;/);
+  assert.match(css, /li a:hover img, li a:focus-visible img, \.guide:hover img, \.guide:focus-within img \{ border-color: var\(--signal\);/);
   assert.match(css, /\.guide h3 a::after \{ content: ''; position: absolute; inset: 0; \}/);
   assert.match(css, /\.guide \.meta a \{ position: relative; z-index: 1; \}/);
 });
 
 test('search starts with a few results, then pages matches eight at a time', async () => {
   const page = await read('public/search.html');
+  assert.doesNotMatch(page, /voice agent…|Loading the index…/);
   assert.match(page, /<button type="button" class="search-more" id="search-more" hidden>Show more results<\/button>/);
   assert.match(page, /const pageSize = 8;/);
   assert.match(page, /rows\.filter\(row => row\[0\] === 'guide'\)\.slice\(0, 3\), \.\.\.rows\.filter\(row => row\[0\] === 'video'\)\.slice\(0, 3\)/);
   assert.match(page, /more\.addEventListener\('click', \(\) => \{ shown \+= pageSize; run\(\); \}\);/);
+  assert.match(page, /<meta name="twitter:title" content="Search guides and videos \| Mike Holp">/);
+  assert.match(page, /<meta name="twitter:description" content="Search every AI automation guide and tested build video on AI Automation Station.">/);
+  assert.match(page, /<meta name="twitter:image" content="https:\/\/www.ai-automation-station.com\/og-card.jpg\?v=2">/);
 });
 
 test('every guide image is a card from scripts/guide-cards.mjs, never a video thumbnail', async () => {
@@ -216,10 +454,21 @@ test('every guide image is a card from scripts/guide-cards.mjs, never a video th
   assert.doesNotMatch(await read('public/guides.html'), /ytimg\.com/);
 });
 
+test('the guides hub shows the headline-only cards, which exist for every guide card', async () => {
+  const { existsSync } = await import('node:fs');
+  const { cards } = await import('../scripts/guide-cards.mjs');
+  const hub = await read('public/guides.html');
+  const shown = [...hub.matchAll(/<li class="guide"><img src="\/assets\/guides\/hub\/([a-z0-9-]+)\.webp" srcset="\/assets\/guides\/hub\/\1-400\.webp 400w, \/assets\/guides\/hub\/\1-640\.webp 640w, \/assets\/guides\/hub\/\1-800\.webp 800w, \/assets\/guides\/hub\/\1\.webp 1200w"/g)];
+  assert.equal(shown.length, hub.split('<li class="guide">').length - 1);
+  for (const slug of Object.keys(cards)) {
+    for (const file of [`${slug}.webp`, `${slug}-640.webp`, `${slug}-400.webp`, `${slug}-800.webp`]) assert.ok(existsSync(new URL(`../public/assets/guides/hub/${file}`, import.meta.url)), file);
+  }
+});
+
 test('Start here is as wide as the guides hub and the video archive', async () => {
   assert.match(await read('public/start-here.html'), /<body class="wide">/);
-  assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1120px,calc\(100% - 32px\)\)\}/);
-  assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1120px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
+  assert.match(await read('public/reading.css'), /\.wide header,\.wide main,\.wide footer\{width:min\(1280px,calc\(100% - 32px\)\)\}/);
+  assert.match(await read('public/archive.css'), /\.shell \{ width: min\(1280px, calc\(100% - 32px\)\); margin: 0 auto; \}/);
 });
 
 test('guide cards offer the 640px copy wherever they show, and every copy exists', async () => {
@@ -232,12 +481,203 @@ test('guide cards offer the 640px copy wherever they show, and every copy exists
   }
 });
 
-test('every guide page shows its own branded card and never points at a YouTube thumbnail', async () => {
+test('every guide page shows its own branded card and never points at a YouTube thumbnail outside the walkthrough poster', async () => {
   for (const file of guides) {
     const slug = file.replace(/\.html$/, '');
     const html = await read(`public/guides/${file}`);
-    assert.doesNotMatch(html, /i\.ytimg\.com|img\.youtube\.com/, file);
+    // Structured data may name the video's own thumbnail; the visible page may not.
+    const withoutVideo = html.replace(/<figure class="video">[\s\S]*?<\/figure>/g, '').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+    assert.doesNotMatch(withoutVideo, /i\.ytimg\.com|img\.youtube\.com/, file);
     assert.match(html, new RegExp(`<img src="/assets/guides/${slug}\\.webp" srcset="/assets/guides/sizes/${slug}-640\\.webp 640w`), file);
     assert.match(html, new RegExp(`<meta property="og:image" content="https://www\\.ai-automation-station\\.com/assets/guides/${slug}\\.webp"`), file);
+    const expectedId = youtubeWalkthroughPosters[file];
+    if (!expectedId) {
+      assert.doesNotMatch(html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, ''), /i\.ytimg\.com|img\.youtube\.com/, file);
+      continue;
+    }
+    assert.match(html, new RegExp(`data-embed="https://www\\.youtube-nocookie\\.com/embed/${expectedId}"`));
+    assert.match(html, new RegExp(`<img src="https://i\\.ytimg\\.com/vi/${expectedId}/maxresdefault\\.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">`));
+  }
+});
+
+test('every in-page link on a static page points at an element that exists', async () => {
+  const pages = [...guides.map(file => `public/guides/${file}`), ...(await readdir(new URL('../public', import.meta.url))).filter(file => file.endsWith('.html')).map(file => `public/${file}`)];
+  for (const path of pages) {
+    const html = await read(path);
+    // A missing space ("<h2id=") makes the browser drop the attribute, so the anchor silently disappears.
+    assert.doesNotMatch(html, /<[a-z][a-z0-9]*(?:id|class|href|src)="/, path);
+    const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map(match => match[1]));
+    // "#top" scrolls to the top of the page without a matching element.
+    for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) if (id !== 'top') assert.ok(ids.has(id), `${path}: #${id}`);
+  }
+});
+
+test('guide FAQs are collapsible and their FAQPage data matches the visible questions and answers', async () => {
+  const plain = fragment => fragment.replace(/<p class="meta">[\s\S]*?<\/p>/g, '').replace(/<\/(p|li|ul|ol)>/g, ' ').replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const items = [...html.matchAll(/<details class="faq-item"><summary><h3>([\s\S]*?)<\/h3><\/summary>\n([\s\S]*?)\n<\/details>/g)];
+    assert.ok(items.length >= 2, file);
+    assert.doesNotMatch(html.slice(html.indexOf('<div class="faq-list">'), html.indexOf('</div>', html.indexOf('<div class="faq-list">'))), /<h3>(?![\s\S]*?<\/h3><\/summary>)/, file);
+    const data = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).filter(entry => entry['@type'] === 'FAQPage');
+    assert.equal(data.length, 1, file);
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)[1];
+    assert.equal(data[0].url, canonical, file);
+    assert.deepEqual(data[0].mainEntity, items.map(([, question, answer]) => ({ '@type': 'Question', name: plain(question), acceptedAnswer: { '@type': 'Answer', text: plain(answer) } })), file);
+  }
+  assert.match(await read('public/reading.css'), /\.faq-item\[open\] summary::after\{content:'−';border-color:var\(--signal\);color:var\(--signal\)\}/);
+});
+
+test('guides have no unverified placeholders and link to at least five other guides', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    assert.doesNotMatch(html, /TODO/, file);
+    const body = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    const linked = new Set([...body.matchAll(/href="\/guides\/([a-z0-9-]+)\.html/g)].map(([, slug]) => slug).filter(slug => `${slug}.html` !== file));
+    assert.ok(linked.size >= 5, `${file}: ${linked.size}`);
+  }
+});
+
+test('the Google AI Studio guide keeps going to an existing video topic', async () => {
+  const html = await read('public/guides/google-ai-studio-chat-app.html');
+  assert.doesNotMatch(html, /\/videos\/ai-coding/);
+  assert.match(html, /href="\/videos\/ai-website-builders">AI website builder videos</);
+});
+
+test('guide Article data names the author profiles and the topics the guide covers', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const article = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(entry => entry['@type'] === 'Article');
+    assert.ok(article.author.sameAs.includes('https://www.youtube.com/@ai-automation-station'), file);
+    assert.ok(article.about.length >= 1, file);
+    for (const entity of [...article.about, ...(article.mentions || [])]) assert.equal(entity['@type'], 'Thing', `${file}: ${entity.name}`);
+  }
+});
+
+test('site page titles end in the same brand as the guides', async () => {
+  for (const page of ['404', 'privacy', 'search', 'start-here', 'terms']) {
+    assert.match((await read(`public/${page}.html`)).match(/<title>(.*?)<\/title>/)[1], / \| Mike Holp$/, page);
+  }
+  assert.match(await read('api/videos.js'), /<title>\$\{title\} \| Mike Holp<\/title>/);
+});
+
+test('the MCP and AI agent explainers are listed everywhere a guide should be', async () => {
+  const hub = await read('public/guides.html');
+  const sitemap = await read('public/sitemap.xml');
+  const llms = await read('public/llms.txt');
+  const topics = await read('src/topics.js');
+  for (const slug of ['what-is-mcp', 'what-is-an-ai-agent']) {
+    const html = await read(`public/guides/${slug}.html`);
+    assert.match(hub, new RegExp(`<a href="/guides/${slug}.html">`), slug);
+    assert.match(sitemap, new RegExp(`<loc>https://www.ai-automation-station.com/guides/${slug}.html</loc>`), slug);
+    assert.match(llms, new RegExp(`/guides/${slug}\\.html\\)`), slug);
+    assert.match(topics, new RegExp(`'/guides/${slug}.html'`), slug);
+    assert.match(html, /<p class="meta">Explainer · [^<]*<a href="\/about.html" rel="author">Mike Holp<\/a> · Published <time datetime="2026-11-11">/, slug);
+    assert.ok(html.match(/<title>([^<]*)<\/title>/)[1].length <= 60, slug);
+    assert.match(html, /<h2 id="sources">Sources<\/h2>/, slug);
+  }
+  // Search terms with demand and no page before November 11, 2026 (Serpstat, US).
+  assert.match(await read('public/guides/what-is-mcp.html'), /<h1>What is MCP\? /);
+  assert.match(await read('public/guides/what-is-an-ai-agent.html'), /<h1>What is an AI agent\? /);
+  assert.match(await read('public/guides/dataforseo-mcp-claude.html'), /<h1>DataForSEO MCP: build an AI SEO agent in Claude Code<\/h1>/);
+  const agency = await read('public/guides/ai-automation-services-small-business.html');
+  assert.match(agency, /<title>AI automation agency: /);
+  assert.match(agency, /<h2 id="agency">Starting an AI automation agency/);
+});
+
+test('guides list at most five sources', async () => {
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    const at = html.indexOf('<h2 id="sources">');
+    if (at === -1) continue;
+    const list = html.slice(at).match(/<(ul|ol)\b[^>]*>([^]*?)<\/\1>/)[2];
+    assert.ok(list.match(/<li\b/g).length <= 5, file);
+  }
+});
+
+test('the guides hub shows the total number of guides in its All guides pill', async () => {
+  const script = await read('public/guide-search.js');
+  assert.match(script, /className: 'pill-count', textContent: all\.length/);
+  assert.match(script, /aria-label', `All guides \(\$\{all\.length\}\)`/);
+  assert.match(await read('public/archive.css'), /\.topics \.pill-count \{/);
+});
+
+test('choosing a guide topic keeps the scroll position, like the videos page', async () => {
+  const script = await read('public/guide-search.js');
+  const handler = script.match(/topics\.addEventListener\('click', event => \{[^]*?\n\}\);/)[0];
+  assert.doesNotMatch(handler, /scrollIntoView|scrollTo/);
+});
+
+test('every guide that embeds a video describes it in structured data and lists its chapters', async () => {
+  const { uploads } = await import('./uploads-snapshot.js');
+  const known = new Set(uploads.map(video => video.id));
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, id] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})"/g)) {
+      if (known.has(id)) assert.ok(html.includes(`"@id":"https://www.ai-automation-station.com/watch/${id}#video"`), `${file}: run node scripts/guide-video-schema.mjs`);
+    }
+    if (html.includes('class="video-chapters"')) assert.match(html, /<ul class="video-chapters"[^>]*>(<li><a href="https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}&amp;t=\d+s">\d+:\d{2}<\/a> [^<]+<\/li>){3,}<\/ul>/, file);
+  }
+});
+
+test('guide VideoObjects use the watch page thumbnails and carry the snapshot duration', async () => {
+  const { uploads } = await import('./uploads-snapshot.js');
+  const { schemaThumbnails } = await import('./archive.js');
+  const byId = new Map(uploads.map(video => [video.id, video]));
+  let checked = 0;
+  for (const file of guides) {
+    const html = await read(`public/guides/${file}`);
+    for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema\.org","@type":"VideoObject".*?)<\/script>/gs)) {
+      const schema = JSON.parse(json);
+      const video = byId.get(schema['@id'].match(/\/watch\/([\w-]{11})#video$/)[1]);
+      if (!video) continue;
+      checked++;
+      assert.deepEqual(schema.thumbnailUrl, schemaThumbnails(video), `${file}: run node scripts/guide-video-schema.mjs`);
+      if (video.duration) assert.equal(schema.duration, video.duration, `${file}: run node scripts/guide-video-schema.mjs`);
+      if (schema.duration) assert.match(schema.duration, /^PT(?:\d+H)?(?:\d+M)?(?:\d+S)?$/, file);
+    }
+  }
+  assert.ok(checked > 50);
+  // 0jzTOUv_B04 has no maxresdefault image; its guide must not list one.
+  assert.doesNotMatch(await read('public/guides/trakkr-codex-visibility-workflow.html'), /0jzTOUv_B04\/maxresdefault/);
+});
+
+test('guides hub cards and ItemList names match each guide title', async () => {
+  const hub = await read('public/guides.html');
+  const decode = text => text.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  const title = async path => decode((await read(`public${path}`)).match(/<title>(.*?)<\/title>/s)[1]).replace(/ \| (?:Mike Holp|AI Automation Station)$/, '');
+  const cards = [...hub.matchAll(/<h3><a href="(\/guides\/[^"]+)">([^<]*)<\/a>/g)];
+  assert.ok(cards.length > 50);
+  for (const [, path, name] of cards) assert.equal(decode(name), await title(path), path);
+  const items = [];
+  const walk = node => { if (Array.isArray(node)) node.forEach(walk); else if (node && typeof node === 'object') { if (node['@type'] === 'ListItem' && /\/guides\/[^/]+\.html$/.test(node.url ?? '')) items.push(node); Object.values(node).forEach(walk); } };
+  for (const [, json] of hub.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) walk(JSON.parse(json));
+  assert.ok(items.length > 50);
+  for (const item of items) assert.equal(item.name, await title(new URL(item.url).pathname), item.url);
+});
+
+test('n8n docs links use current deploy and build paths instead of redirected hosting, code and executions URLs', async () => {
+  const stale = /docs\.n8n\.io\/(?:hosting\/|code\/code-node\/|workflows\/executions\/)/;
+  for (const file of guides) {
+    assert.doesNotMatch(await read(`public/guides/${file}`), stale, file);
+  }
+  const selfHost = await read('public/guides/self-host-n8n.html');
+  assert.match(selfHost, /https:\/\/docs\.n8n\.io\/deploy\/host-n8n\/install-options\/install-with-npm"/);
+  assert.match(selfHost, /https:\/\/docs\.n8n\.io\/deploy\/host-n8n\/install-options\/install-with-docker"/);
+});
+
+test('llms-full.txt carries every guide and the pricing page, and pricing.md matches the plans on the page', async () => {
+  const full = await read('public/llms-full.txt');
+  for (const file of guides) assert.ok(full.includes(`/guides/${file}`), `${file}: run node scripts/llms-full.mjs`);
+  assert.ok(full.includes((await read('public/pricing.md')).trim()), 'pricing.md changed: run node scripts/llms-full.mjs');
+  const llms = await read('public/llms.txt');
+  assert.match(llms, /\]\(https:\/\/www\.ai-automation-station\.com\/pricing\.md\)/);
+  assert.match(llms, /\]\(https:\/\/www\.ai-automation-station\.com\/llms-full\.txt\)/);
+  const jsx = await read('src/main.jsx');
+  const pricing = await read('public/pricing.md');
+  for (const [name, monthly, yearly] of [['Standard', 29, 290], ['Premium', 49, 490], ['VIP', 89, 890]]) {
+    assert.match(jsx, new RegExp(`name: '${name}', price: ${monthly}, annual: ${yearly}`), name);
+    assert.match(pricing, new RegExp(`\\| ${name} \\| \\$${monthly} \\| \\$${yearly} \\|`), name);
   }
 });

@@ -1,4 +1,5 @@
 {
+  "crons": [{ "path": "/api/new-video-check", "schedule": "0 17 * * *" }],
   "headers": [
     {
       "source": "/api/(.*)",
@@ -9,6 +10,18 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {
+      "source": "/pricing.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/llms-full.txt",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
@@ -16,7 +29,7 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Content-Security-Policy-Report-Only", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.facebook.com https://vitals.vercel-insights.com; form-action 'self' https://cal.com https://www.skool.com" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://app.cal.com https://cal.com https://www.googletagmanager.com https://connect.facebook.net https://va.vercel-scripts.com https://*.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://i.ytimg.com https://www.facebook.com https://connect.facebook.net https://*.google-analytics.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://c.bing.com https://*.clarity.ms; font-src 'self'; media-src 'self'; frame-src https://cal.com https://app.cal.com https://www.youtube-nocookie.com; connect-src 'self' https://*.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://*.doubleclick.net https://www.google.com https://www.facebook.com https://vitals.vercel-insights.com https://*.clarity.ms https://c.bing.com; form-action 'self' https://cal.com https://www.skool.com" }
       ]
     },
     {
@@ -45,20 +58,33 @@
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
     },
     {
-      "source": "/assets/((?!reading\\.js$|guides/).*)",
+      "source": "/assets/watch/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" }]
+    },
+    {
+      "source": "/(theme|ga-boot).js",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
+    },
+    {
+      "source": "/assets/((?!reading\\.js$|guides/|watch/).*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ],
-  "trailingSlash": false,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/blog", "destination": "/guides.html", "permanent": true },
-    { "source": "/:page(start-here|guides|about|privacy|terms)", "destination": "/:page.html", "permanent": true },
-    { "source": "/guides/:slug([a-z0-9-]+)", "destination": "/guides/:slug.html", "permanent": true }
+    { "source": "/guides/runable-audit-website.html", "destination": "https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html", "permanent": true },
+    { "source": "/blog/", "destination": "https://www.ai-automation-station.com/guides.html", "permanent": true },
+    { "source": "/blog", "destination": "https://www.ai-automation-station.com/guides.html", "permanent": true },
+    { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools|ai-income-lab)/", "destination": "https://www.ai-automation-station.com/:page.html", "permanent": true },
+    { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools|ai-income-lab)", "destination": "https://www.ai-automation-station.com/:page.html", "permanent": true },
+    { "source": "/guides/:slug([a-z0-9-]+)/", "destination": "https://www.ai-automation-station.com/guides/:slug.html", "permanent": true },
+    { "source": "/guides/:slug([a-z0-9-]+)", "destination": "https://www.ai-automation-station.com/guides/:slug.html", "permanent": true },
+    { "source": "/:path(.*)/", "destination": "/:path", "permanent": true }
   ],
   "rewrites": [
     { "source": "/watch/:id", "destination": "/api/videos?video=:id" },
     { "source": "/video-sitemap.xml", "destination": "/api/videos?sitemap=videos" },
+    { "source": "/video-index.json", "destination": "/api/videos?index=1" },
     { "source": "/o/:token.gif", "destination": "/api/o/:token" },
     { "source": "/videos", "destination": "/api/videos" },
     { "source": "/videos/:page", "destination": "/api/videos?page=:page" }

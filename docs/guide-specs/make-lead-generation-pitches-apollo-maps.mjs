@@ -1,0 +1,43 @@
+export default {
+  slug: 'make-lead-generation-pitches-apollo-maps',
+  type: 'Build guide',
+  video: 'X0X8kJTK7vA',
+  alsoWatch: ['UkYoSNiqa6o', 's6004nmWG9g'],
+  title: 'Make.com Lead Generation: Pitches, Apollo and Google Maps',
+  short: 'Make.com lead generation',
+  description: 'Three Make.com lead builds: Google Maps emails into a sheet, an Apollo search scraped with Apify, and AI pitch drafts saved to Airtable for review.',
+  hub: 'Three Make.com lead builds: Google Maps business emails, an Apollo search scraped with Apify, and AI pitch drafts saved to Airtable for review.',
+  watchLabel: 'Follow the Make.com lead generation builds',
+  about: ['Make.com', 'Google Maps API', 'Apollo', 'Apify', 'Airtable'],
+  card: {
+    title: 'Three ways to build a lead list in Make.com',
+    steps: [['Find', 'Google Maps, or an Apollo search via Apify'], ['Research', 'Perplexity niche lookup, ChatGPT pitch'], ['Review', 'Drafts to Airtable before anything sends']],
+    note: 'June to September 2025; check cold-email law and site terms first.',
+  },
+  quick: 'The simplest build runs a Google Maps text search in Make.com (for example marketing agencies in Bangkok, limited to 50), fetches each place’s website and extracts emails from the HTML with a regular expression ChatGPT wrote, adding rows to a Google Sheet. A second build scrapes an Apollo search of about 1,200 owners and founders with an Apify actor, and a third reads contacts from a sheet, researches each organization with Perplexity and drafts a PR pitch that goes to Airtable for review. Some emails were wrong or missing, some pitches had unfilled placeholders, and the Apify free plan stopped me at 10 runs a day.',
+  intro: '<p>This guide merges three 2025 videos. Collecting emails and sending cold pitches is regulated in many countries, and scraping Google Maps, Apollo or a website can breach terms of use, none of which these videos covered. Send only to people you may lawfully contact. The Make.com, Apify and Apollo links on this site are affiliate links. For a simpler Apollo-to-sheet build, see <a href="/guides/make-apify-apollo-leads-sheet.html">the Make.com Apify Apollo leads sheet</a>.</p>',
+  sections: [
+    { id: 'maps', h: '1. Business emails from Google Maps (June 2025)', html: '<p>Create a Google Sheet from the scenario, then add a Google Maps text search with a Google Cloud API key. I searched for marketing agencies in Bangkok and limited it to 50. An HTTP call to the place details endpoint returns each result’s website, an HTTP step fetches the site’s HTML and a regular expression written by ChatGPT pulls out email addresses. I ignored validation errors so the run continued, and the sheet filled in as it ran. Some emails were wrong or missing. Hunter can fill gaps, and any other city or industry works as long as the business is on Google Maps.</p>' },
+    { id: 'apollo', h: '2. An Apollo search through Apify (July 2025)', html: '<p>In Apollo I filtered for verified emails, owner and founder titles, the United States, one to ten employees, marketing and advertising and the keyword AI, which gave about 1,200 people. Pasting the search URL into Apify’s Apollo scraper pulled the leads using free monthly credits, and I exported a CSV. A paid template reads search URLs from Airtable, runs the actor, reads the dataset items and writes rows to Google Sheets. I hit the free Apify limit of 10 runs a day and compared paid plan prices with Apollo’s credits. My view that this is acceptable under the terms is an opinion, not legal advice.</p>' },
+    { id: 'pitch', h: '3. Researched pitch drafts (September 2025)', html: '<p>The third scenario searches Google Sheets rows (limited to one while testing), builds an array of first name, email, organization, website and title and iterates through it. Perplexity’s Sonar reasoning model finds the organization’s niche and a ChatGPT model writes a short PR pitch, which I tightened to a seventh-grade reading level with no subject line. I converted it to HTML for email with a 60-second wait between sends. Some pitches contained unfilled placeholders, so drafts go into an Airtable table with a to-do status for review before sending. Targeting in my sample list was off.</p>' },
+  ],
+  limits: [
+    'Reply or conversion rates from any of these lists.',
+    'Cold-email law, consent rules and terms of use.',
+    'Email accuracy and deliverability.',
+  ],
+  faq: [
+    ['Why save pitches to Airtable first?', 'Some contained unfilled placeholders, so I review drafts before anything is sent.'],
+    ['Why did the Apollo scrape stop?', 'Apify’s free plan allowed 10 runs a day.'],
+    ['Are the emails accurate?', 'Not always. Some were wrong or missing, and the sample targeting was off.'],
+  ],
+  sources: [
+    'Videos: <a href="https://www.youtube.com/watch?v=X0X8kJTK7vA">I Automated My Lead Generation – Here’s Exactly How I Did It</a>, <a href="https://www.youtube.com/watch?v=UkYoSNiqa6o">Turn Cold Leads Into Closed Deals With This AI System!</a> and <a href="https://www.youtube.com/watch?v=s6004nmWG9g">Why You’re Paying Too Much for Leads (And How to Fix It)</a>',
+    'Affiliate links: <a href="https://www.make.com/en/register?pc=mikeholp" rel="sponsored noopener">Make.com</a> · <a href="https://www.apify.com?fpr=fklok2" rel="sponsored noopener">Apify</a> · <a href="https://get.apollo.io/1mpkcotn2pwa" rel="sponsored noopener">Apollo</a>',
+  ],
+  related: [['/guides/make-apify-apollo-leads-sheet.html', 'Make.com Apify Apollo leads sheet'], ['/guides/apollo-apify-b2b-lead-list.html', 'Apollo and Apify lead list'], ['/guides/ai-automation-services-small-business.html', 'AI automation services for small business'], ['/guides/make-business-automation-examples.html', 'Make.com business automations'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets']],
+  next: ['/guides/make-apify-apollo-leads-sheet.html', 'Make.com Apify Apollo leads sheet'],
+  more: 'Price and details: <a href="/tools.html#make-com">Make.com on the tools page</a>',
+  linkFrom: ['/guides/make-apify-apollo-leads-sheet.html'],
+  llms: 'Three 2025 Make.com lead builds: Google Maps business emails extracted with a regular expression into a sheet, an Apollo search of about 1,200 founders scraped with an Apify actor (free plan limit of 10 runs a day), and Perplexity-researched ChatGPT pitch drafts saved to Airtable for review. Email accuracy, terms of use and cold-email law were not covered.',
+};

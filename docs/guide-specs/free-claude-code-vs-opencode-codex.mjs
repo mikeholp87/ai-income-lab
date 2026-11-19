@@ -1,0 +1,81 @@
+export default {
+  slug: 'free-claude-code-vs-opencode-codex',
+  video: 'ga22WZgoj9M',
+  type: 'Comparison',
+  title: 'Free Claude Code vs OpenCode vs Codex',
+  short: 'Free Claude Code vs OpenCode',
+  description: 'Why I moved from Free Claude Code to OpenCode and Codex while building an AI visibility app: API errors, a 401 caused by startup order, and free models.',
+  hub: 'Why I moved from Free Claude Code to OpenCode and Codex while building an AI visibility app: API errors, a 401 startup-order bug and free models.',
+  watchLabel: 'Follow the Free Claude Code vs OpenCode comparison',
+  about: ['OpenCode','Free Claude Code','Codex','Trakkr','Next.js'],
+  card: {
+    title: 'Free Claude Code, OpenCode and Codex on one project',
+    steps: [
+      ['Build','AI visibility app in Next.js'],
+      ['Break','API errors, slow replies, a 401'],
+      ['Switch','OpenCode free models; Codex at ≈$20'],
+    ],
+    note: 'My own experience from May 2026, not a benchmark.',
+  },
+  quick: "I built an AI search visibility app locally in Next.js using Free Claude Code, OpenCode and Codex, then moved away from Free Claude Code because of repeated API request errors, slow replies and a 401 unauthorized error that came from the order I started the proxy and Claude Code. OpenCode answered quickly on free models, and I preferred Codex at about $20 a month over Claude Pro. This is one project and one person’s experience, not a controlled test.",
+  intro: "<p>This is a May 2026 walkthrough. “Free Claude Code” here means running Claude Code through a local proxy to a free model. My claims are about my own setup, speed and errors that day, and tools change weekly. The OpenCode link is an affiliate link. For the licensing and pricing comparison, see <a href=\"/guides/opencode-vs-claude-code.html\">OpenCode vs Claude Code</a>.</p>\n<p>Prices and plan names change. Confirm them on the vendor page before you buy. Checked November 15, 2026 against the Sources links below where listed.</p>",
+  sections: [
+    {
+      id: 'app',
+      h: '1. The app I was building',
+      html: '<p>The app scores a site’s AI visibility. You enter a domain and it returns a score, quick wins that open in a popup and seven pillars: structure and extractability, schema markup, E-E-A-T and authority, facts, conversational content and more. I added a checklist based on an AI visibility guide I found on LinkedIn, Clerk for login and a PageSpeed Insights test. It runs only on my local server and I was not sure the score was accurate. Trakkr was my model for a crawler dashboard, and I made a simple Codex mock-up of one. For a finished build log, see <a href="/guides/ai-visibility-tracker-saas-build.html">the AI visibility tracker build</a>.</p>',
+    },
+    {
+      id: 'errors',
+      h: '2. What went wrong with Free Claude Code',
+      html: '<p>With Free Claude Code, several models returned API request errors, and replies were slow. A 401 unauthorized error came from the order of starting the proxy and Claude Code: I had to start the proxy first. In another terminal, the proxy and the project ran side by side to keep two projects apart.</p>',
+    },
+    {
+      id: 'opencode',
+      h: '3. OpenCode on free models',
+      html: '<p>In OpenCode I started a meta-tag optimizer feature on a free model and it answered quickly. I switched between free models, including Nemotron Nano, and ran the audit on a blog article. A 404 during the build was because the app was still compiling. The wrapper builds with Next.js much as the other agents do.</p>',
+    },
+    {
+      id: 'codex',
+      h: '4. Why I used Codex too',
+      html: "<p>I preferred Codex at about $20 a month to Claude Pro because it had been more reliable for me. Most of the app came from OpenCode and Codex, not from Free Claude Code. For limits, see <a href=\"/guides/codex-usage-limits.html\">the Codex usage limits guide</a>.</p>",
+    },
+  ],
+  done: [
+    'AI visibility app in Next.js',
+    'API errors, slow replies, a 401',
+    "OpenCode free models; Codex at ≈$20",
+  ],
+  limits: [
+    'A controlled speed or quality comparison. I did not time the tools.',
+    'The accuracy of the visibility score the app produced.',
+    'Whether the Free Claude Code errors came from the proxy, the models or my setup.',
+  ],
+  faq: [
+    [
+      'What caused the 401 error?',
+      'The order I started the proxy and Claude Code. Starting the proxy first fixed it.',
+    ],
+    [
+      'Is OpenCode free?',
+      'Its built-in free models were free in my walkthrough. Paid plans exist for more models.',
+    ],
+    ['Was this a benchmark?','No. It is one project, one setup and one person’s experience.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=ga22WZgoj9M">Is OpenCode Better Than Free Claude Code?</a> (recorded May 2026)',
+    'OpenCode Go through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a> · Trakkr: <a href="https://trakkr.ai/r/mikeholp87" rel="sponsored noopener">trakkr.ai</a> (affiliate link)',
+    'OpenCode: <a href="https://opencode.ai/">opencode.ai</a>',
+  ],
+  related: [
+    ['/guides/opencode-vs-claude-code.html','OpenCode vs Claude Code'],
+    ['/guides/codex-usage-limits.html','Codex usage limits'],
+    ['/guides/ai-visibility-tracker-saas-build.html','AI visibility tracker build'],
+    ['/guides/trakkr-codex-visibility-workflow.html','Trakkr and Codex'],
+    ['/guides/opencode-go.html','OpenCode Go'],
+  ],
+  next: ['/guides/opencode-vs-claude-code.html','OpenCode vs Claude Code'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/opencode-vs-claude-code.html'],
+  llms: "A May 2026 account of moving from Free Claude Code to OpenCode and Codex while building a local Next.js AI visibility app: repeated API request errors, slow replies and a 401 caused by starting the proxy and Claude Code in the wrong order. OpenCode answered quickly on free models and Codex at about $20 a month was preferred over Claude Pro. One person’s experience, not a benchmark.",
+};

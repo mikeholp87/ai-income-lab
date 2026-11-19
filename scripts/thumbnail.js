@@ -5,8 +5,9 @@ import sharp from 'sharp';
 export async function thumbnailVariants(input) {
   const metadata = await sharp(input).metadata();
   if (!metadata.width || !metadata.height || metadata.width / metadata.height < 1.7 || metadata.width / metadata.height > 1.8) throw new Error('Expected a widescreen thumbnail');
-  return Promise.all([480, 768, 1280].filter(width => width <= metadata.width).map(async width => {
-    const data = await sharp(input).resize({ width, withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
+  // 640w is the desktop 1x hero slot (~604px). 768w covers mobile 1.75x. 960w covers 1.5-2x without a 1280w candidate.
+  return Promise.all([480, 640, 768, 960].filter(width => width <= metadata.width).map(async width => {
+    const data = await sharp(input).resize({ width, withoutEnlargement: true }).webp({ quality: 74, effort: 6, preset: 'photo', smartSubsample: true }).toBuffer();
     const hash = createHash('sha256').update(data).digest('hex').slice(0, 12);
     return { width, data, filename: `hero-${hash}-${width}.webp` };
   }));
@@ -21,7 +22,7 @@ export async function refreshThumbnail(video) {
   const folder = new URL('../public/assets/thumbnails/', import.meta.url);
   await mkdir(folder, { recursive: true });
   await Promise.all(variants.map(({ filename, data }) => writeFile(new URL(filename, folder), data)));
-  const src = `/assets/thumbnails/${(variants.find(image => image.width === 768) || variants.at(-1)).filename}`;
+  const src = `/assets/thumbnails/${(variants.find(image => image.width === 640) || variants.at(-1)).filename}`;
   const srcSet = variants.map(image => `/assets/thumbnails/${image.filename} ${image.width}w`).join(', ');
   // Publish metadata only after every file exists; failed refreshes retain the previous usable set.
   const snapshot = new URL('../src/thumbnail-snapshot.json', import.meta.url);

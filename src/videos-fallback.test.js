@@ -58,3 +58,44 @@ test('expired snapshots refresh on each cold instance and concurrent requests sh
   assert.equal((await second.GET(request())).status, 200);
   assert.equal(requests, 4, 'another cold instance does not reset the saved fetch timestamp');
 });
+
+test('bad video URLs get the site 404 page, with its header, nav and versioned stylesheet', async () => {
+  const { readingCss } = await import('./asset-version.js');
+  for (const path of ['/videos/not-a-page', '/watch/too-short']) {
+    const response = await GET(new Request(`https://www.ai-automation-station.com${path}`));
+    assert.equal(response.status, 404, path);
+    const html = await response.text();
+    assert.match(html, /<meta name="robots" content="noindex,follow">/, path);
+    assert.ok(html.includes(`<link rel="stylesheet" href="${readingCss}">`), path);
+    assert.match(html, /<header class="single-line-header"><a href="\/">AI Income Lab<\/a><nav aria-label="Site"><a href="\/start-here.html">Start here<\/a>/, path);
+    assert.match(html, /<p class="meta">404<\/p><h1>Page not found<\/h1>/, path);
+  }
+});
+
+test('a new upload gets its watch page from the quota-free feed when the Data API is out of quota', async t => {
+  let now = uploadsUpdatedAt + 3600000;
+  t.mock.method(Date, 'now', () => now);
+  const originalKey = process.env.YOUTUBE_API_KEY;
+  process.env.YOUTUBE_API_KEY = 'test-only';
+  t.after(() => { if (originalKey === undefined) delete process.env.YOUTUBE_API_KEY; else process.env.YOUTUBE_API_KEY = originalKey; });
+  t.mock.method(console, 'error', () => {});
+  const feed = `<feed><entry><yt:videoId>newupload02</yt:videoId><title>Your Business Is Invisible to AI Search (Here&#39;s the Fix)</title><published>2026-11-12T03:40:14+00:00</published><media:group><media:description>How RankPrompt checks whether AI assistants mention a business.</media:description><media:community><media:statistics views="42"/></media:community></media:group></entry></feed>`;
+  t.mock.method(globalThis, 'fetch', async input => String(input).startsWith('https://www.youtube.com/feeds/')
+    ? new Response(feed)
+    : Response.json({ error: { code: 403, errors: [{ reason: 'quotaExceeded' }] } }, { status: 403 }));
+  const { GET: get } = await import('../api/videos.js?cold=feed');
+  now += 600001;
+  const request = id => get(new Request(`https://www.ai-automation-station.com/watch/${id}`));
+  const watch = await request('newupload02');
+  assert.equal(watch.status, 200);
+  const html = await watch.text();
+  assert.match(html, /Your Business Is Invisible to AI Search \(Here&#39;s the Fix\)/);
+  assert.match(html, /embed\/newupload02/);
+  assert.equal((await request('newupload02')).status, 200, 'later visitors reuse the feed result');
+  assert.equal(globalThis.fetch.mock.calls.filter(call => String(call.arguments[0]).startsWith('https://www.youtube.com/feeds/')).length, 1);
+  const missing = await request('zzzzzzzzzzz');
+  // An id neither the inventory nor the feed knows is not this channel's public video: a 404, cached for a minute.
+  assert.equal(missing.status, 404, 'an id the feed lacks is never sent to an arbitrary YouTube video');
+  assert.equal(missing.headers.get('location'), null);
+  assert.equal(missing.headers.get('cache-control'), 'public, max-age=0, s-maxage=60');
+});

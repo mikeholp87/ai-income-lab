@@ -1,0 +1,84 @@
+export default {
+  slug: 'claude-seo-skill-site-audit',
+  video: 'q4-LkuMDkIE',
+  type: 'How-to',
+  title: 'Claude SEO Skill: Audit and Fix a Site From Claude Code',
+  short: 'Claude SEO skill',
+  description: 'Install the free Claude SEO skill with one command and run its audit, plan, sitemap and GEO checks on a live site from Claude Code. I hit usage limits.',
+  hub: 'Install the free Claude SEO skill and run its audit, SaaS plan, image audit and GEO analysis on a live site, and see the usage limits it hit.',
+  watchLabel: 'Follow the Claude SEO skill audit',
+  about: ['Claude SEO','Claude Code','GitHub','Gemini'],
+  card: {
+    title: 'The Claude SEO skill on a real site',
+    steps: [
+      ['Install','One curl command from GitHub'],
+      ['Audit','SEO audit, plan, image audit'],
+      ['Fix','Approve edits; GEO check for AI crawlers'],
+    ],
+    note: 'February 2026; usage limits stopped the run twice.',
+  },
+  quick: 'Run the one-line curl command from the Claude SEO GitHub page to install the skill files, sub-agents and Python dependencies, then open Claude Code and type a slash to see the new SEO commands. I ran the audit command on tubeanalytics.net, then the plan command with SaaS as the business type, approved fixes for canonicals, title tags and 404s, let it rewrite the sitemap and robots file and ran a GEO analysis. About 20 minutes of work used up my Claude Pro limit twice, and the full audit was interrupted.',
+  intro: '<p>This is a February 2026 run on my own SaaS site. The skill is free, but it edits your project files, so use it on a branch and review every change. I ran during a Claude Pro limit, so some steps ran partially. For the OpenCode version, see <a href="/guides/opencode-seo-audit-skills.html">OpenCode SEO audit skills</a>.</p>',
+  sections: [
+    {
+      id: 'install',
+      h: '1. Install',
+      html: '<p>From the Claude SEO GitHub page, run the one curl command. It downloads the skill files, installs the sub-agents and then the Python dependencies in a few seconds. Read the script before you run it, as with any install command piped from the web. Open Claude Code and type a slash to see the new SEO commands, and read the GitHub page for what each one does.</p>',
+    },
+    {
+      id: 'audit',
+      h: '2. Run the audit',
+      html: '<p>I ran the SEO audit command with my site URL. It fetched the homepage to detect the business type, then launched sub-agents to read robots.txt, analyse the sitemap and check the pages. The skill list also includes sitemap generation and image optimisation. Partway through I hit my Claude limit; after the reset it continued from the data already collected.</p>',
+    },
+    {
+      id: 'plan',
+      h: '3. Plan and fix',
+      html: '<p>I interrupted the audit and ran the SEO plan command with SaaS as the business type, which gave a strategy built on the audit data. I approved the critical fixes, and Claude edited files such as layout.tsx to fix canonical URLs, title tags and 404 pages. It also rewrote the sitemap and the robots file to remove low-value pages, and wrote a Python image SEO audit.</p>',
+    },
+    {
+      id: 'geo',
+      h: '4. GEO analysis',
+      html: '<p>In a second Claude instance I ran the GEO analysis, which checks whether AI crawlers can access the site, whether there is an llms.txt and how citable the content is. For background, see <a href="/guides/ai-agent-workflow.html">the AI agent workflow guide</a> on keeping a human check on automated changes.</p>',
+    },
+  ],
+  done: [
+    'One curl command from GitHub',
+    'SEO audit, plan, image audit',
+    'Approve edits; GEO check for AI crawlers',
+  ],
+  limits: [
+    'The effect of the changes on rankings. I did not measure it.',
+    'A complete audit. The limit interrupted it.',
+    'Whether every suggested fix was correct. I approved them quickly for the demo.',
+  ],
+  faq: [
+    [
+      'Is the skill free?',
+      'Yes, but it runs inside Claude Code, which needs a Claude plan, and my Pro limit ran out twice in about 20 minutes.',
+    ],
+    [
+      'What does it edit?',
+      'Files in your project, such as layout files, the sitemap and robots file. Use version control.',
+    ],
+    [
+      'What is GEO?',
+      'Generative engine optimisation: making a site readable and citable for AI crawlers and answer engines.',
+    ],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=q4-LkuMDkIE">This Claude Skill Replaces Your SEO Team!</a> (recorded February 2026)',
+    'Claude SEO skill: its GitHub page, linked in the video description',
+    'Claude: <a href="https://claude.ai/">claude.ai</a>',
+  ],
+  related: [
+    ['/guides/opencode-seo-audit-skills.html','OpenCode SEO audit skills'],
+    ['/guides/codex-seo-workflow.html','Internal link audit with Codex'],
+    ['/guides/claude-code-for-beginners.html','Claude Code for beginners'],
+    ['/guides/openseo-review.html','OpenSEO review'],
+    ['/guides/ai-agent-workflow.html','AI agent workflow'],
+  ],
+  next: ['/guides/opencode-seo-audit-skills.html','OpenCode SEO audit skills'],
+  more: 'More tools: <a href="/tools.html">the tools page</a>',
+  linkFrom: ['/guides/opencode-seo-audit-skills.html'],
+  llms: 'A February 2026 run of the free Claude SEO skill in Claude Code: install with one curl command, audit tubeanalytics.net, make a SaaS plan, approve fixes to canonicals, titles and 404s, rewrite the sitemap and robots file, and run a GEO analysis. The work used up the Claude Pro limit twice and interrupted the full audit.',
+};

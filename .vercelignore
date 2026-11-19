@@ -6,3 +6,4 @@
 /.aws/
 /.env*
 /.unlighthouse/
+/audit-reports/

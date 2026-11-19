@@ -1,0 +1,88 @@
+export default {
+  slug: 'odysseus-ai-self-hosted-workspace',
+  video: 'EECptdYND6k',
+  type: 'Review',
+  title: 'Odysseus AI Workspace: Install on Linux and Try It Locally',
+  short: 'Odysseus AI workspace',
+  description: 'Install Odysseus, a free self-hosted AI chat workspace, on Linux in about five minutes, add model keys, try agent mode and an email digest, with the gaps.',
+  hub: 'Install the Odysseus self-hosted AI workspace on Linux, add OpenRouter and other keys, compare models, and try an email digest task and its gaps.',
+  watchLabel: 'Follow the Odysseus AI install and tour',
+  about: ['Odysseus','OpenRouter','OpenCode Go','OpenAI API','Gmail'],
+  card: {
+    title: 'Odysseus: a self-hosted AI chat workspace',
+    steps: [
+      ['Install','Clone, venv, requirements, localhost'],
+      ['Connect','OpenRouter, OpenCode, OpenAI keys'],
+      ['Try','Agent mode, compare, email digest task'],
+    ],
+    note: 'June 2026 test; read the repo before you run it.',
+  },
+  quick: 'Clone the Odysseus repository from GitHub, create a Python virtual environment, install the requirements, start it on localhost and sign in with the username and password you create. That took about five minutes on Linux. Then add model keys in settings (an OpenRouter key found 341 models; I also added OpenCode Go, OpenCode Zen and OpenAI), set default chat and research models and try chat, agent mode, side-by-side comparison and a scheduled email digest. The shell tool and a local-model run were not set up, and the Gmail connection took several tries.',
+  intro: '<p>This is a June 2026 test of Odysseus, a free, open-source, self-hosted AI chat workspace that the video attributes to PewDiePie. I did not write it, and I have not audited its code, so read the repository and its permissions before you run it or give it your mailbox. The OpenCode Go link on this page is an affiliate link. For comparing the models you might connect, see <a href="/guides/choosing-ai-models-for-a-task.html">choosing a model using your own task</a>.</p>',
+  sections: [
+    {
+      id: 'what',
+      h: '1. What it is',
+      html: '<p>The project site describes chat, agents, tools and MCPs, a cookbook for installing local models, an email assistant, deep research, model comparison, memory and skills, and says it is private by default, with your data stored on your own machine. The repository had about 61,000 stars when I recorded it and was being maintained, with issues being fixed.</p>',
+    },
+    {
+      id: 'install',
+      h: '2. Install it',
+      html: '<p>I cloned the repository, created a Python virtual environment, activated it and ran pip install on the requirements. There is a simple start command on macOS; on Linux I used the Python route. Then I started it on localhost and logged in with the username and password I created. The whole install took about five minutes.</p>',
+    },
+    {
+      id: 'models',
+      h: '3. Add models',
+      html: '<p>In settings I added an OpenRouter key and tested it, which found 341 models, then added OpenCode Go, OpenCode Zen and OpenAI keys the same way. I set default models for chat and research and DuckDuckGo for search. A cookbook lists installs for local models and dependencies such as Playwright; I did not run a local model.</p>',
+    },
+    {
+      id: 'use',
+      h: '4. Chat, agents and comparison',
+      html: '<p>The interface uses draggable windows that dock left or right, with themes. Chat mode works like a normal chatbot. Agent mode had no shell access until it was set up. You can compare two models side by side, which I used to see answers next to each other.</p>',
+    },
+    {
+      id: 'email',
+      h: '5. An email digest task',
+      html: '<p>I asked the agent to create an evening email digest task for 7 pm, turned on two-factor sign-in and connected Gmail with an app password. It took several attempts. When it worked, asking it to check my inbox returned a summary of about 30 emails. Giving any tool mailbox access is a risk, so use a throwaway account to test.</p>',
+    },
+  ],
+  done: [
+    'Clone, venv, requirements, localhost',
+    'OpenRouter, OpenCode, OpenAI keys',
+    'Agent mode, compare, email digest task',
+  ],
+  limits: [
+    'A security review of the project. I did not audit the code.',
+    'Shell tools and running local models.',
+    'How it compares in quality with the hosted chat apps beyond a first look.',
+  ],
+  faq: [
+    [
+      'Is Odysseus free?',
+      'The project is free and open source. You pay for any model API keys you add.',
+    ],
+    [
+      'Does it send data to OpenAI or Google?',
+      'It stores data locally, but any model you connect through an API receives your prompts.',
+    ],
+    [
+      'Did it work on Linux?',
+      'Yes. Clone, virtual environment and requirements, then localhost, in about five minutes.',
+    ],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=EECptdYND6k">PewDiePie’s New Odysseus AI Is INSANE!</a> (recorded June 2026)',
+    'OpenCode Go through my affiliate link: <a href="https://opencode.ai/go?ref=Y0V64DGPZN" rel="sponsored noopener">OpenCode</a>',
+  ],
+  related: [
+    ['/guides/choosing-ai-models-for-a-task.html','Choose a model using your actual task'],
+    ['/guides/openrouter-setup.html','OpenRouter setup'],
+    ['/guides/opencode-go.html','OpenCode Go'],
+    ['/guides/what-is-an-ai-agent.html','What is an AI agent?'],
+    ['/guides/hermes-desktop.html','Hermes Desktop'],
+  ],
+  next: ['/guides/openrouter-setup.html','OpenRouter setup'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/openrouter-setup.html'],
+  llms: 'A June 2026 test of Odysseus, a free self-hosted AI chat workspace: clone the repository, create a Python virtual environment, install requirements, start on localhost, add OpenRouter, OpenCode and OpenAI keys, then try chat, agent mode, model comparison and an email digest task. The shell tool and local models were not set up, and Gmail took several tries.',
+};

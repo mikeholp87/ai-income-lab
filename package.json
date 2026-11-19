@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/refresh-videos.js && vite build && node scripts/prerender.js",
+    "build": "node scripts/refresh-videos.js && node scripts/refresh-repositories.js && vite build && node scripts/prerender.js",
     "test": "node --test src/*.test.js",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -22,7 +22,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "vite": "8.3.5"
+    "supermemory": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
@@ -30,6 +30,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.13.0",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "vite": "8.3.5"
   }
 }

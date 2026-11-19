@@ -1,0 +1,62 @@
+[
+  {
+    "name": "OpenCode",
+    "slug": "opencode",
+    "videos": 52,
+    "bestFor": "Coding in the terminal with open models"
+  },
+  {
+    "name": "Make.com",
+    "slug": "make-com",
+    "videos": 37,
+    "bestFor": "No-code automations between your apps"
+  },
+  {
+    "name": "Apify",
+    "slug": "apify",
+    "videos": 22,
+    "bestFor": "Scraping websites from code or an AI agent"
+  },
+  {
+    "name": "Google Gemini",
+    "slug": "google-gemini",
+    "videos": 19,
+    "bestFor": "Building and coding with Google’s models"
+  },
+  {
+    "name": "HeyGen",
+    "slug": "heygen",
+    "videos": 8,
+    "bestFor": "Avatar videos without filming yourself"
+  },
+  {
+    "name": "Hostinger",
+    "slug": "hostinger",
+    "videos": 8,
+    "bestFor": "A VPS for self-hosting n8n and AI agents"
+  },
+  {
+    "name": "Skool",
+    "slug": "skool",
+    "videos": 8,
+    "bestFor": "Running a paid community with courses"
+  },
+  {
+    "name": "Treg",
+    "slug": "treg",
+    "videos": 8,
+    "bestFor": "Giving an agent many APIs through one token"
+  },
+  {
+    "name": "Lovable",
+    "slug": "lovable",
+    "videos": 6,
+    "bestFor": "Building a web app without writing code"
+  },
+  {
+    "name": "Syllaby",
+    "slug": "syllaby",
+    "videos": 5,
+    "bestFor": "Faceless social videos"
+  }
+]

@@ -1,0 +1,164 @@
+{
+  "summary": {
+    "health_score": null,
+    "score_note": "No invented overall score; measured Lighthouse category scores are reported separately.",
+    "business_type": "Free tutorial/video publication and paid learning community",
+    "top_findings": [
+      "Starter-kit live outcome unverified",
+      "Welcome delivery failure has no automatic recovery",
+      "Project-demo source links missing",
+      "Instructional copy drift",
+      "Current search-to-paid baseline unavailable"
+    ]
+  },
+  "coverage": {
+    "sitemapPages": 323,
+    "statuses": {
+      "200": 323
+    },
+    "firstPartyAssets": 407,
+    "assetFailures": 0
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": null,
+      "what_works": [],
+      "findings": []
+    },
+    {
+      "name": "Content",
+      "score": null,
+      "what_works": [],
+      "findings": []
+    },
+    {
+      "name": "User experience",
+      "score": null,
+      "what_works": [],
+      "findings": []
+    },
+    {
+      "name": "Security source review",
+      "score": null,
+      "what_works": [],
+      "findings": []
+    }
+  ],
+  "lab": {
+    "watch-mobile": {
+      "url": "https://www.ai-automation-station.com/watch/IV6q81wRay4",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "lcpMs": 1241.9429999999998,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    "guide-mobile": {
+      "url": "https://www.ai-automation-station.com/guides/9router-setup.html",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcpMs": 1703.962,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    "home-mobile": {
+      "url": "https://www.ai-automation-station.com/",
+      "scores": {
+        "performance": 97,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcpMs": 1863.7160000000001,
+      "cls": 0,
+      "tbtMs": 111.99999999999977
+    }
+  },
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Focused improvements",
+        "items": [
+          "Validate Make kit",
+          "Recover failed welcomes and align opt-out copy",
+          "Link demonstrated repositories",
+          "Refresh stale content",
+          "Improve Search discovery",
+          "Obtain current conversion baseline"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "report": "FULL-AUDIT-REPORT.md",
+    "action_plan": "ACTION-PLAN.md",
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  },
+  "limits": [
+    "No real-user CWV",
+    "No production submissions or penetration testing",
+    "No full GSC export or paid-conversion dataset"
+  ],
+  "search_console_followup": {
+    "observedDate": "2026-11-09",
+    "authorization": "Explicit owner approval after initial denial",
+    "property": "https://www.ai-automation-station.com/",
+    "source": "Signed-in Search Console browser UI",
+    "report": "SEARCH-CONSOLE-FOLLOWUP.md",
+    "searchType": "web",
+    "period": {
+      "start": "2026-10-11",
+      "end": "2026-11-07",
+      "clicks": 9,
+      "impressionsDisplayed": "4.07K",
+      "ctrDisplayed": "0.2%",
+      "averagePosition": 23.1
+    },
+    "previousPeriod": {
+      "start": "2026-09-13",
+      "end": "2026-10-10",
+      "clicks": 0,
+      "impressions": 50,
+      "ctrDisplayed": "0%",
+      "averagePosition": 16.3
+    },
+    "pageIndexing": {
+      "updated": "2026-11-06",
+      "indexed": 232,
+      "notIndexed": 81,
+      "discoveredNotIndexed": 47,
+      "crawledNotIndexed": 18,
+      "alternateCanonical": 16,
+      "population": "All known pages"
+    },
+    "videoIndexing": {
+      "updated": "2026-11-05",
+      "videoIndexed": 163,
+      "noVideoIndexed": 4,
+      "reason": "Video is not on a watch page",
+      "examplesAreWrittenGuides": true
+    },
+    "fieldCwv": {
+      "updated": "2026-11-08",
+      "mobile": "Insufficient usage data",
+      "desktop": "Insufficient usage data"
+    },
+    "sampleOpportunity": {
+      "path": "/guides/9router-setup.html",
+      "clicks": 0,
+      "impressions": 880,
+      "averagePosition": 7.4
+    },
+    "coverage": "Aggregate comparison plus selected table rows, not a complete export"
+  }
+}

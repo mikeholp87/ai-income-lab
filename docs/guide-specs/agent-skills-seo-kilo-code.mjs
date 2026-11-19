@@ -1,0 +1,43 @@
+export default {
+  slug: 'agent-skills-seo-kilo-code',
+  type: 'Tool guide',
+  video: 'ZKpr-vmz_iY',
+  title: 'Free Agent Skills for SEO: Install and Run in Kilo Code',
+  short: 'Agent skills for SEO',
+  description: 'Install free open-source agent skills with npx skills add, then run SEO skills in Kilo Code for images, Core Web Vitals, IndexNow and Search Console.',
+  hub: 'Install free agent skills with npx skills add and run SEO skills in Kilo Code: images, Core Web Vitals, IndexNow to Bing and a Search Console script.',
+  watchLabel: 'Follow the agent skills SEO walkthrough',
+  about: ['skills CLI', 'Kilo Code', 'Claude Code', 'IndexNow', 'Google PageSpeed Insights'],
+  card: {
+    title: 'SEO agent skills in Kilo Code',
+    steps: [['Install', 'npx skills add, pick skills with space'], ['Run', 'Images, Core Web Vitals, IndexNow'], ['Retest', 'PageSpeed barely moved; desktop 97']],
+    note: 'April 2026; Core Web Vitals still failed after the fixes.',
+  },
+  quick: 'Run npx skills add, scroll the dozens of skills and press space to select, choose Claude Code and Kilo Code as targets, install globally and pick symlink. Then run them on a real site: the image skill flagged a large avatar and images without width and height, the Core Web Vitals skill worked on LCP, CLS and INP, and an IndexNow skill generated a script that submits every URL to Bing, run with npx tsx. A PageSpeed retest showed about the same speed and Core Web Vitals still failing, with desktop at 97.',
+  intro: '<p>This is an April 2026 walkthrough on my SaaS site, run mostly in Kilo Code because it is free to use when my Claude Code credits run out. The skills are open source, and you should read what a skill does before it edits your project. For the Claude Code version of an SEO skill, see <a href="/guides/claude-seo-skill-site-audit.html">the Claude SEO skill guide</a>.</p>',
+  sections: [
+    { id: 'install', h: '1. Install skills', html: '<p>Run npx skills add and choose from the list; space selects and enter confirms. I had already installed ten or twelve. You then pick which tools to install them in, here Claude Code and Kilo Code, whether to install in the project or globally, and whether to symlink or copy to all agents. I recommend symlink so one copy updates everywhere.</p>' },
+    { id: 'images', h: '2. Image and Core Web Vitals skills', html: '<p>The image optimization skill flagged a very large avatar image, images missing width and height attributes and no images in the sitemap. The Core Web Vitals skill then worked on LCP, CLS and INP problems. In Kilo Code you can watch each step it takes.</p>' },
+    { id: 'indexnow', h: '3. IndexNow and schema', html: '<p>The IndexNow skill generates a script that submits all your pages to Bing so it crawls them quickly. I ran it with npx tsx. Another skill adds blog schema for rich results and checks that pages validate.</p>' },
+    { id: 'gsc', h: '4. Search Console and the retest', html: '<p>The Search Console skill has no direct access to your account, so I asked it for a monitoring script instead. After the fixes I ran PageSpeed Insights again. The overall speed was about the same, the Core Web Vitals assessment still failed and desktop scored 97 out of 100. I do not know why the skills did not move the score, so check results rather than assuming.</p>' },
+  ],
+  limits: [
+    'Why Core Web Vitals still failed after the changes.',
+    'Ranking or indexing results from the IndexNow submission.',
+    'A review of every edit the skills made. Use version control and read the diff.',
+  ],
+  faq: [
+    ['Are the skills free?', 'Yes, they are free and open source. The tool you run them in may have its own costs.'],
+    ['Why Kilo Code?', 'It is free to use, so I switch to it when I run out of Claude Code credits.'],
+    ['Did page speed improve?', 'Not noticeably. Desktop was 97 and Core Web Vitals still failed.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=ZKpr-vmz_iY">These Claude Code Skills Will 10X Your Productivity!</a> (recorded April 2026)',
+    'IndexNow: <a href="https://www.indexnow.org">indexnow.org</a> · PageSpeed Insights: <a href="https://pagespeed.web.dev">pagespeed.web.dev</a>',
+  ],
+  related: [['/guides/claude-seo-skill-site-audit.html', 'Claude SEO skill audit'], ['/guides/opencode-seo-audit-skills.html', 'OpenCode SEO audit skills'], ['/guides/kilo-code-tutorial.html', 'Kilo Code tutorial'], ['/guides/claude-code-for-beginners.html', 'Claude Code for beginners'], ['/guides/codex-seo-workflow.html', 'Internal link audit with Codex']],
+  next: ['/guides/claude-seo-skill-site-audit.html', 'Claude SEO skill audit'],
+  more: 'More tools: <a href="/tools.html">the tools page</a>',
+  linkFrom: ['/guides/kilo-code-tutorial.html'],
+  llms: 'An April 2026 walkthrough: install free agent skills with npx skills add, target Claude Code and Kilo Code, then run image optimization, Core Web Vitals, IndexNow (submit all URLs to Bing with npx tsx), schema and Search Console monitoring skills on a real site. A PageSpeed retest showed about the same speed, Core Web Vitals still failing and desktop at 97.',
+};

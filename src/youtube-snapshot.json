@@ -1,72 +1,79 @@
 {
   "videos": [
     {
-      "id": "wzC2r426KWs",
-      "title": "I Built a Virtual Office for My AI Agents in GrokBot",
-      "published": "2026-10-29T14:52:59Z",
-      "views": 145,
-      "duration": "9:43",
-      "summary": "In this video, I build a 2D Virtual Office for 35+ AI agents running inside GrokBot using the new Pages feature!",
-      "embeddable": true
+      "id": "ndG48skyZZY",
+      "title": "Your Business Is Invisible to AI Search (Here's the Fix)",
+      "published": "2026-11-12T03:40:14Z",
+      "views": 83,
+      "duration": "20:25",
+      "summary": "Mike runs a Rank Prompt AI visibility scan on VisiScan, then connects its MCP in Claude Code to fix pages and draft outreach. Rank Prompt sponsored it.",
+      "embeddable": true,
+      "heading": "Your business is invisible to AI search (here's the fix)"
     },
     {
-      "id": "wLIiTkra7uM",
-      "title": "I Let GrokBot Run My Blog for 30 Days (Here's What Happened)",
-      "published": "2026-10-27T14:00:36Z",
-      "views": 162,
-      "duration": "7:06",
-      "summary": "Build an automated GrokBot WordPress blog writer to publish content hands-free. Learn to integrate AI agents for business.",
-      "embeddable": true
+      "id": "7JN-sMkJBCs",
+      "title": "Let GrokBot Find And Apply To Jobs For You",
+      "published": "2026-11-11T15:43:48Z",
+      "views": 105,
+      "duration": "8:48",
+      "summary": "Build a personal AI agent that automates your job search. This system finds, sources, and applies to remote jobs for you using GrokBot.",
+      "embeddable": true,
+      "heading": "Let GrokBot find and Apply to jobs for you"
     },
     {
-      "id": "VE66JDHoS6Y",
-      "title": "Herdr Lets You Run Claude Code And Codex In One Place",
-      "published": "2026-10-26T10:58:24Z",
-      "views": 461,
-      "duration": "7:52",
-      "summary": "",
-      "embeddable": true
+      "id": "V3ETwJAR5-I",
+      "title": "Why Grok Bot Drains Your Credits So Fast (And How To Fix It)",
+      "published": "2026-11-10T04:36:16Z",
+      "views": 193,
+      "duration": "14:05",
+      "summary": "See why GrokBot credits disappear so fast and the settings and prompts used to cut usage, from pausing routines to moving them into their own bot.",
+      "embeddable": true,
+      "heading": "GrokBot credit usage: why it drains and how to save"
     },
     {
-      "id": "qQVAnp4-EpI",
-      "title": "I Let Runable Build My Entire Online Business!",
-      "published": "2026-10-20T15:43:31Z",
-      "views": 188,
-      "duration": "18:03",
-      "summary": "",
-      "embeddable": true
+      "id": "YYZSR1p32EQ",
+      "title": "Herdr On Windows Is Better Than I Expected!",
+      "published": "2026-11-09T04:13:12Z",
+      "views": 882,
+      "duration": "11:03",
+      "summary": "Explore Herdr on Windows: PowerShell installation, themes, a credit-usage mod and Insights. The walkthrough also tours an Update Forge app build.",
+      "embeddable": true,
+      "heading": "Herdr on Windows: Installation, Themes, Mods and Usage"
     },
     {
-      "id": "UAPaM6KrC-M",
-      "title": "Building My Own Video Editor Using REA (It's Insane!)",
-      "published": "2026-10-14T08:36:41Z",
-      "views": 491,
-      "duration": "6:33",
-      "summary": "Learn how to use software reverse engineering to recreate a powerful video editor using the powerful REA tool and Claude Code. Very impressive!",
-      "embeddable": true
+      "id": "IV6q81wRay4",
+      "title": "New HERDR Desktop App Is A Game Changer!",
+      "published": "2026-11-07T07:05:11Z",
+      "views": 14983,
+      "duration": "11:17",
+      "summary": "Set up Herdr Desktop, open coding-agent workspaces and try themes. The walkthrough resumes Claude Code and explores agent panes, with migration and access limits.",
+      "embeddable": true,
+      "heading": "Herdr Desktop Setup: Workspaces, Themes and Claude Code"
     },
     {
-      "id": "mPHM81X1oqc",
-      "title": "I Tested Meta Muse Wonder - Here's What Happened",
-      "published": "2026-10-13T10:07:08Z",
-      "views": 705,
-      "duration": "8:16",
-      "summary": "Meta Muse Wonder is now one of the most powerful AI models released by Meta in years.",
-      "embeddable": true
+      "id": "V0PoYhOprBI",
+      "title": "3 Open Source Projects I Built That You Need to Try!",
+      "published": "2026-11-05T08:47:59Z",
+      "views": 281,
+      "duration": "10:36",
+      "summary": "Tour Tasky, Restic-Studio and Luma-Launcher: a task monitor, backup app and Linux launcher. See the project interfaces and the AI coding workflow behind them.",
+      "embeddable": true,
+      "heading": "Tasky, Restic-Studio and Luma-Launcher: Project Demos"
     },
     {
-      "id": "ys5tJuTFCEo",
-      "title": "How To Connect Claude Code & Codex To GrokBot",
-      "published": "2026-10-09T08:13:12Z",
-      "views": 2197,
-      "duration": "7:50",
-      "summary": "Learn how to integrate your Codex and Claude Code subscriptions directly into GrokBot to keep your AI workflows running smoothly when Cursor Cloud credits run out.",
-      "embeddable": true
+      "id": "phVQuQMojA8",
+      "title": "I Built My Own Task Manager In Claude Code (It's Free!)",
+      "published": "2026-11-03T07:48:25Z",
+      "views": 453,
+      "duration": "4:17",
+      "summary": "Tour a task manager built with Claude Code for Linux and Windows. Inspect process metrics, the prompting approach and a request for Debian and AppImage packages.",
+      "embeddable": true,
+      "heading": "Claude Code Task-Manager Demo: Processes and Packaging"
     }
   ],
   "channel": {
-    "subscribers": 5240,
-    "views": 536478,
-    "videos": 352
+    "subscribers": 5410,
+    "views": 586256,
+    "videos": 365
   }
 }

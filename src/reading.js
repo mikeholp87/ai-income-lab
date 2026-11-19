@@ -1,12 +1,17 @@
 import { campaignProperties, getCampaign, readingLink } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { addCopyButtons } from './copy-code.js';
+import { bindGuidePlayers } from './guide-player.js';
+import { showSubscribeNotice } from './subscribe-notice.js';
+import { dropMissingMaxres } from './thumbnail.js';
 import { inject as injectAnalytics } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 
+bootGoogleAnalytics();
 // Cookieless page views and Core Web Vitals from real visitors, the same as the homepage sends.
 injectAnalytics();
 injectSpeedInsights();
+bindGuidePlayers(document);
 
 const campaign = campaignProperties(getCampaign(window.location.search, []));
 const properties = { ...campaign, page_path: window.location.pathname };
@@ -19,11 +24,14 @@ for (const image of document.querySelectorAll('picture[data-thumbnail] img')) {
     image.src = image.src;
   };
   image.addEventListener('error', fallback, { once: true });
+  image.addEventListener('load', () => dropMissingMaxres(image));
   if (image.complete && !image.naturalWidth) fallback();
+  if (image.complete) dropMissingMaxres(image);
 }
 const viewEvent = window.location.pathname.startsWith('/watch/') ? 'video_page_view'
   : /^\/videos(?:\/|$)/.test(window.location.pathname) ? 'video_archive_view'
-  : /^\/(?:privacy|terms)\.html$/.test(window.location.pathname) ? 'legal_page_view' : 'guide_view';
+  : /^\/(?:privacy|terms)\.html$/.test(window.location.pathname) ? 'legal_page_view'
+  : window.location.pathname === '/tools.html' ? 'tools_page_view' : 'guide_view';
 let viewed = false;
 
 function recordView() {
@@ -35,6 +43,16 @@ function recordView() {
 for (const link of document.querySelectorAll('a[href]')) {
   link.href = readingLink(link.href, window.location.href);
   const target = new URL(link.href);
+  if (link.dataset.starterKit) {
+    link.addEventListener('click', () => trackGoogleEvent('starter_kit_download', {
+      ...properties,
+      kit_id: link.dataset.starterKit,
+      kit_version: link.dataset.kitVersion,
+      file_name: target.pathname.split('/').at(-1),
+      link_url: link.href,
+      placement: link.dataset.placement || 'written_guide',
+    }));
+  }
   if (target.origin === 'https://www.youtube.com') {
     link.addEventListener('click', () => {
       const videoId = target.pathname === '/watch' ? target.searchParams.get('v') || '' : '';
@@ -45,6 +63,14 @@ for (const link of document.querySelectorAll('a[href]')) {
       const event = { ...properties, placement, action, video_id: videoId, link_url: link.href, button_text: link.textContent.trim() };
       trackGoogleEvent('cta_click', event);
       trackGoogleEvent('youtube_outbound_clicked', event);
+    });
+  }
+  if (String(link.rel || '').split(/\s+/).includes('sponsored')) {
+    link.addEventListener('click', () => {
+      const placement = link.dataset.placement || (viewEvent === 'video_page_view' ? 'watch_tools' : 'written_guide');
+      const event = { ...properties, placement, action: 'visit_affiliate', tool: link.dataset.affiliate || link.textContent.replace('↗', '').trim(), ...(link.dataset.category ? { tool_category: link.dataset.category } : {}), destination_domain: target.hostname, link_url: link.href, button_text: link.textContent.trim() };
+      trackGoogleEvent('cta_click', event);
+      trackGoogleEvent('affiliate_outbound_clicked', event);
     });
   }
   if (target.origin !== 'https://www.skool.com' || !/^\/ai-automation-station-7346(?:\/|$)/.test(target.pathname)) continue;
@@ -65,7 +91,8 @@ document.body.append(banner);
 const choices = document.createElement('button');
 choices.type = 'button';
 choices.textContent = 'Privacy choices';
-document.querySelector('footer').append(choices);
+// Sits in the footer's legal row, after Terms, like the homepage.
+(document.querySelector('footer .footer-base div') ?? document.querySelector('footer')).append(choices);
 choices.addEventListener('click', () => {
   banner.hidden = false;
   banner.querySelector('button').focus();
@@ -82,6 +109,10 @@ recordView();
 // The Clipboard API needs a secure page; without it the commands stay selectable as before.
 if (navigator.clipboard) addCopyButtons(document, navigator.clipboard);
 
+if (showSubscribeNotice(document, window.location, window.history) === 'confirmed') {
+  trackGoogleEvent('newsletter_confirmed', properties);
+}
+
 // Weekly build notes signup at the end of guides.
 for (const form of document.querySelectorAll('form[data-subscribe]')) {
   let started = false;
@@ -92,20 +123,34 @@ for (const form of document.querySelectorAll('form[data-subscribe]')) {
   });
   form.addEventListener('submit', async event => {
   event.preventDefault();
-  const status = form.querySelector('[role="status"]');
+  const status = form.querySelector('.notes-signup-status, [role="status"]');
   const button = form.querySelector('button');
+  if (form.classList.contains('notes-signup')) {
+    // The footer signup behaves like the homepage one: validate, send, then swap the form for a confirmation line.
+    const email = form.elements.email.value.trim();
+    const say = text => { status.textContent = text; status.hidden = false; status.setAttribute('role', 'alert'); };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return void say('Enter a valid email address.');
+    button.disabled = true;
+    button.textContent = 'Subscribing';
+    const sent = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, hp: form.elements.hp.value }) }).then(response => response.ok ? response.json() : null).catch(() => null);
+    button.disabled = false;
+    button.textContent = 'Subscribe';
+    if (!sent?.ok) return void say('That didn’t go through. Try again in a minute.');
+    status.textContent = 'Almost there. Check your inbox (and spam) and click the link to confirm.';
+    status.setAttribute('role', 'status');
+    status.hidden = false;
+    form.replaceWith(status);
+    trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement });
+    return;
+  }
   button.disabled = true;
-  status.textContent = 'Subscribing…';
+  status.textContent = 'Subscribing';
   const fields = Object.fromEntries(new FormData(form));
   const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fields) }).then(response => response.ok ? response.json() : null).catch(() => null);
   button.disabled = false;
   if (!result) return void (status.textContent = 'That didn’t go through. Try again in a minute.');
   form.reset();
-  status.textContent = result.already
-    ? 'You’re already on the list, so there’s no new welcome email. The next build notes come to this inbox; check spam if you haven’t seen one.'
-    : result.welcomeSent === false
-      ? 'You’re subscribed, but the welcome email could not be sent. Please email automojic@proton.me if you need help.'
-      : 'Welcome to the build notes! Check your inbox (and spam) for a welcome email.';
+  status.textContent = 'Almost there. Check your inbox (and spam) and click the link to confirm your signup.';
   trackGoogleEvent('newsletter_signup', { ...properties, placement: form.dataset.placement || 'guide_end' });
   });
 }

@@ -1,0 +1,43 @@
+export default {
+  slug: 'three-ai-site-builds-antigravity-n8n-hotel',
+  type: 'Build guide',
+  video: '_ikohuukGE4',
+  alsoWatch: ['oP11zRs6628', 'e6JXdMh5Qz0'],
+  title: 'Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site',
+  short: 'Three AI site builds',
+  description: 'Three AI-built sites: a landing page in Google Antigravity, a dashboard that triggers n8n, and a Koh Samui hotel directory scraped with Apify and OpenCode.',
+  hub: 'Three AI-built sites: a landing page in Google Antigravity, a dashboard that triggers n8n, and a hotel directory scraped with Apify and OpenCode.',
+  watchLabel: 'Follow the three AI site build videos',
+  about: ['Google Antigravity', 'n8n', 'OpenCode', 'Apify', 'Hostinger'],
+  card: {
+    title: 'Three sites built by prompting AI tools',
+    steps: [['Landing page', 'Antigravity and OpenCode, 16 sections'], ['Dashboard', 'Web app calls an n8n webhook'], ['Hotel site', 'Apify scrape to a filterable site']],
+    note: 'February and March 2026; each had unfinished parts.',
+  },
+  quick: 'In March 2026 I had Claude write a master prompt from screenshots of a reference page, built the first landing page in Google Antigravity with Gemini 3.1 Pro in about five minutes, then finished all 16 sections in OpenCode when Gemini credits ran low. In February I used Antigravity to build a web dashboard that sends a YouTube URL to an n8n workflow on a Hostinger VPS; it ran in 3 minutes 39 seconds but the app did not display the results. Also in February, one OpenCode prompt with Apify skills scraped about 100 Koh Samui hotels into a filterable site, with wrong images and links left to fix.',
+  intro: '<p>This guide merges three build videos. All three were first drafts: the landing page still had placeholder testimonials and the wrong pricing, the dashboard did not show its output and the hotel site had bad images and links. Apify gave me credits for the hotel video, and the Apify and Hostinger links on this site are affiliate links. Scraping a booking site can breach its terms, so check them before you reuse the data. For a similar scrape, see <a href="/guides/apify-klook-hotel-scraper-claude-code.html">the Apify Klook hotel scraper guide</a>.</p>',
+  sections: [
+    { id: 'landing', h: '1. A landing page in Antigravity (March 2026)', html: '<p>I wanted a page for my Skool community that looks like a reference site I admired. I uploaded screenshots of it and asked Claude for a detailed master prompt for a clean, responsive page with the same colour scheme, then opened a prompt window in Google Antigravity with Gemini 3.1 Pro and chose a production-ready single HTML file with inline CSS and JavaScript. The first draft, with a hero and testimonials, took about five minutes. I edited names and links in index.html by hand, switched between Claude Code, Gemini and OpenCode to manage credit limits, and ran section prompts in OpenCode, which built all 16 sections for free, about ten minutes each. The page had an FAQ and plans, but the pricing needed fixing to 49 a month or 490 a year and I wanted a sticky sidebar.</p>' },
+    { id: 'dashboard', h: '2. A dashboard that triggers n8n (February 2026)', html: '<p>I asked Gemini how to connect n8n to Antigravity, installed the n8n MCP and put my n8n API key in an MCP config file, which I kept off screen. Antigravity built a React dashboard on localhost that posts a YouTube URL to an n8n webhook. The workflow transcribes with Apify, summarizes with Gemini, writes a LinkedIn post, blog article and tweets with Claude and makes an infographic through KIE. I switched from local n8n to my Hostinger instance, installed the Apify node and replaced the form trigger with a webhook. Failed to fetch and 500 errors needed a webhook fix and passing the URL into the next node, plus Google Cloud billing for a Gemini rate limit and Claude credits. The run completed in 3 minutes 39 seconds, but the app showed only a placeholder: the results appeared in Google Drive and KIE, not on the page.</p>' },
+    { id: 'hotel', h: '3. A hotel site from one prompt (February 2026)', html: '<p>In OpenCode with the Apify agent skills I asked for the top 100 luxury hotels in Koh Samui and a beautiful site with images, prices, reviews and booking links. It first picked the wrong Apify skill, an e-commerce one, then switched to the ultimate scraper and the Voyager Booking Scraper at roughly 20 to 50 cents a run. The first page showed no hotels, because the first scrape had only sample data. After I supplied my Apify token and reran it, I got 100 hotels, and more prompts added price and rating filters and a detail popup with a gallery. Closing OpenCode by accident lost my context. I planned to earn Booking.com affiliate commissions, for which I was not yet approved.</p>' },
+  ],
+  limits: [
+    'Conversion or traffic results from any of the three sites.',
+    'Security review, especially of the n8n webhook and API keys.',
+    'Data licensing for scraped hotel content.',
+  ],
+  faq: [
+    ['Which tool built the landing page?', 'Google Antigravity with Gemini 3.1 Pro for the first draft, then OpenCode for the remaining sections.'],
+    ['Why did the dashboard not show results?', 'I was not returning the workflow output in the format the app expected, so the results appeared only in Google Drive and KIE.'],
+    ['Why did the hotel site show no data?', 'The first scrape returned sample data. After I added my Apify token, I got 100 hotels.'],
+  ],
+  sources: [
+    'Videos: <a href="https://www.youtube.com/watch?v=_ikohuukGE4">Google Antigravity Just Changed How I Build Landing Pages!</a>, <a href="https://www.youtube.com/watch?v=oP11zRs6628">Google Antigravity + N8N Is A Game Changer!</a> and <a href="https://www.youtube.com/watch?v=e6JXdMh5Qz0">The Fastest Way To Build A Booking Website Using AI Tools</a>',
+    'Affiliate links: <a href="https://www.apify.com?fpr=fklok2" rel="sponsored noopener">Apify</a> · <a href="https://www.hostinger.com?REFERRALCODE=5XNDIGITACZ9" rel="sponsored noopener">Hostinger</a>',
+  ],
+  related: [['/guides/apify-klook-hotel-scraper-claude-code.html', 'Apify Klook hotel scraper'], ['/guides/hostinger-n8n-vps-setup.html', 'n8n on Hostinger'], ['/guides/lovable-landing-page-calcom-stripe-domain.html', 'Lovable landing page build'], ['/guides/build-apps-with-ai-coding-agents.html', 'Build apps with AI coding agents'], ['/guides/youtube-to-linkedin-automations-n8n-opencode.html', 'YouTube to LinkedIn automations']],
+  next: ['/guides/lovable-landing-page-calcom-stripe-domain.html', 'Lovable landing page build'],
+  more: 'Price and details: <a href="/tools.html#apify">Apify on the tools page</a>',
+  linkFrom: ['/guides/apify-klook-hotel-scraper-claude-code.html'],
+  llms: 'Three 2026 AI site builds: a 16-section landing page made in Google Antigravity (Gemini 3.1 Pro) and finished in OpenCode, a React dashboard that triggers an n8n workflow on a Hostinger VPS (3 minutes 39 seconds, results not displayed in the app), and a Koh Samui hotel directory scraped with Apify and OpenCode.',
+};

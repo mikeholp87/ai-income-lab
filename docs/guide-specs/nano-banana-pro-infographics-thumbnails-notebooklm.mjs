@@ -1,0 +1,43 @@
+export default {
+  slug: 'nano-banana-pro-infographics-thumbnails-notebooklm',
+  type: 'How-to',
+  video: 'bt-zM7QuKkU',
+  alsoWatch: ['KDZ7yefRv54', 'ix3C2JBFII8'],
+  title: 'Nano Banana Pro Infographics, Thumbnails and NotebookLM',
+  short: 'Nano Banana Pro visuals',
+  description: 'Make infographics and thumbnails with Nano Banana Pro through Google AI Studio and KIE, and compare a one-off NotebookLM infographic with my n8n workflow.',
+  hub: 'Make infographics and thumbnails with Nano Banana Pro in AI Studio and KIE, and compare a quick NotebookLM infographic with my n8n workflow.',
+  watchLabel: 'Follow the Nano Banana Pro and NotebookLM visuals videos',
+  about: ['Nano Banana Pro', 'Google AI Studio', 'KIE', 'NotebookLM', 'vidIQ'],
+  card: {
+    title: 'Infographics and thumbnails with Nano Banana Pro',
+    steps: [['Summarize', 'Gemini summarizes the video transcript'], ['Draw', 'Nano Banana Pro in AI Studio or KIE'], ['Compare', 'NotebookLM is quicker, less detailed']],
+    note: 'December 2025 to January 2026; thumbnail click rates not measured.',
+  },
+  quick: 'For an infographic, have Gemini 3 summarize a video’s transcript, give the summary to Nano Banana Pro in Google AI Studio, which got the text right in my test, then use Gemini 3 Pro to write the LinkedIn post. For thumbnails, write a prompt in ChatGPT, regenerate an existing thumbnail in KIE’s Nano Banana Pro at 16:9, 1K and PNG, and swap your face in with Gemini. NotebookLM makes an infographic from a YouTube link in a minute or two, but mine was less detailed than the n8n workflow that calls Nano Banana Pro through KIE. I did not measure whether new thumbnails improved click-through.',
+  intro: '<p>This guide merges three videos from December 2025 and January 2026. Image models change quickly, so check current limits and prices. A KIE run cost me about 18 credits, roughly 30 images for 5 dollars as I quoted. The vidIQ link on this site is an affiliate link. For the full automated version, see <a href="/guides/youtube-to-linkedin-automations-n8n-opencode.html">the YouTube to LinkedIn automations guide</a>.</p>',
+  sections: [
+    { id: 'manual', h: '1. A manual infographic in AI Studio (December 2025)', html: '<p>I took a summary that Gemini 3 wrote from a video transcript and gave it to Nano Banana Pro in Google AI Studio. It drew the infographic with correct text, which earlier models often mangled. I then switched to Gemini 3 Pro Preview, which writes text rather than images, and asked for a professional LinkedIn post about the infographic. I pasted it into a LinkedIn newsletter by hand and uploaded the image. My n8n version pulled the transcript with Apify and summarized it with Gemini 3 Flash, but n8n only had the earlier Nano Banana, so its images looked poor.</p>' },
+    { id: 'notebooklm', h: '2. NotebookLM for a one-off (January 2026)', html: '<p>In NotebookLM I added a YouTube URL as a source, which produced a summary I could ask questions about, then chose the infographic option. It finished in a minute or two. NotebookLM also makes slide decks, reports, audio overviews and mind maps. My n8n workflow, which uses KIE’s Nano Banana Pro and saves to Google Drive, gave a more detailed infographic with cleaner text, but it took me hours to build, so NotebookLM is better for a quick one-off.</p>' },
+    { id: 'thumbnails', h: '3. Thumbnails through KIE (January 2026)', html: '<p>Sign up for KIE, add credits and open Nano Banana Pro in the models market. Write a detailed thumbnail prompt in ChatGPT, paste it into KIE with an existing thumbnail and regenerate at 16:9, 1K and PNG. To put my face in, I used Gemini with the surprised, wide-open-mouth expression kept; one swap failed, and I hit my Nano Banana Pro limit in Gemini and lacked a paid API key for AI Studio. I replaced the thumbnails on three videos that had starting click-through rates around 3.3 to 3.8 percent, but I did not show new rates. I then checked titles, descriptions and thumbnails in vidIQ and planned an n8n automation.</p>' },
+  ],
+  limits: [
+    'Click-through results from the new thumbnails.',
+    'Licensing and platform rules for AI-generated images.',
+    'Current KIE and Gemini limits and prices.',
+  ],
+  faq: [
+    ['Why is Nano Banana Pro better for infographics?', 'In my tests it got the text right, which earlier image models often did not.'],
+    ['Which is faster, NotebookLM or n8n?', 'NotebookLM, about a minute or two. The n8n result was more detailed but took hours to build.'],
+    ['Did the thumbnails raise click-through?', 'I do not know. I did not show new rates.'],
+  ],
+  sources: [
+    'Videos: <a href="https://www.youtube.com/watch?v=bt-zM7QuKkU">Nano Banana Pro Makes Content Repurposing Easier Than Ever!</a>, <a href="https://www.youtube.com/watch?v=KDZ7yefRv54">The Easiest Way to Make Infographics from YouTube Content (NotebookLM)</a> and <a href="https://www.youtube.com/watch?v=ix3C2JBFII8">Make Viral YouTube Thumbnails In Minutes With NanoBanana!</a>',
+    'NotebookLM: <a href="https://notebooklm.google.com">notebooklm.google.com</a> · vidIQ through my affiliate link: <a href="https://www.vidiq.com/mikeholp" rel="sponsored noopener">vidIQ</a>',
+  ],
+  related: [['/guides/youtube-to-linkedin-automations-n8n-opencode.html', 'YouTube to LinkedIn automations'], ['/guides/nano-banana-gemini-images-make.html', 'Nano Banana images'], ['/guides/chatgpt-thumbnail-ctr-pipeline.html', 'ChatGPT thumbnail CTR pipeline'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/vidiq-mcp-claude-channel-audit.html', 'vidIQ MCP in Claude']],
+  next: ['/guides/chatgpt-thumbnail-ctr-pipeline.html', 'ChatGPT thumbnail CTR pipeline'],
+  more: 'Price and details: <a href="/tools.html#vidiq">vidIQ on the tools page</a>',
+  linkFrom: ['/guides/chatgpt-thumbnail-ctr-pipeline.html'],
+  llms: 'Three videos on Nano Banana Pro visuals: a manual infographic from a Gemini 3 summary in Google AI Studio with a Gemini 3 Pro LinkedIn post, a NotebookLM infographic compared with an n8n and KIE workflow, and YouTube thumbnails regenerated in KIE (16:9, 1K) with a Gemini face swap. Click-through effects were not measured.',
+};

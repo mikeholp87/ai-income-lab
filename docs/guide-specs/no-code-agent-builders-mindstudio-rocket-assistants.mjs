@@ -1,0 +1,43 @@
+export default {
+  slug: 'no-code-agent-builders-mindstudio-rocket-assistants',
+  type: 'Review',
+  video: 'uTYZC3Kxwjo',
+  alsoWatch: ['J86tffN9nmg', 'DtmxxnAbS00'],
+  title: 'No-Code Agent Builders Tried: MindStudio, Rocket, Assistants',
+  short: 'No-code agent builders',
+  description: 'First impressions of three no-code AI builders: MindStudio (no agent running), Rocket.new for a ChatGPT-style app, and an OpenAI assistant in Make.com.',
+  hub: 'First impressions of three no-code AI builders: MindStudio, Rocket.new for a ChatGPT-style app, and an OpenAI assistant driven from Make.com.',
+  watchLabel: 'Follow the MindStudio, Rocket.new and OpenAI assistant videos',
+  about: ['MindStudio', 'Rocket.new', 'OpenAI Assistants', 'Make.com', 'Lovable'],
+  card: {
+    title: 'Three no-code AI builders, honestly tested',
+    steps: [['MindStudio', 'Template tour, no agent running'], ['Rocket.new', 'ChatGPT-style app in about 20 minutes'], ['Assistant', 'OpenAI assistant called from Make.com']],
+    note: 'August 2025; first impressions, plans and prices may have changed.',
+  },
+  quick: 'These are first impressions from August 2025. In MindStudio I never got an agent running: a launch-variable error and a publishing paywall stopped me, API access needed the business plan and I concluded Make.com was easier for my needs. In Rocket.new a prompt written in ChatGPT produced a ChatGPT-style web app in about ten minutes, with some broken controls fixed by prompts and an OpenAI key connected, though it still answered as a GPT-4 model, and a custom domain needed a 25 a month plan. The third, a custom OpenAI assistant for writing community posts called from Make.com, worked once I edited the prompt.',
+  intro: '<p>This guide merges three August 2025 videos. I had never used MindStudio or Rocket.new before recording, so these are learning-curve notes, not reviews of mature products. MindStudio and Rocket.new links in the descriptions were promotional, and the Make.com link is an affiliate link. For a stronger comparison of builders, see <a href="/guides/lovable-vs-base44-vs-replit.html">Lovable, Base44 and Replit compared</a>.</p>',
+  sections: [
+    { id: 'mindstudio', h: '1. MindStudio: a tour that stopped early', html: '<p>MindStudio is a no-code builder for AI agents with a visual editor and over 100 templates, and says the average build takes 15 minutes to an hour. Its free tier allowed 1,000 runs a month, with paid plans from about 20 a month. I started an agent with an on-demand trigger and it errored without launch variables, looked at data sources for a knowledge base and user inputs, and browsed templates, some of which need a Chrome extension. API access, which I needed to connect it to Make.com, is on the business plan. I did not get an agent running and concluded Make.com was easier for what I do.</p>' },
+    { id: 'rocket', h: '2. Rocket.new: a ChatGPT-style app (August 2025)', html: '<p>Rocket.new asks what you want to build: a web app, mobile app, website, dashboard or landing page, and you do not even need an account to start. I had ChatGPT write the prompt, chose the main chat interface and a settings screen, and tokens are charged per screen. After about ten minutes I had an interface with some broken controls, and a prompt fixed the colour scheme setting. I asked it to connect OpenAI, pasted in a key, and the chat worked, though the assistant still described itself as a GPT-4 model. Publishing is easy, but a custom domain needed the 25 a month plan with 5 million tokens. I compared it with the agency site I built in Lovable in about two hours and prefer Lovable.</p>' },
+    { id: 'assistant', h: '3. A custom OpenAI assistant from Make.com', html: '<p>On the OpenAI platform, the chat prompt tool wrote a detailed developer message for an assistant that writes my community posts. I pasted it into a new assistant on GPT-4, noted the option to upload files as a knowledge base with file search and tested it. The first outputs missed the format I wanted until I added reasoning and examples to the prompt. Then a one-module Make.com scenario with the Message an Assistant module returned the post text. Skool has no public API, so I paste the text by hand. I topped up API credit by a few dollars.</p>' },
+  ],
+  limits: [
+    'A working MindStudio agent. I did not get one running.',
+    'Current MindStudio and Rocket.new plans and token prices.',
+    'Quality of Rocket.new output beyond a first draft.',
+  ],
+  faq: [
+    ['Did you get a MindStudio agent working?', 'No. I hit launch variable errors and a paywall, so this is a learning-curve tour.'],
+    ['What did a custom domain cost on Rocket.new?', 'The 25 a month plan with 5 million tokens, as I quoted in August 2025.'],
+    ['How did the assistant connect to Make.com?', 'With the Message an Assistant module, calling an assistant created on the OpenAI platform.'],
+  ],
+  sources: [
+    'Videos: <a href="https://www.youtube.com/watch?v=uTYZC3Kxwjo">MindStudio AI Agents: From Zero to Deployment in Minutes!</a>, <a href="https://www.youtube.com/watch?v=J86tffN9nmg">I Let Rocket AI Build My ChatGPT Clone (Here’s What Happened)</a> and <a href="https://www.youtube.com/watch?v=DtmxxnAbS00">How to Build an AI Assistant That Actually Works for You</a>',
+    'MindStudio: <a href="https://www.mindstudio.ai">mindstudio.ai</a> · Rocket: <a href="https://rocket.new">rocket.new</a> · OpenAI platform: <a href="https://platform.openai.com">platform.openai.com</a>',
+  ],
+  related: [['/guides/no-code-ai-agent-builder.html', 'No-code AI agent builders'], ['/guides/lovable-vs-base44-vs-replit.html', 'Lovable vs Base44 vs Replit'], ['/guides/make-gmail-ai-auto-reply.html', 'Make.com Gmail auto-reply'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets'], ['/guides/what-is-an-ai-agent.html', 'What is an AI agent?']],
+  next: ['/guides/no-code-ai-agent-builder.html', 'No-code AI agent builders'],
+  more: 'Price and details: <a href="/tools.html#make-com">Make.com on the tools page</a>',
+  linkFrom: ['/guides/no-code-ai-agent-builder.html'],
+  llms: 'Three August 2025 no-code builder trials: MindStudio (template tour, no working agent, API on the business plan), Rocket.new (a ChatGPT-style app in about ten minutes, custom domain needing a 25 a month plan) and a custom OpenAI assistant called from Make.com that needed prompt edits. These are first impressions.',
+};

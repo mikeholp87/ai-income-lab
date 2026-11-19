@@ -1,0 +1,204 @@
+{
+  "date": "2026-11-08",
+  "scope": "33 approved internal-link audit proposals",
+  "links": [
+    {
+      "id": "IL-01",
+      "source": "https://www.ai-automation-station.com/watch/bCsSqZp0yVg",
+      "target": "https://www.ai-automation-station.com/guides/youtube-channel-growth-workflow.html",
+      "anchor": "Use the YouTube channel growth workflow"
+    },
+    {
+      "id": "IL-02",
+      "source": "https://www.ai-automation-station.com/watch/ncg6F27PYt0",
+      "target": "https://www.ai-automation-station.com/guides/kilo-code-tutorial.html",
+      "anchor": "Install Kilo Code and check your first task"
+    },
+    {
+      "id": "IL-03",
+      "source": "https://www.ai-automation-station.com/watch/Ip8KBwDixJs",
+      "target": "https://www.ai-automation-station.com/guides/grokbot-for-beginners.html",
+      "anchor": "Set up a first GrokBot with bounded access"
+    },
+    {
+      "id": "IL-04",
+      "source": "https://www.ai-automation-station.com/watch/FBlN3qWR9kg",
+      "target": "https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html",
+      "anchor": "Follow the sketch-to-scene and local-edit workflow"
+    },
+    {
+      "id": "IL-05",
+      "source": "https://www.ai-automation-station.com/guides/claude-code-for-beginners.html",
+      "target": "https://www.ai-automation-station.com/guides/claude-code-task-manager.html",
+      "anchor": "see the Task Manager build and its verification limits"
+    },
+    {
+      "id": "IL-06",
+      "source": "https://www.ai-automation-station.com/guides/ai-content-creation-workflows.html",
+      "target": "https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html",
+      "anchor": "try the sketch-to-scene image-editing workflow"
+    },
+    {
+      "id": "IL-07",
+      "source": "https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html",
+      "target": "https://www.ai-automation-station.com/guides/codex-seo-workflow.html",
+      "anchor": "turn audit output into a reviewed internal-link plan"
+    },
+    {
+      "id": "IL-08",
+      "source": "https://www.ai-automation-station.com/guides/codex-workflow.html",
+      "target": "https://www.ai-automation-station.com/guides/codex-seo-workflow.html",
+      "anchor": "apply that review loop to an internal-link audit"
+    },
+    {
+      "id": "IL-09",
+      "source": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "target": "https://www.ai-automation-station.com/guides/9router-setup.html",
+      "anchor": "9Router setup and provider routing"
+    },
+    {
+      "id": "IL-10",
+      "source": "https://www.ai-automation-station.com/videos/claude-code",
+      "target": "https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html",
+      "anchor": "Optional terminal setup: Ghostty on Debian"
+    },
+    {
+      "id": "IL-11",
+      "source": "https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html",
+      "target": "https://www.ai-automation-station.com/sponsors.html",
+      "anchor": "sponsorship packages and editorial approach"
+    },
+    {
+      "id": "IL-12",
+      "source": "https://www.ai-automation-station.com/guides/codex-workflow.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-13",
+      "source": "https://www.ai-automation-station.com/guides/codex-seo-workflow.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-14",
+      "source": "https://www.ai-automation-station.com/guides/herdr-guide.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-15",
+      "source": "https://www.ai-automation-station.com/guides/codex-on-linux.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-16",
+      "source": "https://www.ai-automation-station.com/guides/codex-usage-limits.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-17",
+      "source": "https://www.ai-automation-station.com/guides/opencode-go.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-18",
+      "source": "https://www.ai-automation-station.com/guides/openrouter-setup.html",
+      "target": "https://www.ai-automation-station.com/videos/codex-opencode",
+      "anchor": "Codex and OpenCode videos and written guides"
+    },
+    {
+      "id": "IL-19",
+      "source": "https://www.ai-automation-station.com/guides/ai-automation.html",
+      "target": "https://www.ai-automation-station.com/videos/n8n",
+      "anchor": "n8n videos and written guides"
+    },
+    {
+      "id": "IL-20",
+      "source": "https://www.ai-automation-station.com/guides/make-first-automation.html",
+      "target": "https://www.ai-automation-station.com/videos/make-com",
+      "anchor": "Make.com videos and written guides"
+    },
+    {
+      "id": "IL-21",
+      "source": "https://www.ai-automation-station.com/guides/ai-automation.html",
+      "target": "https://www.ai-automation-station.com/videos/make-com",
+      "anchor": "Make.com videos and written guides"
+    },
+    {
+      "id": "IL-22",
+      "source": "https://www.ai-automation-station.com/guides/hermes-desktop.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-agents",
+      "anchor": "AI agents videos and written guides"
+    },
+    {
+      "id": "IL-23",
+      "source": "https://www.ai-automation-station.com/guides/herdr-desktop-app.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-agents",
+      "anchor": "AI agents videos and written guides"
+    },
+    {
+      "id": "IL-24",
+      "source": "https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-agents",
+      "anchor": "AI agents videos and written guides"
+    },
+    {
+      "id": "IL-25",
+      "source": "https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-seo",
+      "anchor": "AI SEO videos and written guides"
+    },
+    {
+      "id": "IL-26",
+      "source": "https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-website-builders",
+      "anchor": "AI website builders videos and written guides"
+    },
+    {
+      "id": "IL-27",
+      "source": "https://www.ai-automation-station.com/guides/runable-audit-website.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-website-builders",
+      "anchor": "AI website builders videos and written guides"
+    },
+    {
+      "id": "IL-28",
+      "source": "https://www.ai-automation-station.com/guides/kilo-code-tutorial.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-website-builders",
+      "anchor": "AI website builders videos and written guides"
+    },
+    {
+      "id": "IL-29",
+      "source": "https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-video",
+      "anchor": "AI video and YouTube videos and written guides"
+    },
+    {
+      "id": "IL-30",
+      "source": "https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html",
+      "target": "https://www.ai-automation-station.com/videos/ai-video",
+      "anchor": "AI video and YouTube videos and written guides"
+    },
+    {
+      "id": "IL-31",
+      "source": "https://www.ai-automation-station.com/guides/claude-models-compared.html",
+      "target": "https://www.ai-automation-station.com/videos/new-models",
+      "anchor": "New AI models videos and written guides"
+    },
+    {
+      "id": "IL-32",
+      "source": "https://www.ai-automation-station.com/guides/muse-code-setup.html",
+      "target": "https://www.ai-automation-station.com/videos/new-models",
+      "anchor": "New AI models videos and written guides"
+    },
+    {
+      "id": "IL-33",
+      "source": "https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html",
+      "target": "https://www.ai-automation-station.com/videos/new-models",
+      "anchor": "New AI models videos and written guides"
+    }
+  ]
+}

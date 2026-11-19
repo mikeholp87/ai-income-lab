@@ -1,0 +1,43 @@
+export default {
+  slug: 'make-content-builds-facebook-ebook-forms',
+  type: 'Build guide',
+  video: 'bjTr9p-zQ1M',
+  alsoWatch: ['3j4YyYFRQKU', 'fjTn95391rg'],
+  title: 'Make.com Content Builds: Facebook Posts, Ebook and Forms',
+  short: 'Make.com content builds',
+  description: 'Three Make.com builds: a daily AI image and caption post on a Facebook page, an ebook written with Claude chapter by chapter, and a form feeding Airtable.',
+  hub: 'Three Make.com builds: a daily AI-made Facebook post, an ebook written chapter by chapter with Claude, and a Fillout form feeding Airtable.',
+  watchLabel: 'Follow the Make.com Facebook post, ebook and Fillout builds',
+  about: ['Make.com', 'OpenAI API', 'Claude', 'Airtable', 'Fillout'],
+  card: {
+    title: 'Three small Make.com content automations',
+    steps: [['Post', 'ChatGPT caption, DALL-E 3 image, Facebook'], ['Write', 'Claude chapters into a Google Doc'], ['Capture', 'Fillout form to an Airtable record']],
+    note: 'June and October 2025; the ebook run was unfinished.',
+  },
+  quick: 'The Facebook scenario has ChatGPT write a visual post under 150 words, DALL-E 3 make an image from it, an HTTP step fetch the file and the Facebook module publish a photo post, scheduled daily at 10 am. The ebook scenario keeps the title, outline and status in Airtable, creates a Google Doc and loops over chapters with Claude; it needed a new API key after repeated credit errors and ended mid-run with repeated chapter headings. The Fillout scenario watches new form responses and creates Airtable records, or you can use Fillout’s built-in Airtable integration with no Make.com at all.',
+  intro: '<p>This guide merges three small builds from June and October 2025. AI-written ebooks and posts need human review before you publish or sell them, and a form that collects names and phone numbers is personal data, so handle it accordingly. The Make.com and Fillout links on this site are affiliate links. For more Make.com examples, see <a href="/guides/make-business-automation-examples.html">Make.com business automations</a>.</p>',
+  sections: [
+    { id: 'facebook', h: '1. A daily Facebook post (June 2025)', html: '<p>I built this in about 20 minutes. An OpenAI create-completion module on the ChatGPT 4o model gets a prompt for a short, visually descriptive post under 150 words. A second OpenAI module creates an image with DALL-E 3 from that output. An HTTP step downloads the image from its URL, and a Create a Post with Photos module publishes to the Facebook page. The first run errored and a retry worked. I scheduled it daily at 10 am Bangkok time after earlier runs every 12 hours; I expect engagement to rise, but that is an expectation, not a result.</p>' },
+    { id: 'ebook', h: '2. An ebook written with Claude (June 2025)', html: '<p>An Airtable record holds the ebook title, description, topic, outline and status. The scenario puts the title and description in a Google Sheet, creates a Google Doc and asks Claude for an outline saved back to Airtable, then loops through chapters, appending each to the doc. Repeated credit balance too low errors persisted after topping up, and a new API key fixed them. I switched the writing step to Claude Sonnet 4 and had to reset an Airtable status that blocked a run. The first chapter ran to 12 pages, chapter headings repeated, and the video ended mid-run, so no finished ebook was shown.</p>' },
+    { id: 'fillout', h: '3. Fillout to Airtable (October 2025)', html: '<p>For new community members I built a Fillout form with questions and an optional call booking, collecting name, email, phone, how they found the community, tools used and monthly online income. A Make.com scenario with a Fillout watch-responses trigger maps each answer to an Airtable Create Record. A test submission appeared in Airtable. Fillout’s built-in Airtable integration does the same without Make.com. Fillout is free to start with paid plans from 19 a month as I quoted. I said my community’s join conversion was around 25 percent, which is my own figure.</p>' },
+  ],
+  limits: [
+    'A finished ebook. The run ended mid-chapter.',
+    'Engagement results from the Facebook posts.',
+    'Privacy policy and consent wording for the form.',
+  ],
+  faq: [
+    ['Why did the Claude step fail?', 'Credit balance too low errors continued after a top-up until I made a new API key.'],
+    ['Do I need Make.com for Fillout to Airtable?', 'No. Fillout has a built-in Airtable integration.'],
+    ['What schedule did the Facebook scenario use?', 'Daily at 10 am Bangkok time.'],
+  ],
+  sources: [
+    'Videos: <a href="https://www.youtube.com/watch?v=bjTr9p-zQ1M">How I Created A Complete Ebook in 30 Minutes Using AI!</a>, <a href="https://www.youtube.com/watch?v=3j4YyYFRQKU">Your Social Media Manager Just Got Replaced!</a> and <a href="https://www.youtube.com/watch?v=fjTn95391rg">Connect Fillout to Airtable in 15 Minutes (No Code)</a>',
+    'Make.com through my affiliate link: <a href="https://www.make.com/en/register?pc=mikeholp" rel="sponsored noopener">Make.com</a> · Airtable: <a href="https://airtable.com">airtable.com</a>',
+  ],
+  related: [['/guides/make-business-automation-examples.html', 'Make.com business automations'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets'], ['/guides/make-youtube-ideas-to-video-pipeline.html', 'Make.com YouTube idea pipeline'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/make-money-with-ai-fast.html', 'Make money with AI fast']],
+  next: ['/guides/make-youtube-ideas-to-video-pipeline.html', 'Make.com YouTube idea pipeline'],
+  more: 'Price and details: <a href="/tools.html#make-com">Make.com on the tools page</a>',
+  linkFrom: ['/guides/make-business-automation-examples.html'],
+  llms: 'Three Make.com builds from 2025: a daily Facebook page post with a ChatGPT 4o caption and DALL-E 3 image scheduled for 10 am, an ebook written chapter by chapter with Claude Sonnet 4 from an Airtable outline (credit errors fixed with a new key, run unfinished), and a Fillout form feeding Airtable through a webhook or the built-in integration.',
+};

@@ -3,35 +3,27 @@ import { createRoot, hydrateRoot } from 'react-dom/client';
 import { Analytics, track } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { campaignProperties, getCampaign, outboundUrl, wantsCommunity } from './funnel.js';
-import { disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
+import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, loadMarketingTracking, setTrackingConsent, trackGoogleEvent, trackMetaOutbound } from './tracking.js';
 import { getCal } from './cal.js';
-import { channelUrl, validFeed } from './youtube.js';
-import { videoOffer } from './video-offer.js';
-import { featuredThumbnail } from './thumbnail.js';
+import { median, validFeed } from './youtube.js';
+import { emailIcon, footerExplore, githubUrl, linkedinUrl, skoolAboutUrl, skoolCommunityUrl, skoolPlansUrl, socialLinks, xUrl, youtubeSubscribeUrl } from './site-footer.js';
+import { topics } from './topics.js';
+import { validGithubRepositories } from './github-repositories.js';
+import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { dotCounts, mediaKit } from './media-kit.js';
 import youtubeSnapshot from './youtube-snapshot.json';
 import sponsoredSnapshot from './sponsored-snapshot.json';
+import sponsorBenchmark from './sponsor-benchmark.json';
+import topTools from './top-tools.json';
+import repositories from './repositories-snapshot.json';
 import './fonts.css';
 import './styles.css';
 
-const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
+if (typeof window !== 'undefined') bootGoogleAnalytics();
 
-const skoolAboutUrl = 'https://www.skool.com/ai-automation-station-7346/about';
-const skoolCommunityUrl = 'https://www.skool.com/ai-automation-station-7346';
-// The plan picker works logged out and skips the About page's extra Join click.
-const skoolPlansUrl = 'https://www.skool.com/ai-automation-station-7346/plans';
-const subscribeUrl = `${channelUrl}?sub_confirmation=1`;
-const githubUrl = 'https://github.com/mikeholp87';
-const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
-const xUrl = 'https://x.com/mikeholp';
-const emailIcon = 'M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217L8 8.5 0 4.217zm0 1.383v6.817l4.928-3.48zM5.711 9.847 0 13.883A2 2 0 0 0 2 14h12a2 2 0 0 0 2-.117l-5.711-4.036L8 11.5zM16 5.383l-4.928 3.48L16 12.2z';
-// Footer social links; icon paths are Bootstrap Icons 1.11.3 (MIT), drawn on a 16×16 grid.
-const socialLinks = [
-  ['YouTube', channelUrl, 'M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z'],
-  ['GitHub', githubUrl, 'M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8'],
-  ['LinkedIn', linkedinUrl, 'M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z'],
-  ['X', xUrl, 'M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z'],
-];
+const memberAvatars = Array.from({ length: 8 }, (_, index) => `/members/member-${index}.png`);
+const subscribeUrl = youtubeSubscribeUrl;
+const githubPagesUrl = 'https://mikeholp87.github.io/';
 // cal.com event for sponsorship and collab intro calls.
 const calLink = 'beremote/discovery-call';
 const bookingUrl = `https://cal.com/${calLink}`;
@@ -95,13 +87,14 @@ function ConsentBanner({ campaign, campaignReady }) {
   return <aside ref={banner} className="consent-banner" aria-label="Privacy choices"><p>Allow analytics &amp; marketing cookies? <a href="/privacy.html">Details</a></p><div className="consent-actions"><button type="button" onClick={() => choose('denied')}>Decline</button><button type="button" className="consent-accept" onClick={() => choose('granted')}>Allow both</button></div></aside>;
 }
 
-// Built-in values render first; /api/youtube replaces the keyed ones with live channel counts.
-// The member count comes from Skool, so it has no key and stays static.
+// Keyed rows show channel counts: the daily build's snapshot first, then /api/youtube's live numbers.
+// The member count comes from Skool, so it has no key and stays static: update membersAsOf with it.
+const membersAsOf = 'November 2026';
 const stats = [
   ['2,900+', 'community members'],
-  ['5.1K', 'YouTube subscribers', 'subscribers'],
-  ['498K', 'video views', 'views'],
-  ['336', 'videos published', 'videos'],
+  [null, 'YouTube subscribers', 'subscribers'],
+  [null, 'video views', 'views'],
+  [null, 'videos published', 'videos'],
 ];
 
 const tools = [
@@ -112,9 +105,9 @@ const tools = [
     size: [1600, 1000],
     tagline: 'YouTube analytics for creators.',
     copy: 'See why growth slowed, where viewers drop off, which competitors are pulling ahead, and which topics deserve your next upload.',
-    facts: ['Real CPM and RPM for connected channels', '180+ registered creators', '7-day free trial, plans from $19 a month'],
-    cta: 'Start a free trial',
-    note: 'Payment details required. Cancel before the trial ends to avoid a charge.',
+    facts: ['Real CPM and RPM for connected channels', '7-day trial, plans from $19 a month'],
+    cta: 'Start a 7-day trial',
+    note: 'Card required. Cancel before the trial ends to avoid a charge.',
   },
   {
     name: 'VisiScan',
@@ -128,16 +121,10 @@ const tools = [
   },
 ];
 
-const repos = [
-  { name: 'solar-business-directory', copy: 'Next.js directory of UK solar installers, with lead capture, an installer portal, and Stripe billing.', language: 'TypeScript', year: 2026, live: 'https://solar-business-directory.vercel.app' },
-  { name: 'seo-tool', copy: 'SEO Scout: paste a URL, get a scored audit across eight categories with the steps to fix each issue.', language: 'TypeScript', year: 2026 },
-  { name: 'ai-income-lab', copy: 'The source for this page. React and Vite on Vercel, with a YouTube feed that refreshes daily.', language: 'JavaScript', year: 2026 },
-];
-
 const plans = [
-  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners happy to unlock courses as they participate.', features: ['Community, courses, and tutorials', 'Runable course', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
-  { name: 'Premium', price: 49, annual: 490, fit: 'Builders who want immediate course access and AI avatar training.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
-  { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly coaching and the full template library.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
+  { name: 'Standard', price: 29, annual: 290, fit: 'Self-directed learners building their first workflows and unlocking lessons as they participate.', features: ['Community, courses, and tutorials', 'Beginner’s Automation Course (unlocks at level 2)', 'VAPI AI Voice Agent Course (unlocks at level 4)'] },
+  { name: 'Premium', price: 49, annual: 490, fit: 'Builders ready to make automations, voice agents, and avatar videos with immediate course access.', features: ['Everything in Standard', 'Immediate access to the beginner and VAPI voice-agent courses', 'Complete AI Avatar Video Course'] },
+  { name: 'VIP', price: 89, annual: 890, fit: 'Builders who want weekly group help with their projects and reusable n8n workflows.', features: ['Everything in Premium', 'Weekly coaching', '6,400+ n8n templates', 'Software deals'] },
 ];
 
 const timeline = [
@@ -150,14 +137,23 @@ const timeline = [
 
 const faqs = [
   ['What do I get in AI Income Lab that the videos don’t cover?', 'The videos show what a tool can do. AI Income Lab adds step-by-step courses, templates, and a community where you can ask questions while you build. VIP adds weekly coaching.'],
+  ['What is free without joining?', 'Every video and written guide on this site is free, with no Skool login. AI Income Lab adds the step-by-step courses, templates and a community to ask while you build. The tools in each build may need their own accounts or charge for usage.'],
   ['What does AI Income Lab cost?', 'Standard is $29 a month, Premium $49, and VIP $89. Annual billing is also available on Skool: $290, $490, or $890 a year, respectively. You can cancel before the next billing period from your Skool account.'],
+  ['What does VIP coaching cover?', 'VIP includes weekly live group coaching and Q&A to help you implement what you learn. Bring questions about the workflows, agents, or coding builds you are working on. Custom business implementation is separate and is not included in membership. Ask about your project’s scope before joining.'],
   ['What happens when I click Join?', 'Skool’s plan page opens in a new tab. You choose Standard, Premium, or VIP and monthly or yearly billing, then sign in or create a Skool account and pay on Skool. This site never sees your payment details.'],
-  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. The Runable course is available to all members on every plan. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
+  ['How do course unlocks work?', 'On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both, plus Complete AI Avatar Video Course. VIP also includes Ultimate N8N Template Library with 6,400+ workflows.'],
   ['What tools will I need, and can they cost extra?', 'It depends on the build. Automation hosting, AI API usage, and other software can cost extra. Each video lists what it uses, so check before you buy anything.'],
   ['Do I need to code to follow your videos?', 'No. Many videos use no-code tools like n8n and Make.com. The Claude Code, Codex, and OpenCode builds run in a terminal, and I show every setup step on screen.'],
   ['How often do you post?', 'Most days. Subscribe on YouTube to see new uploads first. The latest videos on this page refresh once a day.'],
   ['Is income guaranteed if I join?', 'No. The training shows you how to build useful AI systems. Results depend on your project, your experience, and the time you put in.'],
 ];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.ai-automation-station.com/#faq',
+  mainEntity: faqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+}).replace(/</g, '\\u003c');
 
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const viewFormat = new Intl.NumberFormat('en', { notation: 'compact' });
@@ -172,11 +168,25 @@ function useYouTubeFeed() {
     const controller = new AbortController();
     fetch('/api/youtube', { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response.status))
-      .then(next => { if (validFeed(next)) setFeed({ ...next, failed: false }); })
+      .then(next => { if (validFeed(next)) setFeed({ ...next, channel: next.channel ?? youtubeSnapshot.channel, failed: false }); })
       .catch(() => {}); // Keep the prerendered snapshot when the live feed is unavailable.
     return () => controller.abort();
   }, []);
   return feed;
+}
+
+function useGitHubRepositories(enabled) {
+  const [projects, setProjects] = useState(repositories);
+  useEffect(() => {
+    if (!enabled) return undefined;
+    const controller = new AbortController();
+    fetch('/api/github-repositories', { signal: controller.signal })
+      .then(response => response.ok ? response.json() : Promise.reject(response.status))
+      .then(next => { if (validGithubRepositories(next)) setProjects(next); })
+      .catch(() => {}); // Keep the prerendered list when GitHub is unavailable.
+    return () => controller.abort();
+  }, [enabled]);
+  return projects;
 }
 
 // Same pattern as the feed: the build's list renders first, the daily server list replaces it.
@@ -193,45 +203,47 @@ function useSponsoredVideos() {
   return videos;
 }
 
-// eyebrow names the section; accent is the headline's closing clause, set in the signal color.
 const featuredGuides = [
   { slug: 'ai-automation', tag: 'Beginner', title: 'What is AI automation? Examples, tools and a first build', alt: 'Guide card for What is AI automation, with examples, tools and a first build.' },
   { slug: 'make-money-with-ai-no-experience', tag: 'Earning', title: 'Make money with AI with no experience', alt: 'Guide card for making money with AI with no experience.' },
   { slug: 'ai-automation-services-small-business', tag: 'Earning', title: 'Sell AI automation services to small businesses', alt: 'Guide card for selling AI automation services to small businesses.' },
-  { slug: 'n8n-vs-zapier-vs-make', tag: 'Comparison', title: 'n8n vs Zapier vs Make: billing, builders and AI agents', alt: 'Guide card comparing n8n, Zapier and Make.' },
-  { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial for beginners: install and use it', alt: 'Guide card for the Claude Code beginner tutorial.' },
+  { slug: 'agentic-ai-vs-traditional-automation', tag: 'Comparison', title: 'How does agentic AI differ from traditional automation?', alt: 'Guide card comparing agentic AI with traditional automation.' },
+  { slug: 'claude-code-for-beginners', tag: 'Beginner', title: 'Claude Code tutorial: install and first task', alt: 'Guide card for the Claude Code beginner tutorial.' },
   { slug: 'claude-code-vs-codex', tag: 'Comparison', title: 'Claude Code vs Codex: how I use both', alt: 'Guide card comparing Claude Code and Codex, routing each task to the agent that suits it.' },
+  { slug: '9router-setup', tag: 'Setup', title: '9Router setup and update command', alt: 'Guide card for 9Router setup, routing coding tools through one gateway with fallback models.' },
+  { slug: 'what-is-n8n-used-for', tag: 'Beginner', title: 'What is n8n used for? Real uses and a first workflow', alt: 'Guide card for What is n8n used for, with real uses and a first workflow.' },
+  { slug: 'self-host-n8n', tag: 'Setup', title: 'Self-host n8n on Ubuntu: Docker and Node.js setup', alt: 'Guide card for self-hosting n8n on Ubuntu with Docker or Node.js.' },
 ];
 
-function SectionHead({ eyebrow, title, accent, children }) {
+// Newest guides that aren't among the cards above: a homepage link gets them crawled sooner.
+// ponytail: hand-kept list; rotate it when a guide is published or promoted into featuredGuides.
+const newGuides = [
+  ['grokbot-for-beginners', 'GrokBot for beginners'],
+  ['herdr-desktop-app', 'Herdr desktop app'],
+  ['grokbot-vs-dots', 'GrokBot vs Dots'],
+  ['codex-seo-workflow', 'Codex for SEO'],
+  ['treg-inside-grokbot', 'Treg inside GrokBot'],
+  ['chatgpt-images-sketch-workflow', 'ChatGPT Images Sketch'],
+  ['crowdreply-mcp-codex', 'CrowdReply MCP'],
+  ['grokbot-for-seo', 'GrokBot for SEO'],
+];
+
+function SectionHead({ title, children }) {
   return (
-    <div className="section-head reveal">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2>{title} <span className="accent">{accent}</span></h2>
+    <div className="section-head">
+      <h2>{title}</h2>
       {children && <p className="lede">{children}</p>}
     </div>
   );
 }
 
-const navLinks = [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#about', 'About'], ['#faq', 'FAQ'], ['#services', 'Sponsors'], ['#work-together', 'Contact']];
-const navIds = navLinks.map(([href]) => href.slice(1));
-
-// Sections fade up once as they scroll into view. index.html only hides them while this is expected to run.
-function useScrollReveal() {
-  useEffect(() => {
-    window.__revealReady = true;
-    const targets = document.querySelectorAll('.reveal, .reveal-group');
-    const show = target => target.classList.add('is-visible');
-    if (!('IntersectionObserver' in window)) return targets.forEach(show);
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      show(entry.target);
-      observer.unobserve(entry.target);
-    }), { rootMargin: '0px 0px -8% 0px', threshold: .08 });
-    targets.forEach(target => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
-}
+const navLinks = {
+  home: [['#community', 'Plans'], ['#latest', 'Videos'], ['#guides', 'Guides'], ['#tools-i-use', 'Tools'], ['#code', 'Projects'], ['#about', 'About'], ['#faq', 'FAQ'], ['/sponsors.html', 'Sponsors'], ['#work-together', 'Contact']],
+  sponsors: [['/', 'Home'], ['#media-kit', 'Audience'], ['#sponsored', 'Sponsored builds'], ['#services', 'Packages'], ['#faq', 'FAQ'], ['#work-together', 'Contact']],
+};
+const navIds = Object.fromEntries(Object.entries(navLinks).map(([page, links]) => [page, links.filter(([href]) => href.startsWith('#')).map(([href]) => href.slice(1))]));
+// These sections lived on the homepage before /sponsors.html; old links to them still arrive there.
+const sponsorAnchors = ['#media-kit', '#services', '#sponsored'];
 
 // The nav link for the section currently under the header.
 function useActiveSection(ids) {
@@ -247,15 +259,6 @@ function useActiveSection(ids) {
   return active;
 }
 
-function VideoNextStep({ video, campaign }) {
-  const offer = videoOffer(video.title);
-  const url = outboundUrl(skoolPlansUrl, campaign);
-  return <aside className="video-next-step" aria-label="Build with the Skool community">
-    <p className="next-step-access">{offer.access}</p>
-    <a href={url} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('featured_video', 'Join AI Income Lab', url, video.id)}>Join AI Income Lab ↗</a>
-  </aside>;
-}
-
 function swapToJpegThumbnail(event, id) {
   const image = event.currentTarget;
   if (image.src.endsWith('/hqdefault.jpg')) return;
@@ -263,12 +266,18 @@ function swapToJpegThumbnail(event, id) {
   image.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 
-function FeaturedVideo({ video, campaign, playButtonRef }) {
-  const [playing, setPlaying] = useState(false);
+// The play button unmounts when the player starts; without this, keyboard focus falls back to the top of the page.
+const focusOnMount = element => element?.focus();
+
+function FeaturedVideo({ video: latest, playButtonRef }) {
+  // The live feed can replace the build snapshot's newest video after a visitor presses play; keep playing what they chose.
+  const [playingVideo, setPlayingVideo] = useState(null);
+  const playing = Boolean(playingVideo);
+  const video = playingVideo ?? latest;
   if (!video) return <div className="player"><div className="player-screen is-loading" /><div className="player-meta"><span className="skeleton-line" /><span className="skeleton-line short" /></div></div>;
 
   function play() {
-    setPlaying(true);
+    setPlayingVideo(video);
     trackEvent('Video Played', { placement: 'latest', video_id: video.id });
   }
 
@@ -276,22 +285,23 @@ function FeaturedVideo({ video, campaign, playButtonRef }) {
     <article className="player">
       <div className="player-screen">
         {playing
-          ? <iframe src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
+          ? <iframe ref={focusOnMount} src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`} title={video.title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
           : <button ref={playButtonRef} type="button" onClick={play} aria-label={`Play ${video.title}${video.duration ? `, ${video.duration}` : ''}`}>
               <img
                 {...featuredThumbnail(video.id)}
-                sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc(100vw - 50px), (max-width: 1168px) calc((100vw - 96px) / 2 - 2px), 534px"
+                sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 960px) calc(100vw - 48px), 604px"
+                onLoad={event => dropMissingMaxres(event.currentTarget)}
                 onError={event => swapToJpegThumbnail(event, video.id)}
-                alt="" width="1280" height="720" fetchPriority="high" decoding="async"
+                alt="" fetchPriority="high" decoding="async"
               />
               <span className="play-key" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg></span>
               {video.duration && <span className="duration">{video.duration}</span>}
             </button>}
       </div>
       <div className="player-meta">
-        <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-        <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.title}</a></h2>
-        <VideoNextStep video={video} campaign={campaign} />
+        <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time>{video.views >= 1000 && <span>{formatViews(video.views)}</span>}</p>
+        <h2><a href={watchUrl(video)} {...newTab(video)} onClick={trackClick('latest', video.title, watchUrl(video), 'watch_video')}>{video.heading || video.title}</a></h2>
+        {video.summary && <p className="player-summary">{video.summary}</p>}
       </div>
     </article>
   );
@@ -301,11 +311,12 @@ function VideoCard({ video, placement }) {
   return (
     <a className="video-card" href={watchUrl(video)} {...newTab(video)} onClick={trackClick(placement, video.title, watchUrl(video), 'watch_video')}>
       <span className="thumb-frame">
-        <img src={`https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp`} srcSet={`https://i.ytimg.com/vi_webp/${video.id}/mqdefault.webp 320w, https://i.ytimg.com/vi_webp/${video.id}/hqdefault.webp 480w`} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="480" height="270" loading="lazy" decoding="async" />
+        <img src={`https://i.ytimg.com/vi_webp/${video.id}/sddefault.webp`} srcSet={youtubeSrcSet(video.id)} sizes="(max-width: 640px) calc((100vw - 46px) * 2 / 5), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" onLoad={event => dropMissingMaxres(event.currentTarget)} onError={event => swapToJpegThumbnail(event, video.id)} alt="" width="640" height="360" loading="lazy" decoding="async" />
         {video.duration && <span className="duration">{video.duration}</span>}
       </span>
       <p className="meta-row"><time dateTime={video.published}>{dateFormat.format(new Date(video.published))}</time><span>{formatViews(video.views)}</span></p>
-      <h3>{video.title}</h3>
+      <h3>{video.heading || video.title}</h3>
+      {video.summary && <p className="card-summary">{video.summary}</p>}
     </a>
   );
 }
@@ -313,9 +324,10 @@ function VideoCard({ video, placement }) {
 function VideoGrid({ videos, failed }) {
   // The featured slot above already shows the error and a YouTube link.
   if (failed) return null;
-  const items = videos ? videos.slice(1) : Array(6).fill(null);
+  // Starts with the newest upload too, so the hero, this grid and /videos all lead with the same video.
+  const items = videos ? videos.slice(0, 6) : Array(6).fill(null);
   return (
-    <ul className="video-grid reveal-group" aria-busy={!videos}>
+    <ul className="video-grid" aria-busy={!videos}>
       {items.map((video, index) => video
         ? <li key={video.id}><VideoCard video={video} placement="latest_posts" /></li>
         : <li key={index} className="video-card is-loading" aria-hidden="true"><span className="thumb" /><span className="skeleton-line" /><span className="skeleton-line short" /></li>)}
@@ -341,61 +353,85 @@ function MockPost({ network, byline, children }) {
   );
 }
 
+const channelCount = (channel, key) => {
+  const count = Number.isFinite(channel?.[key]) ? channel[key] : youtubeSnapshot.channel?.[key];
+  return Number.isFinite(count) ? viewFormat.format(count) : null;
+};
+const subscriberCount = channel => channelCount(channel, 'subscribers');
+
+// Rate card add-ons, priced on top of the formats above.
+const addOns = [
+  ['Extra YouTube Short', '$300'], ['Extra LinkedIn post', '$250'], ['Extra AI Income Lab post', '$200'], ['YouTube community post', '$200'], ['Raw video footage', '$500'],
+  ['Category exclusivity, 30 days', '+20%'], ['Category exclusivity, 90 days', '+40%'], ['Paid usage rights, 3 months', '$500'], ['Paid usage rights, 6 months', '$900'], ['Paid usage rights, 12 months', '$1,500'],
+];
+
 function Services({ channel }) {
   const ask = (label, choice) => () => {
     trackClick('services', label, '#work-together', 'ask_service')();
     window.dispatchEvent(new CustomEvent('choose-package', { detail: choice }));
   };
   const yourProduct = <span className="your-product">your product</span>;
-  const subscribers = Number.isFinite(channel?.subscribers) ? viewFormat.format(channel.subscribers) : '5.2K';
+  const subscribers = subscriberCount(channel);
   return (
     <section className="section" id="services">
       <div className="shell">
-        <SectionHead eyebrow="For brands" title="Sponsorship" accent="packages.">Pick a format that fits your launch, or ask for a custom package. Every format is built around a real use case.</SectionHead>
-        <article className="service service-featured reveal">
+        <SectionHead title="Choose how your product gets seen">Start with one format, or save $300 by bringing the same build to YouTube, Shorts, AI Income Lab and LinkedIn.</SectionHead>
+        <article className="service service-featured" id="campaign">
           <div>
             <p className="service-channels">YouTube · Shorts · AI Income Lab · LinkedIn</p>
             <h3>Multi-platform campaign</h3>
-            <p className="service-price">$2,250 <span>value $2,550</span></p>
-            <p>A dedicated video, a Short, an AI Income Lab post and a LinkedIn post, with the description link and pinned comment. One launch, four audiences, the same week.</p>
+            <p className="service-price">$2,250 <span>$2,550 separately</span></p>
+            <p className="campaign-saving">Save $300 with the complete campaign</p>
+            <p>One product story, adapted for four placements. A practical build gives people a reason to explore your product.</p>
+            <ul className="campaign-includes"><li>One 8–12 minute dedicated YouTube video</li><li>One 30–60 second YouTube Short</li><li>One AI Income Lab community post</li><li>One LinkedIn post</li><li>A written guide on this site, built from the video</li><li>Description link, pinned comment and coordinated messaging</li></ul>
+            <p className="fine-print">Organic publication and one reasonable revision round included. Scope and timing agreed before booking.</p>
             <dl className="service-stats"><div><dt>YouTube subscribers</dt><dd>{subscribers}</dd></div><div><dt>AI Income Lab members</dt><dd>2,900+</dd></div></dl>
-            <a className="button button-primary" href="#work-together" onClick={ask('Book the campaign', 'Multi-platform campaign')}>Book the campaign</a>
+            <a className="button button-primary" href="#work-together" onClick={ask('Plan my campaign', 'Multi-platform campaign')}>Plan my campaign</a>
           </div>
           <img className="service-image" src="/services/campaign.webp" alt="" width="1152" height="864" loading="lazy" decoding="async" />
         </article>
-        <div className="service-grid reveal-group">
-          <article className="service">
+        <div className="service-grid">
+          <article className="service" id="dedicated-video">
             <h3>Dedicated video</h3>
             <p className="service-price">$1,500</p>
+            <p className="service-saving">In the four-format campaign: <strong>$1,350</strong> — save $150 on this placement.</p>
             <p>An 8 to 12 minute video built around your product on a real project, with description links and a pinned comment.</p>
             <img className="service-image" src="/services/dedicated-video.webp" alt="" width="1280" height="720" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a dedicated video', 'Dedicated video')}>Ask about a dedicated video</a>
           </article>
-          <article className="service">
+          <article className="service" id="youtube-short">
             <h3>YouTube Short</h3>
             <p className="service-price">$400</p>
+            <p className="service-saving">In the four-format campaign: <strong>$350</strong> — save $50 on this placement.</p>
             <p>A 30 to 60 second vertical demo or result, with a direct call to action and a link where YouTube allows one.</p>
             <img className="service-image service-short" src="/services/short.webp" alt="" width="720" height="1280" loading="lazy" decoding="async" />
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a Short', 'YouTube Short')}>Ask about a Short</a>
           </article>
-          <article className="service">
+          <article className="service" id="ai-income-lab-post">
             <h3>AI Income Lab post</h3>
             <p className="service-price">$300</p>
+            <p className="service-saving">In the four-format campaign: <strong>$250</strong> — save $50 on this placement.</p>
             <p>A sponsored post in the Skool community for 2,900+ members, with a product overview, key benefits and your link.</p>
             <MockPost network="AI Income Lab" byline="Community post">New in the toolbox: {yourProduct}. I used it on this week&rsquo;s build. Here&rsquo;s the setup, and what it saved me.</MockPost>
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a community post', 'AI Income Lab post')}>Ask about a community post</a>
           </article>
-          <article className="service">
+          <article className="service" id="linkedin-post">
             <h3>LinkedIn post</h3>
             <p className="service-price">$350</p>
+            <p className="service-saving">In the four-format campaign: <strong>$300</strong> — save $50 on this placement.</p>
             <p>A professional post for an AI and business audience, written for LinkedIn with its own message and call to action.</p>
             <MockPost network="LinkedIn" byline="AI automation creator">I spent a week building with {yourProduct}. Three things it does better than the tools I was using.</MockPost>
             <a className="button button-quiet" href="#work-together" onClick={ask('Ask about a LinkedIn post', 'LinkedIn post')}>Ask about a LinkedIn post</a>
           </article>
         </div>
-        <div className="services-custom reveal">
-          <p>Need something custom? Extra Shorts, category exclusivity, paid usage rights and longer partnerships are on the rate card.</p>
-          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote →</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
+        <div className="add-ons" id="add-ons">
+          <h3>Add-ons</h3>
+          <p>Standard prices cover organic publication. Running the content as a paid ad or through whitelisting needs paid usage rights.</p>
+          <dl>{addOns.map(([name, price]) => <div key={name}><dt>{name}</dt><dd>{price}</dd></div>)}</dl>
+        </div>
+        <div className="services-custom">
+          <p>All prices are in USD. Campaign allocations apply when booking all four formats together. Want a longer partnership or a mix not listed here? Ask for a tailored scope.</p>
+          <div className="button-row"><a className="button button-primary" href="#work-together" onClick={ask('Get a quote', 'Custom package')}>Get a quote</a>{mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('services', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}</div>
         </div>
       </div>
     </section>
@@ -414,15 +450,15 @@ function MediaKit() {
     <section className="section" id="media-kit">
       <div className="shell">
         <div className="media-kit-head">
-          <SectionHead eyebrow="Media kit" title="Audience" accent="insights.">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
-          {(mediaKit.pdf || mediaKit.rateCard || shots.length > 0) && <div className="button-row reveal">
+          <SectionHead title="Who watches the channel">Real numbers from YouTube Studio, {mediaKit.period}.</SectionHead>
+          {(mediaKit.pdf || mediaKit.rateCard || shots.length > 0) && <div className="button-row">
             {mediaKit.pdf && <a className="button button-primary" href={mediaKit.pdf} download onClick={trackClick('media_kit', 'Download media kit', mediaKit.pdf, 'download_media_kit')}>Download media kit</a>}
             {mediaKit.rateCard && <a className="button button-quiet" href={mediaKit.rateCard} download onClick={trackClick('media_kit', 'Download rate card', mediaKit.rateCard, 'download_rate_card')}>Download rate card</a>}
             {shots.length > 0 && <button type="button" className="button button-quiet" onClick={() => { setShot(0); studio.current.showModal(); trackEvent('Studio Screenshots Opened'); }}>See the Studio screenshots</button>}
           </div>}
         </div>
-        <div className="stats media-kit-stats reveal"><dl>{mediaKit.stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
-        <div className="audience reveal">
+        <div className="stats media-kit-stats"><dl>{mediaKit.stats.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
+        <div className="audience">
           <div>
             <div className="dot-grid" aria-hidden="true">{dots.map((tone, index) => <span key={index} style={{ background: tones[tone] }} />)}</div>
             <p className="fine-print">Each dot is 1% of {view.unit}.</p>
@@ -473,9 +509,10 @@ function BookingCalendar({ campaign }) {
 
   function startCalendar() {
     const cal = getCal();
+    const theme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
     cal('init', 'booking', { origin: 'https://cal.com' });
-    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme: 'dark' } });
-    cal.ns.booking('ui', { theme: 'dark', cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' } }, hideEventTypeDetails: false, layout: 'month_view' });
+    cal.ns.booking('inline', { elementOrSelector: '#booking-calendar', calLink: attributedBookingUrl.replace('https://cal.com/', ''), config: { layout: 'month_view', theme } });
+    cal.ns.booking('ui', { theme, cssVarsPerTheme: { dark: { 'cal-brand': '#ff6846' }, light: { 'cal-brand': '#c2370c' } }, hideEventTypeDetails: false, layout: 'month_view' });
     cal.ns.booking('on', { action: 'bookingSuccessfulV2', callback: () => {
       if (booked.current) return;
       booked.current = true;
@@ -495,7 +532,7 @@ function BookingCalendar({ campaign }) {
 const packages = [['Multi-platform campaign', '$2,250'], ['Dedicated video', '$1,500'], ['YouTube Short', '$400'], ['AI Income Lab post', '$300'], ['LinkedIn post', '$350'], ['Custom package'], ['Collab or something else']];
 
 // Posts to /api/contact; if that fails, the visitor still gets a mailto link with their message in it.
-function ContactForm({ topic, setTopic }) {
+function ContactForm({ topic, setTopic, sponsors = false }) {
   const [status, setStatus] = useState('idle');
   const [mailto, setMailto] = useState('mailto:automojic@proton.me');
   const started = useRef(false);
@@ -517,23 +554,23 @@ function ContactForm({ topic, setTopic }) {
 
   if (status === 'sent') return <p className="contact-sent" role="status">Message sent. I&rsquo;ll reply to the email you gave.</p>;
   return (
-    <form className="contact-form" onSubmit={send} onFocusCapture={event => {
-      if (!started.current && event.target.name !== 'hp') { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
+    <form className="contact-form" method="post" onSubmit={send} onFocusCapture={event => {
+      if (!started.current && ['name', 'email', 'topic', 'message'].includes(event.target.name)) { started.current = true; trackEvent('Form Started', { placement: 'contact' }); }
     }}>
       <label>Name<input name="name" autoComplete="name" required maxLength={100} /></label>
       <label>Email<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
       <label className="contact-wide">Package you&rsquo;re interested in<select name="topic" required value={topic} onChange={event => setTopic(event.target.value)}><option value="" disabled>Choose a package</option>{packages.map(([name, price]) => <option key={name} value={name}>{price ? `${name} (${price})` : name}</option>)}</select></label>
-      <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder="Your product or idea, timeline, and budget if you have one." /></label>
+      <label className="contact-wide">Message<textarea name="message" rows="5" required maxLength={5000} placeholder={sponsors ? 'Your product URL, who it helps, and your preferred launch date. Add a budget if you have one.' : 'Your product or idea, timeline, and budget if you have one.'} /></label>
       <label className="contact-trap" aria-hidden="true">Leave this empty<input name="hp" tabIndex="-1" autoComplete="off" /></label>
-      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send message'}</button>
+      <button className="button button-primary contact-wide" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending' : sponsors ? 'Request a proposal' : 'Send message'}</button>
       {status === 'failed' && <p className="contact-wide support-note" role="alert">That didn&rsquo;t send. <a href={mailto}>Email me instead</a>; your message is already filled in.</p>}
     </form>
   );
 }
 
-function ContactOptions({ campaign }) {
-  const [mode, setMode] = useState('call');
-  const [topic, setTopic] = useState('');
+function ContactOptions({ campaign, sponsors = false }) {
+  const [mode, setMode] = useState(sponsors ? 'message' : 'call');
+  const [topic, setTopic] = useState(sponsors ? 'Custom package' : '');
   useEffect(() => {
     const choose = event => { setMode('message'); setTopic(event.detail); };
     window.addEventListener('choose-package', choose);
@@ -541,57 +578,174 @@ function ContactOptions({ campaign }) {
   }, []);
   return (
     <>
-      <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{[['call', 'Book a call'], ['message', 'Send a message']].map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
+      <div className="audience-tabs contact-tabs" role="group" aria-label="How to get in touch">{(sponsors ? [['message', 'Request a proposal'], ['call', 'Book a call']] : [['call', 'Book a call'], ['message', 'Send a message']]).map(([key, label]) => <button key={key} type="button" aria-pressed={mode === key} onClick={() => setMode(key)}>{label}</button>)}</div>
       <div hidden={mode !== 'call'}><BookingCalendar campaign={campaign} /></div>
-      <div hidden={mode !== 'message'}><ContactForm topic={topic} setTopic={setTopic} /></div>
+      <div hidden={mode !== 'message'}><ContactForm topic={topic} setTopic={setTopic} sponsors={sponsors} /></div>
     </>
   );
 }
 
-// Weekly build notes signup in the footer; the list lives in Resend (see api/subscribe.js).
-function NotesSignup() {
+// Weekly build notes signup shared by the hero and footer.
+function NotesSignup({ placement = 'footer' }) {
   const [status, setStatus] = useState('idle');
   const started = useRef(false);
+  const isHero = placement === 'hero';
+  const emailId = `${placement}-notes-email`;
+  const errorId = `${placement}-notes-error`;
+  const complete = ['done'].includes(status);
 
   async function subscribe(event) {
     event.preventDefault();
     const form = event.currentTarget;
+    const email = form.elements.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('invalid');
+      return;
+    }
     setStatus('sending');
-    const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }).then(response => response.ok ? response.json() : null).catch(() => null);
-    setStatus(!result ? 'failed' : result.already ? 'already' : result.welcomeSent === false ? 'welcome_failed' : 'done');
-    if (result) trackEvent('Newsletter Signup', { placement: 'footer' });
+    const result = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, hp: form.elements.hp.value }) }).then(response => response.ok ? response.json() : null).catch(() => null);
+    setStatus(!result?.ok ? 'failed' : 'done');
+    if (result?.ok) trackEvent('Newsletter Signup', { placement });
   }
 
-  if (status === 'done') return <p className="notes-signup-status" role="status">You&rsquo;re in. The next build notes will land in your inbox.</p>;
-  if (status === 'already') return <p className="notes-signup-status" role="status">You&rsquo;re already on the list. No new welcome email was sent.</p>;
-  if (status === 'welcome_failed') return <p className="notes-signup-status" role="status">You&rsquo;re subscribed, but the welcome email could not be sent. Email <a href="mailto:automojic@proton.me">automojic@proton.me</a> if you need help.</p>;
+  const message = <>
+    {status === 'done' && <p className="notes-signup-status" role="status" aria-live="polite">{isHero ? "Almost there. Check your inbox and click the link to confirm." : 'Almost there. Check your inbox (and spam) and click the link to confirm.'}</p>}
+  </>;
+  if (!isHero && complete) return message;
   return (
-    <form className="notes-signup" onSubmit={subscribe} onFocusCapture={event => {
-      if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: 'footer_notes' }); }
+    <form className={`notes-signup${isHero ? ' notes-signup--hero' : ''}`} method="post" onSubmit={subscribe} onFocusCapture={event => {
+      if (!started.current && event.target.name === 'email') { started.current = true; trackEvent('Form Started', { placement: `${placement}_notes` }); }
     }}>
-      <label htmlFor="footer-notes-email">Weekly build notes: new guides and tested builds in one short email.</label>
-      <div>
-        <input id="footer-notes-email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" />
+      <label htmlFor={emailId}>{isHero ? 'Weekly build notes, free' : 'Weekly build notes: new guides and tested builds in one short email.'}</label>
+      {!complete && <div className={isHero ? 'notes-signup-pill' : undefined}>
+        <input id={emailId} name="email" type="email" autoComplete="email" required maxLength={254} placeholder="Your email" aria-invalid={status === 'invalid' || undefined} aria-describedby={status === 'invalid' ? errorId : undefined} onInvalid={() => setStatus('invalid')} />
         <input className="contact-trap" name="hp" tabIndex="-1" autoComplete="off" aria-hidden="true" />
-        <button className="button" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Subscribing…' : 'Subscribe'}</button>
-      </div>
-      {status === 'failed' && <p className="notes-signup-status" role="alert">That didn&rsquo;t go through. Try again in a minute.</p>}
+        <button className="button" type="submit" disabled={status === 'sending'}>{isHero ? (status === 'sending' ? 'Sending' : 'Get the notes') : (status === 'sending' ? 'Subscribing' : 'Subscribe')}</button>
+      </div>}
+      {status === 'invalid' && <p id={errorId} className="notes-signup-status" role="alert" aria-live="assertive">Enter a valid email address.</p>}
+      {status === 'failed' && <p className="notes-signup-status" role="alert" aria-live="assertive">That didn&rsquo;t go through. Try again in a minute.</p>}
+      {message}
+      {isHero && <p className="notes-signup-privacy">One email a week. Unsubscribe anytime. <a href="/privacy.html">Privacy policy</a></p>}
     </form>
   );
 }
 
-function App() {
+function WorkTogether({ campaign, sponsors = false }) {
+  return (
+    <section className="section" id="work-together">
+      <div className="shell">
+        <SectionHead title={sponsors ? 'Let’s plan your sponsored build' : 'Book an intro call'}>{sponsors ? 'Share your product, audience and launch window. I’ll reply with a proposed scope and price. Prefer to talk first? Choose a free 10-minute intro call. No payment is needed to enquire.' : 'Prefer to talk it through? Book a free 10-minute intro call or send a message. It works for a sponsored build or a creator collab.'}</SectionHead>
+        <ContactOptions campaign={campaign} sponsors={sponsors} />
+        <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+      </div>
+    </section>
+  );
+}
+
+const audienceTab = label => mediaKit.tabs.find(tab => tab.label === label);
+const percent = share => `${share}%`;
+const topCountries = audienceTab('Country').rows.filter(([name]) => name !== 'Other countries');
+
+const sponsorFaqs = [
+  ['What does a sponsorship cost?', 'Formats start at $300 for an AI Income Lab post. A dedicated video is $1,500, and the four-format campaign is $2,250, saving $300 on separate bookings. All prices are in USD.'],
+  ['How long does it take?', 'One to two weeks from an agreed brief to the published video. The launch date is agreed before you book, so the build can line up with your release.'],
+  ['How does payment work?', 'Half when you book and half on publication.'],
+  ['Do I see the video before it goes live?', 'Yes. One reasonable revision round is included before publication. The format, build idea, deliverables and timing are agreed before you book.'],
+  ['What does the multi-platform campaign add beyond the videos?', 'A written guide on this site, built from the video, alongside the description link and pinned comment. Earlier builds became guides like Treg inside GrokBot and the DataForSEO MCP guide.'],
+  ['What if my product doesn’t work perfectly in the build?', 'I test it on a real project with the mistakes left in, so the video shows the troubleshooting and the verdict. In the Apify Klook build, for example, hotel prices came back empty until check-in dates were added.'],
+  ['How is the sponsorship disclosed?', 'Every sponsored build is clearly disclosed as sponsored, and it is listed on this page with the other sponsored builds.'],
+  ['Can we run the video as an ad or get category exclusivity?', 'Yes, as add-ons. Standard prices cover organic publication. Paid usage rights cost $500 for 3 months, $900 for 6 or $1,500 for 12. Category exclusivity adds 20% for 30 days or 40% for 90 days.'],
+  ['Where does the audience watch from?', `The top countries by views are ${topCountries.map(([name, share]) => `${name} (${percent(share)})`).join(', ')}. ${audienceTab('Device').headline} ${audienceTab('Age').headline}`],
+  ['Which products are a good fit?', 'AI software, developer tools, automation platforms, B2B SaaS and creator tech. It works best when there is something to build or test on camera.'],
+  ['Does it cost anything to ask?', 'No. Request a proposal or book a free 10-minute intro call. No payment is needed to enquire.'],
+];
+
+const sponsorFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.ai-automation-station.com/sponsors.html#faq',
+  mainEntity: sponsorFaqs.map(([question, answer]) => ({ '@type': 'Question', name: question, acceptedAnswer: { '@type': 'Answer', text: answer } })),
+}).replace(/</g, '\\u003c');
+
+const multiples = ['twice', 'three times', 'four times', 'five times'];
+
+function SponsoredResults({ videos }) {
+  const typical = sponsorBenchmark.medianViews;
+  const sponsored = median(videos.map(video => video.views ?? 0));
+  const multiple = typical > 0 ? multiples[Math.min(Math.floor(sponsored / typical), 5) - 2] : undefined;
+  return (
+    <p className="sponsored-results">
+      The {videos.length} sponsored builds have a median of <strong>{formatViews(sponsored)}</strong> so far
+      {multiple ? <>, more than {multiple} the {viewFormat.format(typical)} median for the {sponsorBenchmark.videos} other videos published over the same months.</> : '.'}
+    </p>
+  );
+}
+
+function SponsorsMain({ channel, campaign }) {
+  const sponsoredVideos = useSponsoredVideos();
+  return (
+    <>
+      <section className="sponsors-intro shell" id="main-content" tabIndex="-1">
+        <h1>Sponsor AI Automation Station</h1>
+        <p className="sponsors-benefit">Show what your AI product can actually do.</p>
+        <p className="lede">Sponsor a practical build on AI Automation Station. Your product gets a hands-on demo for {subscriberCount(channel)} YouTube subscribers and 2,900+ AI Income Lab members: developers, founders and automation builders.</p>
+        <div className="button-row"><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_hero', 'Request a proposal', '#work-together', 'request_proposal')}>Request a proposal</a><a className="button button-quiet" href="#services">Explore packages</a></div>
+        <p className="sponsor-proof">Sponsored builds for <a href="#sponsored">Treg, DataForSEO, Bluehost, BrowserAct and Apify</a>.</p>
+        <p className="fine-print">Formats from $300. Four-format campaign: $2,250, saving $300 on separate bookings.</p>
+      </section>
+
+      <MediaKit />
+
+      {sponsoredVideos.length > 0 && <>
+        <div className="divider" aria-hidden="true" />
+        <section className="section" id="sponsored">
+          <div className="shell">
+            <SectionHead title="Sponsored builds">Disclosed brand collaborations, demonstrated through practical builds. Watch the workflow, the troubleshooting and the verdict.</SectionHead>
+            <SponsoredResults videos={sponsoredVideos} />
+            <ul className="video-grid sponsored-grid">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+            <p className="sponsored-reach">Builds keep finding viewers after launch day. {audienceTab('Discovery').headline} Each video also gets its own page on this site with a summary and answers to common questions, and some became written guides, like <a href="/guides/treg-inside-grokbot.html">Treg inside GrokBot</a> and <a href="/guides/dataforseo-mcp-claude.html">the DataForSEO MCP guide</a>.</p>
+          </div>
+        </section>
+      </>}
+
+      <div className="divider" aria-hidden="true" />
+      <Services channel={channel} />
+
+      <section className="sponsor-process shell" aria-labelledby="sponsor-process-heading">
+        <h2 id="sponsor-process-heading">From product brief to published build</h2>
+        <ol><li><strong>Share the use case</strong><p>Send your product URL, ideal customer and launch window.</p></li><li><strong>Agree the approach</strong><p>We choose the format, build idea, deliverables and timing before you book.</p></li><li><strong>Review, then publish</strong><p>You get one revision round before it goes live. Your product appears in a clearly disclosed sponsored build, with the agreed links and placements.</p></li></ol>
+      </section>
+
+      <div className="divider" aria-hidden="true" />
+      <section className="section" id="faq">
+        <div className="shell faq-grid">
+          <SectionHead title="Sponsor questions" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: sponsorFaqSchema }} />
+          <div className="faq-list">{sponsorFaqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question, placement: 'sponsors' })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+        </div>
+      </section>
+
+      <div className="divider" aria-hidden="true" />
+      <WorkTogether campaign={campaign} sponsors />
+    </>
+  );
+}
+
+function App({ page = 'home' }) {
+  const sponsorsPage = page === 'sponsors';
+  const links = navLinks[page];
   const [campaign, setCampaign] = useState(() => getCampaign('', []));
   const [campaignReady, setCampaignReady] = useState(false);
   const videoPlayButton = useRef(null);
   const { videos, channel, failed } = useYouTubeFeed();
-  const sponsoredVideos = useSponsoredVideos();
+  const projects = useGitHubRepositories(!sponsorsPage);
   const latest = videos?.[0];
 
   useEffect(() => {
+    if (!sponsorsPage && sponsorAnchors.includes(window.location.hash)) window.location.replace(`/sponsors.html${window.location.search}${window.location.hash}`);
     setCampaign(getCampaign(window.location.search, ['community']));
     setCampaignReady(true);
-  }, []);
+  }, [sponsorsPage]);
 
   useEffect(() => {
     if (!campaignReady) return undefined;
@@ -633,8 +787,7 @@ function App() {
   const aboutUrl = outboundUrl(skoolAboutUrl, campaign);
   const plansUrl = outboundUrl(skoolPlansUrl, campaign);
   const communityHero = wantsCommunity(campaign);
-  const active = useActiveSection(navIds);
-  useScrollReveal();
+  const active = useActiveSection(navIds[page]);
   return (
     <>
     <a className="skip-link" href="#main-content">Skip to content</a>
@@ -643,18 +796,20 @@ function App() {
     <a className="to-top" href="#top" aria-label="Back to top"><span aria-hidden="true">↑</span></a>
     <header className="site-header">
       <div className="nav shell">
-      <a className="brand" href="#top" aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
-      <nav className="nav-links" aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} aria-current={active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
+      <a className="brand" href={sponsorsPage ? '/' : '#top'} aria-label="AI Income Lab, home"><span aria-hidden="true" />AI Income Lab</a>
+      <nav className="nav-links" aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} aria-current={href.startsWith('#') && active === href.slice(1) ? 'location' : undefined}>{label}</a>)}</nav>
       <div className="nav-actions">
-        <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>
+        <button className="theme-toggle" type="button" data-theme-toggle="" aria-label="Switch to light mode" title="Switch to light mode"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" /></svg></button>
+        {sponsorsPage ? <a className="button button-primary nav-join" href="#work-together" onClick={trackClick('sponsors_navigation', 'Request a proposal', '#work-together', 'request_proposal')}><span className="nav-join-name">Request a proposal</span><span className="nav-join-short">Proposal</span></a> : <a className="button button-primary nav-join" aria-label="Join AI Income Lab" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('navigation', 'Join AI Income Lab', plansUrl)}>Join <span className="nav-join-name">AI Income Lab</span> ↗</a>}
         <details className="nav-mobile" onKeyDown={event => {
           if (event.key === 'Escape') { event.currentTarget.open = false; event.currentTarget.querySelector('summary').focus(); }
-        }}><summary>Menu</summary><nav aria-label="Sections">{navLinks.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}</nav></details>
+        }}><summary aria-label="Site menu">Menu</summary><nav aria-label="Sections">{links.map(([href, label]) => <a key={href} href={href} onClick={event => { event.currentTarget.closest('details').open = false; }}>{label}</a>)}<button className="theme-toggle-row" type="button" data-theme-toggle=""><span className="to-light">Light mode</span><span className="to-dark">Dark mode</span></button></nav></details>
       </div>
       </div>
     </header>
 
     <main>
+      {sponsorsPage ? <SponsorsMain channel={channel} campaign={campaign} /> : <>
       <section className="hero shell" id="main-content" tabIndex="-1">
         <div className="hero-grid">
         <div className="hero-copy">
@@ -667,7 +822,8 @@ function App() {
           <h1><span className="hero-brand">AI Income Lab:</span> <span>Build real AI</span> <span className="accent">automations.</span></h1>
           </>
         )}
-        <p className="hero-text"><strong>Build AI automations with Mike Holp.</strong> Beginners and independent builders follow step-by-step courses to build a first Make.com automation or an AI-powered website, with community help when they get stuck.</p>
+        <p className="hero-text"><strong>Get step-by-step courses and practical help from 2,900+ members while you build.</strong></p>
+        <p className="hero-text">AI Income Lab is the paid Skool community for AI Automation Station. The guides and tested builds on this site are free to read.</p>
         <nav className="button-row hero-actions" aria-label="Choose your next step">
           <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('hero', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
           <a className="button button-quiet" href="#featured-video" onClick={() => {
@@ -675,43 +831,29 @@ function App() {
             videoPlayButton.current?.click();
           }}>Watch a free build</a>
         </nav>
-        <p className="fine-print hero-reassurance">From $29 a month or $290 a year. You pick a plan on Skool and can cancel anytime.</p>
+        <p className="fine-print hero-reassurance">Plans from $29/month or $290/year. Cancel anytime.</p>
+        <NotesSignup placement="hero" />
+        <p className="guide-start">Try a first build: <a href="/guides/make-first-automation.html#starter-kit" onClick={trackClick('hero', 'Download the free Make.com starter kit', '/guides/make-first-automation.html#starter-kit', 'view_starter_kit')}>Download the free Make.com starter kit</a>.</p>
         </div>
-        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} campaign={campaign} playButtonRef={videoPlayButton} /></div>
-        </div>
-      </section>
-
-      <section className="course-promo shell" aria-labelledby="runable-course-title">
-        <div className="course-promo-card">
-          <img className="course-promo-image" src="/runable-course.webp" srcSet="/runable-course-640.webp 640w, /runable-course.webp 1200w" sizes="(max-width: 640px) calc(100vw - 68px), (max-width: 960px) calc(100vw - 116px), (max-width: 1168px) calc(100vw - 52px), 1116px" alt="Runable website-building course, featuring an AI Growth Audit business website with payments and a customer portal." width="1200" height="618" loading="lazy" decoding="async" />
-          <div className="course-promo-content">
-            <p className="eyebrow course-access">Included for all members</p>
-            <h2 id="runable-course-title">Build an AI website in Runable.</h2>
-            <p className="course-promo-copy">Create and launch an AI-powered business website, from idea to live site. Take the course inside AI Income Lab, included for all members.</p>
-            <ul className="course-outcomes" aria-label="What you’ll build">
-              <li>Build a business website in Runable.</li>
-              <li>Add AI features to your website.</li>
-              <li>Launch your finished site online.</li>
-            </ul>
-            <div className="course-promo-action">
-              <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('runable_course', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-              <p className="fine-print">Included with every AI Income Lab plan, from $29/month.</p>
-            </div>
-          </div>
+        <div className="hero-preview" id="featured-video"><FeaturedVideo video={latest} playButtonRef={videoPlayButton} /></div>
         </div>
       </section>
 
       <section className="stats" aria-label="Community and channel numbers">
-        <dl className="shell reveal-group">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{Number.isFinite(channel?.[key]) ? viewFormat.format(channel[key]) : value}</dd></div>)}</dl>
+        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{key ? channelCount(channel, key) : value}</dd></div>)}</dl>
+        <p className="stats-note shell">Member count from Skool as of {membersAsOf}. YouTube numbers update daily.</p>
       </section>
 
       <section className="section band" id="community">
         <div className="shell">
-          <SectionHead eyebrow="Plans" title="Your next build," accent="with support.">Join 2,900+ members in the AI Automation Station community. Choose the courses, templates, and support that fit your next project.</SectionHead>
+          <SectionHead title="Choose a plan for your next build">Join 2,900+ members in AI Income Lab. Choose the courses, templates, and support that fit your next project. <a href="/ai-income-lab.html">See what each plan includes</a>.</SectionHead>
+          <p className="community-help">AI Income Lab offers project-based AI workflow courses, templates, and a community for questions. Practice with the free guides below, then choose the course access and support you need.</p>
+          <p className="community-help"><strong>Workflow automation:</strong> use Make.com to <a href="/guides/make-first-automation.html">filter approved requests into a spreadsheet</a>. <strong>AI agent training:</strong> <a href="/guides/ai-agent-workflow.html#practice">classify three sample requests and test the review boundary</a>, then <a href="/guides/no-code-ai-agent-builder.html#build">compare a small agent in n8n, Make, or Zapier</a>. <strong>AI coding:</strong> <a href="/guides/build-apps-with-ai-coding-agents.html#practice">add and verify a filter in a local task list</a>.</p>
           <div className="members">
             <span className="avatars" aria-hidden="true">{memberAvatars.map((src, index) => <img key={src} src={src} alt="" width="32" height="32" loading="lazy" decoding="async" style={{ zIndex: memberAvatars.length - index }} />)}</span>
             <p>Some of the members building AI workflows on Skool</p>
           </div>
+          <div className="community-host"><img src="/mike-holp.jpg" alt="" width="56" height="56" loading="lazy" decoding="async" /><p><strong>Built and hosted by Mike Holp</strong><span>Practical AI builds, shared with the community as I learn.</span></p></div>
           <ul className="plan-list" id="pricing" aria-label="AI Income Lab plans">
             {plans.map(plan => (
               <li key={plan.name}>
@@ -726,6 +868,8 @@ function App() {
             ))}
           </ul>
           <p className="fine-print">Pay monthly or yearly; a year costs the same as 10 months. Levels are your Skool community level. Choose your plan and billing period on Skool, and cancel anytime from your Skool account.</p>
+          <p className="community-help" id="coaching"><strong>VIP coaching:</strong> weekly live group coaching and Q&amp;A for members implementing what they learn. Bring questions about your workflow, agent tests, or coding project. Custom business implementation is separate from membership; <a href="mailto:automojic@proton.me?subject=Implementation%20scope">ask about your project’s scope</a>.</p>
+          <p className="community-help">Learning to offer automation services yourself? Read <a href="/guides/ai-automation-services-small-business.html">the guide to selling AI automation services</a>.</p>
           <p className="community-help">Comparing plans? <a href="mailto:automojic@proton.me?subject=AI%20Income%20Lab%20plans">Ask which plan fits your project</a>.</p>
         </div>
       </section>
@@ -734,43 +878,67 @@ function App() {
         <div className="shell">
           <div className="latest-intro">
             <div>
-              <SectionHead eyebrow="Latest videos" title="More real" accent="builds.">Watch another build, or follow a written guide for your own project.</SectionHead>
+              <SectionHead title="Latest videos">Watch another build, or follow a written guide for your own project.</SectionHead>
               <p className="feed-note"><span className="live-dot" aria-hidden="true" />Pulled from YouTube daily</p>
               <div className="button-row">
                 <a className="button button-primary" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('latest', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
                 <a className="button button-quiet" href="/videos" onClick={trackClick('latest', 'Browse every video', '/videos', 'browse_videos')}>Browse every video</a>
               </div>
+              <nav className="topic-row" aria-label="Browse videos by topic">
+                {topics.map(topic => <a key={topic.slug} href={`/videos/${topic.slug}`}>{topic.name}</a>)}
+              </nav>
             </div>
           </div>
           <VideoGrid videos={videos} failed={failed} />
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
       <section className="section build-guides" id="guides">
         <div className="shell">
-          <SectionHead eyebrow="Guides" title="Written guides," accent="step by step.">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
+          <SectionHead title="Written guides">Free step-by-step builds with sample inputs, troubleshooting, and a clear finish line.</SectionHead>
           <ul className="guide-cards">
-            {featuredGuides.map(guide => (
+            {featuredGuides.slice(0, 6).map(guide => (
               <li key={guide.slug}>
                 <a className="guide-card" href={`/guides/${guide.slug}.html`}>
-                  <img src={`/assets/guides/${guide.slug}.webp`} srcSet={`/assets/guides/sizes/${guide.slug}-640.webp 640w, /assets/guides/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 960px) calc((100vw - 72px) / 2), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
+                  <img src={`/assets/guides/hub/${guide.slug}.webp`} srcSet={`/assets/guides/hub/${guide.slug}-400.webp 400w, /assets/guides/hub/${guide.slug}-640.webp 640w, /assets/guides/hub/${guide.slug}-800.webp 800w, /assets/guides/hub/${guide.slug}.webp 1200w`} sizes="(max-width: 640px) calc(100vw - 34px), (max-width: 1168px) calc((100vw - 96px) / 3), 357px" alt={guide.alt} width="1200" height="630" loading="lazy" decoding="async" />
                   <span className="guide-card-tag">{guide.tag}</span>
                   <h3>{guide.title}</h3>
                 </a>
               </li>
             ))}
           </ul>
-          <p className="guide-more"><a className="text-link" href="/guides.html">Continue reading with all guides</a></p>
           <p className="guide-start">New here? <a href="/start-here.html" onClick={trackClick('guides', 'Start here: your first build', '/start-here.html', 'start_free_build')}>Start with your first build</a> or watch a build: <a href="/watch/7v_675nO7nM">OpenCode desktop app</a>, <a href="/watch/geKngm3sg3w">9Router setup</a>, <a href="/watch/G8u1-hKEqig">HeyGen avatar workflow</a>.</p>
+          <p className="guide-start">New guides: {newGuides.map(([slug, label], i) => <span key={slug}>{i > 0 && ', '}<a href={`/guides/${slug}.html`}>{label}</a></span>)}.</p>
+          <p className="guide-start">Build case study: <a href="/guides/youtube-feed.html#site-case-study">How this site keeps its guides and videos available</a>, with screenshots, checks, and costs.</p>
+          <p className="guide-more"><a className="button button-primary" href="/guides.html" onClick={trackClick('guides', 'Continue reading with all guides', '/guides.html', 'browse_guides')}>Continue reading with all guides</a></p>
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
+      <section className="section top-tools" id="tools-i-use">
+        <div className="shell">
+          <SectionHead title="Tools I use most">Counted from my videos. Each one opens what it is best for and the builds that use it.</SectionHead>
+          <ul className="top-tools-list">
+            {topTools.map(tool => (
+              <li key={tool.slug}>
+                <a href={`/tools.html#${tool.slug}`} onClick={trackClick('tools_strip', tool.name, `/tools.html#${tool.slug}`, 'view_tool')}>
+                  <img src={`/tools/logos/${tool.slug}.webp`} alt="" width="48" height="48" loading="lazy" decoding="async" />
+                  <span className="top-tool-name">{tool.name}</span>
+                  <span className="top-tool-meta">Used in {tool.videos} videos</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="guide-more"><a className="button button-primary" href="/tools.html" onClick={trackClick('tools_strip', 'See every tool I recommend', '/tools.html', 'browse_tools')}>See every tool I recommend</a></p>
+        </div>
+      </section>
+
+      <div className="divider" aria-hidden="true" />
       <section className="section band" id="tools">
         <div className="shell">
-          <SectionHead eyebrow="Also by Mike" title="Two products" accent="I built and run.">Both started as problems I kept hitting while growing a channel. Both are live, and both have a free way to try them.</SectionHead>
-          <div className="tool-grid reveal-group">
+          <SectionHead title="Two products I built and run">Both started as problems I kept hitting while growing a channel. TubeAnalytics has a 7-day trial, and VisiScan has a free scan.</SectionHead>
+          <div className="tool-grid">
             {tools.map(tool => (
               <article className="tool" key={tool.name}>
                 <img src={tool.image} alt={`${tool.name} product screen`} width={tool.size[0]} height={tool.size[1]} loading="lazy" decoding="async" />
@@ -781,7 +949,7 @@ function App() {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="tool-link" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>
@@ -790,12 +958,26 @@ function App() {
         </div>
       </section>
 
+      <section className="section open-source" id="code">
+        <div className="shell">
+          <div className="open-source-head">
+            <SectionHead title="Open source projects">Free projects I&rsquo;ve built and shared for anyone to use.</SectionHead>
+          </div>
+          <ul className="repo-list">
+            {projects.slice(0, 9).map(repo => <li key={repo.name}>
+              <h3><a href={repo.url} target="_blank" rel="noreferrer">{repo.name} ↗</a></h3>
+              <p>{repo.description}</p>
+            </li>)}
+          </ul>
+          <a className="repo-profile" href={githubPagesUrl} target="_blank" rel="noreferrer">View all on GitHub ↗</a>
+        </div>
+      </section>
+
       <section className="section band" id="about">
         <div className="shell about-grid">
-          <img className="portrait reveal" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
-          <div className="about-copy reveal">
-            <p className="eyebrow">About</p>
-            <h2>Hi, I&rsquo;m <span className="accent">Mike.</span></h2>
+          <img className="portrait" src="/mike-holp.jpg" alt="Mike Holp" width="400" height="400" loading="lazy" decoding="async" />
+          <div className="about-copy">
+            <h2>Hi, I&rsquo;m Mike</h2>
             <p>I&rsquo;ve been shipping software since 2013, starting with iOS apps in Objective-C: a charity-giving app, a language tutor, and a client for OBD car devices. When AI tools got good enough to build real things with, I started testing them in public.</p>
             <p>AI Automation Station publishes my practical AI builds. AI Income Lab is its paid learning community on Skool, with courses, templates, and help while you build. I also build and run TubeAnalytics and VisiScan.</p>
             <p>My rule for every video: build something real, leave the mistakes in, and tell you plainly whether the tool is worth your time.</p>
@@ -803,75 +985,45 @@ function App() {
             <p className="about-links"><a href={linkedinUrl} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={xUrl} target="_blank" rel="noreferrer">X ↗</a><a href={githubUrl} target="_blank" rel="noreferrer">GitHub ↗</a></p>
           </div>
         </div>
-        <div className="shell built" id="code">
-          <h3>Things I&rsquo;ve built</h3>
-          <p>Side projects and experiments, with the source open on GitHub.</p>
-          <ul className="repo-list reveal-group">
-            {repos.map(repo => {
-              const source = `${githubUrl}/${repo.name}`;
-              return (
-                <li key={repo.name}>
-                  <h4><a href={source} target="_blank" rel="noreferrer" onClick={trackClick('code', repo.name, source, 'visit_github')}>{repo.name}</a></h4>
-                  <p>{repo.copy}</p>
-                  <p className="repo-meta"><span>{repo.language}</span><span>{repo.year}</span></p>
-                  <p className="repo-links"><a href={source} target="_blank" rel="noreferrer" aria-label={`${repo.name} source on GitHub`}>Source ↗</a>{repo.live && <a href={repo.live} target="_blank" rel="noreferrer" aria-label={`${repo.name} live site`}>Live site ↗</a>}</p>
-                </li>
-              );
-            })}
-          </ul>
-          <a className="text-link" href={githubUrl} target="_blank" rel="noreferrer" onClick={trackClick('code', 'All repositories', githubUrl, 'visit_github')}>All repositories on GitHub ↗</a>
-        </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
-      <MediaKit />
-
-      <div className="divider reveal" aria-hidden="true" />
-      <Services channel={channel} />
-
-      {sponsoredVideos.length > 0 && <>
-        <div className="divider reveal" aria-hidden="true" />
-        <section className="section" id="sponsored">
-          <div className="shell">
-            <SectionHead eyebrow="Sponsored" title="Sponsored" accent="builds.">Videos a brand paid for. Same rules as every build: a real project, the mistakes left in, and a plain verdict.</SectionHead>
-            <ul className="video-grid sponsored-grid reveal-group">{sponsoredVideos.map(video => <li key={video.id}><VideoCard video={video} placement="sponsored" /></li>)}</ul>
+      <section className="section brands-strip" id="brands">
+        <div className="shell brands-row">
+          <div>
+            <h2>Sponsor a build</h2>
+            <p>Make an AI model, agent or automation tool? I test it on a real build for the channel, with the mistakes left in.</p>
           </div>
-        </section>
-      </>}
-
-      <div className="divider reveal" aria-hidden="true" />
-      <section className="section" id="work-together">
-        <div className="shell">
-          <SectionHead eyebrow="Sponsors and collabs" title="Sponsor a video" accent="or work together.">Make an AI model, agent, or automation tool? I&rsquo;ll test it on a real build for the channel. Creators with a collab idea are welcome too. Book a free 10-minute intro call, or send a message.</SectionHead>
-          <ContactOptions campaign={campaign} />
-          <p className="support-note">For membership, billing, or privacy questions, email <a href="mailto:automojic@proton.me">automojic@proton.me</a>.</p>
+          <a className="button button-primary" href="/sponsors.html" onClick={trackClick('brands', 'See the media kit and packages', '/sponsors.html', 'view_sponsors')}>See the media kit and packages</a>
         </div>
       </section>
 
-      <div className="divider reveal" aria-hidden="true" />
+      <div className="divider" aria-hidden="true" />
+      <WorkTogether campaign={campaign} />
+
+      <div className="divider" aria-hidden="true" />
       <section className="section" id="faq">
         <div className="shell faq-grid">
-          <SectionHead eyebrow="FAQ" title="Questions" accent="people ask." />
-          <div className="faq-list reveal-group">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
+          <SectionHead title="Questions people ask" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
+          <div className="faq-list">{faqs.map(([question, answer]) => <details key={question} onToggle={event => event.currentTarget.open && trackEvent('FAQ Opened', { question })}><summary>{question}<span className="faq-icon" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div>
         </div>
       </section>
 
+      </>}
     </main>
 
     <footer className="footer">
       <div className="shell">
-        <div className="footer-cta reveal">
-          <p>Build your next automation.</p>
+        <div className="footer-cta">
+          <p>{sponsorsPage ? 'Make your product the next build.' : 'Build your next automation.'}</p>
           <div className="button-row">
-            <a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a>
-            <a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a>
+            {sponsorsPage ? <><a className="button button-primary" href="#work-together" onClick={trackClick('sponsors_footer', 'Request a proposal', '#work-together', 'request_proposal')}>Request a proposal</a><a className="footer-subscribe" href="#services">Compare packages</a></> : <><a className="button button-primary" href={plansUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'Join AI Income Lab', plansUrl)}>Join AI Income Lab ↗</a><a className="footer-subscribe" href={subscribeUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Subscribe on YouTube', subscribeUrl, 'subscribe_youtube')}>Subscribe on YouTube ↗</a></>}
           </div>
         </div>
         <div className="footer-directory">
-          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p><NotesSignup /></div>
+          <div className="footer-brand"><a className="brand" href="#top"><span aria-hidden="true" />AI Automation Station</a><p>Practical AI builds by Mike Holp. AI Income Lab is the channel’s paid community.</p>{!sponsorsPage && <NotesSignup />}</div>
           <nav className="footer-columns" aria-label="Footer">
-            <div><h2>Explore</h2><a href="/start-here.html">Start here</a><a href="/guides.html">Written guides</a><a href="/videos">All videos</a></div>
-            <div><h2>Products</h2><a href="https://www.tubeanalytics.net" target="_blank" rel="noreferrer">TubeAnalytics</a><a href="https://www.visiscan.app" target="_blank" rel="noreferrer">VisiScan</a></div>
+            <div><h2>Explore</h2>{footerExplore.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</div>
             <div><h2>Community</h2><a href={aboutUrl} target="_blank" rel="noreferrer" onClick={() => trackCommunityVisit('footer', 'AI Income Lab')}>AI Income Lab</a><a href={skoolCommunityUrl} target="_blank" rel="noreferrer" onClick={trackClick('footer', 'Member login', skoolCommunityUrl, 'member_login')}>Member login</a></div>
             <div><h2>Connect</h2>{socialLinks.map(([name, url, icon]) => <a key={name} href={url} target="_blank" rel="noreferrer"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={icon} /></svg>{name}</a>)}<a href="mailto:automojic@proton.me"><svg className="social-icon" viewBox="0 0 16 16" aria-hidden="true"><path d={emailIcon} /></svg>Email</a></div>
           </nav>
@@ -884,12 +1036,13 @@ function App() {
   );
 }
 
-export function Root() {
-  return <StrictMode><App /><Analytics /><SpeedInsights /></StrictMode>;
+export function Root({ page }) {
+  return <StrictMode><App page={page} /><Analytics /><SpeedInsights /></StrictMode>;
 }
 
 if (typeof document !== 'undefined') {
   const root = document.getElementById('root');
-  if (root.hasChildNodes()) hydrateRoot(root, <Root />);
-  else createRoot(root).render(<Root />);
+  const page = document.body.dataset.page || 'home';
+  if (root.hasChildNodes()) hydrateRoot(root, <Root page={page} />);
+  else createRoot(root).render(<Root page={page} />);
 }

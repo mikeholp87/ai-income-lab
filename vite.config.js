@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, loadEnv(mode, process.cwd(), 'YOUTUBE_'));
   return {
     build: { rollupOptions: {
-      input: { main: 'index.html', reading: 'src/reading.js' },
+      input: { main: 'index.html', sponsors: 'sponsors.html', reading: 'src/reading.js' },
       output: { entryFileNames: chunk => chunk.name === 'reading' ? 'assets/reading.js' : 'assets/[name]-[hash].js' },
     } },
     plugins: [{

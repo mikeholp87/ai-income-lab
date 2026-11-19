@@ -6,13 +6,38 @@ export const watchNotes = {
 <p>Read the <a href="/guides/openseo-review.html">OpenSEO review: setup, data costs and practical limits</a> for current primary-source documentation alongside this live demo.</p>
 </section>`,
   },
+  tR7AYN5FiqA: {
+    html: `<section aria-labelledby="codex-cli-install">
+<h2 id="codex-cli-install">Install the Codex CLI first</h2>
+<p>The walkthrough starts with the Codex CLI already installed and updated on Debian Linux. To install it yourself, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>: the official install commands, ChatGPT sign-in, and fixes for common install errors.</p>
+</section>`,
+  },
+  C5wEcJRo_VA: {
+    html: `<section aria-labelledby="code-assist-status">
+<h2 id="code-assist-status">Gemini Code Assist for individuals</h2>
+<p>Google has deprecated Gemini Code Assist for individuals. Google’s documentation says that starting June 18, 2026, Gemini Code Assist IDE extensions stopped serving requests for the Gemini Code Assist for individuals, Google AI Pro, and Google AI Ultra tiers. Login with Google no longer works for those IDE extensions or Gemini CLI. Read <a href="https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals">Google’s deprecation page</a>.</p>
+</section>`,
+  },
+  ud2su6XhtKw: {
+    html: `<section aria-labelledby="code-assist-status">
+<h2 id="code-assist-status">Gemini Code Assist for individuals</h2>
+<p>Google has deprecated Gemini Code Assist for individuals. Google’s documentation says that starting June 18, 2026, Gemini Code Assist IDE extensions stopped serving requests for the Gemini Code Assist for individuals, Google AI Pro, and Google AI Ultra tiers. Login with Google no longer works for those IDE extensions or Gemini CLI. Read <a href="https://developers.google.com/gemini-code-assist/docs/deprecations/code-assist-individuals">Google’s deprecation page</a>.</p>
+</section>`,
+  },
+  '9WPazkEp7VU': {
+    html: `<section aria-labelledby="crowdreply-guide">
+<h2 id="crowdreply-guide">CrowdReply written guide</h2>
+<p>Read <a href="/guides/crowdreply-mcp-codex.html">CrowdReply MCP with Codex: turn citation records into a review plan</a> for the recorded MCP path, how to inspect a citation sample, and the limits on marketplace claims and measured uplift.</p>
+<p>The useful result is a traceable research-to-plan workflow. A dashboard sample is not proof that requested edits improved AI visibility.</p>
+</section>`,
+  },
   'qQVAnp4-EpI': {
     searchTitle: 'Runable tutorial: build an AI Growth Audit website',
     summary: 'Research, build and refine an AI Growth Audit website in Runable. Covers the project brief, market research and homepage revisions; Stripe and email delivery remain unfinished.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: research the offer, then inspect the prototype</h2>
-<p>The walkthrough turns an AI Growth Audit business brief into a website preview in Runable. Mike reviews market research, generates the first site, and simplifies its homepage. The recording ends before payments and consultation email delivery are connected.</p>
-<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Timing, credits and interface details describe the recorded session.</p>
+<p>The walkthrough turns an AI Growth Audit business brief into a website preview in Runable. Mike reviews market research, generates the first site, and simplifies its homepage. The walkthrough ends before payments and consultation email delivery are connected.</p>
+<p class="meta">Notes checked October 22, 2026 against this walkthrough’s captions. Timing, credits and interface details describe the recorded session.</p>
 <h3>The sequence shown</h3>
 <ol><li>Create a master brief covering the audience, problem, offer, promise, conversion goal and design direction. Exclude invented testimonials and statistics.</li><li>Run market research, then inspect the competitor database, pricing comparisons and SEO opportunity documents. Treat the generated research as input to review.</li><li>Combine the research and master brief to generate the AI Growth Audit website and customer portal. Review the preview and launch checklist.</li><li>Refine the hero, prioritize the audit call to action, remove repeated copy, and simplify the page’s decorative elements.</li></ol>
 <h3>What remains unfinished</h3>
@@ -23,11 +48,11 @@ export const watchNotes = {
   Lifl4PC2_3M: {
     searchTitle: 'Make.com tutorial: Google Sheets, Gmail and AI mapping',
     summary: 'Build a Make.com workflow from Google Sheets to Gmail, add an AI-generated draft, and correct the content mapping. Includes recorded failures and test limits.',
-    notice: 'This recording mentions an earlier free community offer and historical Make pricing. Check the current plans before purchasing.',
+    notice: 'This walkthrough mentions an earlier free community offer and historical Make pricing. Check the current plans before purchasing.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: inspect the bundle before sending</h2>
 <p>The course builds a Google Sheets-to-Gmail workflow, adds an OpenAI-generated email, and corrects a mapping mistake. It also tours existing scenarios and templates. Those tours do not demonstrate that every workflow completes successfully.</p>
-<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Module names, model choices, prices, and access belong to the recorded session.</p>
+<p class="meta">Notes checked October 11, 2026 against this walkthrough’s captions. Module names, model choices, prices, and access belong to the recorded session.</p>
 <h3>The recorded first workflow</h3>
 <ol><li>Connect Google Sheets and select the spreadsheet, tab, headers, and starting position. The first run returns ten bundles with names and email addresses.</li><li>Add an array aggregator and iterator, then map the recipient into Gmail. Mike reduces the test to one row before sending a basic email.</li><li>Disconnect the send module while adding OpenAI. Run the generation step and inspect its output before reconnecting Gmail.</li><li>Correct the content mapping. The first connected run still uses the old email content; Mike maps OpenAI’s generated result into the Gmail body and repeats the run.</li><li>Open execution history to inspect the operations and outputs. A green module is a starting point: check the intended recipient and body too.</li></ol>
 <h3>What did not complete</h3>
@@ -63,14 +88,14 @@ export const watchNotes = {
 </section>`,
   },
   '9kHdIiobKMA': {
-    searchTitle: 'Building an AI phone agent with VAPI: the recording',
+    searchTitle: 'Building an AI phone agent with VAPI: this walkthrough',
     summary: 'Configure a VAPI assistant, connect Make and a Twilio number, and receive a test call. Notes distinguish webhook delivery from booking and spreadsheet updates.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify one call before automating a list</h2>
 <p>Mike creates a VAPI assistant, connects it to Make.com and a Twilio number, and receives a call on his own phone. A second call reaches the end-of-call webhook. Calendar booking and a correctly matched spreadsheet update are not demonstrated.</p>
-<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Provider choices and costs may have changed.</p>
+<p class="meta">Notes checked October 11, 2026 against this walkthrough’s captions. Provider choices and costs may have changed.</p>
 <h3>The setup shown</h3>
-<ol><li>Create a blank assistant, choose a model, and write its identity, greeting, questions, and conversation boundaries. The recording changes from a built-in voice to Mike’s existing ElevenLabs voice clone.</li><li>Publish the assistant and inspect the dashboard test controls. For an outbound telephone call, import a Twilio number and select that number and the assistant in Make.</li><li>Use one test phone number you control. The first run reaches Mike’s phone and begins the scripted conversation.</li><li>Configure a Make webhook for the assistant’s end-of-call report. The later test reaches that webhook; inspect the delivered analysis and call data.</li></ol>
+<ol><li>Create a blank assistant, choose a model, and write its identity, greeting, questions, and conversation boundaries. The walkthrough changes from a built-in voice to Mike’s existing ElevenLabs voice clone.</li><li>Publish the assistant and inspect the dashboard test controls. For an outbound telephone call, import a Twilio number and select that number and the assistant in Make.</li><li>Use one test phone number you control. The first run reaches Mike’s phone and begins the scripted conversation.</li><li>Configure a Make webhook for the assistant’s end-of-call report. The later test reaches that webhook; inspect the delivered analysis and call data.</li></ol>
 <h3>Separate a call from a completed business task</h3>
 <p>The calendar integration is described as a stretch goal. The final Google Sheets module is configured with a fixed row number and hard-coded “yes” values; the captions do not establish a successful, correctly correlated update. A connected call is not proof of a booked appointment.</p>
 <p>Before updating real records, carry a stable record ID through the request and match it to the returned call ID. Verify the call result instead of marking every call successful. Avoid copying the fixed-row example into a multi-contact workflow.</p>
@@ -82,16 +107,16 @@ export const watchNotes = {
   },
   'Ax-v4H9xv50': {
     searchTitle: 'Google AI Studio: build and check a chat app prototype',
-    summary: 'Build a chat interface in Google AI Studio and request an OpenAI integration. The recording shows replies and ZIP export, but stops before deployment.',
+    summary: 'Build a chat interface in Google AI Studio and request an OpenAI integration. The walkthrough shows replies and ZIP export, but stops before deployment.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: a preview reply is only the first check</h2>
 <p>The walkthrough generates a chat-style app in Google AI Studio, downloads its source as a ZIP, and asks for an OpenAI integration. The preview answers simple prompts. Public deployment is not completed because billing setup remains unfinished.</p>
-<p class="meta">Notes checked October 11, 2026 against the recording’s captions. The recorded interface differs from current Build mode.</p>
-<h3>What the recording establishes</h3>
+<p class="meta">Notes checked October 11, 2026 against this walkthrough’s captions. The recorded interface differs from current Build mode.</p>
+<h3>What this walkthrough establishes</h3>
 <ol><li>Explore a supplied video-generation example, then start a separate chat app from a written brief.</li><li>Inspect the generated preview, switch its display theme, and export the source. These checks establish that a frontend was generated.</li><li>Request the OpenAI integration. An initial missing-key error appears, followed by a key-entry screen and simple text/code replies.</li><li>Open the deployment flow. Mike stops at the Google Cloud billing step; the video does not show a deployed URL.</li></ol>
 <h3>Check the provider and protect the key</h3>
 <p>A model saying it was built by OpenAI does not verify which provider handled a request. Inspect the server integration and the provider’s usage logs before concluding that the intended API is connected.</p>
-<p>The recording suggests hard-coding a key and enters it into the preview. Do not place a private provider key in browser code or a public repository. Current <a href="https://ai.google.dev/gemini-api/docs/aistudio-build-mode">Google AI Studio Build documentation</a> describes server-side secrets; use the server boundary for external providers too. Follow <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety">OpenAI’s key-safety guidance</a>.</p>
+<p>The walkthrough suggests hard-coding a key and enters it into the preview. Do not place a private provider key in browser code or a public repository. Current <a href="https://ai.google.dev/gemini-api/docs/aistudio-build-mode">Google AI Studio Build documentation</a> describes server-side secrets; use the server boundary for external providers too. Follow <a href="https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety">OpenAI’s key-safety guidance</a>.</p>
 <h3>Before sharing the app</h3>
 <p>Check a valid request, a provider failure, the actual API usage, and where secrets are stored. Confirm hosting and model costs separately; the recorded “free” introduction does not establish zero deployment or API costs.</p>
 <p>The <a href="/guides/first-api-request.html">local API exercise</a> teaches request checks without a provider key. Use the <a href="/guides/codex-workflow.html">small-change workflow</a> to inspect and verify generated code.</p>
@@ -100,18 +125,18 @@ export const watchNotes = {
   MYoA3___zYU: {
     searchTitle: 'Emergent tutorial: build an agency landing page',
     summary: 'Generate an agency landing page with Emergent, add a calendar popup, and fix a broken contact button. Notes separate the frontend result from untested backend features.',
-    notice: 'This recording mentions an earlier $39/month community offer. Check the current membership plans.',
+    notice: 'This walkthrough mentions an earlier $39/month community offer. Check the current membership plans.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: test the contact flow after changing it</h2>
 <p>Mike uses Emergent to generate an AI agency landing page and refine its design. A calendar popup is added, the contact button breaks, and a follow-up prompt restores the contact page. The result is a frontend prototype, not a demonstrated subscription SaaS.</p>
-<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Generated designs and product access may have changed.</p>
+<p class="meta">Notes checked October 11, 2026 against this walkthrough’s captions. Generated designs and product access may have changed.</p>
 <h3>The recorded build</h3>
 <ol><li>Supply a landing-page brief and answer the agent’s questions about visual direction and scheduling. Photos and analytics setup are deferred.</li><li>Inspect the frontend preview. The agent reports mock data and forms using local storage; no working production backend is verified.</li><li>Request a shorter headline, visual revisions, and an embedded calendar popup. Mike checks the booking button in the preview.</li><li>After the popup change, test the contact button too. It produces an error; Mike reports that specific failure and repeats the check after the fix.</li></ol>
 <h3>What remains to verify</h3>
 <p>The video does not demonstrate production form delivery, authentication, payments, durable customer storage, or a completed CMS. A page that looks like a business site does not establish those capabilities.</p>
 <p>Generated testimonial placeholders are not customer evidence. Replace them with approved real material or remove them before publication. Check the contact destination, calendar flow, mobile layout, keyboard navigation, and error behavior using sample data.</p>
 <h3>Continue with a checkable task</h3>
-<p>Use the <a href="/guides/codex-workflow.html">small-change workflow guide</a> to write a narrow brief and verify a fix. Pair this recording with the <a href="/guides/youtube-feed.html">React feed guide</a> for an example whose fallback behavior can be tested in source. The <a href="https://emergent.sh/learn">Emergent learning resources</a> provide current product guidance.</p>
+<p>Use the <a href="/guides/codex-workflow.html">small-change workflow guide</a> to write a narrow brief and verify a fix. Pair this walkthrough with the <a href="/guides/youtube-feed.html">React feed guide</a> for an example whose fallback behavior can be tested in source. The <a href="https://emergent.sh/learn">Emergent learning resources</a> provide current product guidance.</p>
 </section>`,
   },
   vauqktcB6ak: {
@@ -124,13 +149,13 @@ export const watchNotes = {
 <h3>What is OpenAI Dots?</h3>
 <p>In this video, OpenAI Dots is the tool Mike uses inside ChatGPT to build the job-search agent; the chapter at <a href="#t=42">0:42</a> covers setting it up and customizing it. For the announcement, see the <a href="/watch/uTcTJd5JaZU">OpenAI Dots launch video</a>, whose description says Dots was announced at Dev Day 2026. Its chapters include “What Are OpenAI Dots?”, “Always-On AI Agents”, “Dots Cloud Computer Explained” and “Connecting 4,000+ Apps”. This page does not restate what those chapters say.</p>
 <h3>Is Dots or Grok Bot faster for a job search?</h3>
-<p>In the recording, GrokBot. Dots took about 45 minutes for a basic version. GrokBot’s orchestrator agent was live in 15–20 seconds, with first results in a couple of minutes. The chapter at <a href="#t=75">1:15</a>, “OpenAI Dots Limitations: Slow Speed &amp; Missing Emails”, covers the Dots side. These are times from one recorded session, not a benchmark.</p>
+<p>In this walkthrough, GrokBot. Dots took about 45 minutes for a basic version. GrokBot’s orchestrator agent was live in 15–20 seconds, with first results in a couple of minutes. The chapter at <a href="#t=75">1:15</a>, “OpenAI Dots Limitations: Slow Speed &amp; Missing Emails”, covers the Dots side. These are times from one recorded session, not a benchmark.</p>
 <h3>How many jobs did Dots and Grok Bot find?</h3>
 <p>Dots found 3 jobs. GrokBot pulled about 45, with 3 strong matches and a few possibles in the test run. On applications, Dots wrote a cover letter and appeared to tailor the resume. GrokBot asked for Mike’s master resume, parsed it, and drafted an outreach email per job. The job-search setup, including resume, salary and remote filters, starts at <a href="#t=240">4:00</a>.</p>
 <h3>Can Dots find contact emails for jobs?</h3>
 <p>Not in this test. Dots couldn’t verify an email for either role, so nothing could be sent. GrokBot found contacts through the Treg plugin (Lead Magic), and the emails were drafted and ready to send. The chapter at <a href="#t=287">4:47</a>, “Finding High-Paying Remote AI Jobs Using Lead Magic API”, covers the Lead Magic part of the workflow. This describes one run of one workflow, not everything Dots can do.</p>
 <h3>Does Grok Bot track jobs in Airtable?</h3>
-<p>Yes, in the recording. GrokBot produced an Airtable base with title, company, links, date found, location, remote, full-time and salary. The video sets up the integration at <a href="#t=185">3:05</a> and covers job tracking and salary sorting at <a href="#t=356">5:56</a>. Dots linked the job pages in the chat instead.</p>
+<p>Yes, in my walkthrough. GrokBot produced an Airtable base with title, company, links, date found, location, remote, full-time and salary. The video sets up the integration at <a href="#t=185">3:05</a> and covers job tracking and salary sorting at <a href="#t=356">5:56</a>. Dots linked the job pages in the chat instead.</p>
 <h3>How much do Dots and Grok Bot cost?</h3>
 <p>As stated in the video published October 1, 2026: Dots needed a plan of at least $100 a month. GrokBot was free to start, with Pro at $20 a month; Mike uses Pro Plus at $60 a month. The job search used about 10 cents of Treg credits. The pricing chapter, “Pricing Breakdown: Is GrokBot Better Than OpenAI Dots?”, is at <a href="#t=413">6:53</a>. These prices have not been re-verified, so check each provider’s current plans. The launch video has its own “OpenAI Dots Pricing &amp; Availability” chapter.</p>
 <h3>Which should I pick: Dots or Grok Bot?</h3>
@@ -144,12 +169,12 @@ export const watchNotes = {
     summary: 'Install and authenticate Codex and Claude Code inside GrokBot’s virtual computer, then define task routing. Notes distinguish the recorded setup from the updated workflow.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: authenticate the tool, then inspect its task</h2>
-<p>The recording installs Codex and Claude Code inside GrokBot’s virtual computer, authenticates both, and asks for task-based routing. It shows a routing rule and reports work starting. It does not measure a completed deployment, search-traffic improvement, or a reproducible credit saving.</p>
-<p class="meta">Notes checked October 11, 2026 against the recording’s captions. Models and limits describe the recorded session.</p>
+<p>The walkthrough installs Codex and Claude Code inside GrokBot’s virtual computer, authenticates both, and asks for task-based routing. It shows a routing rule and reports work starting. It does not measure a completed deployment, search-traffic improvement, or a reproducible credit saving.</p>
+<p class="meta">Notes checked October 11, 2026 against this walkthrough’s captions. Models and limits describe the recorded session.</p>
 <h3>The sequence shown</h3>
-<ol><li>Install the two clients. Codex still needs a ChatGPT or API-key sign-in before a model request can run.</li><li>Complete each tool’s authentication separately. Installation alone is not a successful connection.</li><li>Inspect the workspace and permission mode. The recording flags Claude Code’s auto mode beside email-send scripts and moves coding work to a separate project folder.</li><li>Ask for fallback behavior when Cursor credits run out, then ask for task and model selection. A new rule file and helper are reported; the rule keeps Cursor as the default while available.</li></ol>
+<ol><li>Install the two clients. Codex still needs a ChatGPT or API-key sign-in before a model request can run.</li><li>Complete each tool’s authentication separately. Installation alone is not a successful connection.</li><li>Inspect the workspace and permission mode. The walkthrough flags Claude Code’s auto mode beside email-send scripts and moves coding work to a separate project folder.</li><li>Ask for fallback behavior when Cursor credits run out, then ask for task and model selection. A new rule file and helper are reported; the rule keeps Cursor as the default while available.</li></ol>
 <h3>Use the later written setup</h3>
-<p>The <a href="/guides/claude-code-vs-codex.html">Claude Code versus Codex guide</a> documents the updated manual-permission setup, task routing, fallback limits, and review process. Its current safety choices differ from the auto mode shown in the recording.</p>
+<p>The <a href="/guides/claude-code-vs-codex.html">Claude Code versus Codex guide</a> documents the updated manual-permission setup, task routing, fallback limits, and review process. Its current safety choices differ from the auto mode shown in my walkthrough.</p>
 <p>Start with a small repository task and a visible result. The <a href="/guides/codex-workflow.html">Codex exercise</a> verifies a local failure case. Check the actual diff and command output before accepting an orchestrator’s completion message.</p>
 </section>`,
   },
@@ -158,11 +183,11 @@ export const watchNotes = {
     summary: 'Upgrade to ChatGPT Business to raise Codex usage limits, then fix the CLI still showing the old plan by signing out and back in. A recorded walkthrough.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: upgrade the plan, then check that Codex sees it</h2>
-<p>Mike hits his weekly Codex limit, starts a ChatGPT Business trial, and then spends most of the video getting Codex to use the new plan. The fix that works in the recording is signing out of Codex and signing back in with the Business account.</p>
-<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Plan names, prices, trials and limits describe the recorded session in April 2026. Check OpenAI’s current plans before upgrading.</p>
+<p>Mike hits his weekly Codex limit, starts a ChatGPT Business trial, and then spends most of the video getting Codex to use the new plan. The fix that works in my walkthrough is signing out of Codex and signing back in with the Business account.</p>
+<p class="meta">Notes checked October 22, 2026 against this walkthrough’s captions. Plan names, prices, trials and limits describe the recorded session in April 2026. Check OpenAI’s current plans before upgrading.</p>
 <h3>The sequence shown</h3>
-<ol><li>Check the remaining usage with the status command. Mike has about 19% left for the week.</li><li>Start the Business plan. The recording describes a one-month free trial and a price of around $15 per month, and Mike says Business gives about a 20x higher credit limit than the free plan. These are his recorded figures, not a measured comparison. The video title says 10X.</li><li>The CLI still reports the free plan with 0% credits, and the VS Code extension asks him to upgrade to Plus.</li><li>Run a task in Codex cloud as a workaround. It installs dependencies, hits some errors, and updates a build script. Mike notes he can commit and push from there through the connected GitHub repository. Mike finds it slower than working locally.</li><li>Sign out of Codex and sign back in with the Business account. Status then shows 100% credits with a 5-hour reset, and the CLI picks up the same plan.</li></ol>
-<h3>What the recording does not establish</h3>
+<ol><li>Check the remaining usage with the status command. Mike has about 19% left for the week.</li><li>Start the Business plan. The walkthrough describes a one-month free trial and a price of around $15 per month, and Mike says Business gives about a 20x higher credit limit than the free plan. These are his recorded figures, not a measured comparison. The video title says 10X.</li><li>The CLI still reports the free plan with 0% credits, and the VS Code extension asks him to upgrade to Plus.</li><li>Run a task in Codex cloud as a workaround. It installs dependencies, hits some errors, and updates a build script. Mike notes he can commit and push from there through the connected GitHub repository. Mike finds it slower than working locally.</li><li>Sign out of Codex and sign back in with the Business account. Status then shows 100% credits with a 5-hour reset, and the CLI picks up the same plan.</li></ol>
+<h3>What this walkthrough does not establish</h3>
 <p>It does not show how long the higher limit lasts over a working week, and the trial and pricing may have changed. Confirm the plan in Codex with a status check before starting a long task.</p>
 <p>For how plan limits and Codex credits compare across Plus, Pro 5x and Pro 20x, see <a href="/guides/chatgpt-pro-20x.html#codex-credits">Codex limits and credits</a>.</p>
 <p>For a small task to run once your limits are sorted, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a>.</p>
@@ -175,7 +200,7 @@ export const watchNotes = {
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Notes: what the video reports, and where it comes from</h2>
 <p>Mike explains that OpenAI paused new sign-ups for the $200 per month Pro 20x plan after demand for GPT-6 Astra. The $100 per month 5x plan was still available to him, and the video says existing 20x subscribers keep access.</p>
-<p class="meta">Notes checked October 22, 2026 against the recording’s captions. Plan availability, prices and limits describe the session recorded in September 2026. Check OpenAI’s current plans before buying.</p>
+<p class="meta">Notes checked October 22, 2026 against this walkthrough’s captions. Plan availability, prices and limits describe the session recorded in September 2026. Check OpenAI’s current plans before buying.</p>
 <h3>Sources shown in the video</h3>
 <ul><li>Posts on X from an OpenAI staff member about unprecedented demand, no impact on existing users, and adding capacity.</li><li>A Facebook post by Jeff Hunter with a seven-day timeline from the Astra preview on September 3 to the pause on September 10, plus 5-hour message ranges per plan.</li></ul>
 <p>The timeline and message ranges are third-party summaries read out in the video. They are not figures Mike measured, and this page has not checked them against OpenAI.</p>
@@ -208,7 +233,13 @@ export const watchNotes = {
     summary: 'Build a ChatGPT-style chat web app in Rocket.new using only prompts: pick a web app, describe the clone, let Rocket add OpenAI chat completions, then review the result. Recorded in about 20 minutes; Rocket needs credits in your account.',
   },
   lKqe0r0zoGY: { searchTitle: 'Lindy AI tutorial: build your first agent' },
-  ZlD4Z6UKS8o: { searchTitle: 'Build a website with AI: Lovable tutorial' },
+  ZlD4Z6UKS8o: {
+    searchTitle: 'Build a website with AI: Lovable tutorial',
+    html: `<section aria-labelledby="orchids-status">
+<h2 id="orchids-status">Orchids site status</h2>
+<p>The walkthrough also tried Orchids as a third builder. The Orchids website returned a 503 DEPLOYMENT_PAUSED response as of November 2026, so this page does not link it as a live builder.</p>
+</section>`,
+  },
   SLAnjvWK1Y4: { searchTitle: 'Automating YouTube Shorts with AI' },
   KEXgl3vsVMI: { searchTitle: 'Skool Hobby plan: the recorded $9/month review' },
   kKiFzNW9fjw: { searchTitle: 'Build an AI content workflow in Make.com' },
@@ -222,9 +253,9 @@ export const watchNotes = {
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: choose a model that actually responds</h2>
 <p>Mike explores OpenCode after reaching his Claude usage limit. This is a setup walkthrough and a personal workflow comparison, not a controlled benchmark of coding accuracy or speed.</p>
-<p class="meta">Notes checked October 9, 2026 against the recording’s captions. Model availability and the prices discussed belong to the recorded session.</p>
+<p class="meta">Notes checked October 9, 2026 against this walkthrough’s captions. Model availability and the prices discussed belong to the recorded session.</p>
 <h3>What the demonstration covers</h3>
-<ol><li>Open the installed terminal client and inspect the model picker. The recording also tours installation choices for desktop and editor use.</li><li>Select a provider and model. Mike shows his OpenCode usage dashboard, then adds an OpenRouter connection using an API key.</li><li>Try a request with the selected model. The Gemma request through OpenRouter returns a rate-limit error, so Mike switches back to Kimi before continuing.</li><li>Run an installed SEO skill on an existing website. The recording shows the task starting; it does not establish a measured improvement in search traffic.</li></ol>
+<ol><li>Open the installed terminal client and inspect the model picker. The walkthrough also tours installation choices for desktop and editor use.</li><li>Select a provider and model. Mike shows his OpenCode usage dashboard, then adds an OpenRouter connection using an API key.</li><li>Try a request with the selected model. The Gemma request through OpenRouter returns a rate-limit error, so Mike switches back to Kimi before continuing.</li><li>Run an installed SEO skill on an existing website. The walkthrough shows the task starting; it does not establish a measured improvement in search traffic.</li></ol>
 <h3>Separate the client from model access</h3>
 <p>An open-source coding client does not make every connected model free. Check the selected provider’s current access, billing, and rate limits before copying this setup. A model appearing in the picker is not proof that your account can successfully call it.</p>
 <p>Keep API keys out of recordings and repositories. If a request fails, inspect the provider error before switching models; changing a model does not repair an invalid credential or an exhausted quota.</p>
@@ -238,13 +269,13 @@ export const watchNotes = {
     summary: 'Create an avatar video with HeyGen, then follow the Make.com workflow and its actual failures: a stale avatar ID and an API duration limit.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: make one avatar clip before automating</h2>
-<p>The course covers avatar and voice setup, script creation, video generation, and a proposed Make.com publishing workflow. The manually generated video completes. The end-to-end automation does not complete successfully in the recording.</p>
-<p class="meta">Notes checked October 9, 2026 against the recording’s captions. Recorded API limits, prices, and community offers are historical; check current access before purchasing.</p>
+<p>The course covers avatar and voice setup, script creation, video generation, and a proposed Make.com publishing workflow. The manually generated video completes. The end-to-end automation does not complete successfully in my walkthrough.</p>
+<p class="meta">Notes checked October 9, 2026 against this walkthrough’s captions. Recorded API limits, prices, and community offers are historical; check current access before purchasing.</p>
 <h3>Start with the manual result</h3>
 <ol><li>Use your own likeness and voice, or material you have permission to use. Create the avatar and choose the intended voice in the video editor.</li><li>Provide a short spoken script. Remove scene directions that you do not want read aloud.</li><li>Generate one clip, review the result, and download it. The narration confirms the manual generation finishes, but says viewers cannot hear the playback audio in that segment.</li></ol>
 <h3>Where the automation fails</h3>
 <p>The scenario researches an Airtable topic, generates a script, calls HeyGen, waits, retrieves the video and thumbnail, and is intended to upload an unlisted YouTube video before updating Airtable. On the first run, the avatar ID refers to an older avatar. Mike replaces it with the new ID.</p>
-<p>The next attempts hit an API processing error with a 180-second limit. Reducing the requested word count does not resolve the failure shown. Word count alone does not guarantee a spoken duration. The recording ends with a partial workflow: research and script preparation are automated, while video creation and uploading remain manual.</p>
+<p>The next attempts hit an API processing error with a 180-second limit. Reducing the requested word count does not resolve the failure shown. Word count alone does not guarantee a spoken duration. The walkthrough ends with a partial workflow: research and script preparation are automated, while video creation and uploading remain manual.</p>
 <h3>Check these boundaries before expanding</h3>
 <p>Verify API access separately from the web editor’s subscription. Test a short clip with your actual avatar and voice IDs before adding publishing steps. In a larger workflow, check the generation status before downloading; a fixed wait does not establish that the render succeeded.</p>
 <p>Practice mapping records and checking outputs with the <a href="/guides/make-first-automation.html">first Make.com automation guide</a>. Then use the <a href="/start-here.html#avatar-voice">avatar and voice learning path</a> to choose the next project.</p>
@@ -256,12 +287,12 @@ export const watchNotes = {
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: connect the provider before adding agents</h2>
 <p>Mike installs a Debian package for Hermes desktop, explores the interface, and connects an optional 3D office. The useful checkpoint is a responding agent with a working provider connection. An animated office alone does not prove that a task has completed.</p>
-<p class="meta">Notes checked October 9, 2026 against the recording’s captions. The walkthrough describes the available packages and features at recording time.</p>
+<p class="meta">Notes checked October 9, 2026 against this walkthrough’s captions. The walkthrough describes the available packages and features at recording time.</p>
 <h3>Follow the recorded setup</h3>
 <ol><li>Install the package matching the operating system and architecture. The demonstration uses Debian; it does not test the Windows or macOS packages.</li><li>Open the desktop interface and inspect sessions inherited from the command-line workflow. Profiles provide separate agent configurations.</li><li>Configure a provider, model identifier, and any required credentials. The interface also exposes skills, personality, memory, tools, schedules, and messaging gateways.</li><li>Run diagnostics and inspect the reported problems. Mike sees missing configuration and API-key issues; having the app open does not mean every tool is ready.</li><li>After an internal-server error, authenticate the model connection through the terminal and repeat setup. The recorded agent then responds inside the office.</li></ol>
 <h3>What remains unverified</h3>
 <p>The video asks an agent to read email and shows it loading an email skill. It does not demonstrate a completed inbox summary or verify that all connected tools work. The daily reminder and gateway settings are a tour of configuration options, not evidence of a long-running successful schedule.</p>
-<p>For a first task, use a small request whose output you can inspect. Enable the tools that task needs, check the provider response, and add schedules or additional agents only after the basic path works. Current provider quotas and access may differ from the recording.</p>
+<p>For a first task, use a small request whose output you can inspect. Enable the tools that task needs, check the provider response, and add schedules or additional agents only after the basic path works. Current provider quotas and access may differ from this walkthrough.</p>
 <p>If credentials and endpoints are unfamiliar, start with the <a href="/guides/first-api-request.html">local API request exercise</a>. It teaches request checks without connecting an inbox or calling a paid model.</p>
 </section>`,
   },
@@ -271,11 +302,11 @@ export const watchNotes = {
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: a successful build still needs a launch test</h2>
 <p>This walkthrough uses OpenCode to create a small React habit tracker inside Electron on Debian. The important result comes after two fixes: the desktop window loads correctly, and a saved habit survives closing and reopening the app.</p>
-<p class="meta">Notes checked October 9, 2026 against the recording’s captions. Model prices, free access, and installation options may have changed.</p>
+<p class="meta">Notes checked October 9, 2026 against this walkthrough’s captions. Model prices, free access, and installation options may have changed.</p>
 <h3>Define the small app first</h3>
 <p>The initial brief asks for a desktop habit tracker with daily completion marking. Mike chooses React, then clarifies that the desktop wrapper should be Electron. OpenCode creates the Vite project and installs the packages. During generation, Mike switches models and continues the task.</p>
 <h3>Verify the actual desktop result</h3>
-<ol><li>Run the generated start command. In the recording, the build succeeds but the desktop window is blank.</li><li>Compare it with the development-server version. The browser version renders, narrowing the problem to the packaged loading path.</li><li>Report the precise difference to the assistant. The recorded fix changes Vite’s base so built asset paths are relative. This fixes this project’s loading problem; it is not a universal fix for every Electron blank window.</li><li>Launch again and add a habit. Then close and reopen the app to check persistence.</li><li>Add local storage when the habit does not survive a restart. Repeat the same check. The recording confirms the saved data appears on reopening.</li></ol>
+<ol><li>Run the generated start command. In this walkthrough, the build succeeds but the desktop window is blank.</li><li>Compare it with the development-server version. The browser version renders, narrowing the problem to the packaged loading path.</li><li>Report the precise difference to the assistant. The recorded fix changes Vite’s base so built asset paths are relative. This fixes this project’s loading problem; it is not a universal fix for every Electron blank window.</li><li>Launch again and add a habit. Then close and reopen the app to check persistence.</li><li>Add local storage when the habit does not survive a restart. Repeat the same check. The walkthrough confirms the saved data appears on reopening.</li></ol>
 <h3>Know the finish line</h3>
 <p>The demonstration establishes a basic local prototype. It does not test synchronization between devices, packaged installers on other operating systems, or backup and recovery. The elapsed-time remarks are informal observations, not a controlled model-speed comparison.</p>
 <p>Use the <a href="/guides/codex-workflow.html">small-change workflow guide</a> to practice the same brief, inspect, change, and verify loop in an existing repository. For the provider-selection setup, watch <a href="/watch/_8qzOkIWMSk">OpenCode as a Claude Code alternative</a>.</p>
@@ -284,48 +315,48 @@ export const watchNotes = {
   g4BmgmEy_mI: {
     searchTitle: 'Codex desktop on Linux: the unofficial setup recording',
     summary: 'A historical walkthrough of an unofficial Codex Linux desktop wrapper: building the Debian package, fixing an install lock, and opening a project.',
-    notice: 'This recording uses an unofficial Linux wrapper and mentions an earlier free community offer. For a new installation, check official platform support. Current AI Income Lab membership starts at $29/month as checked October 8, 2026.',
+    notice: 'This walkthrough uses an unofficial Linux wrapper and mentions an earlier free community offer. For a new installation, check official platform support. Current AI Income Lab membership starts at $29/month as checked October 8, 2026.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: an unofficial Linux wrapper</h2>
-<p>This recording predates the channel’s later official Linux installation walkthrough. It builds and installs a third-party Codex desktop wrapper on Debian. Treat it as a record of that setup, not as the current official installation procedure.</p>
-<p class="meta">Notes checked October 9, 2026 against the recording’s captions.</p>
-<h3>What happens in the recording</h3>
+<p>This walkthrough predates the channel’s later official Linux installation walkthrough. It builds and installs a third-party Codex desktop wrapper on Debian. Treat it as a record of that setup, not as the current official installation procedure.</p>
+<p class="meta">Notes checked October 9, 2026 against this walkthrough’s captions.</p>
+<h3>What happens in my walkthrough</h3>
 <ol><li>Clone the wrapper project and run its bootstrap command. The process downloads dependencies and compiles the desktop package.</li><li>Wait for the package build to finish. Mike reports high CPU usage during compilation on his laptop; that is a single-machine observation.</li><li>Resolve the package-manager lock conflict. Another installation is running, so the initial install cannot take the lock. After that installation finishes, Mike retries the Debian package installation.</li><li>Launch the app, import existing project settings, and open the TubeAnalytics repository.</li><li>Start an audit with an installed skill and explore the plugin interface.</li></ol>
 <h3>What the video does and does not establish</h3>
-<p>The desktop app launches and starts a project audit. The microphone control is visible, but dictation is not confirmed working in this recording. The session also does not establish feature parity with the official clients or independently validate the audit findings.</p>
+<p>The desktop app launches and starts a project audit. The microphone control is visible, but dictation is not confirmed working in this walkthrough. The session also does not establish feature parity with the official clients or independently validate the audit findings.</p>
 <p>Do not delete a package-manager lock merely to reproduce the install sequence. Check whether another package operation is active and let it finish. For a fresh setup, start with <a href="/watch/lbBZ7uLJwbM">the later official Linux walkthrough and compatibility notes</a>, which links to the vendor’s installation instructions.</p>
 <p>Once your client opens a project, use the <a href="/guides/codex-workflow.html">Codex workflow guide</a> to make a small, reviewable change and verify it with the project’s own checks.</p>
-<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for the desktop app download, ChatGPT sign-in, and the distinction from the earlier unofficial setup. For the terminal CLI, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>.</p>
 </section>`,
   },
   enKnxKJJFZw: {
     searchTitle: 'Why I started a free AI community on Skool (2025)',
     summary: 'A look back at the community’s free launch in 2025. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
-    notice: 'This recording and its original chapter names describe the free launch in 2025. Access has changed: as of October 8, 2026, AI Income Lab membership starts at $29/month.',
+    notice: 'This walkthrough and its original chapter names describe the free launch in 2025. Access has changed: as of October 8, 2026, AI Income Lab membership starts at $29/month.',
   },
   dILjZszMZ5o: {
     summary: 'Business automation and the community’s earlier free offer. As of October 8, 2026, AI Income Lab membership starts at $29/month.',
     notice: 'This 2025 recording mentions free community access. As of October 8, 2026, AI Income Lab membership starts at $29/month. The recorded offer is historical.',
   },
-  '1aG1XbAQj-k': { summary: 'Claude Opus 5 is here and it’s my new go-to model.' },
+  '1aG1XbAQj-k': { summary: 'A rundown of Claude Opus 5: pricing against Fable 5, coding and reasoning benchmarks, visual reasoning, and real bug-fixing examples.' },
   geKngm3sg3w: {
     searchTitle: '9Router video walkthrough: providers and fallbacks',
     summary: 'Set up 9Router, connect a provider, and check that requests reach the gateway. Build notes cover model selection, usage verification, and fallback limits.',
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: verify your first routed request</h2>
 <p>This walkthrough connects coding tools to a local 9Router gateway. The useful checkpoint is a request appearing in the gateway’s usage dashboard: a connected provider alone does not prove that your client is routing through it.</p>
-<p class="meta">Notes checked October 8, 2026 against the video captions. The recording does not identify a 9Router release version.</p>
+<p class="meta">Notes checked October 8, 2026 against the video captions. The walkthrough does not identify a 9Router release version.</p>
 <h3>Before you start</h3>
 <p>Have Node.js/npm, a coding client, and access to the provider you intend to use. Follow the <a href="https://github.com/decolua/9router#-quick-start">project’s current installation instructions</a>. Provider availability, authentication methods, quotas, and prices can change. Keep the first test local and configure your own dashboard password.</p>
 <h3>Follow the setup</h3>
 <ol>
 <li>Start 9Router and open its local dashboard. Connect one provider using the authentication method that provider supports.</li>
-<li>Select a model exposed by that connection. In the recording, the client initially uses a different model from the ones configured in the gateway.</li>
+<li>Select a model exposed by that connection. In this walkthrough, the client initially uses a different model from the ones configured in the gateway.</li>
 <li>Set the client’s base URL to the gateway endpoint and copy the gateway’s model identifier and client API key. Keep upstream provider credentials in the gateway rather than confusing them with the client key.</li>
 <li>Send one small request, then inspect the usage tab for the selected model, input/output tokens, and any reported cost. If nothing appears, check the endpoint and model mapping before adding more providers.</li>
 </ol>
 <h3>What the walkthrough establishes</h3>
-<p>After updating the client configuration and model selection, Mike reports that token usage and cost entries appear in the 9Router dashboard. That is the demonstrated integration checkpoint. The recording discusses fallback routing, but does not establish a controlled outage test across every tier or a measured cost saving.</p>
+<p>After updating the client configuration and model selection, Mike reports that token usage and cost entries appear in the 9Router dashboard. That is the demonstrated integration checkpoint. The walkthrough discusses fallback routing, but does not establish a controlled outage test across every tier or a measured cost saving.</p>
 <p>Tailscale and tunneling are explored in the video; they are not part of the local request exercise here. Only add remote access when your project needs it.</p>
 <h3>Try the prerequisite, then test your gateway</h3>
 <p>The <a href="/guides/first-api-request.html">first API request guide</a> includes a free local mock that exercises success, authentication, and unknown-model responses. It does not call 9Router or an AI provider. After that exercise, repeat a small request against your actual gateway and verify its logs.</p>
@@ -339,10 +370,10 @@ export const watchNotes = {
 <p>The video follows installation of the official desktop app, recovery from a package dependency problem, and a first Codex audit inside an existing project. The recorded setup is Debian Forky with ChatGPT version 26.8, as identified in the narration.</p>
 <p class="meta">Notes checked October 8, 2026 against the video captions and OpenAI’s installation guide.</p>
 <h3>Check compatibility first</h3>
-<p>Use the <a href="https://learn.chatgpt.com/docs/linux/linux-app">official Linux installation guide</a> to match your distribution and processor architecture to the correct package. The current guide lists Debian 13; the recording’s Forky setup is not a promise of support for that release. Use the supported platform list for a new installation.</p>
+<p>Use the <a href="https://learn.chatgpt.com/docs/linux/linux-app">official Linux installation guide</a> to match your distribution and processor architecture to the correct package. The current guide lists Debian 13; this walkthrough’s Forky setup is not a promise of support for that release. Use the supported platform list for a new installation.</p>
 <h3>Follow the workflow</h3>
 <ol>
-<li>Download the official package for your system. The recording uses a Debian package; the current guide recommends installing it with apt so dependencies can be resolved.</li>
+<li>Download the official package for your system. The walkthrough uses a Debian package; the current guide recommends installing it with apt so dependencies can be resolved.</li>
 <li>If installation fails, read the package manager’s dependency error before retrying. Mike encounters a Mesa Vulkan driver dependency problem, resolves the missing packages, and then launches the app.</li>
 <li>Open ChatGPT, sign in, and choose a project in the Codex workspace. Review the requested project permissions before allowing edits.</li>
 <li>Start with a read-only task: ask for a project explanation or an audit with file references. In the demonstration, the AI SEO skill returns findings for TubeAnalytics.</li>
@@ -350,8 +381,8 @@ export const watchNotes = {
 </ol>
 <h3>What worked, and what to recheck</h3>
 <p>The narration confirms that the app opens, the project and skills are available, and the audit returns a list of fixes. It also describes a slow first launch and a buggy desktop pet. These are observations from this setup, not a benchmark of all Linux installations.</p>
-<p>Available models and features may differ from the recording. Check the current documentation instead of copying the video’s model names or assuming parity with Windows and macOS. For the next workflow, watch <a href="/watch/TuVL2x6IfDk">the Codex internal-linking audit</a>.</p>
-<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for official CLI installation, ChatGPT sign-in, current desktop status, and the distinction from the earlier unofficial setup.</p>
+<p>Available models and features may differ from this walkthrough. Check the current documentation instead of copying the video’s model names or assuming parity with Windows and macOS. For the next workflow, watch <a href="/watch/TuVL2x6IfDk">the Codex internal-linking audit</a>.</p>
+<p>Read the <a href="/guides/codex-on-linux.html">Codex on Linux guide</a> for the desktop app download, ChatGPT sign-in, and the distinction from the earlier unofficial setup. For the terminal CLI, follow <a href="/guides/codex-cli.html">how to install the Codex CLI</a>.</p>
 </section>`,
   },
   TuVL2x6IfDk: {
@@ -360,7 +391,7 @@ export const watchNotes = {
     html: `<section aria-labelledby="build-notes">
 <h2 id="build-notes">Build notes: turn an internal-link audit into checked changes</h2>
 <p>Mike uses Codex to inspect an existing blog, create an internal-linking plan, implement changes, and audit the result again. The repeatable part is the audit–plan–verify workflow. The video does not demonstrate a subsequent increase in search traffic or revenue.</p>
-<p class="meta">Notes checked October 8, 2026 against the video captions and Google’s link guidance. The recording uses an existing site with hundreds of articles; counts change with the audit’s scope.</p>
+<p class="meta">Notes checked October 8, 2026 against the video captions and Google’s link guidance. The walkthrough uses an existing site with hundreds of articles; counts change with the audit’s scope.</p>
 <h3>Use external claims as hypotheses</h3>
 <p>The “$50,000” figure comes from a third-party forum author’s reported research spending. It is not spending by Mike, an independently verified study budget, or a demonstrated saving. Likewise, the video’s ten-links-per-article target is a project rule, not a Google requirement. <a href="https://developers.google.com/search/docs/crawling-indexing/links-crawlable">Google’s guidance</a> emphasizes helpful contextual links and says there is no ideal link count.</p>
 <h3>Apply the workflow to your site</h3>
@@ -371,7 +402,7 @@ export const watchNotes = {
 <li>Review the diff and run the site’s build and link checks. Confirm that targets return the intended content and that canonical URLs remain correct.</li>
 <li>Deploy the checked changes, repeat the audit against the same URL set, and track discovery and clicks over time.</li>
 </ol>
-<h3>What the recording reports</h3>
+<h3>What this walkthrough reports</h3>
 <p>The final audit reports 559 public English articles with valid link targets and no modeled orphans, followed by another pass on pages with weak incoming coverage. Those are tool-reported structural results. The video’s earlier totals cover different inventories and should not be presented as a controlled before-and-after ranking experiment.</p>
 <p>To measure visitor behavior, use the <a href="/guides/consent-tracking.html">consent-aware tracking guide</a>. A navigation click is a useful signal about the journey; it is not a confirmed membership purchase. If you need the desktop setup first, follow <a href="/watch/lbBZ7uLJwbM">Codex on Linux</a>.</p>
 </section>`,

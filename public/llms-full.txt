@@ -1,0 +1,909 @@
+# Mike Holp: AI Automation Station
+
+Mike Holp tests new AI models, agents, and automation tools on real builds and publishes the results on the AI Automation Station YouTube channel. Most videos cover Claude Code, Codex, OpenCode, and n8n, with every setup step shown. He also builds TubeAnalytics and VisiScan and hosts AI Income Lab, the paid learning community on Skool.
+
+AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-station-7346). It is not affiliated with other Skool groups or courses that use a similar name.
+
+## Key facts
+
+- Product and membership facts reviewed November 15, 2026 against the published site. Check the linked official pages for subsequent changes.
+- New long-form videos most days; the full archive is at /videos.
+- TubeAnalytics: YouTube analytics for creators. 7-day trial with a card required; plans from $19 a month.
+- VisiScan: checks whether AI assistants recommend a business. Free scan with no signup; full report $49 USD once; weekly monitoring from $29 USD a month.
+- AI Income Lab: Skool community with 2,900+ members. Standard $29, Premium $49, VIP $89 a month, or $290, $490, $890 a year. VIP adds weekly live group coaching and Q&A, software deals, and 6,400+ n8n templates. Coaching is group learning support. Custom business implementation is separate and is not included in membership. Ask about project scope before joining.
+- AI Income Lab billing is in USD. Free written guides and videos are separate from the paid Skool membership; automation hosting, AI API usage, and other software can cost extra.
+- On Standard, Beginner’s Automation Course unlocks at Skool level 2 and VAPI AI Voice Agent Course at level 4. Premium and VIP include immediate access to both and the Complete AI Avatar Video Course.
+- Income is not guaranteed; results depend on the project, experience, and time invested.
+- Sponsorship: brands can sponsor a build shown on the channel. Dedicated video $1,500, YouTube Short $400, LinkedIn post $350, AI Income Lab post $300, or all four as a campaign for $2,250 ($2,550 separately). Past sponsored builds include Treg, DataForSEO, BrowserAct, Bluehost and Apify.
+
+## Official pages
+
+- [Home](https://www.ai-automation-station.com/)
+- [About Mike Holp](https://www.ai-automation-station.com/about.html): who runs the channel, how the guides and videos are made, and how to get in touch.
+- [AI Income Lab: courses, templates and coaching](https://www.ai-automation-station.com/ai-income-lab.html): what the paid Skool community includes, who it is for, plans from $29 a month, and how it compares with free options.
+- [Sponsor a build](https://www.ai-automation-station.com/sponsors.html): audience numbers, packages and rates, past sponsored videos, and a proposal form. The [media kit](https://www.ai-automation-station.com/media-kit/ai-automation-station-media-kit-2026.pdf) and [rate card](https://www.ai-automation-station.com/media-kit/ai-automation-station-rate-card-2026.pdf) are PDFs.
+- [Every video: AI tools tested on real builds](https://www.ai-automation-station.com/videos)
+- [YouTube channel](https://www.youtube.com/@ai-automation-station)
+- [TubeAnalytics](https://www.tubeanalytics.net)
+- [VisiScan](https://www.visiscan.app)
+- [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
+- [AI Income Lab plans](https://www.skool.com/ai-automation-station-7346/plans): Official plan selection and checkout; current course access and billing details are also visible on the [homepage](https://www.ai-automation-station.com/#pricing).
+
+## Video topics
+
+- [Claude Code tutorials: builds, skills, workflows](https://www.ai-automation-station.com/videos/claude-code): Builds, skills and workflows with Anthropic’s Claude Code in the terminal.
+- [Codex and OpenCode tutorials: setup and builds](https://www.ai-automation-station.com/videos/codex-opencode): Coding-agent builds with OpenAI Codex and OpenCode, from setup to side-by-side tests.
+- [n8n tutorials: AI workflows and self-hosting](https://www.ai-automation-station.com/videos/n8n): Workflows and AI automations in n8n, from a first build to self-hosted agents.
+- [Make.com tutorials: no-code AI automations](https://www.ai-automation-station.com/videos/make-com): No-code AI automations built step by step in Make.com.
+- [AI agent tutorials: assistants and voice agents](https://www.ai-automation-station.com/videos/ai-agents): Personal assistants, research agents and agent tools tested on real tasks.
+- [AI SEO tutorials: rank in Google and AI answers](https://www.ai-automation-station.com/videos/ai-seo): Tools and tests for getting a site found in Google and in AI answers.
+- [Make money with AI: client work and honest tests](https://www.ai-automation-station.com/videos/make-money): Client services, lead generation and monetization with AI, tested without income promises.
+- [AI website and app builders: tutorials and tests](https://www.ai-automation-station.com/videos/ai-website-builders): Websites, landing pages and web apps built with AI builders, start to finish.
+- [AI video tutorials: avatars, Shorts, YouTube](https://www.ai-automation-station.com/videos/ai-video): AI video editing, Shorts, thumbnails and avatar workflows for creators.
+- [AI content tutorials: posts, images and chatbots](https://www.ai-automation-station.com/videos/ai-content): Social posts, images, presentations and page chatbots made with AI tools.
+- [AI automation ideas: no-code workflows to copy](https://www.ai-automation-station.com/videos/ai-automation): Practical automations for email, leads, content and admin, with the tools named.
+- [New AI models: launch breakdowns and first tests](https://www.ai-automation-station.com/videos/new-models): Launch breakdowns and first tests of new models from Anthropic, OpenAI, Google, xAI and others.
+
+## Start building
+
+- [Codex usage limits by ChatGPT plan](https://www.ai-automation-station.com/guides/codex-usage-limits.html): Check Codex usage limits on each ChatGPT plan, find remaining allowance and reset time, and choose what to do when you run out.
+- [Vapi AI tutorial: build a voice agent, test calls, webhooks](https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html): Vapi AI voice agent tutorial: create an assistant, pick a model, voice and transcriber, test a call, connect a phone number, then check webhooks and costs.
+- [AI automation guides: Claude Code, Codex, n8n and more](https://www.ai-automation-station.com/guides.html): Free AI automation guides and articles: learn Claude Code, Codex, Make.com, n8n, AI agents and SEO, with practical builds, sources and checks you can run.
+- [Recommended tools](https://www.ai-automation-station.com/tools.html): the AI tools from the YouTube descriptions, grouped by job, each with the videos that use it. The buttons are affiliate or referral links.
+- [Start here](https://www.ai-automation-station.com/start-here.html): Choose a free first build: AI API gateways, creator websites, business automation, or avatar and voice agents. Find prerequisites and practical next steps.
+- [React YouTube feed tutorial: API, caching and fallbacks](https://www.ai-automation-station.com/guides/youtube-feed.html): Build a YouTube feed in React with server-side API access, cached video data, accessible cards and failure checks when a request fails.
+- [React consent tracking: Google Analytics and Meta](https://www.ai-automation-station.com/guides/consent-tracking.html): Add consent tracking to a React site for Google Analytics and Meta: store the choice, guard optional events, and test opt-in and opt-out.
+- [OpenCode vs Claude Code: pricing, setup and limits](https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html): OpenCode vs Claude Code: compare licensing, model providers, setup, subscription vs API billing and usage limits before picking a coding agent.
+- [Codex on Linux: desktop app and Linux setup](https://www.ai-automation-station.com/guides/codex-on-linux.html): Run Codex on Linux with the official desktop app preview. Install packages for Ubuntu, Debian, Fedora or Arch, then sign in with ChatGPT.
+- [Apify agent skills setup in Cursor](https://www.ai-automation-station.com/guides/apify-agent-skills.html): Install Apify agent skills, add an APIFY_TOKEN, scrape AI startups in San Francisco to a CSV, then extract website emails. From my February 2026 walkthrough.
+- [AI Coding Tutorials Compared: Claude Code, OpenCode, More](https://www.ai-automation-station.com/guides/ai-coding-tutorials-compared.html): Compare ways to learn AI-assisted coding: official Claude Code and OpenCode docs, freeCodeCamp, DeepLearning.AI and my build-along tutorials.
+- [AI Agent Training Compared: Free Courses and Coaching](https://www.ai-automation-station.com/guides/ai-agent-training-compared.html): Compare ways to learn building AI agents: Zapier Academy, Make, n8n, DeepLearning.AI, Maven and AI Income Lab, with real build mistakes left in.
+- [AI Implementation Coaching vs Consulting: How to Choose](https://www.ai-automation-station.com/guides/ai-implementation-coaching-guide.html): How to choose AI implementation coaching, a consultant or an agency: questions to ask, what working automations look like and where I fit.
+- [AI Workflow Courses Compared: Make, n8n, Zapier and More](https://www.ai-automation-station.com/guides/ai-workflow-courses-compared.html): Compare free and paid ways to learn AI workflows: Make Academy, the n8n Academy, Zapier guides, DeepLearning.AI, Coursera, Maven and my own community.
+- [Open Design With OpenCode: A Free Claude Design Option](https://www.ai-automation-station.com/guides/open-design-opencode-free-claude-design.html): Install Open Design locally, pick OpenCode as the engine so designs use no Claude credits, and build a dashboard from a design system. My May 2026 test.
+- [GrokBot as a Chief of Staff: Daily Briefings and Approvals](https://www.ai-automation-station.com/guides/grokbot-chief-of-staff-daily-briefing.html): How I ran two sites by talking to GrokBot: end-of-day rundowns, queued bot tasks, weekly routines and an approval rule before anything is sent or merged.
+- [AI Automation Strategy Notes: Skills, YouTube SEO, Policy](https://www.ai-automation-station.com/guides/ai-automation-strategy-notes-skills-seo-policy.html): Five talk-style videos in one guide: a YouTube SEO routine with a custom GPT, the July 2025 monetization policy update, and my views on skills and tools.
+- [No-Code Agent Builders Tried: MindStudio, Rocket, Assistants](https://www.ai-automation-station.com/guides/no-code-agent-builders-mindstudio-rocket-assistants.html): First impressions of three no-code AI builders: MindStudio (no agent running), Rocket.new for a ChatGPT-style app, and an OpenAI assistant in Make.com.
+- [Six Agent Builds: Claude Code, Dashboards and Outreach Tools](https://www.ai-automation-station.com/guides/six-agent-builds-claude-code-dashboards-outreach.html): Six builds with coding agents: Claude Code setup, a competitor dashboard, an Alpaca stock app, an AI operating system, an outreach agent and LeadScope.
+- [Make.com Content Builds: Facebook Posts, Ebook and Forms](https://www.ai-automation-station.com/guides/make-content-builds-facebook-ebook-forms.html): Three Make.com builds: a daily AI image and caption post on a Facebook page, an ebook written with Claude chapter by chapter, and a form feeding Airtable.
+- [Make.com YouTube Idea-to-Video Pipeline: Apify to Upload](https://www.ai-automation-station.com/guides/make-youtube-ideas-to-video-pipeline.html): Build a Make.com pipeline that scrapes popular YouTube videos with Apify, makes ideas and scripts, renders with JSON2Video and uploads to YouTube.
+- [Make.com Lead Generation: Pitches, Apollo and Google Maps](https://www.ai-automation-station.com/guides/make-lead-generation-pitches-apollo-maps.html): Three Make.com lead builds: Google Maps emails into a sheet, an Apollo search scraped with Apify, and AI pitch drafts saved to Airtable for review.
+- [n8n Automations on Hostinger: Shorts, Sora 2 and Version 2.0](https://www.ai-automation-station.com/guides/n8n-hostinger-uploader-sora-2-and-version-2.html): Five n8n videos in one guide: a Drive-to-YouTube Shorts uploader, a Sora 2 video node, the 2.0 update on a Hostinger VPS, and a tour of six automations.
+- [Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site](https://www.ai-automation-station.com/guides/three-ai-site-builds-antigravity-n8n-hotel.html): Three AI-built sites: a landing page in Google Antigravity, a dashboard that triggers n8n, and a Koh Samui hotel directory scraped with Apify and OpenCode.
+- [TubeAnalytics Build Log: From First Demo to Daily Debugging](https://www.ai-automation-station.com/guides/tubeanalytics-build-log-claude-code-opencode.html): How I built TubeAnalytics, my YouTube analytics SaaS, with Claude Code, Gemini and OpenCode: the February demo, the March tour and a June debugging day.
+- [AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills](https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html): How I track and improve AI search visibility on my own site: Trakkr and its MCP, a GEO blog skill in Codex, and a DataForSEO MCP audit in Claude Code.
+- [Nano Banana Pro Infographics, Thumbnails and NotebookLM](https://www.ai-automation-station.com/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html): Make infographics and thumbnails with Nano Banana Pro through Google AI Studio and KIE, and compare a one-off NotebookLM infographic with my n8n workflow.
+- [OpenCode Free Models, Go Plan and 10 Agent Skills](https://www.ai-automation-station.com/guides/opencode-free-models-go-plan-and-skills.html): Set up OpenCode with free Zen models, upgrade to the Go plan, run models in several terminals, and install ten agent skills from the skills.sh registry.
+- [OpenCode Webcam-Layout Skill and the ShortForge Clip App](https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html): Build an OpenCode skill that stacks a screen share over a webcam for vertical clips, then see the ShortForge app that finds, renders and scores clips.
+- [Hermes Agent: Install, Electron Build and OpenClaw Risks](https://www.ai-automation-station.com/guides/hermes-agent-install-electron-build-openclaw.html): Install Hermes Agent on Linux, wrap a stock tracker in Electron with Codex fixing the last bug, and why I warned people off the Moltbook agent network.
+- [AI Model News: Kimi K3, GLM 5.2, Claude Fable 5, Gemini 3](https://www.ai-automation-station.com/guides/ai-model-news-kimi-glm-fable-gemini.html): What I covered on four model releases: Kimi K3, GLM 5.2, Claude Fable 5’s return and Gemini 3, what I tested and what rests on other people’s results.
+- [SendPulse Facebook Chatbot: Comment Replies and DMs](https://www.ai-automation-station.com/guides/sendpulse-facebook-comment-chatbot.html): Set up a SendPulse chatbot that replies to Facebook page comments and sends one DM, with spam limits, an AI agent step, a CRM and the plan limits I hit.
+- [n8n Job Search Workflows: Scrape, Score and Draft Letters](https://www.ai-automation-station.com/guides/n8n-job-search-resume-cover-letter-workflows.html): Two n8n job-search workflows: scrape Indeed with Apify, score fit against your resume with OpenAI, then draft a cover letter or tailored resume.
+- [YouTube to LinkedIn Automations in n8n and OpenCode](https://www.ai-automation-station.com/guides/youtube-to-linkedin-automations-n8n-opencode.html): Four ways I turn a YouTube video into LinkedIn content: n8n workflows for newsletters, infographics and posts, plus an OpenCode script for post variants.
+- [n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate](https://www.ai-automation-station.com/guides/suno-n8n-music-video-workflow.html): Build an n8n workflow that takes a genre, writes a Suno prompt, makes tracks and a background image through KIE, and assembles a video in Creatomate.
+- [Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost](https://www.ai-automation-station.com/guides/kimi-k2-7-code-opencode-test.html): I ran Kimi K2.7 Code in OpenCode on a real site audit and fixes, tracked its credit use against DeepSeek V4 Pro and hit the OpenCode Go monthly limit.
+- [Wrap Odysseus in an Electron Desktop App With an AI Agent](https://www.ai-automation-station.com/guides/odysseus-electron-desktop-app.html): Ask Odysseus with DeepSeek V4 Pro to build an Electron wrapper for itself, finish the stalled npm install with Codex, and run it in its own window.
+- [Make.com News-to-Video Autoposter: RSS to Social Posts](https://www.ai-automation-station.com/guides/make-news-to-video-autoposter.html): Build a Make.com scenario that turns an RSS item into a video: Perplexity summary, ChatGPT script, JSON2Video render and posts to three networks.
+- [Free Agent Skills for SEO: Install and Run in Kilo Code](https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html): Install free open-source agent skills with npx skills add, then run SEO skills in Kilo Code for images, Core Web Vitals, IndexNow and Search Console.
+- [Hermes Agent Cron Jobs: Move Them to Vercel With Reports](https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html): Set up scheduled jobs in the Hermes Agent desktop app, then move a broken-link checker and a blog digest to Vercel cron with weekly Resend email reports.
+- [Make.com Lead Scraper: Apify Apollo Actor to Google Sheets](https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html): Build a Make.com scenario that runs an Apify Apollo actor on a search URL, takes 100 leads and writes them to a new Google Sheet. Includes the two snags.
+- [Hermes Agent Cron Job: YouTube Video to LinkedIn Posts](https://www.ai-automation-station.com/guides/hermes-youtube-to-linkedin-cron.html): Use Hermes Agent and OpenCode to turn your newest YouTube video into LinkedIn posts and a newsletter with a Python script, then run it as a daily cron job.
+- [DextroLab: A White-Label Client Portal for Make.com and n8n](https://www.ai-automation-station.com/guides/dextrolab-white-label-automations.html): See DextroLab, a client portal for running Make.com or n8n automations with Stripe usage billing: connections, example pricing and delivering a workflow.
+- [WhatsApp AI Voice Clone in Make.com: Texts and Voice Memos](https://www.ai-automation-station.com/guides/whatsapp-ai-voice-clone-make.html): Answer WhatsApp texts and voice memos in Make.com with an OpenAI assistant trained on YouTube transcripts and replying in an ElevenLabs voice clone.
+- [Vapi Outbound AI Caller: Twilio, Make.com and Google Sheets](https://www.ai-automation-station.com/guides/vapi-outbound-ai-caller-make-twilio.html): Build an outbound Vapi voice agent with an ElevenLabs voice, a Twilio number and Make.com dialing Google Sheets leads, with Google Calendar booking.
+- [Build an OpusClip-Style Web App With OpenCode: Short Forge](https://www.ai-automation-station.com/guides/opusclip-clone-app-opencode.html): Scaffold Short Forge, a local OpusClip-style app, in OpenCode with Clerk, Prisma, Postgres and FFmpeg, and fix the build, database and storage errors.
+- [Claude SEO Skill: Audit and Fix a Site From Claude Code](https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html): Install the free Claude SEO skill with one command and run its audit, plan, sitemap and GEO checks on a live site from Claude Code. I hit usage limits.
+- [OpenCode Skill That Trims Long Videos Into Shorts](https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html): Build an OpenCode skill that transcribes with Faster Whisper, cuts filler words, trims a hook-first 16x9 highlight and makes a 9x16 Short with subtitles.
+- [Facebook Messenger Auto-Replies With Make.com and ChatGPT](https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html): Build a Make.com scenario that watches Facebook Messenger, drafts a ChatGPT reply and sends it back, plus the Meta developer app and webhook it needs.
+- [Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs](https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html): Try Pi, a minimal open-source terminal coding agent: install with npm, log in with an OpenRouter key, run a site audit, and watch token costs and limits.
+- [Odysseus AI Workspace: Install on Linux and Try It Locally](https://www.ai-automation-station.com/guides/odysseus-ai-self-hosted-workspace.html): Install Odysseus, a free self-hosted AI chat workspace, on Linux in about five minutes, add model keys, try agent mode and an email digest, with the gaps.
+- [Emergent Website Build: An Agency Site From One ChatGPT Prompt](https://www.ai-automation-station.com/guides/emergent-saas-agency-website.html): Build an agency website in Emergent from a ChatGPT-written prompt, cap the credit budget, add a contact form and booking popup, and fix a broken button.
+- [Free Claude Code vs OpenCode vs Codex: What Broke and What Worked](https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html): Why I moved from Free Claude Code to OpenCode and Codex while building an AI visibility app: API errors, a 401 caused by startup order, and free models.
+- [OpenCode Desktop App: Build a Habit Tracker With React and Electron](https://www.ai-automation-station.com/guides/opencode-desktop-habit-tracker-electron.html): Install the OpenCode desktop app on Debian, build a habit tracker in React and Electron with free models, fix a white screen and add local storage.
+- [Lovable Landing Page: Cal.com Booking, Stripe and a Custom Domain](https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html): Run one landing-page prompt in Replit, Lovable and Orchids, then take Lovable live with Cal.com, Supabase, Stripe and a domain. Stripe was partly done.
+- [Nano Banana in Google AI Studio: Free Images and a Make.com Quota Error](https://www.ai-automation-station.com/guides/nano-banana-gemini-images-make.html): Generate images with Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app, then see why my Make.com Gemini module hit a quota error.
+- [Build a Web App in Replit: Viral Post Genie, Errors and Limits](https://www.ai-automation-station.com/guides/replit-viral-post-genie-build.html): Build a Facebook post generator in Replit’s AI agent: the prompt, OpenAI key errors and fixes, thread format, history, Google sign-in and free-plan limit.
+- [Apollo B2B Lead Lists and the Apify Apollo Scraper](https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html): Filter B2B leads in Apollo, save lists, review a cold email sequence, and see how an Apify actor exports Apollo searches to CSV. Includes the plan limits.
+- [Self-Host n8n on Hostinger: KVM Plan, Template and First Import](https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html): Set up n8n on a Hostinger VPS: pick a KVM plan, choose the n8n template with 100 workflows, open n8n, claim the license key and import a template.
+- [Manus AI First Test: Calendar, Gmail and an Email Autoresponder](https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html): My first Manus test on the free Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder and switch it to Gemini. What failed.
+- [Install OpenClaw (Moltbot) on Emergent: Setup and WhatsApp Snag](https://www.ai-automation-station.com/guides/emergent-openclaw-install.html): Install OpenClaw, also called Moltbot, inside Emergent with its install script, sign in with Google and open the control UI. WhatsApp did not connect.
+- [Apify Agent Skills: Scrape Klook Hotels With Claude Code](https://www.ai-automation-station.com/guides/apify-klook-hotel-scraper-claude-code.html): Install Apify agent skills in Claude Code, scrape Klook hotels for a travel site, and fix wrong results and empty prices. Sponsored by Apify, Feb 2026.
+- [vidIQ MCP in Claude: Channel Audit and Idea Checks](https://www.ai-automation-station.com/guides/vidiq-mcp-claude-channel-audit.html): Connect the vidIQ MCP to Claude Desktop, check a video idea, audit a YouTube channel and compare competitors with real data. Includes a wrong-channel fix.
+- [Syllaby First Test: A Faceless Video From Idea to YouTube](https://www.ai-automation-station.com/guides/syllaby-faceless-video-first-test.html): My first live Syllaby run on a free trial: pick style, voice and music, script a one-minute video, render it in about three minutes, publish to YouTube.
+- [Syllaby Bulk Scheduler: A Week of Faceless Videos at Once](https://www.ai-automation-station.com/guides/syllaby-bulk-scheduler-faceless-videos.html): Use Syllaby to make faceless videos, edit styles and voices, and bulk-schedule 7 to 30 days of posts from a content calendar. August 2025 notes.
+- [Skool Welcome Emails With Zapier, Make.com and EmailOctopus](https://www.ai-automation-station.com/guides/skool-welcome-email-automation.html): Send a welcome email sequence to new Skool members: Zapier fills a Google Sheet, Make.com adds them to EmailOctopus. Includes the paid-community catch.
+- [Skool Membership Tiers: Free, Premium and VIP Setup](https://www.ai-automation-station.com/guides/skool-membership-tiers.html): Set up Skool membership tiers: a free level, a paid upgrade and VIP, with annual discounts and classroom modules locked by tier. October 2025 prices.
+- [Skool $9 Hobby Plan vs Pro: Fees, Admins and Limits](https://www.ai-automation-station.com/guides/skool-hobby-plan-review.html): Compare Skool’s $9 Hobby plan with the $99 Pro plan: admins, fees, custom URL, plugins and what I downgraded to. From my July 2025 walkthrough.
+- [A Free Skool Community: What I Did in the First Two Weeks](https://www.ai-automation-station.com/guides/skool-free-community-first-weeks.html): Why I launched a free Skool community, how I promoted it to 160 members in two weeks, what I sell inside it and why free helps you collect emails.
+- [Skool Community Setup: Pricing, About Page and Classroom](https://www.ai-automation-station.com/guides/skool-community-setup-guide.html): Start a Skool community: choose Hobby or Pro, use Discovery, set pricing, write the About page and build a classroom. A September 2025 tour of my own.
+- [Skool Classroom Tour: Free Lessons and Paid Upsells](https://www.ai-automation-station.com/guides/skool-classroom-upsell-tour.html): Tour a new free Skool community: introductions, a start-here module, free tutorials and paid upsells. Figures are my own from two weeks in, June 2025.
+- [Make.com YouTube Description Updater: Airtable and Transcripts](https://www.ai-automation-station.com/guides/make-youtube-description-updater.html): A Make.com scenario that reads video URLs from Airtable, fetches transcripts, writes SEO descriptions with an OpenAI assistant and updates YouTube.
+- [Make.com Gmail Auto-Reply: Watch, Write and Send With AI](https://www.ai-automation-station.com/guides/make-gmail-ai-auto-reply.html): Build a Make.com scenario that watches Gmail for unread email, has OpenAI write a reply, waits, then sends it. Test the draft before linking the send step.
+- [Make.com Faceless Videos: JSON2Video and Auto-Posting](https://www.ai-automation-station.com/guides/make-faceless-video-json2video.html): Build a Make.com scenario that turns Airtable topics into faceless vertical videos with JSON2Video and posts them to Facebook and YouTube via a router.
+- [Make.com AI Agent: Tally Form Replies and Where It Stalled](https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html): Build a Make.com AI agent that drafts replies to Tally form submissions, choose its model and prompt, and see why my email step stalled on the plan I had.
+- [HeyGen and Make.com: Script, Render and Upload to YouTube](https://www.ai-automation-station.com/guides/heygen-make-youtube-automation.html): Build two Make.com scenarios: an OpenAI assistant scripts, HeyGen renders, and finished videos upload to YouTube as unlisted. Includes the error fix.
+- [HeyGen, ElevenLabs and Make.com: AI Avatar Videos](https://www.ai-automation-station.com/guides/heygen-elevenlabs-make-course.html): Train a HeyGen avatar, connect an ElevenLabs voice clone, then automate scripts and renders in Make.com, plus the 180-second API limit that stopped my run.
+- [Make.com Content Machine: Airtable, Perplexity and HeyGen](https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html): One Make.com scenario: Airtable topic, Perplexity research, ChatGPT script, HeyGen video, Facebook post. See where the 3-minute API cap bit.
+- [Gamma for a Conference Workshop: Deck, Site and PDF Export](https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html): Build a 40-minute workshop deck in Gamma from a ChatGPT outline, add a comparison slide, publish it as a site and export a PDF when Google Slides failed.
+- [Gamma Presentation From a Pasted Plan: Client Coaching Deck](https://www.ai-automation-station.com/guides/gamma-coaching-deck-from-chatgpt-plan.html): Paste a four-day ChatGPT coaching plan into Gamma, set audience, tone and theme, generate a ten-card deck, edit an image with the AI agent and export.
+- [Bluehost AI Assistant: Models, Agents and Plan Costs](https://www.ai-automation-station.com/guides/bluehost-ai-assistant.html): What the $20 Bluehost AI Assistant bundle gave me in one test: four model families, auto routing, web search, image edits and three writing agents.
+- [Claude Code tutorial: install and first task](https://www.ai-automation-station.com/guides/claude-code-for-beginners.html): Claude Code tutorial: install on Mac, Windows or Linux, sign in, learn permissions and CLAUDE.md, and make one small change you can check.
+- [HeyGen AI avatar tutorial: create your first video](https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html): HeyGen AI avatar tutorial: choose stock or custom avatars, record consent, refine your script and voice, check plan limits, and plan API automation.
+- [Codex vs Claude Code: how I use both and route tasks](https://www.ai-automation-station.com/guides/claude-code-vs-codex.html): Codex vs Claude Code in a real setup: which terminal coding agent handles which task, how I keep both safe, and what happens when a usage limit hits.
+- [Test your first AI API request locally](https://www.ai-automation-station.com/guides/first-api-request.html): Run a free local API example, distinguish keys from subscriptions, and diagnose authentication and model errors before connecting an AI agent.
+- [Codex tutorial: make and verify a small code change](https://www.ai-automation-station.com/guides/codex-workflow.html): Practice a Codex workflow on a local API example: inspect the code, add a failure check, review the diff, and verify the result without paid API calls.
+- [What Is AI Automation? Examples, Tools and a First Build](https://www.ai-automation-station.com/guides/ai-automation.html): AI automation explained in plain English: how it works, real examples, which type of tool fits you, and a first AI workflow you can build and check.
+- [Make.com Google Sheets tutorial: filter approved requests](https://www.ai-automation-station.com/guides/make-first-automation.html): Build a small Make.com scenario with Google Sheets: filter sample requests, map approved rows, and check the output before enabling a schedule.
+- [Self-host n8n on Ubuntu: Docker and Node.js setup](https://www.ai-automation-station.com/guides/self-host-n8n.html): Self-host n8n on Ubuntu with Docker or Node.js 24. Create an owner account, test a three-node workflow, and check persistence before adding credentials.
+- [Hermes Desktop: install on Mac, Windows or Linux](https://www.ai-automation-station.com/guides/hermes-desktop.html): Install Hermes Agent with Hermes Desktop on Mac or Windows, or Hermes One on Linux, then connect a model provider and check it with tasks you can verify.
+- [DataForSEO MCP: build an AI SEO agent in Claude Code](https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html): Build an AI SEO agent: connect the DataForSEO MCP server to Claude Code, load its tools, and run a keyword or site query with costs you can check.
+- [Make money with AI with no experience](https://www.ai-automation-station.com/guides/make-money-with-ai-no-experience.html): How to make money with AI with no experience: pick one task, build a small automation on free tiers, and offer it to one person you know.
+- [How to make money with AI fast: the honest path](https://www.ai-automation-station.com/guides/make-money-with-ai-fast.html): How to make money with AI fast: there is no dependable lazy way, but there is an honest fast path. Time and risk costs, scam red flags.
+- [AI side hustles for beginners: 7 services to test](https://www.ai-automation-station.com/guides/ai-side-hustles.html): AI side hustles: 7 ideas judged by skill, cost and time to first client, each with a first test you can run this week. No hype, no income promises.
+- [AI automation agency: sell services to small businesses](https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html): Start an AI automation agency for small businesses: what to offer, discovery, fixed scope, pricing, handover and running several clients.
+- [Make money with ChatGPT: 4 client services](https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html): How to make money with ChatGPT through client work: editing, research, FAQ drafts and assistant setups, with quality checks. See what to offer first.
+- [9Router setup and update command](https://www.ai-automation-station.com/guides/9router-setup.html): 9Router setup: install with npm, the update check that runs on start, skip it with 9router --skip-update, then add a provider on port 20128.
+- [OpenCode Go: pricing, models, limits and setup](https://www.ai-automation-station.com/guides/opencode-go.html): OpenCode Go explained: the $10, $40 and team plans, included models, how the 5-hour, weekly and monthly limits work, setup with /connect, and Go vs Zen.
+- [OpenRouter setup: API key and free models](https://www.ai-automation-station.com/guides/openrouter-setup.html): OpenRouter setup: create an API key, use :free models within daily caps, understand the credit fee, connect Claude Code, and fix 401, 402 or 429 errors.
+- [Kilo Code tutorial: install, free models and first task](https://www.ai-automation-station.com/guides/kilo-code-tutorial.html): Kilo Code tutorial: install the VS Code extension or CLI, choose free, BYOK or paid models, set approvals, run a first task, and see what Kilo Pass costs.
+- [Claude Opus vs Sonnet vs Haiku vs Fable: which to use](https://www.ai-automation-station.com/guides/claude-models-compared.html): Claude Opus 5.5 vs Sonnet 5.5 vs Haiku 5.5 vs Fable 5.1: prices, speed, effort defaults, and which model to pick for coding, agents and bulk work.
+- [Lovable vs Base44 vs Replit: pricing and which to pick](https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html): Lovable vs Base44 vs Replit compared: November 2026 prices, what each free plan allows, how credits are spent, custom domains, and which to pick.
+- [How to install OpenClaw: local, VPS or hosted, safely](https://www.ai-automation-station.com/guides/install-openclaw.html): How to install OpenClaw: the official installer, onboarding, connecting Telegram or WhatsApp, the security settings to check first, and hosted options.
+- [ChatGPT Pro 20x vs 5x vs Plus: 2026 Limits and Codex Credits](https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html): ChatGPT Pro 20x vs 5x vs Plus limits compared: Pro 200 is open again with a higher allowance, what the September pause changed, and Codex credits.
+- [OpenSEO review: setup, data costs and practical limits](https://www.ai-automation-station.com/guides/openseo-review.html): OpenSEO review from Mike’s live demo: hosted and self-hosted setup, DataForSEO costs, and what to check before replacing a paid SEO suite.
+- [What is n8n used for? Real uses and a first workflow](https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html): What n8n is used for: app syncs, webhooks, reports and AI agent steps. See how it works, who it fits, and build a first workflow you can check.
+- [How does agentic AI differ from traditional automation?](https://www.ai-automation-station.com/guides/agentic-ai-vs-traditional-automation.html): Agentic AI picks its own steps toward a goal. Traditional automation follows a fixed path. See the differences, when to use each, and how to combine them.
+- [What is an AI agent? Definition, examples and first build](https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html): An AI agent uses a language model and tools to choose its own steps toward a goal. How agents work, real examples, when not to use one and how to start.
+- [What is MCP? The Model Context Protocol explained](https://www.ai-automation-station.com/guides/what-is-mcp.html): MCP is the open standard that connects AI apps like Claude, ChatGPT and Codex to tools and data. How it works, a first server to try, and how to stay safe.
+- [n8n vs Zapier vs Make: billing, builders and AI agents](https://www.ai-automation-station.com/guides/n8n-vs-zapier-vs-make.html): n8n vs Zapier vs Make compared on hosting, billing units, builder style and AI agents, with vendor sources and a one-hour test to pick yours.
+- [n8n alternatives open source: 5 tools and their licenses](https://www.ai-automation-station.com/guides/n8n-alternatives-open-source.html): Open-source n8n alternatives compared: Node-RED, Activepieces, Windmill, Kestra and Huginn, with license sources and a test to choose one.
+- [No-code AI agent builder: compare n8n, Make, Zapier and more](https://www.ai-automation-station.com/guides/no-code-ai-agent-builder.html): Pick a no-code AI agent builder: n8n, Make and Zapier compared on tools, knowledge and testing, plus OpenAI Agent Builder, Lindy and a test plan.
+- [AI agent workflow: choose tools, add checks, keep control](https://www.ai-automation-station.com/guides/ai-agent-workflow.html): AI agent workflows: define a bounded task, connect only needed tools, validate outputs and require approval before consequential actions.
+- [AI content creation workflow: images, video and audio](https://www.ai-automation-station.com/guides/ai-content-creation-workflows.html): AI content creation for images, video, audio and presentations: plan the deliverable, make a draft, review rights and quality, then export.
+- [Build apps with AI coding agents: a safe first workflow](https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html): Build a small app with an AI coding agent: define the task, inspect the project, work in small changes, run checks and review the diff.
+- [How to choose an AI model for a task](https://www.ai-automation-station.com/guides/choosing-ai-models-for-a-task.html): Choose an AI model with a small test set: compare accuracy, latency, cost, privacy and failure handling on the work you actually need done.
+- [YouTube channel growth workflow: research, publish, learn](https://www.ai-automation-station.com/guides/youtube-channel-growth-workflow.html): YouTube channel workflow: research ideas, package videos, check analytics and improve the next upload without guessing from one metric.
+- [How to use ChatGPT on Linux: web and desktop options](https://www.ai-automation-station.com/guides/chatgpt-linux.html): Use ChatGPT on Linux through the official web app, check the desktop preview requirements, and run a first chat with facts you can verify.
+- [AI Rocket Demo: Three.js Scene and Camera Controls](https://www.ai-automation-station.com/guides/ai-threejs-rocket-demo.html): Build an AI-generated Three.js rocket scene, inspect the HTML preview and add zoom and rotation controls. A fun visual demo, not a flight simulator.
+- [ChatGPT Image Editing: Sketch-to-Scene and Local Edits](https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html): Follow a sketch-to-image composition and a local dog edit in ChatGPT Images, then check object placement, reference fidelity and unintended changes.
+- [Aegis VPN with Claude Code: Build and Test the Client](https://www.ai-automation-station.com/guides/aegis-vpn-claude-code.html): Walk through building Aegis VPN with Claude Code on Linux, then the follow-up tests for imported Proton configs, DNS leak, kill switch, and speed.
+- [Claude Code Task Manager: Scope, Checks and Packaging](https://www.ai-automation-station.com/guides/claude-code-task-manager.html): How I built a free Windows and Linux task manager with Claude Code: the prompt, checking every metric, and what packaging still needs.
+- [CleanYourTV with Claude Code: TCL Setup and Risks](https://www.ai-automation-station.com/guides/cleanyourtv-claude-code.html): How I cleaned up a TCL Android TV with Claude Code and CleanYourTV: debugging access, backups, launcher changes and the buttons that still fail.
+- [Internal Link Audit with Codex: A Reviewed SEO Workflow](https://www.ai-automation-station.com/guides/codex-seo-workflow.html): Run an internal link audit with Codex: give it your research, get a phased plan, review the edits and recheck. The same loop fits most on-page SEO.
+- [CrowdReply MCP with Codex: Citation Data to Review Plans](https://www.ai-automation-station.com/guides/crowdreply-mcp-codex.html): Connect CrowdReply to Codex over MCP, pull AI citation records and turn them into a plan you review, plus what I measured and what I have not yet.
+- [DeepSeek Harness First Test: Setup Errors and Demo Limits](https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html): Get DeepSeek Harness running: the provider errors I hit, the OpenRouter route that worked, and the bugs left in my first generated demo.
+- [Ghostty Config on Debian: Themes and Reload Checks](https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html): Set up Ghostty on Debian: install it, find the config file, switch themes and reload settings, plus the memory use I saw next to Konsole.
+- [Grok 4.7 on OpenRouter: Hermes Model Switch](https://www.ai-automation-station.com/guides/grok-4-7-openrouter.html): Use Grok 4.7 through OpenRouter in Hermes Agent. The walkthrough shows the model picker, a continue turn, and vendor pages as they appeared.
+- [Slow GrokBot credit drain: routines and caps](https://www.ai-automation-station.com/guides/grokbot-credit-usage.html): GrokBot credit usage: one chat per task, wider routine schedules, pause unused jobs, keep on-demand spending off and check remaining credits in Settings.
+- [GrokBot for Beginners: First Bot, Access and Approvals](https://www.ai-automation-station.com/guides/grokbot-for-beginners.html): Set up a narrowly scoped GrokBot workflow, understand the shared box and separate desktops, connect needed services and keep external actions reviewable.
+- [GrokBot job application agent setup](https://www.ai-automation-station.com/guides/grokbot-job-application-agent.html): Set up a GrokBot job-app agent: upload a resume, source remote roles, queue drafts and keep outbound applications for review.
+- [GrokBot for SEO: Audit Bots, Data and Reviewed Fixes](https://www.ai-automation-station.com/guides/grokbot-for-seo.html): Set up a GrokBot SEO audit bot, separate provider data from estimates, and turn its audit into changes you review before they go live.
+- [GrokBot Virtual Office: Build a Custom Agent Dashboard](https://www.ai-automation-station.com/guides/grokbot-virtual-office.html): Build a custom GrokBot office page that shows your agents and approval handoffs at a glance, with the layout fixes and the status sync still to finish.
+- [GrokBot vs Dots: Onboarding, Job Drafts and Permissions](https://www.ai-automation-station.com/guides/grokbot-vs-dots.html): Dots vs GrokBot for job hunting: onboarding, job drafts and permissions side by side, and why my test drafted applications but submitted none.
+- [Herdr Desktop Guide: Setup, Workspaces and Limits](https://www.ai-automation-station.com/guides/herdr-desktop-app.html): Set up the Herdr desktop app: themes, session resume and side-by-side coding agents, plus its lifecycle limits and the memory use I saw.
+- [Install Herdr on Windows: PowerShell, Mods and Insights](https://www.ai-automation-station.com/guides/herdr-on-windows.html): Install Herdr on Windows with the official PowerShell line, add gallery mods from a prompt, and open the Insights token dashboard.
+- [Herdr Terminal Guide: Workspaces and Coding-Agent Sessions](https://www.ai-automation-station.com/guides/herdr-guide.html): Organize coding agents in the Herdr terminal, use the documented installer and distinguish background sessions from desktop-app behavior.
+- [Jev AI with Coding Agents: Skills, Access and Routed Tests](https://www.ai-automation-station.com/guides/jev-skills-router-setup.html): Install TypeSafe Jev skills in your coding agent, set up access and test a routed request, then check what actually came back.
+- [Meta Muse Code Setup: API Failure and a Working CLI](https://www.ai-automation-station.com/guides/muse-code-setup.html): Get Meta’s Muse Wonder running in a coding agent: why my OpenCode API route failed, how to install Muse Code, and which plan includes which model.
+- [OpenDesign (Open Design) on Linux: Source Setup and Slides](https://www.ai-automation-station.com/guides/opendesign-linux-slides.html): Run OpenDesign (Open Design) from source on Linux, fix the Corepack and dependency errors, and export an HTML slide deck.
+- [REA Coding-Agent Case: A Video-Editor Prototype](https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html): Build a browser video-editor prototype with REA: the setup command, what worked after hours of agent time, and the playback and effects bugs left.
+- [GrokBot WordPress Workflow: Long-Form Videos to Drafts](https://www.ai-automation-station.com/guides/run-a-blog-with-grokbot.html): Turn long-form video sources into reviewable WordPress drafts, separating connector access, recurring writing, publication approval and subscriber emails.
+- [Trakkr and Codex: AI Visibility, Crawlers and Visits](https://www.ai-automation-station.com/guides/trakkr-codex-visibility-workflow.html): Track how AI assistants see your site with Trakkr and Codex, and tell AI visibility, crawler hits, citations and real visits apart.
+- [Treg in GrokBot: Connect Data Tools and Control Costs](https://www.ai-automation-station.com/guides/treg-inside-grokbot.html): Connect Treg data tools inside GrokBot for SEO reports, see what each call costs, and approve paid data requests before they run.
+- [Rank Prompt AI Visibility: Scan, MCP and Fixes](https://www.ai-automation-station.com/guides/rank-prompt-ai-search-visibility.html): Run a Rank Prompt visibility scan, track prompts across AI answers, connect the MCP in Claude Code, and review the recorded content and outreach steps.
+- [VisiScan AI Visibility: Free Scan and Report](https://www.ai-automation-station.com/guides/visiscan-ai-visibility-audit.html): Run a VisiScan domain scan, read readiness and visibility scores, and review sitemap, robots.txt and llms.txt checks. Mike owns VisiScan.
+- [Semrush MCP: AI Visibility and Keyword Gaps](https://www.ai-automation-station.com/guides/semrush-mcp-ai-visibility.html): Connect Semrush to a coding agent over MCP, read AI visibility and citation data, then turn keyword and backlink gaps into a plan you review.
+- [AI Visibility Tracker: SaaS Build Log](https://www.ai-automation-station.com/guides/ai-visibility-tracker-saas-build.html): Follow a recorded SaaS build of an AI visibility tracker: landing page, DataForSEO MCP data, GEO files and a Stripe pricing page draft.
+- [OpenCode SEO Audit Skills: Site Checks and Files](https://www.ai-automation-station.com/guides/opencode-seo-audit-skills.html): Run OpenCode SEO audit skills on a live site, generate llms.txt and sitemap files, and note plan limits shown in my walkthrough.
+- [Token Usage Dashboard: ccusage, RTK and Costs](https://www.ai-automation-station.com/guides/ai-token-usage-dashboard.html): Build a local token-usage dashboard with ccusage, compare daily costs, and check RTK and Caveman savings this walkthrough showed.
+- [RTK Token Savings: Install, Hooks and Checks](https://www.ai-automation-station.com/guides/rtk-token-savings-claude-code.html): Install RTK with curl or Homebrew, add hooks in Claude Code and Codex, then run rtk gain to read the savings this walkthrough showed.
+- [9Router Cost Tracking: Combos and Fallbacks](https://www.ai-automation-station.com/guides/9router-cost-tracking-fallbacks.html): Track 9Router token cost, set model combos and auto-fallback across paid, cheap and free models, and read weekly quota from this walkthrough.
+- [ZCode GLM Desktop: Install, Plans and Review](https://www.ai-automation-station.com/guides/zcode-glm-desktop-app.html): Install Z.ai's ZCode desktop app for GLM 5.2 on Linux, review the plans shown on camera, and run a local site review from the terminal.
+- [Claude Fable 5 Games: Prompts and Plugins](https://www.ai-automation-station.com/guides/claude-fable-5-game-prompts.html): Use Claude Fable 5 to build a small game: effort modes, Compound Engineering, plan mode and the prompt briefs shown in my walkthrough.
+- [Claude Code Second Brain: Cortex Project Tour](https://www.ai-automation-station.com/guides/claude-code-second-brain.html): Walk through Cortex, a Claude Code second-brain project: markdown files, Radar, theme graph, VidIQ MCP and the limits shown on camera.
+- [Claude Code Video Editor Skill: Build and Run](https://www.ai-automation-station.com/guides/claude-code-video-editor-skill.html): Follow the recorded video-editor skill for Claude Code: the prompt loop, guardrails, confidence checks and the command used to run it.
+- [Install Supermemory on Hermes Agent](https://www.ai-automation-station.com/guides/hermes-agent-supermemory.html): Install Supermemory on Hermes Agent, add the API key, test a memory write, then connect the same plugin in OpenCode and Codex.
+- [Hermes backlink outreach pipeline](https://www.ai-automation-station.com/guides/hermes-backlink-outreach-pipeline.html): Build a Hermes outreach pipeline with Firecrawl, Hunter.io and Mailgun, keep sends gated, and read the delivery numbers from this walkthrough.
+- [Codex CLI install: Mac, Windows and Linux](https://www.ai-automation-station.com/guides/codex-cli.html): Codex CLI install on Mac, Windows or Linux with the official installer, npm or Homebrew. Sign in with ChatGPT, update it and run a first task.
+- [Build a Chat Web App in Google AI Studio, No Code](https://www.ai-automation-station.com/guides/google-ai-studio-chat-app.html): Build a ChatGPT-style web app in Google AI Studio build mode, connect the OpenAI API, then see what deploying needs. Notes from an October 2025 recording.
+- [OpenCode Stripe Billing Build: A SaaS Case Study](https://www.ai-automation-station.com/guides/opencode-stripe-billing-saas.html): Watch OpenCode add Stripe subscription pages to a SaaS app, fix a Prisma and missing-dependency build, and see what was not tested.
+- [n8n Social Post Template: Trends, Research, Posting](https://www.ai-automation-station.com/guides/n8n-social-media-agent-template.html): Import n8n’s multi-social post template, test the Google Trends and keyword steps, and see why the Perplexity and posting steps still failed.
+- [n8n WhatsApp AI agent setup guide](https://www.ai-automation-station.com/guides/n8n-whatsapp-ai-agent.html): Build the two-part n8n WhatsApp reply workflow: the trigger, an AI agent on OpenRouter, the Meta app setup, and the verification error left unresolved.
+- [Make.com Course: Sheets, OpenAI, Airtable, Facebook](https://www.ai-automation-station.com/guides/make-com-beginner-course-scenarios.html): Follow a Make.com beginner course: a Sheets to Gmail template, an OpenAI, Airtable and Facebook scenario with its errors, and an Apollo lead scraper.
+- [Make.com business automation examples](https://www.ai-automation-station.com/guides/make-business-automation-examples.html): Make.com business automations from one recording: an email reply, community members to an email list, Messenger, Instagram, cold email and lead scraping.
+- [ChatGPT Thumbnails: Audit CTR and Redesign](https://www.ai-automation-station.com/guides/chatgpt-thumbnail-ctr-pipeline.html): Audit channel thumbnail CTR, note brightness and contrast targets from this walkthrough, then run the master prompt in ChatGPT Images.
+- [AI Income Lab pricing in plain markdown](https://www.ai-automation-station.com/pricing.md): plans, billing, what each plan includes and what coaching covers.
+- [Everything in one file](https://www.ai-automation-station.com/llms-full.txt): this file, the pricing page and every written guide's quick answer.
+- Support: automojic@proton.me
+
+---
+
+# Pricing: AI Income Lab by Mike Holp
+
+Reviewed November 12, 2026. AI Income Lab is the paid learning community on Skool (skool.com/ai-automation-station-7346). Prices are in USD and are charged by Skool. This site never sees payment details. Check the Skool plans page for current prices: https://www.skool.com/ai-automation-station-7346/plans
+
+## Plans
+
+| Plan | Monthly | Yearly | Best for |
+|---|---|---|---|
+| Standard | $29 | $290 | Self-directed learners building their first workflows and unlocking lessons as they participate |
+| Premium | $49 | $490 | Builders ready to make automations, voice agents and avatar videos with immediate course access |
+| VIP | $89 | $890 | Builders who want weekly group help with their projects and reusable n8n workflows |
+
+Cancel before the next billing period from your Skool account.
+
+## What each plan includes
+
+- Standard: community, courses and tutorials; Beginner's Automation Course (unlocks at Skool level 2); VAPI AI Voice Agent Course (unlocks at level 4).
+- Premium: everything in Standard, immediate access to the Beginner's Automation Course and the VAPI AI Voice Agent Course, and the Complete AI Avatar Video Course.
+- VIP: everything in Premium, weekly live group coaching and Q&A, the Ultimate N8N Template Library (6,400+ workflows), and software deals.
+
+## Limits and scope
+
+- Coaching is weekly group coaching and Q&A for members implementing what they learn. Custom business implementation is separate and is not included in membership. Ask about project scope before joining.
+- No income is guaranteed.
+
+## Free without joining
+
+All written guides (https://www.ai-automation-station.com/guides.html) and YouTube videos are free and need no Skool login. The tools used in the guides may need their own accounts or charge for usage.
+
+## Other products by Mike Holp
+
+- VisiScan (https://visiscan.app): free scan with no signup; full report $49 once; weekly monitoring from $29 a month.
+- TubeAnalytics (https://www.tubeanalytics.net): YouTube analytics for creators; 7-day trial with a card required; Starter $19, Professional $49 and Enterprise $149 a month.
+
+---
+
+## Every written guide, with its quick answer
+
+### 9Router Cost Tracking: Combos and Fallbacks
+https://www.ai-automation-station.com/guides/9router-cost-tracking-fallbacks.html (updated 2026-11-14)
+On 9 July 2026, 9Router ran as a local proxy so OpenCode token use and estimated cost stayed visible, with model combos, auto-fallback from subscription to cheap to free, and weekly quota on the same dashboard. Install is on the 9Router setup guide.
+
+### 9Router setup and update command
+https://www.ai-automation-station.com/guides/9router-setup.html (updated 2026-11-14)
+9Router is a gateway between your coding tools and their model providers. It gives Claude Code, Codex and similar tools one OpenAI-compatible endpoint, http://localhost:20128/v1, plus a dashboard for providers, keys, model combos and usage. Install it with npm install -g 9router, add one provider and verify one request before adding fallbacks. The default port is 20128; start it with 9router --port 8080 to change it. The CLI checks for updates each time it starts, and Docker users update with docker pull decolua/9router:latest.
+
+### How does agentic AI differ from traditional automation?
+https://www.ai-automation-station.com/guides/agentic-ai-vs-traditional-automation.html (updated 2026-11-13)
+Traditional automation follows a path you drew in advance. Agentic AI is handed a goal and a set of tools, and it decides which steps to take. That difference changes how you build, test and trust the system.
+
+### Aegis VPN with Claude Code: Build and Test the Client
+https://www.ai-automation-station.com/guides/aegis-vpn-claude-code.html (updated 2026-11-19)
+Aegis VPN is Mike's WireGuard desktop client, built with Claude Code in Herdr on a Tauri and Rust stack. The first video covers the ChatGPT research, the plan, and an early Linux compile. The next-day follow-up shows a public GitHub repo, imported free Proton test server configs, and the leak, kill switch, and speed checks he ran. The app was Linux-only in that recording. Mike said it was not 100% secure yet. This is one combined guide because the two videos are the same project, not two separate VPN products.
+
+### AI agent workflow: choose tools, add checks, keep control
+https://www.ai-automation-station.com/guides/ai-agent-workflow.html (updated 2026-11-14)
+an agent workflow uses a model to choose among steps or tools toward a goal. Start with one bounded task, give it only the tools and data needed, validate its output, and require approval before it sends messages, changes records, spends money or publishes content.
+
+### AI automation agency: sell services to small businesses
+https://www.ai-automation-station.com/guides/ai-automation-services-small-business.html (updated 2026-11-11)
+Sell one recurring task as a fixed deliverable. Run discovery first, agree acceptance checks before you build, make the record flow work before adding any AI step, price on effort, scope and value, and hand over documentation with a maintenance plan. Skip vague “AI transformation” offers: neither you nor the owner can tell when they are finished.
+
+### What Is AI Automation? Examples, Tools and a First Build
+https://www.ai-automation-station.com/guides/ai-automation.html (updated 2026-11-11)
+AI automation combines rules-based automation with an AI step that classifies, extracts, drafts or decides inside a workflow, so an incoming event can become a checked result and a useful action without someone manually copying information between every stage of the process.
+
+### AI content creation workflow: images, video and audio
+https://www.ai-automation-station.com/guides/ai-content-creation-workflows.html (updated 2026-11-14)
+use AI to draft or transform content, then review every output before publishing. Start with the audience and format, prepare the source material, generate one small draft, check accuracy and rights, and export only after a person approves it.
+
+### AI side hustles for beginners: 7 services to test
+https://www.ai-automation-station.com/guides/ai-side-hustles.html (updated 2026-11-11)
+Pick a small service whose output you can check yourself: lead intake, follow-up drafts, recurring reports, spreadsheet cleanup, FAQ drafts, specialist editing or workflow documentation. Judge each by the skill it needs, its startup cost and the time to a first client, then test the closest one this week before paying for tools. None of these are earnings claims.
+
+### AI Rocket Demo: Three.js Scene and Camera Controls
+https://www.ai-automation-station.com/guides/ai-threejs-rocket-demo.html (updated 2026-11-11)
+Start from a source prompt you can read, generate a single-file rocket scene, inspect the HTML preview, then add zoom and rotation. The original prompt is not reproduced here. What I built is a visual coding exercise, not a physics-validated simulator, and the camera controls are the part you can learn from and reuse.
+
+### Token Usage Dashboard: ccusage, RTK and Costs
+https://www.ai-automation-station.com/guides/ai-token-usage-dashboard.html (updated 2026-11-14)
+On 3 August 2026, ccusage was installed with the npx quick start, then a local Python dashboard showed daily, weekly and monthly token use. RTK showed 35 million tokens saved. Those figures are from that recording, not a live invoice.
+
+### AI Visibility Tracker: SaaS Build Log
+https://www.ai-automation-station.com/guides/ai-visibility-tracker-saas-build.html (updated 2026-11-12)
+This is a 6 July 2026 build log of Beacon, an MVP AI visibility tracker. The walkthrough shows a landing page, Clerk login, a dashboard of metrics that were not interactive yet, DataForSEO live data, GEO bot files and a Stripe pricing page draft. It did not show a launched product or revenue.
+
+### Bluehost AI Assistant: Models, Agents and Plan Costs
+https://www.ai-automation-station.com/guides/bluehost-ai-assistant.html (updated 2026-11-15)
+The Bluehost AI Assistant bundles ChatGPT, Gemini, Claude and Grok models in one dashboard. In a sponsored May 2026 test, the AI All Access Pack was $20 a month and Privacy Plus was $25. The test covered Auto routing, web search, image generation and editing with ChatGPT Images 2.0, and three agents: a research assistant, an SEO article writer and a presentation builder that exports PowerPoint. Usage limits and renewal pricing were not tested.
+
+### Gamma Presentation From a Pasted Plan: Client Coaching Deck
+https://www.ai-automation-station.com/guides/gamma-coaching-deck-from-chatgpt-plan.html (updated 2026-11-15)
+A March 2026 Gamma build: paste a four-day ChatGPT coaching plan as notes, choose Presentation, set ten cards, concise text, audience, tone and a light theme, let Gamma pick line art images, generate in about three minutes, edit an image with the AI agent and export to Google Slides. Quoted plans: Plus $12, Pro $25, Ultra $100 a month.
+
+### Gamma for a Conference Workshop: Deck, Site and PDF Export
+https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html (updated 2026-11-15)
+An October 2025 Gamma build of a 40-minute workshop deck: paste a ChatGPT outline, keep the fluid format, choose concise text and a professional theme, generate, improve the writing, add an n8n versus Make.com slide, publish as a site and export a PDF after Google Slides export failed. Paid plans started around $10 a month then.
+
+### Make.com Content Machine: Airtable, Perplexity and HeyGen
+https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html (updated 2026-11-15)
+A July 2025 Make.com scenario for avatar videos. It reads one to-do topic from Airtable, researches with Perplexity Sonar, writes a script with a custom ChatGPT assistant, creates a HeyGen video, waits, uploads to a Facebook page and updates Airtable. The HeyGen API capped videos near three minutes on the plan used, so the video was rendered manually to finish the demo.
+
+### HeyGen, ElevenLabs and Make.com: AI Avatar Videos
+https://www.ai-automation-station.com/guides/heygen-elevenlabs-make-course.html (updated 2026-11-15)
+A July 2025 course recording on HeyGen avatar videos. It trains a hyperrealistic HeyGen avatar from about two minutes of footage plus a consent clip, adds a HeyGen or ElevenLabs voice clone through an API key, and builds a Make.com scenario that reads topics from Airtable, researches in Perplexity, writes a script with an OpenAI assistant, renders in HeyGen and uploads to YouTube. The scenario failed on the HeyGen API limit of 180 seconds per video on the plan used.
+
+### HeyGen and Make.com: Script, Render and Upload to YouTube
+https://www.ai-automation-station.com/guides/heygen-make-youtube-automation.html (updated 2026-11-15)
+A July 2025 build with two Make.com scenarios. The first sends a topic to an OpenAI assistant for a script and passes it to HeyGen with an avatar ID, cloned voice and friendly emotion; videos rendered at 720p. The second watches for new HeyGen videos, downloads the file and uploads it to YouTube as unlisted. A resolution-not-allowed error was bypassed by hardcoding the video ID.
+
+### Make.com AI Agent: Tally Form Replies and Where It Stalled
+https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html (updated 2026-11-15)
+A July 2025 first attempt at a Make.com AI agent for Tally form replies. The agent used Claude 3.7 with a short system prompt and an email tool, and was triggered by form submissions. It identified who wanted a call and drafted a reply, but could not send it because scenario inputs were unavailable on the plan used.
+
+### Make.com Faceless Videos: JSON2Video and Auto-Posting
+https://www.ai-automation-station.com/guides/make-faceless-video-json2video.html (updated 2026-11-15)
+A June 2025 Make.com scenario for faceless videos. It reads to-do topics from Airtable, writes a script with OpenAI, renders a 720 by 1280 vertical video with the JSON2Video toolbox, saves the URL to Airtable, downloads the file and posts to Facebook and YouTube through a router. The resolution was lowered to fit the free plan’s 5 MB file cap.
+
+### Make.com Gmail Auto-Reply: Watch, Write and Send With AI
+https://www.ai-automation-station.com/guides/make-gmail-ai-auto-reply.html (updated 2026-11-15)
+A July 2025 Make.com build for AI email replies. A Gmail module watches unread inbox messages, an OpenAI completion with four messages writes a reply from the email text, a sleep step adds a delay and a send-email module replies and saves a copy to Sent. The walkthrough advises unlinking the send step and reading drafts before sending to real contacts.
+
+### Make.com YouTube Description Updater: Airtable and Transcripts
+https://www.ai-automation-station.com/guides/make-youtube-description-updater.html (updated 2026-11-15)
+An August 2025 Make.com scenario that updates YouTube descriptions. It reads to-do rows from Airtable one at a time, fetches the transcript with Dumpling AI, asks an OpenAI assistant to write an SEO description from a template, updates the video with the YouTube module and marks the row done, on a five-minute schedule. Titles are unchanged; an OpenAI quota error was fixed with a $6 top-up.
+
+### Skool Classroom Tour: Free Lessons and Paid Upsells
+https://www.ai-automation-station.com/guides/skool-classroom-upsell-tour.html (updated 2026-11-15)
+A June 2025 tour of a two-week-old free Skool community: introductions, a start-here module, free tutorials and how-tos, and paid items such as a $39 beginner course, a $97 template pack and a $197 n8n agent pack. The author reports about $500 in upsells against Skool's $99 monthly fee; these are his own early figures.
+
+### Skool Community Setup: Pricing, About Page and Classroom
+https://www.ai-automation-station.com/guides/skool-community-setup-guide.html (updated 2026-11-15)
+A September 2025 tour of starting a Skool community: Hobby ($9 a month, 10% fee) versus Pro ($99, 2.9%), Discovery, pricing, membership questions, posts, member management, the About page and a classroom with free and paid modules. About $700 in one-time sales over three months was reported; income examples shown were not verified.
+
+### A Free Skool Community: What I Did in the First Two Weeks
+https://www.ai-automation-station.com/guides/skool-free-community-first-weeks.html (updated 2026-11-15)
+A June 2025 account of launching a free Skool community about Make.com automations: promotion on Facebook, YouTube and an email list, 160 members in two weeks, a page-six tech ranking, and paid templates, a course and $150-an-hour consultations. The author reports about $300 earned against Skool's $99 monthly plan; figures are his own.
+
+### Skool $9 Hobby Plan vs Pro: Fees, Admins and Limits
+https://www.ai-automation-station.com/guides/skool-hobby-plan-review.html (updated 2026-11-15)
+A July 2025 comparison of Skool's $9 Hobby plan with the $99 Pro plan. Hobby had one admin and a 10% transaction fee and lacked a custom URL, plugins, sidebar links and the Facebook pixel; Pro had unlimited admins and a 2.9% fee. The walkthrough downgraded two communities to Hobby and describes email capture, a 14-day trial and Discovery activity.
+
+### Skool Membership Tiers: Free, Premium and VIP Setup
+https://www.ai-automation-station.com/guides/skool-membership-tiers.html (updated 2026-11-15)
+An October 2025 walkthrough of Skool membership tiers. In Settings then Pricing, set a free level and one or two paid upgrades. The community used free, premium at $29 a month and VIP at $89 a month, with 20% off annual, and locked classroom modules and calls by tier. Hobby was $9 a month with a 10% fee and Pro $99 with 2.9%, as stated then.
+
+### Skool Welcome Emails With Zapier, Make.com and EmailOctopus
+https://www.ai-automation-station.com/guides/skool-welcome-email-automation.html (updated 2026-11-15)
+A July 2025 build for welcoming Skool members. Skool had no public API, so its Zapier integration writes each new member to a Google Sheet; a Make.com scenario watches the sheet and adds people to EmailOctopus, which sends a three-email sequence. Membership questions stopped working once the community was paid, so the Zap switched to a new paid member trigger.
+
+### Syllaby Bulk Scheduler: A Week of Faceless Videos at Once
+https://www.ai-automation-station.com/guides/syllaby-bulk-scheduler-faceless-videos.html (updated 2026-11-15)
+An August 2025 Syllaby tutorial: the dashboard and analytics, creating a faceless video with style, subtitles and voice, a script assistant that errored several times before working, and a bulk scheduler that generates 7 to 30 days of scripts and videos and schedules up to five posts a day. Quoted: 13 credits per minute and 500 credits a month on the paid plan from about $25 a month.
+
+### Syllaby First Test: A Faceless Video From Idea to YouTube
+https://www.ai-automation-station.com/guides/syllaby-faceless-video-first-test.html (updated 2026-11-15)
+A first live test of Syllaby on a free trial. Choose a faceless video, set style, subtitles, a voice, portrait mode and a length under a minute (the trial had about 50 credits), write a custom topic in the script assistant, add music, render in about three minutes and publish to YouTube from Syllaby. Paid plan was about $25 a month for 500 credits. Results and script facts were not checked.
+
+### vidIQ MCP in Claude: Channel Audit and Idea Checks
+https://www.ai-automation-station.com/guides/vidiq-mcp-claude-channel-audit.html (updated 2026-11-15)
+A May 2026 setup of the vidIQ MCP in Claude Desktop: add a connector with the vidIQ MCP server URL, then run video idea validation, a full channel audit and a competitor breakdown using real data. The first channel health check returned the wrong channel until the channel ID was pasted in. The video was not sponsored by vidIQ.
+
+### Apify Agent Skills: Scrape Klook Hotels With Claude Code
+https://www.ai-automation-station.com/guides/apify-klook-hotel-scraper-claude-code.html (updated 2026-11-15)
+A February 2026 sponsored build: install Apify agent skills with npx skills add apify/agent-skills, ask Claude Code to scrape Klook for luxury hotels in Koh Samui, pass the direct Klook URL after Disney results, add check-in dates to get prices, and let Claude write a Playwright scraper that saved about 49 hotels. Check a site’s terms before scraping.
+
+### Install OpenClaw (Moltbot) on Emergent: Setup and WhatsApp Snag
+https://www.ai-automation-station.com/guides/emergent-openclaw-install.html (updated 2026-11-15)
+A February 2026 walkthrough of installing OpenClaw (Moltbot) inside Emergent: click the Moltbot chip, run the install script, sign in with Google, choose the preconfigured Opus 4.5 and open the control UI. Publishing the server cost 50 credits a month as stated. Skills were installed, but WhatsApp failed with a channel config schema unavailable error.
+
+### Manus AI First Test: Calendar, Gmail and an Email Autoresponder
+https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html (updated 2026-11-15)
+A January 2026 first test of Manus on the free Manus 1.6 Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder with a Python script, add OpenAI and Gemini keys and switch to Gemini. A calendar delete did not work and a SaaS build was too complex for Lite.
+
+### Self-Host n8n on Hostinger: KVM Plan, Template and First Import
+https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html (updated 2026-11-15)
+An October 2025 walkthrough of n8n on a Hostinger VPS: choose a KVM plan (KVM 1 was $5 a month), a one-month term, a nearby server location and the n8n template with 100 workflows ($10.69 first month), set a root password, open n8n with Manage App, claim the free license key and import a template. Backups and hardening were not covered.
+
+### Apollo B2B Lead Lists and the Apify Apollo Scraper
+https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html (updated 2026-11-15)
+A September 2025 Apollo walkthrough: filter verified emails, founder and CEO titles and company size to go from about 2 million people to 3,700, save lists 25 at a time on the free plan, export up to thousands of leads with an Apify Apollo actor at about $1.20 per 1,000, and review an email sequence and deliverability settings. Cold-email laws and terms were not covered.
+
+### Build a Web App in Replit: Viral Post Genie, Errors and Limits
+https://www.ai-automation-station.com/guides/replit-viral-post-genie-build.html (updated 2026-11-15)
+An August 2025 build of a Facebook post generator in Replit: paste a ChatGPT-written prompt, add an OpenAI key, fix max-tokens, JSON-format and 500 errors by switching to GPT-4, add a numbered thread format, demo popup, images, history and Google sign-in on a temporary Postgres database. The starter plan limit stopped the work and deploying needs a paid plan.
+
+### Nano Banana in Google AI Studio: Free Images and a Make.com Quota Error
+https://www.ai-automation-station.com/guides/nano-banana-gemini-images-make.html (updated 2026-11-15)
+An August 2025 tour of Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app: character consistency, intelligent editing and image merging, with images generating in under ten seconds. A Make.com Gemini module failed with an exceeded quota error because billing was not linked on the Google Cloud project.
+
+### Lovable Landing Page: Cal.com Booking, Stripe and a Custom Domain
+https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html (updated 2026-11-15)
+A July 2025 build of an agency landing page: one ChatGPT prompt run in Replit, Lovable and Orchids, then in Lovable add a Cal.com booking button and popup, Supabase, Stripe products and a domain, and publish in under an hour. Stripe was only partly working: page prices differed from Stripe products and buttons still led to account creation.
+
+### OpenCode Desktop App: Build a Habit Tracker With React and Electron
+https://www.ai-automation-station.com/guides/opencode-desktop-habit-tracker-electron.html (updated 2026-11-15)
+A May 2026 build in the OpenCode desktop app on Debian: pick a free Zen model, use plan mode, choose React and Electron for a daily habit tracker, switch to MiniMax M2.5 for speed, fix a white screen by setting a relative Vite base and add local storage so habits persist.
+
+### Free Claude Code vs OpenCode vs Codex: What Broke and What Worked
+https://www.ai-automation-station.com/guides/free-claude-code-vs-opencode-codex.html (updated 2026-11-15)
+A May 2026 account of moving from Free Claude Code to OpenCode and Codex while building a local Next.js AI visibility app: repeated API request errors, slow replies and a 401 caused by starting the proxy and Claude Code in the wrong order. OpenCode answered quickly on free models and Codex at about $20 a month was preferred over Claude Pro. One person’s experience, not a benchmark.
+
+### Emergent Website Build: An Agency Site From One ChatGPT Prompt
+https://www.ai-automation-station.com/guides/emergent-saas-agency-website.html (updated 2026-11-15)
+A September 2025 Emergent build of an automation agency site: ChatGPT writes the prompt, GPT-5 is chosen with a credit budget, the agent asks about design and scheduling, then prompts add a CMS, contact form and booking popup, and one prompt fixes a broken contact button. Compared with an earlier Lovable build.
+
+### Odysseus AI Workspace: Install on Linux and Try It Locally
+https://www.ai-automation-station.com/guides/odysseus-ai-self-hosted-workspace.html (updated 2026-11-15)
+A June 2026 test of Odysseus, a free self-hosted AI chat workspace: clone the repository, create a Python virtual environment, install requirements, start on localhost, add OpenRouter, OpenCode and OpenAI keys, then try chat, agent mode, model comparison and an email digest task. The shell tool and local models were not set up, and Gmail took several tries.
+
+### Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs
+https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html (updated 2026-11-15)
+An April 2026 first look at Pi, a minimal open-source terminal coding agent: install with one npm command, log in with an OpenRouter key, run a site audit, read session cost with the session command, connect Google Cloud Code Assist, and hit slow runs, a negative balance and a Gemma 4 rate limit. The author preferred OpenCode.
+
+### Facebook Messenger Auto-Replies With Make.com and ChatGPT
+https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html (updated 2026-11-15)
+A July 2025 Make.com build for Messenger: a scenario that watches messages through a webhook and verify token, writes a reply with OpenAI and sends it back, plus the Meta developer app, page access token and webhook setup. A failed webhook check was fixed with a new webhook. Going live needs pages messaging permission and business verification, which was pending.
+
+### OpenCode Skill That Trims Long Videos Into Shorts
+https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html (updated 2026-11-15)
+A May 2026 OpenCode build: a custom skill that transcribes a long video with Faster Whisper, finds a hook and cuts filler words into a 1.5 to 2.5 minute 16x9 highlight (about five minutes of CPU for a 10-minute video), converts it to a 9x16 Short in under 30 seconds with the talking head stacked below, and burns in animated subtitles. Free Qwen 3.6 model; subtitles needed polish.
+
+### Claude SEO Skill: Audit and Fix a Site From Claude Code
+https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html (updated 2026-11-15)
+A February 2026 run of the free Claude SEO skill in Claude Code: install with one curl command, audit tubeanalytics.net, make a SaaS plan, approve fixes to canonicals, titles and 404s, rewrite the sitemap and robots file, and run a GEO analysis. The work used up the Claude Pro limit twice and interrupted the full audit.
+
+### Build an OpusClip-Style Web App With OpenCode: Short Forge
+https://www.ai-automation-station.com/guides/opusclip-clone-app-opencode.html (updated 2026-11-15)
+A May 2026 build log of Short Forge, a local OpusClip-style web app made in OpenCode: a prompt written in Claude Desktop scaffolds workers, API routes, Clerk sign-up, Prisma, Postgres and FFmpeg rendering. Build, Postgres and storage errors were fixed and S3 was replaced with local storage. The app was unfinished with no clips shown.
+
+### Vapi Outbound AI Caller: Twilio, Make.com and Google Sheets
+https://www.ai-automation-station.com/guides/vapi-outbound-ai-caller-make-twilio.html (updated 2026-11-15)
+A July 2025 course on an outbound Vapi voice agent: an appointment-scheduler assistant with OpenAI and an ElevenLabs voice clone, a Twilio number imported into Vapi, and a Make.com scenario that dials Google Sheets leads, marks rows called and books Google Calendar slots. Vapi's own outbound campaign feature did not work. Consent and call laws were not covered.
+
+### WhatsApp AI Voice Clone in Make.com: Texts and Voice Memos
+https://www.ai-automation-station.com/guides/whatsapp-ai-voice-clone-make.html (updated 2026-11-15)
+A June 2025 Make.com course: answer WhatsApp texts and voice memos with an OpenAI assistant trained on YouTube transcripts and reply with an ElevenLabs voice clone. A router filters text and audio, a second scenario builds the knowledge base from Google Sheets, Dumpling AI and Google Drive, and Meta for Developers supplies the WhatsApp token. Tested with a hardcoded test number.
+
+### DextroLab: A White-Label Client Portal for Make.com and n8n
+https://www.ai-automation-station.com/guides/dextrolab-white-label-automations.html (updated 2026-11-15)
+An August 2025 walkthrough of DextroLab, a client portal for agencies: connect Make.com or n8n with an API key, deliver a workflow to a client for approval, and bill through Stripe with a per-run fee, monthly base fee and one-time setup fee (example $0.05, $100 and $250). A custom variables node failed with an unauthorized error and was removed.
+
+### Hermes Agent Cron Job: YouTube Video to LinkedIn Posts
+https://www.ai-automation-station.com/guides/hermes-youtube-to-linkedin-cron.html (updated 2026-11-15)
+A May 2026 build: ask Hermes Agent for a Python script that finds the newest YouTube video and writes two LinkedIn post versions and a newsletter of at least 1,500 words, move the edits to OpenCode and the OpenAI API, fix a max_tokens error, date-stamp the outputs and run it as a daily Hermes cron job. Posting is manual.
+
+### Make.com Lead Scraper: Apify Apollo Actor to Google Sheets
+https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html (updated 2026-11-15)
+A June 2025 Make.com build: create a Google Sheet, run an Apify Apollo actor with an Apollo search URL and a 100-lead limit, read the dataset items, map name, email, phone, industry and location, and add one row per lead. A sheet-name clash was fixed and the phone column came back wrong. Scraping terms and cold-email rules were not covered.
+
+### Hermes Agent Cron Jobs: Move Them to Vercel With Reports
+https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html (updated 2026-11-15)
+A June 2026 build: set up cron jobs in the Hermes Agent desktop app, switch limited jobs to Big Pickle with DeepSeek V4 Pro fallback, have Hermes build a broken-link checker and blog digest with Resend email reports, then use Codex to move both to Vercel cron in vercel.json (Monday 7:00 UTC and Tuesday 5:00). Local jobs need the computer awake.
+
+### Free Agent Skills for SEO: Install and Run in Kilo Code
+https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html (updated 2026-11-15)
+An April 2026 walkthrough: install free agent skills with npx skills add, target Claude Code and Kilo Code, then run image optimization, Core Web Vitals, IndexNow (submit all URLs to Bing with npx tsx), schema and Search Console monitoring skills on a real site. A PageSpeed retest showed about the same speed, Core Web Vitals still failing and desktop at 97.
+
+### Make.com News-to-Video Autoposter: RSS to Social Posts
+https://www.ai-automation-station.com/guides/make-news-to-video-autoposter.html (updated 2026-11-15)
+An October 2025 Make.com scenario: read one RSS item, summarize it with Perplexity Sonar, have ChatGPT write a scene-based video script, render it in JSON2Video at 720p, fetch the file, write the post text and post to Facebook, Instagram and YouTube with a router. The demo stopped when JSON2Video credits ran out.
+
+### Wrap Odysseus in an Electron Desktop App With an AI Agent
+https://www.ai-automation-station.com/guides/odysseus-electron-desktop-app.html (updated 2026-11-15)
+A June 2026 build: ask Odysseus with DeepSeek V4 Pro to create an Electron desktop wrapper for itself (FastAPI backend plus static UI), finish a stalled npm install with Codex and the terminal, and run it in its own window at about 2.3 GB of memory. The build took about 15 minutes and 31 cents of OpenCode credits.
+
+### Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost
+https://www.ai-automation-station.com/guides/kimi-k2-7-code-opencode-test.html (updated 2026-11-15)
+A June 2026 first-day test of Kimi K2.7 Code in OpenCode: a codebase-only site audit and fixes (www canonical, robots.txt, about 1,700 URL replacements). The audit cost close to half of a full day of DeepSeek V4 Pro, total spend was about 3 USD and the OpenCode Go monthly limit was reached. One task, not a benchmark.
+
+### n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate
+https://www.ai-automation-station.com/guides/suno-n8n-music-video-workflow.html (updated 2026-11-15)
+A January 2026 n8n workflow for AI music videos: a form takes the genre, OpenAI writes a Suno prompt under 500 characters, KIE generates instrumental tracks and a 2K Nano Banana Pro image with polling every 10 seconds, Creatomate assembles the video and Google Drive stores it. The Creatomate step still errored.
+
+### YouTube to LinkedIn Automations in n8n and OpenCode
+https://www.ai-automation-station.com/guides/youtube-to-linkedin-automations-n8n-opencode.html (updated 2026-11-15)
+Four YouTube-to-LinkedIn builds: n8n workflows that pull a transcript with Apify and write a Claude newsletter into Google Docs, add a Gemini summary and a Nano Banana Pro infographic through KIE (4K and 2K versions), and an OpenCode script that makes five LinkedIn post variants. Posting is manual and engagement figures are self-reported.
+
+### n8n Job Search Workflows: Scrape, Score and Draft Letters
+https://www.ai-automation-station.com/guides/n8n-job-search-resume-cover-letter-workflows.html (updated 2026-11-15)
+Two November 2025 n8n job-search workflows: scrape remote digital marketing jobs from Indeed with Apify, score fit against a resume with OpenAI, then draft a cover letter (score 5 or more, logged in Airtable) or a tailored resume (Google Docs, Sheets tracker). Applying is manual and one live run hit Google authentication errors.
+
+### SendPulse Facebook Chatbot: Comment Replies and DMs
+https://www.ai-automation-station.com/guides/sendpulse-facebook-comment-chatbot.html (updated 2026-11-15)
+Three SendPulse Facebook chatbot builds (October 2025 to January 2026): a comment trigger on any post with randomized public replies, one DM with link buttons or a yes/no question, a 12-hour repeat delay, a Google Sheets log, an AI agent step on a paid plan and an inbox and CRM. Plans quoted from about 8 USD a month; the author pays 48 USD for 5,000 subscribers.
+
+### AI Model News: Kimi K3, GLM 5.2, Claude Fable 5, Gemini 3
+https://www.ai-automation-station.com/guides/ai-model-news-kimi-glm-fable-gemini.html (updated 2026-11-15)
+Release-day notes on four models: GLM 5.2 (OpenCode Go, third-party comparisons with Opus 4.8), Claude Fable 5’s return with new classifiers, Kimi K3 (cheaper per token but heavier on tokens in another creator’s test; audit hit a priority queue limit) and Gemini 3 in Google AI Studio (landing page rebuild, logo mockup app). Claims are vendors’ or others’, not verified.
+
+### Hermes Agent: Install, Electron Build and OpenClaw Risks
+https://www.ai-automation-station.com/guides/hermes-agent-install-electron-build-openclaw.html (updated 2026-11-15)
+Three videos on Hermes Agent: install with the one-line installer and a free OpenCode Zen model, wrap a sandbox stock tracker in Electron (Codex fixed the chart bug), and a warning about the Moltbook agent network based on reports of exposed API keys. The claim that Hermes beats OpenClaw is an opinion; OpenClaw was never run.
+
+### OpenCode Webcam-Layout Skill and the ShortForge Clip App
+https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html (updated 2026-11-15)
+Two May 2026 videos: an OpenCode skill that finds a webcam overlay and stacks the screen share over it for 1080 by 1920 vertical clips (about 20 seconds per render, FFmpeg and OpenCV), and a local ShortForge app that imports a video, transcribes with Whisper, renders about nine clips from ten minutes and scores each. Subtitles and the layout were not yet in the app.
+
+### OpenCode Free Models, Go Plan and 10 Agent Skills
+https://www.ai-automation-station.com/guides/opencode-free-models-go-plan-and-skills.html (updated 2026-11-15)
+Two OpenCode videos from May and June 2026: install OpenCode, use the free Zen models, upgrade to Go (5 then 10 a month), run several terminals and sub-agents, then install ten agent skills from skills.sh with npx skills add (front-end design, Vercel and Next.js practices, SEO, AI SEO, page speed, GEO). Traffic and score figures are the author's own.
+
+### Nano Banana Pro Infographics, Thumbnails and NotebookLM
+https://www.ai-automation-station.com/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html (updated 2026-11-15)
+Three videos on Nano Banana Pro visuals: a manual infographic from a Gemini 3 summary in Google AI Studio with a Gemini 3 Pro LinkedIn post, a NotebookLM infographic compared with an n8n and KIE workflow, and YouTube thumbnails regenerated in KIE (16:9, 1K) with a Gemini face swap. Click-through effects were not measured.
+
+### AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills
+https://www.ai-automation-station.com/guides/ai-visibility-trakkr-dataforseo-geo-skills.html (updated 2026-11-15)
+A case study from three 2026 videos on my own SaaS: Trakkr shows citations, AI crawler visits and prompt coverage; its MCP lets Codex find citation gaps and a GEO skill drafts a 16-article cluster; a DataForSEO MCP audit in Claude Code was implemented by Codex with better desktop Lighthouse performance. Figures are self-reported and causes are unproven.
+
+### TubeAnalytics Build Log: From First Demo to Daily Debugging
+https://www.ai-automation-station.com/guides/tubeanalytics-build-log-claude-code-opencode.html (updated 2026-11-15)
+A build log of TubeAnalytics, the author's own YouTube analytics SaaS built with Claude Code, Gemini and OpenCode on Node.js and Supabase: a February 2026 demo with unfinished tabs, a March tour of plans (19, 49, 149 a month) and tools, and a June debugging day fixing a pricing-page 500 error and an onboarding redirect.
+
+### Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site
+https://www.ai-automation-station.com/guides/three-ai-site-builds-antigravity-n8n-hotel.html (updated 2026-11-15)
+Three 2026 AI site builds: a 16-section landing page made in Google Antigravity (Gemini 3.1 Pro) and finished in OpenCode, a React dashboard that triggers an n8n workflow on a Hostinger VPS (3 minutes 39 seconds, results not displayed in the app), and a Koh Samui hotel directory scraped with Apify and OpenCode.
+
+### n8n Automations on Hostinger: Shorts, Sora 2 and Version 2.0
+https://www.ai-automation-station.com/guides/n8n-hostinger-uploader-sora-2-and-version-2.html (updated 2026-11-15)
+Five n8n videos from October to December 2025 on a Hostinger VPS: a Google Drive to YouTube Shorts uploader with AI title, tags and description (transcript step failed), updating n8n to 1.118.1 for the Sora 2 node (negative OpenAI balance caused a bad request), the 2.0 beta update with docker compose, a tour of six automations, and routes to try Sora 2.
+
+### Make.com Lead Generation: Pitches, Apollo and Google Maps
+https://www.ai-automation-station.com/guides/make-lead-generation-pitches-apollo-maps.html (updated 2026-11-15)
+Three 2025 Make.com lead builds: Google Maps business emails extracted with a regular expression into a sheet, an Apollo search of about 1,200 founders scraped with an Apify actor (free plan limit of 10 runs a day), and Perplexity-researched ChatGPT pitch drafts saved to Airtable for review. Email accuracy, terms of use and cold-email law were not covered.
+
+### Make.com YouTube Idea-to-Video Pipeline: Apify to Upload
+https://www.ai-automation-station.com/guides/make-youtube-ideas-to-video-pipeline.html (updated 2026-11-15)
+Three 2025 Make.com videos: scrape popular YouTube videos with Apify into Airtable, have an OpenAI assistant write ten ideas and GPT-4.1 a scene-by-scene script, render with JSON2Video and upload with the AI label (the final run hit the free quota), plus a Dumpling AI transcript knowledge base for a voice clone.
+
+### Make.com Content Builds: Facebook Posts, Ebook and Forms
+https://www.ai-automation-station.com/guides/make-content-builds-facebook-ebook-forms.html (updated 2026-11-15)
+Three Make.com builds from 2025: a daily Facebook page post with a ChatGPT 4o caption and DALL-E 3 image scheduled for 10 am, an ebook written chapter by chapter with Claude Sonnet 4 from an Airtable outline (credit errors fixed with a new key, run unfinished), and a Fillout form feeding Airtable through a webhook or the built-in integration.
+
+### Six Agent Builds: Claude Code, Dashboards and Outreach Tools
+https://www.ai-automation-station.com/guides/six-agent-builds-claude-code-dashboards-outreach.html (updated 2026-11-15)
+Six 2026 builds with coding agents: Claude Code setup on Debian and VS Code, a competitor dashboard with Apify skills (sponsored), an Alpaca paper-trading dashboard (401 fixed with paper keys, chart unfinished), a mock-data AI operating system, a sponsorship outreach agent whose 81,000 dollar pipeline was the model's estimate, and the LeadScope lead and audit tool.
+
+### No-Code Agent Builders Tried: MindStudio, Rocket, Assistants
+https://www.ai-automation-station.com/guides/no-code-agent-builders-mindstudio-rocket-assistants.html (updated 2026-11-15)
+Three August 2025 no-code builder trials: MindStudio (template tour, no working agent, API on the business plan), Rocket.new (a ChatGPT-style app in about ten minutes, custom domain needing a 25 a month plan) and a custom OpenAI assistant called from Make.com that needed prompt edits. These are first impressions.
+
+### AI Automation Strategy Notes: Skills, YouTube SEO, Policy
+https://www.ai-automation-station.com/guides/ai-automation-strategy-notes-skills-seo-policy.html (updated 2026-11-15)
+Five 2025 talk videos in one guide: a YouTube SEO routine with a custom GPT, vidIQ title scoring and one change at a time; a reading of reports on the July 15, 2025 YouTube update on mass-produced content (not policy advice); my case for learning Make.com; a scripted five-tool overview; and a short promo. Only the SEO routine is practical.
+
+### GrokBot as a Chief of Staff: Daily Briefings and Approvals
+https://www.ai-automation-station.com/guides/grokbot-chief-of-staff-daily-briefing.html (updated 2026-11-17)
+October 2026 case study: running two sites by chatting with GrokBot as a chief of staff. End-of-day rundowns, delegating to specialist bots, weekly Monday routines for indexing and Stripe checks, SEO and indexing diagnosis, and an approval rule where sending emails and merging pull requests need explicit yes.
+
+### Open Design With OpenCode: A Free Claude Design Option
+https://www.ai-automation-station.com/guides/open-design-opencode-free-claude-design.html (updated 2026-11-17)
+May 2026 how-to: install the open-source Open Design locally with git clone and pnpm install, choose OpenCode as the engine so designs use no Claude credits, pick a design system, build dashboard tabs, then download a zip or deploy to Vercel.
+
+### AI Workflow Courses Compared: Make, n8n, Zapier and More
+https://www.ai-automation-station.com/guides/ai-workflow-courses-compared.html (updated 2026-11-17)
+Comparison of ways to learn AI workflows, checked November 18, 2026: Make Academy, the n8n Academy, Zapier guides, DeepLearning.AI, Coursera, Maven, freeCodeCamp and the paid AI Income Lab Skool community, with where the free options are the better choice.
+
+### AI Implementation Coaching vs Consulting: How to Choose
+https://www.ai-automation-station.com/guides/ai-implementation-coaching-guide.html (updated 2026-11-17)
+How to choose AI implementation coaching versus a consultant or agency for a first AI automation: the four kinds of help, picking one process, asking for working builds, keeping ownership of accounts, and where AI Income Lab coaching and a separate custom agency fit.
+
+### AI Agent Training Compared: Free Courses and Coaching
+https://www.ai-automation-station.com/guides/ai-agent-training-compared.html (updated 2026-11-17)
+Comparison of ways to learn building AI agents, checked November 18, 2026: Zapier Academy, Make Academy, the n8n Academy, DeepLearning.AI short courses, Microsoft Learn, Maven and the paid AI Income Lab community, with what good agent training covers and an OpenAI Agent Builder test that left the mistakes in.
+
+### AI Coding Tutorials Compared: Claude Code, OpenCode, More
+https://www.ai-automation-station.com/guides/ai-coding-tutorials-compared.html (updated 2026-11-17)
+Comparison of ways to learn AI-assisted coding, checked November 18, 2026: the Claude Code and OpenCode docs, freeCodeCamp, DeepLearning.AI, Coursera and build-along tutorials, how to judge a tutorial, and a May 2026 test building a Next.js app on free models through a community proxy.
+
+### Apify agent skills setup in Cursor
+https://www.ai-automation-station.com/guides/apify-agent-skills.html (updated 2026-11-14)
+Install the Apify agent skills with npx skills add apify/agent-skills, add your Apify API token to a .env file as APIFY_TOKEN, and run the lead generation skill from OpenCode in Cursor. In the 5 February 2026 recording, a Google Maps scrape of AI startups in San Francisco wrote 74 leads to a CSV with names and websites but no emails, so a second contact info scrape pulled emails from those sites into another CSV. The same install command can be used in Claude Code, though that path was described, not shown end to end.
+
+### Build apps with AI coding agents: a safe first workflow
+https://www.ai-automation-station.com/guides/build-apps-with-ai-coding-agents.html (updated 2026-11-14)
+give a coding agent one testable feature at a time. First inspect the project and write down the expected behavior. Let the agent propose a small change, review the files it touched, run the project's checks and compare the result with the requirement before adding another feature.
+
+### ChatGPT Image Editing: Sketch-to-Scene and Local Edits
+https://www.ai-automation-station.com/guides/chatgpt-images-sketch-workflow.html (updated 2026-11-11)
+Sketch a scene, generate the image, then make one local edit and look over the whole result. In my test a rough sketch of two windows, a chair and a pet came back in the right layout in about 25 seconds, and marking a spot and asking for a dog added one there. Check placement, reference fidelity and anything that changed without being asked.
+
+### How to use ChatGPT on Linux: web and desktop options
+https://www.ai-automation-station.com/guides/chatgpt-linux.html (updated 2026-11-14)
+start with chatgpt.com in your browser. For a desktop install, follow OpenAI’s current Linux preview requirements and official download links. First try the fictional exercise below before using private material.
+
+### ChatGPT Pro 20x vs 5x vs Plus: 2026 Limits and Codex Credits
+https://www.ai-automation-station.com/guides/chatgpt-pro-20x.html (updated 2026-11-11)
+as of October 31, 2026, ChatGPT Pro 20x (Pro 200) is available again at $200/month, and every Pro 200 subscription now gets the same, higher Work and Codex allowance.
+
+### ChatGPT Thumbnails: Audit CTR and Redesign
+https://www.ai-automation-station.com/guides/chatgpt-thumbnail-ctr-pipeline.html (updated 2026-11-12)
+Export YouTube Studio and YouTube Data API fields, score thumbnails on brightness, saturation, contrast, edge density, color, faces and keywords, then paste a master prompt into ChatGPT Images with the image. The 24 July 2026 recording showed a master prompt on screen. The caption track does not include that text, so this page does not reconstruct it. Correlation numbers below are what this walkthrough showed, not a measured lift after the redesign.
+
+### How to choose an AI model for a task
+https://www.ai-automation-station.com/guides/choosing-ai-models-for-a-task.html (updated 2026-11-07)
+choose a model by testing it on representative examples of your actual task. Compare correct results, time, cost, privacy requirements and how safely it handles unclear input. A leaderboard or launch demo can help create a shortlist, but it cannot select a model for your own workflow.
+
+### Claude Code tutorial: install and first task
+https://www.ai-automation-station.com/guides/claude-code-for-beginners.html (updated 2026-11-14)
+Claude Code is Anthropic’s coding agent: it reads your project files, edits code and runs commands from the terminal. It is included in paid Claude plans, starting with Pro at $20 a month. Install it with Anthropic’s native installer, sign in with your subscription account, then ask it to explain one project and make one small change you can inspect.
+
+### Claude Code Second Brain: Cortex Project Tour
+https://www.ai-automation-station.com/guides/claude-code-second-brain.html (updated 2026-11-12)
+Cortex is a personal Claude Code project that stores business notes in markdown, adds a Radar view and a theme graph, and pulls tools such as VidIQ over MCP. The 17 July 2026 recording is a tour. It is not an installable product, and the LeadScope prompt text was not spoken.
+
+### Claude Code Task Manager: Scope, Checks and Packaging
+https://www.ai-automation-station.com/guides/claude-code-task-manager.html (updated 2026-11-11)
+I built a Windows and Linux task manager in Claude Code in about three hours by asking a chat model for a detailed build prompt, then checking the numbers against another system monitor. Start with a small brief, verify each metric against a tool you trust, and only package the app once the values hold up. The source is on GitHub if you would rather build my version than prompt your own.
+
+### Claude Code Video Editor Skill: Build and Run
+https://www.ai-automation-station.com/guides/claude-code-video-editor-skill.html (updated 2026-11-14)
+In the 15 July 2026 recording, a custom long-form video-editor skill for Claude Code, Codex and OpenCode transcribes clips with Whisper, picks a hook and segments, then exports a 1080p 30 fps MP4 plus a chapters file. Optimize it with a detailed prompt, approve the guardrail phases, and run the spoken command on the files in the working directory.
+
+### Codex vs Claude Code: how I use both and route tasks
+https://www.ai-automation-station.com/guides/claude-code-vs-codex.html (updated 2026-11-12)
+Claude Code and Codex are both terminal coding agents. I use both and send each task to the tool that suits it. That is my own working arrangement, not a benchmark.
+
+### Claude Fable 5 Games: Prompts and Plugins
+https://www.ai-automation-station.com/guides/claude-fable-5-game-prompts.html (updated 2026-11-14)
+The 3 July 2026 recording uses Claude Fable 5 on a small island-game example, then shows effort modes, plan mode, on-screen prompt briefs and the Compound Engineering plugin. The YouTube title says games in seconds. This page only repeats what that session actually ran, not a guaranteed build time.
+
+### Claude Opus vs Sonnet vs Haiku vs Fable: which to use
+https://www.ai-automation-station.com/guides/claude-models-compared.html (updated 2026-11-14)
+Use Claude Opus 5.5 for most coding and agent work: it is Anthropic’s recommended starting point and costs $4 / $20 per million input / output tokens. Use Sonnet 5.5 ($2 / $10) when speed and cost matter more, for well-scoped fixes and frequent coding turns. Use Haiku 5.5 (from $0.10 / $0.50) for high-volume jobs such as classification, extraction and sub-agents. Keep Fable 5.1 ($10 / $50) for the hardest long-running tasks, after Opus 5.5 at a higher effort has fallen short.
+
+### CleanYourTV with Claude Code: TCL Setup and Risks
+https://www.ai-automation-station.com/guides/cleanyourtv-claude-code.html (updated 2026-11-11)
+Check that your TV runs Android TV or Google TV, turn on USB debugging, paste the CleanYourTV prompt into Claude Code and let it back up the TV before it changes anything. On my TCL it disabled the apps I don't use and installed a much cleaner, faster home screen, but several remote buttons stopped working. Keep the restore command handy and test every button before you call it done.
+
+### Codex CLI install: Mac, Windows and Linux
+https://www.ai-automation-station.com/guides/codex-cli.html (updated 2026-11-14)
+Codex CLI is OpenAI’s coding agent for the terminal. On Mac or Linux, install it with curl -fsSL https://chatgpt.com/codex/install.sh | sh. On Windows, use the PowerShell installer below. npm (npm install -g @openai/codex) and Homebrew also work. Then run codex in a project folder and choose Sign in with ChatGPT.
+
+### Codex on Linux: desktop app and Linux setup
+https://www.ai-automation-station.com/guides/codex-on-linux.html (updated 2026-11-14)
+Install OpenAI’s Codex desktop preview on a supported Linux distribution, then sign in with ChatGPT. For the terminal CLI on Mac, Windows or Linux, follow the Codex CLI install guide.
+
+### Internal Link Audit with Codex: A Reviewed SEO Workflow
+https://www.ai-automation-station.com/guides/codex-seo-workflow.html (updated 2026-11-11)
+Give Codex the research you want to apply, ask it to audit your site against that research, and have it write the findings to a report. Turn the report into a phased implementation plan saved in your repo, run the plan with a capable model, then ask Codex to run the same audit again. Review the diff before you deploy. The same loop works for most on-page SEO jobs. In this guide I use internal linking as the example.
+
+### Codex usage limits by ChatGPT plan
+https://www.ai-automation-station.com/guides/codex-usage-limits.html (updated 2026-11-14)
+Codex usage limits depend on your plan and workload. Check Settings → Usage or /status in the CLI for remaining allowance and reset times, then use the continuation options available to your account (OpenAI guidance).
+
+### Codex tutorial: make and verify a small code change
+https://www.ai-automation-station.com/guides/codex-workflow.html (updated 2026-11-14)
+Give Codex a narrow brief for one change, inspect the diff it proposes, then run a check that proves the change works. In this exercise you add a malformed-JSON request to a local API example and assert that it returns HTTP 400. You need Git, Node.js 22 or later and a configured coding assistant, but no provider key.
+
+### React consent tracking: Google Analytics and Meta
+https://www.ai-automation-station.com/guides/consent-tracking.html (updated 2026-11-14)
+Ask visitors for a clear choice, store the preference, and route every optional Google Analytics or Meta event through one consent guard so nothing fires before they accept. Give each event a single meaning: an outbound click shows interest, not a sale. Then test that declining keeps every optional tracker off.
+
+### CrowdReply MCP with Codex: Citation Data to Review Plans
+https://www.ai-automation-station.com/guides/crowdreply-mcp-codex.html (updated 2026-11-11)
+Connect CrowdReply to Codex from the MCP Connection page in your CrowdReply account, pull one dataset such as citation records into a saved report, then ask Codex for an implementation plan before it touches your pages. A dashboard sample, a marketplace listing or a pushed commit is not the same as measured uplift in AI answers.
+
+### DataForSEO MCP: build an AI SEO agent in Claude Code
+https://www.ai-automation-station.com/guides/dataforseo-mcp-claude.html (updated 2026-11-12)
+Create DataForSEO API credentials, add the DataForSEO MCP server to Claude Code, confirm its tools appear, and run one small query on a site you own so you can check the numbers. DataForSEO charges per API request, so check its current pricing and what each call costs before you build a larger workflow.
+
+### DeepSeek Harness First Test: Setup Errors and Demo Limits
+https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html (updated 2026-11-11)
+DeepSeek Harness is a preview agent interface, not a model. When I tested it, DeepSeek's own API failed with an insufficient balance error, an OpenCode route failed with "model is unavailable", and an OpenRouter key worked. The two-stroke engine HTML it built was still buggy after I asked for fixes.
+
+### Test your first AI API request locally
+https://www.ai-automation-station.com/guides/first-api-request.html (updated 2026-11-14)
+Run a local test before calling a real provider: send one request to the example mock server, read the status code, and assert the result. A wrong key should return 401, an unknown model 404 and a valid request 200. The example needs Node.js 22 or later, costs nothing and never reads your API keys.
+
+### Ghostty Config on Debian: Themes and Reload Checks
+https://www.ai-automation-station.com/guides/ghostty-debian-configuration.html (updated 2026-11-11)
+Use current distro docs to install Ghostty, put your settings in ~/.config/ghostty/config.ghostty as key = value lines, then reload with Ctrl+Shift+, and open a fresh window to confirm. The memory numbers I saw against Konsole come from one session on my laptop, not a benchmark.
+
+### Build a Chat Web App in Google AI Studio, No Code
+https://www.ai-automation-station.com/guides/google-ai-studio-chat-app.html (updated 2026-11-12)
+Open Google AI Studio, choose Build, and describe the app in a prompt. The walkthrough had a working ChatGPT-style interface in about 2 to 3 minutes and a chat connected to the OpenAI API in about 12 minutes in total. Deploying from AI Studio needs a Google Cloud project with billing linked, which this walkthrough stopped short of doing.
+
+### Grok 4.7 on OpenRouter: Hermes Model Switch
+https://www.ai-automation-station.com/guides/grok-4-7-openrouter.html (updated 2026-11-14)
+Find Grok 4.7 on OpenRouter, pick x-ai/grok-4.7 in Hermes Agent, set effort to medium if that is what you use, then type continue to resume the task. Charts and plan prices in my walkthrough are snapshots, not live quotes.
+
+### Slow GrokBot credit drain: routines and caps
+https://www.ai-automation-station.com/guides/grokbot-credit-usage.html (updated 2026-11-14)
+Start a new GrokBot chat for each task, widen routine schedules, pause routines you are not using, move recurring jobs off the bot you chat with all day, and leave on-demand monthly spending off. The steps below are the Maestro article settings shown in the 10 November 2026 recording, not a current billing quote.
+
+### GrokBot for Beginners: First Bot, Access and Approvals
+https://www.ai-automation-station.com/guides/grokbot-for-beginners.html (updated 2026-11-14)
+GrokBot gives you AI "bots" that work like teammates. Bots share one persistent Linux box with separate agent desktops and browsers, can run in the background while your laptop is closed, and can save a workflow as a routine. To start, install the app, create one bot with a narrow job, connect only the apps it needs, require explicit approval for anything that sends or posts, and turn the task into a routine once it works twice.
+
+### GrokBot for SEO: Audit Bots, Data and Reviewed Fixes
+https://www.ai-automation-station.com/guides/grokbot-for-seo.html (updated 2026-11-14)
+Import a site audit bot and an SEO bot from the GrokBot marketplace, give them your domain, and let them set up recurring audits as routines. Connect a keyword data source, such as Treg or a plugin like Ahrefs, so the bots work from real search data. Then ask for a full audit and a content plan, and send the fixes to a coding agent with a review step before anything ships.
+
+### GrokBot job application agent setup
+https://www.ai-automation-station.com/guides/grokbot-job-application-agent.html (updated 2026-11-14)
+In GrokBot, talk to a Chief of Staff bot. Upload a resume, let a job-app agent pull matching roles, attach the reviewed resume to queued drafts, and keep outbound applications for your approval. This walkthrough queued work for a later send window. It did not show a live send.
+
+### GrokBot Virtual Office: Build a Custom Agent Dashboard
+https://www.ai-automation-station.com/guides/grokbot-virtual-office.html (updated 2026-11-11)
+A virtual office is a visual dashboard that shows every bot you run, what each one is doing and which tasks wait for your approval. I built mine in GrokBot by asking my chief of staff bot to create a Page. It shows active, finished and waiting tasks, an event log and a review handoff control for the selected bot, not a native one-click authorization mechanism. You build it the same way: describe the dashboard in plain language, then fix it one request at a time.
+
+### GrokBot vs Dots: Onboarding, Job Drafts and Permissions
+https://www.ai-automation-station.com/guides/grokbot-vs-dots.html (updated 2026-11-11)
+Both support delegated cloud work, but do not assume the same computer or permission model. In the current GrokBot environment, agents share a persistent Linux box with separate desktops. Dots documentation describes a separate cloud computer for the dot. Dots is accessed through ChatGPT, with availability dependent on the documented plan, region and rollout conditions. GrokBot is xAI's bot app on desktop and iOS, where you can run many bots side by side. In my one head-to-head test, building a job application agent, GrokBot set up a working pipeline in minutes, while my dot took around 45 minutes and could not find contact emails. Try both on your own task before you decide.
+
+### Herdr Desktop Guide: Setup, Workspaces and Limits
+https://www.ai-automation-station.com/guides/herdr-desktop-app.html (updated 2026-11-11)
+Install the current official Herdr desktop app, open one repository as a space, and run agents in separate tabs. Closing the window is not the same as stopping herdr-core. The memory figure I saw in my video is one reading on my machine, not a benchmark.
+
+### Herdr Terminal Guide: Workspaces and Coding-Agent Sessions
+https://www.ai-automation-station.com/guides/herdr-guide.html (updated 2026-11-11)
+Herdr is a free, open source terminal workspace for coding agents. It does not replace Claude Code or Codex. It runs them in panes and tabs, groups them by project, keeps them running in a background server when you close the window, and marks each pane as working, blocked or idle. Install it with curl -fsSL https://herdr.dev/install.sh | sh, then run herdr in your project folder.
+
+### Install Herdr on Windows: PowerShell, Mods and Insights
+https://www.ai-automation-station.com/guides/herdr-on-windows.html (updated 2026-11-12)
+Copy the Windows PowerShell line from the Herdr download page, paste a gallery agent prompt to install a mod, then switch the layout to main-plus-insights to open the token dashboard. The Linux desktop walkthrough stays on Herdr desktop.
+
+### Install Supermemory on Hermes Agent
+https://www.ai-automation-station.com/guides/hermes-agent-supermemory.html (updated 2026-11-14)
+Install the Supermemory plugin in Hermes Agent, paste a dashboard API key, start a new session so the provider is live, then connect the same plugin in OpenCode and Codex. The 31 July 2026 recording showed the dashboard graph after activation. It did not speak a token-saving number.
+
+### Hermes backlink outreach pipeline
+https://www.ai-automation-station.com/guides/hermes-backlink-outreach-pipeline.html (updated 2026-11-14)
+In Hermes Agent, crawl competitor articles with Firecrawl, look up author emails with Hunter.io, keep Mailgun sends behind the gates shown on camera, and read delivery numbers as a past snapshot. The 29 July 2026 recording did not show ranking results or inbox placement.
+
+### Hermes Desktop: install on Mac, Windows or Linux
+https://www.ai-automation-station.com/guides/hermes-desktop.html (updated 2026-11-14)
+On macOS or Windows, install Nous Research’s official Hermes Desktop; on Linux, use the community Hermes One app, which installs Hermes Agent for you. Connect one model provider with an API key or a Nous Portal account, check the agent with /tools and small tasks you can verify, then add schedules and gateways one at a time.
+
+### HeyGen AI avatar tutorial: create your first video
+https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html (updated 2026-11-11)
+HeyGen turns a written script into a video of an AI avatar presenter speaking it. For your first video, open AI Studio, choose a stock avatar, paste a short script, check the voice, then generate a draft and review it sentence by sentence. On October 23, 2026 the Free plan listed 3 watermarked videos a month of up to 1 minute each.
+
+### How to install OpenClaw: local, VPS or hosted, safely
+https://www.ai-automation-station.com/guides/install-openclaw.html (updated 2026-11-07)
+Run OpenClaw on a VPS, a spare machine or a hosted service rather than your main computer. It can read files and run commands with your account’s permissions. Install it with the official installer: curl -fsSL https://openclaw.ai/install.sh | bash on macOS, Linux or WSL2, or iwr -useb https://openclaw.ai/install.ps1 | iex in Windows PowerShell. The installer sets up Node.js if needed and starts onboarding. Keep the gateway on localhost, and run openclaw security audit before you connect any accounts.
+
+### Jev AI with Coding Agents: Skills, Access and Routed Tests
+https://www.ai-automation-station.com/guides/jev-skills-router-setup.html (updated 2026-11-11)
+Jev is TypeSafe's model for fast, structured decisions, not a chat model for your coding agent. I installed the TypeSafe skill, hit a browser-skill failure that turned out to be a missing API key, then ran Codex through a community router. Confirm real requests in the TypeSafe console before trusting any setup.
+
+### Kilo Code tutorial: install, free models and first task
+https://www.ai-automation-station.com/guides/kilo-code-tutorial.html (updated 2026-11-08)
+Kilo Code is an open-source AI coding agent for VS Code, JetBrains and the terminal. Install the VS Code extension (choose Install Pre-Release Version) or run npm install -g @kilocode/cli, sign in with a free Kilo account, and pick a model. You can use free models through Auto Free, your own API keys, local models, or paid credits. The software is free for individuals; model usage is billed separately. Before your first task, check which actions it may run without asking.
+
+### Lovable vs Base44 vs Replit: pricing and which to pick
+https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html (updated 2026-11-08)
+Pick Lovable for a polished website or front end you want live quickly; Pro starts at $25 a month for 100 credits. Pick Base44 for a simple internal app with sign-in and a database built in; paid plans start at $16 a month billed yearly. Pick Replit if you want a full coding workspace and expect to edit the code yourself; Core is $20 a month with $20 of usage included. All three have a free plan that is enough to build a first version, not to run it for real users.
+
+### Make.com business automation examples
+https://www.ai-automation-station.com/guides/make-business-automation-examples.html (updated 2026-11-14)
+The walkthrough walks through about ten of the speaker’s own Make.com scenarios: an email auto-responder, Skool members into an email list, a Messenger bot, an Instagram comment reply, a Google Sheets cold-email sender, an Apollo lead scraper, YouTube description and topic generators, and Make’s template library. Most are two to four modules. Treat the auto-reply and cold-email ones carefully, since consent and quality are not covered.
+
+### Make.com Course: Sheets, OpenAI, Airtable, Facebook
+https://www.ai-automation-station.com/guides/make-com-beginner-course-scenarios.html (updated 2026-11-12)
+The walkthrough is a Make.com beginner course in lessons: a tour of the dashboard, a template that emails a Gmail message for each new Google Sheet row, a scenario built from scratch with OpenAI, Airtable, an image model and a Facebook post, and an Apollo lead scraper through Apify that writes to Google Sheets. Errors are left in on purpose, which makes it a useful guide to fixing scenarios.
+
+### Make.com Google Sheets tutorial: filter approved requests
+https://www.ai-automation-station.com/guides/make-first-automation.html (updated 2026-11-14)
+Create a Make.com scenario that watches new rows in an Intake sheet, filters for Approved = yes, and adds each approved row to a Work queue tab. Run it once on two fictional test rows: the approved one should arrive and the rejected one should not. Keep the schedule off until both checks pass.
+
+### How to make money with AI fast: the honest path
+https://www.ai-automation-station.com/guides/make-money-with-ai-fast.html (updated 2026-11-14)
+there is no dependable fast way to make money with AI. AI makes drafts quick, but income comes from finding a person who wants the result, trusts you to check it and agrees to pay, and that part does not speed up because the tool did. The fastest honest route: pick a task you can check yourself, ask one person who has that task, and deliver one small result.
+
+### Make money with AI with no experience
+https://www.ai-automation-station.com/guides/make-money-with-ai-no-experience.html (updated 2026-11-11)
+Start with a task you already understand, such as organizing requests or cleaning a spreadsheet. Build the smallest version on free tiers, without AI first, use it on your own work, then offer the narrow version to one person you know. AI helps with parts of the job; customers still pay for your judgment and reliability, and income is not guaranteed.
+
+### Make money with ChatGPT: 4 client services
+https://www.ai-automation-station.com/guides/make-money-with-chatgpt.html (updated 2026-11-11)
+Use ChatGPT inside client work you can check yourself: editing documents, research summaries with sources, customer FAQ drafts from approved information, or bounded custom GPT projects. Define the finished deliverable first, review every output before handing it over, and agree on AI use and disclosure with the client. More output is not more value.
+
+### Meta Muse Code Setup: API Failure and a Working CLI
+https://www.ai-automation-station.com/guides/muse-code-setup.html (updated 2026-11-11)
+I tried to run Muse Wonder inside OpenCode with a Meta Model API key and kept getting an invalid API key error. Installing Meta's own Muse Code CLI and signing in through the browser worked within a couple of minutes. I started a project audit on camera, but the video ends before it finished.
+
+### n8n alternatives open source: 5 tools and their licenses
+https://www.ai-automation-station.com/guides/n8n-alternatives-open-source.html (updated 2026-11-08)
+n8n publishes its source under its own fair-code licenses, which is not the same as an OSI open-source license. This guide lists five open-source tools for similar jobs and links each license file.
+
+### n8n Social Post Template: Trends, Research, Posting
+https://www.ai-automation-station.com/guides/n8n-social-media-agent-template.html (updated 2026-11-12)
+Import n8n’s free AI-powered multi-social post template, add a SerpApi key, and the Google Trends, top-topic and keyword steps run. The Perplexity research step failed on authorization and none of the Facebook, LinkedIn or X accounts were connected, so the workflow did not run end to end. Despite the title, it was not built in ten minutes.
+
+### n8n vs Zapier vs Make: billing, builders and AI agents
+https://www.ai-automation-station.com/guides/n8n-vs-zapier-vs-make.html (updated 2026-11-08)
+n8n, Zapier and Make all connect apps and run steps. They differ in where they run, how they bill and how much control you get. This page compares those points and ends with a one-hour test on your own data.
+
+### n8n WhatsApp AI agent setup guide
+https://www.ai-automation-station.com/guides/n8n-whatsapp-ai-agent.html (updated 2026-11-14)
+The workflow is two parts: a WhatsApp Business Cloud trigger that receives messages through a Meta webhook, and an AI agent with a chat model and memory that drafts the reply, then a WhatsApp node to send it. In this walkthrough the Meta webhook test passed, but the send step still errored because the business number was awaiting verification.
+
+### No-code AI agent builder: compare n8n, Make, Zapier and more
+https://www.ai-automation-station.com/guides/no-code-ai-agent-builder.html (updated 2026-11-14)
+A no-code AI agent builder lets you give a language model instructions, tools and knowledge, then test it, without writing the orchestration code yourself. This guide compares n8n, Make and Zapier, plus two dedicated builders recorded on the channel.
+
+### OpenCode Go: pricing, models, limits and setup
+https://www.ai-automation-station.com/guides/opencode-go.html (updated 2026-11-14)
+OpenCode Go is a monthly subscription to a curated set of open and low-cost coding models, run by the team behind OpenCode. Go costs $10 a month, Go Plus $40 a month, and Go Teams $20 per member per month. Each model has its own monthly allowance in dollars, with 20% usable per 5 hours and 50% per week. You connect it in OpenCode with /connect, then pick a model with /models. It is optional: OpenCode itself is free and works with other providers.
+
+### OpenCode SEO Audit Skills: Site Checks and Files
+https://www.ai-automation-station.com/guides/opencode-seo-audit-skills.html (updated 2026-11-12)
+In OpenCode, type /skills, run an SEO audit skill on a live site, and let it work on llms.txt, ai.txt and sitemap.xml. This walkthrough audited visiscan.app on 4 August 2026 and showed DeepSeek V4 Pro usage already at 98% of the month. Plan signup is on the OpenCode Go guide, not here.
+
+### OpenCode Stripe Billing Build: A SaaS Case Study
+https://www.ai-automation-station.com/guides/opencode-stripe-billing-saas.html (updated 2026-11-12)
+The walkthrough pasted one billing prompt into OpenCode, which added Stripe subscription models, a pricing page, a billing invoices page, a checkout success page and an environment setup file. The build then failed twice and OpenCode fixed it by regenerating the Prisma client and installing the missing Stripe packages. No real payment was tested.
+
+### OpenCode vs Claude Code: pricing, setup and limits
+https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html (updated 2026-11-11)
+pick Claude Code if you already pay for a Claude plan and want Anthropic’s own coding agent. Pick OpenCode if you want an MIT-licensed, open source agent that can use models from Anthropic, OpenAI, OpenRouter or local options such as Ollama. Neither is ranked faster here: run the same small task in both and compare setup time, failed requests and the final diff.
+
+### OpenDesign (Open Design) on Linux: Source Setup and Slides
+https://www.ai-automation-station.com/guides/opendesign-linux-slides.html (updated 2026-11-11)
+Follow the recorded Linux source setup, make one first design, then export a standalone HTML deck. On Linux that means cloning the official repo, using Node 24 with Corepack, then running pnpm tools-dev run web. Local agents, BYOK keys and hosted credits are billed separately, so a free desktop app is not free inference.
+
+### OpenRouter setup: API key and free models
+https://www.ai-automation-station.com/guides/openrouter-setup.html (updated 2026-11-14)
+OpenRouter is one API in front of hundreds of models from many providers. Create an account, add credits if you need paid models, and create an API key at openrouter.ai/settings/keys. Then point any OpenAI-compatible tool at https://openrouter.ai/api/v1 with that key. Free models end in :free and are capped at 50 requests a day, or 1,000 a day once you have bought at least 10 credits. Paid models cost the provider’s listed price; OpenRouter charges a 5.5% fee when you buy credits.
+
+### OpenSEO review: setup, data costs and practical limits
+https://www.ai-automation-station.com/guides/openseo-review.html (updated 2026-11-11)
+OpenSEO is worth evaluating for focused SEO research, but its free self-hosted app still needs paid data, and my demo doesn't show it replacing every paid suite.
+
+### Rank Prompt AI Visibility: Scan, MCP and Fixes
+https://www.ai-automation-station.com/guides/rank-prompt-ai-search-visibility.html (updated 2026-11-14)
+In Rank Prompt, enter a site, run a visibility scan, pick categories so the product can generate prompts, then read where those prompts show up across the models you selected. The 12 November 2026 recording then installed the Rank Prompt MCP in Claude Code, authenticated with an API key, and used that data to edit pages and draft outreach. Rank Prompt sponsored this video. The on-site edits were not treated as an instant rank change.
+
+### REA Coding-Agent Case: A Video-Editor Prototype
+https://www.ai-automation-station.com/guides/rea-video-editor-prototype.html (updated 2026-11-11)
+I connected REA to my coding agents with its one-line npx setup command, then asked Claude Code to rebuild Kdenlive, my usual video editor. After hours of work it produced a prototype called Cutline. Importing, timeline dragging and splitting worked, but playback was glitchy, effects didn't work and pane resizing was broken.
+
+### RTK Token Savings: Install, Hooks and Checks
+https://www.ai-automation-station.com/guides/rtk-token-savings-claude-code.html (updated 2026-11-14)
+Install RTK from GitHub with the curl line on that page or with brew install rtk, add it to Claude Code, Codex or OpenCode, run rtk init so the hook is present, then run rtk gain to read savings. On 21 July 2026, GLM 5.2 showed 169,000 tokens saved.
+
+### GrokBot WordPress Workflow: Long-Form Videos to Drafts
+https://www.ai-automation-station.com/guides/run-a-blog-with-grokbot.html (updated 2026-11-11)
+Locate the WordPress connector through the app’s supported connection flow. In my video the panel is called Plugins. Connect only the permissions needed for your approved task. Create a blog writer bot and give it a source, such as your YouTube videos. In my video, the bot retrieves transcripts and prepares posts, excerpts, categories and tags, with some items scheduled. For a new setup, request reviewable drafts rather than assuming publication is authorized. Keep the initial workflow draft-only. Scheduling and any subscriber email are separate approvals, not a default result of asking for an article.
+
+### Self-host n8n on Ubuntu: Docker and Node.js setup
+https://www.ai-automation-station.com/guides/self-host-n8n.html (updated 2026-11-14)
+For a machine that stays on, use Docker or Docker Compose, which n8n’s docs recommend. npm installs are deprecated from n8n 3.0. The recorded Ubuntu video uses Node.js 24 and npm install n8n -g, which still works for learning on a laptop. Either way, open localhost:5678, create the owner account, and run a three-node test workflow before adding credentials. Self-hosting is free, and this setup is reachable only from your own computer.
+
+### Semrush MCP: AI Visibility and Keyword Gaps
+https://www.ai-automation-station.com/guides/semrush-mcp-ai-visibility.html (updated 2026-11-12)
+Connect Semrush to a coding agent over MCP with an API key, read AI visibility and citation numbers from the dashboard, then ask the agent for an implementation plan on keyword and backlink gaps. Review that plan before you ship anything. This page follows the 6 August 2026 recording. It is not a current Semrush price list.
+
+### Trakkr and Codex: AI Visibility, Crawlers and Visits
+https://www.ai-automation-station.com/guides/trakkr-codex-visibility-workflow.html (updated 2026-11-11)
+Connect Trakkr's hosted MCP server to Codex, pull the action list into a report, and read it before you let Codex edit anything. Keep AI visibility, crawler visits, citations and real visitors as separate numbers. An assistant naming your brand is not a click, and a fix list is not a result.
+
+### Treg in GrokBot: Connect Data Tools and Control Costs
+https://www.ai-automation-station.com/guides/treg-inside-grokbot.html (updated 2026-11-14)
+Treg is a catalog of external APIs that an agent reaches through one connection and one token. To use it in GrokBot, open Plugins in the left sidebar, search for "treg," add it, and sign in. Your bots can then search the catalog by task, see the price of each endpoint, and make the call. You pay per call from a prepaid balance, or connect your own API keys for providers you already pay for.
+
+### Vapi AI tutorial: build a voice agent, test calls, webhooks
+https://www.ai-automation-station.com/guides/vapi-voice-agent-tutorial.html (updated 2026-11-11)
+Vapi is a platform for building voice AI agents: a transcriber turns the caller’s speech into text, a model writes the reply and a voice speaks it. To build one, create an assistant with a first message and system prompt, test it in the dashboard, connect a phone number, then confirm webhook events arrive before adding business actions.
+
+### VisiScan AI Visibility: Free Scan and Report
+https://www.ai-automation-station.com/guides/visiscan-ai-visibility-audit.html (updated 2026-11-12)
+Enter a domain in VisiScan, run the free scan, and read the readiness and visibility scores. The 22 July 2026 recording also opened sitemap, robots.txt and machine-readable file checks, then showed a paid full report generated in Codex. VisiScan is Mike Holp's own product.
+
+### What is an AI agent? Definition, examples and first build
+https://www.ai-automation-station.com/guides/what-is-an-ai-agent.html (updated 2026-11-11)
+An AI agent is software that uses a language model and a set of tools to work toward a goal, choosing its own next step after each result. A workflow follows steps you wrote in advance. Use an agent when the steps cannot be planned ahead, and add checks before it acts.
+
+### What is MCP? The Model Context Protocol explained
+https://www.ai-automation-station.com/guides/what-is-mcp.html (updated 2026-11-11)
+MCP, the Model Context Protocol, is an open standard for connecting AI apps to outside tools and data. An app such as Claude Code or Codex connects to MCP servers, and each server offers tools the model can call. Anthropic open-sourced it in November 2024, and ChatGPT, VS Code and Cursor support it too.
+
+### What is n8n used for? Real uses and a first workflow
+https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html (updated 2026-11-08)
+n8n is a workflow automation tool. You connect apps, APIs and AI models on a visual canvas, and n8n runs the steps when something happens. This guide lists jobs people hand to it and a first workflow you can check.
+
+### YouTube channel growth workflow: research, publish, learn
+https://www.ai-automation-station.com/guides/youtube-channel-growth-workflow.html (updated 2026-11-14)
+choose an idea for a specific viewer, make the title and thumbnail promise clear, publish a video that keeps that promise, then use several analytics signals to decide what to improve. A single view count or competitor estimate cannot tell you why a video performed as it did.
+
+### React YouTube feed tutorial: API, caching and fallbacks
+https://www.ai-automation-station.com/guides/youtube-feed.html (updated 2026-11-14)
+Fetch your uploads on the server, keep a saved list as a fallback, and render that list into the HTML so the page still shows watch links and thumbnails when the YouTube request fails, then refresh it in the browser. Check the result by making the live fetch fail on purpose and confirming the videos still appear.
+
+### ZCode GLM Desktop: Install, Plans and Review
+https://www.ai-automation-station.com/guides/zcode-glm-desktop-app.html (updated 2026-11-12)
+On 4 July 2026 this walkthrough opened Z.ai’s official ZCode desktop app for GLM 5.2, already installed on Debian, walked the free and paid coding plans shown that day, then started a local site review from the app. Check live pricing on the product page. The numbers below are only what appeared on camera.

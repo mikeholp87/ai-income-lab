@@ -1,0 +1,46 @@
+✓ AI Income Lab: AI Automation Courses & Community
+  http://127.0.0.1:4173/
+
+✓ Done
+
+✓ Done
+
+✓ Done
+
+"{\"mobileSearch\":true,\"viewport\":390,\"width\":390}"
+
+✓ Screenshot saved to /tmp/site-audit-fixes-mobile-menu.png
+
+✓ Done
+
+✓ Done
+
+"{\"viewport\":1024,\"width\":1024,\"mobileMenu\":\"block\"}"
+
+✓ Done
+
+"{\"viewport\":1200,\"width\":1200,\"navWidth\":1152}"
+
+✓ Screenshot saved to /tmp/site-audit-fixes-desktop.png
+
+✓ Done
+
+"{\"viewport\":1440,\"width\":1440}"
+
+✓ Search guides and videos | Mike Holp
+  http://127.0.0.1:4173/search.html?q=make
+
+✓ Done
+
+"{\"firstResult\":\"Make.com Google Sheets tutorial: filter approved requests\",\"status\":\"37 results for “make”\"}"
+
+✓ Done
+
+"{\"results\":16}"
+
+✓ Done
+
+✓ Screenshot saved to /tmp/site-audit-fixes-search.png
+
+✓ Browser closed
+[agent-browser] launched browser

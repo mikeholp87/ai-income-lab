@@ -1,0 +1,43 @@
+export default {
+  slug: 'make-news-to-video-autoposter',
+  type: 'Build guide',
+  video: '4jK9RraWbiU',
+  title: 'Make.com News-to-Video Autoposter: RSS to Social Posts',
+  short: 'Make.com news-to-video autoposter',
+  description: 'Build a Make.com scenario that turns an RSS item into a video: Perplexity summary, ChatGPT script, JSON2Video render and posts to three networks.',
+  hub: 'Turn one RSS news item into a short AI video in Make.com with Perplexity, ChatGPT and JSON2Video, then post to Facebook, Instagram and YouTube.',
+  watchLabel: 'Follow the Make.com news-to-video autoposter',
+  about: ['Make.com', 'Perplexity', 'ChatGPT', 'JSON2Video', 'YouTube'],
+  card: {
+    title: 'RSS article to posted video in Make.com',
+    steps: [['Summarize', 'RSS item, Perplexity Sonar summary'], ['Script', 'ChatGPT writes scenes, JSON2Video renders'], ['Post', 'Router to Facebook, Instagram, YouTube']],
+    note: 'October 2025; the demo stopped when JSON2Video ran out of credits.',
+  },
+  quick: 'Add an RSS reader module with a news feed URL and return one item, send it to Perplexity’s Sonar model with a prompt to summarize the article for social posts, and have ChatGPT write a scene-based video script of 30 to 60 seconds with overlay text, voice-over and an English image prompt per scene. Parse the JSON, render it in JSON2Video at 720p with a free Azure voice, fetch the file, have ChatGPT write the post text and use a router to upload to Facebook, Instagram and YouTube. In my test the article was summarized but video creation stopped because my JSON2Video quota was used up.',
+  intro: '<p>This is an October 2025 walkthrough of a scenario I built to turn news into short videos. It did not finish a video on camera because of a credit limit, so I cannot show posted results. Automated posting of other people’s news can raise copyright and platform issues, so use your own sources or ones you may repurpose. The Make.com link is an affiliate link. For the version built from your own topics, see <a href="/guides/make-faceless-video-json2video.html">the Make.com faceless video build</a>.</p>',
+  sections: [
+    { id: 'rss', h: '1. Read the feed', html: '<p>An RSS feed reader module takes the feed URL, here Business Insider, and returns one item. That is all it does; each run handles one article.</p>' },
+    { id: 'summarize', h: '2. Summarize with Perplexity', html: '<p>Connect a Perplexity API key and add a little billing credit. I used the Sonar model, since deep research is overkill for a summary. The prompt says to act as an AI and automation tools expert, summarize the article so it is easy to turn into social posts and include URLs for the tools it mentions only where relevant, not the article itself.</p>' },
+    { id: 'script', h: '3. Script, render and fetch', html: '<p>ChatGPT turns the summary into a script organised into scenes for JSON2Video: overlay text, voice-over text and a detailed, photo-realistic image prompt in English, using the RSS title as the topic. A parse JSON step feeds JSON2Video, set to 720p with a free Azure voice ID. A wait step is followed by an HTTP request that fetches the rendered file.</p>' },
+    { id: 'post', h: '4. Post with a router', html: '<p>ChatGPT writes the post text, then a router sends the video to a Facebook page, an Instagram business account and a YouTube channel. In my run the article fetch and summary worked, and the scenario stopped at JSON2Video because I had exceeded my plan’s quota.</p>' },
+  ],
+  limits: [
+    'A finished, posted video from this scenario.',
+    'JSON2Video, Perplexity and OpenAI cost per video.',
+    'Rights to repurpose the source articles.',
+  ],
+  faq: [
+    ['Why did the run stop?', 'JSON2Video returned a quota error because my plan’s credits were used up.'],
+    ['Which networks does it post to?', 'A Facebook page, an Instagram business account and a YouTube channel, through a router.'],
+    ['Which Perplexity model did I use?', 'Sonar. Deep research would be slower than a summary needs.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=4jK9RraWbiU">This AI Workflow Saves Me 20+ Hours Weekly on Content</a> (recorded October 2025)',
+    'Make.com through my affiliate link: <a href="https://www.make.com/en/register?pc=mikeholp" rel="sponsored noopener">Make.com</a> · JSON2Video: <a href="https://json2video.com">json2video.com</a>',
+  ],
+  related: [['/guides/make-faceless-video-json2video.html', 'Make.com faceless videos'], ['/guides/heygen-airtable-facebook-content-machine.html', 'Make.com content machine with HeyGen'], ['/guides/ai-content-creation-workflows.html', 'AI content creation workflow'], ['/guides/make-business-automation-examples.html', 'Make.com business automations'], ['/guides/make-first-automation.html', 'Filter approved requests with Make and Google Sheets']],
+  next: ['/guides/make-faceless-video-json2video.html', 'Make.com faceless videos'],
+  more: 'Price and details: <a href="/tools.html#make-com">Make.com on the tools page</a>',
+  linkFrom: ['/guides/make-faceless-video-json2video.html'],
+  llms: 'An October 2025 Make.com scenario: read one RSS item, summarize it with Perplexity Sonar, have ChatGPT write a scene-based video script, render it in JSON2Video at 720p, fetch the file, write the post text and post to Facebook, Instagram and YouTube with a router. The demo stopped when JSON2Video credits ran out.',
+};

@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { beforeEach, afterEach, test } from 'node:test';
 import { addAirtableLead } from '../api/_lib/airtable-lead.js';
-import { POST } from '../api/subscribe.js';
+import { addSubscriber } from '../api/subscribe.js';
 
-const keys = ['AIRTABLE_API_KEY', 'AIRTABLE_TOKEN', 'AIRTABLE_BASE_ID', 'AIRTABLE_LEADS_TABLE', 'RESEND_API_KEY'];
+const keys = ['AIRTABLE_API_KEY', 'AIRTABLE_TOKEN', 'AIRTABLE_BASE_ID', 'AIRTABLE_LEADS_TABLE', 'RESEND_API_KEY', 'SUBSCRIBE_SECRET'];
 const savedEnv = Object.fromEntries(keys.map(key => [key, process.env[key]]));
 const savedFetch = globalThis.fetch;
 const savedError = console.error;
@@ -103,24 +103,20 @@ test('fetch rejection logs and returns false', async () => {
 
 test('signup still succeeds and sends Resend notifications when Airtable fails', async () => {
   process.env.RESEND_API_KEY = 'resend-test-key';
-  globalThis.fetch = async (url, init) => {
+  process.env.SUBSCRIBE_SECRET = 'test-secret';
+  globalThis.fetch = async (url, init = {}) => {
     calls.push({ url, init });
-    if (url.startsWith('https://api.airtable.com/')) throw new Error('Airtable unavailable');
+    if (String(url).startsWith('https://api.airtable.com/')) throw new Error('Airtable unavailable');
+    if (!init.method) return new Response('{"name":"not_found"}', { status: 404 });
     assert.ok(url === 'https://api.resend.com/contacts' || url === 'https://api.resend.com/emails');
     return new Response('{"id":"resend-id"}', { status: 200 });
   };
-  const response = await POST(new Request('https://example.com/api/subscribe', {
-    method: 'POST',
-    headers: { referer: 'https://example.com/guide' },
-    body: JSON.stringify({ email: ' Ada@Example.com ' }),
-  }));
-  assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { ok: true, welcomeSent: true });
+  assert.deepEqual(await addSubscriber('ada@example.com', 'https://example.com/guide'), { ok: true, welcomeSent: true });
   assert.deepEqual(calls.map(call => new URL(call.url).hostname), [
-    'api.resend.com', 'api.airtable.com', 'api.resend.com', 'api.resend.com',
+    'api.resend.com', 'api.resend.com', 'api.airtable.com', 'api.resend.com', 'api.resend.com',
   ]);
-  assert.equal(JSON.parse(calls[1].init.body).records[0].fields.Email, 'ada@example.com');
-  assert.equal(JSON.parse(calls[1].init.body).records[0].fields['Source page'], 'https://example.com/guide');
+  assert.equal(JSON.parse(calls[2].init.body).records[0].fields.Email, 'ada@example.com');
+  assert.equal(JSON.parse(calls[2].init.body).records[0].fields['Source page'], 'https://example.com/guide');
   assert.deepEqual(JSON.parse(calls[3].init.body).to, ['ada@example.com']);
   assert.equal(errors.length, 1);
 });

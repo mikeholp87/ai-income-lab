@@ -1,0 +1,24 @@
+✓ Done
+
+✓ Sponsor AI Automation Station: Media Kit & Packages
+  https://www.ai-automation-station.com/sponsors.html
+
+✓ Done
+
+"{\"cards\":7,\"width\":390,\"viewport\":390,\"headerCta\":\"#work-together\",\"proposalVisible\":true}"
+
+✓ Done
+
+"{\"selected\":\"Multi-platform campaign\",\"allocations\":[\"In the four-format campaign: $1,350 — save $150 on this placement.\",\"In the four-format campaign: $350 — save $50 on this placement.\",\"In the four-format campaign: $250 — save $50 on this placement.\",\"In the four-format campaign: $300 — save $50 on this placement.\"]}"
+
+✓ Done
+
+{
+  "interrupted": false
+}
+
+✓ Screenshot saved to /tmp/sponsors-cro-live-desktop.png
+
+
+✓ Browser closed
+[agent-browser] launched browser

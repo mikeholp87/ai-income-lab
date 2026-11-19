@@ -5,7 +5,7 @@ import { uploads } from './uploads-snapshot.js';
 import { GET } from '../api/videos.js';
 
 test('every topic has a readable slug, an intro and enough videos to stand alone', () => {
-  assert.equal(topics.length, 10);
+  assert.equal(topics.length, 12);
   assert.equal(new Set(topics.map(topic => topic.slug)).size, topics.length);
   for (const topic of topics) {
     // Starts with a letter, so it can never be mistaken for an archive page number.
@@ -23,7 +23,7 @@ test('topic patterns sort familiar titles', () => {
   const slugs = title => topics.filter(topic => topic.pattern.test(title)).map(topic => topic.slug);
   assert.deepEqual(slugs('This Claude Code Hack Saves Token Usage'), ['claude-code']);
   assert.deepEqual(slugs('Claude Opus 5.5 Is Better And 40% Cheaper!'), ['new-models']);
-  assert.deepEqual(slugs('Make.com AI Automations Without Code'), ['make-com']);
+  assert.deepEqual(slugs('Make.com AI Automations Without Code'), ['make-com', 'ai-automation']);
   assert.deepEqual(slugs('Here\'s Why I Decided To Escape The Rat Race'), ['make-money']);
   assert.deepEqual(slugs('I Built an AI Tool to Find Website Clients (It Actually Works!)'), ['make-money', 'ai-website-builders']);
   assert.deepEqual(slugs('Ghostty: The Only Linux Terminal You Need!'), []);
@@ -41,4 +41,18 @@ test('topic pages are served at /videos/<slug> next to the numbered pages', asyn
   assert.equal((await get('/videos/not-a-topic')).status, 404);
   assert.equal((await get('/videos/2')).status, 200);
   assert.equal((await get('/videos/1')).status, 308);
+});
+
+test('topic hubs list the matching written guides', () => {
+  const hrefs = slug => topicBySlug(slug).guides.map(([href]) => href);
+  for (const href of ['/guides/what-is-n8n-used-for.html', '/guides/self-host-n8n.html', '/guides/n8n-vs-zapier-vs-make.html', '/guides/n8n-alternatives-open-source.html']) {
+    assert.ok(hrefs('n8n').includes(href), href);
+  }
+  for (const href of ['/guides/no-code-ai-agent-builder.html', '/guides/agentic-ai-vs-traditional-automation.html', '/guides/install-openclaw.html']) {
+    assert.ok(hrefs('ai-agents').includes(href), href);
+  }
+  assert.ok(hrefs('ai-video').includes('/guides/youtube-channel-growth-workflow.html'));
+  assert.ok(hrefs('ai-video').includes('/guides/ai-content-creation-workflows.html'));
+  assert.ok(hrefs('new-models').includes('/guides/choosing-ai-models-for-a-task.html'));
+  assert.ok(hrefs('codex-opencode').includes('/guides/codex-cli.html'));
 });

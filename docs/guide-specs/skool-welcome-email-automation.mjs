@@ -1,0 +1,81 @@
+export default {
+  slug: 'skool-welcome-email-automation',
+  video: 'Zza-S7YsLy0',
+  type: 'How-to',
+  title: 'Skool Welcome Emails With Zapier, Make.com and EmailOctopus',
+  short: 'Skool welcome email automation',
+  description: 'Send a welcome email sequence to new Skool members: Zapier fills a Google Sheet, Make.com adds them to EmailOctopus. Includes the paid-community catch.',
+  hub: 'Welcome new Skool members automatically: Zapier writes each member to a sheet, Make.com adds them to EmailOctopus for a three-email sequence.',
+  watchLabel: 'Follow the Skool welcome email automation',
+  about: ['Skool','Zapier','Make.com','EmailOctopus','Google Sheets'],
+  card: {
+    title: 'Skool member to welcome email, automated',
+    steps: [
+      ['Capture','Skool Zapier integration fills a sheet'],
+      ['Add','Make.com watches rows, adds to EmailOctopus'],
+      ['Send','Three-email welcome sequence'],
+    ],
+    note: 'Paid communities cannot ask membership questions.',
+  },
+  quick: 'Skool had no public API in July 2025, so use its Zapier integration to append each new member, with their answers and email, to a Google Sheet. In Make.com watch that sheet for new rows and add each person to EmailOctopus with first name and email, which starts a welcome sequence: an intro email, a 12-hour wait, a second email, a two-day wait and a last email. The catch: once my community became paid, I could no longer ask membership questions, so I could not collect emails from new members that way.',
+  intro: "<p>This is a July 2025 build for my own Skool community. It collects personal data, so only email people who joined and agreed to be contacted, and keep the sheet private. The Skool and Make.com links on this page are affiliate links. For plan details, see <a href=\"/guides/skool-hobby-plan-review.html\">the Skool Hobby plan review</a>.</p>\n<p class=\"cluster-router\"><strong>Which Skool guide?</strong> <a href=\"/guides/skool-hobby-plan-review.html\">Hobby vs Pro</a> for plan choice; <a href=\"/guides/skool-community-setup-guide.html\">community setup</a> for the first build; <a href=\"/guides/skool-free-community-first-weeks.html\">first weeks</a> for early growth; <a href=\"/guides/skool-membership-tiers.html\">membership tiers</a> for free/premium/VIP; <a href=\"/guides/skool-classroom-upsell-tour.html\">classroom upsell</a> for course gates; <a href=\"/guides/skool-welcome-email-automation.html\">welcome emails</a> for Zapier/Make + EmailOctopus.</p>",
+  sections: [
+    {
+      id: 'capture',
+      h: '1. Capture members in a sheet',
+      html: '<p>On a free community you can turn on membership questions under plugins and ask for an email. Skool’s built-in Zapier integration then adds each approved member to a Google Sheet: first name, last name, the answers to your questions and the email. In Zapier you connect the Skool account and choose the sheet.</p><p>I looked at Apify actors that scrape Skool member data, then skipped them because they may break Skool’s terms of service. Use only the integration Skool provides.</p>',
+    },
+    {
+      id: 'make',
+      h: '2. Watch the sheet in Make.com',
+      html: '<p>The Make.com scenario watches the sheet for new rows and adds each person to an EmailOctopus list with their email and first name. An optional WhatsApp Business Cloud module can message them as well, but I did not use it because I do not collect phone numbers. Setting it up goes through Meta for Developers.</p>',
+    },
+    {
+      id: 'sequence',
+      h: '3. The welcome sequence',
+      html: '<p>In EmailOctopus the automation sends an introductory email, waits 12 hours, sends another, waits two days and sends the last. I like EmailOctopus: this walkthrough said it has a free plan for small lists and is cheaper than Mailchimp as lists grow, but check its current pricing.</p>',
+    },
+    {
+      id: 'paid',
+      h: '4. After the community went paid',
+      html: '<p>When I made the community paid, membership questions stopped working, so I switched the Zap to the new paid member trigger. It writes first name, last name and email into a new sheet, and Make.com watches that sheet instead. People can also be invited to Skool through a webhook or a CSV import, in the same way.</p>',
+    },
+  ],
+  done: [
+    'Skool Zapier integration fills a sheet',
+    'Make.com watches rows, adds to EmailOctopus',
+    'Three-email welcome sequence',
+  ],
+  limits: [
+    'Skool’s current API and Zapier options, which may have changed since July 2025.',
+    'Open or click rates of the sequence.',
+    'Consent wording, which you need to add for your own audience and country.',
+  ],
+  faq: [
+    [
+      'Does Skool have a public API?',
+      'Not at the time of this walkthrough, so I used its Zapier integration.',
+    ],
+    [
+      'Why can’t I collect emails on a paid community?',
+      'In that walkthrough, membership questions were not available once my community was paid.',
+    ],
+    ['Why not scrape members with Apify?','It may break Skool’s terms of service, so I skipped it.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=Zza-S7YsLy0">This Make.com Skool Workflow Saves Me Hours Every Week!</a> (recorded July 2025)',
+    'Start a community through my affiliate link: <a href="https://www.skool.com/signup?ref=8be413d469374945a9c1f8db3e5a92a0" rel="sponsored noopener">Skool</a> · <a href="https://www.make.com/en/register?pc=mikeholp" rel="sponsored noopener">Make.com</a>',
+    'Skool plans: <a href="https://www.skool.com/pricing">skool.com/pricing</a> (Checked November 15, 2026)',
+  ],
+  related: [
+    ['/guides/skool-hobby-plan-review.html','Skool Hobby plan review'],
+    ['/guides/skool-membership-tiers.html','Skool membership tiers'],
+    ['/guides/make-business-automation-examples.html','Make.com business automations'],
+    ['/guides/make-first-automation.html','Filter approved requests with Make and Google Sheets'],
+    ['/guides/ai-automation-services-small-business.html','AI automation services for small business'],
+  ],
+  next: ['/guides/skool-membership-tiers.html','Skool membership tiers'],
+  more: 'Price and details: <a href="/tools.html#skool">Skool on the tools page</a>',
+  linkFrom: ['/guides/skool-hobby-plan-review.html'],
+  llms: 'A July 2025 build for welcoming Skool members. Skool had no public API, so its Zapier integration writes each new member to a Google Sheet; a Make.com scenario watches the sheet and adds people to EmailOctopus, which sends a three-email sequence. Membership questions stopped working once the community was paid, so the Zap switched to a new paid member trigger.',
+};

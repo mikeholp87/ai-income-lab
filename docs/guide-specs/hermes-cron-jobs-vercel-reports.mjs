@@ -1,0 +1,43 @@
+export default {
+  slug: 'hermes-cron-jobs-vercel-reports',
+  type: 'Build guide',
+  video: 'iVI11AZvUdk',
+  title: 'Hermes Agent Cron Jobs: Move Them to Vercel With Reports',
+  short: 'Hermes cron jobs',
+  description: 'Set up scheduled jobs in the Hermes Agent desktop app, then move a broken-link checker and a blog digest to Vercel cron with weekly Resend email reports.',
+  hub: 'Schedule jobs in the Hermes Agent desktop app, then move a broken-link checker and a weekly blog digest to Vercel cron with Resend email reports.',
+  watchLabel: 'Follow the Hermes cron jobs and Vercel build',
+  about: ['Hermes Agent', 'Codex', 'Vercel', 'Resend', 'GitHub'],
+  card: {
+    title: 'Hermes cron jobs, then Vercel cron for reliability',
+    steps: [['Create', 'Hermes builds the jobs and scripts'], ['Report', 'Resend emails the results'], ['Move', 'Codex adds cron routes to vercel.json']],
+    note: 'June 2026; local jobs need the computer awake.',
+  },
+  quick: 'Install or update Hermes Agent with the one-line curl command from its site, run the setup wizard and open the desktop app with hermes desktop to see your cron jobs, their last run and errors. I switched jobs that hit API limits to the Big Pickle model with DeepSeek V4 Pro as a fallback, asked Hermes which jobs the business needed and had it build a broken-link checker and a blog performance digest with a Resend key for email reports. Because local jobs need the computer awake and the app used heavy CPU and memory, I had Codex move both onto Vercel cron in vercel.json.',
+  intro: '<p>This is a June 2026 build. Hermes Agent is good at creating agents and scheduled jobs, and its desktop app makes them visible. A laptop that sleeps will miss runs, though, which is why I moved the two jobs to a server schedule. The deploy steps use your own Vercel project and a Resend account, so keep keys in environment variables. For the desktop app itself, see <a href="/guides/hermes-desktop.html">the Hermes Desktop guide</a>. The OpenCode link on this site is an affiliate link.</p>',
+  sections: [
+    { id: 'install', h: '1. Install and open the desktop app', html: '<p>Run the curl command from the Hermes website to install or update everything, including the desktop app, or download it for macOS or Windows. The setup wizard connects models and gateways such as Telegram, Slack, WhatsApp or email, which you can use to control Hermes. Then run hermes desktop. The jobs list shows each job, when it last ran, when it runs next and any error.</p>' },
+    { id: 'models', h: '2. Keep jobs from hitting limits', html: '<p>Several of my jobs had run out of credits on the API I used, so I told Hermes to use a different model for all of them. I chose Big Pickle with DeepSeek V4 Pro as the fallback and ran one job manually to test. You can also pause, resume or trigger a job from the desktop app.</p>' },
+    { id: 'jobs', h: '3. Let Hermes propose and build jobs', html: '<p>I asked Hermes which cron jobs my business should have. It built a broken-link checker and a blog performance digest as Python scripts, which you can open in the app and read before you trust them. I let it connect a Resend API key so each job emails me a report.</p>' },
+    { id: 'vercel', h: '4. Move them to Vercel cron', html: '<p>Local jobs only run while the computer is on and awake, and the desktop app used a lot of CPU and memory in my test. I switched to Codex, which added both jobs as cron routes in vercel.json so they run on the server: the digest on Mondays at 7:00 UTC and the link checker on Tuesdays at 5:00. I also had it add Google Search Console traffic per blog article to the digest. It pushed to GitHub, Vercel deployed the schedules and I ran both once by hand to get the emails.</p>' },
+  ],
+  limits: [
+    'Whether the weekly emails stayed useful over several weeks.',
+    'Resend and Vercel usage limits at higher volume.',
+    'A security review of the generated scripts and routes. Protect cron routes so only Vercel can call them.',
+  ],
+  faq: [
+    ['Do Hermes cron jobs run when my laptop sleeps?', 'No. Local jobs need the computer awake, which is why I moved mine to Vercel cron.'],
+    ['How do I get email reports?', 'Connect a Resend API key and have the job send its report by email.'],
+    ['Which model did I use for jobs?', 'Big Pickle, with DeepSeek V4 Pro as the fallback, after other jobs hit API limits.'],
+  ],
+  sources: [
+    'Video: <a href="https://www.youtube.com/watch?v=iVI11AZvUdk">Why Your AI Needs Cron Jobs (Hermes Agent Tutorial)</a> (recorded June 2026)',
+    'Vercel cron jobs: <a href="https://vercel.com/docs/cron-jobs">vercel.com/docs/cron-jobs</a> · Resend: <a href="https://resend.com">resend.com</a>',
+  ],
+  related: [['/guides/hermes-desktop.html', 'Hermes Desktop'], ['/guides/hermes-youtube-to-linkedin-cron.html', 'Hermes YouTube to LinkedIn cron job'], ['/guides/hermes-agent-supermemory.html', 'Hermes Agent memory with Supermemory'], ['/guides/codex-workflow.html', 'Make and verify a code change with Codex'], ['/guides/ai-agent-workflow.html', 'AI agent workflow']],
+  next: ['/guides/hermes-youtube-to-linkedin-cron.html', 'Hermes YouTube to LinkedIn cron job'],
+  more: 'Price and details: <a href="/tools.html#opencode">OpenCode on the tools page</a>',
+  linkFrom: ['/guides/hermes-youtube-to-linkedin-cron.html'],
+  llms: 'A June 2026 build: set up cron jobs in the Hermes Agent desktop app, switch limited jobs to Big Pickle with DeepSeek V4 Pro fallback, have Hermes build a broken-link checker and blog digest with Resend email reports, then use Codex to move both to Vercel cron in vercel.json (Monday 7:00 UTC and Tuesday 5:00). Local jobs need the computer awake.',
+};
