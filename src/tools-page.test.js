@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { toolLink } from './tool-links.js';
 import { affiliates, categories, logoSlug } from './affiliates.js';
@@ -289,4 +289,63 @@ test('OpenCode, Gemini, Hostinger and Apify cards link existing guides', async (
   assert.match(card('Google Gemini'), /href="\/guides\/google-ai-studio-chat-app\.html"/);
   assert.match(card('Hostinger'), /href="\/guides\/install-openclaw\.html"/);
   assert.match(card('Apify'), /href="\/guides\/apify-agent-skills\.html"/);
+});
+
+test('guide articles use the canonical affiliate URL wherever they link that tool', async () => {
+  const dir = new URL('../public/guides/', import.meta.url);
+  const files = (await readdir(dir)).filter(file => file.endsWith('.html')).sort();
+  const decode = href => href.replace(/&amp;/g, '&');
+  const plainLinksOnly = /no (affiliate|referral) (links|codes)|plain links only|no tracking parameters/i;
+  const hostOf = url => {
+    try { return new URL(url).hostname.replace(/^www\./, ''); }
+    catch { return ''; }
+  };
+  const hostsFor = affiliate => new Set([affiliate.site.replace(/^www\./, ''), hostOf(affiliate.url)].filter(Boolean));
+  const matchesHost = (url, affiliate) => {
+    const host = hostOf(url);
+    return [...hostsFor(affiliate)].some(site => host === site || host.endsWith(`.${site}`));
+  };
+  const sameTracking = (url, affiliate) => {
+    if (url === affiliate.url) return true;
+    try {
+      const found = new URL(url);
+      const expected = new URL(affiliate.url);
+      if (affiliate.name === 'Hostinger') return found.searchParams.get('REFERRALCODE') === expected.searchParams.get('REFERRALCODE');
+      return [...expected.searchParams.keys()].every(key => found.searchParams.get(key) === expected.searchParams.get(key));
+    } catch {
+      return false;
+    }
+  };
+
+  for (const file of files) {
+    const html = await readFile(new URL(file, dir), 'utf8');
+    if (plainLinksOnly.test(html)) continue;
+    const excluded = new Set((html.match(/<meta name="affiliate-exclude" content="([^"]*)">/)?.[1] ?? '').split(',').map(name => name.trim()).filter(Boolean));
+    const hrefs = [...html.matchAll(/<a\b([^>]*)>/gi)].map(match => {
+      const attrs = match[1];
+      return {
+        href: decode((attrs.match(/href="([^"]*)"/i) || [])[1] || ''),
+        sponsored: /\brel="[^"]*\bsponsored\b/.test(attrs),
+      };
+    }).filter(link => /^https?:/i.test(link.href));
+
+    for (const link of hrefs) {
+      if (!link.sponsored) continue;
+      assert.ok(affiliates.some(affiliate => sameTracking(link.href, affiliate)), `${file}: sponsored link ${link.href} is not a canonical affiliate URL`);
+    }
+
+    for (const affiliate of affiliates) {
+      if (excluded.has(affiliate.name)) continue;
+      const related = hrefs.filter(link => matchesHost(link.href, affiliate) && !/skool\.com\/ai-automation-station/i.test(link.href));
+      if (!related.length) continue;
+      const encoded = affiliate.url.replace(/&/g, '&amp;');
+      assert.ok(html.includes(affiliate.url) || html.includes(encoded), `${file} links ${affiliate.name} (${related[0].href}) but is missing ${affiliate.url}`);
+    }
+
+    for (const link of hrefs) {
+      if (!/hostinger\.com/i.test(link.href) || excluded.has('Hostinger')) continue;
+      if (/help\.hostinger|support\.hostinger|\/blog\//i.test(link.href)) continue;
+      assert.match(link.href, /REFERRALCODE=5XNDIGITACZ9/, `${file}: Hostinger link ${link.href} is missing REFERRALCODE=5XNDIGITACZ9`);
+    }
+  }
 });
