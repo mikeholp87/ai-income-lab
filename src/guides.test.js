@@ -105,6 +105,7 @@ const youtubeWalkthroughPosters = {
   'n8n-whatsapp-ai-agent.html': '7p3n6-FH9IQ',
   'make-com-beginner-course-scenarios.html': 'R90zVHmoj7A',
   'make-business-automation-examples.html': 'gibc7oWLCn4',
+  'aegis-vpn-claude-code.html': 'XEmJGf5CHwk',
 };
 
 test('the guides hub links, lists and describes every guide', async () => {

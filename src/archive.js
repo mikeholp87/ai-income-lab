@@ -298,6 +298,7 @@ const neighbourNav = ({ newer, older }) => newer || older ? `<nav class="pager m
 
 // Written guides that cover the same tool as a video. First match wins, so keep specific patterns above broad ones.
 export const guides = [
+  [/i built my own vpn instead of paying|vpn that anyone can use for free/i, '/guides/aegis-vpn-claude-code.html', 'Aegis VPN with Claude Code: Build and Test the Client'],
   [/apify agent skills in claude code/i, '/guides/apify-agent-skills.html', 'Apify agent skills setup in Cursor'],
   [/new codex cli/i, '/guides/codex-cli.html', 'Codex CLI install: Mac, Windows and Linux'],
   [/build web apps in minutes with google ai studio/i, '/guides/google-ai-studio-chat-app.html', 'Build a Chat Web App in Google AI Studio, No Code'],
@@ -402,6 +403,8 @@ const playerScript = `(()=>{const player=document.querySelector('iframe.player')
 // IDs keep these links stable when a video's title changes. Each entry lists [href, label, small?] links in order:
 // the guide that embeds the video comes first, then any broader guide (archive.test.js checks the first part).
 const watchGuideLinks = {
+  XEmJGf5CHwk: [['/guides/aegis-vpn-claude-code.html', 'Aegis VPN with Claude Code: Build and Test the Client']],
+  IIcekvpPuqo: [['/guides/aegis-vpn-claude-code.html', 'Aegis VPN with Claude Code: Build and Test the Client']],
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
   vmEac5CJcNQ: [['/guides/ai-coding-tutorials-compared.html', 'Watch me build a web app with Claude Code']],
   lumzbY6QV4Y: [['/guides/ai-agent-training-compared.html', 'Watch me test OpenAI Agent Builder']],
@@ -759,6 +762,7 @@ const guideVideoTopics = {
   '/guides/youtube-feed.html': /youtube transcript automation|youtube competitor spy tool|deploy a saas with vercel|web apps in minutes with google ai studio/i,
   '/guides/ai-threejs-rocket-demo.html': /gpt-6 astra|video editor using rea|claude design alternative|rocket ai/i,
   '/guides/chatgpt-images-sketch-workflow.html': /chatgpt images 2\.0|sora 2|heygen|syllaby|complete ebook in 30 minutes/i,
+  '/guides/aegis-vpn-claude-code.html': /new herdr desktop|herdr lets you run|task manager in claude code|claude code hack saves token/i,
   '/guides/claude-code-task-manager.html': /claude code skills|complete web app in claude code|android tv with claude|get started with claude code/i,
   '/guides/cleanyourtv-claude-code.html': /task manager in claude code|claude code skills|get started with claude code|build apps using free claude code/i,
   '/guides/codex-seo-workflow.html': /dataforseo|replace your seo team|grok bot for seo|ai search ranking|openseo/i,
