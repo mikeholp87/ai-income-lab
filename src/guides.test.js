@@ -6,6 +6,16 @@ const read = async path => (await readFile(new URL(`../${path}`, import.meta.url
 const guides = (await readdir(new URL('../public/guides', import.meta.url))).filter(file => file.endsWith('.html'));
 const youtubeWalkthroughPosters = {
   'apify-agent-skills.html': 'mtpX58dNfCE',
+  'cline-ai-coding-agent.html': 'c_WK6TImkNQ',
+  'otterly-ai-visibility-tracking.html': 'pDrMGahPnwc',
+  'claude-code-routines.html': 'AO8NoHPU3e0',
+  'chatgpt-images-2-getting-started.html': 'FBlN3qWR9kg',
+  'claude-code-video-editing-skill-github.html': 'ztEj6zCJh5k',
+  'geo-aeo-tracker-github.html': '3X2VU7EyaEU',
+  'claude-design-website-redesign.html': 'n3NO40juUBo',
+  'claude-design-getting-started.html': 'yHaBYtUnzBg',
+  'kilo-code-ai-visibility-optimizer.html': 'LoNsDme0XQI',
+  'free-claude-code-setup.html': 'Qb6RG0-8O1k',
   'hermes-agent-scheduled-jobs.html': 'DB-9bW85TKY',
   'opusclip-alternative-viral-clips.html': 'w_MoA8lpWTg',
   'codex-website-redesign.html': 'MABL6XZgy4g',
