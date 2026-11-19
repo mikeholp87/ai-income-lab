@@ -550,6 +550,7 @@ test('guide Article data names the author profiles and the topics the guide cove
     const html = await read(`public/guides/${file}`);
     const article = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1])).find(entry => entry['@type'] === 'Article');
     assert.ok(article.author.sameAs.includes('https://www.youtube.com/@ai-automation-station'), file);
+    assert.ok(article.author.sameAs.includes('https://www.visiscan.app/about'), file);
     assert.ok(article.about.length >= 1, file);
     for (const entity of [...article.about, ...(article.mentions || [])]) assert.equal(entity['@type'], 'Thing', `${file}: ${entity.name}`);
   }

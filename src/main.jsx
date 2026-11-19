@@ -7,6 +7,7 @@ import { bootGoogleAnalytics, disableMarketingTracking, getTrackingConsent, load
 import { getCal } from './cal.js';
 import { median, validFeed } from './youtube.js';
 import { emailIcon, footerExplore, githubUrl, linkedinUrl, skoolAboutUrl, skoolCommunityUrl, skoolPlansUrl, socialLinks, xUrl, youtubeSubscribeUrl } from './site-footer.js';
+import { visiscanPaths, visiscanUrl } from './visiscan-links.js';
 import { topics } from './topics.js';
 import { validGithubRepositories } from './github-repositories.js';
 import { dropMissingMaxres, featuredThumbnail, youtubeSrcSet } from './thumbnail.js';
@@ -111,13 +112,14 @@ const tools = [
   },
   {
     name: 'VisiScan',
-    url: 'https://www.visiscan.app',
+    url: visiscanUrl(visiscanPaths.tool, 'home'),
     image: '/tools/visiscan.webp',
     size: [1734, 1278],
     tagline: 'See whether AI recommends your business.',
     copy: 'VisiScan asks AI engines like ChatGPT, Claude, and Perplexity the questions your buyers ask, then shows who gets named, who gets recommended instead, and what to fix.',
     facts: ['Free scan, no signup', 'Full report for $49, paid once', 'Weekly monitoring from $29 a month'],
     cta: 'Run a free scan',
+    rel: 'noopener',
   },
 ];
 
@@ -949,7 +951,7 @@ function App({ page = 'home' }) {
                   <ul>{tool.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
                   <div className="tool-action">
                     {tool.note && <p className="fine-print">{tool.note}</p>}
-                    <a className="button button-primary" href={tool.url} target="_blank" rel="noreferrer" onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
+                    <a className="button button-primary" href={tool.url} target="_blank" rel={tool.rel ?? 'noreferrer'} onClick={trackClick('tools', tool.cta, tool.url, `visit_${tool.name.toLowerCase()}`)}>{tool.cta} ↗</a>
                   </div>
                 </div>
               </article>

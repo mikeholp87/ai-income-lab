@@ -11,7 +11,10 @@ export const youtubeSubscribeUrl = `${channelUrl}?sub_confirmation=1`;
 export const githubUrl = 'https://github.com/mikeholp87';
 export const linkedinUrl = 'https://www.linkedin.com/in/mikeholp';
 export const xUrl = 'https://x.com/mikeholp';
+export const visiscanAboutUrl = 'https://www.visiscan.app/about';
 export const supportEmail = 'mailto:automojic@proton.me';
+export const personSameAs = [channelUrl, githubUrl, linkedinUrl, xUrl, visiscanAboutUrl];
+export const personKnowsAbout = ['Claude Code', 'Codex', 'OpenCode', 'n8n', 'Make.com', 'AI automation', 'AI search visibility', 'generative engine optimization'];
 
 export const footerExplore = [
   ['/start-here.html', 'Start here'],

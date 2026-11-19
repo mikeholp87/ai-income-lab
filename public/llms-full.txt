@@ -25,7 +25,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Every video: AI tools tested on real builds](https://www.ai-automation-station.com/videos)
 - [YouTube channel](https://www.youtube.com/@ai-automation-station)
 - [TubeAnalytics](https://www.tubeanalytics.net)
-- [VisiScan](https://www.visiscan.app)
+- [VisiScan](https://www.visiscan.app/tools/ai-visibility-scanner?utm_source=ai-automation-station&utm_medium=referral&utm_content=llms)
 - [AI Income Lab on Skool](https://www.skool.com/ai-automation-station-7346/about)
 - [AI Income Lab plans](https://www.skool.com/ai-automation-station-7346/plans): Official plan selection and checkout; current course access and billing details are also visible on the [homepage](https://www.ai-automation-station.com/#pricing).
 
