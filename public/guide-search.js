@@ -18,34 +18,51 @@ const sections = [...document.querySelectorAll('ul.guide-list')].map(list => {
 });
 const all = sections.flatMap(section => section.cards);
 for (const entry of all) Object.assign(entry, { home: entry.card.parentElement, published: entry.card.dataset.published ?? '' });
+// Stamp data-topic from the static #hash pills so filter state survives if reading.js rewrites hrefs.
+for (const link of topics.querySelectorAll('a')) {
+  const id = link.hash.slice(1);
+  if (id) link.dataset.topic = id;
+}
 const perPage = 15;
 const params = new URLSearchParams(location.search);
 let page = Math.floor(Number(params.get('page'))) || 1;
 // "By topic" keeps the topic sections; "Newest" and "Oldest" move every card into one list ordered by publish date.
 const sorts = { topic: 'By topic', newest: 'Newest', oldest: 'Oldest' };
 let sort = Object.hasOwn(sorts, params.get('sort')) ? params.get('sort') : 'topic';
+const idOf = section => section.parts[0].id;
+// Topic id from ?topic= or an old #hash link; null shows every guide.
+let topic = [params.get('topic'), location.hash.slice(1)].find(id => sections.some(section => idOf(section) === id)) ?? null;
+const hrefFor = ({ topic: nextTopic = topic, sort: nextSort = sort, page: nextPage } = {}) => {
+  const q = new URLSearchParams();
+  if (nextTopic) q.set('topic', nextTopic);
+  if (nextSort !== 'topic') q.set('sort', nextSort);
+  if (nextPage > 1) q.set('page', nextPage);
+  const query = q.toString();
+  return query ? `?${query}` : '?';
+};
 const sortNav = Object.assign(document.createElement('nav'), { className: 'sort' });
 sortNav.setAttribute('aria-label', 'Sort guides');
-sortNav.innerHTML = Object.entries(sorts).map(([key, label]) => `<a href="?${key === 'topic' ? '' : `sort=${key}`}" data-sort="${key}" rel="nofollow">${label}</a>`).join('');
+sortNav.innerHTML = Object.entries(sorts).map(([key, label]) => `<a href="${hrefFor({ sort: key })}" data-sort="${key}" rel="nofollow">${label}</a>`).join('');
 form.after(sortNav);
 const dated = Object.assign(document.createElement('ul'), { className: 'guide-list by-date', hidden: true });
 sections[0].parts[0].before(dated);
-const byDate = (a, b) => sort === 'oldest' ? a.published.localeCompare(b.published) : b.published.localeCompare(a.published);
+const titleOf = entry => entry.card.querySelector('h3 a')?.textContent.trim() ?? '';
+const byDate = (a, b) => {
+  const date = sort === 'oldest' ? a.published.localeCompare(b.published) : b.published.localeCompare(a.published);
+  return date || titleOf(a).localeCompare(titleOf(b));
+};
 function arrange() {
   if (sort === 'topic') for (const entry of all) entry.home.append(entry.card);
   else for (const entry of [...all].sort(byDate)) dated.append(entry.card);
 }
-// Topic id from ?topic= or an old #hash link; null shows every guide.
-const idOf = section => section.parts[0].id;
-let topic = [params.get('topic'), location.hash.slice(1)].find(id => sections.some(section => idOf(section) === id)) ?? null;
-const allLink = Object.assign(document.createElement('a'), { href: '?', textContent: 'All guides ' });
+const allLink = Object.assign(document.createElement('a'), { href: hrefFor({ topic: null }), textContent: 'All guides ' });
 allLink.append(Object.assign(document.createElement('span'), { className: 'pill-count', textContent: all.length }));
 allLink.setAttribute('aria-label', `All guides (${all.length})`);
 topics.prepend(allLink);
 const pager = Object.assign(document.createElement('nav'), { className: 'pager mono' });
 pager.setAttribute('aria-label', 'Guide pages');
 document.getElementById('next').before(pager);
-const pagerLink = (to, label) => `<a href="?${new URLSearchParams({ ...(topic && { topic }), ...(sort !== 'topic' && { sort }), page: to })}" data-page="${to}">${label}</a>`;
+const pagerLink = (to, label) => `<a href="${hrefFor({ page: to })}" data-page="${to}">${label}</a>`;
 const esc = text => String(text).replace(/[&<>"']/g, char => `&#${char.charCodeAt(0)};`);
 
 function run() {
@@ -87,7 +104,10 @@ function paint() {
   for (const entry of all) entry.card.hidden = !shown.has(entry);
   for (const { parts, cards } of sections) for (const part of parts) part.hidden = sort !== 'topic' || !cards.some(entry => shown.has(entry));
   dated.hidden = sort === 'topic' || !shown.size;
-  for (const link of topics.children) link.toggleAttribute('aria-current', (link.hash.slice(1) || null) === topic);
+  allLink.href = hrefFor({ topic: null });
+  for (const link of topics.querySelectorAll('a[data-topic]')) link.href = hrefFor({ topic: link.dataset.topic });
+  for (const link of sortNav.children) link.href = hrefFor({ sort: link.dataset.sort });
+  for (const link of topics.children) link.toggleAttribute('aria-current', (link.dataset.topic || null) === topic);
   for (const link of sortNav.children) link.toggleAttribute('aria-current', link.dataset.sort === sort);
   pager.hidden = pages < 2;
   pager.innerHTML = pages < 2 ? '' : [
@@ -117,9 +137,9 @@ pager.addEventListener('click', event => {
 // like the /videos topic pills.
 topics.addEventListener('click', event => {
   const link = event.target.closest('a');
-  if (!link || link.pathname !== location.pathname) return;
+  if (!link || !topics.contains(link)) return;
   event.preventDefault();
-  topic = link.hash.slice(1) || null;
+  topic = link.dataset.topic || null;
   page = 1;
   paint();
 });

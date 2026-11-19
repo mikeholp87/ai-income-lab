@@ -446,7 +446,11 @@ test('the guides hub sorts by topic or publish date, and every card shows its da
   const script = await read('public/guide-search.js');
   assert.match(script, /const sorts = \{ topic: 'By topic', newest: 'Newest', oldest: 'Oldest' \};/);
   assert.match(script, /sort === 'oldest' \? a\.published\.localeCompare\(b\.published\) : b\.published\.localeCompare\(a\.published\)/);
+  assert.match(script, /titleOf\(a\)\.localeCompare\(titleOf\(b\)\)/);
   assert.match(script, /url\.searchParams\.set\('sort', sort\)/);
+  assert.match(script, /link\.dataset\.topic = id/);
+  assert.match(script, /hrefFor\(\{ topic: link\.dataset\.topic \}\)/);
+  assert.match(script, /hrefFor\(\{ sort: link\.dataset\.sort \}\)/);
 });
 
 test('guide and video cards outline in orange on hover, and a guide image opens its guide', async () => {
@@ -631,6 +635,13 @@ test('choosing a guide topic keeps the scroll position, like the videos page', a
   const script = await read('public/guide-search.js');
   const handler = script.match(/topics\.addEventListener\('click', event => \{[^]*?\n\}\);/)[0];
   assert.doesNotMatch(handler, /scrollIntoView|scrollTo/);
+  assert.match(handler, /topic = link\.dataset\.topic \|\| null/);
+  assert.match(handler, /topics\.contains\(link\)/);
+});
+
+test('reading.js leaves same-page hash topic pills alone on the guides hub', async () => {
+  const reading = await read('src/reading.js');
+  assert.match(reading, /startsWith\('#'\)\) continue/);
 });
 
 test('every guide that embeds a video describes it in structured data and lists its chapters', async () => {

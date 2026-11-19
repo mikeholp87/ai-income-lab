@@ -41,6 +41,8 @@ function recordView() {
 }
 
 for (const link of document.querySelectorAll('a[href]')) {
+  // Same-page hash links (guide topic pills) stay as #id so the guides hub can filter without a reload.
+  if (String(link.getAttribute?.('href') ?? '').startsWith('#')) continue;
   link.href = readingLink(link.href, window.location.href);
   const target = new URL(link.href);
   if (link.dataset.starterKit) {
