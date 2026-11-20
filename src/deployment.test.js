@@ -2,6 +2,24 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
+test('legacy AI coding video URLs permanently redirect to the existing coding guide', async () => {
+  const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
+  assert.equal(Object.hasOwn(config, 'trailingSlash'), false);
+  const { redirects } = config;
+  const strip = redirects.find(rule => rule.source === '/:path(.*)/');
+  assert.ok(strip);
+  const destination = '/guides/build-apps-with-ai-coding-agents.html';
+  for (const path of ['/videos/ai-coding', '/videos/ai-coding/']) {
+    const redirect = redirects.find(rule => rule.source === path);
+    assert.ok(redirect, path);
+    assert.equal(redirect.destination, destination, path);
+    assert.equal(redirect.permanent, true, path);
+    assert.ok(redirects.indexOf(redirect) < redirects.indexOf(strip), path);
+  }
+  const html = await readFile(new URL(`../public${destination}`, import.meta.url), 'utf8');
+  assert.ok(html.includes(`<link rel="canonical" href="https://www.ai-automation-station.com${destination}">`));
+});
+
 test('only fingerprinted assets receive immutable caching', async () => {
   const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
   const rule = config.headers.find(rule => rule.source.startsWith('/assets/') && rule.headers.some(header => header.value.includes('immutable')));
