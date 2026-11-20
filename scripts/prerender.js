@@ -9,6 +9,7 @@ import { archiveCss, consentCss, readingCss } from '../src/asset-version.js';
 import { addGuideDates, guideMeta, recentUrls, renderFeed, searchIndex } from '../src/feed.js';
 import { gaBootHead } from '../src/ga-boot-html.js';
 import { addToolsLink, renderToolsPage } from '../src/tools-page.js';
+import { addGuideHighlights } from '../src/guide-highlights.js';
 import { optimizeGuide, previewRobots, shareMeta } from '../src/guide-seo.js';
 
 const indexNowKey = 'f5acf528749d2b670efeec8c5cd3b8b7'; // also served as public/f5acf528749d2b670efeec8c5cd3b8b7.txt
@@ -51,7 +52,7 @@ for (const file of ['start-here.html', 'ai-income-lab.html', 'about.html', 'guid
   if (!html.includes('src="/src/reading.js"')) throw new Error(`Missing reading analytics entry: ${file}`);
   if (!html.includes('src="/ga-boot.js"')) throw new Error(`Missing GA boot script: ${file}`);
   if (guideFiles.includes(file)) guides.push(guideMeta(html));
-  await writeFile(path, (guideFiles.includes(file) ? optimizeGuide(addGuideVideos(addToolsLink(html), `/${file}`, uploads)) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
+  await writeFile(path, (guideFiles.includes(file) ? optimizeGuide(addGuideVideos(addGuideHighlights(addToolsLink(html), `/${file}`), `/${file}`, uploads)) : html).replace('src="/src/reading.js"', 'src="/assets/reading.js"').replace(/<link rel="stylesheet" href="\/(?:reading|archive)\.css">/, `${fontPreloads}$&`).replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`).replaceAll('href="/archive.css"', `href="${archiveCss}"`));
 }
 const notFound = withGaBoot(await readFile('dist/404.html', 'utf8'), '404.html');
 await writeFile('dist/404.html', notFound.replaceAll('href="/reading.css"', `href="${readingCss}"`).replaceAll('href="/consent.css"', `href="${consentCss}"`));

@@ -917,11 +917,17 @@ test('transcript summaries render a build section and valid FAQPage data', async
   assert.match(html, /<h3>Key steps<\/h3>\n<ul class="key-steps"><li>/);
   assert.ok(html.includes(`<li><a href="#t=${step.seconds}">${clock(step.seconds)}</a> - `), 'key steps read "0:00 - step"');
   assert.doesNotMatch(html, /<h3>Key steps<\/h3>\n<ol/);
-  const faq = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1])).find(data => data['@type'] === 'FAQPage');
+  const schemas = html => [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+  // This video's watch page names its guide as canonical, so it keeps the visible Q&A but no FAQPage data.
+  assert.equal(schemas(html).find(data => data['@type'] === 'FAQPage'), undefined);
+  assert.match(html, /<link rel="canonical" href="https:\/\/www\.ai-automation-station\.com\/guides\/herdr-guide\.html">/);
+  // Without a mapped guide the same summary is the canonical page's FAQPage.
+  const self = renderWatch(video, { guide: null });
+  const faq = schemas(self).find(data => data['@type'] === 'FAQPage');
   assert.equal(faq.mainEntity.length, brief.qa.length);
   assert.ok(faq.mainEntity.every(item => item.name && item.acceptedAnswer.text));
-  assert.equal(faq['@id'], `${html.match(/<link rel="canonical" href="([^"]+)"/)[1]}#faq-schema`);
-  assert.equal(faq.url, html.match(/<link rel="canonical" href="([^"]+)"/)[1]);
+  assert.equal(faq['@id'], `${self.match(/<link rel="canonical" href="([^"]+)"/)[1]}#faq-schema`);
+  assert.equal(faq.url, 'https://www.ai-automation-station.com/watch/VE66JDHoS6Y');
   assert.match(html, /<section aria-labelledby="faq">\n<h2 id="faq">Questions and answers<\/h2>\n<div class="faq-list">\n<details class="faq-item">/);
   assert.doesNotMatch(html, /<h4>/);
   const unescape = text => text.replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');

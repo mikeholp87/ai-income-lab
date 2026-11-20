@@ -1,6 +1,6 @@
 ﻿import assert from 'node:assert/strict';
 import test from 'node:test';
-import { renderWatch, guides } from './archive.js';
+import { renderWatch, guides, videoGuide } from './archive.js';
 import { uploads } from './uploads-snapshot.js';
 import { watchSeo } from './watch-seo.js';
 import { videoSummaries } from './video-summaries.js';
@@ -15,7 +15,9 @@ test('reviewed watch pages have accurate metadata and accessible chapter navigat
     if (video.chapters?.length && html.includes('class="chapters"')) {
       assert.match(html, /href="#chapters"/);
       assert.match(html, /<h2 id="chapters">/);
-      assert.match(html, /"@type":"Clip"/);
+      // Key-moment Clips stay only on self-canonical watch pages.
+      if (!videoGuide(id)) assert.match(html, /"@type":"Clip"/);
+      else assert.doesNotMatch(html, /"@type":"Clip"/);
     }
   }
 });

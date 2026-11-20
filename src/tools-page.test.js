@@ -120,7 +120,7 @@ test('watch pages and guides point to the tools page, except guides that promise
   assert.deepEqual(guideTools('<main><h1>x</h1><pre>Apify Apify Apify</pre></main>'), []);
   const sponsored = guide.replace('<main>', '<main><p>This guide contains no affiliate links.</p>');
   assert.equal(addToolsLink(sponsored), sponsored);
-  assert.match(await read('scripts/prerender.js'), /addGuideVideos\(addToolsLink\(html\)/);
+  assert.match(await read('scripts/prerender.js'), /addGuideVideos\(addGuideHighlights\(addToolsLink\(html\)/);
 });
 
 test('the homepage, Start here, About, 404 and the welcome email link the tools page', async () => {

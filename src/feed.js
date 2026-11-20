@@ -1,6 +1,6 @@
 // Build-time outputs from the guide pages and the upload snapshot: the RSS feed, the search index,
 // and the URL list for IndexNow. scripts/prerender.js writes them into dist/.
-import { snippet } from './archive.js';
+import { snippet, videoGuide } from './archive.js';
 
 const site = 'https://www.ai-automation-station.com';
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -31,7 +31,8 @@ export function addGuideDates(html, guides) {
   });
 }
 
-const videoItems = videos => videos.filter(video => video.public !== false)
+// A video whose watch page names its guide as canonical is already in the feed as that guide.
+const videoItems = videos => videos.filter(video => video.public !== false && !videoGuide(video.id))
   .map(video => ({ title: video.title, description: snippet(video.summary || '', 200), url: `${site}/watch/${video.id}`, published: video.published, kind: 'video' }));
 
 // Newest first: every guide plus the latest videos, capped at 100 so feed readers get a small file.

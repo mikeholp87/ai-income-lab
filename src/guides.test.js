@@ -646,11 +646,14 @@ test('reading.js leaves same-page hash topic pills alone on the guides hub', asy
 
 test('every guide that embeds a video describes it in structured data and lists its chapters', async () => {
   const { uploads } = await import('./uploads-snapshot.js');
+  const { videoGuide } = await import('./archive.js');
   const known = new Set(uploads.map(video => video.id));
   for (const file of guides) {
     const html = await read(`public/guides/${file}`);
     for (const [, id] of html.matchAll(/<figure class="video"><a class="player" href="https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})"/g)) {
-      if (known.has(id)) assert.ok(html.includes(`"@id":"https://www.ai-automation-station.com/watch/${id}#video"`), `${file}: run node scripts/guide-video-schema.mjs`);
+      // The video's canonical guide names itself as the video's page; other guides name the watch page.
+      const page = videoGuide(id)?.[0] === `/guides/${file}` ? `guides/${file}` : `watch/${id}`;
+      if (known.has(id)) assert.ok(html.includes(`"@id":"https://www.ai-automation-station.com/${page}#video","name":`) && html.includes(`"embedUrl":"https://www.youtube-nocookie.com/embed/${id}","url":"https://www.ai-automation-station.com/${page}"`), `${file}: run node scripts/guide-video-schema.mjs`);
     }
     if (html.includes('class="video-chapters"')) assert.match(html, /<ul class="video-chapters"[^>]*>(<li><a href="https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}&amp;t=\d+s">\d+:\d{2}<\/a> [^<]+<\/li>){3,}<\/ul>/, file);
   }
@@ -665,7 +668,7 @@ test('guide VideoObjects use the watch page thumbnails and carry the snapshot du
     const html = await read(`public/guides/${file}`);
     for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(\{"@context":"https:\/\/schema\.org","@type":"VideoObject".*?)<\/script>/gs)) {
       const schema = JSON.parse(json);
-      const video = byId.get(schema['@id'].match(/\/watch\/([\w-]{11})#video$/)[1]);
+      const video = byId.get(schema.embedUrl.match(/\/embed\/([\w-]{11})$/)[1]);
       if (!video) continue;
       checked++;
       assert.deepEqual(schema.thumbnailUrl, schemaThumbnails(video), `${file}: run node scripts/guide-video-schema.mjs`);

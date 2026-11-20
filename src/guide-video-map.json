@@ -1,0 +1,614 @@
+{
+ "-cLECY10Tzg": [
+  "/guides/manus-first-test-calendar-gmail.html",
+  "Manus AI First Test: Calendar and Gmail"
+ ],
+ "0iTOlQjNdhs": [
+  "/guides/cleanyourtv-claude-code.html",
+  "CleanYourTV with Claude Code: TCL Setup and Risks"
+ ],
+ "0jzTOUv_B04": [
+  "/guides/trakkr-codex-visibility-workflow.html",
+  "Trakkr and Codex: AI Visibility, Crawlers and Visits"
+ ],
+ "0tmhsHn5B30": [
+  "/guides/opencode-go.html",
+  "OpenCode Go: pricing, models, limits and setup"
+ ],
+ "1LN7TqmW--w": [
+  "/guides/opencode-seo-audit-skills.html",
+  "OpenCode SEO Audit Skills: Site Checks and Files"
+ ],
+ "1TPm7B5oStw": [
+  "/guides/whatsapp-ai-voice-clone-make.html",
+  "WhatsApp AI Voice Clone in Make.com: Texts and Voice Memos"
+ ],
+ "1klc_1MxBdM": [
+  "/guides/n8n-social-media-agent-template.html",
+  "n8n Social Post Template: Trends, Research, Posting"
+ ],
+ "2G5klyFz61E": [
+  "/guides/ai-visibility-tracker-saas-build.html",
+  "AI Visibility Tracker: SaaS Build Log"
+ ],
+ "2ToaOs7HMD0": [
+  "/guides/updateforge-package-manager-windows-linux.html",
+  "UpdateForge: Windows and Linux Package Manager GUI"
+ ],
+ "3X2VU7EyaEU": [
+  "/guides/geo-aeo-tracker-github.html",
+  "Free AEO Tracker: GEO/AEO Tracker GitHub with Bright Data"
+ ],
+ "3cP3DeBG5Q0": [
+  "/guides/claude-code-video-editor-skill.html",
+  "Claude Code Video Editor Skill: Build and Run"
+ ],
+ "4jK9RraWbiU": [
+  "/guides/make-news-to-video-autoposter.html",
+  "Make.com News-to-Video Autoposter: RSS to Social Posts"
+ ],
+ "4sd4-9rC3As": [
+  "/guides/make-faceless-video-json2video.html",
+  "Make.com Faceless Videos: JSON2Video and Auto-Posting"
+ ],
+ "4uNxh9FW6Ho": [
+  "/guides/vapi-outbound-ai-caller-make-twilio.html",
+  "Vapi Outbound AI Caller: Twilio, Make.com and Google Sheets"
+ ],
+ "6iFA7ds2PU4": [
+  "/guides/skool-community-setup-guide.html",
+  "Skool Community Setup: Pricing, About Page and Classroom"
+ ],
+ "6jDcOXSOT00": [
+  "/guides/grokbot-for-seo.html",
+  "GrokBot for SEO: Audit Bots, Data and Reviewed Fixes"
+ ],
+ "7JN-sMkJBCs": [
+  "/guides/grokbot-job-application-agent.html",
+  "GrokBot job application agent setup"
+ ],
+ "7UMrV3w1e40": [
+  "/guides/self-host-n8n.html",
+  "Self-host n8n on Ubuntu: Docker and Node.js setup"
+ ],
+ "7p3n6-FH9IQ": [
+  "/guides/n8n-whatsapp-ai-agent.html",
+  "n8n WhatsApp AI agent setup guide"
+ ],
+ "7v_675nO7nM": [
+  "/guides/opencode-desktop-habit-tracker-electron.html",
+  "OpenCode Desktop: Habit Tracker With Electron"
+ ],
+ "8ieDSa8BVH4": [
+  "/guides/make-messenger-chatgpt-bot.html",
+  "Facebook Messenger Auto-Replies With Make.com and ChatGPT"
+ ],
+ "9A2StjrxOms": [
+  "/guides/treg-inside-grokbot.html",
+  "Treg in GrokBot: Connect Data Tools and Control Costs"
+ ],
+ "9DQYe6HywT8": [
+  "/guides/gamma-workshop-deck-and-site-export.html",
+  "Gamma for a Conference Workshop: Deck, Site and PDF Export"
+ ],
+ "9WPazkEp7VU": [
+  "/guides/crowdreply-mcp-codex.html",
+  "CrowdReply MCP with Codex: Citation Data to Review Plans"
+ ],
+ "9kHdIiobKMA": [
+  "/guides/vapi-voice-agent-tutorial.html",
+  "Vapi AI tutorial: build a voice agent, test calls, webhooks"
+ ],
+ "AO8NoHPU3e0": [
+  "/guides/claude-code-routines.html",
+  "Claude Code Routines: Scheduled Tasks, PRs and Email"
+ ],
+ "AkIz84oXvdk": [
+  "/guides/syllaby-bulk-scheduler-faceless-videos.html",
+  "Syllaby Bulk Scheduler: A Week of Faceless Videos at Once"
+ ],
+ "Ax-v4H9xv50": [
+  "/guides/google-ai-studio-chat-app.html",
+  "Build a Chat Web App in Google AI Studio, No Code"
+ ],
+ "C5wEcJRo_VA": [
+  "/guides/pi-dev-terminal-coding-agent.html",
+  "Pi.dev Terminal Coding Agent: Install, OpenRouter and Costs"
+ ],
+ "CfbMWB0G99E": [
+  "/guides/gamma-coaching-deck-from-chatgpt-plan.html",
+  "Gamma Presentation From a Pasted Plan: Client Coaching Deck"
+ ],
+ "DB-9bW85TKY": [
+  "/guides/hermes-agent-scheduled-jobs.html",
+  "Hermes Agent CLI Cron Jobs: Install and Schedule"
+ ],
+ "DfyAAwHPJuU": [
+  "/guides/tubeanalytics-build-log-claude-code-opencode.html",
+  "TubeAnalytics Build Log: From First Demo to Daily Debugging"
+ ],
+ "EECptdYND6k": [
+  "/guides/odysseus-ai-self-hosted-workspace.html",
+  "Odysseus AI Workspace: Install on Linux and Try It Locally"
+ ],
+ "FBlN3qWR9kg": [
+  "/guides/chatgpt-images-2-getting-started.html",
+  "ChatGPT Images 2.0: How to Use It, First Tests and Edits"
+ ],
+ "Fw-RqLjArc8": [
+  "/guides/semrush-mcp-ai-visibility.html",
+  "Semrush MCP: AI Visibility and Keyword Gaps"
+ ],
+ "G8u1-hKEqig": [
+  "/guides/heygen-elevenlabs-make-course.html",
+  "HeyGen, ElevenLabs and Make.com: AI Avatar Videos"
+ ],
+ "G_XWYIwjhKY": [
+  "/guides/make-ai-agent-tally-email.html",
+  "Make.com AI Agent: Tally Form Replies and Where It Stalled"
+ ],
+ "HlPdlZh0AHM": [
+  "/guides/opusclip-clone-app-opencode.html",
+  "Build an OpusClip-Style Web App With OpenCode: Short Forge"
+ ],
+ "IV6q81wRay4": [
+  "/guides/herdr-desktop-app.html",
+  "Herdr Desktop Guide: Setup, Workspaces and Limits"
+ ],
+ "Ip8KBwDixJs": [
+  "/guides/grokbot-chief-of-staff-daily-briefing.html",
+  "GrokBot as a Chief of Staff: Daily Briefings and Approvals"
+ ],
+ "JJe2G17_eRU": [
+  "/guides/chatgpt-thumbnail-ctr-pipeline.html",
+  "ChatGPT Thumbnails: Audit CTR and Redesign"
+ ],
+ "K2UeJZ_7mS0": [
+  "/guides/ai-threejs-rocket-demo.html",
+  "AI Rocket Demo: Three.js Scene and Camera Controls"
+ ],
+ "KEXgl3vsVMI": [
+  "/guides/skool-hobby-plan-review.html",
+  "Skool $9 Hobby Plan vs Pro: Fees, Admins and Limits"
+ ],
+ "KLuU0Yxu9g4": [
+  "/guides/apify-klook-hotel-scraper-claude-code.html",
+  "Apify Agent Skills: Scrape Klook Hotels With Claude Code"
+ ],
+ "L_dAm5Xh-fQ": [
+  "/guides/ai-token-usage-dashboard.html",
+  "Token Usage Dashboard: ccusage, RTK and Costs"
+ ],
+ "Lifl4PC2_3M": [
+  "/guides/ai-automation.html",
+  "What Is AI Automation? Examples, Tools and a First Build"
+ ],
+ "LoNsDme0XQI": [
+  "/guides/kilo-code-ai-visibility-optimizer.html",
+  "Kilo Code Skills: Build an AI Visibility Optimizer"
+ ],
+ "LqRRXcM8Kxc": [
+  "/guides/kimi-k2-7-code-opencode-test.html",
+  "Kimi K2.7 Code in OpenCode: A Site Audit and Its Cost"
+ ],
+ "MABL6XZgy4g": [
+  "/guides/codex-website-redesign.html",
+  "Rebuild a Site in Codex with Vite and React"
+ ],
+ "MYoA3___zYU": [
+  "/guides/emergent-saas-agency-website.html",
+  "Emergent Agency Site From One ChatGPT Prompt"
+ ],
+ "M_4KgrWyycI": [
+  "/guides/youtube-to-linkedin-automations-n8n-opencode.html",
+  "YouTube to LinkedIn Automations in n8n and OpenCode"
+ ],
+ "NH6t9M2vFrk": [
+  "/guides/claude-models-compared.html",
+  "Claude Opus vs Sonnet vs Haiku vs Fable: which to use"
+ ],
+ "OPQacEy41kM": [
+  "/guides/skool-classroom-upsell-tour.html",
+  "Skool Classroom Tour: Free Lessons and Paid Upsells"
+ ],
+ "PDfEWpyyRMI": [
+  "/guides/syllaby-faceless-video-first-test.html",
+  "Syllaby First Test: A Faceless Video From Idea to YouTube"
+ ],
+ "QMcaBMjZSMA": [
+  "/guides/heygen-make-youtube-automation.html",
+  "HeyGen and Make.com: Script, Render and Upload to YouTube"
+ ],
+ "QMqe2ubsn0g": [
+  "/guides/dextrolab-white-label-automations.html",
+  "DextroLab: A White-Label Client Portal for Make.com and n8n"
+ ],
+ "Qb6RG0-8O1k": [
+  "/guides/free-claude-code-setup.html",
+  "Free Claude Code GitHub Setup: NIM and OpenRouter Proxy"
+ ],
+ "QlL87_URHZ8": [
+  "/guides/nano-banana-gemini-images-make.html",
+  "Nano Banana: Free Images and a Make.com Error"
+ ],
+ "R90zVHmoj7A": [
+  "/guides/make-com-beginner-course-scenarios.html",
+  "Make.com Course: Sheets, OpenAI, Airtable, Facebook"
+ ],
+ "SLAnjvWK1Y4": [
+  "/guides/make-youtube-ideas-to-video-pipeline.html",
+  "Make.com YouTube Idea-to-Video Pipeline: Apify to Upload"
+ ],
+ "TuVL2x6IfDk": [
+  "/guides/codex-seo-workflow.html",
+  "Internal Link Audit with Codex: A Reviewed SEO Workflow"
+ ],
+ "UAPaM6KrC-M": [
+  "/guides/rea-video-editor-prototype.html",
+  "REA Coding-Agent Case: A Video-Editor Prototype"
+ ],
+ "UnnN2i90ALg": [
+  "/guides/hermes-agent-install-electron-build-openclaw.html",
+  "Hermes Agent: Install, Electron Build and OpenClaw Risks"
+ ],
+ "V3ETwJAR5-I": [
+  "/guides/grokbot-credit-usage.html",
+  "Slow GrokBot credit drain: routines and caps"
+ ],
+ "VE66JDHoS6Y": [
+  "/guides/herdr-guide.html",
+  "Herdr Terminal Guide: Workspaces and Coding-Agent Sessions"
+ ],
+ "X0X8kJTK7vA": [
+  "/guides/make-lead-generation-pitches-apollo-maps.html",
+  "Make.com Lead Generation: Pitches, Apollo and Google Maps"
+ ],
+ "X9Bo29B_46k": [
+  "/guides/claude-fable-5-game-prompts.html",
+  "Claude Fable 5 Games: Prompts and Plugins"
+ ],
+ "YCjvrNI1pa4": [
+  "/guides/apollo-apify-b2b-lead-list.html",
+  "Apollo B2B Lead Lists and the Apify Apollo Scraper"
+ ],
+ "YNpIRq7O3UE": [
+  "/guides/odysseus-brand-deal-agents.html",
+  "Odysseus AI Brand-Deal Agent: Research and Outreach"
+ ],
+ "YYZSR1p32EQ": [
+  "/guides/herdr-on-windows.html",
+  "Install Herdr on Windows: PowerShell, Mods and Insights"
+ ],
+ "YdvngsXEqo8": [
+  "/guides/ghostty-debian-configuration.html",
+  "Ghostty Config on Debian: Themes and Reload Checks"
+ ],
+ "ZKpr-vmz_iY": [
+  "/guides/agent-skills-seo-kilo-code.html",
+  "Free Agent Skills for SEO: Install and Run in Kilo Code"
+ ],
+ "Zi_PG07mDxo": [
+  "/guides/odysseus-electron-desktop-app.html",
+  "Wrap Odysseus in an Electron Desktop App With an AI Agent"
+ ],
+ "ZlD4Z6UKS8o": [
+  "/guides/lovable-landing-page-calcom-stripe-domain.html",
+  "Lovable Landing Page: Cal.com, Stripe, Domain"
+ ],
+ "Zza-S7YsLy0": [
+  "/guides/skool-welcome-email-automation.html",
+  "Skool Welcome Emails With Zapier, Make.com and EmailOctopus"
+ ],
+ "_1bZhPHcsm4": [
+  "/guides/ai-workflow-courses-compared.html",
+  "AI Workflow Courses Compared: Make, n8n, Zapier and More"
+ ],
+ "_ikohuukGE4": [
+  "/guides/three-ai-site-builds-antigravity-n8n-hotel.html",
+  "Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site"
+ ],
+ "avgG3VtN2C4": [
+  "/guides/claude-fable-5-use-cases.html",
+  "Claude Code Fable 5: Security and Checkout"
+ ],
+ "b0Izj5Pv0sQ": [
+  "/guides/bluehost-ai-assistant.html",
+  "Bluehost AI Assistant: Models, Agents and Plan Costs"
+ ],
+ "bAgP_0uW0dY": [
+  "/guides/ai-automation-strategy-notes-skills-seo-policy.html",
+  "AI Automation Strategy Notes: Skills, YouTube SEO, Policy"
+ ],
+ "bBGqWXXIw44": [
+  "/guides/hermes-backlink-outreach-pipeline.html",
+  "Hermes backlink outreach pipeline"
+ ],
+ "bCsSqZp0yVg": [
+  "/guides/vidiq-mcp-claude-channel-audit.html",
+  "vidIQ MCP in Claude: Channel Audit and Idea Checks"
+ ],
+ "bjTr9p-zQ1M": [
+  "/guides/make-content-builds-facebook-ebook-forms.html",
+  "Make.com Content Builds: Facebook Posts, Ebook and Forms"
+ ],
+ "bt-zM7QuKkU": [
+  "/guides/nano-banana-pro-infographics-thumbnails-notebooklm.html",
+  "Nano Banana Pro Infographics, Thumbnails and NotebookLM"
+ ],
+ "c3AtpUbpXNA": [
+  "/guides/chatgpt-images-sketch-workflow.html",
+  "ChatGPT Image Editing: Sketch-to-Scene and Local Edits"
+ ],
+ "c_WK6TImkNQ": [
+  "/guides/cline-ai-coding-agent.html",
+  "Cline AI: Install the CLI and Free Coding Agent"
+ ],
+ "cfYpzY-o3fQ": [
+  "/guides/opencode-free-models-go-plan-and-skills.html",
+  "OpenCode Free Models, Go Plan and 10 Agent Skills"
+ ],
+ "dEQ8OllsJmk": [
+  "/guides/n8n-hostinger-uploader-sora-2-and-version-2.html",
+  "n8n Automations on Hostinger: Shorts, Sora 2 and Version 2.0"
+ ],
+ "dQ_gnts0JCE": [
+  "/guides/openseo-review.html",
+  "OpenSEO review: setup, data costs and practical limits"
+ ],
+ "dVC1Or0Tbo8": [
+  "/guides/ai-implementation-coaching-guide.html",
+  "AI Implementation Coaching vs Consulting: How to Choose"
+ ],
+ "dVvazfQHhW4": [
+  "/guides/hermes-youtube-to-linkedin-cron.html",
+  "Hermes Agent Cron Job: YouTube Video to LinkedIn Posts"
+ ],
+ "e73WvglCLW0": [
+  "/guides/visiscan-ai-visibility-audit.html",
+  "VisiScan AI Visibility: Free Scan and Report"
+ ],
+ "enKnxKJJFZw": [
+  "/guides/skool-free-community-first-weeks.html",
+  "A Free Skool Community: What I Did in the First Two Weeks"
+ ],
+ "exXV5ehmsEU": [
+  "/guides/deepseek-harness-first-test.html",
+  "DeepSeek Harness First Test: Setup Errors and Demo Limits"
+ ],
+ "ffnMlBzcJOQ": [
+  "/guides/six-agent-builds-claude-code-dashboards-outreach.html",
+  "Six Agent Builds: Claude Code, Dashboards and Outreach Tools"
+ ],
+ "gNcHbc2kdzw": [
+  "/guides/grokbot-for-beginners.html",
+  "GrokBot for Beginners: First Bot, Access and Approvals"
+ ],
+ "ga22WZgoj9M": [
+  "/guides/free-claude-code-vs-opencode-codex.html",
+  "Free Claude Code vs OpenCode vs Codex"
+ ],
+ "gibc7oWLCn4": [
+  "/guides/make-business-automation-examples.html",
+  "Make.com business automation examples"
+ ],
+ "iVI11AZvUdk": [
+  "/guides/hermes-cron-jobs-vercel-reports.html",
+  "Hermes Agent Cron Jobs: Move Them to Vercel With Reports"
+ ],
+ "jB9hYQJGAuM": [
+  "/guides/rtk-token-savings-claude-code.html",
+  "RTK Token Savings: Install, Hooks and Checks"
+ ],
+ "jtyWB5iGPOs": [
+  "/guides/opencode-webcam-layout-skill-and-clip-app.html",
+  "OpenCode Webcam-Layout Skill and the ShortForge Clip App"
+ ],
+ "kKiFzNW9fjw": [
+  "/guides/heygen-airtable-facebook-content-machine.html",
+  "Make.com Content Machine: Airtable, Perplexity and HeyGen"
+ ],
+ "kUbhr1QGYeU": [
+  "/guides/hermes-agent-ai-operating-system.html",
+  "Hermes Agent Dashboard: Local AI Operating System"
+ ],
+ "kXw2yntdmo4": [
+  "/guides/make-apify-apollo-leads-sheet.html",
+  "Make.com Lead Scraper: Apify Apollo Actor to Google Sheets"
+ ],
+ "kxp_dF6NEbg": [
+  "/guides/ai-coding-agent-skills-top-10.html",
+  "npx skills: Install Ten Coding Agent Skills"
+ ],
+ "lbBZ7uLJwbM": [
+  "/guides/codex-on-linux.html",
+  "Codex on Linux: desktop app and Linux setup"
+ ],
+ "lumzbY6QV4Y": [
+  "/guides/ai-agent-training-compared.html",
+  "AI Agent Training Compared: Free Courses and Coaching"
+ ],
+ "mKsPxDi7uM0": [
+  "/guides/replit-viral-post-genie-build.html",
+  "Build Viral Post Genie in Replit: Errors, Limits"
+ ],
+ "mPHM81X1oqc": [
+  "/guides/muse-code-setup.html",
+  "Meta Muse Code Setup: API Failure and a Working CLI"
+ ],
+ "miBtL2fVkpg": [
+  "/guides/9router-setup.html",
+  "9Router: npm install, port 20128, skip-update"
+ ],
+ "mmiQaVfA5e0": [
+  "/guides/zcode-glm-desktop-app.html",
+  "ZCode GLM Desktop: Install, Plans and Review"
+ ],
+ "mtpX58dNfCE": [
+  "/guides/apify-agent-skills.html",
+  "Apify agent skills setup in Cursor"
+ ],
+ "n3NO40juUBo": [
+  "/guides/claude-design-website-redesign.html",
+  "Claude Design Website Redesign: design.md to Claude Code"
+ ],
+ "nJtbBB0JBYY": [
+  "/guides/skool-membership-tiers.html",
+  "Skool Membership Tiers: Free, Premium and VIP Setup"
+ ],
+ "ncg6F27PYt0": [
+  "/guides/kilo-code-tutorial.html",
+  "Kilo Code tutorial: install, free models and first task"
+ ],
+ "ndG48skyZZY": [
+  "/guides/rank-prompt-ai-search-visibility.html",
+  "Rank Prompt AI Visibility: Scan, MCP and Fixes"
+ ],
+ "oDAKXkIyOHE": [
+  "/guides/make-gmail-ai-auto-reply.html",
+  "Make.com Gmail Auto-Reply: Watch, Write and Send With AI"
+ ],
+ "p7kV1iHSP54": [
+  "/guides/grok-4-7-openrouter.html",
+  "Grok 4.7 on OpenRouter: Hermes Model Switch"
+ ],
+ "pDbRjYYUjRI": [
+  "/guides/suno-n8n-music-video-workflow.html",
+  "n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate"
+ ],
+ "pDrMGahPnwc": [
+  "/guides/otterly-ai-visibility-tracking.html",
+  "Otterly AI Walkthrough: Brand Mentions, Citations, Pricing"
+ ],
+ "pMLyxz6Dyt4": [
+  "/guides/heygen-ai-avatar-tutorial.html",
+  "HeyGen AI avatar tutorial: create your first video"
+ ],
+ "pRnJdlMSSqM": [
+  "/guides/ai-model-news-kimi-glm-fable-gemini.html",
+  "AI Model News: Kimi K3, GLM 5.2, Claude Fable 5, Gemini 3"
+ ],
+ "phVQuQMojA8": [
+  "/guides/claude-code-task-manager.html",
+  "Claude Code Task Manager: Scope, Checks and Packaging"
+ ],
+ "pwLLS6zFpKs": [
+  "/guides/claude-code-second-brain.html",
+  "Claude Code Second Brain: Cortex Project Tour"
+ ],
+ "q4-LkuMDkIE": [
+  "/guides/claude-seo-skill-site-audit.html",
+  "Claude SEO Skill: Audit and Fix a Site From Claude Code"
+ ],
+ "qA683UQVDt4": [
+  "/guides/make-youtube-description-updater.html",
+  "Make.com YouTube Description Updater"
+ ],
+ "quDDekuPQNI": [
+  "/guides/browseract-web-scraping.html",
+  "BrowserAct: Scrape Jobs and Build a Board"
+ ],
+ "qzIaEA0wBCw": [
+  "/guides/ai-visibility-trakkr-dataforseo-geo-skills.html",
+  "AI Search Visibility: Trakkr, DataForSEO MCP and GEO Skills"
+ ],
+ "rMRsVyIsZCU": [
+  "/guides/opendesign-linux-slides.html",
+  "OpenDesign (Open Design) on Linux: Source Setup and Slides"
+ ],
+ "rZh4zVT2LKY": [
+  "/guides/open-design-opencode-free-claude-design.html",
+  "Open Design With OpenCode: A Free Claude Design Option"
+ ],
+ "tR7AYN5FiqA": [
+  "/guides/codex-cli.html",
+  "Codex CLI install: Mac, Windows and Linux"
+ ],
+ "tzSGF7gu6EE": [
+  "/guides/9router-cost-tracking-fallbacks.html",
+  "9Router Cost Tracking: Combos and Fallbacks"
+ ],
+ "tzUhKKzwgyE": [
+  "/guides/lovable-vs-base44-vs-replit.html",
+  "Lovable vs Base44 vs Replit: pricing and which to pick"
+ ],
+ "uSx_lW4oppY": [
+  "/guides/chatgpt-pro-20x.html",
+  "ChatGPT Pro 20x vs 5x vs Plus: 2026 Limits and Codex Credits"
+ ],
+ "uTYZC3Kxwjo": [
+  "/guides/no-code-agent-builders-mindstudio-rocket-assistants.html",
+  "No-Code Agent Builders Tried: MindStudio, Rocket, Assistants"
+ ],
+ "ud2su6XhtKw": [
+  "/guides/opencode-stripe-billing-saas.html",
+  "OpenCode Stripe Billing Build: A SaaS Case Study"
+ ],
+ "vmEac5CJcNQ": [
+  "/guides/ai-coding-tutorials-compared.html",
+  "AI Coding Tutorials Compared: Claude Code, OpenCode, More"
+ ],
+ "vvDdXF2Yuz8": [
+  "/guides/opencode-linkedin-post-generator.html",
+  "OpenCode: Turn a YouTube Video into LinkedIn Posts"
+ ],
+ "vxH102ZvjUg": [
+  "/guides/install-openclaw.html",
+  "How to install OpenClaw: local, VPS or hosted, safely"
+ ],
+ "wL6bjqaUcd8": [
+  "/guides/hermes-agent-supermemory.html",
+  "Install Supermemory on Hermes Agent"
+ ],
+ "wLIiTkra7uM": [
+  "/guides/run-a-blog-with-grokbot.html",
+  "GrokBot WordPress Workflow: Long-Form Videos to Drafts"
+ ],
+ "wRqpZ9F3rmI": [
+  "/guides/dataforseo-mcp-claude.html",
+  "DataForSEO MCP: build an AI SEO agent in Claude Code"
+ ],
+ "wZ76glbPIPc": [
+  "/guides/hostinger-n8n-vps-setup.html",
+  "Self-Host n8n on Hostinger: KVM and First Import"
+ ],
+ "w_MoA8lpWTg": [
+  "/guides/opusclip-alternative-viral-clips.html",
+  "Opus Clip Alternative: Detect, Score and Export Clips"
+ ],
+ "wakl0ayO_fk": [
+  "/guides/jev-skills-router-setup.html",
+  "Jev AI with Coding Agents: Skills, Access and Routed Tests"
+ ],
+ "wmjAyAth1Ug": [
+  "/guides/emergent-openclaw-install.html",
+  "Install OpenClaw on Emergent: Setup and WhatsApp"
+ ],
+ "wniZpV6LZsE": [
+  "/guides/sendpulse-facebook-comment-chatbot.html",
+  "SendPulse Facebook Chatbot: Comment Replies and DMs"
+ ],
+ "wzC2r426KWs": [
+  "/guides/grokbot-virtual-office.html",
+  "GrokBot Virtual Office: Build a Custom Agent Dashboard"
+ ],
+ "yHaBYtUnzBg": [
+  "/guides/claude-design-getting-started.html",
+  "How to Use Claude Design: First Pitch Deck Tutorial"
+ ],
+ "yR-zoMUY27Q": [
+  "/guides/opencode-video-trim-skill.html",
+  "OpenCode Skill That Trims Long Videos Into Shorts"
+ ],
+ "yUibdYhO1ms": [
+  "/guides/n8n-job-search-resume-cover-letter-workflows.html",
+  "n8n Job Search Workflows: Scrape, Score and Draft Letters"
+ ],
+ "ys5tJuTFCEo": [
+  "/guides/claude-code-vs-codex.html",
+  "Codex vs Claude Code: how I use both and route tasks"
+ ],
+ "ztEj6zCJh5k": [
+  "/guides/claude-code-video-editing-skill-github.html",
+  "Claude Code Video Editing: Install the video-use Skill"
+ ]
+}
