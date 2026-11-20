@@ -107,6 +107,12 @@ test('watch pages and guides point to the tools page, except guides that promise
   const inline = linkFirstMentions(`<main><h1>HeyGen tutorial</h1><p>HeyGen quick answer.</p><h2>Set up HeyGen</h2><nav><a href="#x">HeyGen</a></nav><p>Open <code>HeyGen</code>, then HeyGen AI Studio. Later HeyGen again.</p></main>`, [heygen]);
   assert.equal(inline, `<main><h1>HeyGen tutorial</h1><p>HeyGen quick answer.</p><h2>Set up HeyGen</h2><nav><a href="#x">HeyGen</a></nav><p class="meta">Some tool links in this guide are affiliate links, so I may earn a commission or credit.</p>\n<p>Open <code>HeyGen</code>, then <a href="${heygen.url.replace(/&/g, '&amp;')}" target="_blank" rel="sponsored noopener" data-affiliate="HeyGen" data-placement="guide_inline">HeyGen</a> AI Studio. Later HeyGen again.</p></main>`);
   assert.equal(linkFirstMentions(`<main><h1>x</h1><p>a</p><p>HeyGen <a href="${heygen.url.replace(/&/g, '&amp;')}">link</a></p></main>`, [heygen]).includes('guide_inline'), false, 'a guide already linking the affiliate is left alone');
+  // A first mention linked by hand in the source, in a paragraph or a list, still gets the disclosure once, before it.
+  const handLinked = `<a href="${heygen.url.replace(/&/g, '&amp;')}" target="_blank" rel="sponsored noopener" data-affiliate="HeyGen" data-placement="guide_inline">HeyGen</a>`;
+  const note = '<p class="meta">Some tool links in this guide are affiliate links, so I may earn a commission or credit.</p>\n';
+  assert.equal(linkFirstMentions(`<main><h1>x</h1><p>a</p><p>Try ${handLinked} here.</p></main>`, [heygen]), `<main><h1>x</h1><p>a</p>${note}<p>Try ${handLinked} here.</p></main>`);
+  assert.equal(linkFirstMentions(`<main><h1>x</h1><p>a</p><ul><li>Built with ${handLinked}</li></ul></main>`, [heygen]), `<main><h1>x</h1><p>a</p>${note}<ul><li>Built with ${handLinked}</li></ul></main>`);
+  assert.equal(linkFirstMentions(`<main><h1>x</h1><p>a</p>${note}<p>Try ${handLinked} here.</p></main>`, [heygen]).split(note).length, 2, 'an existing disclosure is not repeated');
   for (const promise of ['this guide uses plain links only.', 'This page uses the public product site with no tracking parameters.']) {
     const plain = guide.replace('<main>', `<main><p>${promise}</p>`);
     assert.equal(addToolsLink(plain), plain, promise);

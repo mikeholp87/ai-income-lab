@@ -100,7 +100,7 @@ n8n</code></pre>
 <p>Click <em>Execute workflow</em>. Open the Filter node’s output: it should show one item with <code>request_id</code> TEST-001. Now change <code>approved</code> to <code>no</code> in Edit Fields and run it again. The Filter node should pass zero items. If both runs behave that way, your self-hosted n8n is working, and you have tested it without connecting a single account.</p>
 <p>Save the workflow. Stop n8n with <kbd>Ctrl</kbd>+<kbd>C</kbd>, start it again with <code>n8n</code>, and reopen the workflow. Seeing it again confirms your data survives a restart; by default n8n keeps its database and settings in the <code>.n8n</code> folder in your home directory.</p>
 <h2 id="templates">5. Add templates and credentials carefully</h2>
-<p>The n8n template library (n8n.io/workflows) imports straight into a self-hosted instance. In the video, most templates I tried still needed something before they ran: Gmail client credentials, an Apify key, or a community node such as Blotato that wasn’t installed. Treat each import as a checklist:</p>
+<p>The n8n template library (n8n.io/workflows) imports straight into a self-hosted instance. In the video, most templates I tried still needed something before they ran: Gmail client credentials, an <a href="https://www.apify.com?fpr=fklok2" target="_blank" rel="sponsored noopener" data-affiliate="Apify" data-placement="guide_inline">Apify</a> key, or a community node such as Blotato that wasn’t installed. Treat each import as a checklist:</p>
 <ul>
 <li>Open every node and note which credential it expects before running anything.</li>
 <li>Run a template once with test data, and keep its schedule trigger off until the output is right.</li>

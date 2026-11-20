@@ -177,6 +177,8 @@ test('archive, watch routes and sitemap share verified public upload metadata', 
   const watch = await request('/watch/geKngm3sg3w');
   assert.equal(watch.status, 200);
   assert.match(await watch.text(), /youtube-nocookie.com\/embed\/geKngm3sg3w/);
+  // The CDN keeps watch pages an hour and serves them stale for up to a day while refreshing; browsers keep 10 minutes.
+  assert.equal(watch.headers.get('cache-control'), 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400');
   assert.equal((await request('/api/videos?video=geKngm3sg3w')).status, 200);
   assert.equal((await request('/watch/nope')).status, 404);
   // The list was just refreshed: unknown and private ids are not this channel's public videos, so 404 (briefly cached).

@@ -117,15 +117,24 @@ export function linkFirstMentions(html, tools) {
   const end = Math.min(...['<h2 id="sources"', '<aside class="note next-steps"', '<form class="notes"', '</main>'].map(marker => html.indexOf(marker, start)).filter(index => index > start));
   if (start === -1 || !Number.isFinite(end)) return html;
   const pending = tools.filter(affiliate => !html.includes(`href="${escape(affiliate.url)}"`));
+  const disclosed = html.includes(affiliateNote.trim());
   const skip = [];
   let paragraphs = 0;
   let inParagraph = false;
   let paragraphAt = -1;
   let noteAt = -1;
+  let lists = 0;
+  let listAt = -1;
   const out = [];
   for (const [token, close, name] of html.slice(start, end).matchAll(/<(\/?)([a-zA-Z][\w-]*)\b[^>]*>|[^<]+|</g)) {
     const tag = name?.toLowerCase();
     if (tag) {
+      // A first mention linked by hand in the guide source still needs the disclosure before its paragraph.
+      if (tag === 'a' && !close && (inParagraph || lists) && noteAt === -1 && !disclosed && token.includes('data-placement="guide_inline"')) noteAt = inParagraph ? paragraphAt : listAt;
+      if ((tag === 'ul' || tag === 'ol') && !skip.length) {
+        if (!close && !lists++) listAt = out.length;
+        else if (close && lists) lists--;
+      }
       if (noLinkTags.has(tag)) close ? skip.pop() : skip.push(tag);
       if (tag === 'p' && !skip.length) {
         inParagraph = !close;
