@@ -1,6 +1,6 @@
 import { withSummaries } from '../src/curated-summary.js';
 import snapshot from '../src/youtube-snapshot.json' with { type: 'json' };
-import { channelId, feedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
+import { channelId, longFormFeedUrl, longFormPlaylistId, parseApi, parseChannel, parseFeed, validFeed } from '../src/youtube.js';
 
 // Hourly, to match /api/videos' newest-upload probe so the hero and /videos pick up a new upload in the same hour.
 const hour = 3600000;
@@ -32,7 +32,7 @@ async function fetchFeed(statuses) {
         const playlist = await response.json();
         const ids = playlist.items.map(item => item.snippet.resourceId.videoId).join(',');
         // videos.list costs 1 unit whatever parts are requested.
-        const details = await fetch(`${api}/videos?part=statistics,contentDetails,status&id=${ids}&key=${key}`, { signal: AbortSignal.timeout(8000) }).then(response => response.ok ? response.json() : {}).catch(() => ({}));
+        const details = await fetch(`${api}/videos?part=statistics,contentDetails,status,liveStreamingDetails&id=${ids}&key=${key}`, { signal: AbortSignal.timeout(8000) }).then(response => response.ok ? response.json() : {}).catch(() => ({}));
         const feed = { videos: parseApi(playlist, details), channel };
         if (validFeed(feed)) return feed;
         statuses.push('invalid API feed');
@@ -42,9 +42,11 @@ async function fetchFeed(statuses) {
     }
   }
 
+  // The long-form playlist feed, not the channel feed: the channel feed also lists live stream replays, and their
+  // /watch links answered 404 (Search Console, November 2026).
   // The RSS endpoint randomly answers 404/500 (~1 in 4 requests) and can refuse cloud IPs; retry a few times.
   for (let attempt = 0; attempt < 4; attempt++) {
-    const response = await fetch(feedUrl, { signal: AbortSignal.timeout(5000) }).catch(error => ({ ok: false, status: error.message }));
+    const response = await fetch(longFormFeedUrl, { signal: AbortSignal.timeout(5000) }).catch(error => ({ ok: false, status: error.message }));
     if (response.ok) {
       try {
         const feed = { videos: parseFeed(await response.text()).slice(0, 7), channel: null };

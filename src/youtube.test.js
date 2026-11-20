@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { formatDuration, longFormPlaylistId, shortsPlaylistId, parseApi, parseChannel, parseChapters, parseFeed, summarize, validChapters } from './youtube.js';
+import { formatDuration, isLiveStream, livePlaylistId, longFormPlaylistId, shortsPlaylistId, parseApi, parseChannel, parseChapters, parseFeed, summarize, validChapters } from './youtube.js';
 
 const entry = (id, link, title, description) => `<entry><yt:videoId>${id}</yt:videoId><title>${title}</title><link rel="alternate" href="${link}"/><published>2026-10-05T12:37:47+00:00</published><media:group><media:description>${description}</media:description><media:community><media:statistics views="9191"/></media:community></media:group></entry>`;
 
@@ -17,6 +17,19 @@ test('joins Data API playlist items with view counts, lengths and embedding', ()
   const playlist = { items: [{ snippet: { resourceId: { videoId: 'abc' }, title: 'Claude & Codex', publishedAt: '2026-10-05T12:37:47Z', description: 'Join\nhttps://example.com\n\nBuild an agent.' } }] };
   const details = { items: [{ id: 'abc', statistics: { viewCount: '9191' }, contentDetails: { duration: 'PT12M4S' }, status: { embeddable: false } }] };
   assert.deepEqual(parseApi(playlist, details), [{ id: 'abc', title: 'Claude & Codex', published: '2026-10-05T12:37:47Z', views: 9191, duration: '12:04', summary: 'Build an agent.', embeddable: false }]);
+});
+
+test('leaves live streams and stream replays out of the Data API list', () => {
+  const playlist = { items: ['abc', 'liv', 'up1'].map(id => ({ snippet: { resourceId: { videoId: id }, title: id, publishedAt: '2026-11-16T00:00:00Z', description: '' } })) };
+  const details = { items: [
+    { id: 'abc', contentDetails: { duration: 'PT12M4S' }, status: { embeddable: true } },
+    { id: 'liv', contentDetails: { duration: 'PT1H18M36S' }, status: { embeddable: true }, liveStreamingDetails: { actualStartTime: '2026-11-16T00:00:00Z' } },
+    { id: 'up1', snippet: { liveBroadcastContent: 'upcoming' }, status: { embeddable: true } },
+  ] };
+  assert.deepEqual(parseApi(playlist, details).map(video => video.id), ['abc']);
+  assert.equal(isLiveStream({ snippet: { liveBroadcastContent: 'none' } }), false);
+  assert.equal(isLiveStream(undefined), false);
+  assert.equal(livePlaylistId, `UULV${longFormPlaylistId.slice(4)}`);
 });
 
 test('reads description chapters only when YouTube would show them', () => {

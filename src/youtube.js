@@ -1,11 +1,20 @@
 export const channelUrl = 'https://www.youtube.com/@ai-automation-station';
 export const channelId = 'UC8_eYAfJcUgI5BV3hg9U2cw';
 export const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-// YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts).
+// The channel feed lists every upload, live stream replays and Shorts included, so pages never list from it.
+// YouTube's hidden "UULF" playlist holds the channel's long-form uploads only (no Shorts, no live streams).
 export const longFormPlaylistId = `UULF${channelId.slice(2)}`;
 export const shortsPlaylistId = `UUSH${channelId.slice(2)}`;
 // The public playlist feed costs no API quota and lists the 15 newest long-form uploads, newest first.
 export const longFormFeedUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${longFormPlaylistId}`;
+
+// The hidden "UULV" playlist holds live stream replays. Only long-form uploads belong on the site.
+export const livePlaylistId = `UULV${channelId.slice(2)}`;
+
+// videos.list item → true for a live stream, a scheduled stream or a stream replay. The long-form playlist
+// already leaves these out, so this is a second check: liveStreamingDetails stays on a replay for good.
+export const isLiveStream = item => Boolean(item?.liveStreamingDetails)
+  || (item?.snippet?.liveBroadcastContent ?? 'none') !== 'none';
 
 // Validate the public feed before it becomes rendered content or a persisted build snapshot.
 export function validFeed(feed) {
@@ -114,7 +123,7 @@ export function validChapters(chapters, seconds = 0) {
 // YouTube Data API responses: playlistItems (snippet) joined with videos (statistics, contentDetails, status).
 export function parseApi(playlist, details) {
   const byId = Object.fromEntries((details.items ?? []).map(item => [item.id, item]));
-  return (playlist.items ?? []).map(({ snippet }) => {
+  return (playlist.items ?? []).filter(({ snippet }) => !isLiveStream(byId[snippet.resourceId.videoId])).map(({ snippet }) => {
     const item = byId[snippet.resourceId.videoId];
     return {
       id: snippet.resourceId.videoId,

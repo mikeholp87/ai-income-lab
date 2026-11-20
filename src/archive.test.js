@@ -464,6 +464,18 @@ test('all upload requests share one cancellation deadline', async t => {
   assert.equal(calls, 3);
 });
 
+test('upload inventory drops live stream replays filed under long-form', async t => {
+  t.mock.method(globalThis, 'fetch', async input => {
+    if (String(input).includes('/playlistItems')) return Response.json({ items: [item('aaaaaaaaaaa', 'Build', '2026-10-08T00:00:00Z'), item('bbbbbbbbbbb', 'Live gameplay', '2026-10-09T00:00:00Z')] });
+    assert.match(String(input), /liveStreamingDetails/);
+    return Response.json({ items: [
+      { id: 'aaaaaaaaaaa', status: { privacyStatus: 'public', embeddable: true }, contentDetails: { duration: 'PT12M' }, statistics: { viewCount: '5' } },
+      { id: 'bbbbbbbbbbb', status: { privacyStatus: 'public', embeddable: true }, contentDetails: { duration: 'PT1H' }, statistics: { viewCount: '5' }, liveStreamingDetails: { actualStartTime: '2026-10-09T00:00:00Z' } },
+    ] });
+  });
+  assert.deepEqual((await fetchUploads('test-only')).map(video => video.id), ['aaaaaaaaaaa']);
+});
+
 test('splits the archive into pages of 15 linked to each other', () => {
   const videos = Array.from({ length: 31 }, (_, index) => ({ id: `v${index}`, title: `Video ${index}`, published: new Date(Date.UTC(2026, 9, 31 - index)).toISOString(), summary: '' }));
   // Video cards only; the join card's benefit list also uses <li>.
