@@ -251,7 +251,7 @@ test('the homepage shows six featured guide cards and links the full guides page
 test('the sponsors page shows proof before price: media kit, sponsored videos, services, FAQ, then booking', () => {
   const start = jsx.indexOf('function SponsorsMain(');
   const page = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
-  const order = ['<h1>', '<MediaKit />', 'id="sponsored"', '<Services channel={channel} />', 'id="faq"', '<WorkTogether campaign={campaign} sponsors />'].map(text => page.indexOf(text));
+  const order = ['<h1>', '<ChannelStats channel={channel} />', '<MediaKit />', 'id="sponsored"', '<Services channel={channel} />', 'id="faq"', '<WorkTogether campaign={campaign} sponsors />'].map(text => page.indexOf(text));
   assert.ok(order.every((at, index) => at > 0 && (index === 0 || at > order[index - 1])), order.join());
   assert.match(jsx, /\{sponsorsPage \? <SponsorsMain channel=\{channel\} campaign=\{campaign\} \/> : <>/);
 });
@@ -419,6 +419,16 @@ test('the homepage FAQPage data is built from the visible questions and answers'
 test('the member count says when it was taken', () => {
   assert.match(jsx, /const membersAsOf = '[A-Z][a-z]+ \d{4}';/);
   assert.match(jsx, /<p className="stats-note shell">Member count from Skool as of \{membersAsOf\}/);
+});
+
+test('the sponsors page reuses the homepage channel stats, including total video views', () => {
+  const start = jsx.indexOf('function ChannelStats(');
+  const component = jsx.slice(start, jsx.indexOf('\nfunction ', start + 1));
+  assert.match(jsx, /\[null, 'video views', 'views'\]/);
+  assert.match(component, /<dd>\{key \? channelCount\(channel, key\) : value\}<\/dd>/);
+  const page = jsx.slice(jsx.indexOf('function SponsorsMain('), jsx.indexOf('\nfunction ', jsx.indexOf('function SponsorsMain(') + 1));
+  assert.match(page, /<ChannelStats channel=\{channel\} \/>/);
+  assert.match(css, /\.sponsors-intro \+ \.stats \{ margin-top: 72px; \}/);
 });
 
 test('a build keeps the last channel numbers when the live feed drops them', async () => {

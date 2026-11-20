@@ -400,6 +400,8 @@ a.video-card:hover h3 { color: var(--signal); }
 /* Sponsors: page intro on /sponsors.html, and the one-line pointer to it on the homepage */
 .sponsors-intro { padding: 72px 0 0; }
 .sponsors-intro + .section { padding-top: 72px; }
+.sponsors-intro + .stats { margin-top: 72px; }
+.sponsors-intro + .stats + .section { padding-top: 72px; }
 /* The H1 names the page (matching its title); the benefit line below keeps the large display type. */
 .sponsors-intro h1 { color: var(--signal); font: 600 16px/1.4 var(--sans); letter-spacing: .02em; }
 .sponsors-benefit { max-width: 20ch; margin-top: 14px; color: var(--text); font: 400 clamp(32px, 4.6vw, 52px)/1.08 var(--display); letter-spacing: -.015em; text-wrap: balance; }
