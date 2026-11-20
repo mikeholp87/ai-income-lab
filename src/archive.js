@@ -13,6 +13,7 @@ import { curatedSummary, searchTitle, videoHeading } from './curated-summary.js'
 import { archiveCss, consentCss, readingCss } from './asset-version.js';
 import { fixTerms, transcriptParagraphs } from './transcript.js';
 import transcripts from './transcripts.json' with { type: 'json' };
+import guideVideoMap from './guide-video-map.json' with { type: 'json' };
 import { topicFor, topics } from './topics.js';
 import { localThumbnail, youtubeSrcSet } from './thumbnail.js';
 import { gaBootHead } from './ga-boot-html.js';
@@ -234,6 +235,11 @@ ${siteFooterHtml()}
 }
 
 const watchUrl = video => `${site}/watch/${video.id}`;
+// The written guide whose only player is this video (scripts/guide-video-map.mjs): [path, title], or undefined.
+export const videoGuide = id => guideVideoMap[id];
+// A mapped video's watch page stays live for visitors but names its guide as the canonical page, and the guide
+// carries the video in the video sitemap and its VideoObject. Unmapped watch pages stay self-canonical.
+export const canonicalVideoUrl = video => (videoGuide(video.id) ? `${site}${videoGuide(video.id)[0]}` : watchUrl(video));
 const playerUrl = video => `https://www.youtube-nocookie.com/embed/${video.id}`;
 const thumbnailUrl = video => `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`;
 // YouTube serves maxresdefault (true 16:9) only for some uploads; these returned 404 when checked on 2026-11-08.
@@ -568,14 +574,19 @@ const watchGuideLinks = {
 };
 
 // `videos` (the whole archive) feeds the related list; `start` (seconds, from ?t=) cues the player to a chapter.
-export function renderWatch(video, { videos = [], start = 0 } = {}) {
+// `guide` overrides the mapped guide ([path, title]); null renders the self-canonical page.
+export function renderWatch(video, { videos = [], start = 0, guide = videoGuide(video.id) } = {}) {
   const description = videoDescription(video);
   const metaDescription = watchPageCopy[video.id]?.description || snippet(description);
   const offer = videoOffer(video.title);
   const seconds = durationSeconds(video.duration);
   const chapters = validChapters(videoChapters[video.id] ?? video.chapters, seconds).map(chapter => ({ ...chapter, label: fixTerms(chapter.label) }));
   const related = relatedVideos(video, videos);
-  const guideLinks = watchGuideLinks[video.id] ?? [guides.find(([pattern]) => pattern.test(video.title))?.slice(1)].filter(Boolean);
+  const listedGuides = watchGuideLinks[video.id] ?? [guides.find(([pattern]) => pattern.test(video.title))?.slice(1)].filter(Boolean);
+  const mappedGuide = guide ?? undefined;
+  // The canonical guide always leads the guide links.
+  const guideLinks = mappedGuide ? [[mappedGuide[0], mappedGuide[1]], ...listedGuides.filter(([href]) => href !== mappedGuide[0])] : listedGuides;
+  const canonical = mappedGuide ? `${site}${mappedGuide[0]}` : watchUrl(video);
   const topic = topicFor(video.title);
   const notes = videoNotes[video.id];
   const transcript = transcripts[video.id] ? transcriptParagraphs(transcripts[video.id]) : [];
@@ -590,15 +601,17 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
   // The topic hub name plus the tools the page lists, which are the terms people search for.
   const keywords = [...new Set([topic?.name, ...(brief?.toolsUsed ?? videoTools[video.id] ?? [])].filter(Boolean).map(name => name.replace(/\s*\(.*\)$/, '')))].slice(0, 8);
   const schema = {
-    '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${watchUrl(video)}#video`,
+    '@context': 'https://schema.org', '@type': 'VideoObject', '@id': `${canonical}#video`,
     name: video.title, description, thumbnailUrl: schemaThumbnails(video),
-    uploadDate: video.published, embedUrl: playerUrl(video), url: watchUrl(video),
+    uploadDate: video.published, embedUrl: playerUrl(video), url: canonical,
     inLanguage: 'en',
     ...(keywords.length && { keywords: keywords.join(', ') }),
     ...(seconds && { duration: video.duration }),
     ...(video.views > 0 && { interactionStatistic: { '@type': 'InteractionCounter', interactionType: { '@type': 'WatchAction' }, userInteractionCount: video.views } }),
     // Key moments: a clip ends where the next starts, so this needs the video's length.
-    ...(seconds && chapters.length && { hasPart: chapters.map((chapter, index) => ({ '@type': 'Clip', name: chapter.label, startOffset: chapter.seconds, endOffset: chapters[index + 1]?.seconds ?? seconds, url: chapterUrl(chapter) })) }),
+    // Key-moment Clips only on self-canonical watch pages: on a mapped page their ?t= URLs would point at a page
+    // that is no longer the canonical one. The guide lists the same chapters as visible links instead.
+    ...(!mappedGuide && seconds && chapters.length && { hasPart: chapters.map((chapter, index) => ({ '@type': 'Clip', name: chapter.label, startOffset: chapter.seconds, endOffset: chapters[index + 1]?.seconds ?? seconds, url: chapterUrl(chapter) })) }),
     author: { '@type': 'Person', '@id': `${site}/#mike`, name: 'Mike Holp', url: `${site}/about.html` },
     publisher: { '@type': 'Organization', '@id': `${site}/#org`, name: 'AI Automation Station', url: `${site}/`, logo: { '@type': 'ImageObject', url: `${site}/logo.png`, width: 512, height: 512 } },
   };
@@ -607,6 +620,8 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: trail.map(([name, item], index) => ({ '@type': 'ListItem', position: index + 1, name, item })),
   };
+  // The visible Q&A stays on every watch page. FAQPage data only where the watch page is canonical: a mapped
+  // guide carries its own FAQ.
   const faq = brief?.qa?.length && {
     '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${watchUrl(video)}#faq-schema`, url: watchUrl(video),
     mainEntity: brief.qa.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
@@ -619,7 +634,7 @@ export function renderWatch(video, { videos = [], start = 0 } = {}) {
 <title>${escape(searchTitle(video) || video.title)}</title>
 <meta name="description" content="${escape(metaDescription)}">
 ${indexRobots}
-<link rel="canonical" href="${watchUrl(video)}">
+<link rel="canonical" href="${canonical}">
 <link rel="preconnect" href="https://i.ytimg.com">
 ${fontPreloads}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -631,7 +646,7 @@ ${gaBootHead}
 <script type="module" src="/assets/reading.js"></script>
 <meta property="og:type" content="video.other">
 <meta property="og:site_name" content="AI Automation Station">
-<meta property="og:url" content="${watchUrl(video)}">
+<meta property="og:url" content="${canonical}">
 <meta property="og:title" content="${escape(heading)}">
 <meta property="og:description" content="${escape(metaDescription)}">
 <meta property="og:image" content="${thumbnailUrl(video)}">
@@ -640,7 +655,7 @@ ${gaBootHead}
 <meta name="twitter:description" content="${escape(metaDescription)}">
 <meta name="twitter:image" content="${thumbnailUrl(video)}">
 ${jsonLd(schema)}
-${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
+${jsonLd(breadcrumbs)}${faq && !mappedGuide ? `\n${jsonLd(faq)}` : ''}
 <style>header,main,footer{width:min(1120px,calc(100% - 32px))}main{padding-top:20px}h1{text-wrap:balance;overflow-wrap:anywhere;margin:0 0 20px}.player{display:block;width:100%;height:auto;aspect-ratio:16/9;border:2px solid #333;background:#111}.player:hover,.player:focus-visible{border-color:#ff6846;box-shadow:0 0 20px #ff684633}.watch-actions{display:flex;flex-wrap:wrap;column-gap:24px}.description{white-space:pre-line;overflow-wrap:anywhere}.chapters{columns:300px 3;column-gap:48px;padding:0;list-style:none}.chapters li{margin:0;padding:2px 0;break-inside:avoid}.chapters a{display:inline-block;min-width:4.5em;padding:4px 0;font-variant-numeric:tabular-nums}.key-steps{padding:0;list-style:none}.key-steps a{font-variant-numeric:tabular-nums}.table{overflow-x:auto}td,th{vertical-align:top}main{font-size:19px}main .meta,main small{font-size:15px}.next-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0 0;padding:0;list-style:none}.next-links li{margin:0}.next-links a{display:grid;gap:6px;height:100%;padding:18px 22px;border:1px solid #333;border-radius:12px;background:#111;color:#f5f5f0;font-weight:600;line-height:1.4;text-decoration:none}.next-links a:hover,.next-links a:focus-visible{border-color:#ff6846}.next-links small{color:#a5a59e;font-weight:400}.transcript{margin:8px 0 48px}.transcript summary{display:inline-flex;min-height:44px;align-items:center;padding:0 20px;border:1px solid #333;border-radius:999px;font-size:16px;font-weight:600}.transcript summary:hover{border-color:#ff6846}.transcript[open] summary{margin-bottom:16px}@media(max-width:640px){main{font-size:18px}}</style>
 <style>section[aria-labelledby="related-guides"]{margin-bottom:48px}</style>
 </head><body>
@@ -652,7 +667,8 @@ ${jsonLd(breadcrumbs)}${faq ? `\n${jsonLd(faq)}` : ''}
 <iframe class="player" src="${playerUrl(video)}${start ? `?start=${start}` : ''}" title="${escape(heading)}" width="960" height="540" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ${chapters.length ? `<p class="meta"><a href="#chapters">Jump to video chapters</a></p>` : ''}
 <p class="watch-actions"><a class="action" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noreferrer" data-placement="watch_player">Watch on YouTube ↗</a> <a class="action" href="${channelUrl}?sub_confirmation=1" target="_blank" rel="noreferrer" data-placement="watch_subscribe">Subscribe on YouTube ↗</a></p>
-<p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>
+<p class="meta">By <a href="/about.html" rel="author">Mike Holp</a> · ${meta}</p>${mappedGuide ? `
+<p class="note watch-guide"><strong>Written guide:</strong> <a href="${escape(mappedGuide[0])}" data-placement="watch_guide">${escape(mappedGuide[1])}</a></p>` : ''}
 ${watchNotes[video.id]?.notice ? `<p class="note">${escape(watchNotes[video.id].notice)} <a href="https://www.skool.com/ai-automation-station-7346/plans">Check current membership plans</a>.</p>` : ''}
 ${watchNotes[video.id]?.lead ?? ''}
 <p class="description">${escape(description)}</p>${summaryParagraphs.length || chapters.length ? `
@@ -726,7 +742,7 @@ export function renderVideoSitemap(videos) {
   // video:duration sits between player_loc and publication_date, the order the video sitemap schema lists them.
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(video)}</loc><video:video>
+${videos.filter(video => video.embeddable).map(video => `<url><loc>${canonicalVideoUrl(video)}</loc><video:video>
 <video:thumbnail_loc>${thumbnailUrl(video)}</video:thumbnail_loc>
 <video:title>${escape(video.title.slice(0, 100))}</video:title>
 <video:description>${escape(videoDescription(video).slice(0, 2048))}</video:description>
@@ -740,7 +756,9 @@ ${videos.filter(video => video.embeddable).map(video => `<url><loc>${watchUrl(vi
 // Preserve the hand-maintained page dates; derive archive pagination from the build inventory.
 export function renderPageSitemap(xml, videos) {
   // Drop every /videos URL (numbered and topic) from the base file, then list the current ones.
-  const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/[\w-]+)?<\/loc>[\s\S]*?<\/url>/g, '');
+  const core = xml.replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/videos(?:\/[\w-]+)?<\/loc>[\s\S]*?<\/url>/g, '')
+    // A watch page that names its guide as canonical never belongs in the page sitemap.
+    .replace(/\s*<url><loc>https:\/\/www\.ai-automation-station\.com\/watch\/([\w-]{11})<\/loc>[\s\S]*?<\/url>/g, (entry, id) => (videoGuide(id) ? '' : entry));
   // A topic page changes when the newest video on it does. Every new upload shifts each numbered page down by one,
   // so all of them take the archive's newest upload date.
   const lastmod = list => list.map(video => video.published).sort().at(-1)?.slice(0, 10);

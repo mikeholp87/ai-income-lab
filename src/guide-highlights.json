@@ -1,0 +1,1630 @@
+{
+ "-cLECY10Tzg": [
+  {
+   "seconds": 734,
+   "quote": "We're going to create the key. And once again, I don't actually see where it created the key."
+  },
+  {
+   "seconds": 964,
+   "quote": "It's going to use Gemini for generating the responses to the emails instead of ChatGPT."
+  }
+ ],
+ "0iTOlQjNdhs": [
+  {
+   "seconds": 188,
+   "quote": "It's the only device on your network with ADB port 555 open. So, that's got to be the TV cuz I only have one TV in my living room."
+  },
+  {
+   "seconds": 367,
+   "quote": "Looks like it may also be disabling some telemetry as well, which is sending data back and forth to the company where I bought the TV. I don't really want that to be going on."
+  },
+  {
+   "seconds": 657,
+   "quote": "That also seems considerably faster in terms of like the load speed and that sort of stuff. So overall, this is very cool."
+  }
+ ],
+ "0jzTOUv_B04": [
+  {
+   "seconds": 183,
+   "quote": "I've done a lot of work over like 5 to 6 months on Tube Analytics to actually get it to the position where it's at now where it's getting crawled by all the major crawlers."
+  },
+  {
+   "seconds": 297,
+   "quote": "For example, I could just come over to my blog for Tube Analytics where I've got roughly 549 articles."
+  },
+  {
+   "seconds": 485,
+   "quote": "I've got a domain rating of roughly 54 currently and it's continuing to increase."
+  }
+ ],
+ "0tmhsHn5B30": [
+  {
+   "seconds": 70,
+   "quote": "You can simply use the latest and greatest GLM 5.2 model which is giving Opus 4.8 by Claude a run for its money as well as Fable 5."
+  },
+  {
+   "seconds": 393,
+   "quote": "How cool is that? So again, you don't have to screw around installing this inside Claude Code."
+  }
+ ],
+ "1TPm7B5oStw": [
+  {
+   "seconds": 488,
+   "quote": "The uploads failed for some reason. I'm not exactly sure why, but I've already got about 10 or 12 files in here that it's using for its knowledge base based on the videos that I've already created and the transcripts."
+  },
+  {
+   "seconds": 1032,
+   "quote": "I'm personally on the starter plan right now, and it allows me to create up to 10 different voices."
+  },
+  {
+   "seconds": 1261,
+   "quote": "If I click on record audio, I can start recording, give it 30 seconds of audio, and then it will create the voice. So that's what I've already done."
+  }
+ ],
+ "1klc_1MxBdM": [
+  {
+   "seconds": 65,
+   "quote": "Works great, and then you don't have to pay for subscription fees for N8N. So, I highly recommend it."
+  },
+  {
+   "seconds": 415,
+   "quote": "That's the API key that I can enter in using the specific module. But once again, it says it couldn't connect with these settings."
+  }
+ ],
+ "2G5klyFz61E": [
+  {
+   "seconds": 109,
+   "quote": "I've only been building this for around 2 to 3 hours so far. We're using GLM 5.2, which is the latest and greatest AI model coming out of China, as well as Deepseek V4 Pro."
+  },
+  {
+   "seconds": 569,
+   "quote": "I'm currently using Opus 4.8 because I've noticed that Fable 5 is just blowing through credits like crazy."
+  }
+ ],
+ "3X2VU7EyaEU": [
+  {
+   "seconds": 63,
+   "quote": "You've got your index DB local storage, no external database. This is what you get access to, 13 feature tabs, the brand mentions, all of the crawlers that are crawling your site, responses, visibility analytics, citations, citation opportunities."
+  },
+  {
+   "seconds": 303,
+   "quote": "This is what it looks like as it's running here. You just need to make sure to keep this separate from your main project."
+  },
+  {
+   "seconds": 419,
+   "quote": "Under project settings, I would recommend filling out all of the information for your brand and website."
+  }
+ ],
+ "3cP3DeBG5Q0": [
+  {
+   "seconds": 360,
+   "quote": "Engagement CTA placement is missing altogether. So, we may want to make sure to add that in."
+  },
+  {
+   "seconds": 635,
+   "quote": "This one's currently 804 lines long. Don't ask me what most of this is doing because honestly have I have no idea."
+  },
+  {
+   "seconds": 739,
+   "quote": "Honestly, a lot of times the less editing the better. And you just want to make sure to fulfill your promise of the title and the thumbnail and get straight into the point."
+  }
+ ],
+ "4jK9RraWbiU": [
+  {
+   "seconds": 181,
+   "quote": "This one's a bit long, so I do recommend just grabbing the template if you want the done for you solution."
+  },
+  {
+   "seconds": 529,
+   "quote": "It's creating the video using JSON to video. But just as I suspected, unfortunately, I have run out of credits."
+  }
+ ],
+ "4sd4-9rC3As": [
+  {
+   "seconds": 323,
+   "quote": "I actually had to scale mine down a little bit because there's a limit to the file size that you can get from the HTTP request."
+  },
+  {
+   "seconds": 417,
+   "quote": "If you use like Flux Pro or ElevenLabs, it's going to cost you more credits. So, I recommend just sticking to the the free ones when you're getting started."
+  },
+  {
+   "seconds": 818,
+   "quote": "This one's 30 seconds, 35 seconds, 37 seconds. And that's the rendering time as well."
+  }
+ ],
+ "4uNxh9FW6Ho": [
+  {
+   "seconds": 663,
+   "quote": "Stability, I would set that around like 0.8. And you can also turn on speaker boost as well, which is something that's built into ElevenLabs."
+  },
+  {
+   "seconds": 1941,
+   "quote": "It just called that person and now it's waiting 180 seconds and then it's going to work on the next person and just go like that until it's finished calling 10 people on the list."
+  }
+ ],
+ "6iFA7ds2PU4": [
+  {
+   "seconds": 962,
+   "quote": "I got this from like number 200 up to number 166 in a couple days."
+  },
+  {
+   "seconds": 1872,
+   "quote": "That's like 69% conversion rate. And you can also take a look at the sales directly within Gum Road."
+  },
+  {
+   "seconds": 2302,
+   "quote": "I've got 2,000 templates in here. So, yeah, and you can also download the templates directly from here as well."
+  }
+ ],
+ "7JN-sMkJBCs": [
+  {
+   "seconds": 177,
+   "quote": "It did get back and said that 58 job records across 57 companies have now been pulled in because I asked it to pull in more leads."
+  },
+  {
+   "seconds": 375,
+   "quote": "Anything specific you want highlighted from either one? Yeah, I'm only looking for fully remote jobs with a salary over 80,000 a year."
+  }
+ ],
+ "7UMrV3w1e40": [
+  {
+   "seconds": 22,
+   "quote": "I've just recently decided to switch over to Linux because it runs a lot faster on my laptop compared to Windows 11."
+  },
+  {
+   "seconds": 120,
+   "quote": "They've just announced these new data tables, which are a much faster way to pull in data basically."
+  },
+  {
+   "seconds": 528,
+   "quote": "You will need to once again add your access token and all that stuff here so that it can authenticate with Facebook."
+  }
+ ],
+ "7p3n6-FH9IQ": [
+  {
+   "seconds": 352,
+   "quote": "The only thing that I can think of is it's because my number is not verified yet. Even though technically I'm just using a test number for now."
+  },
+  {
+   "seconds": 410,
+   "quote": "We've got the verify token. We can also attach a client certificate which I think we can leave turned off for now."
+  },
+  {
+   "seconds": 444,
+   "quote": "It looks like access token is missing. So, I need to generate the access token once again and just select reconnect."
+  }
+ ],
+ "7v_675nO7nM": [
+  {
+   "seconds": 523,
+   "quote": "Basically what we'd have to do is just pause that and then do continue so that it pulls in the new model. And this one tends to be quite a bit faster, I found."
+  },
+  {
+   "seconds": 652,
+   "quote": "There doesn't seem to be any way to use it currently. So, that's not very good."
+  },
+  {
+   "seconds": 827,
+   "quote": "I highly recommend installing this as a desktop app, and then you get access to all of these free models."
+  }
+ ],
+ "8ieDSa8BVH4": [
+  {
+   "seconds": 68,
+   "quote": "It's not going to take very long. Pretty much the most difficult part is setting up the app within the Facebook developer developer portal."
+  },
+  {
+   "seconds": 361,
+   "quote": "We're just going to click on verify. and save. Looks like the callback URL of verify token couldn't be validated."
+  },
+  {
+   "seconds": 549,
+   "quote": "That's all there is to it. And completion tokens you can just leave as 2048."
+  }
+ ],
+ "9DQYe6HywT8": [
+  {
+   "seconds": 229,
+   "quote": "In this particular case, the presentation is only supposed to be about 40 minutes long. And then there's also a Q&A at the end as well."
+  },
+  {
+   "seconds": 377,
+   "quote": "You get access to advanced AI image models and you can create up to 20 cards per prompt. So, if I do run out of credits, I will choose to upgrade."
+  },
+  {
+   "seconds": 580,
+   "quote": "I could actually ask it to recommend a theme based on my content. I like this theme already, but perhaps there's an even better one that it can suggest."
+  }
+ ],
+ "9WPazkEp7VU": [
+  {
+   "seconds": 120,
+   "quote": "This basically just gives you a big picture overview of where you're ranking versus the competitors. I didn't even have to put in any of the competitor data."
+  },
+  {
+   "seconds": 474,
+   "quote": "The main reason for that is because my blog has 555 articles and they're all super super well optimized for the AI answer engines."
+  }
+ ],
+ "9kHdIiobKMA": [
+  {
+   "seconds": 368,
+   "quote": "I would recommend turning on an audio recording of the conversation. And then you can set the output audio file as well."
+  },
+  {
+   "seconds": 734,
+   "quote": "In order to do that, you will actually have to buy a phone number. But Twilio does provide a certain number of credits for free if I remember correctly."
+  },
+  {
+   "seconds": 880,
+   "quote": "You're just going to create the web hook. You don't even have to worry about API key."
+  }
+ ],
+ "AO8NoHPU3e0": [
+  {
+   "seconds": 15,
+   "quote": "This has only been live for 4 days and it's currently a preview release. Essentially, what this allows you to do is work through your backlog, review your PRs, and respond to events in the cloud."
+  },
+  {
+   "seconds": 501,
+   "quote": "You don't necessarily need to use the web interface. You could also use the command line, or you could use VS Code or whatever you're running Claude Code in."
+  },
+  {
+   "seconds": 712,
+   "quote": "It just says test prompt for TubeAnalytics blog strategy agent because it hasn't actually finished running this yet. It's burning through a lot of tokens just to do this so I would not recommend doing this inside Claude Code."
+  }
+ ],
+ "AkIz84oXvdk": [
+  {
+   "seconds": 286,
+   "quote": "You can also take a look at how much it costs to make these videos. So this one, Faceless Videos, is 13 credits per minute."
+  },
+  {
+   "seconds": 412,
+   "quote": "We're going to generate the script. it looks like there was an error for some reason."
+  },
+  {
+   "seconds": 666,
+   "quote": "It also shows the platform limits here as well. So max video length is 12 hours for YouTube, 10 minutes for Tik Tok, 15 minutes for LinkedIn, 240 minutes for Facebook, which is interesting."
+  }
+ ],
+ "Ax-v4H9xv50": [
+  {
+   "seconds": 404,
+   "quote": "I can also just search through all the files, but I don't see an easy way to do that right off the bat."
+  },
+  {
+   "seconds": 539,
+   "quote": "In total that took about, you know, 12 minutes to build this entire app from scratch. This is just a very simple example."
+  }
+ ],
+ "C5wEcJRo_VA": [
+  {
+   "seconds": 127,
+   "quote": "We've got Anthropic in here, which I would like to avoid using because I'm constantly hitting rate limits on this one. But if we did want to use that through OpenRouter, we could do that as well."
+  },
+  {
+   "seconds": 219,
+   "quote": "It definitely seems faster. So, I was limited by the model that I was on, which was very slow."
+  },
+  {
+   "seconds": 495,
+   "quote": "The provider returned an error, and it says \"Temporarily rate limited.\" So, that's the issue that I've been having before with Gemma."
+  }
+ ],
+ "CfbMWB0G99E": [
+  {
+   "seconds": 209,
+   "quote": "We can just start automatically generating the PowerPoint. There's only allowed 10 cards on the free plan, which should be just fine."
+  },
+  {
+   "seconds": 635,
+   "quote": "In this case, I want to use Google Slides because I'm on Linux and I don't have access to Microsoft PowerPoint."
+  }
+ ],
+ "DfyAAwHPJuU": [
+  {
+   "seconds": 362,
+   "quote": "It's only 33 characters, and it should be 40 to 70 character characters. So, that's something that you can easily improve, and it just gives you tips to actually fix up each one of your videos."
+  },
+  {
+   "seconds": 382,
+   "quote": "It's about 269% higher than the channel average, which is definitely encouraging. You can play the video, take a look at the retention graph, and also traffic."
+  },
+  {
+   "seconds": 408,
+   "quote": "This one's already really, really well optimized. It's 97% out of 100, so it's doing really well."
+  }
+ ],
+ "EECptdYND6k": [
+  {
+   "seconds": 487,
+   "quote": "I love the design that he's come up with here. You can also see how many tokens you've used right away."
+  },
+  {
+   "seconds": 597,
+   "quote": "It found 124 models for OpenAI. So, it's just going to pull in all of those."
+  },
+  {
+   "seconds": 1183,
+   "quote": "We'll take a look at this and see how long it takes to run this. looks like that one actually failed for some reason."
+  }
+ ],
+ "Fw-RqLjArc8": [
+  {
+   "seconds": 24,
+   "quote": "Obviously, you'll need to create your free account and then I would recommend upgrading to one of the paid plans in order to get access to the MCP to integrate into our AI coding harnesses."
+  },
+  {
+   "seconds": 264,
+   "quote": "I am hitting some errors in terms of API credits for some reason. It's starting to throttle it a little bit, but overall, we're still getting access to a lot of the data that we need."
+  }
+ ],
+ "G8u1-hKEqig": [
+  {
+   "seconds": 1603,
+   "quote": "For my API plan, I can only create up to 720p videos. Unfortunately, I can't use 1080."
+  },
+  {
+   "seconds": 1887,
+   "quote": "That says operation failed with Okay, so it may be the wrong avatar ID. And that makes perfect sense because I've actually created a new avatar if you remember from earlier."
+  },
+  {
+   "seconds": 2072,
+   "quote": "It says it can't be longer than 180 seconds. So, this is the one, you know, this is something that you're probably going to have to upgrade to the pro plan of the API."
+  }
+ ],
+ "G_XWYIwjhKY": [
+  {
+   "seconds": 226,
+   "quote": "If you come down to schedule setting, you're just going to set on demand. And now, it's just going to be looking for new responses in tally and then running that specific agent."
+  },
+  {
+   "seconds": 427,
+   "quote": "Generating a response with ChatGPT, I would say, is even easier than using the agent. especially since it seems like I won't actually be able to set this up on my current make.com plan."
+  }
+ ],
+ "HlPdlZh0AHM": [
+  {
+   "seconds": 240,
+   "quote": "It shows a full rundown of what was built as well in 43 different files. Here's the pages and the routes."
+  },
+  {
+   "seconds": 763,
+   "quote": "Unfortunately, it says failed to create project. I just had to restart the dev server."
+  },
+  {
+   "seconds": 834,
+   "quote": "That way, I don't have to screw around with creating the Amazon AWS account and then potentially even spending money on the server storage and all that stuff."
+  }
+ ],
+ "IV6q81wRay4": [
+  {
+   "seconds": 188,
+   "quote": "I also want to check out some of the settings as well. And it's even got like this Windows 98 theme as well, which is pretty interesting."
+  },
+  {
+   "seconds": 413,
+   "quote": "Since we're actually doing work inside this local directory, which is something that you can't easily do inside the command line interface, I don't even know if there is a way to do it to be honest."
+  },
+  {
+   "seconds": 435,
+   "quote": "If you want to add a bunch of different tabs side by side instead of opening a new tab every time doing this, you can do that as well."
+  }
+ ],
+ "Ip8KBwDixJs": [
+  {
+   "seconds": 30,
+   "quote": "The checkout batch is mid-flight. It's verifying today's production log before picking the 30."
+  },
+  {
+   "seconds": 191,
+   "quote": "Today's backlink send was six tube analytics first contact notes in French and German out at 5:05 a.m. ICT that hit today's cap."
+  },
+  {
+   "seconds": 512,
+   "quote": "The live check on /blog/ai-business-tools shows it's returning 200, but still has a no index tag, which is the main decision point."
+  }
+ ],
+ "K2UeJZ_7mS0": [
+  {
+   "seconds": 262,
+   "quote": "I don't have the fastest hardware. It's just a Lenovo laptop, but overall it's pretty decent in terms of FPS."
+  },
+  {
+   "seconds": 355,
+   "quote": "I would maybe potentially want to make it look a little bit more realistic because it's not exactly, you know, very 3D looking, but overall quite impressive what you can build in about 25 minutes inside Astro 6."
+  }
+ ],
+ "KEXgl3vsVMI": [
+  {
+   "seconds": 643,
+   "quote": "If you show up every single day for the most part, you can make this entire thing green for, you know, 365 days."
+  },
+  {
+   "seconds": 1141,
+   "quote": "It was a little bit higher up, but now it's it's starting to fall a little bit, but it's still on page eight, I believe. So, there it is right there, ranking number 196, which is pretty good."
+  },
+  {
+   "seconds": 1190,
+   "quote": "A couple days ago, I had 78 activities. Yesterday, a couple days before that, 63."
+  }
+ ],
+ "KLuU0Yxu9g4": [
+  {
+   "seconds": 525,
+   "quote": "Just going to paste in that direct URL. So, it knows what it should be scraping because currently it doesn't seem to be on the right track."
+  },
+  {
+   "seconds": 548,
+   "quote": "If it doesn't work, I'll use a generic web scraper. And there's 4,700 actors available to choose from."
+  },
+  {
+   "seconds": 735,
+   "quote": "It's really not using that many credits. So, it looks like now it is fetching the correct data."
+  }
+ ],
+ "L_dAm5Xh-fQ": [
+  {
+   "seconds": 272,
+   "quote": "I could see how many tokens I've saved, which is currently 35 million over all time."
+  },
+  {
+   "seconds": 404,
+   "quote": "Again, if you do want to save even more tokens, I would highly recommend installing Ponytail, Caveman, as well as RTK."
+  }
+ ],
+ "Lifl4PC2_3M": [
+  {
+   "seconds": 1831,
+   "quote": "It's turning it into HTML. And then it's basically just waiting 90 seconds in between each step, which in this case I can actually remove."
+  },
+  {
+   "seconds": 1946,
+   "quote": "I can just let the automation run every 30 minutes every single day and it generates the replies using ChatGPT and fires off the emails. So, saves time, saves money for my business."
+  },
+  {
+   "seconds": 2778,
+   "quote": "That's just generating the the avatar video. And then I'm basically waiting 600 seconds because it takes a while to to generate the video."
+  }
+ ],
+ "LoNsDme0XQI": [
+  {
+   "seconds": 396,
+   "quote": "Scrolling down we can see the comprehensive coverage is only partial. So the fact section is missing but covers logical follow-up."
+  },
+  {
+   "seconds": 479,
+   "quote": "It should only be 150 to 160 characters. I currently have about 350 articles on my blog."
+  },
+  {
+   "seconds": 575,
+   "quote": "That's also important, high priority. And then we've got some of the H2 headings need to be questions."
+  }
+ ],
+ "LqRRXcM8Kxc": [
+  {
+   "seconds": 326,
+   "quote": "The next thing I want to do is actually see how quickly Kimi K 2.7 code can implement these fixes that we've gotten from the full site audit."
+  },
+  {
+   "seconds": 397,
+   "quote": "It just went ahead and replaced 1700 replacements throughout all of the blog data. So these are the JSON files translations."
+  },
+  {
+   "seconds": 458,
+   "quote": "Whereas with Kimi 2.7 Code, it blows through the credits pretty quickly."
+  }
+ ],
+ "MABL6XZgy4g": [
+  {
+   "seconds": 133,
+   "quote": "We should be able to completely redesign the site using Vite and React instead of just a crappy lovable template."
+  },
+  {
+   "seconds": 489,
+   "quote": "In this case, it wasn't able to pull that in. We don't have to worry about any of the environment variables, I don't think, because it shouldn't have environment variables."
+  }
+ ],
+ "MYoA3___zYU": [
+  {
+   "seconds": 16,
+   "quote": "I actually just started building this website about 45 minutes ago. I just got back from lunch and it's already finished."
+  },
+  {
+   "seconds": 85,
+   "quote": "I highly recommend using ChatGPT to create the prompts for building the website because it's just going to look a lot better and you don't have to edit it very much."
+  },
+  {
+   "seconds": 587,
+   "quote": "In this case, I can't actually edit these files. Maybe because they're not actually finished yet."
+  }
+ ],
+ "M_4KgrWyycI": [
+  {
+   "seconds": 364,
+   "quote": "Here we're just waiting for 5 seconds to make sure that it has time to upload the image to Google Drive."
+  },
+  {
+   "seconds": 393,
+   "quote": "This is basically just taking that binary data and it's turning it into a base 64 string which Gemini needs access to."
+  }
+ ],
+ "NH6t9M2vFrk": [
+  {
+   "seconds": 215,
+   "quote": "I'm just waiting on my credits to reset in another 2 days and then I can start testing it out."
+  },
+  {
+   "seconds": 290,
+   "quote": "It says to open the desktop app and then start a new session and then select cloud instead of local. So, all you have to do is select cloud."
+  }
+ ],
+ "OPQacEy41kM": [
+  {
+   "seconds": 39,
+   "quote": "Like I say, it's completely free, so there's no barrier to entry to joining. And I'm also potentially going to start running some Facebook ads to get more people in here faster as well."
+  },
+  {
+   "seconds": 288,
+   "quote": "I've got automation templates that I've built out, which you can basically just slap right into make.com. I've got 10 different templates in here."
+  }
+ ],
+ "PDfEWpyyRMI": [
+  {
+   "seconds": 217,
+   "quote": "I can only create about 3 minutes worth of video for that, which isn't very much."
+  },
+  {
+   "seconds": 676,
+   "quote": "Doesn't look like there's a way to do that right off the bat. So, we're just going to customize here."
+  }
+ ],
+ "QMcaBMjZSMA": [
+  {
+   "seconds": 316,
+   "quote": "I also give it the time limit, 5 to 8 minutes. Do not include scene directions, just the spoken lines."
+  },
+  {
+   "seconds": 456,
+   "quote": "Not exactly sure why that is, but it's fine. I'll just create the 720p videos, right?"
+  },
+  {
+   "seconds": 636,
+   "quote": "I do recommend getting the paid plan of make.com because you can download larger files on the paid plan versus the free plan."
+  }
+ ],
+ "QMqe2ubsn0g": [
+  {
+   "seconds": 228,
+   "quote": "If you want to connect up your API, you just click on add a connection. And then from here, you've only got two options, n8n or make.com."
+  },
+  {
+   "seconds": 485,
+   "quote": "Unfortunately, we are getting an error here for some reason. It says unauthorized invalid API key or workflow ID."
+  }
+ ],
+ "Qb6RG0-8O1k": [
+  {
+   "seconds": 60,
+   "quote": "I'm also going to be canceling my Claude Pro subscription because I'm blowing through credits faster than ever, and this is one of the many reasons why I've decided to cancel my subscription."
+  },
+  {
+   "seconds": 325,
+   "quote": "It came back with test received, system active, ready for tasks. That took quite a while to just run this simple prompt."
+  },
+  {
+   "seconds": 437,
+   "quote": "If we come over to Open Router, we can see I've essentially used zero credits in order to build this so far, and looks very, very similar to Claude Code."
+  }
+ ],
+ "R90zVHmoj7A": [
+  {
+   "seconds": 146,
+   "quote": "It looks like for me, I'm pretty much maxed out, almost 87% used because some of my automations are running on almost daily basis."
+  },
+  {
+   "seconds": 237,
+   "quote": "They also have AI agents as well, but I would not really recommend using make.com for this. It's much better to use a platform like n8n."
+  },
+  {
+   "seconds": 1314,
+   "quote": "In this case, looks like there's a runtime error 400. Not exactly sure why it's having an issue here."
+  }
+ ],
+ "SLAnjvWK1Y4": [
+  {
+   "seconds": 160,
+   "quote": "I will caution you a little bit for use from using scraping tools on YouTube because sometimes it goes against their terms of service and you will need to be a little bit careful."
+  },
+  {
+   "seconds": 569,
+   "quote": "Since I set 10 in the JSON, it's actually getting 10 videos for each particular person, which is perfect."
+  },
+  {
+   "seconds": 1835,
+   "quote": "I would recommend turning captions on. And then here you're actually going to want to set so it would be like you know 720 by 1280 instead because it's going to be a vertical video."
+  }
+ ],
+ "TuVL2x6IfDk": [
+  {
+   "seconds": 356,
+   "quote": "Only 12 of the articles meet the 10 plus internal linking requirement. So, we definitely want to make sure to improve that."
+  },
+  {
+   "seconds": 719,
+   "quote": "The fresh audit completed. We've got 547 strategic pages, zero modeled orphans, and 11 pages below three modeled inbound links."
+  },
+  {
+   "seconds": 764,
+   "quote": "I think the vast majority of them, like this one, actually has 63 inbound links."
+  }
+ ],
+ "UAPaM6KrC-M": [
+  {
+   "seconds": 20,
+   "quote": "It has absolutely exploded on GitHub with currently 200,000 stars and it works with tools like Claude Code, Codex, Cursor, and other coding agents."
+  },
+  {
+   "seconds": 261,
+   "quote": "That's a little bit of a bug right there. Overall, it's looking very, very good."
+  }
+ ],
+ "UnnN2i90ALg": [
+  {
+   "seconds": 191,
+   "quote": "That can include Open Router with over 200 free models. It's also got Nvidia NIM built into it as well."
+  },
+  {
+   "seconds": 585,
+   "quote": "We can do hello again and see if this actually works, but unfortunately, it looks like it's having an API error once again."
+  },
+  {
+   "seconds": 690,
+   "quote": "It's possible that I've just run out of credits on OpenCode, so I would need to add a balance."
+  }
+ ],
+ "V3ETwJAR5-I": [
+  {
+   "seconds": 104,
+   "quote": "I think I've only gotten one credit usage reset in about 3 to 4 months since I've started using GrokBot. Luckily, I just got another one last night."
+  },
+  {
+   "seconds": 494,
+   "quote": "Just make sure all of the plugins that you're not using are removed from GrokBot. That should also make a difference."
+  },
+  {
+   "seconds": 627,
+   "quote": "You want to make sure that this is turned off for sure because the API credits are going to be pretty outrageously expensive compared to your subscription plan."
+  }
+ ],
+ "VE66JDHoS6Y": [
+  {
+   "seconds": 109,
+   "quote": "You can add extra channels if you want to add that. This project currently has 45,000 stars on GitHub."
+  },
+  {
+   "seconds": 266,
+   "quote": "I don't have to continually exit and then resume the session every single time. It's just saved automatically every time you quit Herdr, which is really, really nice."
+  },
+  {
+   "seconds": 381,
+   "quote": "Currently, it's at about 8 GB of memory used. but overall, I'm pretty impressed with this."
+  }
+ ],
+ "X0X8kJTK7vA": [
+  {
+   "seconds": 225,
+   "quote": "You can also set the limit here as well. So, I want 50 marketing agencies in Bangkok in this specific example."
+  },
+  {
+   "seconds": 466,
+   "quote": "Sometimes it actually can't find the email, but in this case, I can easily just go to this website here and find the email address from the website, right?"
+  }
+ ],
+ "X9Bo29B_46k": [
+  {
+   "seconds": 171,
+   "quote": "That way, you're not blowing through credits really fast. And then you can also put it up to max mode."
+  },
+  {
+   "seconds": 766,
+   "quote": "This basically just reduces the amount of text. So, I want to make sure that this is installed inside Claude Code."
+  },
+  {
+   "seconds": 846,
+   "quote": "We can check our usage. And it's we can see it's not using nearly as many credits now."
+  }
+ ],
+ "YCjvrNI1pa4": [
+  {
+   "seconds": 247,
+   "quote": "We've gone from 33,000 down to about 3,700 results. So, these are all founders and CEOs at management consulting companies in the AI space."
+  },
+  {
+   "seconds": 749,
+   "quote": "In my case, my deliverability rating is already an 85% which is really good."
+  },
+  {
+   "seconds": 910,
+   "quote": "What this is going to do is it's just going to scrape those leads in about 30 seconds. Usually doesn't take very long."
+  }
+ ],
+ "YNpIRq7O3UE": [
+  {
+   "seconds": 80,
+   "quote": "I will say that it runs quite a bit faster in the desktop app versus in the browser. So, I'm really liking this a lot."
+  },
+  {
+   "seconds": 185,
+   "quote": "It looks like I will need some more API credits for OpenAI because I'm currently getting a current quota limit being exceeded."
+  },
+  {
+   "seconds": 877,
+   "quote": "We don't have to use OpenAI for this. We could just use OpenCode, whichever model we want."
+  }
+ ],
+ "ZKpr-vmz_iY": [
+  {
+   "seconds": 36,
+   "quote": "I've already just gone through and installed quite a few of these, like 10 or 12, and all you have to do is scroll through and hit space bar to select each one of them."
+  },
+  {
+   "seconds": 443,
+   "quote": "To that point, we can see that AI crawlers are already visiting my site. We've got about 123 visits just in the past 2 weeks, and in the past week, we've got roughly the same."
+  },
+  {
+   "seconds": 796,
+   "quote": "I'm not exactly sure why the skill didn't make a difference to the overall page speed, but that's definitely something that we can work on. On desktop it's 97 out of 100 so it loads virtually instantaneously."
+  }
+ ],
+ "Zi_PG07mDxo": [
+  {
+   "seconds": 151,
+   "quote": "It says it doesn't have the prior conversation context. So, it's asking to review and suggest improvements."
+  },
+  {
+   "seconds": 416,
+   "quote": "I'm not exactly sure what happened there, but the desktop app did crash for some reason."
+  },
+  {
+   "seconds": 476,
+   "quote": "I can attach them to the right or left just like we can do inside the browser. The only difference is that this is a standalone desktop app that is running on my Debian Linux machine."
+  }
+ ],
+ "ZlD4Z6UKS8o": [
+  {
+   "seconds": 497,
+   "quote": "It took less than 10 minutes to build this entire website. And honestly, I like this one even better."
+  },
+  {
+   "seconds": 641,
+   "quote": "One of these images is broken as well. So, you can't actually see this image."
+  },
+  {
+   "seconds": 1717,
+   "quote": "It looks like the order is confirmed and it will be configured to work with Lovable. can take up to 10 minutes for updates to appear, which is no big deal."
+  }
+ ],
+ "Zza-S7YsLy0": [
+  {
+   "seconds": 158,
+   "quote": "I wouldn't recommend it because it may be breaking their terms of service and you need to be a little bit little bit careful with that."
+  },
+  {
+   "seconds": 612,
+   "quote": "If I want to add the trigger here, I can actually add a trigger for a new paid member, which I didn't realize was possible until now."
+  },
+  {
+   "seconds": 837,
+   "quote": "Even though they don't have a public API available yet, they do have an integration with Zapier, which works great. And so now that's just going to start running."
+  }
+ ],
+ "_1bZhPHcsm4": [
+  {
+   "seconds": 41,
+   "quote": "It's not running anymore and I've just decided to build out something very, very similar in n8n."
+  },
+  {
+   "seconds": 188,
+   "quote": "It will just find all the new people. It may take quite a while to run because there's about 700 people that I've marked as new in the Airtable."
+  },
+  {
+   "seconds": 345,
+   "quote": "You do have a cap of 500 emails per day on the free plan in engine mailer, which is still really should be sufficient for for most cases."
+  }
+ ],
+ "_ikohuukGE4": [
+  {
+   "seconds": 259,
+   "quote": "It took 5 minutes to build this complete landing page. It's already looking really, really good right off the bat, and we've got some testimonials in here, which obviously we're going to have to fix up."
+  },
+  {
+   "seconds": 545,
+   "quote": "Since it's the free plan, they don't actually get a chance to view the paid plans."
+  },
+  {
+   "seconds": 653,
+   "quote": "It's going to check all the files that exist already, which is only one file so far."
+  }
+ ],
+ "avgG3VtN2C4": [
+  {
+   "seconds": 353,
+   "quote": "Currently already at 51% usage and I've only been doing this for around 10 minutes."
+  },
+  {
+   "seconds": 466,
+   "quote": "It found one that is critical for post payment race. The success page never confirms subscription and it redirects after 750 milliseconds."
+  },
+  {
+   "seconds": 558,
+   "quote": "We're at 95% already. So we're going to have to wait until for like another 2 hours for this to reset."
+  }
+ ],
+ "bAgP_0uW0dY": [
+  {
+   "seconds": 220,
+   "quote": "If this starts going up even faster, then that means that the changes that we've made are actually making a difference to the overall ranking of the video."
+  },
+  {
+   "seconds": 273,
+   "quote": "If you do run out of, you know, usage on your GPT plan, let's say you're on the free plan, you can just create your own custom AI assistant and use this instead."
+  },
+  {
+   "seconds": 667,
+   "quote": "I also have all the timestamps, which is also very important for ranking on YouTube. it's just a good indicator."
+  }
+ ],
+ "bBGqWXXIw44": [
+  {
+   "seconds": 105,
+   "quote": "It's going to run security checks and it's also going to add in sending limits inside Mail Gun which is one of the best tools for sending cold emails."
+  },
+  {
+   "seconds": 260,
+   "quote": "It's got the command line interface installed. It shows exactly how many credits I have available."
+  },
+  {
+   "seconds": 439,
+   "quote": "Definitely worth looking into if you're using more credits than the free plan allows. But for now, a lot of the stuff that I'm doing, the free plan should be just fine."
+  }
+ ],
+ "bCsSqZp0yVg": [
+  {
+   "seconds": 253,
+   "quote": "I wouldn't be able to get access to this without the MCP simply by chatting with Claude because it doesn't have access to any of my data."
+  },
+  {
+   "seconds": 424,
+   "quote": "The views jumped from 167,000 to 179,000 in a single day, coinciding with a publishing burst of three videos."
+  },
+  {
+   "seconds": 459,
+   "quote": "You don't need millions and millions of views on long-form videos versus shorts in order to get paid a decent amount from YouTube."
+  }
+ ],
+ "bjTr9p-zQ1M": [
+  {
+   "seconds": 91,
+   "quote": "I actually want to use Sonnet 4 in this particular case for writing the ebook because it's going to be even better than 3.7, I would think."
+  },
+  {
+   "seconds": 275,
+   "quote": "Again, it still says, \"Credit balance is too low.\" So, maybe this is the wrong account, possibly."
+  },
+  {
+   "seconds": 574,
+   "quote": "It's just going to continue going like this until the ebook's finished. It's already 17 pages long."
+  }
+ ],
+ "c3AtpUbpXNA": [
+  {
+   "seconds": 68,
+   "quote": "They've also reduced image generation latency, so it's faster at creating images by up to 50% compared with images 2.0."
+  },
+  {
+   "seconds": 206,
+   "quote": "The window on the right is larger. So that's pretty impressive what it was able to create in about 20 seconds."
+  }
+ ],
+ "c_WK6TImkNQ": [
+  {
+   "seconds": 205,
+   "quote": "The nice thing about this model that I'm using by Xiaomi, which is a Chinese company, is that it's not using any credits whatsoever."
+  },
+  {
+   "seconds": 357,
+   "quote": "If I wanted to do this, all I have to do is copy and paste this prompt and then I would actually create a new folder cuz I don't want to run this in my existing project."
+  }
+ ],
+ "cfYpzY-o3fQ": [
+  {
+   "seconds": 504,
+   "quote": "Again, that is all built directly into the subscription plan. So, I don't have to continually add a balance to this like I would on OpenCode Zen."
+  },
+  {
+   "seconds": 564,
+   "quote": "Whenever I run out of credits and Codex, I just switch back over to OpenCode."
+  }
+ ],
+ "dEQ8OllsJmk": [
+  {
+   "seconds": 378,
+   "quote": "I also said don't include stars or new lines because we just want to split it into commas, comma separated values."
+  },
+  {
+   "seconds": 412,
+   "quote": "Sometimes it doesn't work, but that's okay because the most important thing is it's actually uploading the videos to YouTube. That's what I want to happen."
+  },
+  {
+   "seconds": 517,
+   "quote": "We're setting the status to public since previously was unlisted. So, that'll just make it public on the channel."
+  }
+ ],
+ "dQ_gnts0JCE": [
+  {
+   "seconds": 93,
+   "quote": "I don't have to use some sort of custom skill to do this. It's all done through OpenSEO, which is fully open source."
+  },
+  {
+   "seconds": 411,
+   "quote": "We can run it on I would actually want to run it on a lot more pages than that because my site has like 5,000 pages total."
+  }
+ ],
+ "dVvazfQHhW4": [
+  {
+   "seconds": 213,
+   "quote": "In this case, we're going to be using Gemini 1.5 Flash. I would actually like to upgrade that to like Gemini 3.1."
+  },
+  {
+   "seconds": 324,
+   "quote": "They've got a version A and then also a version B for deep engagement and this this one's for maximum reach. Honestly, I don't really like the post that much."
+  },
+  {
+   "seconds": 578,
+   "quote": "This one is actually having a runtime error because I've exceeded my API limit."
+  }
+ ],
+ "exXV5ehmsEU": [
+  {
+   "seconds": 203,
+   "quote": "Unfortunately, I have an insufficient balance. So, I would need to add some credits to my account inside the DeepSeek platform."
+  },
+  {
+   "seconds": 334,
+   "quote": "This is a really nice feature that I haven't seen in any other coding harness so far, and it is available in DeepSeek."
+  },
+  {
+   "seconds": 420,
+   "quote": "Overall very very cost effective especially compared to something like Claude Code. So it's a big big difference in credit usage."
+  }
+ ],
+ "ffnMlBzcJOQ": [
+  {
+   "seconds": 334,
+   "quote": "Here in the dashboard, it says, \"Number of active accounts, 101.\" So, here's all of my different account IDs, apparently, as well as different amounts."
+  },
+  {
+   "seconds": 510,
+   "quote": "The credentials are wrong, the account doesn't have paper trading enabled, or the credentials have been rotated/invalidated."
+  },
+  {
+   "seconds": 1008,
+   "quote": "I have all these different options inside OpenCode. And again, I'm not spending any credits in order to build this app."
+  }
+ ],
+ "gNcHbc2kdzw": [
+  {
+   "seconds": 143,
+   "quote": "I also just created this job application agent which is automatically scraping sources and various job boards to automatically find the companies that are a best fit."
+  },
+  {
+   "seconds": 245,
+   "quote": "Another powerful AI agent that I've got set up for my business is a backlink outreach manager. We can see we just sent 13 follow-ups, I believe, yesterday to each of these companies."
+  }
+ ],
+ "ga22WZgoj9M": [
+  {
+   "seconds": 264,
+   "quote": "Obviously, like this leaves a lot to be desired because I'm constantly getting errors about API request failed, and it doesn't matter which model I choose."
+  },
+  {
+   "seconds": 334,
+   "quote": "In most cases, I would highly recommend just using OpenCode, which again, I've already made tutorials about on this channel."
+  },
+  {
+   "seconds": 533,
+   "quote": "Also, I've noticed that you really don't run out of credits nearly as quickly in Codex versus Claude Code."
+  }
+ ],
+ "gibc7oWLCn4": [
+  {
+   "seconds": 570,
+   "quote": "Probably not. So, I'm actually going to turn that off because I don't really just want to be sending ChatGPT messages responses to people all the time."
+  },
+  {
+   "seconds": 1213,
+   "quote": "If you have the paid plan, you could do like let's say a thousand at a time, right? But in this case, I'm only getting 100."
+  },
+  {
+   "seconds": 1632,
+   "quote": "Also important here you will need to pass in the video ID which is simply the the last part of the YouTube video. So, I've provided all of those in my Airtable as well."
+  }
+ ],
+ "iVI11AZvUdk": [
+  {
+   "seconds": 139,
+   "quote": "It looks like it may have run out of credits for the API that I'm using."
+  },
+  {
+   "seconds": 401,
+   "quote": "Also keep in mind this is costing me 0 in credits because I'm currently on the OpenCode Zen plan using Big Pickle and we're running all of this inside Hermes."
+  },
+  {
+   "seconds": 621,
+   "quote": "It now includes per article clicks, impressions, click-through rate, average position, as well as comparison versus the previous 28 days, top 20 articles in the email body, and the full per article CSV attachment with every blog articles."
+  }
+ ],
+ "jB9hYQJGAuM": [
+  {
+   "seconds": 61,
+   "quote": "We're saving a boatload of credits just by using this free extension which you can install on GitHub. This currently has 71,000 stars and I'll show you exactly how to get started with RTK."
+  },
+  {
+   "seconds": 150,
+   "quote": "For now, I'm just using the RTK command line. In order to do that, you just run RTK gain and it will show you exactly what your current token efficiency is."
+  },
+  {
+   "seconds": 172,
+   "quote": "This just runs on port 8787 and it allows you to visualize, you know, how many credits you're saving on a day-to-day basis."
+  }
+ ],
+ "jtyWB5iGPOs": [
+  {
+   "seconds": 262,
+   "quote": "It has these three files. So we got skill.md, which is, as I've already explained, the most important skill file because it gives it instructions for the skill."
+  },
+  {
+   "seconds": 382,
+   "quote": "That literally took about 20 seconds I think and we've already got the output video which is way faster. Normally it would take like 5 to 8 minutes."
+  }
+ ],
+ "kKiFzNW9fjw": [
+  {
+   "seconds": 244,
+   "quote": "If you're using the API, which is what make.com requires, you can only create videos up to 3 minutes long for some reason."
+  },
+  {
+   "seconds": 418,
+   "quote": "I just chose to set two different sleep modules here. So it's going to wait 600 seconds."
+  },
+  {
+   "seconds": 510,
+   "quote": "I've got about 166,000 followers on this Facebook page. And now I just want to start automating creating videos and posting to Facebook like every day, right?"
+  }
+ ],
+ "kUbhr1QGYeU": [
+  {
+   "seconds": 240,
+   "quote": "It says failed to load post CSS config. Not exactly sure what that means, but I should be able to sort this out relatively quickly."
+  },
+  {
+   "seconds": 498,
+   "quote": "If I refresh this, it's gone from 2% up to 4%. So, again, we've used very, very little credits."
+  },
+  {
+   "seconds": 1015,
+   "quote": "Eventually I want to make sure that the YouTube live data is coming in which I haven't been able to fix yet. Definitely still a work in progress."
+  }
+ ],
+ "kxp_dF6NEbg": [
+  {
+   "seconds": 552,
+   "quote": "Essentially, all you need to do is just run this custom skill, which currently has 124,000 installs, 31,000 stars on GitHub."
+  },
+  {
+   "seconds": 603,
+   "quote": "I've used it to increase my overall AI visibility on the site so that I can get over 260,000 visits currently about 20,000 visits just today from the AI crawlers by using custom skills like AI SEO."
+  },
+  {
+   "seconds": 698,
+   "quote": "It's taken a lot of debugging and testing in order to get it to this current state. And also on desktop, it's 99 out of 100 and it's maxed out across performance, accessibility, best practices, and SEO."
+  }
+ ],
+ "lbBZ7uLJwbM": [
+  {
+   "seconds": 349,
+   "quote": "I don't necessarily need to use the terminal all the time. Although I definitely still prefer the terminal because it's just much more lightweight."
+  },
+  {
+   "seconds": 379,
+   "quote": "This is also going to show me my credit limit resets as well directly from within the desktop app."
+  },
+  {
+   "seconds": 480,
+   "quote": "The really nice thing about this is that I can now dictate with the voice, which I can't easily do inside the terminal. There's really no way to do it as far as I can tell."
+  }
+ ],
+ "lumzbY6QV4Y": [
+  {
+   "seconds": 183,
+   "quote": "You just need the access token and then you can connect up different apps to your AI agent if you want to do that."
+  },
+  {
+   "seconds": 275,
+   "quote": "Unfortunately, I still can't preview the app. So, I'm not exactly sure how to run this."
+  }
+ ],
+ "mKsPxDi7uM0": [
+  {
+   "seconds": 366,
+   "quote": "All I was doing was issuing it prompts. And in total, I want to say this one took me about 8 to 10 hours to build out in total."
+  },
+  {
+   "seconds": 884,
+   "quote": "It seems to be a different error. So it says JSON object is not supported with this model."
+  },
+  {
+   "seconds": 2425,
+   "quote": "I won't actually be able to add the the login functionality until I upgrade to the paid account."
+  }
+ ],
+ "mPHM81X1oqc": [
+  {
+   "seconds": 265,
+   "quote": "If OpenCode doesn't work, we also have the option to install it directly into Claude Code or Codex simply by passing in the API key."
+  },
+  {
+   "seconds": 454,
+   "quote": "It's going to run the the gates, scan for security, correctness, hotspots, run the test, and it shouldn't really use that many credits."
+  }
+ ],
+ "miBtL2fVkpg": [
+  {
+   "seconds": 116,
+   "quote": "We are logged into 9Router and it's just setting up the tunnel right now. I can also enable tail scale if I really wanted to and we can come on down to our provider."
+  },
+  {
+   "seconds": 191,
+   "quote": "It looks like it's just upgrading to the latest version right now, 7.5.16."
+  },
+  {
+   "seconds": 520,
+   "quote": "This one currently has 132,000 stars on GitHub, and it just allows you to compress your tokens."
+  }
+ ],
+ "n3NO40juUBo": [
+  {
+   "seconds": 542,
+   "quote": "This is one of the things that I'm constantly running into with Claude Code is I'm I'm hitting limits."
+  },
+  {
+   "seconds": 687,
+   "quote": "I'm really impressed with ChatGPT Codex. This is often times even better than Claude Code in a lot of ways, and it's faster and also more powerful."
+  }
+ ],
+ "nJtbBB0JBYY": [
+  {
+   "seconds": 108,
+   "quote": "I'm currently still on the hobby plan because I just want to reduce costs and I don't necessarily need some of the other features."
+  },
+  {
+   "seconds": 300,
+   "quote": "On the free plan, obviously, they don't get access to any sort of live calls. that's only for premium and VIP."
+  },
+  {
+   "seconds": 321,
+   "quote": "In this particular case once they join for free they only get access to the get started and then also the how-to guides. That's it."
+  }
+ ],
+ "ncg6F27PYt0": [
+  {
+   "seconds": 191,
+   "quote": "I've just gone ahead and installed it. It has over 860,000 installs so far and reviews, 4.5 out of 5, which is definitely encouraging."
+  },
+  {
+   "seconds": 510,
+   "quote": "It's created that file, which is 171 lines long. And it's just going to update the to-do list."
+  },
+  {
+   "seconds": 733,
+   "quote": "It gives me an overall SEO score, 69%, and it actually grades a lot of the things as well. So, performance, page load speed, meta tags, headings, images."
+  }
+ ],
+ "oDAKXkIyOHE": [
+  {
+   "seconds": 342,
+   "quote": "Obviously there's all the different models but in most cases I find that GPT 4.0 works best."
+  },
+  {
+   "seconds": 862,
+   "quote": "It's turned on and it's just going to be automatically running every 60 minutes checking for new emails coming in, right?"
+  },
+  {
+   "seconds": 1012,
+   "quote": "It's actually going to wait 90 seconds, which I don't want to do for the purposes of this example."
+  }
+ ],
+ "p7kV1iHSP54": [
+  {
+   "seconds": 233,
+   "quote": "It looks decent. I still like Fable 5.1 considerably more, but I'd be curious to know how many tokens they spent building this."
+  },
+  {
+   "seconds": 339,
+   "quote": "It's been connected up to this Vercel AI gateway, which I didn't mean to do."
+  },
+  {
+   "seconds": 462,
+   "quote": "If you do want to go with super Grok, these are your options versus using the API credits which tend to be quite a bit more expensive."
+  }
+ ],
+ "pDbRjYYUjRI": [
+  {
+   "seconds": 24,
+   "quote": "I've just recently decided to launch a third YouTube channel where I'm creating synthwave music videos. And in order to make my job easier, I've just decided to automate the entire process using n8n."
+  },
+  {
+   "seconds": 52,
+   "quote": "This will allow you to self-host n8n, which is quite a bit cheaper than using the official cloud service."
+  },
+  {
+   "seconds": 574,
+   "quote": "I would recommend using 2K otherwise the file is just going to be really large. So just set 2K and then the output format is going to be PNG."
+  }
+ ],
+ "pDrMGahPnwc": [
+  {
+   "seconds": 133,
+   "quote": "Given that I've only been building this platform for about 2 months now, I would say I'm definitely on the right track."
+  },
+  {
+   "seconds": 435,
+   "quote": "Again, I'm pretty much beating them in all of the metrics but the sources. So, this one's actually showing TubeBuddy instead of mine, but that's okay."
+  }
+ ],
+ "pMLyxz6Dyt4": [
+  {
+   "seconds": 436,
+   "quote": "I might as well keep that selected. And then you can also turn on 4K resolution, but you will need to upgrade to the team plan in order to do that."
+  },
+  {
+   "seconds": 467,
+   "quote": "It just gives them permission to use your likeness. Essentially, it takes about 10 to 20 seconds to validate the consent."
+  },
+  {
+   "seconds": 1994,
+   "quote": "It had an API video processing error. So if we see here, video is too long 180 greater than 180 seconds."
+  }
+ ],
+ "pRnJdlMSSqM": [
+  {
+   "seconds": 516,
+   "quote": "It's way cheaper than GLM 5.1 as well for the input tokens. It's about six times cheaper than GLM 5.1, which is pretty incredible."
+  },
+  {
+   "seconds": 550,
+   "quote": "Again, I would highly recommend just using something like OpenCode to do a lot of this stuff."
+  }
+ ],
+ "pwLLS6zFpKs": [
+  {
+   "seconds": 134,
+   "quote": "I don't have a coach, nothing like that. So, I just have to kind of figure things out as I go along."
+  },
+  {
+   "seconds": 214,
+   "quote": "That's already connected up to Claude Code. And it says I have a balance of 1390 credits."
+  },
+  {
+   "seconds": 325,
+   "quote": "I'll just have to wait for my credits to reset, which shouldn't be too much longer."
+  }
+ ],
+ "q4-LkuMDkIE": [
+  {
+   "seconds": 217,
+   "quote": "We could actually try something else as well instead of the full site audit since I don't actually need the full site audit to be perfectly honest. My SEO is already pretty rock solid."
+  },
+  {
+   "seconds": 812,
+   "quote": "I don't actually have a blog on the website yet. That's definitely something that I would like to add."
+  },
+  {
+   "seconds": 1011,
+   "quote": "We've we've hit 98% credit usage and then that's going to reset in about 4 hours. So, yeah."
+  }
+ ],
+ "qA683UQVDt4": [
+  {
+   "seconds": 139,
+   "quote": "For the limit, I'm just setting it to one because I only want to get one YouTube video at a time. Makes sense, right?"
+  },
+  {
+   "seconds": 358,
+   "quote": "That's pretty much all all there is to it. Now, if I actually run this automation, you'll see that it's going to error out on the ChatGPT module run itself because I need more credits."
+  },
+  {
+   "seconds": 567,
+   "quote": "You need to make sure to add the timestamps and use a format that actually works, right?"
+  }
+ ],
+ "quDDekuPQNI": [
+  {
+   "seconds": 269,
+   "quote": "It got all 10 pages. Again, I just want to add a filter to only scrape categories matching certain keywords."
+  },
+  {
+   "seconds": 354,
+   "quote": "One of the really nice things about using the browser act skill forge skill is that uses a stealth mode in order to not be detected as a scraper."
+  },
+  {
+   "seconds": 714,
+   "quote": "If I search for, let's say, writer, for example, it pulls up only the writing jobs. So, freelance writer, data labeling specialist, I'm assuming this has writing somewhere in the keywords."
+  }
+ ],
+ "qzIaEA0wBCw": [
+  {
+   "seconds": 126,
+   "quote": "You don't actually have to upgrade to the paid plan. You can do this with the free trial as well."
+  },
+  {
+   "seconds": 638,
+   "quote": "I highly recommend skills.sh. This is one of the largest you know registries of skills available for all the different coding harnesses and it saves you a ton of time."
+  }
+ ],
+ "rZh4zVT2LKY": [
+  {
+   "seconds": 64,
+   "quote": "The only difference is this one runs locally on your machine using one of the command-line interfaces that you have installed."
+  },
+  {
+   "seconds": 185,
+   "quote": "The really nice thing about this is that I'm not using any credits. This is running locally on my machine."
+  }
+ ],
+ "tR7AYN5FiqA": [
+  {
+   "seconds": 269,
+   "quote": "You really can't go wrong with medium, but you could also set high or extra high if you're doing really intense coding work. For most cases, I find that medium works perfectly fine."
+  },
+  {
+   "seconds": 375,
+   "quote": "One of the things that I really, really like about Codex is that it's super super fast. I would say, you know, substantially faster than Claude Code."
+  },
+  {
+   "seconds": 492,
+   "quote": "This is all running inside the cloud. So you don't have to run this locally on your computer."
+  }
+ ],
+ "tzSGF7gu6EE": [
+  {
+   "seconds": 134,
+   "quote": "I am I'm avoiding using this one through 9Router because I don't want my account to get suspended obviously. And the same goes for the Codex app, but I'm mostly using it for the free ones like OpenCode go."
+  },
+  {
+   "seconds": 185,
+   "quote": "In this case, I'm not really using 9Router to its maximum potential because ultimately what this does is it anytime you run out of credits on one coding harness, it'll fall back to the other one."
+  },
+  {
+   "seconds": 221,
+   "quote": "It doesn't actually show how much I've used today as far as I can tell."
+  }
+ ],
+ "tzUhKKzwgyE": [
+  {
+   "seconds": 202,
+   "quote": "That's the downside of using Base44. It looks like you only have a very limited number of credits to start."
+  },
+  {
+   "seconds": 274,
+   "quote": "I built the entire thing within Lovable in about total it took about 8 hours using lovable. So, it's a beautiful design and this also I can deploy it using lovable as well."
+  },
+  {
+   "seconds": 343,
+   "quote": "Unfortunately this one is not very useful. I was intending on making a full tutorial showing how to build out ChatGPT replica using Base44, but looks like I will need to upgrade."
+  }
+ ],
+ "uTYZC3Kxwjo": [
+  {
+   "seconds": 292,
+   "quote": "If I want to run this, it looks like I don't have any launch variables set. So, I actually need to set some launch variables looks like in order to run it."
+  },
+  {
+   "seconds": 435,
+   "quote": "Let's just click on run. And once again, it's asking me to install the Chrome extension, which I don't really want to do all that much."
+  },
+  {
+   "seconds": 636,
+   "quote": "Here's my dashboard. Looks like I've only used about 43% of my monthly allotted credits basically."
+  }
+ ],
+ "ud2su6XhtKw": [
+  {
+   "seconds": 181,
+   "quote": "It works really, really well. You just have to make sure not to accidentally quit out while it's running something."
+  },
+  {
+   "seconds": 409,
+   "quote": "Obviously in your ignore file, you're going to want to make sure to add that so that nobody can get access to those API keys. So, make sure to add that."
+  },
+  {
+   "seconds": 444,
+   "quote": "We just have to make sure to build it and then we can restart it using PM2 so that the app is always running and then if it does crash, it will automatically restart it as well."
+  }
+ ],
+ "vmEac5CJcNQ": [
+  {
+   "seconds": 344,
+   "quote": "I can't actually preview the website yet because I don't have the index.html file."
+  },
+  {
+   "seconds": 469,
+   "quote": "There's 10 different phases. So, it's going to take a little while to build this."
+  },
+  {
+   "seconds": 516,
+   "quote": "I'm not exactly sure. I will most likely probably upgrade or switch over to the API credits instead of the Claude Code Pro because I am hitting some some rate limits."
+  }
+ ],
+ "vvDdXF2Yuz8": [
+  {
+   "seconds": 255,
+   "quote": "I just want to run this locally on my computer. Otherwise, it's going to install a whole bunch of packages which I don't really want or need."
+  },
+  {
+   "seconds": 404,
+   "quote": "Could be even better. I actually want to create a Python script, but it decided to use Node.js instead."
+  },
+  {
+   "seconds": 623,
+   "quote": "It has the video, which is only 2 minutes long. In order to do that, I also used OpenCode to just trim all the videos in my YouTube videos directory."
+  }
+ ],
+ "vxH102ZvjUg": [
+  {
+   "seconds": 286,
+   "quote": "This is really important because you do have to be aware of the security concerns. You're basically installing an AI agent that could perform any number of tasks on your machine."
+  },
+  {
+   "seconds": 585,
+   "quote": "It says WhatsApp is not linked. So I will need to make sure to set up that correctly since I wasn't able to scan the QR code for some reason."
+  },
+  {
+   "seconds": 1360,
+   "quote": "I didn't actually enter in my API key, so that's still missing. So, if I do want to set that up, I can do that."
+  }
+ ],
+ "wLIiTkra7uM": [
+  {
+   "seconds": 73,
+   "quote": "Once this is connected, it will have access to all of the tools, including the MCP, which it can use to take actions on your site. So, just make sure that all of the tools are turned on."
+  },
+  {
+   "seconds": 185,
+   "quote": "What it's done recently is it just went ahead and it should have written roughly 12 articles and then it also should have scheduled them as well."
+  },
+  {
+   "seconds": 210,
+   "quote": "The advantage of doing it this way is that if you have a YouTube channel, it doesn't really make sense to create content multiple times if you can just repurpose them for each one of your digital assets."
+  }
+ ],
+ "wRqpZ9F3rmI": [
+  {
+   "seconds": 213,
+   "quote": "Instead of paying for a required monthly subscription like many of the competitors, you're simply charged for the API requests that you actually use."
+  },
+  {
+   "seconds": 515,
+   "quote": "The important part is that this can become another research layer alongside the normal traditional SEO."
+  }
+ ],
+ "w_MoA8lpWTg": [
+  {
+   "seconds": 143,
+   "quote": "We've got how many? We've got about nine clips here from a 10-minute video."
+  },
+  {
+   "seconds": 242,
+   "quote": "It doesn't actually have the subtitles burned in yet. So, that's definitely something that I want to add to the app."
+  },
+  {
+   "seconds": 355,
+   "quote": "I've got 90% usage left for the day and then my weekly limit is at 98% and that just resets every week."
+  }
+ ],
+ "wakl0ayO_fk": [
+  {
+   "seconds": 171,
+   "quote": "In 40 seconds, it broke down 724 live ads from 37 brands. And it's able to go through and steal the whole category by analyzing the ads."
+  },
+  {
+   "seconds": 425,
+   "quote": "You can install the specific Jev browser use skill which only takes a couple of seconds. just need to install the skill."
+  }
+ ],
+ "wmjAyAth1Ug": [
+  {
+   "seconds": 86,
+   "quote": "I don't even have to worry about entering that in. It looks like it's just got one built directly in."
+  },
+  {
+   "seconds": 173,
+   "quote": "We don't actually need an API key or you can use your Claude API key or GPT in this case. I don't really want to worry about any of that."
+  },
+  {
+   "seconds": 478,
+   "quote": "You want to make sure that you're not opening up your ports for nefarious actors, right?"
+  }
+ ],
+ "wniZpV6LZsE": [
+  {
+   "seconds": 227,
+   "quote": "They only get one message and then that's it. Otherwise, it's going to start bothering the person, right?"
+  },
+  {
+   "seconds": 439,
+   "quote": "I've actually maxed out my total number of contacts. I've got 1,700 in here and my limit is only 500."
+  }
+ ],
+ "wzC2r426KWs": [
+  {
+   "seconds": 358,
+   "quote": "Can you make sure it's working correctly, please? The approve button sending you to a blank page."
+  },
+  {
+   "seconds": 525,
+   "quote": "My credits just reset. I'm at currently 15% usage and that's going to reset another 7 days."
+  }
+ ],
+ "yHaBYtUnzBg": [
+  {
+   "seconds": 196,
+   "quote": "I think it took a couple seconds to create this JavaScript file, which it's going to use to design the pitch deck. And next, it's going to set up the pitch deck stage starter plus the base styles."
+  },
+  {
+   "seconds": 340,
+   "quote": "Oh, and it looks like I'm using Opus 4.7. So, that's going to burn through my credits really fast."
+  },
+  {
+   "seconds": 441,
+   "quote": "I still don't really think it's a major competitor to something like Canva yet, but with enough time, and as they continue making improvements, I think this could be a serious competitor."
+  }
+ ],
+ "yR-zoMUY27Q": [
+  {
+   "seconds": 334,
+   "quote": "Ultimately that's just going to make the job easier for the custom skills so that it doesn't have to go through a full 10-minute long video."
+  },
+  {
+   "seconds": 534,
+   "quote": "You don't have to spend any money on credits like in Claude Code or Codex. You can just use OpenCode to do all of this and just use one of the many available free models."
+  }
+ ],
+ "yUibdYhO1ms": [
+  {
+   "seconds": 112,
+   "quote": "I'm sorting by date, and I'm only getting the latest jobs from the past 7 days. You can also choose your job level, entry, mid-level, or senior."
+  },
+  {
+   "seconds": 187,
+   "quote": "Usually 60 seconds is long enough unless you're scraping like you know hundreds or thousands of jobs. That should be sufficient."
+  },
+  {
+   "seconds": 839,
+   "quote": "It's an 8 out of 10. The salary is 70,000 to 80,000 a year and it looks like it's fully remote."
+  }
+ ],
+ "ztEj6zCJh5k": [
+  {
+   "seconds": 262,
+   "quote": "I could also set up a cron job or something to just run this every time I post a new YouTube video, so I don't even have to screw around."
+  },
+  {
+   "seconds": 293,
+   "quote": "It's only been running for about 5 minutes now. And then it you can also integrate your ElevenLabs API key in here as well."
+  }
+ ]
+}
