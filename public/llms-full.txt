@@ -123,7 +123,7 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Lovable Landing Page: Cal.com, Stripe, Domain](https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html): Run one landing-page prompt in Replit, Lovable and Orchids, then take Lovable live with Cal.com, Supabase, Stripe and a domain. Stripe was partly done.
 - [Nano Banana: Free Images and a Make.com Error](https://www.ai-automation-station.com/guides/nano-banana-gemini-images-make.html): Generate images with Nano Banana (Gemini 2.5 Flash Image) in Google AI Studio and the Gemini app, then see why my Make.com Gemini module hit a quota error.
 - [Build Viral Post Genie in Replit: Errors, Limits](https://www.ai-automation-station.com/guides/replit-viral-post-genie-build.html): Build a Facebook post generator in Replit’s AI agent: the prompt, OpenAI key errors and fixes, thread format, history, Google sign-in and free-plan limit.
-- [Apollo B2B Lead Lists and the Apify Apollo Scraper](https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html): Filter B2B leads in Apollo, save lists, review a cold email sequence, and see how an Apify actor exports Apollo searches to CSV. Includes the plan limits.
+- [Apollo Free Plan: B2B Lead Lists, Sequences and Apify Export](https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html): Use Apollo free: filter verified founders and CEOs, save lists 25 at a time, review a cold email sequence and mailbox ramp-up, then export more with Apify.
 - [Self-Host n8n on Hostinger: KVM and First Import](https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html): Set up n8n on a Hostinger VPS: pick a KVM plan, choose the n8n template with 100 workflows, open n8n, claim the license key and import a template.
 - [Manus AI First Test: Calendar and Gmail](https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html): My first Manus test on the free Lite model: connect Google Calendar and Gmail, build an hourly email autoresponder and switch it to Gemini. What failed.
 - [Install OpenClaw on Emergent: Setup and WhatsApp](https://www.ai-automation-station.com/guides/emergent-openclaw-install.html): Install OpenClaw, also called Moltbot, inside Emergent with its install script, sign in with Google and open the control UI. WhatsApp did not connect.
@@ -140,10 +140,10 @@ AI Income Lab here means "AI Income Lab by Mike Holp" (skool.com/ai-automation-s
 - [Make.com YouTube Description Updater](https://www.ai-automation-station.com/guides/make-youtube-description-updater.html): A Make.com scenario that reads video URLs from Airtable, fetches transcripts, writes SEO descriptions with an OpenAI assistant and updates YouTube.
 - [Make.com Gmail Auto-Reply: Watch, Write and Send With AI](https://www.ai-automation-station.com/guides/make-gmail-ai-auto-reply.html): Build a Make.com scenario that watches Gmail for unread email, has OpenAI write a reply, waits, then sends it. Test the draft before linking the send step.
 - [Make.com Faceless Videos: JSON2Video and Auto-Posting](https://www.ai-automation-station.com/guides/make-faceless-video-json2video.html): Build a Make.com scenario that turns Airtable topics into faceless vertical videos with JSON2Video and posts them to Facebook and YouTube via a router.
-- [Make.com AI Agent: Tally Form Replies and Where It Stalled](https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html): Build a Make.com AI agent that drafts replies to Tally form submissions, choose its model and prompt, and see why my email step stalled on the plan I had.
+- [Make.com AI Agent: Tally Form Replies by Email](https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html): Build a Make.com AI agent that answers Tally form submissions: pick a model, write the prompt, add an email step and see the plan limit I worked around.
 - [HeyGen and Make.com: Script, Render and Upload to YouTube](https://www.ai-automation-station.com/guides/heygen-make-youtube-automation.html): Build two Make.com scenarios: an OpenAI assistant scripts, HeyGen renders, and finished videos upload to YouTube as unlisted. Includes the error fix.
 - [HeyGen, ElevenLabs and Make.com: AI Avatar Videos](https://www.ai-automation-station.com/guides/heygen-elevenlabs-make-course.html): Train a HeyGen avatar, connect an ElevenLabs voice clone, then automate scripts and renders in Make.com, plus the 180-second API limit that stopped my run.
-- [Make.com Content Machine: Airtable, Perplexity and HeyGen](https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html): One Make.com scenario: Airtable topic, Perplexity research, ChatGPT script, HeyGen video, Facebook post. See where the 3-minute API cap bit.
+- [HeyGen Facebook Automation: Airtable, Perplexity, Make.com](https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html): One Make.com scenario turns an Airtable topic into Perplexity research, a script, a HeyGen avatar video and a Facebook post, plus the 3-minute API cap.
 - [Gamma for a Conference Workshop: Deck, Site and PDF Export](https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html): Build a 40-minute workshop deck in Gamma from a ChatGPT outline, add a comparison slide, publish it as a site and export a PDF when Google Slides failed.
 - [Gamma Presentation From a Pasted Plan: Client Coaching Deck](https://www.ai-automation-station.com/guides/gamma-coaching-deck-from-chatgpt-plan.html): Paste a four-day ChatGPT coaching plan into Gamma, set audience, tone and theme, generate a ten-card deck, edit an image with the AI agent and export.
 - [Bluehost AI Assistant: Models, Agents and Plan Costs](https://www.ai-automation-station.com/guides/bluehost-ai-assistant.html): What the $20 Bluehost AI Assistant bundle gave me in one test: four model families, auto routing, web search, image edits and three writing agents.
@@ -289,7 +289,7 @@ https://www.ai-automation-station.com/guides/aegis-vpn-claude-code.html (updated
 Aegis VPN is Mike's WireGuard desktop client, built with Claude Code in Herdr on a Tauri and Rust stack. The first video covers the ChatGPT research, the plan, and an early Linux compile. The next-day follow-up shows a public GitHub repo, imported free Proton test server configs, and the leak, kill switch, and speed checks he ran. The app was Linux-only in that recording. Mike said it was not 100% secure yet. This is one combined guide because the two videos are the same project, not two separate VPN products.
 
 ### Free Agent Skills for SEO: Install and Run in Kilo Code
-https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/agent-skills-seo-kilo-code.html (updated 2026-11-20)
 Run npx skills add, scroll the dozens of skills and press space to select, choose Claude Code and Kilo Code as targets, install globally and pick symlink. Then run them on a real site: the image skill flagged a large avatar and images without width and height, the Core Web Vitals skill worked on LCP, CLS and INP, and an IndexNow skill generated a script that submits every URL to Bing, run with npx tsx. A PageSpeed retest showed about the same speed and Core Web Vitals still failing, with desktop at 97.
 
 ### How does agentic AI differ from traditional automation?
@@ -368,8 +368,8 @@ Install the Apify agent skills with npx skills add apify/agent-skills, add your 
 https://www.ai-automation-station.com/guides/apify-klook-hotel-scraper-claude-code.html (updated 2026-11-15)
 Install the skills with the one-line npx skills add command from the Apify Agent Skills GitHub page, then ask Claude Code to scrape Klook for four and five star hotels in Koh Samui. My first run returned unrelated Walt Disney World results until I passed the direct Klook accommodation URL, and prices came back empty until I added check-in dates. The run saved about 49 hotels with ratings and locations. Apify sponsored the video, and the sign-up link is an affiliate link.
 
-### Apollo B2B Lead Lists and the Apify Apollo Scraper
-https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html (updated 2026-11-15)
+### Apollo Free Plan: B2B Lead Lists, Sequences and Apify Export
+https://www.ai-automation-station.com/guides/apollo-apify-b2b-lead-list.html (updated 2026-11-20)
 In Apollo’s free plan open People, filter to verified emails, founder and CEO titles, US companies, an industry, a keyword and one to ten employees, which narrowed about 2 million people to about 3,700. Save contacts to a list 25 at a time within the free plan’s five pages of results. To get more, paste the search URL into an Apify Apollo actor, set 100 records and export a CSV; this walkthrough quoted about $1.20 per 1,000 leads. I also reviewed a cold email sequence and the mailbox deliverability settings.
 
 ### Bluehost AI Assistant: Models, Agents and Plan Costs
@@ -457,7 +457,7 @@ https://www.ai-automation-station.com/guides/claude-models-compared.html (update
 Use Claude Opus 5.5 for most coding and agent work: it is Anthropic’s recommended starting point and costs $4 / $20 per million input / output tokens. Use Sonnet 5.5 ($2 / $10) when speed and cost matter more, for well-scoped fixes and frequent coding turns. Use Haiku 5.5 (from $0.10 / $0.50) for high-volume jobs such as classification, extraction and sub-agents. Keep Fable 5.1 ($10 / $50) for the hardest long-running tasks, after Opus 5.5 at a higher effort has fallen short.
 
 ### Claude SEO Skill: Audit and Fix a Site From Claude Code
-https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/claude-seo-skill-site-audit.html (updated 2026-11-20)
 Run the one-line curl command from the Claude SEO GitHub page to install the skill files, sub-agents and Python dependencies, then open Claude Code and type a slash to see the new SEO commands. I ran the audit command on tubeanalytics.net, then the plan command with SaaS as the business type, approved fixes for canonicals, title tags and 404s, let it rewrite the sitemap and robots file and ran a GEO analysis. About 20 minutes of work used up my Claude Pro limit twice, and the full audit was interrupted.
 
 ### CleanYourTV with Claude Code: TCL Setup and Risks
@@ -509,7 +509,7 @@ https://www.ai-automation-station.com/guides/deepseek-harness-first-test.html (u
 DeepSeek Harness is a preview agent interface, not a model. When I tested it, DeepSeek's own API failed with an insufficient balance error, an OpenCode route failed with "model is unavailable", and an OpenRouter key worked. The two-stroke engine HTML it built was still buggy after I asked for fixes.
 
 ### DextroLab: A White-Label Client Portal for Make.com and n8n
-https://www.ai-automation-station.com/guides/dextrolab-white-label-automations.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/dextrolab-white-label-automations.html (updated 2026-11-20)
 DextroLab lets an agency connect Make.com or n8n (and tools like Zapier or Vapi), then give clients a branded portal where they can run and adjust a workflow without logging in to those tools. You add a connection with an API key and base URL, choose a workflow, deliver it to a client for approval and set pricing. My example was $0.05 per run, a $100 monthly base fee and a $250 one-time setup fee, billed through Stripe. A custom-variables step failed with an invalid API key error and I removed it.
 
 ### Install OpenClaw on Emergent: Setup and WhatsApp
@@ -537,7 +537,7 @@ https://www.ai-automation-station.com/guides/gamma-coaching-deck-from-chatgpt-pl
 In Gamma choose Create new, paste your outline as text, pick Presentation and 16 by 9, and generate from notes. On the free plan I got ten cards, set text to concise, chose the audience, tone, language and a light theme, and let Gamma pick images in a line art style. The deck took about three minutes. I changed a heading, edited one image with Gamma’s AI agent and exported to Google Slides. Quoted plans: Plus $12, Pro $25 and Ultra $100 a month.
 
 ### Gamma for a Conference Workshop: Deck, Site and PDF Export
-https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/gamma-workshop-deck-and-site-export.html (updated 2026-11-20)
 Ask ChatGPT for an outline of your talk, then in Gamma choose Create new, paste the text, pick Presentation and the default fluid format and generate from notes. I set concise text for a 40-minute workshop, described the audience and tone, picked a professional theme with automatic images and watched the slides build in real time. I then improved the writing, restyled the deck, added a slide comparing n8n and Make.com, published it as a site and exported a PDF because the Google Slides export failed.
 
 ### Free AEO Tracker: GEO/AEO Tracker GitHub with Bright Data
@@ -557,7 +557,7 @@ https://www.ai-automation-station.com/guides/grok-4-7-openrouter.html (updated 2
 Find Grok 4.7 on OpenRouter, pick x-ai/grok-4.7 in Hermes Agent, set effort to medium if that is what you use, then type continue to resume the task. Charts and plan prices in my walkthrough are snapshots, not live quotes.
 
 ### GrokBot as a Chief of Staff: Daily Briefings and Approvals
-https://www.ai-automation-station.com/guides/grokbot-chief-of-staff-daily-briefing.html (updated 2026-11-17)
+https://www.ai-automation-station.com/guides/grokbot-chief-of-staff-daily-briefing.html (updated 2026-11-20)
 I treated GrokBot as a chief of staff: at the end of the day I asked what ran, what is waiting and what is tomorrow, then pushed each item to a specialist bot instead of doing it myself. In two long conversations it summarised jobs and outreach, queued page speed tests, drafted backlink emails, diagnosed indexing problems, set weekly Monday routines for indexing and Stripe checks, and held drafts until I approved them. The rule that made it safe was simple: reading and drafting are automatic, sending emails and merging code need my explicit yes.
 
 ### Slow GrokBot credit drain: routines and caps
@@ -617,7 +617,7 @@ https://www.ai-automation-station.com/guides/hermes-backlink-outreach-pipeline.h
 In Hermes Agent, crawl competitor articles with Firecrawl, look up author emails with Hunter.io, keep Mailgun sends behind the gates shown on camera, and read delivery numbers as a past snapshot. The 29 July 2026 walkthrough did not show ranking results or inbox placement.
 
 ### Hermes Agent Cron Jobs: Move Them to Vercel With Reports
-https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/hermes-cron-jobs-vercel-reports.html (updated 2026-11-20)
 Install or update Hermes Agent with the one-line curl command from its site, run the setup wizard and open the desktop app with hermes desktop to see your cron jobs, their last run and errors. I switched jobs that hit API limits to the Big Pickle model with DeepSeek V4 Pro as a fallback, asked Hermes which jobs the business needed and had it build a broken-link checker and a blog performance digest with a Resend key for email reports. Because local jobs need the computer awake and the app used heavy CPU and memory, I had Codex move both onto Vercel cron in vercel.json.
 
 ### Install Hermes Agent on Mac, Windows or Linux
@@ -632,8 +632,8 @@ Give Hermes Agent your channel URL and ID and ask for a Python script that finds
 https://www.ai-automation-station.com/guides/heygen-ai-avatar-tutorial.html (updated 2026-11-11)
 HeyGen turns a written script into a video of an AI avatar presenter speaking it. For your first video, open AI Studio, choose a stock avatar, paste a short script, check the voice, then generate a draft and review it sentence by sentence. On October 23, 2026 the Free plan listed 3 watermarked videos a month of up to 1 minute each.
 
-### Make.com Content Machine: Airtable, Perplexity and HeyGen
-https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html (updated 2026-11-15)
+### HeyGen Facebook Automation: Airtable, Perplexity, Make.com
+https://www.ai-automation-station.com/guides/heygen-airtable-facebook-content-machine.html (updated 2026-11-20)
 Build one Make.com scenario: search Airtable for one to-do topic, research it with Perplexity’s Sonar model, have a custom ChatGPT assistant write the script, create the HeyGen video, wait for it to render, upload it to a Facebook page from its URL and mark the Airtable row done. In my July 2025 run the HeyGen API refused scripts that ran over about three minutes, so I rendered one video by hand to finish the demo.
 
 ### HeyGen, ElevenLabs and Make.com: AI Avatar Videos
@@ -641,11 +641,11 @@ https://www.ai-automation-station.com/guides/heygen-elevenlabs-make-course.html 
 Upload at least two minutes of clear footage to HeyGen, record the consent clip, and wait for the avatar. Give it a voice from HeyGen’s instant clone or an ElevenLabs clone imported with an API key. Then generate videos in the HeyGen editor, or send scripts from Make.com. In my July 2025 test the Make.com route failed because the HeyGen API rejected any video over 180 seconds on my plan, so I finished videos by hand.
 
 ### HeyGen and Make.com: Script, Render and Upload to YouTube
-https://www.ai-automation-station.com/guides/heygen-make-youtube-automation.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/heygen-make-youtube-automation.html (updated 2026-11-20)
 Use two Make.com scenarios. The first sends a topic to an OpenAI assistant that writes the script, then passes it to HeyGen with your avatar ID, cloned voice and a friendly emotion. The second watches for new HeyGen videos, downloads the file and uploads it to YouTube as unlisted. In my July 2025 test the videos came out at 720p, and a “resolution not allowed” error went away only after I hardcoded the video ID.
 
 ### Self-Host n8n on Hostinger: KVM and First Import
-https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/hostinger-n8n-vps-setup.html (updated 2026-11-20)
 On Hostinger choose a KVM plan (KVM 1 was $5 a month with one vCPU, 4 GB of RAM and 50 GB of NVMe disk; the popular plan was $6.50), pick a one-month term and the nearest server location, and select the n8n operating system template. With the 100 bundled workflows my first month cost $10.69. Set a root password, keep the free malware scanner on, open n8n with Manage App, create the owner account, claim the free license key and import a template.
 
 ### How to install OpenClaw: local, VPS or hosted, safely
@@ -669,19 +669,19 @@ https://www.ai-automation-station.com/guides/kimi-k2-7-code-opencode-test.html (
 In OpenCode, run /models and pick Kimi K2.7 Code, then give it a codebase-only site audit and ask it to apply the fixes. In my first-day test it audited technical SEO, on-page SEO, content, authority and links, then began fixes such as the www canonical, robots.txt and a bulk script that made about 1,700 URL replacements in blog JSON files. The audit alone cost close to half of what DeepSeek V4 Pro used the whole day before, and I spent about 3 USD and hit my OpenCode Go monthly limit before the fixes were done.
 
 ### Lovable Landing Page: Cal.com, Stripe, Domain
-https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/lovable-landing-page-calcom-stripe-domain.html (updated 2026-11-20)
 Write one prompt for your landing page in ChatGPT and paste it into Replit, Lovable and Orchids. I preferred Lovable’s result. Then ask Lovable to connect the booking button to a Cal.com link, add a floating calendar popup, connect Supabase and Stripe, and buy a domain and email address through it. The site went live in under an hour. Stripe was only partly working: the page prices did not match the Stripe products and the buttons still sent visitors to account creation. Replit and Lovable both needed about $25 a month to deploy or use a custom domain.
 
 ### Lovable vs Base44 vs Replit: pricing and which to pick
 https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html (updated 2026-11-08)
 Pick Lovable for a polished website or front end you want live quickly; Pro starts at $25 a month for 100 credits. Pick Base44 for a simple internal app with sign-in and a database built in; paid plans start at $16 a month billed yearly. Pick Replit if you want a full coding workspace and expect to edit the code yourself; Core is $20 a month with $20 of usage included. All three have a free plan that is enough to build a first version, not to run it for real users.
 
-### Make.com AI Agent: Tally Form Replies and Where It Stalled
-https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html (updated 2026-11-15)
-In Make.com open AI Agents (in beta in July 2025), create an agent, connect a model with your API key, write a system prompt and give it a tool for sending email. Trigger it from a Tally form so each submission runs the agent. My agent correctly spotted who wanted a call and drafted a good reply, but it could not send it because scenario inputs were not available on my plan, so the draft was all I got.
+### Make.com AI Agent: Tally Form Replies by Email
+https://www.ai-automation-station.com/guides/make-ai-agent-tally-email.html (updated 2026-11-20)
+In Make.com open AI Agents (in beta in July 2025), create an agent, connect a model with your API key, write a system prompt and give it a tool for sending email. Trigger it from a Tally form so each submission runs the agent. My agent correctly spotted who wanted a call and drafted a good reply, but its own email tool could not send because scenario inputs were not available on my plan. Adding a send email step after the agent in the scenario delivered the reply on the second run.
 
 ### Make.com Lead Scraper: Apify Apollo Actor to Google Sheets
-https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/make-apify-apollo-leads-sheet.html (updated 2026-11-20)
 Copy the URL of an Apollo people search, then in Make.com create a Google Sheet, run the Apify Apollo actor with a JSON input holding that URL and a limit of 100 leads, get the dataset items, map first name, last name, email, phone, industry, country and city into an array and iterate it into sheet rows. It ran in about 30 seconds. A sheet-name clash had to be fixed first, and the phone column came back wrong, which mattered little because I wanted the emails.
 
 ### Make.com business automation examples
@@ -697,7 +697,7 @@ https://www.ai-automation-station.com/guides/make-content-builds-facebook-ebook-
 The Facebook scenario has ChatGPT write a visual post under 150 words, DALL-E 3 make an image from it, an HTTP step fetch the file and the Facebook module publish a photo post, scheduled daily at 10 am. The ebook scenario keeps the title, outline and status in Airtable, creates a Google Doc and loops over chapters with Claude; it needed a new API key after repeated credit errors and ended mid-run with repeated chapter headings. The Fillout scenario watches new form responses and creates Airtable records, or you can use Fillout’s built-in Airtable integration with no Make.com at all.
 
 ### Make.com Faceless Videos: JSON2Video and Auto-Posting
-https://www.ai-automation-station.com/guides/make-faceless-video-json2video.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/make-faceless-video-json2video.html (updated 2026-11-20)
 Create a free JSON2Video API key and an Airtable table with title, topic, language, voice, status and video URL. In Make.com search for to-do rows, write a script with OpenAI, render a 720 by 1280 vertical video with the JSON2Video toolbox module, wait for it, save the URL to Airtable, download the file and post it with a router to Facebook and YouTube. My test videos rendered in about 60 to 70 seconds.
 
 ### Make.com Google Sheets tutorial: filter approved requests
@@ -713,7 +713,7 @@ https://www.ai-automation-station.com/guides/make-lead-generation-pitches-apollo
 The simplest build runs a Google Maps text search in Make.com (for example marketing agencies in Bangkok, limited to 50), fetches each place’s website and extracts emails from the HTML with a regular expression ChatGPT wrote, adding rows to a Google Sheet. A second build scrapes an Apollo search of about 1,200 owners and founders with an Apify actor, and a third reads contacts from a sheet, researches each organization with Perplexity and drafts a PR pitch that goes to Airtable for review. Some emails were wrong or missing, some pitches had unfilled placeholders, and the Apify free plan stopped me at 10 runs a day.
 
 ### Facebook Messenger Auto-Replies With Make.com and ChatGPT
-https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/make-messenger-chatgpt-bot.html (updated 2026-11-20)
 In Make.com create a scenario with the Facebook Messenger Watch messages trigger and a webhook with a verify token you choose, add an OpenAI create-a-completion module that writes a reply to the incoming text, and a Messenger send-a-message module that returns it. Then create an app in Meta for Developers, connect your page, generate a page access token and paste in the webhook URL. Going live needs the pages messaging permission and business verification, which was still pending in my July 2025 walkthrough, so the bot was not shown working.
 
 ### How to make money with AI fast: the honest path
@@ -741,7 +741,7 @@ https://www.ai-automation-station.com/guides/make-youtube-ideas-to-video-pipelin
 Scrape the latest videos from a few creators in your niche with an Apify YouTube channel scraper, save titles, links, durations and views to Airtable sorted by views, and send the top titles to an OpenAI assistant that returns ten ideas in JSON. GPT-4.1 then writes a scene-by-scene script with voice-over and an image prompt per scene, JSON2Video renders a vertical video, and the file uploads to YouTube with the AI-generated label switched on. In my 30-minute build the final run failed because my free JSON2Video quota was used up, so I hardcoded an older render to show the download.
 
 ### Manus AI First Test: Calendar and Gmail
-https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/manus-first-test-calendar-gmail.html (updated 2026-11-20)
 In Manus pick the free Manus 1.6 Lite model, connect Google Calendar and Gmail, and ask it to auto-respond to all emails. It wrote a Python script and an hourly scheduled task that reads unread Gmail and drafts replies with an AI API. I added an OpenAI key and a Gemini key through custom API connectors, then asked it to switch from ChatGPT to Gemini. On Lite, a calendar delete did not work and a lead-flow SaaS build was too complex.
 
 ### Meta Muse Code Setup: API Failure and a Working CLI
@@ -757,7 +757,7 @@ https://www.ai-automation-station.com/guides/n8n-hostinger-uploader-sora-2-and-v
 My n8n runs on a Hostinger VPS for about 10 a month. The Shorts uploader polls a Google Drive folder hourly, downloads each new clip, uploads it to YouTube as unlisted and then writes a description, tags and title with AI before making it public, though its Apify transcript step failed in my demo. To use the Sora 2 node I first updated n8n to 1.118.1 with docker compose pull and a restart, then built a form that sends a prompt and product photo for an 8-second 1280 by 720 video. I also covered the 2.0 beta update and which routes exist for trying Sora 2.
 
 ### n8n Job Search Workflows: Scrape, Score and Draft Letters
-https://www.ai-automation-station.com/guides/n8n-job-search-resume-cover-letter-workflows.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/n8n-job-search-resume-cover-letter-workflows.html (updated 2026-11-20)
 Both workflows scrape remote digital marketing jobs from Indeed with an Apify actor and have OpenAI judge each job against your resume, then draft documents only for good matches and log every job. The Airtable version runs every three days, scores jobs out of 10 with GPT-5 mini and writes a cover letter for scores of 5 or more into a Google Doc. The Google Sheets version loops over jobs in batches of five with GPT-4.1, writes a tailored resume with GPT-4.1 mini and logs matches in a sheet. Applying stays manual, and one live run stopped on Google authentication errors.
 
 ### n8n Social Post Template: Trends, Research, Posting
@@ -829,7 +829,7 @@ https://www.ai-automation-station.com/guides/opencode-stripe-billing-saas.html (
 I pasted one billing prompt into OpenCode, which added Stripe subscription models, a pricing page, a billing invoices page, a checkout success page and an environment setup file. The build then failed twice and OpenCode fixed it by regenerating the Prisma client and installing the missing Stripe packages. No real payment was tested.
 
 ### OpenCode Skill That Trims Long Videos Into Shorts
-https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/opencode-video-trim-skill.html (updated 2026-11-20)
 Prompt OpenCode to create a skill that turns a long video into a 1.5 to 2.5 minute 16x9 cut that starts on a hook and removes filler words. It writes a transcribe script with Faster Whisper that outputs word-level timestamps and confidence, plus a script of about 100 lines that finds hooks and lists filler words. On a 10-minute tutorial it took about five minutes of CPU to produce a cut of about a minute and a half, and an existing Shorts skill made the 9x16 version in under 30 seconds. I used the free Qwen 3.6 model in OpenCode Zen.
 
 ### OpenCode vs Claude Code: pricing, setup and limits
@@ -837,7 +837,7 @@ https://www.ai-automation-station.com/guides/opencode-vs-claude-code.html (updat
 pick Claude Code if you already pay for a Claude plan and want Anthropic’s own coding agent. Pick OpenCode if you want an MIT-licensed, open source agent that can use models from Anthropic, OpenAI, OpenRouter or local options such as Ollama. Neither is ranked faster here: run the same small task in both and compare setup time, failed requests and the final diff.
 
 ### OpenCode Webcam-Layout Skill and the ShortForge Clip App
-https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/opencode-webcam-layout-skill-and-clip-app.html (updated 2026-11-20)
 Install the OpenCode skill creator globally with its one-line npx command, then prompt it for a skill that finds the webcam overlay, crops it to the bottom half and puts the screen share on top at 1080 by 1920 for 45 to 55 seconds. It checks for FFmpeg, installs OpenCV and generates a SKILL.md plus two Python scripts; a render took about 20 seconds, and one follow-up prompt closed a black gap. In a separate demo, my ShortForge app imported a YouTube link, transcribed it with Whisper, found about nine clips in a ten-minute video, rendered them with FFmpeg and scored each for virality, but subtitles and my webcam layout were not integrated.
 
 ### OpenDesign (Open Design) on Linux: Source Setup and Slides
@@ -869,7 +869,7 @@ https://www.ai-automation-station.com/guides/pi-dev-terminal-coding-agent.html (
 Install Pi with the one-line npm command from pi.dev, run pi, type login, choose API key and paste an OpenRouter key. It picked Kimi 2.6 by default, and the model list offered about 252 models. I ran a full site audit on my project, used the session command to see messages, tokens and total cost, and also connected Google Cloud Code Assist. Runs were slow, my OpenRouter balance went negative and Gemma 4 free hit a rate limit, so I topped up $5 and turned on auto top-up. I preferred OpenCode.
 
 ### Rank Prompt AI Visibility: Scan, MCP and Fixes
-https://www.ai-automation-station.com/guides/rank-prompt-ai-search-visibility.html (updated 2026-11-19)
+https://www.ai-automation-station.com/guides/rank-prompt-ai-search-visibility.html (updated 2026-11-20)
 In Rank Prompt, enter a site, run a visibility scan, pick categories so the product can generate prompts, then read where those prompts show up across the models you selected. The 12 November 2026 walkthrough then installed the Rank Prompt MCP in Claude Code, authenticated with an API key, and used that data to edit pages and draft outreach. Rank Prompt sponsored this video. The on-site edits were not treated as an instant rank change.
 
 ### REA Coding-Agent Case: A Video-Editor Prototype
@@ -913,19 +913,19 @@ https://www.ai-automation-station.com/guides/skool-community-setup-guide.html (u
 Create the community and choose the $9 Hobby plan (10% fee) or $99 Pro plan (2.9%), both with a 14-day trial. Then set a monthly price or keep it free, add membership questions and categories, write an About page with video and a testimonial, post introductions and polls, and build a classroom with free tutorials plus a paid course. In my September 2025 tour I reported about $700 in one-time sales over three months. The income examples at the start of the video are quoted from Skool pages and not verified.
 
 ### A Free Skool Community: What I Did in the First Two Weeks
-https://www.ai-automation-station.com/guides/skool-free-community-first-weeks.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/skool-free-community-first-weeks.html (updated 2026-11-20)
 I launched a free Skool community around Make.com automations and promoted it on Facebook, YouTube and my email list. After about two weeks it had 160 members and ranked on page six of the tech category. Free joining let me collect every new member’s email and send an automatic welcome message. I sell templates, a Make.com course and $150-an-hour consultations inside it, and said I had made about $300 against the $99 monthly fee. Those are my own early figures.
 
 ### Skool $9 Hobby Plan vs Pro: Fees, Admins and Limits
-https://www.ai-automation-station.com/guides/skool-hobby-plan-review.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/skool-hobby-plan-review.html (updated 2026-11-20)
 In July 2025 Skool's Hobby plan was $9 a month with one admin and a 10% transaction fee, and no custom URL, plugins such as Zapier, sidebar links, Facebook pixel or hiding suggested communities. Pro was $99 a month with unlimited admins, a 2.9% fee and those extras. I downgraded two communities to Hobby, paying $18 a month for a free and a paid community, and kept my existing URLs.
 
 ### Skool Membership Tiers: Free, Premium and VIP Setup
-https://www.ai-automation-station.com/guides/skool-membership-tiers.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/skool-membership-tiers.html (updated 2026-11-20)
 In your Skool community open Settings, then Pricing, and switch on membership tiers: a free level plus one or two paid upgrades. In October 2025 I set mine to free, premium at $29 a month ($280 a year) and VIP at $89 a month ($850 a year), then locked classroom modules and live calls to each tier. Skool's Hobby plan was $9 a month with a 10% fee and Pro was $99 with 2.9%, as I noted then.
 
 ### Skool Welcome Emails With Zapier, Make.com and EmailOctopus
-https://www.ai-automation-station.com/guides/skool-welcome-email-automation.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/skool-welcome-email-automation.html (updated 2026-11-20)
 Skool had no public API in July 2025, so use its Zapier integration to append each new member, with their answers and email, to a Google Sheet. In Make.com watch that sheet for new rows and add each person to EmailOctopus with first name and email, which starts a welcome sequence: an intro email, a 12-hour wait, a second email, a two-day wait and a last email. The catch: once my community became paid, I could no longer ask membership questions, so I could not collect emails from new members that way.
 
 ### n8n Music Video Workflow: Suno, Nano Banana Pro, Creatomate
@@ -933,11 +933,11 @@ https://www.ai-automation-station.com/guides/suno-n8n-music-video-workflow.html 
 Add an n8n form trigger that collects a music genre, have an OpenAI node write a Suno prompt under 500 characters, call the KIE Suno endpoint for instrumental tracks and poll every 10 seconds until the task succeeds. Generate a 16:9, 2K background image with Nano Banana Pro the same way, then render a Creatomate template with the two audio URLs and the image and upload the video to Google Drive. Everything worked up to the Creatomate step, which errored in my demo and still needed debugging. For a one-off channel, making the videos by hand may be easier.
 
 ### Syllaby Bulk Scheduler: A Week of Faceless Videos at Once
-https://www.ai-automation-station.com/guides/syllaby-bulk-scheduler-faceless-videos.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/syllaby-bulk-scheduler-faceless-videos.html (updated 2026-11-20)
 In Syllaby create a faceless video, choose a style, subtitles and voice, then use the bulk option: it generates scripts for 7 to 30 days from a few prompts, renders each video in about 5 to 10 minutes and places them in the content calendar with posts scheduled to YouTube, TikTok, Instagram and other accounts, up to five a day. I quoted 13 credits per minute of video and 500 credits a month on the paid plan, which starts at $25 a month. The script assistant failed with not-found errors several times before it worked.
 
 ### Syllaby First Test: A Faceless Video From Idea to YouTube
-https://www.ai-automation-station.com/guides/syllaby-faceless-video-first-test.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/syllaby-faceless-video-first-test.html (updated 2026-11-20)
 In Syllaby choose Create video, then Faceless video, pick a visual style, subtitles and voice, set portrait and a length under a minute, and write a custom topic for the AI script assistant. I added ambient music and sound effects, rendered the video in about three minutes despite an on-screen application error, then connected YouTube and published straight from Syllaby. The free trial had about 50 credits, roughly three minutes of video. I did not check the AI script’s cost-of-living claims or see how the video performed.
 
 ### Three AI Site Builds: Antigravity, n8n Dashboard, Hotel Site
@@ -961,7 +961,7 @@ https://www.ai-automation-station.com/guides/updateforge-package-manager-windows
 UpdateForge is my open-source package manager GUI for Windows and Linux. On 14 November 2026 I showed the public site, installed a recommended package from the GUI, searched across apt, npm, Cargo and other repos, and turned on automatic update checks. There was no Mac build in that walkthrough. I built it with Claude Code and did not write the code by hand.
 
 ### Vapi Outbound AI Caller: Twilio, Make.com and Google Sheets
-https://www.ai-automation-station.com/guides/vapi-outbound-ai-caller-make-twilio.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/vapi-outbound-ai-caller-make-twilio.html (updated 2026-11-20)
 Create a Vapi assistant from the appointment scheduler template with OpenAI as the model, pick an ElevenLabs professional clone for the voice and add the book-appointment and check-availability tools. Buy a Twilio number and import it into Vapi with the account SID and auth token. Then build a Make.com scenario that finds unsent rows in Google Sheets, loops over them, creates a Vapi outbound call, marks the row called and waits between calls. My live test call to my own phone booked a calendar slot. Vapi’s outbound campaign feature did not work for me, so Make.com did the dialing.
 
 ### Vapi AI tutorial: build a voice agent, test calls, webhooks
@@ -989,7 +989,7 @@ https://www.ai-automation-station.com/guides/what-is-n8n-used-for.html (updated 
 n8n is a workflow automation tool. You connect apps, APIs and AI models on a visual canvas, and n8n runs the steps when something happens. This guide lists jobs people hand to it and a first workflow you can check.
 
 ### WhatsApp AI Voice Clone in Make.com: Texts and Voice Memos
-https://www.ai-automation-station.com/guides/whatsapp-ai-voice-clone-make.html (updated 2026-11-15)
+https://www.ai-automation-station.com/guides/whatsapp-ai-voice-clone-make.html (updated 2026-11-20)
 In Make.com add a WhatsApp Business Cloud watch-events trigger and a router with filters for text and audio messages. Create an OpenAI assistant with a short role prompt and a vector store of your YouTube transcripts, built by a second scenario that reads links from Google Sheets, fetches transcripts with Dumpling AI, saves them to Google Drive and uploads them. Make an instant ElevenLabs clone, generate speech with the multilingual model and send it as a WhatsApp audio message. In my test the router filters went missing and had to be re-added, and the number was hardcoded.
 
 ### YouTube channel growth workflow: research, publish, learn
