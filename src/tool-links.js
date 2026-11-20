@@ -209,7 +209,6 @@ const links = [
   [['Flathub'], 'https://flathub.org'],
   [['Android TV'], 'https://www.android.com/tv/'],
   [['CleanYourTV'], 'https://github.com/Gathin23/cleanyourtv'],
-  [['RankPrompt'], 'https://www.rankprompt.com'],
   [['VisiScan'], visiscanUrl(visiscanPaths.tool, 'watch')],
   [['Index Guru'], 'https://indexguru.com'],
   [['Synthesia'], 'https://www.synthesia.io'],
