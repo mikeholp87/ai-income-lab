@@ -361,6 +361,15 @@ const channelCount = (channel, key) => {
 };
 const subscriberCount = channel => channelCount(channel, 'subscribers');
 
+function ChannelStats({ channel }) {
+  return (
+    <section className="stats" aria-label="Community and channel numbers">
+      <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{key ? channelCount(channel, key) : value}</dd></div>)}</dl>
+      <p className="stats-note shell">Member count from Skool as of {membersAsOf}. YouTube numbers update daily.</p>
+    </section>
+  );
+}
+
 // Rate card add-ons, priced on top of the formats above.
 const addOns = [
   ['Extra YouTube Short', '$300'], ['Extra LinkedIn post', '$250'], ['Extra AI Income Lab post', '$200'], ['YouTube community post', '$200'], ['Raw video footage', '$500'],
@@ -696,6 +705,8 @@ function SponsorsMain({ channel, campaign }) {
         <p className="fine-print">Formats from $300. Four-format campaign: $2,250, saving $300 on separate bookings.</p>
       </section>
 
+      <ChannelStats channel={channel} />
+
       <MediaKit />
 
       {sponsoredVideos.length > 0 && <>
@@ -841,10 +852,7 @@ function App({ page = 'home' }) {
         </div>
       </section>
 
-      <section className="stats" aria-label="Community and channel numbers">
-        <dl className="shell">{stats.map(([value, label, key]) => <div key={label}><dt>{label}</dt><dd>{key ? channelCount(channel, key) : value}</dd></div>)}</dl>
-        <p className="stats-note shell">Member count from Skool as of {membersAsOf}. YouTube numbers update daily.</p>
-      </section>
+      <ChannelStats channel={channel} />
 
       <section className="section band" id="community">
         <div className="shell">
