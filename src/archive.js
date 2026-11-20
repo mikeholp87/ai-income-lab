@@ -426,6 +426,7 @@ const watchGuideLinks = {
   XEmJGf5CHwk: [['/guides/aegis-vpn-claude-code.html', 'Aegis VPN with Claude Code: Build and Test the Client']],
   IIcekvpPuqo: [['/guides/aegis-vpn-claude-code.html', 'Aegis VPN with Claude Code: Build and Test the Client']],
   mtpX58dNfCE: [['/guides/apify-agent-skills.html', 'Install Apify agent skills and scrape leads']],
+  'V3ETwJAR5-I': [['/guides/grokbot-credit-usage.html', 'Slow GrokBot credit drain: routines and caps'], ['/guides/grokbot-for-beginners.html', 'GrokBot for Beginners: First Bot, Access and Approvals', 'Broader guide']],
   c_WK6TImkNQ: [['/guides/cline-ai-coding-agent.html', 'Follow the Cline install and first GEO pass']],
   pDrMGahPnwc: [['/guides/otterly-ai-visibility-tracking.html', 'Follow the Otterly AI visibility dashboard tour']],
   AO8NoHPU3e0: [['/guides/claude-code-routines.html', 'Follow the Claude Code routines setup']],

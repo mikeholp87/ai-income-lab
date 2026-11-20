@@ -24,7 +24,7 @@ export default {
     {
       id: 'setup',
       h: '1. Start a faceless video',
-      html: '<p>The dashboard offers ideas, a clone of yourself and AI thumbnails (I use vidIQ for thumbnails, so I skipped that). I chose Create video, then Faceless video. The visual styles included pop art, hyper realism and cinematic realism, each with a preview that updates with your subtitle style. I picked an American male voice after hearing a few, set portrait mode for Shorts and chose a length under a minute because the trial had about 50 credits, enough for around three minutes.</p>',
+      html: '<p>The dashboard offers ideas, a clone of yourself and AI thumbnails (I use <a href="https://www.vidiq.com/mikeholp" target="_blank" rel="sponsored noopener" data-affiliate="vidIQ" data-placement="guide_inline">vidIQ</a> for thumbnails, so I skipped that). I chose Create video, then Faceless video. The visual styles included pop art, hyper realism and cinematic realism, each with a preview that updates with your subtitle style. I picked an American male voice after hearing a few, set portrait mode for Shorts and chose a length under a minute because the trial had about 50 credits, enough for around three minutes.</p>',
     },
     {
       id: 'script',
@@ -39,7 +39,7 @@ export default {
     {
       id: 'after',
       h: '4. Credits, price and scheduling',
-      html: "<p>I was on the free trial and said the paid plan was about $25 a month for 500 credits. I had 35 credits left after one video. A bulk scheduler can create and post videos automatically to YouTube, Facebook, TikTok and Instagram. I had built similar posting automations in Make.com before, and thought Syllaby was easier, but that is my opinion.</p>",
+      html: "<p>I was on the free trial and said the paid plan was about $25 a month for 500 credits. I had 35 credits left after one video. A bulk scheduler can create and post videos automatically to YouTube, Facebook, TikTok and Instagram. I had built similar posting automations in <a href=\"https://www.make.com/en/register?pc=mikeholp\" target=\"_blank\" rel=\"sponsored noopener\" data-affiliate=\"Make.com\" data-placement=\"guide_inline\">Make.com</a> before, and thought Syllaby was easier, but that is my opinion.</p>",
     },
   ],
   done: [

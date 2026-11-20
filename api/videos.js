@@ -110,7 +110,8 @@ export async function GET(request) {
     if (newest && !memo.videos.some(video => video.id === newest)) await refreshUploads();
   }
   if (!memo.videos) return html(message('Videos unavailable', `The video archive didn’t load. <a href="${channelUrl}/videos">Watch every video on YouTube</a>.`), 503, 'no-store');
-  const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=3600';
+  // Browsers keep 10 minutes. The CDN keeps an hour, then serves the cached page for up to a day while it refreshes in the background.
+  const cache = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400';
   // The sponsors page swaps in this list; shared selection also retains reviewed spoken disclosures.
   if (sponsored) return Response.json(sponsoredVideos(memo.videos), { headers: { 'Cache-Control': cache } });
   if (index) return Response.json(videoIndex(memo.videos), { headers: { 'Cache-Control': cache } });
