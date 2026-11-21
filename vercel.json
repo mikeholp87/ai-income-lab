@@ -73,6 +73,8 @@
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/guides/runable-audit-website.html", "destination": "https://www.ai-automation-station.com/guides/lovable-vs-base44-vs-replit.html", "permanent": true },
+    { "source": "/videos/ai-coding", "destination": "/guides/build-apps-with-ai-coding-agents.html", "permanent": true },
+    { "source": "/videos/ai-coding/", "destination": "/guides/build-apps-with-ai-coding-agents.html", "permanent": true },
     { "source": "/blog/", "destination": "https://www.ai-automation-station.com/guides.html", "permanent": true },
     { "source": "/blog", "destination": "https://www.ai-automation-station.com/guides.html", "permanent": true },
     { "source": "/:page(start-here|guides|about|sponsors|privacy|terms|search|tools|ai-income-lab)/", "destination": "https://www.ai-automation-station.com/:page.html", "permanent": true },
